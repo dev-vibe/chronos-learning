@@ -324,24 +324,69 @@ export const NodeContentDisplay: React.FC<NodeContentDisplayProps> = ({ node, er
                         Optional modules for advanced learners. Completing these provides deeper insight into the era.
                     </p>
                     <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                        {extraResources.map((res, idx) => (
-                            <a 
-                            key={idx}
-                            href={getResourceLink(res)}
-                            target="_blank"
-                            rel="noreferrer"
-                            className="flex items-center gap-4 p-3 rounded-lg bg-black border border-stone-800 hover:border-purple-500/50 hover:bg-stone-900 transition-all group"
-                            >
-                                <div className="p-2 bg-stone-900 rounded group-hover:bg-purple-900/20 transition-colors text-stone-500 group-hover:text-purple-400">
-                                    {getResourceIcon(res.type)}
-                                </div>
-                                <div className="flex-1 min-w-0">
-                                    <h4 className="font-bold text-stone-300 text-sm truncate group-hover:text-white font-display">{res.title}</h4>
-                                    <p className="text-[10px] text-stone-600 mt-0.5 uppercase tracking-wide font-mono group-hover:text-stone-500 truncate">{res.type} // {new URL(res.url).hostname}</p>
-                                </div>
-                                <ExternalLink size={14} className="text-stone-700 group-hover:text-purple-400 transition-colors" />
-                            </a>
-                        ))}
+                        {extraResources.map((res, idx) => {
+                            const isVideo = res.type === 'Video';
+                            const embedUrl = isVideo ? getVideoEmbedUrl(res.url) : null;
+                            const isEmbeddable = embedUrl !== null;
+
+                            if (isEmbeddable) {
+                                return (
+                                    <div 
+                                        key={idx}
+                                        className="flex flex-col bg-black border border-stone-800 hover:border-purple-500/50 rounded-lg overflow-hidden transition-all group"
+                                    >
+                                        <div className="p-3 border-b border-stone-800 flex items-center gap-3">
+                                            <div className="p-2 bg-stone-900 rounded group-hover:bg-purple-900/20 transition-colors text-stone-500 group-hover:text-purple-400">
+                                                {getResourceIcon(res.type)}
+                                            </div>
+                                            <div className="flex-1 min-w-0">
+                                                <h4 className="font-bold text-stone-300 text-sm truncate group-hover:text-white font-display">{res.title}</h4>
+                                                <p className="text-[10px] text-stone-600 mt-0.5 uppercase tracking-wide font-mono group-hover:text-stone-500 truncate">{res.type}</p>
+                                            </div>
+                                        </div>
+                                        <div className="relative w-full aspect-video bg-black">
+                                            <iframe
+                                                src={embedUrl || ''}
+                                                className="w-full h-full"
+                                                allow="fullscreen; autoplay; picture-in-picture"
+                                                allowFullScreen
+                                                title={res.title}
+                                                style={{ border: 'none' }}
+                                            />
+                                        </div>
+                                    </div>
+                                );
+                            }
+
+                            const resourceLink = getResourceLink(res);
+                            let hostname = '';
+                            try {
+                                if (res.url) {
+                                    hostname = new URL(res.url).hostname;
+                                }
+                            } catch (e) {
+                                // Invalid URL, skip hostname
+                            }
+
+                            return (
+                                <a 
+                                    key={idx}
+                                    href={resourceLink}
+                                    target="_blank"
+                                    rel="noreferrer"
+                                    className="flex items-center gap-4 p-3 rounded-lg bg-black border border-stone-800 hover:border-purple-500/50 hover:bg-stone-900 transition-all group"
+                                >
+                                    <div className="p-2 bg-stone-900 rounded group-hover:bg-purple-900/20 transition-colors text-stone-500 group-hover:text-purple-400">
+                                        {getResourceIcon(res.type)}
+                                    </div>
+                                    <div className="flex-1 min-w-0">
+                                        <h4 className="font-bold text-stone-300 text-sm truncate group-hover:text-white font-display">{res.title}</h4>
+                                        <p className="text-[10px] text-stone-600 mt-0.5 uppercase tracking-wide font-mono group-hover:text-stone-500 truncate">{res.type}{hostname ? ` // ${hostname}` : ''}</p>
+                                    </div>
+                                    <ExternalLink size={14} className="text-stone-700 group-hover:text-purple-400 transition-colors" />
+                                </a>
+                            );
+                        })}
                     </div>
                 </div>
             </section>
@@ -688,8 +733,77 @@ const getResourceIcon = (type: string) => {
     return <BookOpen size={18} />;
 };
 
+// Utility function to parse video URLs and generate embed URLs
+const getVideoEmbedUrl = (url: string): string | null => {
+    if (!url) return null;
+
+    // YouTube patterns
+    // https://www.youtube.com/watch?v=VIDEO_ID
+    // https://youtu.be/VIDEO_ID
+    // https://www.youtube.com/embed/VIDEO_ID (already embed format)
+    const youtubeWatchMatch = url.match(/(?:youtube\.com\/watch\?v=|youtu\.be\/|youtube\.com\/embed\/)([a-zA-Z0-9_-]{11})/);
+    if (youtubeWatchMatch) {
+        const videoId = youtubeWatchMatch[1];
+        // Parameters: rel=0 (no related videos), modestbranding=1 (less branding), fs=1 (fullscreen enabled)
+        return `https://www.youtube.com/embed/${videoId}?rel=0&modestbranding=1&fs=1&playsinline=1`;
+    }
+
+    // Vimeo patterns
+    // https://vimeo.com/VIDEO_ID
+    // https://player.vimeo.com/video/VIDEO_ID (already embed format)
+    const vimeoMatch = url.match(/(?:vimeo\.com\/|player\.vimeo\.com\/video\/)(\d+)/);
+    if (vimeoMatch) {
+        const videoId = vimeoMatch[1];
+        // Parameters: autoplay=0 (no autoplay), title=0, byline=0, portrait=0 (hide UI elements), badge=0
+        return `https://player.vimeo.com/video/${videoId}?autoplay=0&title=0&byline=0&portrait=0&badge=0`;
+    }
+
+    return null;
+};
+
 const ResourceCard: React.FC<{ resource: Resource, variant?: 'core' | 'default' }> = ({ resource, variant }) => {
     const isVideo = resource.type === 'Video';
+    const embedUrl = isVideo ? getVideoEmbedUrl(resource.url) : null;
+    const isEmbeddable = embedUrl !== null;
+
+    // If it's a video with an embeddable URL, render embed
+    if (isEmbeddable) {
+        return (
+            <div 
+                className={`flex flex-col bg-[#111] border rounded-xl p-5 transition-all duration-200 group h-full relative overflow-hidden
+                    ${variant === 'core' 
+                        ? 'border-stone-800 hover:border-amber-500/50 hover:bg-[#161616] hover:shadow-[0_0_20px_rgba(0,0,0,0.5)]' 
+                        : 'border-stone-800 hover:border-stone-600'}`}
+            >
+                <div className={`absolute top-0 left-0 w-1 h-full transition-colors ${isVideo ? 'bg-red-900/50' : 'bg-stone-800'} group-hover:bg-amber-500`}></div>
+                <div className="flex items-start justify-between mb-3 pl-3">
+                    <span className={`inline-flex items-center gap-1.5 text-[9px] font-mono font-bold uppercase tracking-wider px-2 py-1 rounded
+                         ${isVideo ? 'bg-red-950/30 text-red-400 border border-red-900/50' : 'bg-stone-900 text-stone-500 border border-stone-800'}`}>
+                        {getResourceIcon(resource.type)}
+                        {resource.type}
+                    </span>
+                </div>
+                <h3 className="font-bold text-lg text-stone-200 mb-2 leading-tight group-hover:text-white transition-colors pl-3 font-display">
+                    {resource.title}
+                </h3>
+                <p className="text-sm text-stone-500 mb-4 leading-relaxed pl-3 border-l border-stone-900 group-hover:border-stone-800 transition-colors">
+                    {resource.description}
+                </p>
+                <div className="relative w-full aspect-video rounded-lg overflow-hidden border border-stone-800 bg-black">
+                    <iframe
+                        src={embedUrl || ''}
+                        className="w-full h-full"
+                        allow="fullscreen; autoplay; picture-in-picture"
+                        allowFullScreen
+                        title={resource.title}
+                        style={{ border: 'none' }}
+                    />
+                </div>
+            </div>
+        );
+    }
+
+    // Otherwise, render as link (non-embeddable videos or non-video resources)
     return (
         <a 
             href={getResourceLink(resource)}

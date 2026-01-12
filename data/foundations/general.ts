@@ -352,7 +352,7 @@ export const FOUNDATIONS_GENERAL: Record<string, NodeContent> = {
       {
         title: "Dogs Decoded - NOVA PBS",
         type: "Video",
-        url: "https://www.pbs.org/wgbh/nova/video/dogs-decoded/",
+        url: "https://vimeo.com/241455494",
         isCore: true,
         description:
           "PBS NOVA documentary revealing the science behind dog domestication. Features the famous Siberian fox experiments showing domestication in action, explaining genetics and the remarkable human-dog bond. Visually engaging for teens."
@@ -584,12 +584,12 @@ export const FOUNDATIONS_GENERAL: Record<string, NodeContent> = {
     ],
     resources: [
       {
-        title: "Bronze Age - Encyclopedia Britannica",
-        type: "Article",
-        url: "https://www.britannica.com/event/Bronze-Age",
+        title: "The Bronze Age | What Was the Bronze Age",
+        type: "Video",
+        url: "https://www.youtube.com/watch?v=PYqHA5C82Xs&rel=0",
         isCore: true,
         description:
-          "Comprehensive article explaining the Bronze Age period (c. 3000-1000 BCE), how bronze alloy was discovered, its advantages over copper, the rise of trade networks, and why bronze revolutionized warfare, agriculture, and craftsmanship."
+          "Comprehensive video explaining the Bronze Age period (c. 3000-1000 BCE), how bronze alloy was discovered, its advantages over copper, the rise of trade networks, and why bronze revolutionized warfare, agriculture, and craftsmanship."
       },
       {
         title: "The Bronze Age Collapse - Fall of Civilizations Podcast",
@@ -839,12 +839,12 @@ export const FOUNDATIONS_GENERAL: Record<string, NodeContent> = {
           "Podcast exploring new research suggesting the wheel was first created by prehistoric miners in the Carpathian Mountains to transport copper. Features archaeologist Dr. Richard Bulliet and computational engineer Dr. Kai James discussing why the wheel took 100,000+ years to invent and how it spread from Mesopotamia."
       },
       {
-        title: "The Wheel - World History Encyclopedia",
+        title: "The Wheel - DK Find Out",
         type: "Article",
-        url: "https://www.worldhistory.org/wheel/",
+        url: "https://www.dkfindout.com/us/history/ancient-egypt/wheel/",
         isCore: true,
         description:
-          "Comprehensive article explaining why the wheel took so long to invent (it's harder than it looks!), how it evolved from solid disks to spoked wheels, and how it revolutionized transportation, warfare, pottery, and civilization itself."
+          "Interactive, visually-rich article perfect for young learners. Explains why the wheel took so long to invent, how it evolved from potter's wheels, and how it revolutionized transportation. Features engaging illustrations, fun facts, and easy-to-understand explanations that make ancient history come alive."
       },
       {
         title: "The Invention of the Wheel - Khan Academy",

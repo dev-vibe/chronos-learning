@@ -35,7 +35,7 @@ export interface Resource {
 export interface HistoricalPerson {
   name: string;
   role: string;
-  category: 'Philosopher' | 'Leader' | 'Scientist' | 'Villain' | 'Hero' | 'Artist' | 'Other' | 'Military' | 'Explorer' | 'Worker' | 'Priest' | 'Commoner' | 'Warrior';
+  category: 'Philosopher' | 'Leader' | 'Scientist' | 'Villain' | 'Hero' | 'Artist' | 'Other' | 'Military' | 'Explorer' | 'Worker' | 'Priest' | 'Commoner' | 'Warrior' | 'Athlete' | 'Mythical' | 'Poet';
   description: string;
   imageUrl?: string;
   born?: string;
@@ -88,7 +88,7 @@ export interface Artifact {
   id: string;
   name: string;
   description: string;
-  rarity: 'Common' | 'Rare' | 'Legendary' | 'Mythic';
+  rarity: 'Common' | 'Rare' | 'Legendary' | 'Mythic' | 'Epic';
   imageUrl?: string;
 }
 

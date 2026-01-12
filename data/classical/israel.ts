@@ -92,21 +92,21 @@ export const CLASSICAL_ISRAEL: Record<string, NodeContent> = {
       {
         title: "The Real King David - Documentary",
         type: "Video",
-        searchQuery: "King David ancient Israel documentary",
+        url: "https://www.youtube.com/results?search_query=King+David+ancient+Israel+documentary",
         isCore: true,
         description: "Archaeological and historical look at the real David behind the Biblical stories"
       },
       {
         title: "The Psalms of David",
         type: "Video",
-        searchQuery: "Psalms of David explained for kids",
+        url: "https://www.youtube.com/results?search_query=Psalms+of+David+explained+for+kids",
         isCore: false,
         description: "Understanding the ancient songs and poems attributed to King David"
       },
       {
         title: "Archaeology of David's Jerusalem",
         type: "Article",
-        searchQuery: "City of David archaeological discoveries",
+        url: "https://www.biblicalarchaeology.org/daily/biblical-sites-places/jerusalem/the-city-of-david/",
         isCore: false,
         description: "What archaeologists have found (and debated) about David's capital city"
       }

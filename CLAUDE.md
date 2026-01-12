@@ -203,7 +203,7 @@ export const CLASSICAL_GREECE: Record<string, NodeContent> = {
     {
       title: "Alexander the Great Documentary",
       type: "Video",
-      searchQuery: "Alexander the Great BBC documentary",
+      url: "https://www.youtube.com/watch?v=VIDEO_ID?rel=0",
       isCore: true,
       description: "Visual overview of conquests"
     }
@@ -245,15 +245,35 @@ export const STATIC_CONTENT: Record<string, NodeContent> = {
 When researching a new node:
 1. **Web search** for authoritative sources (university sites, museum content, peer-reviewed summaries)
 2. **Find engaging videos**: Look for documentaries, museum curator talks, educational channels (Crash Course, History Hit, PBS)
+   - **Important**: When adding YouTube URLs, always append `?rel=0` to limit suggestions to the current channel
 3. **Find podcasts**: History podcasts for kids/teens (The History Podcast, Stuff You Missed in History Class)
 4. **Identify key figures**: 2-4 people directly involved (leaders, inventors, artists, everyday people)
 5. **Identify key inventions/technologies**: Actual innovations with Problem→Solution→Impact structure
 6. **Identify key places**: Physical locations central to the story
 7. **Draft quiz**: 3-5 multiple choice questions testing core concepts
 
-## Resource Search Queries
+## Resource URLs and Search Queries
 
-Each `Resource` object has a `searchQuery` field. These are meant to be:
+### Video Resources
+
+**Important**: All YouTube video URLs must include `?rel=0` appended to the URL. This parameter forces YouTube to only show video suggestions from the current channel, preventing unrelated or inappropriate content from appearing in the "Up Next" section. This is critical for kid-friendly content.
+
+**YouTube URL Format:**
+```typescript
+{
+  title: "Documentary Title",
+  type: "Video",
+  url: "https://www.youtube.com/watch?v=VIDEO_ID?rel=0",  // Note: ?rel=0 required
+  isCore: true,
+  description: "Video description"
+}
+```
+
+**Vimeo URLs** do not require special parameters (the embed system handles this automatically).
+
+### Search Queries (Legacy)
+
+Each `Resource` object can have a `searchQuery` field (legacy support). These are meant to be:
 - Specific enough to find quality content
 - Generic enough to work across search engines/platforms
 - Kid-appropriate (avoid queries that might return violent/inappropriate content)
@@ -266,6 +286,8 @@ Good examples:
 Bad examples:
 - `"Alexander"` (too vague)
 - `"brutal ancient warfare"` (inappropriate tone)
+
+**Note**: Prefer using direct `url` fields with proper YouTube `?rel=0` parameters over `searchQuery` for better control and embedding support.
 
 ## Styling & UI Conventions
 

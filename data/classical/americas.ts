@@ -70,21 +70,21 @@ export const CLASSICAL_AMERICAS: Record<string, NodeContent> = {
       {
         title: "Chavín de Huántar: Peru's Ancient Temple",
         type: "Video",
-        searchQuery: "Chavin de Huantar temple Peru documentary",
+        url: "https://www.youtube.com/results?search_query=Chavin+de+Huantar+temple+Peru+documentary",
         isCore: true,
         description: "Explore the mysterious temple complex and its acoustic secrets"
       },
       {
         title: "Lost Civilizations: Chavín Culture",
         type: "Video",
-        searchQuery: "Chavin civilization ancient Peru",
+        url: "https://www.youtube.com/results?search_query=Chavin+civilization+ancient+Peru",
         isCore: false,
         description: "How Chavín influenced Andean cultures for over 1,000 years"
       },
       {
         title: "The Acoustic Mysteries of Chavín",
         type: "Article",
-        searchQuery: "Chavin temple acoustics sound effects",
+        url: "https://www.smithsonianmag.com/science-nature/acoustics-recreate-ancient-sound-180968339/",
         isCore: false,
         description: "Scientific analysis of how Chavín priests used sound to create religious awe"
       }

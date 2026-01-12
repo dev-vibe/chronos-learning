@@ -40,8 +40,19 @@ To add content for a new Era (e.g., Classical Antiquity):
         summary: "...",
         people: [ ... ],
         inventions: [ ... ],
+        resources: [
+          {
+            title: "Video Title",
+            type: "Video",
+            url: "https://www.youtube.com/watch?v=VIDEO_ID?rel=0",  // Note: ?rel=0 required for YouTube URLs
+            isCore: true,
+            description: "Video description"
+          }
+        ],
         // ... see types.ts for schema
       }
     }
     ```
 4.  **Register**: Import and spread this object into `src/staticContent.ts`.
+
+**Important**: All YouTube video URLs must include `?rel=0` appended to the URL. This limits video suggestions to the current channel, preventing unrelated content from appearing—critical for kid-friendly content.
