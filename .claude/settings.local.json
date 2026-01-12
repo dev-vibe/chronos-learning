@@ -1,0 +1,22 @@
+{
+  "permissions": {
+    "allow": [
+      "WebSearch",
+      "Bash(node:*)",
+      "Bash(npx tsc:*)",
+      "Bash(grep:*)",
+      "WebFetch(domain:www.khanacademy.org)",
+      "WebFetch(domain:ehcline.com)",
+      "WebFetch(domain:www.pbslearningmedia.org)",
+      "WebFetch(domain:www.classcentral.com)",
+      "Bash(npm run dev:*)",
+      "Bash(timeout /t 1)",
+      "WebFetch(domain:www.youtube.com)",
+      "WebFetch(domain:www.nationalgeographic.com)",
+      "WebFetch(domain:www.worldhistory.org)",
+      "WebFetch(domain:education.nationalgeographic.org)",
+      "WebFetch(domain:dandavisauthor.com)",
+      "WebFetch(domain:www.iheart.com)"
+    ]
+  }
+}
