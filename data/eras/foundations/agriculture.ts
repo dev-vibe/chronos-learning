@@ -1,4 +1,4 @@
-import { NodeContent } from '../../types';
+import { NodeContent } from '../../../types';
 
 export const FOUNDATIONS_GENERAL: Record<string, NodeContent> = {
   'neolithic_revolution': {
@@ -839,20 +839,20 @@ export const FOUNDATIONS_GENERAL: Record<string, NodeContent> = {
           "Podcast exploring new research suggesting the wheel was first created by prehistoric miners in the Carpathian Mountains to transport copper. Features archaeologist Dr. Richard Bulliet and computational engineer Dr. Kai James discussing why the wheel took 100,000+ years to invent and how it spread from Mesopotamia."
       },
       {
-        title: "The Wheel - DK Find Out",
-        type: "Article",
-        url: "https://www.dkfindout.com/us/history/ancient-egypt/wheel/",
+        title: "The Invention of the Wheel - See U in History",
+        type: "Video",
+        url: "https://www.youtube.com/watch?v=vC8xmdA4Dmg&rel=0",
         isCore: true,
         description:
-          "Interactive, visually-rich article perfect for young learners. Explains why the wheel took so long to invent, how it evolved from potter's wheels, and how it revolutionized transportation. Features engaging illustrations, fun facts, and easy-to-understand explanations that make ancient history come alive."
+          "Animated educational video explaining the fascinating story of how the wheel was invented around 3500 BCE in Mesopotamia. Covers why it took humans so long to invent something that seems obvious, how it evolved from potter's wheels and rolling logs, and how it revolutionized transportation and warfare. Engaging visuals and clear narration perfect for young learners."
       },
       {
-        title: "The Invention of the Wheel - Khan Academy",
+        title: "The Wheel - Britannica",
         type: "Article",
-        url: "https://www.khanacademy.org/humanities/big-history-project/agriculture-civilization/first-cities-states/a/the-invention-of-the-wheel",
+        url: "https://www.britannica.com/technology/wheel",
         isCore: false,
         description:
-          "Student-friendly explanation of the wheel's invention around 3500 BCE in Mesopotamia, how it spread to other civilizations, and why some advanced societies (like the Maya and Inca) didn't use wheels for transport despite having the technology."
+          "Comprehensive Britannica article explaining the invention of the wheel around 3500 BCE in Mesopotamia. Covers why it took humans so long to invent something that seems obvious, how it evolved from potter's wheels, and how it revolutionized transportation, warfare, and civilization. Well-written and accessible for young learners."
       },
       {
         title: "Spoked Wheels and War Chariots - Ancient History Encyclopedia",

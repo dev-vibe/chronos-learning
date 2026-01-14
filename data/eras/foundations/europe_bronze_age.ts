@@ -1,4 +1,4 @@
-import { NodeContent } from '../../types';
+import { NodeContent } from '../../../types';
 
 export const FOUNDATIONS_EUROPE: Record<string, NodeContent> = {
   'otzi': {

@@ -1,4 +1,4 @@
-import { NodeContent } from '../../types';
+import { NodeContent } from '../../../types';
 
 export const FOUNDATIONS_YOUNGER_DRYAS: Record<string, NodeContent> = {
   'younger_dryas_reset': {

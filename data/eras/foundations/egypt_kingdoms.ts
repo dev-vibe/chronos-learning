@@ -1,5 +1,5 @@
 
-import { NodeContent } from '../../types';
+import { NodeContent } from '../../../types';
 
 export const FOUNDATIONS_EGYPT: Record<string, NodeContent> = {
   // ... (Other nodes like hieroglyphs, narmer, etc. exist here but we only update pyramids for brevity in this example)
@@ -122,12 +122,12 @@ export const FOUNDATIONS_EGYPT: Record<string, NodeContent> = {
     ],
     resources: [
       {
-        title: "Decoding Hieroglyphics - PBS Secrets of the Dead",
+        title: "What are Hieroglyphics for Kids - Ancient Egyptian Facts",
         type: "Video",
-        url: "https://www.pbs.org/video/decoding-hieroglyphics-olvdko/",
+        url: "https://www.youtube.com/watch?v=9KD4UbNX23Q&rel=0",
         isCore: true,
         description:
-          "Excellent documentary about Jean-François Champollion's 1822 breakthrough deciphering hieroglyphs using the Rosetta Stone. Shows how he figured out hieroglyphs combined phonetic and ideographic elements, ending 1,500 years of silence."
+          "Kid-friendly educational video explaining what hieroglyphics are, how they work, and their importance in ancient Egypt. Engaging and accessible for young learners, covering the basics of how this ancient writing system functioned."
       },
       {
         title: "How Egyptian Hieroglyphs Work - National Geographic Kids",

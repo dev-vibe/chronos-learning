@@ -1,4 +1,4 @@
-import { NodeContent } from '../../types';
+import { NodeContent } from '../../../types';
 
 export const FOUNDATIONS_MESOPOTAMIA: Record<string, NodeContent> = {
   'sumer_writing': {
@@ -121,11 +121,11 @@ export const FOUNDATIONS_MESOPOTAMIA: Record<string, NodeContent> = {
         description: "Fascinating podcast exploring how cuneiform was invented, what it reveals about ancient society, and how scholars today are still deciphering thousands of unread tablets. Features expert interviews and surprising discoveries."
       },
       {
-        title: "Writing in Ancient Mesopotamia - Khan Academy",
+        title: "Cuneiform - Britannica",
         type: "Article",
-        url: "https://www.khanacademy.org/humanities/world-history/world-history-beginnings/ancient-mesopotamia/a/writing-in-ancient-mesopotamia",
+        url: "https://www.britannica.com/topic/cuneiform",
         isCore: false,
-        description: "Student-friendly explanation of how writing emerged in Mesopotamia to solve practical problems, how scribes learned the complex system, and what kinds of texts they created—from business records to epic poetry."
+        description: "Comprehensive Britannica article explaining how cuneiform writing emerged in Mesopotamia around 3400 BCE, how it evolved from simple accounting marks to complex literature, and how scribes learned the system. Well-written and accessible for young learners."
       }
     ],
     quiz: {

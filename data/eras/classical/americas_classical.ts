@@ -1,4 +1,4 @@
-import { NodeContent } from '../../types';
+import { NodeContent } from '../../../types';
 
 export const CLASSICAL_AMERICAS: Record<string, NodeContent> = {
   'chavin': {

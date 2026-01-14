@@ -1,4 +1,4 @@
-import { NodeContent } from '../../types';
+import { NodeContent } from '../../../types';
 
 export const CLASSICAL_GREECE: Record<string, NodeContent> = {
   'olympics': {

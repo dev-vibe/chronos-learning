@@ -1,4 +1,4 @@
-import { NodeContent } from '../../types';
+import { NodeContent } from '../../../types';
 
 export const CLASSICAL_ROME: Record<string, NodeContent> = {
   'rome_founded': {
