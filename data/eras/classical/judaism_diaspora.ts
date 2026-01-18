@@ -150,13 +150,7 @@ export const CLASSICAL_ISRAEL: Record<string, NodeContent> = {
           correctIndex: 2,
           explanation: "David's legacy extends across three religions. Christians believe Jesus was 'Son of David'—the promised Messiah from David's lineage. Muslims honor Dawud (David) as a prophet and righteous king. His impact on religious history is enormous."
         }
-      ],
-      rewardArtifact: {
-        id: "davids_harp",
-        name: "David's Harp",
-        description: "Legendary instrument the shepherd-king played while composing Psalms",
-        rarity: "Epic"
-      }
+      ]
     }
   }
 };

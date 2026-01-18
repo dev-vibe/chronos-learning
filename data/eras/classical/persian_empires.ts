@@ -228,15 +228,7 @@ export const CLASSICAL_PERSIA: Record<string, NodeContent> = {
           explanation:
             "In 539 BCE, Cyrus conquered Babylon and freed the Jews who had been held in captivity. He allowed them to return to Jerusalem and rebuild their temple—earning him the title 'the anointed of the Lord' in the Bible."
         }
-      ],
-      rewardArtifact: {
-        id: "cyrus_cylinder_replica",
-        name: "The Golden Cylinder of Cyrus",
-        description:
-          "A replica of the ancient declaration inscribed in 539 BCE that freed captive peoples and proclaimed religious freedom across the Persian Empire. Its principles echo in modern human rights charters 2,500 years later.",
-        rarity: "Legendary",
-        imageUrl: "/images/artifacts/cyrus_cylinder.jpg"
-      }
+      ]
     }
   }
 };

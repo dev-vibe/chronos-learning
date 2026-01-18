@@ -128,13 +128,7 @@ export const CLASSICAL_AMERICAS: Record<string, NodeContent> = {
           correctIndex: 2,
           explanation: "The jaguar was Chavín's most important religious symbol. Their gods were depicted as jaguar-human hybrids with fangs and claws. This jaguar-shamanism spread throughout the Andes and influenced Andean religion for over 1,000 years."
         }
-      ],
-      rewardArtifact: {
-        id: "chavin_lanzon",
-        name: "Replica of the Lanzón",
-        description: "Miniature carving of the fanged Staff God that stood at Chavín's spiritual heart",
-        rarity: "Epic"
-      }
+      ]
     }
   }
 };

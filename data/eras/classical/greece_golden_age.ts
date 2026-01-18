@@ -187,13 +187,7 @@ export const CLASSICAL_GREECE: Record<string, NodeContent> = {
           correctIndex: 1,
           explanation: "Ancient Olympic champions received only an olive wreath cut from Zeus's sacred tree—no gold medals or cash prizes. But the glory was immense: victors returned home to parades, statues, free meals for life, and immortal fame in poetry."
         }
-      ],
-      rewardArtifact: {
-        id: "olympic_olive_wreath",
-        name: "Olympic Olive Wreath",
-        description: "Sacred crown of olive branches from Zeus's tree at Olympia",
-        rarity: "Legendary"
-      }
+      ]
     }
   },
 
@@ -396,13 +390,7 @@ export const CLASSICAL_GREECE: Record<string, NodeContent> = {
           correctIndex: 1,
           explanation: "Odysseus embodies 'metis' (cunning intelligence) rather than just 'bie' (physical force). He invented the Trojan Horse, outsmarted the Cyclops, and talked his way out of danger. He represents the clever hero—proving brains can beat brawn."
         }
-      ],
-      rewardArtifact: {
-        id: "odysseus_bow",
-        name: "Odysseus's Bow",
-        description: "The legendary bow only Odysseus could string, proving his identity when he returned home",
-        rarity: "Legendary"
-      }
+      ]
     }
   }
 };

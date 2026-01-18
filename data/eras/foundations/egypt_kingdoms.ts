@@ -249,15 +249,7 @@ export const FOUNDATIONS_EGYPT: Record<string, NodeContent> = {
           explanation:
             "The Egyptians called hieroglyphs 'medu netjer,' which means 'the gods' words.' The word 'hieroglyph' comes from Greek: 'hieros' (holy) + 'glyphe' (carving). Greeks called them 'holy carvings' because they appeared on temples and tombs."
         }
-      ],
-      rewardArtifact: {
-        id: "scribe_palette",
-        name: "Ceremonial Scribe's Palette",
-        description:
-          "A wooden palette with compartments for reed pens and wells for black and red ink. Scribes used these to write on papyrus for over 3,000 years. This artifact represents the literate elite who preserved Egyptian civilization through writing.",
-        rarity: "Rare",
-        imageUrl: "/images/artifacts/scribe_palette.jpg"
-      }
+      ]
     }
   },
   'narmer': {
@@ -501,15 +493,7 @@ export const FOUNDATIONS_EGYPT: Record<string, NodeContent> = {
           explanation:
             "Most Egyptologists believe Narmer and Menes are the same person, but debate continues. A 2014 survey: 41 experts identified Narmer as Menes, while 31 said Menes was Narmer's successor Hor-Aha. Either way, Narmer unified Egypt and founded the First Dynasty around 3100 BCE."
         }
-      ],
-      rewardArtifact: {
-        id: "pschent_double_crown",
-        name: "The Pschent - Crown of the Two Lands",
-        description:
-          "A replica of the double crown combining the White Crown of Upper Egypt and the Red Crown of Lower Egypt. Worn by every pharaoh for 3,000 years, it symbolizes the unified rule that Narmer established when he brought the Two Lands together around 3100 BCE.",
-        rarity: "Legendary",
-        imageUrl: "/images/artifacts/pschent.jpg"
-      }
+      ]
     }
   },
   'imhotep': {
@@ -817,15 +801,7 @@ export const FOUNDATIONS_EGYPT: Record<string, NodeContent> = {
           explanation:
             "The Great Sphinx is a massive limestone monument with a lion's body and a pharaoh's face (probably Khafre, who built the second pyramid at Giza). It was carved from a single limestone outcrop and is one of the largest monolithic statues in the world."
         }
-      ],
-      rewardArtifact: {
-        id: "khufu_cartouche",
-        name: "Cartouche of Khufu",
-        description:
-          "A golden seal bearing Pharaoh Khufu's royal cartouche (hieroglyphic name enclosed in an oval). This artifact represents the only surviving Wonder of the Ancient World and the pinnacle of Old Kingdom engineering.",
-        rarity: "Legendary",
-        imageUrl: "/images/artifacts/khufu_cartouche.jpg"
-      }
+      ]
     }
   },
   'hatshepsut': {

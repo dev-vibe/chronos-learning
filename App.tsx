@@ -80,9 +80,8 @@ const App: React.FC = () => {
     setShowMobileDetail(false);
   };
 
-  const handleQuizComplete = (xp: number, artifact: any, collectibleCards?: CollectibleCard[]) => {
+  const handleQuizComplete = (xp: number, collectibleCards?: CollectibleCard[]) => {
     GamificationService.addXp(xp);
-    if (artifact) GamificationService.unlockArtifact(artifact);
     if (collectibleCards && collectibleCards.length > 0) {
       GamificationService.unlockCollectibleCards(collectibleCards);
     }

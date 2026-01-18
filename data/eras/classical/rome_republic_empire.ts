@@ -184,13 +184,7 @@ export const CLASSICAL_ROME: Record<string, NodeContent> = {
           correctIndex: 0,
           explanation: "The infamous 'Rape (kidnapping) of the Sabines': Romulus invited the neighboring Sabine people to a festival, then Roman men grabbed and carried off the Sabine women. Eventually the kidnapped women intervened to make peace between their fathers and husbands, merging the two peoples. It's a disturbing story that shows early Rome's ruthless pragmatism."
         }
-      ],
-      rewardArtifact: {
-        id: "capitoline_wolf",
-        name: "Capitoline She-Wolf Statuette",
-        description: "Replica of Rome's most famous symbol—the she-wolf nursing Romulus and Remus",
-        rarity: "Epic"
-      }
+      ]
     }
   }
 };

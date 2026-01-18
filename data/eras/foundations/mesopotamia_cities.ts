@@ -216,14 +216,7 @@ export const FOUNDATIONS_MESOPOTAMIA: Record<string, NodeContent> = {
           correctIndex: 1,
           explanation: "'Prehistory' means 'before written records'—we only know about it through archaeology. 'History' means we have written documents. Cuneiform tablets tell us exactly what Sumerians thought, said, bought, sold, believed, and fought about. Their voices speak directly across 5,000 years."
         }
-      ],
-      rewardArtifact: {
-        id: "clay_tablet_contract",
-        name: "Sealed Contract of Ur",
-        description: "An ancient cuneiform tablet recording a grain loan, sealed with cylinder seal impressions and enclosed in a clay envelope. This artifact represents humanity's first permanent records—the moment words became immortal.",
-        rarity: "Legendary",
-        imageUrl: "/images/artifacts/clay_contract.jpg"
-      }
+      ]
     }
   },
   'uruk': {
@@ -462,15 +455,7 @@ export const FOUNDATIONS_MESOPOTAMIA: Record<string, NodeContent> = {
           explanation:
             "The Epic of Gilgamesh (written centuries later) credits the legendary king Gilgamesh with building Uruk's walls. The epic opens with: 'Go up on the wall of Uruk and walk around! Examine its foundation!' Whether Gilgamesh was a real person is debated, but the walls were real."
         }
-      ],
-      rewardArtifact: {
-        id: "uruk_city_seal",
-        name: "Seal of the Eanna Temple",
-        description:
-          "A cylinder seal from the Eanna temple complex, depicting the goddess Inanna standing above a storehouse filled with grain. This seal authorized temple transactions and represented the economic power of the world's first city.",
-        rarity: "Legendary",
-        imageUrl: "/images/artifacts/eanna_seal.jpg"
-      }
+      ]
     }
   },
   'ur_standard': {

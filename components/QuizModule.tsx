@@ -1,6 +1,6 @@
 
 import React, { useState } from 'react';
-import { Quiz, Artifact, CollectibleCard, NodeContent } from '../types';
+import { Quiz, CollectibleCard, NodeContent } from '../types';
 import { Terminal, CheckCircle2, XCircle, ChevronRight, Award, ShieldAlert, Lock, Unlock, Sparkles } from 'lucide-react';
 
 interface QuizModuleProps {
@@ -8,7 +8,7 @@ interface QuizModuleProps {
   nodeId: string;
   isCompleted: boolean;
   nodeContent?: NodeContent; // Needed to resolve collectible card references
-  onComplete: (xp: number, artifact?: Artifact, collectibleCards?: CollectibleCard[]) => void;
+  onComplete: (xp: number, collectibleCards?: CollectibleCard[]) => void;
 }
 
 // Helper function to convert CollectibleCardRef to CollectibleCard
@@ -103,7 +103,7 @@ export const QuizModule: React.FC<QuizModuleProps> = ({ quiz, nodeId, isComplete
       
       if (isPerfect) {
           const collectibleCards = resolveCollectibleCards(quiz, nodeContent);
-          onComplete(100, quiz.rewardArtifact, collectibleCards);
+          onComplete(100, collectibleCards);
       } else {
           // Retry needed? Or partial XP?
           // For simplicity: Fail state if not perfect
@@ -122,7 +122,7 @@ export const QuizModule: React.FC<QuizModuleProps> = ({ quiz, nodeId, isComplete
                  </div>
                  <div>
                      <h3 className="text-emerald-400 font-display font-bold text-lg">Decryption Complete</h3>
-                     <p className="text-stone-400 text-sm font-mono">Security clearance granted. Artifact secured.</p>
+                     <p className="text-stone-400 text-sm font-mono">Security clearance granted. Rewards unlocked.</p>
                  </div>
                  <button onClick={handleStart} className="ml-auto px-4 py-2 bg-emerald-900/30 border border-emerald-700/50 rounded text-emerald-300 text-xs font-mono hover:bg-emerald-800/30 transition-colors">
                      Replay Sim
@@ -156,13 +156,6 @@ export const QuizModule: React.FC<QuizModuleProps> = ({ quiz, nodeId, isComplete
                   
                   {isPerfect && (
                       <div className="space-y-4 mb-6">
-                          {quiz.rewardArtifact && (
-                              <div className="max-w-xs mx-auto bg-black border border-amber-500/30 rounded-lg p-4">
-                                   <div className="text-[10px] text-amber-500 font-mono uppercase tracking-widest mb-1">Artifact Recovered</div>
-                                   <div className="text-white font-display font-bold">{quiz.rewardArtifact.name}</div>
-                              </div>
-                          )}
-                          
                           {quiz.collectibleCards && quiz.collectibleCards.length > 0 && nodeContent && (() => {
                               const cards = resolveCollectibleCards(quiz, nodeContent);
                               if (cards.length === 0) return null;
@@ -235,15 +228,6 @@ export const QuizModule: React.FC<QuizModuleProps> = ({ quiz, nodeId, isComplete
                        <span className="text-amber-500 font-bold text-lg">100</span>
                        <span>XP REWARD</span>
                    </div>
-                   {quiz.rewardArtifact && (
-                       <>
-                        <div className="w-px bg-stone-800 h-full"></div>
-                        <div className="flex flex-col items-center">
-                            <span className="text-purple-400 font-bold text-lg">1</span>
-                            <span>ARTIFACT</span>
-                        </div>
-                       </>
-                   )}
                    {quiz.collectibleCards && quiz.collectibleCards.length > 0 && (
                        <>
                         <div className="w-px bg-stone-800 h-full"></div>

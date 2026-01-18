@@ -87,14 +87,6 @@ export interface QuizQuestion {
   explanation: string;
 }
 
-export interface Artifact {
-  id: string;
-  name: string;
-  description: string;
-  rarity: 'Common' | 'Rare' | 'Legendary' | 'Mythic' | 'Epic';
-  imageUrl?: string;
-}
-
 // Collectible card reference - can point to a person, invention, or place
 export interface CollectibleCardRef {
   type: 'person' | 'invention' | 'place';
@@ -119,7 +111,6 @@ export interface Quiz {
   title: string;
   description?: string;
   questions: QuizQuestion[];
-  rewardArtifact?: Artifact;
   collectibleCards?: CollectibleCardRef[]; // Cards to unlock when quiz is completed
 }
 

@@ -1,6 +1,6 @@
 
 import React, { useState } from 'react';
-import { TimelineNode, Resource, HistoricalPerson, Invention, Place, DetailItem, Era, Artifact } from '../types';
+import { TimelineNode, Resource, HistoricalPerson, Invention, Place, DetailItem, Era } from '../types';
 import { Badge } from './Badge';
 import { QuizModule } from './QuizModule';
 import { BookOpen, Youtube, Mic, Globe, Lightbulb, Users, MapPin, ExternalLink, Crown, ScrollText, Sword, ChevronRight as ChevronRightIcon, Lock, RefreshCw, ArrowLeft, Target, Zap, Brain, Star, X, FileText, Crosshair, Layout, Clock, Scan } from 'lucide-react';
@@ -12,7 +12,7 @@ interface NodeContentDisplayProps {
   onRetry?: () => void;
   onBack?: () => void;
   // Gamification props
-  onQuizComplete?: (xp: number, artifact?: Artifact) => void;
+  onQuizComplete?: (xp: number, collectibleCards?: any[]) => void;
   isNodeCompleted?: boolean;
 }
 

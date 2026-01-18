@@ -227,23 +227,10 @@ export const FOUNDATIONS_YOUNGER_DRYAS: Record<string, NodeContent> = {
             "The Younger Dryas ended as abruptly as it began—around 11,700 years ago, temperatures jumped back up in just 50 years. This rapid warming began the Holocene epoch, the current warm, stable climate that allowed agriculture and civilization to develop."
         }
       ],
-      rewardArtifact: {
-        id: "clovis_point_obsidian",
-        name: "Obsidian Clovis Point",
-        description:
-          "A masterfully flaked spear point from the Clovis culture, sharp enough to pierce mammoth hide. This elegant weapon represents a way of life lost forever when the megafauna vanished during the Younger Dryas.",
-        rarity: "Legendary",
-        imageUrl: "/images/artifacts/clovis_point.jpg"
-      },
       collectibleCards: [
         // People cards
         { type: 'person', index: 0, id: 'younger_dryas_clovis_hunter' }, // The Clovis Hunter
-        { type: 'person', index: 1, id: 'younger_dryas_adaptive_forager' }, // The Adaptive Forager
         { type: 'person', index: 2, id: 'younger_dryas_gobekli_builder' }, // The Göbekli Tepe Builder
-        // Invention cards
-        { type: 'invention', index: 0, id: 'younger_dryas_dietary_diversification' }, // Dietary Diversification Strategy
-        { type: 'invention', index: 1, id: 'younger_dryas_hunting_territories' }, // Reorganization of Hunting Territories
-        { type: 'invention', index: 2, id: 'younger_dryas_proto_agriculture' }, // Proto-Agricultural Experimentation
         // Place cards
         { type: 'place', index: 0, id: 'younger_dryas_lake_agassiz' }, // Lake Agassiz
         { type: 'place', index: 1, id: 'younger_dryas_gobekli_tepe' } // Göbekli Tepe

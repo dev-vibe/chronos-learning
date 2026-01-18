@@ -219,15 +219,7 @@ export const FOUNDATIONS_GENERAL: Record<string, NodeContent> = {
           explanation:
             "Çatalhöyük (in Turkey, c. 7500-5700 BCE) was one of the world's largest Neolithic settlements, housing thousands. Residents entered houses through roof hatches, and there's no evidence of palaces or elite burials—suggesting a relatively egalitarian society despite its large size."
         }
-      ],
-      rewardArtifact: {
-        id: "neolithic_sickle",
-        name: "Natufian Flint Sickle",
-        description:
-          "A harvesting tool with sharp flint blades set in a wooden handle, used by the Natufians around 12,000 BCE to cut wild wheat and barley. This humble tool represents the beginning of agriculture—the revolution that transformed humanity from wandering bands into settled civilizations.",
-        rarity: "Legendary",
-        imageUrl: "/images/artifacts/neolithic_sickle.jpg"
-      }
+      ]
     }
   },
   'animal_domestication': {
@@ -469,15 +461,7 @@ export const FOUNDATIONS_GENERAL: Record<string, NodeContent> = {
           explanation:
             "Horse domestication transformed human history. Mounted warriors (cavalry) dominated battlefields for 4,000 years. Communication accelerated—messages took days instead of weeks. Trade routes like the Silk Road relied on horses. Armies could move 100km per day. Empires from Alexander the Great to Genghis Khan depended on horses. Until automobiles, horses were humanity's fastest transportation technology."
         }
-      ],
-      rewardArtifact: {
-        id: "wolf_tooth_necklace",
-        name: "Ancient Wolf Tooth Necklace",
-        description:
-          "A necklace made from the canine tooth of a gray wolf, worn by an Ice Age human who witnessed the beginning of the human-dog partnership. This artifact symbolizes humanity's first domestication—the alliance that made civilization possible.",
-        rarity: "Legendary",
-        imageUrl: "/images/artifacts/wolf_tooth_necklace.jpg"
-      }
+      ]
     }
   },
   'bronze_age_begins': {
@@ -716,15 +700,7 @@ export const FOUNDATIONS_GENERAL: Record<string, NodeContent> = {
           explanation:
             "The Uluburun shipwreck (c. 1300 BCE) contained goods from at least seven different civilizations: Cypriot copper, Afghan or Anatolian tin, Egyptian gold, African ivory, Canaanite pottery, and more. One ship carried materials that had traveled thousands of miles. This proves the Bronze Age had a sophisticated, interconnected trade network spanning the known world."
         }
-      ],
-      rewardArtifact: {
-        id: "bronze_dagger",
-        name: "Royal Bronze Dagger",
-        description:
-          "A perfectly balanced bronze dagger with a decorated hilt, sharp enough to pierce leather armor. This weapon represents the military revolution that bronze technology brought to the ancient world.",
-        rarity: "Rare",
-        imageUrl: "/images/artifacts/bronze_dagger.jpg"
-      }
+      ]
     }
   },
   'wheel': {
@@ -963,15 +939,7 @@ export const FOUNDATIONS_GENERAL: Record<string, NodeContent> = {
           explanation:
             "War chariots (enabled by lightweight spoked wheels) were the ancient world's most feared weapon from 2000-500 BCE. A two-man chariot with a driver and archer could race at high speed while shooting arrows. Infantry couldn't catch them, making chariots nearly unstoppable on flat terrain."
         }
-      ],
-      rewardArtifact: {
-        id: "bronze_chariot_wheel",
-        name: "Bronze-Fitted Chariot Wheel",
-        description:
-          "A lightweight spoked wheel with bronze fittings at the hub, designed for a war chariot. This wheel represents the technological breakthrough that enabled fast mobile warfare and changed battlefields for over a millennium.",
-        rarity: "Rare",
-        imageUrl: "/images/artifacts/chariot_wheel.jpg"
-      }
+      ]
     }
   },
   'bronze_spreads': {
