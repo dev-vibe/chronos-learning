@@ -1,5 +1,5 @@
 
-import React, { useState, useCallback, useEffect } from 'react';
+import React, { useState, useCallback, useEffect, useMemo } from 'react';
 import { TimelineSidebar } from './components/TimelineSidebar';
 import { NodeContentDisplay } from './components/NodeContentDisplay';
 import { UserProfileModal } from './components/UserProfile';
@@ -7,7 +7,12 @@ import { ERAS, INITIAL_NODES } from './constants';
 import { TimelineNode, TimelineNodeStub, Era, CollectibleCard } from './types';
 import { fetchNodeContent } from './services/geminiService';
 import { GamificationService, UserProfile } from './services/gamification';
+import { getEraLockStatus } from './services/eraLocking';
+import { getAllNodeLockStatus } from './services/nodeLocking';
 import { AlertCircle, PlayCircle, Terminal, User, Shield } from 'lucide-react';
+
+// Development/Testing Flag: Set to true to unlock all eras regardless of completion status
+const UNLOCK_ALL_ERAS = false;
 
 const App: React.FC = () => {
   const [selectedEraId, setSelectedEraId] = useState<string | null>(ERAS[0].id);
@@ -22,12 +27,32 @@ const App: React.FC = () => {
   const [userProfile, setUserProfile] = useState<UserProfile>(GamificationService.getProfile());
   const [isProfileOpen, setIsProfileOpen] = useState(false);
 
+  // Compute era lock status based on completed nodes
+  const eraLockStatus = useMemo<Record<string, boolean>>(() => {
+    const completedNodeIds: Set<string> = new Set(userProfile.nodesCompleted);
+    return getEraLockStatus(ERAS, INITIAL_NODES, completedNodeIds, {
+      unlockAll: UNLOCK_ALL_ERAS,
+    });
+  }, [userProfile.nodesCompleted]);
+
+  // Compute node lock status based on completed nodes and era lock status
+  const nodeLockStatus = useMemo<Record<string, boolean>>(() => {
+    const completedNodeIds: Set<string> = new Set(userProfile.nodesCompleted);
+    return getAllNodeLockStatus(ERAS, INITIAL_NODES, completedNodeIds, eraLockStatus, {
+      unlockAll: UNLOCK_ALL_ERAS,
+    });
+  }, [userProfile.nodesCompleted, eraLockStatus]);
+
   // Refresh profile on mount
   useEffect(() => {
     setUserProfile(GamificationService.getProfile());
   }, []);
 
   const handleSelectEra = (id: string) => {
+    // Prevent selecting locked eras
+    if (eraLockStatus[id]) {
+      return;
+    }
     setSelectedEraId(id);
   };
 
@@ -39,6 +64,11 @@ const App: React.FC = () => {
   };
 
   const handleSelectNode = useCallback(async (stub: TimelineNodeStub) => {
+    // Prevent selecting locked nodes
+    if (nodeLockStatus[stub.id]) {
+      return;
+    }
+    
     setShowMobileDetail(true);
     setSelectedEra(null);
 
@@ -68,7 +98,7 @@ const App: React.FC = () => {
     } finally {
       setLoading(false);
     }
-  }, [nodeCache, selectedNode, loading]);
+  }, [nodeCache, selectedNode, loading, nodeLockStatus]);
 
   const handleRetry = () => {
     if (selectedNode) {
@@ -106,6 +136,8 @@ const App: React.FC = () => {
           selectedEraId={selectedEraId}
           selectedNodeId={selectedNode?.id || null}
           showEraBriefing={!!selectedEra}
+          eraLockStatus={eraLockStatus}
+          nodeLockStatus={nodeLockStatus}
           onSelectEra={handleSelectEra}
           onSelectNode={handleSelectNode}
           onSelectEraBriefing={handleSelectEraBriefing}

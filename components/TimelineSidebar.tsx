@@ -2,6 +2,7 @@
 import React, { useRef, useEffect } from 'react';
 import { Era, TimelineNodeStub } from '../types';
 import { ChevronRight, Terminal, Info, Lock } from 'lucide-react';
+import { getEraNodesSorted } from '../services/nodeLocking';
 
 interface TimelineSidebarProps {
   eras: Era[];
@@ -9,6 +10,8 @@ interface TimelineSidebarProps {
   selectedEraId: string | null;
   selectedNodeId: string | null;
   showEraBriefing: boolean;
+  eraLockStatus: Record<string, boolean>;
+  nodeLockStatus: Record<string, boolean>;
   onSelectEra: (id: string) => void;
   onSelectNode: (node: TimelineNodeStub) => void;
   onSelectEraBriefing: (era: Era) => void;
@@ -20,6 +23,8 @@ export const TimelineSidebar: React.FC<TimelineSidebarProps> = ({
   selectedEraId,
   selectedNodeId,
   showEraBriefing,
+  eraLockStatus,
+  nodeLockStatus,
   onSelectEra,
   onSelectNode,
   onSelectEraBriefing,
@@ -54,9 +59,10 @@ export const TimelineSidebar: React.FC<TimelineSidebarProps> = ({
 
       <div className="flex-1 overflow-y-auto no-scrollbar p-4 space-y-4 bg-[#050505]">
         {eras.map((era, index) => {
-          const eraNodes = nodes.filter((n) => n.eraId === era.id);
+          // Sort nodes chronologically within each era
+          const eraNodes = getEraNodesSorted(era.id, nodes);
           const isEraActive = selectedEraId === era.id;
-          const isLocked = era.locked;
+          const isLocked = eraLockStatus[era.id] ?? false;
 
           return (
             <div 
@@ -66,7 +72,11 @@ export const TimelineSidebar: React.FC<TimelineSidebarProps> = ({
             >
               {/* Era Header */}
               <button
-                onClick={() => !isLocked && onSelectEra(era.id)}
+                onClick={() => {
+                  if (!isLocked) {
+                    onSelectEra(era.id);
+                  }
+                }}
                 disabled={isLocked && !isEraActive} // Allow clicking if active (to close/toggle) or if not locked
                 className={`w-full text-left p-3 rounded-xl transition-all duration-200 outline-none group relative flex items-center gap-4 border
                   ${isEraActive 
@@ -110,14 +120,16 @@ export const TimelineSidebar: React.FC<TimelineSidebarProps> = ({
               {isEraActive && (
                 <div className="relative ml-4 mt-2 pl-4 border-l-2 border-stone-800/50 space-y-1 animate-in slide-in-from-top-2 duration-200">
                   
-                  {/* Era Briefing Button - Always available even if era is locked logic elsewhere, 
-                      but here we are inside isEraActive which implies unlocked or specifically opened */}
+                  {/* Era Briefing Button - Available when era is active (unlocked or opened) */}
                   <button
-                    onClick={() => onSelectEraBriefing(era)}
+                    onClick={() => !isLocked && onSelectEraBriefing(era)}
+                    disabled={isLocked}
                     className={`group relative flex items-center w-full text-left transition-all duration-150 rounded-lg outline-none py-2 px-3 border mb-2
-                      ${showEraBriefing && !selectedNodeId
-                        ? 'bg-blue-950/20 border-blue-500/30'
-                        : 'border-transparent hover:bg-stone-900'}`}
+                      ${isLocked 
+                        ? 'cursor-not-allowed opacity-50'
+                        : showEraBriefing && !selectedNodeId
+                          ? 'bg-blue-950/20 border-blue-500/30'
+                          : 'border-transparent hover:bg-stone-900'}`}
                   >
                      {/* Connector Dot */}
                      <div className={`absolute -left-[1.35rem] top-1/2 -translate-y-1/2 w-2.5 h-2.5 rounded-full border-2 bg-black transition-all z-20
@@ -140,8 +152,8 @@ export const TimelineSidebar: React.FC<TimelineSidebarProps> = ({
                   {eraNodes.map((node) => {
                     const isNodeActive = selectedNodeId === node.id && !showEraBriefing;
                     const isDemo = node.id === 'pyramids'; 
-                    // If the specific node is locked (logic from props?), handling visually here
-                    const isNodeLocked = isLocked; 
+                    // Check node lock status (nodes are locked if era is locked OR if previous node not completed)
+                    const isNodeLocked = nodeLockStatus[node.id] ?? false; 
 
                     return (
                       <button
