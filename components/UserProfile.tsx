@@ -1,8 +1,8 @@
 
 import React from 'react';
 import { UserProfile as UserProfileType } from '../services/gamification';
-import { Artifact } from '../types';
-import { X, Shield, Award, Lock, User, Database } from 'lucide-react';
+import { Artifact, CollectibleCard } from '../types';
+import { X, Shield, Award, Lock, User, Database, Sparkles } from 'lucide-react';
 import { STATIC_CONTENT } from '../staticContent';
 
 interface UserProfileProps {
@@ -26,6 +26,7 @@ export const UserProfileModal: React.FC<UserProfileProps> = ({ profile, isOpen, 
   if (!isOpen) return null;
 
   const unlockedArtifacts = getArtifactDetails(profile.artifacts);
+  const collectibleCards: CollectibleCard[] = profile.collectibleCards || [];
   
   // Calculate Progress to next level
   const currentLevelXp = 100 * Math.pow(profile.level - 1, 2);
@@ -55,7 +56,7 @@ export const UserProfileModal: React.FC<UserProfileProps> = ({ profile, isOpen, 
         <div className="overflow-y-auto p-6 space-y-8">
             
             {/* Stats Row */}
-            <div className="grid grid-cols-2 gap-4">
+            <div className="grid grid-cols-3 gap-4">
                 <div className="bg-stone-900/50 border border-stone-800 p-4 rounded-xl">
                     <div className="text-xs font-mono text-stone-500 uppercase mb-1">Clearance Level</div>
                     <div className="text-4xl font-display font-bold text-white mb-2">{profile.level}</div>
@@ -73,6 +74,13 @@ export const UserProfileModal: React.FC<UserProfileProps> = ({ profile, isOpen, 
                     <div className="flex items-end gap-2">
                         <span className="text-4xl font-display font-bold text-emerald-400">{profile.artifacts.length}</span>
                         <span className="text-stone-600 font-mono text-sm mb-1.5">/ ???</span>
+                    </div>
+                </div>
+                
+                <div className="bg-stone-900/50 border border-stone-800 p-4 rounded-xl flex flex-col justify-center">
+                    <div className="text-xs font-mono text-stone-500 uppercase mb-1">Cards Collected</div>
+                    <div className="flex items-end gap-2">
+                        <span className="text-4xl font-display font-bold text-purple-400">{collectibleCards.length}</span>
                     </div>
                 </div>
             </div>
@@ -106,6 +114,43 @@ export const UserProfileModal: React.FC<UserProfileProps> = ({ profile, isOpen, 
                     </div>
                 )}
             </div>
+
+            {/* Collectible Cards Collection */}
+            {collectibleCards.length > 0 && (
+                <div>
+                    <h3 className="text-sm font-display font-bold text-white uppercase tracking-wider mb-4 flex items-center gap-2">
+                        <Sparkles size={16} className="text-cyan-500" /> 
+                        Collectible Cards
+                    </h3>
+                    
+                    <div className="grid grid-cols-2 sm:grid-cols-3 gap-4">
+                        {collectibleCards.map(card => (
+                            <div key={card.id} className="bg-black border border-stone-800 rounded-lg p-3 group hover:border-purple-500/30 transition-colors">
+                                <div className="aspect-square bg-stone-900 rounded mb-3 overflow-hidden relative">
+                                    <img 
+                                        src={card.imageUrl || "https://images.unsplash.com/photo-1628155930542-3c7a64e2c833?w=400&auto=format&fit=crop&q=60"} 
+                                        alt={card.name} 
+                                        className="w-full h-full object-cover opacity-70 group-hover:opacity-100 transition-opacity" 
+                                    />
+                                    <div className="absolute top-1 left-1 bg-black/70 px-1.5 py-0.5 rounded text-[8px] font-mono uppercase text-purple-400 border border-purple-500/30">
+                                        {card.type}
+                                    </div>
+                                </div>
+                                <h4 className="text-stone-200 font-bold text-xs truncate font-display">{card.name}</h4>
+                                {card.role && (
+                                    <p className="text-[9px] text-stone-500 font-mono mt-0.5 truncate">{card.role}</p>
+                                )}
+                                {card.category && !card.role && (
+                                    <p className="text-[9px] text-stone-500 font-mono mt-0.5 truncate">{card.category}</p>
+                                )}
+                                {card.location && (
+                                    <p className="text-[9px] text-stone-500 font-mono mt-0.5 truncate">{card.location}</p>
+                                )}
+                            </div>
+                        ))}
+                    </div>
+                </div>
+            )}
         </div>
 
       </div>

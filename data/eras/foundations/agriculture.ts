@@ -22,7 +22,8 @@ export const FOUNDATIONS_GENERAL: Record<string, NodeContent> = {
           "Laid the groundwork for plant domestication through selective harvesting"
         ],
         legacy: "The Natufians bridged the gap between mobile hunter-gatherers and settled farmers. Their innovations in harvesting, storage, and semi-permanent settlement made the Agricultural Revolution possible.",
-        imageUrl: "/images/foundations/natufian_harvester.jpg"
+        imageUrl: "https://alchetron.com/cdn/natufian-culture-49921600-c9fc-45c3-aca6-565558b46c5-resize-750.jpeg",
+        imageFit: "contain",
       },
       {
         name: "The Neolithic Farmer",
@@ -31,7 +32,8 @@ export const FOUNDATIONS_GENERAL: Record<string, NodeContent> = {
         description:
           "By 10,000 BCE, people in the Fertile Crescent were deliberately planting seeds, watering crops, and herding sheep and goats. This wasn't a sudden invention—it happened gradually over centuries as wild plants evolved into domesticated varieties. The Neolithic farmer lived in mud-brick houses in villages like Jericho or Çatalhöyük (Turkey). Life was hard: working the fields 10+ hours a day, grinding grain by hand, dealing with crop failures, droughts, and raids by neighbors. But farming could feed more people per acre than hunting, so populations exploded. By 8000 BCE, Neolithic villages housed hundreds or thousands of people—unthinkable for hunter-gatherers.",
         legacy: "Neolithic farmers created the foundation of civilization. Surplus grain led to trade, specialization (potters, tool-makers, priests), and eventually cities, writing, and states.",
-        imageUrl: "/images/foundations/neolithic_farmer.jpg"
+        imageUrl: "https://www.ancient-origins.net/sites/default/files/styles/article_image/public/field/image/Neolithic-revolution-ancient-farmers.jpg?itok=fF3PSaiA",
+        imageFit: "contain",
       }
     ],
     inventions: [
@@ -40,7 +42,8 @@ export const FOUNDATIONS_GENERAL: Record<string, NodeContent> = {
         description: "Transformation of wild grasses into cultivated crops",
         category: "Science",
         date: "c. 10,000 BCE",
-        imageUrl: "/images/inventions/wheat_barley.jpg",
+        imageUrl: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQSXBpGK5YNS3ie-9mdG9kDbyni4I32maMYMg&s",
+        imageFit: "contain",
         problem:
           "Wild wheat and barley naturally shatter when ripe—seeds fall to the ground, scattering everywhere. This is great for the plant (spreads seeds widely) but terrible for humans trying to harvest efficiently. You'd lose most of the grain before you could collect it. Hunter-gatherers needed crops that stayed intact until harvest but were easy to thresh (separate seeds from stalks).",
         solution:
@@ -53,7 +56,7 @@ export const FOUNDATIONS_GENERAL: Record<string, NodeContent> = {
         description: "Selective breeding of wild animals into manageable livestock",
         category: "Science",
         date: "c. 10,000-8,000 BCE",
-        imageUrl: "/images/inventions/livestock.jpg",
+        imageUrl: "https://www.researchgate.net/publication/23165768/figure/fig1/AS:530219863482369@1503425674932/The-origin-and-dispersal-of-domestic-livestock-species-in-the-Fertile-Crescent-Shaded.png",
         problem:
           "Hunting wild animals is unreliable—herds migrate, weather changes, and you can't control when you get meat. Domesticated animals provide predictable meat, milk, wool, leather, and labor (oxen for plowing). But wild animals are dangerous, skittish, and hard to control. How do you transform wild sheep, goats, pigs, and aurochs (wild cattle) into docile, manageable livestock?",
         solution:
@@ -83,7 +86,8 @@ export const FOUNDATIONS_GENERAL: Record<string, NodeContent> = {
         location: "Near modern Jericho, West Bank, in the Jordan Valley",
         significance:
           "Jericho proves that large, complex, permanent settlements existed before pottery or advanced tools. The stone tower's purpose is debated—was it defensive, ritual, or for flood protection? Either way, building it required organized labor, suggesting early social hierarchies. Jericho shows that the Agricultural Revolution enabled permanent communities, but also necessitated new social structures (leadership, defense, conflict resolution).",
-        imageUrl: "/images/places/jericho.jpg"
+        imageUrl: "https://cdn.shopify.com/s/files/1/0911/0585/3718/files/Jericho.jpg?v=1738348021",
+        imageFit: "contain",
       },
       {
         name: "Çatalhöyük",
@@ -92,7 +96,8 @@ export const FOUNDATIONS_GENERAL: Record<string, NodeContent> = {
         location: "Southern Anatolia, Turkey (about 50 km southeast of Konya)",
         significance:
           "Çatalhöyük challenges assumptions about Neolithic societies. There's little evidence of centralized authority—no palaces, no obvious elite burials, no monumental temples. Houses are remarkably similar in size, suggesting relative equality. Yet the community built a densely packed town for thousands of people, managed agricultural surplus, and created elaborate art. Çatalhöyük shows that early agricultural societies experimented with different social structures—not all became hierarchical kingdoms immediately.",
-        imageUrl: "/images/places/catalhoyuk.jpg"
+        imageUrl: "https://cdn.sci.news/images/2019/06/image_7300f-Catalhoyuk.jpg",
+        imageFit: "contain",
       }
     ],
     resources: [

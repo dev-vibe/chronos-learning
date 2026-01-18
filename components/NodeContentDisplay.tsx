@@ -398,7 +398,8 @@ export const NodeContentDisplay: React.FC<NodeContentDisplayProps> = ({ node, er
                  <QuizModule 
                     quiz={quiz} 
                     nodeId={node.id} 
-                    isCompleted={isNodeCompleted || false} 
+                    isCompleted={isNodeCompleted || false}
+                    nodeContent={node.content}
                     onComplete={onQuizComplete} 
                 />
              </section>
@@ -407,6 +408,10 @@ export const NodeContentDisplay: React.FC<NodeContentDisplayProps> = ({ node, er
       </div>
     </div>
   );
+};
+
+const getImageFitClass = (fit?: 'cover' | 'contain'): string => {
+  return fit === 'contain' ? 'object-contain' : 'object-cover';
 };
 
 const TradingCard: React.FC<{ person: HistoricalPerson; onClick: () => void }> = ({ person, onClick }) => {
@@ -552,6 +557,7 @@ const DetailOverlay: React.FC<{ item: DetailItem | null; onClose: () => void }> 
     let subtitle = '';
     let description = '';
     let image = '';
+    let imageFit: 'cover' | 'contain' | undefined = undefined;
     let badges: string[] = [];
     
     // Rich data fields
@@ -572,6 +578,7 @@ const DetailOverlay: React.FC<{ item: DetailItem | null; onClose: () => void }> 
         subtitle = data.role;
         description = data.description;
         image = data.imageUrl || fallbackImage;
+        imageFit = data.imageFit;
         badges = [data.category];
         achievements = data.achievements || [];
         legacy = data.legacy || '';
@@ -582,6 +589,7 @@ const DetailOverlay: React.FC<{ item: DetailItem | null; onClose: () => void }> 
         subtitle = `Invented: ${data.date || 'Ancient Era'}`;
         description = data.description;
         image = data.imageUrl || fallbackImage;
+        imageFit = data.imageFit;
         badges = [data.category];
         problem = data.problem || '';
         solution = data.solution || '';
@@ -591,9 +599,12 @@ const DetailOverlay: React.FC<{ item: DetailItem | null; onClose: () => void }> 
         subtitle = data.location || 'Historical Site';
         description = data.description;
         image = data.imageUrl || fallbackImage;
+        imageFit = data.imageFit;
         significance = data.significance || '';
         lore = data.lore || '';
     }
+
+    const imageFitClass = getImageFitClass(imageFit);
 
     return (
         <div className="fixed inset-0 z-50 flex items-center justify-center p-4 sm:p-8 bg-black/80 backdrop-blur-md animate-in fade-in duration-200">
@@ -604,7 +615,7 @@ const DetailOverlay: React.FC<{ item: DetailItem | null; onClose: () => void }> 
 
                 <div className="flex-1 overflow-y-auto grid grid-cols-1 md:grid-cols-2 h-full">
                     <div className="relative h-64 md:h-full bg-stone-900 border-b md:border-b-0 md:border-r border-stone-800 group">
-                        <img src={image} alt={title} className="w-full h-full object-cover opacity-80 group-hover:opacity-100 transition-opacity duration-700" />
+                        <img src={image} alt={title} className={`w-full h-full ${imageFitClass} opacity-80 group-hover:opacity-100 transition-opacity duration-700`} />
                         <div className="absolute inset-0 bg-gradient-to-t from-[#09090b] to-transparent opacity-90 md:opacity-40"></div>
                         <div className="absolute bottom-6 left-6 right-6">
                              <div className="flex gap-2 mb-2">

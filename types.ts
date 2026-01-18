@@ -38,6 +38,7 @@ export interface HistoricalPerson {
   category: 'Philosopher' | 'Leader' | 'Scientist' | 'Villain' | 'Hero' | 'Artist' | 'Other' | 'Military' | 'Explorer' | 'Worker' | 'Priest' | 'Commoner' | 'Warrior' | 'Athlete' | 'Mythical' | 'Poet';
   description: string;
   imageUrl?: string;
+  imageFit?: 'cover' | 'contain';
   born?: string;
   died?: string;
   nationality?: string;
@@ -55,6 +56,7 @@ export interface Invention {
   description: string;
   category: string;
   imageUrl?: string;
+  imageFit?: 'cover' | 'contain';
   problem?: string;
   solution?: string;
   impact?: string;
@@ -65,6 +67,7 @@ export interface Place {
   name: string;
   description: string;
   imageUrl?: string;
+  imageFit?: 'cover' | 'contain';
   significance?: string;
   location?: string;
   lore?: string;
@@ -92,11 +95,32 @@ export interface Artifact {
   imageUrl?: string;
 }
 
+// Collectible card reference - can point to a person, invention, or place
+export interface CollectibleCardRef {
+  type: 'person' | 'invention' | 'place';
+  index: number; // Index in the people/inventions/places array
+  id?: string; // Optional unique ID for the card
+}
+
+export interface CollectibleCard {
+  id: string;
+  type: 'person' | 'invention' | 'place';
+  name: string;
+  description: string;
+  imageUrl?: string;
+  rarity?: 'Common' | 'Rare' | 'Legendary' | 'Mythic' | 'Epic';
+  // Additional fields based on type
+  category?: string; // For person or invention
+  role?: string; // For person
+  location?: string; // For place
+}
+
 export interface Quiz {
   title: string;
   description?: string;
   questions: QuizQuestion[];
   rewardArtifact?: Artifact;
+  collectibleCards?: CollectibleCardRef[]; // Cards to unlock when quiz is completed
 }
 
 export interface NodeContent {

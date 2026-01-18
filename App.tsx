@@ -4,7 +4,7 @@ import { TimelineSidebar } from './components/TimelineSidebar';
 import { NodeContentDisplay } from './components/NodeContentDisplay';
 import { UserProfileModal } from './components/UserProfile';
 import { ERAS, INITIAL_NODES } from './constants';
-import { TimelineNode, TimelineNodeStub, Era } from './types';
+import { TimelineNode, TimelineNodeStub, Era, CollectibleCard } from './types';
 import { fetchNodeContent } from './services/geminiService';
 import { GamificationService, UserProfile } from './services/gamification';
 import { AlertCircle, PlayCircle, Terminal, User, Shield } from 'lucide-react';
@@ -80,9 +80,12 @@ const App: React.FC = () => {
     setShowMobileDetail(false);
   };
 
-  const handleQuizComplete = (xp: number, artifact: any) => {
+  const handleQuizComplete = (xp: number, artifact: any, collectibleCards?: CollectibleCard[]) => {
     GamificationService.addXp(xp);
     if (artifact) GamificationService.unlockArtifact(artifact);
+    if (collectibleCards && collectibleCards.length > 0) {
+      GamificationService.unlockCollectibleCards(collectibleCards);
+    }
     if (selectedNode) GamificationService.completeNode(selectedNode.id);
     
     // Refresh local state to update UI

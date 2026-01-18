@@ -90,12 +90,31 @@ This allows development to proceed with AI-generated content while static conten
 
 Lives in `services/gamification.ts`:
 
-- **Local Storage Persistence**: User profile (XP, level, artifacts, completed nodes) stored in browser's localStorage
+- **Local Storage Persistence**: User profile (XP, level, artifacts, collectible cards, completed nodes) stored in browser's localStorage
 - **Level Curve**: `Level = sqrt(XP / 100) + 1` (Lvl 1: 0 XP, Lvl 2: 100 XP, Lvl 3: 400 XP, Lvl 4: 900 XP)
-- **Rewards**: Each quiz awards XP and optional artifacts (collectible cards)
+- **Rewards**: Each quiz awards XP and optional rewards:
+  - **Artifacts**: Special legendary items (one per quiz, optional)
+  - **Collectible Cards**: Multiple cards from lesson content (people, inventions, places) that unlock when quiz is completed perfectly
 - **Progress Tracking**: Completed nodes are marked to show badges in the timeline
 
 The system is intentionally simple (no backend) for offline-first homeschool use.
+
+#### Collectible Cards System
+
+The collectible cards system allows quizzes to unlock multiple cards from the lesson content:
+
+- **Card Types**: People, inventions, and places from the lesson can be marked as collectible
+- **Card References**: In the quiz, use `CollectibleCardRef` objects to specify which cards to unlock:
+  ```typescript
+  collectibleCards: [
+    { type: 'person', index: 0, id: 'unique_card_id' },      // First person
+    { type: 'invention', index: 1, id: 'another_id' },       // Second invention
+    { type: 'place', index: 0, id: 'place_id' }             // First place
+  ]
+  ```
+- **Automatic Resolution**: The system automatically converts references to full `CollectibleCard` objects using the lesson content
+- **Display**: Cards are shown immediately after quiz completion and stored in the user profile
+- **Optional**: If a lesson has no collectible cards, omit the `collectibleCards` field entirely
 
 ### UI Component Structure
 
@@ -122,7 +141,9 @@ The system is intentionally simple (no backend) for offline-first homeschool use
 **QuizModule.tsx**
 - Multiple choice questions
 - XP and artifact rewards
+- Collectible cards system (unlocks multiple cards from lesson content)
 - Explains correct answers
+- Displays unlocked cards after completion
 
 ### Type System (`types.ts`)
 
@@ -135,7 +156,9 @@ Key interfaces:
 - `Invention`: Tech blueprint data with problem/solution/impact
 - `Place`: Location cards with significance and lore
 - `Resource`: External media links (videos, podcasts, articles)
-- `Quiz`: Quiz questions with explanations and artifact rewards
+- `Quiz`: Quiz questions with explanations, artifact rewards, and collectible card references
+- `CollectibleCardRef`: Reference to a card in lesson content (type + index)
+- `CollectibleCard`: Full collectible card data (name, description, image, etc.)
 
 ### Content Philosophy
 
@@ -224,7 +247,13 @@ export const CLASSICAL_GREECE: Record<string, NodeContent> = {
       name: "Alexander's Silver Drachma",
       description: "Coin with Alexander's profile",
       rarity: "Rare"
-    }
+    },
+    collectibleCards: [
+      // Optional: Mark lesson content as collectible cards
+      { type: 'person', index: 0, id: 'alexander_card' },      // First person (Alexander)
+      { type: 'invention', index: 0, id: 'sarissa_card' },       // First invention (Sarissa)
+      { type: 'place', index: 0, id: 'alexandria_card' }        // First place (Alexandria)
+    ]
   }
 }
 ```

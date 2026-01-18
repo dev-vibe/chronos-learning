@@ -21,7 +21,8 @@ export const FOUNDATIONS_YOUNGER_DRYAS: Record<string, NodeContent> = {
           "Spread Clovis culture across North America in just a few centuries"
         ],
         legacy: "Represents humanity's vulnerability to rapid climate change and the extinction of a way of life when key resources vanish.",
-        imageUrl: "/images/foundations/clovis_hunter.jpg"
+        imageUrl: "https://www.ancient-origins.net/sites/default/files/styles/article_image/public/field/image/Clovis-tools.jpg",
+        imageFit: "contain",
       },
       {
         name: "The Adaptive Forager",
@@ -30,7 +31,7 @@ export const FOUNDATIONS_YOUNGER_DRYAS: Record<string, NodeContent> = {
         description:
           "Represents the humans who adapted when large game vanished. Instead of specializing in mammoth hunting, they became generalists: fishing intensively, gathering nuts and seeds, trapping small game, and eventually experimenting with cultivating wild grains. These adaptations laid the groundwork for agriculture and permanent settlements.",
         legacy: "Embodiment of human resilience and flexibility in the face of environmental catastrophe. Their dietary innovations made civilization possible.",
-        imageUrl: "/images/foundations/adaptive_forager.jpg"
+        imageUrl: "https://www.heart.org/-/media/Images/News/2021/December-2021/1202ForagingFood_SC.jpg?sc_lang=en"
       },
       {
         name: "The Göbekli Tepe Builder",
@@ -39,7 +40,7 @@ export const FOUNDATIONS_YOUNGER_DRYAS: Record<string, NodeContent> = {
         description:
           "Part of hunter-gatherer groups in Turkey who, shortly after the Younger Dryas ended, built massive T-shaped stone pillars weighing up to 20 tons and arranged them in circles. Some researchers controversially claim Pillar 43 depicts the Younger Dryas as a comet strike—making it humanity's oldest disaster memorial.",
         legacy: "Proves that hunter-gatherers, not just agricultural societies, could organize monumental architecture and possibly preserve astronomical knowledge.",
-        imageUrl: "/images/foundations/gobekli_builder.jpg"
+        imageUrl: "https://cdn.arstechnica.net/wp-content/uploads/2017/06/gresky1HR-scaled.jpg"
       }
     ],
     inventions: [
@@ -48,7 +49,8 @@ export const FOUNDATIONS_YOUNGER_DRYAS: Record<string, NodeContent> = {
         description: "Broad-spectrum foraging: eating fish, shellfish, nuts, seeds, small game, and plants previously ignored",
         category: "Science",
         date: "c. 10,900 - 9,700 BCE",
-        imageUrl: "/images/inventions/broad_spectrum_foraging.jpg",
+        imageUrl: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQrkM9k5riI-28V-OgFyQovRPi05q6cspfFXQ&s",
+        imageFit: "contain",
         problem:
           "The large herbivores humans relied on for food were dying off rapidly during the Younger Dryas. Mammoths, mastodons, and other megafauna couldn't adapt fast enough to the temperature swings and vegetation changes. A hunting strategy that had worked for thousands of years suddenly failed.",
         solution:
@@ -61,7 +63,8 @@ export const FOUNDATIONS_YOUNGER_DRYAS: Record<string, NodeContent> = {
         description: "Establishment of clearer territorial boundaries and specialized hunting strategies",
         category: "Politics",
         date: "c. 10,900 - 9,700 BCE",
-        imageUrl: "/images/inventions/hunting_territories.jpg",
+        imageUrl: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT-WzYIw6-q48wpEq3-KM6pEQghLT0OECCQYg&s",
+        imageFit: "contain",
         problem:
           "As megafauna declined and disappeared, the old hunting ranges and strategies no longer worked. Multiple groups competed for dwindling resources. Without rules and boundaries, conflict would escalate.",
         solution:
@@ -74,7 +77,8 @@ export const FOUNDATIONS_YOUNGER_DRYAS: Record<string, NodeContent> = {
         description: "Early deliberate cultivation of wild grains like emmer wheat and barley",
         category: "Science",
         date: "c. 9,700 BCE onward (post-Younger Dryas)",
-        imageUrl: "/images/inventions/early_agriculture.jpg",
+        imageUrl: "https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEjGERifNwdImK-Iu9apDhqizM6D9kepJXk4a7YGMkaW2Mct3uleREX-YtjJLdLzsNSYrINz7YPiKGc4LVAIdy0KeL8ZBY_-Wci-cbxEWVhMQgSfKblmWiyyHpxHfY3E_qYNCHBk4laWkw50/s1600/2020-07-04_11-41-39++THE+FIRST+FARMERS+AND+ORIGINS+OF+AGRICULTURE.jpg",
+        imageFit: "contain",
         problem:
           "After 1,200 years of climate chaos, when the world finally stabilized around 11,700 years ago, humans had learned a harsh lesson: they couldn't rely solely on wild animals. Food security required diversification and control.",
         solution:
@@ -91,7 +95,7 @@ export const FOUNDATIONS_YOUNGER_DRYAS: Record<string, NodeContent> = {
         location: "Central Canada and northern United States (now mostly drained; remnants include Lake Winnipeg)",
         significance:
           "Lake Agassiz's outburst floods are the leading scientific explanation for what triggered the Younger Dryas. The sudden influx of fresh water disrupted the Atlantic Ocean's warm currents (the Gulf Stream and thermohaline circulation), cutting off heat to Europe and North America and plunging the Northern Hemisphere back into near-Ice Age conditions.",
-        imageUrl: "/images/places/lake_agassiz.jpg"
+        imageUrl: "https://earthlogs.org/wp-content/uploads/2023/09/lake-agassiz.jpg"
       },
       {
         name: "Göbekli Tepe",
@@ -100,7 +104,7 @@ export const FOUNDATIONS_YOUNGER_DRYAS: Record<string, NodeContent> = {
         location: "Şanlıurfa Province, southeastern Turkey (about 12 km northeast of Şanlıurfa city)",
         significance:
           "Göbekli Tepe shatters the assumption that only agricultural societies could build monumental architecture. It proves that complex social organization, ritual life, and possibly astronomical knowledge survived the Younger Dryas chaos. Some researchers controversially interpret carvings on Pillar 43 as depicting a comet strike—potentially humanity's oldest memorial to the catastrophe. Whether or not that's true, Göbekli Tepe shows that the people who emerged from the Younger Dryas were sophisticated and capable of preserving knowledge.",
-        imageUrl: "/images/places/gobekli_tepe.jpg"
+        imageUrl: "https://www.optionstheedge.com/sites/default/files/field/featured-image/2024/gobekli_1.jpg"
       }
     ],
     resources: [
@@ -230,7 +234,20 @@ export const FOUNDATIONS_YOUNGER_DRYAS: Record<string, NodeContent> = {
           "A masterfully flaked spear point from the Clovis culture, sharp enough to pierce mammoth hide. This elegant weapon represents a way of life lost forever when the megafauna vanished during the Younger Dryas.",
         rarity: "Legendary",
         imageUrl: "/images/artifacts/clovis_point.jpg"
-      }
+      },
+      collectibleCards: [
+        // People cards
+        { type: 'person', index: 0, id: 'younger_dryas_clovis_hunter' }, // The Clovis Hunter
+        { type: 'person', index: 1, id: 'younger_dryas_adaptive_forager' }, // The Adaptive Forager
+        { type: 'person', index: 2, id: 'younger_dryas_gobekli_builder' }, // The Göbekli Tepe Builder
+        // Invention cards
+        { type: 'invention', index: 0, id: 'younger_dryas_dietary_diversification' }, // Dietary Diversification Strategy
+        { type: 'invention', index: 1, id: 'younger_dryas_hunting_territories' }, // Reorganization of Hunting Territories
+        { type: 'invention', index: 2, id: 'younger_dryas_proto_agriculture' }, // Proto-Agricultural Experimentation
+        // Place cards
+        { type: 'place', index: 0, id: 'younger_dryas_lake_agassiz' }, // Lake Agassiz
+        { type: 'place', index: 1, id: 'younger_dryas_gobekli_tepe' } // Göbekli Tepe
+      ]
     }
   }
 };

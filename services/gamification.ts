@@ -1,5 +1,5 @@
 
-import { Artifact } from '../types';
+import { Artifact, CollectibleCard } from '../types';
 
 const STORAGE_KEY = 'chronos_agent_profile_v1';
 
@@ -7,6 +7,7 @@ export interface UserProfile {
   xp: number;
   level: number;
   artifacts: string[]; // List of Artifact IDs
+  collectibleCards: CollectibleCard[]; // Full collectible card data
   nodesCompleted: string[]; // List of Node IDs
 }
 
@@ -14,6 +15,7 @@ const INITIAL_PROFILE: UserProfile = {
   xp: 0,
   level: 1,
   artifacts: [],
+  collectibleCards: [], // Store full card objects
   nodesCompleted: []
 };
 
@@ -66,6 +68,31 @@ export const GamificationService = {
     return false;
   },
 
+  unlockCollectibleCard: (card: CollectibleCard) => {
+    const profile = GamificationService.getProfile();
+    if (!profile.collectibleCards.some(c => c.id === card.id)) {
+      profile.collectibleCards.push(card);
+      GamificationService.saveProfile(profile);
+      return true;
+    }
+    return false;
+  },
+
+  unlockCollectibleCards: (cards: CollectibleCard[]) => {
+    const profile = GamificationService.getProfile();
+    let newCards = 0;
+    cards.forEach(card => {
+      if (!profile.collectibleCards.some(c => c.id === card.id)) {
+        profile.collectibleCards.push(card);
+        newCards++;
+      }
+    });
+    if (newCards > 0) {
+      GamificationService.saveProfile(profile);
+    }
+    return newCards;
+  },
+
   completeNode: (nodeId: string) => {
     const profile = GamificationService.getProfile();
     if (!profile.nodesCompleted.includes(nodeId)) {
@@ -84,5 +111,10 @@ export const GamificationService = {
   hasArtifact: (artifactId: string) => {
       const profile = GamificationService.getProfile();
       return profile.artifacts.includes(artifactId);
+  },
+
+  hasCollectibleCard: (cardId: string) => {
+      const profile = GamificationService.getProfile();
+      return profile.collectibleCards.some(c => c.id === cardId);
   }
 };

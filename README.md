@@ -55,7 +55,17 @@ To add content for a new thematic unit:
           }
         ],
         funFact: "...",
-        places: [ ... ]
+        places: [ ... ],
+        quiz: {
+          title: "Quiz Title",
+          questions: [ ... ],
+          rewardArtifact: { ... }, // Optional artifact reward
+          collectibleCards: [      // Optional collectible cards from lesson content
+            { type: 'person', index: 0 },      // First person becomes collectible
+            { type: 'invention', index: 0 },    // First invention becomes collectible
+            { type: 'place', index: 0 }        // First place becomes collectible
+          ]
+        }
         // ... see types.ts for schema
       }
     }
@@ -63,3 +73,56 @@ To add content for a new thematic unit:
 5.  **Done**: Nothing to register—any `Record<nodeId, NodeContent>` exported from a file under `data/eras/` is auto-loaded into `STATIC_CONTENT`.
 
 **Important**: All YouTube video URLs must include `?rel=0` appended to the URL. This limits video suggestions to the current channel, preventing unrelated content from appearing—critical for kid-friendly content.
+
+## Gamification System
+
+The app includes a gamification system to motivate learning:
+
+- **XP & Levels**: Completing quizzes awards XP. Level formula: `Level = sqrt(XP / 100) + 1`
+- **Artifacts**: Special legendary items unlocked by completing quizzes perfectly
+- **Collectible Cards**: Most lesson content (people, inventions, places) can be marked as collectible cards that unlock when the quiz is completed perfectly
+- **Progress Tracking**: Completed nodes show badges in the timeline
+
+### Quiz Structure
+
+Each quiz can include:
+- **Questions**: Multiple choice questions with explanations
+- **Reward Artifact** (optional): A special legendary item unlocked on perfect completion
+- **Collectible Cards** (optional): References to people, inventions, or places from the lesson that become collectible cards when unlocked
+
+Example:
+```typescript
+quiz: {
+  title: "Survival Protocol: The Great Freeze",
+  questions: [
+    {
+      id: "q1",
+      text: "How long did the Younger Dryas last?",
+      options: ["50 years", "300 years", "1,200 years", "10,000 years"],
+      correctIndex: 2,
+      explanation: "The Younger Dryas lasted roughly 1,200 years..."
+    }
+  ],
+  rewardArtifact: {
+    id: "clovis_point",
+    name: "Obsidian Clovis Point",
+    description: "A masterfully flaked spear point...",
+    rarity: "Legendary",
+    imageUrl: "/images/artifacts/clovis_point.jpg"
+  },
+  collectibleCards: [
+    { type: 'person', index: 0, id: 'clovis_hunter' },
+    { type: 'person', index: 1, id: 'adaptive_forager' },
+    { type: 'invention', index: 0, id: 'dietary_diversification' },
+    { type: 'place', index: 0, id: 'lake_agassiz' }
+  ]
+}
+```
+
+When a quiz is completed perfectly:
+- The user earns XP (typically 100 XP)
+- The artifact is unlocked (if specified)
+- All collectible cards referenced in `collectibleCards` are unlocked
+- Cards are displayed immediately after completion and stored in the user profile
+
+If a lesson has no collectible cards, simply omit the `collectibleCards` field or leave it empty.

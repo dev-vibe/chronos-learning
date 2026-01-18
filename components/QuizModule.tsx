@@ -1,16 +1,64 @@
 
 import React, { useState } from 'react';
-import { Quiz, Artifact } from '../types';
-import { Terminal, CheckCircle2, XCircle, ChevronRight, Award, ShieldAlert, Lock, Unlock } from 'lucide-react';
+import { Quiz, Artifact, CollectibleCard, NodeContent } from '../types';
+import { Terminal, CheckCircle2, XCircle, ChevronRight, Award, ShieldAlert, Lock, Unlock, Sparkles } from 'lucide-react';
 
 interface QuizModuleProps {
   quiz: Quiz;
   nodeId: string;
   isCompleted: boolean;
-  onComplete: (xp: number, artifact?: Artifact) => void;
+  nodeContent?: NodeContent; // Needed to resolve collectible card references
+  onComplete: (xp: number, artifact?: Artifact, collectibleCards?: CollectibleCard[]) => void;
 }
 
-export const QuizModule: React.FC<QuizModuleProps> = ({ quiz, nodeId, isCompleted, onComplete }) => {
+// Helper function to convert CollectibleCardRef to CollectibleCard
+const resolveCollectibleCards = (quiz: Quiz, nodeContent?: NodeContent): CollectibleCard[] => {
+  if (!quiz.collectibleCards || !nodeContent) return [];
+  
+  return quiz.collectibleCards.map((ref, idx) => {
+    let card: CollectibleCard | null = null;
+    
+    if (ref.type === 'person' && nodeContent.people[ref.index]) {
+      const person = nodeContent.people[ref.index];
+      card = {
+        id: ref.id || `${quiz.title}_person_${ref.index}`,
+        type: 'person',
+        name: person.name,
+        description: person.description,
+        imageUrl: person.imageUrl,
+        category: person.category,
+        role: person.role,
+        rarity: 'Common' // Default rarity, can be customized per card
+      };
+    } else if (ref.type === 'invention' && nodeContent.inventions[ref.index]) {
+      const invention = nodeContent.inventions[ref.index];
+      card = {
+        id: ref.id || `${quiz.title}_invention_${ref.index}`,
+        type: 'invention',
+        name: invention.name,
+        description: invention.description,
+        imageUrl: invention.imageUrl,
+        category: invention.category,
+        rarity: 'Common'
+      };
+    } else if (ref.type === 'place' && nodeContent.places[ref.index]) {
+      const place = nodeContent.places[ref.index];
+      card = {
+        id: ref.id || `${quiz.title}_place_${ref.index}`,
+        type: 'place',
+        name: place.name,
+        description: place.description,
+        imageUrl: place.imageUrl,
+        location: place.location,
+        rarity: 'Common'
+      };
+    }
+    
+    return card;
+  }).filter((card): card is CollectibleCard => card !== null);
+};
+
+export const QuizModule: React.FC<QuizModuleProps> = ({ quiz, nodeId, isCompleted, nodeContent, onComplete }) => {
   const [started, setStarted] = useState(false);
   const [currentQIndex, setCurrentQIndex] = useState(0);
   const [selectedOption, setSelectedOption] = useState<number | null>(null);
@@ -54,7 +102,8 @@ export const QuizModule: React.FC<QuizModuleProps> = ({ quiz, nodeId, isComplete
       const isPerfect = finalScore === quiz.questions.length;
       
       if (isPerfect) {
-          onComplete(100, quiz.rewardArtifact);
+          const collectibleCards = resolveCollectibleCards(quiz, nodeContent);
+          onComplete(100, quiz.rewardArtifact, collectibleCards);
       } else {
           // Retry needed? Or partial XP?
           // For simplicity: Fail state if not perfect
@@ -105,10 +154,45 @@ export const QuizModule: React.FC<QuizModuleProps> = ({ quiz, nodeId, isComplete
                         : `Integrity Check: ${Math.round((score/quiz.questions.length)*100)}%. Threshold not met. Access denied.`}
                   </p>
                   
-                  {isPerfect && quiz.rewardArtifact && (
-                      <div className="max-w-xs mx-auto bg-black border border-amber-500/30 rounded-lg p-4 mb-6">
-                           <div className="text-[10px] text-amber-500 font-mono uppercase tracking-widest mb-1">Artifact Recovered</div>
-                           <div className="text-white font-display font-bold">{quiz.rewardArtifact.name}</div>
+                  {isPerfect && (
+                      <div className="space-y-4 mb-6">
+                          {quiz.rewardArtifact && (
+                              <div className="max-w-xs mx-auto bg-black border border-amber-500/30 rounded-lg p-4">
+                                   <div className="text-[10px] text-amber-500 font-mono uppercase tracking-widest mb-1">Artifact Recovered</div>
+                                   <div className="text-white font-display font-bold">{quiz.rewardArtifact.name}</div>
+                              </div>
+                          )}
+                          
+                          {quiz.collectibleCards && quiz.collectibleCards.length > 0 && nodeContent && (() => {
+                              const cards = resolveCollectibleCards(quiz, nodeContent);
+                              if (cards.length === 0) return null;
+                              
+                              return (
+                                  <div className="max-w-2xl mx-auto">
+                                      <div className="text-[10px] text-purple-400 font-mono uppercase tracking-widest mb-3 text-center flex items-center justify-center gap-2">
+                                          <Sparkles size={12} />
+                                          Collectible Cards Unlocked
+                                      </div>
+                                      <div className="grid grid-cols-2 sm:grid-cols-3 gap-3">
+                                          {cards.map((card) => (
+                                              <div key={card.id} className="bg-black border border-purple-500/30 rounded-lg p-3 group hover:border-purple-400/50 transition-colors">
+                                                  <div className="aspect-square bg-stone-900 rounded mb-2 overflow-hidden relative">
+                                                      <img 
+                                                          src={card.imageUrl || "https://images.unsplash.com/photo-1628155930542-3c7a64e2c833?w=400&auto=format&fit=crop&q=60"} 
+                                                          alt={card.name}
+                                                          className="w-full h-full object-cover opacity-70 group-hover:opacity-100 transition-opacity"
+                                                      />
+                                                  </div>
+                                                  <h4 className="text-stone-200 font-bold text-xs truncate font-display">{card.name}</h4>
+                                                  {card.role && (
+                                                      <p className="text-[9px] text-stone-500 font-mono mt-0.5 truncate">{card.role}</p>
+                                                  )}
+                                              </div>
+                                          ))}
+                                      </div>
+                                  </div>
+                              );
+                          })()}
                       </div>
                   )}
 
@@ -157,6 +241,15 @@ export const QuizModule: React.FC<QuizModuleProps> = ({ quiz, nodeId, isComplete
                         <div className="flex flex-col items-center">
                             <span className="text-purple-400 font-bold text-lg">1</span>
                             <span>ARTIFACT</span>
+                        </div>
+                       </>
+                   )}
+                   {quiz.collectibleCards && quiz.collectibleCards.length > 0 && (
+                       <>
+                        <div className="w-px bg-stone-800 h-full"></div>
+                        <div className="flex flex-col items-center">
+                            <span className="text-cyan-400 font-bold text-lg">{quiz.collectibleCards.length}</span>
+                            <span>CARDS</span>
                         </div>
                        </>
                    )}
