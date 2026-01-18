@@ -1,6 +1,7 @@
 
 import React, { useState } from 'react';
 import { Quiz, CollectibleCard, NodeContent } from '../types';
+import { getImageUrlWithFallback, DEFAULT_FALLBACK_IMAGE } from '../utils/imageUtils';
 import { Terminal, CheckCircle2, XCircle, ChevronRight, Award, ShieldAlert, Lock, Unlock, Sparkles } from 'lucide-react';
 
 interface QuizModuleProps {
@@ -167,11 +168,13 @@ export const QuizModule: React.FC<QuizModuleProps> = ({ quiz, nodeId, isComplete
                                           Collectible Cards Unlocked
                                       </div>
                                       <div className="grid grid-cols-2 sm:grid-cols-3 gap-3">
-                                          {cards.map((card) => (
+                                          {cards.map((card) => {
+                                              const imageUrl = getImageUrlWithFallback(card.imageUrl);
+                                              return (
                                               <div key={card.id} className="bg-black border border-purple-500/30 rounded-lg p-3 group hover:border-purple-400/50 transition-colors">
                                                   <div className="aspect-square bg-stone-900 rounded mb-2 overflow-hidden relative">
                                                       <img 
-                                                          src={card.imageUrl || "https://images.unsplash.com/photo-1628155930542-3c7a64e2c833?w=400&auto=format&fit=crop&q=60"} 
+                                                          src={imageUrl} 
                                                           alt={card.name}
                                                           className="w-full h-full object-cover opacity-70 group-hover:opacity-100 transition-opacity"
                                                       />
@@ -181,7 +184,8 @@ export const QuizModule: React.FC<QuizModuleProps> = ({ quiz, nodeId, isComplete
                                                       <p className="text-[9px] text-stone-500 font-mono mt-0.5 truncate">{card.role}</p>
                                                   )}
                                               </div>
-                                          ))}
+                                              );
+                                          })}
                                       </div>
                                   </div>
                               );

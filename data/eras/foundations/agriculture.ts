@@ -243,7 +243,8 @@ export const FOUNDATIONS_GENERAL: Record<string, NodeContent> = {
           "Established herding as an alternative to settled agriculture, enabling pastoralist cultures"
         ],
         legacy: "Shepherds created pastoralism—a way of life that let humans thrive in marginal lands. Pastoralist cultures (Mongols, Bedouins, Scythians, Maasai) would shape history through trade, conquest, and cultural exchange for millennia.",
-        imageUrl: "/images/foundations/first_shepherds.jpg"
+        imageUrl: "/images/early_shephards.png",
+        imageFit: "contain",
       },
       {
         name: "The First Dog Handlers",
@@ -258,7 +259,8 @@ export const FOUNDATIONS_GENERAL: Record<string, NodeContent> = {
           "Enabled Arctic peoples to survive by using sled dogs for transportation"
         ],
         legacy: "Dogs were the first domesticated animals and remain humanity's most widespread companion species. The human-dog partnership is unique in the animal kingdom—dogs can read human facial expressions and gestures better than any other species, including great apes.",
-        imageUrl: "/images/foundations/dog_handlers.jpg"
+        imageUrl: "/images/early_dog_handlers.png",
+        imageFit: "contain",
       },
       {
         name: "The Steppe Horse Tamers",
@@ -273,7 +275,8 @@ export const FOUNDATIONS_GENERAL: Record<string, NodeContent> = {
           "Enabled the rise of mounted pastoral nomads who shaped Eurasian history"
         ],
         legacy: "Horse domestication changed the world. Mounted warriors (Scythians, Mongols, Huns) conquered empires. Trade routes like the Silk Road relied on horses. Communication, warfare, agriculture (horses pulling plows), and exploration all accelerated dramatically. Horses remained essential until automobiles replaced them in the 20th century.",
-        imageUrl: "/images/foundations/horse_tamers.jpg"
+        imageUrl: "/images/steppe_horse_tamers.png",
+        imageFit: "contain",
       }
     ],
     inventions: [
@@ -325,7 +328,8 @@ export const FOUNDATIONS_GENERAL: Record<string, NodeContent> = {
         location: "Zagros Mountains, northern Iraq (near the modern town of Shanidar)",
         significance:
           "Zawi Chemi Shanidar provides some of the earliest evidence of livestock domestication. The site shows that sheep herding began before full-scale agriculture—people were experimenting with animal management while still relying heavily on wild plants. This challenges the idea that agriculture and animal domestication happened simultaneously. Instead, it suggests that animal domestication may have started as a way to secure protein while communities were still transitioning to farming. The Zagros Mountains region (spanning Iraq, Iran, and Turkey) is now recognized as one of the primary centers of animal domestication, alongside the Fertile Crescent for plant domestication.",
-        imageUrl: "/images/places/zawi_chemi.jpg"
+        imageUrl: "https://upload.wikimedia.org/wikipedia/commons/thumb/4/45/3._Shanidar_cave%2C_a_paleolithic_cave_in_Bradost_Mountain%2C_Erbil_Governorate%2C_Iraqi_Kurdistan._April_4%2C_2014.jpg/500px-3._Shanidar_cave%2C_a_paleolithic_cave_in_Bradost_Mountain%2C_Erbil_Governorate%2C_Iraqi_Kurdistan._April_4%2C_2014.jpg",
+        imageFit: "contain",
       },
       {
         name: "Abu Hureyra, Syria",
@@ -334,7 +338,8 @@ export const FOUNDATIONS_GENERAL: Record<string, NodeContent> = {
         location: "Euphrates River valley, northern Syria (now submerged under Lake Assad after dam construction)",
         significance:
           "Abu Hureyra is one of the best-documented sites showing the Neolithic Revolution in action. It captures the moment humans transitioned from mobile foragers to settled farmers and herders. The site shows that domestication wasn't instant—it took over 1,000 years of experimentation. Early phases show people managing wild herds, then gradually selecting for tamer animals. The site also reveals the costs of agriculture: skeletal evidence shows repetitive strain injuries (knees worn from grinding grain), dental problems (cavities from eating more carbohydrates), and shorter stature compared to earlier hunter-gatherers. Abu Hureyra proves that the agricultural revolution was a gradual process of trial, error, and adaptation—not a sudden brilliant invention.",
-        imageUrl: "/images/places/abu_hureyra.jpg"
+        imageUrl: "https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEj7roNBXZFOFE2AxdydgC-rSIn7NCTHdUTVSH0VR-Fvi25wuVA43Lykm0OfRFBwQ_D_tnWbBWRAjf7nCN4lkvPKRCC44H6BT6PHf24POBg10VEJNiarKWPt5aVYMfCMKxN1mYcj1tnpD30/s1600/qalat-jabar-lake-assad2.jpg",
+        imageFit: "contain",
       }
     ],
     resources: [

@@ -2,6 +2,7 @@
 import React from 'react';
 import { UserProfile as UserProfileType } from '../services/gamification';
 import { CollectibleCard } from '../types';
+import { getImageUrlWithFallback, DEFAULT_FALLBACK_IMAGE } from '../utils/imageUtils';
 import { X, Shield, Sparkles } from 'lucide-react';
 
 interface UserProfileProps {
@@ -73,11 +74,13 @@ export const UserProfileModal: React.FC<UserProfileProps> = ({ profile, isOpen, 
                     </h3>
                     
                     <div className="grid grid-cols-2 sm:grid-cols-3 gap-4">
-                        {collectibleCards.map(card => (
+                        {collectibleCards.map(card => {
+                            const imageUrl = getImageUrlWithFallback(card.imageUrl);
+                            return (
                             <div key={card.id} className="bg-black border border-stone-800 rounded-lg p-3 group hover:border-purple-500/30 transition-colors">
                                 <div className="aspect-square bg-stone-900 rounded mb-3 overflow-hidden relative">
                                     <img 
-                                        src={card.imageUrl || "https://images.unsplash.com/photo-1628155930542-3c7a64e2c833?w=400&auto=format&fit=crop&q=60"} 
+                                        src={imageUrl} 
                                         alt={card.name} 
                                         className="w-full h-full object-cover opacity-70 group-hover:opacity-100 transition-opacity" 
                                     />
@@ -96,7 +99,8 @@ export const UserProfileModal: React.FC<UserProfileProps> = ({ profile, isOpen, 
                                     <p className="text-[9px] text-stone-500 font-mono mt-0.5 truncate">{card.location}</p>
                                 )}
                             </div>
-                        ))}
+                            );
+                        })}
                     </div>
                 </div>
             ) : (

@@ -3,6 +3,7 @@ import React, { useState } from 'react';
 import { TimelineNode, Resource, HistoricalPerson, Invention, Place, DetailItem, Era } from '../types';
 import { Badge } from './Badge';
 import { QuizModule } from './QuizModule';
+import { getImageUrlWithFallback, DEFAULT_FALLBACK_IMAGE } from '../utils/imageUtils';
 import { BookOpen, Youtube, Mic, Globe, Lightbulb, Users, MapPin, ExternalLink, Crown, ScrollText, Sword, ChevronRight as ChevronRightIcon, Lock, RefreshCw, ArrowLeft, Target, Zap, Brain, Star, X, FileText, Crosshair, Layout, Clock, Scan } from 'lucide-react';
 
 interface NodeContentDisplayProps {
@@ -427,7 +428,7 @@ const TradingCard: React.FC<{ person: HistoricalPerson; onClick: () => void }> =
   };
 
   const theme = getCardTheme(person.category);
-  const fallbackImage = "https://images.unsplash.com/photo-1614728263952-84ea256f9679?q=80&w=600&auto=format&fit=crop"; 
+  const imageUrl = getImageUrlWithFallback(person.imageUrl);
 
   return (
     <button onClick={onClick} className={`relative group w-full h-full flex flex-col bg-black border ${theme.border} rounded-xl overflow-hidden transition-all duration-300 hover:scale-[1.02] hover:-translate-y-1 ${theme.shadow} text-left outline-none`}>
@@ -447,7 +448,7 @@ const TradingCard: React.FC<{ person: HistoricalPerson; onClick: () => void }> =
             </div>
          )}
          <img 
-           src={imgError ? fallbackImage : (person.imageUrl || fallbackImage)} 
+           src={imgError ? DEFAULT_FALLBACK_IMAGE : imageUrl} 
            alt={person.name}
            onLoad={() => setImgLoaded(true)}
            onError={() => setImgError(true)}
@@ -507,13 +508,13 @@ const TechCard: React.FC<{ invention: Invention; index: number; onClick: () => v
 
 const PlaceCard: React.FC<{ place: Place; onClick: () => void }> = ({ place, onClick }) => {
     const [imgError, setImgError] = useState(false);
-    const fallbackImage = "https://images.unsplash.com/photo-1451187580459-43490279c0fa?q=80&w=1000&auto=format&fit=crop";
+    const imageUrl = getImageUrlWithFallback(place.imageUrl);
 
     return (
         <button onClick={onClick} className="text-left w-full bg-black border border-stone-800 rounded-xl overflow-hidden hover:border-emerald-500/50 transition-all duration-300 group relative outline-none hover:shadow-[0_0_20px_rgba(16,185,129,0.1)]">
             <div className="relative h-32 w-full bg-stone-900 overflow-hidden">
                 <img 
-                    src={imgError ? fallbackImage : (place.imageUrl || fallbackImage)} 
+                    src={imgError ? DEFAULT_FALLBACK_IMAGE : imageUrl} 
                     alt={place.name}
                     onError={() => setImgError(true)}
                     className="w-full h-full object-cover opacity-60 group-hover:opacity-80 transition-opacity duration-500"
@@ -551,7 +552,6 @@ const DetailOverlay: React.FC<{ item: DetailItem | null; onClose: () => void }> 
     if (!item) return null;
 
     const { type, data } = item;
-    const fallbackImage = "https://images.unsplash.com/photo-1451187580459-43490279c0fa?q=80&w=1000&auto=format&fit=crop";
     
     let title = '';
     let subtitle = '';
@@ -577,7 +577,7 @@ const DetailOverlay: React.FC<{ item: DetailItem | null; onClose: () => void }> 
         title = data.name;
         subtitle = data.role;
         description = data.description;
-        image = data.imageUrl || fallbackImage;
+        image = getImageUrlWithFallback(data.imageUrl);
         imageFit = data.imageFit;
         badges = [data.category];
         achievements = data.achievements || [];
@@ -588,7 +588,7 @@ const DetailOverlay: React.FC<{ item: DetailItem | null; onClose: () => void }> 
         title = data.name;
         subtitle = `Invented: ${data.date || 'Ancient Era'}`;
         description = data.description;
-        image = data.imageUrl || fallbackImage;
+        image = getImageUrlWithFallback(data.imageUrl);
         imageFit = data.imageFit;
         badges = [data.category];
         problem = data.problem || '';
@@ -598,7 +598,7 @@ const DetailOverlay: React.FC<{ item: DetailItem | null; onClose: () => void }> 
         title = data.name;
         subtitle = data.location || 'Historical Site';
         description = data.description;
-        image = data.imageUrl || fallbackImage;
+        image = getImageUrlWithFallback(data.imageUrl);
         imageFit = data.imageFit;
         significance = data.significance || '';
         lore = data.lore || '';

@@ -1,5 +1,5 @@
 
-import React, { useState, useCallback, useEffect, useMemo } from 'react';
+import React, { useState, useCallback, useEffect, useMemo, useRef } from 'react';
 import { TimelineSidebar } from './components/TimelineSidebar';
 import { NodeContentDisplay } from './components/NodeContentDisplay';
 import { UserProfileModal } from './components/UserProfile';
@@ -26,6 +26,7 @@ const App: React.FC = () => {
   // Gamification State
   const [userProfile, setUserProfile] = useState<UserProfile>(GamificationService.getProfile());
   const [isProfileOpen, setIsProfileOpen] = useState(false);
+  const hasInitializedEra = useRef(false);
 
   // Compute era lock status based on completed nodes
   const eraLockStatus = useMemo<Record<string, boolean>>(() => {
@@ -43,16 +44,69 @@ const App: React.FC = () => {
     });
   }, [userProfile.nodesCompleted, eraLockStatus]);
 
-  // Refresh profile on mount
+  // Find the last unlocked node and open its era on initial load
   useEffect(() => {
-    setUserProfile(GamificationService.getProfile());
-  }, []);
+    // Only run once on initial load
+    if (hasInitializedEra.current) return;
+    
+    // Find the last unlocked node chronologically
+    const unlockedNodes = INITIAL_NODES.filter(node => !nodeLockStatus[node.id]);
+    
+    if (unlockedNodes.length > 0) {
+      // Parse year for sorting (similar to nodeLocking service)
+      const parseYear = (yearStr: string): number => {
+        let cleaned = yearStr.replace(/^(c\.|ca\.|circa|~)\s*/i, '').trim();
+        cleaned = cleaned.replace(/,/g, '');
+        const match = cleaned.match(/(\d+(?:\.\d+)?)/);
+        if (!match) return 0;
+        const num = parseFloat(match[1]);
+        if (cleaned.toUpperCase().includes('BCE') || cleaned.toUpperCase().includes('BC')) {
+          return -num; // Negative for BCE
+        }
+        return num;
+      };
+      
+      // Sort nodes chronologically (most recent first)
+      const sortedUnlockedNodes = [...unlockedNodes].sort((a, b) => {
+        const yearA = parseYear(a.year);
+        const yearB = parseYear(b.year);
+        return yearB - yearA; // Descending order to get the latest
+      });
+      
+      const lastUnlockedNode = sortedUnlockedNodes[0]; // Most recent unlocked node
+      if (lastUnlockedNode) {
+        setSelectedEraId(lastUnlockedNode.eraId);
+        hasInitializedEra.current = true;
+      }
+    } else {
+      // If no unlocked nodes, default to first era
+      hasInitializedEra.current = true;
+    }
+  }, [nodeLockStatus]); // Run when lock status is computed
+
+  // Keep the era containing the selected node open
+  // This ensures that whenever a node is selected, its era is automatically opened
+  useEffect(() => {
+    if (selectedNode) {
+      // Force the era to be open - this will override any manual era selection
+      setSelectedEraId(selectedNode.eraId);
+    }
+  }, [selectedNode]);
 
   const handleSelectEra = (id: string) => {
     // Prevent selecting locked eras
     if (eraLockStatus[id]) {
       return;
     }
+    // If a node is selected, prevent closing its era
+    // The era containing the selected node should always stay open
+    if (selectedNode && selectedNode.eraId === id) {
+      // Don't allow closing the era that contains the selected node
+      return;
+    }
+    // If no node is selected, allow toggling eras
+    // If a node is selected and clicking a different era, open that era
+    // (but the selected node's era will be kept open by the useEffect)
     setSelectedEraId(id);
   };
 
@@ -68,6 +122,9 @@ const App: React.FC = () => {
     if (nodeLockStatus[stub.id]) {
       return;
     }
+    
+    // Automatically open the era that contains this node
+    setSelectedEraId(stub.eraId);
     
     setShowMobileDetail(true);
     setSelectedEra(null);
