@@ -59,7 +59,6 @@ To add content for a new thematic unit:
         quiz: {
           title: "Quiz Title",
           questions: [ ... ],
-          rewardArtifact: { ... }, // Optional artifact reward
           collectibleCards: [      // Optional collectible cards from lesson content
             { type: 'person', index: 0 },      // First person becomes collectible
             { type: 'invention', index: 0 },    // First invention becomes collectible
@@ -79,15 +78,13 @@ To add content for a new thematic unit:
 The app includes a gamification system to motivate learning:
 
 - **XP & Levels**: Completing quizzes awards XP. Level formula: `Level = sqrt(XP / 100) + 1`
-- **Artifacts**: Special legendary items unlocked by completing quizzes perfectly
-- **Collectible Cards**: Most lesson content (people, inventions, places) can be marked as collectible cards that unlock when the quiz is completed perfectly
+- **Collectible Cards**: Lesson content (people, inventions, places) can be marked as collectible cards that unlock when the quiz is completed perfectly
 - **Progress Tracking**: Completed nodes show badges in the timeline
 
 ### Quiz Structure
 
 Each quiz can include:
 - **Questions**: Multiple choice questions with explanations
-- **Reward Artifact** (optional): A special legendary item unlocked on perfect completion
 - **Collectible Cards** (optional): References to people, inventions, or places from the lesson that become collectible cards when unlocked
 
 Example:
@@ -103,13 +100,6 @@ quiz: {
       explanation: "The Younger Dryas lasted roughly 1,200 years..."
     }
   ],
-  rewardArtifact: {
-    id: "clovis_point",
-    name: "Obsidian Clovis Point",
-    description: "A masterfully flaked spear point...",
-    rarity: "Legendary",
-    imageUrl: "/images/artifacts/clovis_point.jpg"
-  },
   collectibleCards: [
     { type: 'person', index: 0, id: 'clovis_hunter' },
     { type: 'person', index: 1, id: 'adaptive_forager' },
@@ -121,7 +111,6 @@ quiz: {
 
 When a quiz is completed perfectly:
 - The user earns XP (typically 100 XP)
-- The artifact is unlocked (if specified)
 - All collectible cards referenced in `collectibleCards` are unlocked
 - Cards are displayed immediately after completion and stored in the user profile
 

@@ -90,10 +90,9 @@ This allows development to proceed with AI-generated content while static conten
 
 Lives in `services/gamification.ts`:
 
-- **Local Storage Persistence**: User profile (XP, level, artifacts, collectible cards, completed nodes) stored in browser's localStorage
+- **Local Storage Persistence**: User profile (XP, level, collectible cards, completed nodes) stored in browser's localStorage
 - **Level Curve**: `Level = sqrt(XP / 100) + 1` (Lvl 1: 0 XP, Lvl 2: 100 XP, Lvl 3: 400 XP, Lvl 4: 900 XP)
 - **Rewards**: Each quiz awards XP and optional rewards:
-  - **Artifacts**: Special legendary items (one per quiz, optional)
   - **Collectible Cards**: Multiple cards from lesson content (people, inventions, places) that unlock when quiz is completed perfectly
 - **Progress Tracking**: Completed nodes are marked to show badges in the timeline
 
@@ -140,7 +139,7 @@ The collectible cards system allows quizzes to unlock multiple cards from the le
 
 **QuizModule.tsx**
 - Multiple choice questions
-- XP and artifact rewards
+- XP and collectible card rewards
 - Collectible cards system (unlocks multiple cards from lesson content)
 - Explains correct answers
 - Displays unlocked cards after completion
@@ -156,7 +155,7 @@ Key interfaces:
 - `Invention`: Tech blueprint data with problem/solution/impact
 - `Place`: Location cards with significance and lore
 - `Resource`: External media links (videos, podcasts, articles)
-- `Quiz`: Quiz questions with explanations, artifact rewards, and collectible card references
+- `Quiz`: Quiz questions with explanations and collectible card references
 - `CollectibleCardRef`: Reference to a card in lesson content (type + index)
 - `CollectibleCard`: Full collectible card data (name, description, image, etc.)
 
@@ -242,12 +241,6 @@ export const CLASSICAL_GREECE: Record<string, NodeContent> = {
         explanation: "Alexander conquered the vast Persian Empire led by Darius III."
       }
     ],
-    rewardArtifact: {
-      id: "alexander_drachma",
-      name: "Alexander's Silver Drachma",
-      description: "Coin with Alexander's profile",
-      rarity: "Rare"
-    },
     collectibleCards: [
       // Optional: Mark lesson content as collectible cards
       { type: 'person', index: 0, id: 'alexander_card' },      // First person (Alexander)

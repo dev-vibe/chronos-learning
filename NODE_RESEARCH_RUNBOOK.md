@@ -23,7 +23,7 @@ interface NodeContent {
   inventions: Invention[];    // 1-3 innovations (tech blueprint format)
   places: Place[];           // 1-3 locations (place card format)
   resources: Resource[];     // 3-4 external learning resources
-  quiz?: Quiz;              // 3-5 questions with artifact reward
+  quiz?: Quiz;              // 3-5 questions with collectible card rewards
 }
 ```
 
@@ -91,12 +91,7 @@ interface NodeContent {
 {
   title: string;             // Quiz title
   questions: QuizQuestion[]; // 3-5 multiple choice questions
-  rewardArtifact?: {        // Optional collectible reward
-    id: string;
-    name: string;
-    description: string;
-    rarity: "Common" | "Rare" | "Epic" | "Legendary"
-  }
+  collectibleCards?: CollectibleCardRef[]; // Optional: Cards to unlock from lesson content
 }
 
 interface QuizQuestion {
@@ -272,10 +267,10 @@ interface QuizQuestion {
 - Add context, connections, or additional details
 - This is a teaching moment - make it count!
 
-**Artifact Reward**:
-- Create a thematic collectible related to the node
-- Name it something evocative
-- Rarity: Common (basic), Rare (notable), Epic (significant), Legendary (world-changing)
+**Collectible Cards**:
+- Reference people, inventions, or places from the lesson content
+- Use `{ type: 'person'|'invention'|'place', index: number, id: string }`
+- Cards unlock when quiz is completed perfectly
 
 ---
 
@@ -542,7 +537,7 @@ Full example (verbatim — yes, it’s long on purpose so the “research AI” 
   ],
   quiz: {
     title: "Metallurgy Mastery Protocol",
-    description: "Prove your understanding of the Bronze Age revolution to unlock the artifact.",
+    description: "Prove your understanding of the Bronze Age revolution to unlock collectible cards.",
     questions: [
       {
         id: "bronze_q1",
@@ -636,14 +631,13 @@ Full example (verbatim — yes, it’s long on purpose so the “research AI” 
           "The Uluburun shipwreck (c. 1300 BCE) contained goods from at least seven different civilizations: Cypriot copper, Afghan or Anatolian tin, Egyptian gold, African ivory, Canaanite pottery, and more. One ship carried materials that had traveled thousands of miles. This proves the Bronze Age had a sophisticated, interconnected trade network spanning the known world."
       }
     ],
-    rewardArtifact: {
-      id: "bronze_dagger",
-      name: "Royal Bronze Dagger",
-      description:
-        "A perfectly balanced bronze dagger with a decorated hilt, sharp enough to pierce leather armor. This weapon represents the military revolution that bronze technology brought to the ancient world.",
-      rarity: "Rare",
-      imageUrl: "/images/artifacts/bronze_dagger.jpg"
-    }
+    collectibleCards: [
+      { type: 'person', index: 0, id: 'bronze_master_smith' },      // The Master Smith
+      { type: 'person', index: 1, id: 'bronze_tin_trader' },        // The Tin Trader
+      { type: 'invention', index: 0, id: 'bronze_alloy' },          // Bronze Alloy
+      { type: 'invention', index: 1, id: 'lost_wax_casting' },       // Lost-Wax Casting
+      { type: 'place', index: 1, id: 'uluburun_shipwreck' }         // The Uluburun Shipwreck
+    ]
   }
 },
 ```
