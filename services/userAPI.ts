@@ -4,7 +4,7 @@
  */
 
 import { supabase, isSupabaseConfigured } from '../lib/supabase';
-import { UserProfile, calculateLevel } from './localStorage';
+import { UserProfile, calculateLevel } from './gamification';
 
 export interface CloudUserProfile {
   id: string;
@@ -109,7 +109,7 @@ export const UserAPI = {
       return {
         xp: progress.xp,
         level: progress.level,
-        artifacts: artifacts?.map(a => a.artifact_id) || [],
+        collectibleCards: [], // Cards are stored in memory only, not DB
         nodesCompleted: completedNodes?.map(n => n.node_id) || []
       };
     } catch (error) {
@@ -119,7 +119,7 @@ export const UserAPI = {
   },
 
   /**
-   * Add XP to user and recalculate level
+   * Add XP to user and recalculate level based on completed eras
    */
   addXp: async (userId: string, amount: number): Promise<{ newLevel: number, leveledUp: boolean } | null> => {
     if (!isSupabaseConfigured()) {
@@ -140,9 +140,20 @@ export const UserAPI = {
         return null;
       }
 
+      // Get completed nodes for level calculation
+      const { data: completedNodes, error: nodesError } = await supabase
+        .from('completed_nodes')
+        .select('node_id')
+        .eq('user_id', userId);
+
+      if (nodesError && nodesError.code !== 'PGRST116') {
+        console.error('Error fetching completed nodes:', nodesError);
+      }
+
+      const nodesCompleted = completedNodes?.map(n => n.node_id) || [];
       const oldLevel = progress.level;
       const newXp = progress.xp + amount;
-      const newLevel = calculateLevel(newXp);
+      const newLevel = calculateLevel(nodesCompleted);
 
       // Update progress
       const { error: updateError } = await supabase
@@ -213,7 +224,7 @@ export const UserAPI = {
   },
 
   /**
-   * Mark node as completed
+   * Mark node as completed and recalculate level based on completed eras
    */
   completeNode: async (
     userId: string,
@@ -253,6 +264,26 @@ export const UserAPI = {
       if (error) {
         console.error('Error completing node:', error);
         return false;
+      }
+
+      // Recalculate level based on all completed nodes (including this new one)
+      const { data: allCompletedNodes, error: nodesError } = await supabase
+        .from('completed_nodes')
+        .select('node_id')
+        .eq('user_id', userId);
+
+      if (!nodesError) {
+        const nodesCompleted = allCompletedNodes?.map(n => n.node_id) || [];
+        const newLevel = calculateLevel(nodesCompleted);
+
+        // Update level in user_progress
+        await supabase
+          .from('user_progress')
+          .update({
+            level: newLevel,
+            updated_at: new Date().toISOString()
+          })
+          .eq('user_id', userId);
       }
 
       return true;
@@ -354,13 +385,6 @@ export const UserAPI = {
 
       if (progressError) {
         console.error('Error updating progress during migration:', progressError);
-        return false;
-      }
-
-      // Upload artifacts
-      const artifactsSuccess = await UserAPI.batchUploadArtifacts(userId, profile.artifacts);
-      if (!artifactsSuccess) {
-        console.error('Error uploading artifacts during migration');
         return false;
       }
 

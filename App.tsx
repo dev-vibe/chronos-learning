@@ -6,10 +6,11 @@ import { UserProfileModal } from './components/UserProfile';
 import { ERAS, INITIAL_NODES } from './constants';
 import { TimelineNode, TimelineNodeStub, Era, CollectibleCard } from './types';
 import { fetchNodeContent } from './services/geminiService';
-import { GamificationService, UserProfile } from './services/gamification';
+import { GamificationService } from './services/gamification';
+import { useUserProfile } from './contexts/UserProfileContext';
 import { getEraLockStatus } from './services/eraLocking';
 import { getAllNodeLockStatus } from './services/nodeLocking';
-import { AlertCircle, PlayCircle, Terminal, User, Shield } from 'lucide-react';
+import { AlertCircle, PlayCircle, Terminal } from 'lucide-react';
 
 // Development/Testing Flag: Set to true to unlock all eras regardless of completion status
 const UNLOCK_ALL_ERAS = false;
@@ -23,8 +24,8 @@ const App: React.FC = () => {
   const [showMobileDetail, setShowMobileDetail] = useState(false);
   const [nodeCache, setNodeCache] = useState<Record<string, TimelineNode>>({});
 
-  // Gamification State
-  const [userProfile, setUserProfile] = useState<UserProfile>(GamificationService.getProfile());
+  // Gamification State - use context (synced with DB)
+  const { profile: userProfile, addXp, completeNode } = useUserProfile();
   const [isProfileOpen, setIsProfileOpen] = useState(false);
   const hasInitializedEra = useRef(false);
 
@@ -176,24 +177,20 @@ const App: React.FC = () => {
     setShowMobileDetail(false);
   };
 
-  const handleQuizComplete = (xp: number, collectibleCards?: CollectibleCard[]) => {
+  const handleQuizComplete = async (xp: number, collectibleCards?: CollectibleCard[]) => {
     console.log('%c[handleQuizComplete] ========== CALLED ==========', 'background: #ff0; color: #000; font-size: 16px;');
     console.log('[handleQuizComplete] XP:', xp, 'selectedNode:', selectedNode?.id);
-    console.log('[handleQuizComplete] Profile BEFORE:', GamificationService.getProfile());
     
-    GamificationService.addXp(xp);
+    // Use context methods - profile state updates automatically
+    await addXp(xp);
     if (collectibleCards && collectibleCards.length > 0) {
       GamificationService.unlockCollectibleCards(collectibleCards);
     }
     if (selectedNode) {
-      GamificationService.completeNode(selectedNode.id);
+      await completeNode(selectedNode.id);
     }
     
-    const newProfile = GamificationService.getProfile();
-    console.log('[handleQuizComplete] Profile AFTER:', newProfile);
-    
-    // Refresh local state to update UI
-    setUserProfile(newProfile);
+    console.log('[handleQuizComplete] Profile updated via context');
   };
 
   // Helper to parse year for sorting nodes chronologically

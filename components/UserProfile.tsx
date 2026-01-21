@@ -1,10 +1,8 @@
 
-import React, { useState, useEffect } from 'react';
-import { UserProfile as UserProfileType, GamificationService } from '../services/gamification';
-import { CollectibleCard } from '../types';
-import { getImageUrlWithFallback, DEFAULT_FALLBACK_IMAGE } from '../utils/imageUtils';
-import { X, Shield, Sparkles, Award, Lock, User, Database, Cloud, CloudOff, Loader, CheckCircle, AlertCircle, Settings, Save, Edit2 } from 'lucide-react';
-import { useUserProfile } from '../contexts/UserProfileContext';
+import React, { useState } from 'react';
+import { UserProfile as UserProfileType } from '../services/gamification';
+import { getImageUrlWithFallback } from '../utils/imageUtils';
+import { X, Shield, Sparkles, User, Loader, CheckCircle, Settings, Save, Edit2 } from 'lucide-react';
 import { useAuth } from '../contexts/AuthContext';
 import { User as SupabaseUser } from '@supabase/supabase-js';
 
@@ -24,10 +22,8 @@ const getUserDisplayName = (user: SupabaseUser | null, isGuest: boolean): string
     return 'CHRONOS-OPERATIVE';
   }
 
-  // Try to get name from user_metadata (saved during signup or from OAuth providers)
   const metadata = user.user_metadata || {};
   
-  // Prioritize saved name from signup
   if (metadata.full_name && metadata.full_name.trim()) {
     return metadata.full_name.toUpperCase();
   }
@@ -35,19 +31,15 @@ const getUserDisplayName = (user: SupabaseUser | null, isGuest: boolean): string
     return metadata.name.toUpperCase();
   }
 
-  // Fall back to email - extract name part before @
   if (user.email) {
     const emailName = user.email.split('@')[0];
-    // Convert to readable format (e.g., "john.doe" -> "JOHN DOE")
     return emailName.replace(/[._-]/g, ' ').toUpperCase();
   }
 
-  // Final fallback
   return 'CHRONOS-OPERATIVE';
 };
 
 export const UserProfileModal: React.FC<UserProfileProps> = ({ profile, isOpen, onClose }) => {
-  const { syncStatus, queueSize } = useUserProfile();
   const { user, isGuest, updateUserName, refreshUser } = useAuth();
   const [showSettings, setShowSettings] = useState(false);
   const [editingName, setEditingName] = useState(false);
@@ -63,17 +55,8 @@ export const UserProfileModal: React.FC<UserProfileProps> = ({ profile, isOpen, 
     }
   }, [user, showSettings]);
 
-  // Get collectible cards from GamificationService (local storage)
-  // This is separate from the cloud-synced profile
-  const [collectibleCards, setCollectibleCards] = useState<CollectibleCard[]>([]);
-  
-  useEffect(() => {
-    if (isOpen) {
-      // Refresh collectible cards when modal opens
-      const gamificationProfile = GamificationService.getProfile();
-      setCollectibleCards(gamificationProfile.collectibleCards || []);
-    }
-  }, [isOpen]);
+  // Collectible cards come from profile prop
+  const collectibleCards = profile.collectibleCards || [];
 
   if (!isOpen) return null;
   
@@ -103,13 +86,8 @@ export const UserProfileModal: React.FC<UserProfileProps> = ({ profile, isOpen, 
 
   const currentDisplayName = getUserDisplayName(user, isGuest);
 
-  // Calculate Progress to next level
-  const currentLevelXp = 100 * Math.pow(profile.level - 1, 2);
-  const nextLevelXp = 100 * Math.pow(profile.level, 2);
-  const levelProgress = ((profile.xp - currentLevelXp) / (nextLevelXp - currentLevelXp)) * 100;
-
-  // Sync status badge
-  const getSyncBadge = () => {
+  // Status badge
+  const getStatusBadge = () => {
     if (isGuest) {
       return (
         <div className="flex items-center gap-1.5 px-2 py-1 bg-stone-800/50 border border-stone-700 rounded-md">
@@ -119,46 +97,10 @@ export const UserProfileModal: React.FC<UserProfileProps> = ({ profile, isOpen, 
       );
     }
 
-    if (!user) {
-      return (
-        <div className="flex items-center gap-1.5 px-2 py-1 bg-stone-800/50 border border-stone-700 rounded-md">
-          <CloudOff size={12} className="text-stone-400" />
-          <span className="text-[10px] font-mono text-stone-400 uppercase">Offline</span>
-        </div>
-      );
-    }
-
-    if (syncStatus === 'syncing') {
-      return (
-        <div className="flex items-center gap-1.5 px-2 py-1 bg-blue-950/50 border border-blue-500/50 rounded-md">
-          <Loader size={12} className="text-blue-400 animate-spin" />
-          <span className="text-[10px] font-mono text-blue-300 uppercase">Syncing...</span>
-        </div>
-      );
-    }
-
-    if (syncStatus === 'error') {
-      return (
-        <div className="flex items-center gap-1.5 px-2 py-1 bg-red-950/50 border border-red-500/50 rounded-md">
-          <AlertCircle size={12} className="text-red-400" />
-          <span className="text-[10px] font-mono text-red-300 uppercase">Sync Error</span>
-        </div>
-      );
-    }
-
-    if (syncStatus === 'offline' || queueSize > 0) {
-      return (
-        <div className="flex items-center gap-1.5 px-2 py-1 bg-amber-950/50 border border-amber-500/50 rounded-md">
-          <Database size={12} className="text-amber-400" />
-          <span className="text-[10px] font-mono text-amber-300 uppercase">{queueSize} Queued</span>
-        </div>
-      );
-    }
-
     return (
       <div className="flex items-center gap-1.5 px-2 py-1 bg-emerald-950/50 border border-emerald-500/50 rounded-md">
         <CheckCircle size={12} className="text-emerald-400" />
-        <span className="text-[10px] font-mono text-emerald-300 uppercase">Synced</span>
+        <span className="text-[10px] font-mono text-emerald-300 uppercase">Connected</span>
       </div>
     );
   };
@@ -176,8 +118,8 @@ export const UserProfileModal: React.FC<UserProfileProps> = ({ profile, isOpen, 
                 <div>
                     <h2 className="text-xl font-display font-bold text-white uppercase tracking-wider">Agent Dossier</h2>
                     <div className="flex items-center gap-2 mt-1">
-                      <p className="text-[10px] font-mono text-stone-500 uppercase">ID: {getUserDisplayName(user, isGuest)}</p>
-                      {getSyncBadge()}
+                      <p className="text-[10px] font-mono text-stone-500 uppercase">ID: {currentDisplayName}</p>
+                      {getStatusBadge()}
                     </div>
                 </div>
             </div>
@@ -188,7 +130,7 @@ export const UserProfileModal: React.FC<UserProfileProps> = ({ profile, isOpen, 
 
         <div className="overflow-y-auto p-6 space-y-8">
             
-            {/* Settings/Admin Section */}
+            {/* Settings Section */}
             {!isGuest && user && (
               <div>
                 <div className="flex items-center justify-between mb-4">
@@ -299,12 +241,8 @@ export const UserProfileModal: React.FC<UserProfileProps> = ({ profile, isOpen, 
                 <div className="bg-stone-900/50 border border-stone-800 p-4 rounded-xl">
                     <div className="text-xs font-mono text-stone-500 uppercase mb-1">Clearance Level</div>
                     <div className="text-4xl font-display font-bold text-white mb-2">{profile.level}</div>
-                    <div className="w-full h-1.5 bg-stone-800 rounded-full overflow-hidden">
-                        <div className="h-full bg-amber-500 transition-all duration-1000" style={{ width: `${levelProgress}%` }}></div>
-                    </div>
-                    <div className="flex justify-between mt-1 text-[9px] font-mono text-stone-600">
-                        <span>{profile.xp} XP</span>
-                        <span>NEXT: {nextLevelXp} XP</span>
+                    <div className="text-[10px] font-mono text-stone-600 mt-1">
+                        Complete all nodes in an era to level up
                     </div>
                 </div>
                 
@@ -314,6 +252,12 @@ export const UserProfileModal: React.FC<UserProfileProps> = ({ profile, isOpen, 
                         <span className="text-4xl font-display font-bold text-purple-400">{collectibleCards.length}</span>
                     </div>
                 </div>
+            </div>
+
+            {/* XP Display */}
+            <div className="bg-stone-900/50 border border-stone-800 p-4 rounded-xl">
+                <div className="text-xs font-mono text-stone-500 uppercase mb-1">Total XP Earned</div>
+                <div className="text-2xl font-display font-bold text-amber-400">{profile.xp} XP</div>
             </div>
 
             {/* Collectible Cards Collection */}

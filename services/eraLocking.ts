@@ -1,5 +1,4 @@
 import { Era, TimelineNodeStub } from '../types';
-import { GamificationService } from './gamification';
 
 /**
  * Configuration for era locking behavior
