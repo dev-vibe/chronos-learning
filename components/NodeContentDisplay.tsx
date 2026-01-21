@@ -15,9 +15,11 @@ interface NodeContentDisplayProps {
   // Gamification props
   onQuizComplete?: (xp: number, collectibleCards?: any[]) => void;
   isNodeCompleted?: boolean;
+  onGoToNextLesson?: () => void;
+  hasNextLesson?: boolean;
 }
 
-export const NodeContentDisplay: React.FC<NodeContentDisplayProps> = ({ node, era, loading, onRetry, onBack, onQuizComplete, isNodeCompleted }) => {
+export const NodeContentDisplay: React.FC<NodeContentDisplayProps> = ({ node, era, loading, onRetry, onBack, onQuizComplete, isNodeCompleted, onGoToNextLesson, hasNextLesson }) => {
   const [selectedItem, setSelectedItem] = useState<DetailItem | null>(null);
 
   // Loading State
@@ -396,12 +398,14 @@ export const NodeContentDisplay: React.FC<NodeContentDisplayProps> = ({ node, er
          {/* GAMIFICATION MODULE */}
          {quiz && onQuizComplete && (
              <section className="mt-16 pt-8 border-t border-stone-800">
-                 <QuizModule 
-                    quiz={quiz} 
-                    nodeId={node.id} 
+                 <QuizModule
+                    quiz={quiz}
+                    nodeId={node.id}
                     isCompleted={isNodeCompleted || false}
                     nodeContent={node.content}
-                    onComplete={onQuizComplete} 
+                    onComplete={onQuizComplete}
+                    onGoToNext={onGoToNextLesson}
+                    hasNextLesson={hasNextLesson}
                 />
              </section>
          )}

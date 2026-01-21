@@ -28,12 +28,20 @@ const App: React.FC = () => {
   const [isProfileOpen, setIsProfileOpen] = useState(false);
   const hasInitializedEra = useRef(false);
 
+  // Debug: log whenever userProfile changes
+  useEffect(() => {
+    console.log('%c[userProfile CHANGED]', 'background: #0f0; color: #000; font-size: 14px;', userProfile);
+  }, [userProfile]);
+
   // Compute era lock status based on completed nodes
   const eraLockStatus = useMemo<Record<string, boolean>>(() => {
+    console.log('[eraLockStatus] Computing with nodesCompleted:', userProfile.nodesCompleted);
     const completedNodeIds: Set<string> = new Set(userProfile.nodesCompleted);
-    return getEraLockStatus(ERAS, INITIAL_NODES, completedNodeIds, {
+    const result = getEraLockStatus(ERAS, INITIAL_NODES, completedNodeIds, {
       unlockAll: UNLOCK_ALL_ERAS,
     });
+    console.log('[eraLockStatus] Result:', result);
+    return result;
   }, [userProfile.nodesCompleted]);
 
   // Compute node lock status based on completed nodes and era lock status
@@ -117,9 +125,10 @@ const App: React.FC = () => {
     setError(null);
   };
 
-  const handleSelectNode = useCallback(async (stub: TimelineNodeStub) => {
-    // Prevent selecting locked nodes
-    if (nodeLockStatus[stub.id]) {
+  const handleSelectNode = useCallback(async (stub: TimelineNodeStub, bypassLockCheck = false) => {
+    // Prevent selecting locked nodes (unless bypassed, e.g., from "Continue to Next Lesson")
+    if (!bypassLockCheck && nodeLockStatus[stub.id]) {
+      console.log('[handleSelectNode] Node is locked, returning:', stub.id);
       return;
     }
     
@@ -168,14 +177,105 @@ const App: React.FC = () => {
   };
 
   const handleQuizComplete = (xp: number, collectibleCards?: CollectibleCard[]) => {
+    console.log('%c[handleQuizComplete] ========== CALLED ==========', 'background: #ff0; color: #000; font-size: 16px;');
+    console.log('[handleQuizComplete] XP:', xp, 'selectedNode:', selectedNode?.id);
+    console.log('[handleQuizComplete] Profile BEFORE:', GamificationService.getProfile());
+    
     GamificationService.addXp(xp);
     if (collectibleCards && collectibleCards.length > 0) {
       GamificationService.unlockCollectibleCards(collectibleCards);
     }
-    if (selectedNode) GamificationService.completeNode(selectedNode.id);
+    if (selectedNode) {
+      GamificationService.completeNode(selectedNode.id);
+    }
+    
+    const newProfile = GamificationService.getProfile();
+    console.log('[handleQuizComplete] Profile AFTER:', newProfile);
     
     // Refresh local state to update UI
-    setUserProfile(GamificationService.getProfile());
+    setUserProfile(newProfile);
+  };
+
+  // Helper to parse year for sorting nodes chronologically
+  const parseYear = (yearStr: string): number => {
+    const match = yearStr.match(/([\d,]+)\s*(BCE|CE|BC|AD)?/i);
+    if (!match) return 0;
+    let year = parseInt(match[1].replace(/,/g, ''), 10);
+    if (match[2] && (match[2].toUpperCase() === 'BCE' || match[2].toUpperCase() === 'BC')) {
+      year = -year;
+    }
+    return year;
+  };
+
+  // Find the next unlocked node after completing the current one
+  // This needs to account for the CURRENT node being completed (which just happened)
+  const getNextLesson = useMemo(() => {
+    if (!selectedNode) return null;
+    
+    // Use React state (userProfile.nodesCompleted) as the source of truth
+    // Add the current node to the completed set since we just completed it
+    const completedSet = new Set([...userProfile.nodesCompleted, selectedNode.id]);
+    
+    console.log('[getNextLesson] Current node:', selectedNode.id);
+    console.log('[getNextLesson] Completed set:', [...completedSet]);
+    
+    // Recalculate lock status with completed nodes INCLUDING the current one
+    const updatedEraLockStatus = getEraLockStatus(ERAS, INITIAL_NODES, completedSet, {
+      unlockAll: UNLOCK_ALL_ERAS,
+    });
+    const updatedNodeLockStatus = getAllNodeLockStatus(ERAS, INITIAL_NODES, completedSet, updatedEraLockStatus, {
+      unlockAll: UNLOCK_ALL_ERAS,
+    });
+    
+    console.log('[getNextLesson] Era lock status:', updatedEraLockStatus);
+    
+    // Sort all nodes chronologically (oldest first for BCE dates)
+    const sortedNodes = [...INITIAL_NODES].sort((a, b) => parseYear(a.year) - parseYear(b.year));
+    
+    // Find current node's index
+    const currentIndex = sortedNodes.findIndex(n => n.id === selectedNode.id);
+    console.log('[getNextLesson] Current index in sorted:', currentIndex, 'Total nodes:', sortedNodes.length);
+    if (currentIndex === -1) return null;
+    
+    // Find the next unlocked and uncompleted node AFTER current position
+    for (let i = currentIndex + 1; i < sortedNodes.length; i++) {
+      const node = sortedNodes[i];
+      const isLocked = updatedNodeLockStatus[node.id];
+      const isCompleted = completedSet.has(node.id);
+      // Node must be unlocked AND not already completed
+      if (!isLocked && !isCompleted) {
+        console.log('[getNextLesson] Found next node:', node.id, node.title);
+        return node;
+      }
+    }
+    
+    console.log('[getNextLesson] No node found after current, checking from start...');
+    
+    // If no uncompleted node found after current, wrap around from the beginning
+    // (but skip nodes before the current one that are already completed)
+    for (let i = 0; i < currentIndex; i++) {
+      const node = sortedNodes[i];
+      if (!updatedNodeLockStatus[node.id] && !completedSet.has(node.id)) {
+        console.log('[getNextLesson] Found wrapped node:', node.id, node.title);
+        return node;
+      }
+    }
+    
+    console.log('[getNextLesson] No next lesson found!');
+    return null;
+  }, [selectedNode, userProfile.nodesCompleted]);
+
+  console.log('[App] getNextLesson result:', getNextLesson?.id, getNextLesson?.title);
+
+  const handleGoToNextLesson = () => {
+    console.log('[handleGoToNextLesson] Called, getNextLesson:', getNextLesson?.id);
+    if (getNextLesson) {
+      console.log('[handleGoToNextLesson] Navigating to:', getNextLesson.id, getNextLesson.title);
+      // Bypass lock check - we already validated this node is unlocked in getNextLesson
+      handleSelectNode(getNextLesson, true);
+    } else {
+      console.log('[handleGoToNextLesson] No next lesson available!');
+    }
   };
 
   return (
@@ -239,6 +339,8 @@ const App: React.FC = () => {
             // Gamification Props
             onQuizComplete={handleQuizComplete}
             isNodeCompleted={userProfile.nodesCompleted.includes(selectedNode.id)}
+            onGoToNextLesson={handleGoToNextLesson}
+            hasNextLesson={!!getNextLesson}
           />
         ) : (
           <div className="h-full flex flex-col items-center justify-center p-8 text-center bg-[#09090b] relative overflow-hidden">

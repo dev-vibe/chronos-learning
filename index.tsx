@@ -2,6 +2,8 @@ import React from 'react';
 import ReactDOM from 'react-dom/client';
 import App from './App';
 import './index.css';
+import { AuthProvider } from './contexts/AuthContext';
+import { UserProfileProvider } from './contexts/UserProfileContext';
 
 const rootElement = document.getElementById('root');
 if (!rootElement) {
@@ -11,6 +13,10 @@ if (!rootElement) {
 const root = ReactDOM.createRoot(rootElement);
 root.render(
   <React.StrictMode>
-    <App />
+    <AuthProvider>
+      <UserProfileProvider>
+        <App />
+      </UserProfileProvider>
+    </AuthProvider>
   </React.StrictMode>
 );

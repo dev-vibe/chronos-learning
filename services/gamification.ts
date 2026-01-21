@@ -26,7 +26,12 @@ export const GamificationService = {
   getProfile: (): UserProfile => {
     try {
       const stored = localStorage.getItem(STORAGE_KEY);
-      return stored ? JSON.parse(stored) : INITIAL_PROFILE;
+      const profile = stored ? JSON.parse(stored) : INITIAL_PROFILE;
+      // Ensure collectibleCards exists (for backward compatibility)
+      if (!profile.collectibleCards) {
+        profile.collectibleCards = [];
+      }
+      return profile;
     } catch (e) {
       console.error("Failed to load profile", e);
       return INITIAL_PROFILE;
@@ -58,6 +63,10 @@ export const GamificationService = {
 
   unlockCollectibleCard: (card: CollectibleCard) => {
     const profile = GamificationService.getProfile();
+    // Ensure collectibleCards exists
+    if (!profile.collectibleCards) {
+      profile.collectibleCards = [];
+    }
     if (!profile.collectibleCards.some(c => c.id === card.id)) {
       profile.collectibleCards.push(card);
       GamificationService.saveProfile(profile);
@@ -68,6 +77,10 @@ export const GamificationService = {
 
   unlockCollectibleCards: (cards: CollectibleCard[]) => {
     const profile = GamificationService.getProfile();
+    // Ensure collectibleCards exists
+    if (!profile.collectibleCards) {
+      profile.collectibleCards = [];
+    }
     let newCards = 0;
     cards.forEach(card => {
       if (!profile.collectibleCards.some(c => c.id === card.id)) {

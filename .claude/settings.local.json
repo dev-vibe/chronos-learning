@@ -16,7 +16,9 @@
       "WebFetch(domain:www.worldhistory.org)",
       "WebFetch(domain:education.nationalgeographic.org)",
       "WebFetch(domain:dandavisauthor.com)",
-      "WebFetch(domain:www.iheart.com)"
+      "WebFetch(domain:www.iheart.com)",
+      "Bash(npm install:*)",
+      "Bash(npm run build:*)"
     ]
   }
 }

@@ -10,6 +10,8 @@ interface QuizModuleProps {
   isCompleted: boolean;
   nodeContent?: NodeContent; // Needed to resolve collectible card references
   onComplete: (xp: number, collectibleCards?: CollectibleCard[]) => void;
+  onGoToNext?: () => void; // Navigate to the next lesson
+  hasNextLesson?: boolean; // Whether there's a next lesson available
 }
 
 // Helper function to convert CollectibleCardRef to CollectibleCard
@@ -59,7 +61,7 @@ const resolveCollectibleCards = (quiz: Quiz, nodeContent?: NodeContent): Collect
   }).filter((card): card is CollectibleCard => card !== null);
 };
 
-export const QuizModule: React.FC<QuizModuleProps> = ({ quiz, nodeId, isCompleted, nodeContent, onComplete }) => {
+export const QuizModule: React.FC<QuizModuleProps> = ({ quiz, nodeId, isCompleted, nodeContent, onComplete, onGoToNext, hasNextLesson }) => {
   const [started, setStarted] = useState(false);
   const [currentQIndex, setCurrentQIndex] = useState(0);
   const [selectedOption, setSelectedOption] = useState<number | null>(null);
@@ -90,24 +92,32 @@ export const QuizModule: React.FC<QuizModuleProps> = ({ quiz, nodeId, isComplete
   };
 
   const handleNext = () => {
+    console.log('[QuizModule handleNext] Called', { isLastQuestion, score, isCorrect, totalQuestions: quiz.questions.length });
+    
     setShowResult(false);
     setSelectedOption(null);
     
     if (isLastQuestion) {
       setFinished(true);
-      const passed = score + (isCorrect ? 0 : 0) === quiz.questions.length; // Strict: Must get all right? Or mostly?
-      // Let's make it lenient for now, or just calculate at the end.
-      // Actually, let's track score.
       
-      const finalScore = score; 
+      // Score is already updated by React before handleNext runs (user click triggers a flush)
+      const finalScore = score;
       const isPerfect = finalScore === quiz.questions.length;
+      
+      console.log('[QuizModule handleNext] Quiz finished!', { finalScore, isPerfect, hasOnComplete: !!onComplete });
       
       if (isPerfect) {
           const collectibleCards = resolveCollectibleCards(quiz, nodeContent);
-          onComplete(100, collectibleCards);
+          console.log('[QuizModule handleNext] Calling onComplete with cards:', collectibleCards?.length);
+          console.log('[QuizModule handleNext] onComplete function exists:', !!onComplete, typeof onComplete);
+          try {
+            onComplete(100, collectibleCards);
+            console.log('[QuizModule handleNext] onComplete returned successfully');
+          } catch (err) {
+            console.error('[QuizModule handleNext] onComplete THREW ERROR:', err);
+          }
       } else {
-          // Retry needed? Or partial XP?
-          // For simplicity: Fail state if not perfect
+          console.log('[QuizModule handleNext] Not perfect, not calling onComplete');
       }
     } else {
       setCurrentQIndex(i => i + 1);
@@ -193,15 +203,30 @@ export const QuizModule: React.FC<QuizModuleProps> = ({ quiz, nodeId, isComplete
                       </div>
                   )}
 
-                  <button 
-                    onClick={handleStart}
-                    className={`px-6 py-2 rounded font-mono font-bold uppercase tracking-wider text-sm border transition-all
-                        ${isPerfect 
-                            ? 'bg-stone-800 border-stone-700 text-stone-400 hover:bg-stone-700' 
-                            : 'bg-red-900/30 border-red-500/50 text-red-400 hover:bg-red-900/50'}`}
-                  >
-                      {isPerfect ? 'Run Simulation Again' : 'Retry Protocol'}
-                  </button>
+                  <div className="flex items-center justify-center gap-3">
+                      {console.log('[QuizModule] Button conditions:', { isPerfect, hasNextLesson, hasOnGoToNext: !!onGoToNext })}
+                      {isPerfect && hasNextLesson && onGoToNext && (
+                          <button 
+                            onClick={() => {
+                              console.log('[QuizModule] Continue button clicked!');
+                              onGoToNext();
+                            }}
+                            className="px-6 py-2 rounded font-mono font-bold uppercase tracking-wider text-sm border transition-all bg-amber-600 border-amber-500 text-black hover:bg-amber-500 flex items-center gap-2"
+                          >
+                              Continue to Next Lesson
+                              <ChevronRight size={16} />
+                          </button>
+                      )}
+                      <button 
+                        onClick={handleStart}
+                        className={`px-6 py-2 rounded font-mono font-bold uppercase tracking-wider text-sm border transition-all
+                            ${isPerfect 
+                                ? 'bg-stone-800 border-stone-700 text-stone-400 hover:bg-stone-700' 
+                                : 'bg-red-900/30 border-red-500/50 text-red-400 hover:bg-red-900/50'}`}
+                      >
+                          {isPerfect ? 'Replay Simulation' : 'Retry Protocol'}
+                      </button>
+                  </div>
               </div>
           </div>
       )
