@@ -330,7 +330,7 @@ export const QuizModule: React.FC<QuizModuleProps> = ({ quiz, nodeId, isComplete
             </div>
 
             {/* Feedback & Next Button */}
-            <div className={`mt-6 transition-all duration-300 overflow-hidden ${showResult ? 'max-h-40 opacity-100' : 'max-h-0 opacity-0'}`}>
+            <div className={`mt-6 transition-all duration-300 ${showResult ? 'opacity-100' : 'max-h-0 opacity-0 overflow-hidden'}`}>
                 <div className={`p-4 rounded border ${isCorrect ? 'bg-emerald-950/20 border-emerald-500/30' : 'bg-red-950/20 border-red-500/30'}`}>
                     <p className={`text-sm font-mono mb-3 ${isCorrect ? 'text-emerald-400' : 'text-red-400'}`}>
                         {isCorrect ? '>> RESPONSE VERIFIED.' : '>> ERROR: DATA MISMATCH.'}

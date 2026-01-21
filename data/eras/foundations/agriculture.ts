@@ -379,6 +379,12 @@ export const FOUNDATIONS_GENERAL: Record<string, NodeContent> = {
     quiz: {
       title: "Domestication Mastery Protocol",
       description: "Prove your understanding of how humans and animals shaped each other to unlock the artifact.",
+      collectibleCards: [
+        { type: 'place', index: 0, id: 'animal_domestication_place_zawi_chemi' },
+        { type: 'place', index: 1, id: 'animal_domestication_place_abu_hureyra' },
+        { type: 'person', index: 1, id: 'animal_domestication_person_dog_handlers' },
+        { type: 'person', index: 2, id: 'animal_domestication_person_horse_tamers' },
+      ],
       questions: [
         {
           id: "animal_domestication_q1",
