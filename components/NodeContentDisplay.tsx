@@ -23,6 +23,13 @@ export const NodeContentDisplay: React.FC<NodeContentDisplayProps> = ({ node, er
   const [selectedItem, setSelectedItem] = useState<DetailItem | null>(null);
   const eraBriefingRef = useRef<HTMLDivElement>(null);
 
+  // Scroll to top when era briefing opens
+  useEffect(() => {
+    if (era && eraBriefingRef.current) {
+      eraBriefingRef.current.scrollTo({ top: 0, behavior: 'instant' });
+    }
+  }, [era]);
+
   // Loading State
   if (loading) {
     return (
@@ -55,13 +62,6 @@ export const NodeContentDisplay: React.FC<NodeContentDisplayProps> = ({ node, er
       </div>
     );
   }
-
-  // Scroll to top when era briefing opens
-  useEffect(() => {
-    if (era && eraBriefingRef.current) {
-      eraBriefingRef.current.scrollTo({ top: 0, behavior: 'instant' });
-    }
-  }, [era]);
 
   // --- ERA BRIEFING MODE ---
   if (era) {
