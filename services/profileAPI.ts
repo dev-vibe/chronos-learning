@@ -40,6 +40,22 @@ export const fetchUserProfile = async (userId: string): Promise<UserProfile> => 
     .eq('user_id', userId)
     .maybeSingle();
 
+  // If no progress row exists, create one
+  if (!progress && !progressError) {
+    const { error: createError } = await supabase
+      .from('user_progress')
+      .insert({
+        user_id: userId,
+        xp: 0,
+        level: 1,
+        updated_at: new Date().toISOString()
+      });
+
+    if (createError) {
+      console.error('[ProfileAPI] Error creating user_progress:', createError);
+    }
+  }
+
   // Fetch completed nodes
   const { data: completedNodes, error: nodesError } = await supabase
     .from('completed_nodes')
@@ -75,14 +91,27 @@ export const addXpToUser = async (userId: string, amount: number, currentProfile
   const newXp = currentProfile.xp + amount;
   const newLevel = calculateLevel(currentProfile.nodesCompleted);
 
-  await supabase
+  console.log('[ProfileAPI] addXpToUser - userId:', userId, 'newXp:', newXp, 'newLevel:', newLevel);
+
+  // Use upsert to create row if it doesn't exist
+  const { data, error } = await supabase
     .from('user_progress')
-    .update({
+    .upsert({
+      user_id: userId,
       xp: newXp,
       level: newLevel,
       updated_at: new Date().toISOString()
+    }, {
+      onConflict: 'user_id'
     })
-    .eq('user_id', userId);
+    .select();
+
+  if (error) {
+    console.error('[ProfileAPI] Error saving XP:', error);
+    throw error;
+  }
+
+  console.log('[ProfileAPI] addXpToUser - DB response:', data);
 
   return {
     ...currentProfile,
@@ -106,24 +135,47 @@ export const completeNodeForUser = async (
   const newNodesCompleted = [...currentProfile.nodesCompleted, nodeId];
   const newLevel = calculateLevel(newNodesCompleted);
 
+  console.log('[ProfileAPI] completeNodeForUser - userId:', userId, 'nodeId:', nodeId, 'newLevel:', newLevel);
+
   if (isSupabaseConfigured()) {
-    // Insert completed node
-    await supabase
+    // Insert completed node (ignore if already exists)
+    const { data: nodeData, error: nodeError } = await supabase
       .from('completed_nodes')
       .insert({
         user_id: userId,
         node_id: nodeId,
         completed_at: new Date().toISOString()
-      });
+      })
+      .select();
 
-    // Update level
-    await supabase
+    if (nodeError && nodeError.code !== '23505') { // 23505 = unique violation (already exists)
+      console.error('[ProfileAPI] Error saving completed node:', nodeError);
+      throw nodeError;
+    }
+
+    console.log('[ProfileAPI] completed_nodes insert result:', nodeData);
+
+    // Upsert user_progress to ensure row exists
+    const { data: progressData, error: progressError } = await supabase
       .from('user_progress')
-      .update({
+      .upsert({
+        user_id: userId,
+        xp: currentProfile.xp,
         level: newLevel,
         updated_at: new Date().toISOString()
+      }, {
+        onConflict: 'user_id'
       })
-      .eq('user_id', userId);
+      .select();
+
+    if (progressError) {
+      console.error('[ProfileAPI] Error updating progress:', progressError);
+      throw progressError;
+    }
+
+    console.log('[ProfileAPI] user_progress upsert result:', progressData);
+  } else {
+    console.warn('[ProfileAPI] Supabase not configured, skipping DB operations');
   }
 
   return {

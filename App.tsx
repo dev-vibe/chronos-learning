@@ -3,11 +3,13 @@ import React, { useState, useCallback, useEffect, useMemo, useRef } from 'react'
 import { TimelineSidebar } from './components/TimelineSidebar';
 import { NodeContentDisplay } from './components/NodeContentDisplay';
 import { UserProfileModal } from './components/UserProfile';
+import { AuthScreen } from './components/AuthScreen';
 import { ERAS, INITIAL_NODES } from './constants';
 import { TimelineNode, TimelineNodeStub, Era, CollectibleCard } from './types';
 import { fetchNodeContent } from './services/geminiService';
 import { GamificationService } from './services/gamification';
 import { useUserProfile } from './contexts/UserProfileContext';
+import { useAuth } from './contexts/AuthContext';
 import { getEraLockStatus } from './services/eraLocking';
 import { getAllNodeLockStatus } from './services/nodeLocking';
 import { AlertCircle, PlayCircle, Terminal } from 'lucide-react';
@@ -16,6 +18,23 @@ import { AlertCircle, PlayCircle, Terminal } from 'lucide-react';
 const UNLOCK_ALL_ERAS = false;
 
 const App: React.FC = () => {
+  const { user, loading: authLoading, isGuest } = useAuth();
+
+  // Show auth screen if not logged in and not guest
+  if (authLoading) {
+    return (
+      <div className="flex h-screen w-screen bg-black text-stone-200 items-center justify-center">
+        <div className="text-center">
+          <Terminal size={48} className="mx-auto mb-4 text-stone-600 animate-pulse" />
+          <p className="text-stone-500 font-mono">Initializing...</p>
+        </div>
+      </div>
+    );
+  }
+
+  if (!user && !isGuest) {
+    return <AuthScreen />;
+  }
   const [selectedEraId, setSelectedEraId] = useState<string | null>(ERAS[0].id);
   const [selectedNode, setSelectedNode] = useState<TimelineNode | null>(null);
   const [selectedEra, setSelectedEra] = useState<Era | null>(null);

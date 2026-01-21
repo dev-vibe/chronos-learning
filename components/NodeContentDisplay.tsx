@@ -1,5 +1,5 @@
 
-import React, { useState } from 'react';
+import React, { useState, useRef, useEffect } from 'react';
 import { TimelineNode, Resource, HistoricalPerson, Invention, Place, DetailItem, Era } from '../types';
 import { Badge } from './Badge';
 import { QuizModule } from './QuizModule';
@@ -21,6 +21,7 @@ interface NodeContentDisplayProps {
 
 export const NodeContentDisplay: React.FC<NodeContentDisplayProps> = ({ node, era, loading, onRetry, onBack, onQuizComplete, isNodeCompleted, onGoToNextLesson, hasNextLesson }) => {
   const [selectedItem, setSelectedItem] = useState<DetailItem | null>(null);
+  const eraBriefingRef = useRef<HTMLDivElement>(null);
 
   // Loading State
   if (loading) {
@@ -55,10 +56,17 @@ export const NodeContentDisplay: React.FC<NodeContentDisplayProps> = ({ node, er
     );
   }
 
+  // Scroll to top when era briefing opens
+  useEffect(() => {
+    if (era && eraBriefingRef.current) {
+      eraBriefingRef.current.scrollTo({ top: 0, behavior: 'instant' });
+    }
+  }, [era]);
+
   // --- ERA BRIEFING MODE ---
   if (era) {
       return (
-        <div className="h-full overflow-y-auto bg-[#0c0c0e] pb-20 scroll-smooth font-sans text-stone-300 relative">
+        <div ref={eraBriefingRef} className="h-full overflow-y-auto bg-[#0c0c0e] pb-20 scroll-smooth font-sans text-stone-300 relative">
              <div className="fixed inset-0 pointer-events-none opacity-[0.02]" 
                  style={{ backgroundImage: 'linear-gradient(#333 1px, transparent 1px), linear-gradient(90deg, #333 1px, transparent 1px)', backgroundSize: '50px 50px' }}>
             </div>

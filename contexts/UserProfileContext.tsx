@@ -26,14 +26,15 @@ const UserProfileContext = createContext<UserProfileContextType | undefined>(und
 
 export const UserProfileProvider: React.FC<{ children: React.ReactNode }> = ({ children }) => {
   const { user, isGuest } = useAuth();
+  const userId = user?.id || null;
 
   // Fetch profile
-  const { data: dbProfile, isLoading } = useProfileQuery(user?.id || null, isGuest);
+  const { data: dbProfile, isLoading } = useProfileQuery(userId, isGuest);
 
-  // Mutations
-  const addXpMutation = useAddXpMutation(user?.id || null, isGuest);
-  const completeNodeMutation = useCompleteNodeMutation(user?.id || null, isGuest);
-  const refreshProfile = useRefreshProfile(user?.id || null);
+  // Mutations - use current userId
+  const addXpMutation = useAddXpMutation(userId, isGuest);
+  const completeNodeMutation = useCompleteNodeMutation(userId, isGuest);
+  const refreshProfile = useRefreshProfile(userId);
 
   // Merge DB profile with in-memory collectible cards
   const profile = useMemo(() => ({
@@ -47,11 +48,30 @@ export const UserProfileProvider: React.FC<{ children: React.ReactNode }> = ({ c
   }), [dbProfile]);
 
   const addXp = async (amount: number) => {
-    await addXpMutation.mutateAsync(amount);
+    try {
+      console.log('[UserProfileContext] addXp called with amount:', amount);
+      console.log('[UserProfileContext] Auth state:', {
+        user: user ? { id: user.id, email: user.email } : null,
+        isGuest,
+        userId: user?.id
+      });
+      await addXpMutation.mutateAsync(amount);
+      console.log('[UserProfileContext] addXp completed successfully');
+    } catch (error) {
+      console.error('[UserProfileContext] addXp error:', error);
+      throw error;
+    }
   };
 
   const completeNode = async (nodeId: string) => {
-    await completeNodeMutation.mutateAsync(nodeId);
+    try {
+      console.log('[UserProfileContext] completeNode called with nodeId:', nodeId, 'userId:', user?.id, 'isGuest:', isGuest);
+      await completeNodeMutation.mutateAsync(nodeId);
+      console.log('[UserProfileContext] completeNode completed successfully');
+    } catch (error) {
+      console.error('[UserProfileContext] completeNode error:', error);
+      throw error;
+    }
   };
 
   const refreshProfileAsync = async () => {

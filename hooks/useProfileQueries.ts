@@ -7,6 +7,7 @@ import { useQuery, useMutation, useQueryClient } from '@tanstack/react-query';
 import { UserProfile } from '../services/gamification';
 import { fetchUserProfile, addXpToUser, completeNodeForUser, calculateLevel } from '../services/profileAPI';
 import { GamificationService } from '../services/gamification';
+import { useAuth } from '../contexts/AuthContext';
 
 const INITIAL_PROFILE: UserProfile = {
   xp: 0,
@@ -45,11 +46,28 @@ export const useProfileQuery = (userId: string | null, isGuest: boolean) => {
  */
 export const useAddXpMutation = (userId: string | null, isGuest: boolean) => {
   const queryClient = useQueryClient();
-  const queryKey = profileKeys.user(userId);
+  const { user: currentUser, isGuest: currentIsGuest } = useAuth();
 
   return useMutation({
     mutationFn: async (amount: number) => {
-      if (!userId || isGuest) {
+      // Get current userId dynamically from auth context
+      const currentUserId = currentUser?.id || userId;
+      const actuallyIsGuest = currentIsGuest || isGuest;
+      const queryKey = profileKeys.user(currentUserId);
+      
+      console.log('[useAddXpMutation] Auth state:', {
+        currentUser: currentUser ? { id: currentUser.id, email: currentUser.email } : null,
+        currentIsGuest,
+        userId,
+        isGuest,
+        currentUserId,
+        actuallyIsGuest
+      });
+      
+      console.log('[useAddXpMutation] Called - userId:', currentUserId, 'isGuest:', actuallyIsGuest, 'amount:', amount);
+      
+      if (!currentUserId || actuallyIsGuest) {
+        console.log('[useAddXpMutation] Guest mode - updating cache only');
         // Guest mode - just update local cache optimistically
         const current = queryClient.getQueryData<UserProfile>(queryKey) || INITIAL_PROFILE;
         const updated = {
@@ -60,10 +78,16 @@ export const useAddXpMutation = (userId: string | null, isGuest: boolean) => {
         return updated;
       }
 
+      console.log('[useAddXpMutation] Authenticated user - calling API');
       const current = queryClient.getQueryData<UserProfile>(queryKey) || INITIAL_PROFILE;
-      const updated = await addXpToUser(userId, amount, current);
+      console.log('[useAddXpMutation] Current profile:', current);
+      const updated = await addXpToUser(currentUserId, amount, current);
+      console.log('[useAddXpMutation] Updated profile:', updated);
       queryClient.setQueryData(queryKey, updated);
       return updated;
+    },
+    onError: (error) => {
+      console.error('[useAddXpMutation] Mutation error:', error);
     },
   });
 };
@@ -73,11 +97,28 @@ export const useAddXpMutation = (userId: string | null, isGuest: boolean) => {
  */
 export const useCompleteNodeMutation = (userId: string | null, isGuest: boolean) => {
   const queryClient = useQueryClient();
-  const queryKey = profileKeys.user(userId);
+  const { user: currentUser, isGuest: currentIsGuest } = useAuth();
 
   return useMutation({
     mutationFn: async (nodeId: string) => {
-      if (!userId || isGuest) {
+      // Get current userId dynamically from auth context
+      const currentUserId = currentUser?.id || userId;
+      const actuallyIsGuest = currentIsGuest || isGuest;
+      const queryKey = profileKeys.user(currentUserId);
+      
+      console.log('[useCompleteNodeMutation] Auth state:', {
+        currentUser: currentUser ? { id: currentUser.id, email: currentUser.email } : null,
+        currentIsGuest,
+        userId,
+        isGuest,
+        currentUserId,
+        actuallyIsGuest
+      });
+      
+      console.log('[useCompleteNodeMutation] Called - userId:', currentUserId, 'isGuest:', actuallyIsGuest, 'nodeId:', nodeId);
+      
+      if (!currentUserId || actuallyIsGuest) {
+        console.log('[useCompleteNodeMutation] Guest mode - updating cache only');
         // Guest mode - just update local cache optimistically
         const current = queryClient.getQueryData<UserProfile>(queryKey) || INITIAL_PROFILE;
         if (current.nodesCompleted.includes(nodeId)) {
@@ -95,10 +136,16 @@ export const useCompleteNodeMutation = (userId: string | null, isGuest: boolean)
         return updated;
       }
 
+      console.log('[useCompleteNodeMutation] Authenticated user - calling API');
       const current = queryClient.getQueryData<UserProfile>(queryKey) || INITIAL_PROFILE;
-      const updated = await completeNodeForUser(userId, nodeId, current);
+      console.log('[useCompleteNodeMutation] Current profile:', current);
+      const updated = await completeNodeForUser(currentUserId, nodeId, current);
+      console.log('[useCompleteNodeMutation] Updated profile:', updated);
       queryClient.setQueryData(queryKey, updated);
       return updated;
+    },
+    onError: (error) => {
+      console.error('[useCompleteNodeMutation] Mutation error:', error);
     },
   });
 };
