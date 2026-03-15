@@ -1,11 +1,11 @@
 import { NodeContent } from './types';
 
 /**
- * STATIC_CONTENT is assembled by eagerly loading all modules under `data/**`
- * and merging any exports that match `Record<string, NodeContent>`.
+ * STATIC_CONTENT is assembled by eagerly loading legacy era modules under
+ * `data/eras/**` and merging any exports that match `Record<string, NodeContent>`.
  *
- * This intentionally decouples repo folder organization (Greece/Rome/etc) from the app.
- * Reorganize files freely under `data/` without needing to update import lists.
+ * We intentionally keep this as a compatibility layer while lessons migrate
+ * to `data/eras/<era>/lessons/<lessonId>.ts`.
  */
 
 function isObject(value: unknown): value is Record<string, unknown> {
@@ -31,7 +31,7 @@ function isNodeContentRecord(value: unknown): value is Record<string, NodeConten
   return values.length === 0 || values.every(isNodeContent);
 }
 
-const modules = import.meta.glob('./data/**/*.ts', { eager: true }) as Record<
+const modules = import.meta.glob('./data/eras/**/*.ts', { eager: true }) as Record<
   string,
   Record<string, unknown>
 >;

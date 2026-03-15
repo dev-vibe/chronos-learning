@@ -1,52 +1,42 @@
 # Content Organization
 
-Content is organized by **era** (chronological) and **unit** (thematic/conceptual).
+Content is now organized to match the product UX flow:
+
+`Era -> Era intro -> Lesson -> Lesson content sections`
 
 ## Structure
 
-```
-data/eras/
-  prelude/              (12,000 - 4000 BCE: End of Ice Age)
-    climate_transition.ts
-  
-  foundations/          (4000 - 1000 BCE: Bronze Age, First Cities)
-    agriculture.ts              # Farming revolution, domestication
-    mesopotamia_cities.ts       # Sumer, Uruk, cuneiform, ziggurats
-    egypt_kingdoms.ts           # Pyramids, pharaohs, hieroglyphs
-    levant_bronze_age.ts        # Phoenicians, early monotheism, trade
-    asia_early_civilizations.ts # Indus Valley, Shang Dynasty
-    europe_bronze_age.ts        # Stonehenge, Bronze Age Europe
-    americas_africa_early.ts    # Olmec, Kerma, early migrations
-  
-  classical/            (1000 BCE - 500 CE: Empires, Philosophy)
-    greece_golden_age.ts        # Athens, democracy, Olympics, theater
-    rome_republic_empire.ts     # Republic, Caesar, Pax Romana
-    persian_empires.ts          # Cyrus, Darius, Zoroastrianism
-    judaism_diaspora.ts         # David, Solomon, exile, diaspora
-    americas_classical.ts       # Maya, Teotihuacan
+```txt
+data/
+  lessonMetadata.ts            # Lookup for lesson timeline metadata
+  lessonFactory.ts             # Helper to build lesson objects from legacy exports
+  lessonObjects.ts             # Runtime lesson index
+  eras/
+    <era>/
+      lessons/
+        <lessonId>.ts          # One file per lesson (exports LESSON)
+      *.ts                     # Legacy thematic source files (still supported)
 ```
 
-## Philosophy
+Each lesson file exports a semantic lesson object:
 
-### Why era folders?
-- Matches the app's core `ERAS` structure in `constants.ts`
-- Students navigate by era in the UI
-- Clear chronological boundaries
+```ts
+export const LESSON: LessonFile = {
+  metadata: { id, title, year, eraId, region, tags },
+  content: { summary, people, inventions, places, resources, funFact, quiz? },
+};
+```
 
-### Why thematic unit files?
-- **Avoids the "Greece vs Rome" trap**: content grouped by concept, not arbitrary geography
-- **Flexible**: a unit can span regions if the theme demands (e.g., "Silk Road trade")
-- **Pedagogical**: units represent learning arcs ("The Bronze Age Collapse", "The Axial Age")
-- **Scalable**: add units without restructuring folders
+## Why this layout
 
-### What about tags?
-Tags (`Military`, `Philosophy`, `Science`, etc.) remain for **cross-era discovery**. Units are for **authoring/teaching flow**.
+- Findability: lesson ID maps directly to a filename.
+- UX alignment: authoring structure mirrors timeline navigation.
+- Incremental migration: legacy thematic files continue to work while lessons move to per-lesson files.
 
-## Adding Content
+## Authoring
 
-1. Pick the era folder (`prelude`, `foundations`, `classical`, etc.)
-2. Create or edit a unit file (e.g., `new_unit.ts`)
-3. Export a `Record<nodeId, NodeContent>`
-4. Done—content auto-loads into the app
+1. Find lesson file by ID in `data/eras/<era>/lessons/<lessonId>.ts`.
+2. Edit the `LESSON` object (or legacy source referenced by wrapper during migration).
+3. Content is auto-indexed by `data/lessonObjects.ts`.
 
-No central registry needed. Reorganize freely.
+No central manual registry is required.

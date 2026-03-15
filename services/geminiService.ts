@@ -1,11 +1,11 @@
 import { TimelineNodeStub, NodeContent } from "../types";
-import { STATIC_CONTENT } from "../staticContent";
+import { LESSON_CONTENT } from "../data/lessonObjects";
 
 export const fetchNodeContent = async (node: TimelineNodeStub): Promise<NodeContent> => {
   // Simulate a short "decryption" delay for the UI effect
   await new Promise((resolve) => setTimeout(resolve, 400));
 
-  const content = STATIC_CONTENT[node.id];
+  const content = LESSON_CONTENT[node.id];
 
   if (!content) {
     // This error message triggers the "Locked" UI state in NodeContentDisplay
@@ -14,3 +14,4 @@ export const fetchNodeContent = async (node: TimelineNodeStub): Promise<NodeCont
   
   return content;
 };
+

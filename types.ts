@@ -128,7 +128,17 @@ export interface TimelineNode extends TimelineNodeStub {
   content?: NodeContent;
 }
 
+export type LessonMetadata = TimelineNodeStub;
+
+export interface LessonFile {
+  metadata: LessonMetadata;
+  content: NodeContent;
+}
+
 export type DetailItem = 
   | { type: 'person'; data: HistoricalPerson }
   | { type: 'invention'; data: Invention }
   | { type: 'place'; data: Place };
+
+
+
