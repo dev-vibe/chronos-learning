@@ -4,17 +4,11 @@
  */
 
 import { useQuery, useMutation, useQueryClient } from '@tanstack/react-query';
-import { UserProfile } from '../services/gamification';
+import { createDefaultUserProfile, UserProfile } from '../services/gamification';
 import { fetchUserProfile, addXpToUser, completeNodeForUser, calculateLevel } from '../services/profileAPI';
-import { GamificationService } from '../services/gamification';
 import { useAuth } from '../contexts/AuthContext';
 
-const INITIAL_PROFILE: UserProfile = {
-  xp: 0,
-  level: 1,
-  collectibleCards: [],
-  nodesCompleted: []
-};
+const INITIAL_PROFILE: UserProfile = createDefaultUserProfile();
 
 /**
  * Query key factory for profile queries

@@ -561,6 +561,12 @@ const PlaceCard: React.FC<{ place: Place; onClick: () => void }> = ({ place, onC
 }
 
 const DetailOverlay: React.FC<{ item: DetailItem | null; onClose: () => void }> = ({ item, onClose }) => {
+    const [imgError, setImgError] = useState(false);
+
+    useEffect(() => {
+        setImgError(false);
+    }, [item]);
+
     if (!item) return null;
 
     const { type, data } = item;
@@ -627,7 +633,12 @@ const DetailOverlay: React.FC<{ item: DetailItem | null; onClose: () => void }> 
 
                 <div className="flex-1 overflow-y-auto grid grid-cols-1 md:grid-cols-2 h-full">
                     <div className="relative h-64 md:h-full bg-stone-900 border-b md:border-b-0 md:border-r border-stone-800 group">
-                        <img src={image} alt={title} className={`w-full h-full ${imageFitClass} opacity-80 group-hover:opacity-100 transition-opacity duration-700`} />
+                        <img
+                            src={imgError ? DEFAULT_FALLBACK_IMAGE : image}
+                            alt={title}
+                            onError={() => setImgError(true)}
+                            className={`w-full h-full ${imageFitClass} opacity-80 group-hover:opacity-100 transition-opacity duration-700`}
+                        />
                         <div className="absolute inset-0 bg-gradient-to-t from-[#09090b] to-transparent opacity-90 md:opacity-40"></div>
                         <div className="absolute bottom-6 left-6 right-6">
                              <div className="flex gap-2 mb-2">

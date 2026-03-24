@@ -5,8 +5,7 @@
 
 import React, { createContext, useContext, useMemo } from 'react';
 import { useAuth } from './AuthContext';
-import { UserProfile } from '../services/gamification';
-import { GamificationService } from '../services/gamification';
+import { GamificationService, createDefaultUserProfile, UserProfile } from '../services/gamification';
 import {
   useProfileQuery,
   useAddXpMutation,
@@ -38,12 +37,7 @@ export const UserProfileProvider: React.FC<{ children: React.ReactNode }> = ({ c
 
   // Merge DB profile with in-memory collectible cards
   const profile = useMemo(() => ({
-    ...(dbProfile || {
-      xp: 0,
-      level: 1,
-      collectibleCards: [],
-      nodesCompleted: []
-    }),
+    ...(dbProfile || createDefaultUserProfile()),
     collectibleCards: GamificationService.getCollectibleCards()
   }), [dbProfile]);
 

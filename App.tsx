@@ -16,6 +16,11 @@ import { AlertCircle, PlayCircle, Terminal } from 'lucide-react';
 
 // Development/Testing Flag: Set to true to unlock all eras regardless of completion status
 const UNLOCK_ALL_ERAS = false;
+const TEMPORARILY_UNLOCKED_NODE_IDS = [
+  'younger_dryas_reset',
+  'neolithic_revolution',
+  // 'animal_domestication',
+];
 
 const App: React.FC = () => {
   const { user, loading: authLoading, isGuest } = useAuth();
@@ -60,6 +65,14 @@ const App: React.FC = () => {
     const result = getEraLockStatus(ERAS, INITIAL_NODES, completedNodeIds, {
       unlockAll: UNLOCK_ALL_ERAS,
     });
+    const temporarilyUnlockedEraIds = new Set(
+      INITIAL_NODES
+        .filter(node => TEMPORARILY_UNLOCKED_NODE_IDS.includes(node.id))
+        .map(node => node.eraId)
+    );
+    temporarilyUnlockedEraIds.forEach(eraId => {
+      result[eraId] = false;
+    });
     console.log('[eraLockStatus] Result:', result);
     return result;
   }, [userProfile.nodesCompleted]);
@@ -67,9 +80,13 @@ const App: React.FC = () => {
   // Compute node lock status based on completed nodes and era lock status
   const nodeLockStatus = useMemo<Record<string, boolean>>(() => {
     const completedNodeIds: Set<string> = new Set(userProfile.nodesCompleted);
-    return getAllNodeLockStatus(ERAS, INITIAL_NODES, completedNodeIds, eraLockStatus, {
+    const result = getAllNodeLockStatus(ERAS, INITIAL_NODES, completedNodeIds, eraLockStatus, {
       unlockAll: UNLOCK_ALL_ERAS,
     });
+    TEMPORARILY_UNLOCKED_NODE_IDS.forEach(nodeId => {
+      result[nodeId] = false;
+    });
+    return result;
   }, [userProfile.nodesCompleted, eraLockStatus]);
 
   // Find the last unlocked node and open its era on initial load

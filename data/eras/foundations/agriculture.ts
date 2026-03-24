@@ -34,6 +34,38 @@ export const FOUNDATIONS_GENERAL: Record<string, NodeContent> = {
         legacy: "Neolithic farmers created the foundation of civilization. Surplus grain led to trade, specialization (potters, tool-makers, priests), and eventually cities, writing, and states.",
         imageUrl: "https://www.ancient-origins.net/sites/default/files/styles/article_image/public/field/image/Neolithic-revolution-ancient-farmers.jpg?itok=fF3PSaiA",
         imageFit: "contain",
+      },
+      {
+        name: "The First Dog Handlers",
+        role: "Wolf-to-Dog Domesticators",
+        category: "Worker",
+        description:
+          "Between 33,000-15,000 years ago, Ice Age humans and gray wolves formed an alliance. Wolves hung around human camps for scraps; humans tolerated the friendly ones because they warned of predators and helped with hunting. Over generations, the tamest wolves were fed, the aggressive ones driven off. Dogs emerged—not through deliberate breeding programs, but through unconscious selection. Early dog handlers used dogs for hunting (tracking, cornering prey), guarding (barking at intruders or dangerous animals), hauling (pulling sleds in Arctic regions), and companionship. By the time agriculture began, dogs were already humanity's partners.",
+        achievements: [
+          "Domesticated wolves into dogs between 33,000-15,000 years ago (earliest domesticated species)",
+          "Trained dogs for hunting, guarding, and hauling tasks",
+          "Established the human-dog bond that persists worldwide today",
+          "Enabled Arctic peoples to survive by using sled dogs for transportation"
+        ],
+        legacy: "Dogs were the first domesticated animals and remain humanity's most widespread companion species. The human-dog partnership is unique in the animal kingdom—dogs can read human facial expressions and gestures better than any other species, including great apes.",
+        imageUrl: "/images/early_dog_handlers.png",
+        imageFit: "contain",
+      },
+      {
+        name: "The Steppe Horse Tamers",
+        role: "Horse Domesticators",
+        category: "Worker",
+        description:
+          "Around 3,500 BCE on the Eurasian Steppes (modern Kazakhstan/Ukraine), people of the Botai culture began domesticating wild horses. Unlike sheep or cattle, horses weren't domesticated for meat (though they were eaten)—they were domesticated for speed and power. Early evidence includes worn teeth from rope bits, mare's milk residues in pottery (kumis, fermented mare's milk), and horse corrals. Riding horses transformed steppe peoples into mobile warriors and traders who could cover 100km per day. Horses revolutionized warfare: chariot armies appeared by 2000 BCE, and mounted cavalry dominated battlefields until the invention of gunpowder.",
+        achievements: [
+          "Domesticated horses around 3,500 BCE in the Eurasian Steppes",
+          "Developed horseback riding, saddles, and bridles",
+          "Created fermented mare's milk (kumis) as a preserved food source",
+          "Enabled the rise of mounted pastoral nomads who shaped Eurasian history"
+        ],
+        legacy: "Horse domestication changed the world. Mounted warriors (Scythians, Mongols, Huns) conquered empires. Trade routes like the Silk Road relied on horses. Communication, warfare, agriculture (horses pulling plows), and exploration all accelerated dramatically. Horses remained essential until automobiles replaced them in the 20th century.",
+        imageUrl: "/images/steppe_horse_tamers.png",
+        imageFit: "contain",
       }
     ],
     inventions: [
@@ -69,7 +101,7 @@ export const FOUNDATIONS_GENERAL: Record<string, NodeContent> = {
         description: "Transition from nomadic camps to year-round villages",
         category: "Politics",
         date: "c. 12,000-10,000 BCE",
-        imageUrl: "/images/inventions/neolithic_village.jpg",
+        imageUrl: "/images/neolithic_village.png",
         problem:
           "Hunter-gatherers moved seasonally, following game and plant resources. This kept populations small and dispersed, prevented resource depletion, and avoided accumulation of waste and disease. But once you plant crops, you're stuck—you must stay to weed, water, protect from birds and thieves, and harvest. How do you organize hundreds or thousands of people living permanently in one place?",
         solution:
@@ -112,7 +144,7 @@ export const FOUNDATIONS_GENERAL: Record<string, NodeContent> = {
       {
         title: "After the Ice: The Neolithic Revolution - Tides of History Podcast",
         type: "Podcast",
-        url: "https://wondery.com/shows/tides-of-history/",
+        url: "https://wondery.com/shows/tides-of-history/episode/5629-after-the-ice-the-younger-dryas-the-mesolithic-and-the-birth-of-a-new-world/",
         isCore: true,
         description:
           "Patrick Wyman's engaging podcast exploring how the end of the Ice Age and the Younger Dryas led to the Agricultural Revolution. Covers why humans transitioned from foraging to farming and the massive social changes that followed."
@@ -137,6 +169,12 @@ export const FOUNDATIONS_GENERAL: Record<string, NodeContent> = {
     quiz: {
       title: "Agricultural Revolution Protocol",
       description: "Prove your knowledge of humanity's transition to farming to unlock the artifact.",
+      collectibleCards: [
+        { type: 'place', index: 0, id: 'neolithic_revolution_place_jericho' },
+        { type: 'place', index: 1, id: 'neolithic_revolution_place_catalhoyuk' },
+        { type: 'person', index: 2, id: 'neolithic_revolution_person_dog_handlers' },
+        { type: 'person', index: 3, id: 'neolithic_revolution_person_horse_tamers' },
+      ],
       questions: [
         {
           id: "neolithic_q1",

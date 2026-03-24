@@ -4,7 +4,9 @@
 
 import { supabase, isSupabaseConfigured } from '../lib/supabase';
 import { ERAS, INITIAL_NODES } from '../constants';
-import { UserProfile } from './gamification';
+import { DEFAULT_COLLECTIBLE_CARDS, createDefaultUserProfile, UserProfile } from './gamification';
+
+const HARD_CODED_DEMO_PROFILE = true;
 
 // Level = 1 + number of fully completed eras
 export const calculateLevel = (nodesCompleted: string[]): number => {
@@ -24,13 +26,8 @@ export const calculateLevel = (nodesCompleted: string[]): number => {
  * Fetch user profile from database
  */
 export const fetchUserProfile = async (userId: string): Promise<UserProfile> => {
-  if (!isSupabaseConfigured()) {
-    return {
-      xp: 0,
-      level: 1,
-      collectibleCards: [],
-      nodesCompleted: []
-    };
+  if (HARD_CODED_DEMO_PROFILE || !isSupabaseConfigured()) {
+    return createDefaultUserProfile();
   }
 
   // Fetch progress
@@ -72,7 +69,7 @@ export const fetchUserProfile = async (userId: string): Promise<UserProfile> => 
   return {
     xp,
     level: calculateLevel(nodesCompleted),
-    collectibleCards: [], // Cards are in-memory only
+    collectibleCards: [...DEFAULT_COLLECTIBLE_CARDS], // Cards are in-memory only
     nodesCompleted
   };
 };

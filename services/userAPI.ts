@@ -4,7 +4,9 @@
  */
 
 import { supabase, isSupabaseConfigured } from '../lib/supabase';
-import { UserProfile, calculateLevel } from './gamification';
+import { DEFAULT_COLLECTIBLE_CARDS, createDefaultUserProfile, UserProfile, calculateLevel } from './gamification';
+
+const HARD_CODED_DEMO_PROFILE = true;
 
 export interface CloudUserProfile {
   id: string;
@@ -56,9 +58,11 @@ export const UserAPI = {
    * Returns null if user has no profile yet (new user)
    */
   getProfile: async (userId: string): Promise<UserProfile | null> => {
-    if (!isSupabaseConfigured()) {
-      console.warn('Supabase not configured, cannot fetch profile');
-      return null;
+    if (HARD_CODED_DEMO_PROFILE || !isSupabaseConfigured()) {
+      console.warn('Demo profile override active, returning hardcoded progress');
+      return {
+        ...createDefaultUserProfile()
+      };
     }
 
     try {
@@ -109,7 +113,7 @@ export const UserAPI = {
       return {
         xp: progress.xp,
         level: progress.level,
-        collectibleCards: [], // Cards are stored in memory only, not DB
+        collectibleCards: [...DEFAULT_COLLECTIBLE_CARDS], // Cards are stored in memory only, not DB
         nodesCompleted: completedNodes?.map(n => n.node_id) || []
       };
     } catch (error) {
