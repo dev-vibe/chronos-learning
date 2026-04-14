@@ -4,6 +4,7 @@
  */
 
 import { FOUNDATIONS_YOUNGER_DRYAS } from '../data/eras/prelude/climate_transition';
+import { FOUNDATIONS_GENERAL } from '../data/eras/foundations/agriculture';
 import { CollectibleCard, CollectibleCardRef, NodeContent } from '../types';
 
 export interface UserProfile {
@@ -14,9 +15,10 @@ export interface UserProfile {
 }
 
 const FIRST_ERA_NODE_ID = 'younger_dryas_reset';
-const DEFAULT_USER_XP = 100;
+const AGRICULTURE_NODE_ID = 'neolithic_revolution';
+const DEFAULT_USER_XP = 200;
 const DEFAULT_USER_LEVEL = 2;
-const DEFAULT_COMPLETED_NODES = [FIRST_ERA_NODE_ID];
+const DEFAULT_COMPLETED_NODES = [FIRST_ERA_NODE_ID, AGRICULTURE_NODE_ID];
 
 const resolveCollectibleCard = (ref: CollectibleCardRef, content: NodeContent, fallbackIndex: number): CollectibleCard | null => {
   if (ref.type === 'person') {
@@ -64,8 +66,7 @@ const resolveCollectibleCard = (ref: CollectibleCardRef, content: NodeContent, f
   };
 };
 
-export const getFirstEraCollectibleCards = (): CollectibleCard[] => {
-  const node = FOUNDATIONS_YOUNGER_DRYAS[FIRST_ERA_NODE_ID];
+export const getNodeCollectibleCards = (node?: NodeContent): CollectibleCard[] => {
   if (!node?.quiz?.collectibleCards) {
     return [];
   }
@@ -75,7 +76,18 @@ export const getFirstEraCollectibleCards = (): CollectibleCard[] => {
     .filter((card): card is CollectibleCard => card !== null);
 };
 
-export const DEFAULT_COLLECTIBLE_CARDS = getFirstEraCollectibleCards();
+export const getFirstEraCollectibleCards = (): CollectibleCard[] => {
+  return getNodeCollectibleCards(FOUNDATIONS_YOUNGER_DRYAS[FIRST_ERA_NODE_ID]);
+};
+
+export const getAgricultureCollectibleCards = (): CollectibleCard[] => {
+  return getNodeCollectibleCards(FOUNDATIONS_GENERAL[AGRICULTURE_NODE_ID]);
+};
+
+export const DEFAULT_COLLECTIBLE_CARDS = [
+  ...getFirstEraCollectibleCards(),
+  ...getAgricultureCollectibleCards()
+];
 
 export const createDefaultUserProfile = (): UserProfile => ({
   xp: DEFAULT_USER_XP,

@@ -249,7 +249,7 @@ export const QuizModule: React.FC<QuizModuleProps> = ({ quiz, nodeId, isComplete
                
                <div className="flex justify-center gap-8 text-xs font-mono text-stone-600 mb-8">
                    <div className="flex flex-col items-center">
-                       <span className="text-stone-400 font-bold text-lg">3</span>
+                       <span className="text-stone-400 font-bold text-lg">{quiz.questions.length}</span>
                        <span>CHALLENGES</span>
                    </div>
                    <div className="w-px bg-stone-800 h-full"></div>
