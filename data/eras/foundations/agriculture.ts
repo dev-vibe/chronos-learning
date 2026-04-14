@@ -172,8 +172,8 @@ export const FOUNDATIONS_GENERAL: Record<string, NodeContent> = {
       collectibleCards: [
         { type: 'place', index: 0, id: 'neolithic_revolution_place_jericho' },
         { type: 'place', index: 1, id: 'neolithic_revolution_place_catalhoyuk' },
-        { type: 'person', index: 2, id: 'neolithic_revolution_person_dog_handlers' },
-        { type: 'person', index: 3, id: 'neolithic_revolution_person_horse_tamers' },
+        { type: 'person', index: 0, id: 'neolithic_revolution_person_natufian_harvester' },
+        { type: 'person', index: 1, id: 'neolithic_revolution_person_neolithic_farmer' },
       ],
       questions: [
         {
