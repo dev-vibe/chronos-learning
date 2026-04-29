@@ -378,6 +378,7 @@ const App: React.FC = () => {
            />
         ) : selectedNode ? (
           <NodeContentDisplay 
+            key={selectedNode.id}
             node={selectedNode} 
             loading={loading} 
             onRetry={handleRetry}

@@ -1,6 +1,6 @@
 
-import React, { useState, useRef, useEffect } from 'react';
-import { TimelineNode, Resource, HistoricalPerson, Invention, Place, DetailItem, Era } from '../types';
+import React, { useState, useRef, useEffect, useMemo } from 'react';
+import { TimelineNode, Resource, HistoricalPerson, Invention, Place, DetailItem, Era, NodeContent } from '../types';
 import { Badge } from './Badge';
 import { QuizModule } from './QuizModule';
 import { getImageUrlWithFallback, DEFAULT_FALLBACK_IMAGE } from '../utils/imageUtils';
@@ -19,9 +19,86 @@ interface NodeContentDisplayProps {
   hasNextLesson?: boolean;
 }
 
+type LessonSectionId = 'report' | 'locations' | 'players' | 'inventions' | 'core-resources' | 'deep-dives' | 'quiz';
+
+interface LessonSectionStep {
+  id: LessonSectionId;
+  label: string;
+  eyebrow: string;
+  hint: string;
+}
+
+const LESSON_SECTION_COPY: Record<LessonSectionId, Omit<LessonSectionStep, 'id'>> = {
+  report: {
+    label: 'Report',
+    eyebrow: 'Start Here',
+    hint: 'Next: map the places where this happened.'
+  },
+  locations: {
+    label: 'Locations',
+    eyebrow: 'Geography',
+    hint: 'Next: meet the people driving or affected by the story.'
+  },
+  players: {
+    label: 'Players',
+    eyebrow: 'People',
+    hint: 'Next: inspect the inventions and breakthroughs.'
+  },
+  inventions: {
+    label: 'Inventions',
+    eyebrow: 'Technology',
+    hint: 'Next: review the required resources.'
+  },
+  'core-resources': {
+    label: 'Resources',
+    eyebrow: 'Required',
+    hint: 'Next: optional deep dives for the richer trail.'
+  },
+  'deep-dives': {
+    label: 'Deep Dives',
+    eyebrow: 'Optional',
+    hint: 'Next: prove what you learned.'
+  },
+  quiz: {
+    label: 'Quiz',
+    eyebrow: 'Final Check',
+    hint: 'Finish the protocol, then continue to the next lesson.'
+  }
+};
+
 export const NodeContentDisplay: React.FC<NodeContentDisplayProps> = ({ node, era, loading, onRetry, onBack, onQuizComplete, isNodeCompleted, onGoToNextLesson, hasNextLesson }) => {
   const [selectedItem, setSelectedItem] = useState<DetailItem | null>(null);
+  const [unlockedSectionIndex, setUnlockedSectionIndex] = useState(0);
   const eraBriefingRef = useRef<HTMLDivElement>(null);
+  const lessonScrollRef = useRef<HTMLDivElement>(null);
+  const content = node?.content;
+  const lessonSections = useMemo<LessonSectionStep[]>(() => {
+    if (!content) return [];
+
+    const sectionIds: LessonSectionId[] = ['report'];
+
+    if (content.places.length > 0) sectionIds.push('locations');
+    if (content.people.length > 0) sectionIds.push('players');
+    if (content.inventions.length > 0) sectionIds.push('inventions');
+    if (content.resources.some(resource => resource.isCore)) sectionIds.push('core-resources');
+    if (content.resources.some(resource => !resource.isCore)) sectionIds.push('deep-dives');
+    if (content.quiz && onQuizComplete) sectionIds.push('quiz');
+
+    return sectionIds.map(id => ({ id, ...LESSON_SECTION_COPY[id] }));
+  }, [content, onQuizComplete]);
+
+  const getLessonSectionDomId = (sectionId: LessonSectionId) => `lesson-${node?.id || 'current'}-${sectionId}`;
+  const scrollToLessonSection = (sectionId: LessonSectionId) => {
+    document.getElementById(getLessonSectionDomId(sectionId))?.scrollIntoView({
+      behavior: 'smooth',
+      block: 'start'
+    });
+  };
+  const getSectionIndex = (sectionId: LessonSectionId) => lessonSections.findIndex(section => section.id === sectionId);
+  const isSectionUnlocked = (sectionId: LessonSectionId) => {
+    const sectionIndex = getSectionIndex(sectionId);
+    return sectionIndex !== -1 && sectionIndex <= unlockedSectionIndex;
+  };
 
   // Scroll to top when era briefing opens
   useEffect(() => {
@@ -29,6 +106,13 @@ export const NodeContentDisplay: React.FC<NodeContentDisplayProps> = ({ node, er
       eraBriefingRef.current.scrollTo({ top: 0, behavior: 'instant' });
     }
   }, [era]);
+
+  useEffect(() => {
+    if (node && lessonScrollRef.current) {
+      setUnlockedSectionIndex(0);
+      lessonScrollRef.current.scrollTo({ top: 0, behavior: 'instant' });
+    }
+  }, [node?.id]);
 
   // Loading State
   if (loading) {
@@ -180,16 +264,42 @@ export const NodeContentDisplay: React.FC<NodeContentDisplayProps> = ({ node, er
   const { summary, people, inventions, places, resources, funFact, quiz } = node.content;
   const coreResources = resources.filter(r => r.isCore);
   const extraResources = resources.filter(r => !r.isCore);
+  const getNextStep = (sectionId: LessonSectionId) => {
+    const currentIndex = lessonSections.findIndex(section => section.id === sectionId);
+    if (currentIndex === -1) return null;
+    return lessonSections[currentIndex + 1] || null;
+  };
+  const unlockNextStep = (sectionId: LessonSectionId) => {
+    const nextStep = getNextStep(sectionId);
+    if (!nextStep) return;
+
+    const nextIndex = getSectionIndex(nextStep.id);
+    setUnlockedSectionIndex(current => Math.max(current, nextIndex));
+    window.setTimeout(() => scrollToLessonSection(nextStep.id), 0);
+  };
+  const renderNextPrompt = (sectionId: LessonSectionId) => {
+    const currentStep = lessonSections.find(section => section.id === sectionId);
+    const nextStep = getNextStep(sectionId);
+    if (!currentStep || !nextStep) return null;
+
+    return (
+      <NextSectionPrompt
+        currentStep={currentStep}
+        nextStep={nextStep}
+        onNext={() => unlockNextStep(sectionId)}
+      />
+    );
+  };
 
   return (
-    <div className="h-full overflow-y-auto bg-[#0c0c0e] pb-20 scroll-smooth font-sans text-stone-300 relative">
+    <div ref={lessonScrollRef} className="h-full overflow-y-auto bg-[#0c0c0e] pb-20 scroll-smooth font-sans text-stone-300 relative">
       <DetailOverlay item={selectedItem} onClose={() => setSelectedItem(null)} />
 
       <div className="fixed inset-0 pointer-events-none opacity-[0.02]" 
            style={{ backgroundImage: 'linear-gradient(#333 1px, transparent 1px), linear-gradient(90deg, #333 1px, transparent 1px)', backgroundSize: '50px 50px' }}>
       </div>
 
-      <div className="w-full bg-[#0c0c0e]/90 backdrop-blur-xl border-b border-stone-800 px-6 md:px-10 pt-10 pb-6 sticky top-0 z-20 shadow-2xl">
+      <div className="w-full bg-[#0c0c0e]/90 backdrop-blur-xl border-b border-stone-800 px-6 md:px-10 pt-10 pb-6 relative z-20 shadow-2xl">
         {onBack && (
             <button onClick={onBack} className="md:hidden mb-4 flex items-center gap-2 text-stone-400 hover:text-white font-mono font-bold text-xs uppercase tracking-wide">
                 <ArrowLeft size={16} /> Mission Log
@@ -210,9 +320,17 @@ export const NodeContentDisplay: React.FC<NodeContentDisplayProps> = ({ node, er
         </div>
       </div>
 
+      {lessonSections.length > 1 && (
+        <LessonProgressRail
+          sections={lessonSections}
+          unlockedSectionIndex={unlockedSectionIndex}
+          onSelect={scrollToLessonSection}
+        />
+      )}
+
       <div className="max-w-6xl mx-auto px-6 md:px-10 py-10 space-y-16 relative z-10">
         
-        <section className="space-y-8">
+        <section id={getLessonSectionDomId('report')} className="scroll-mt-40 space-y-8">
              <div className="flex items-center gap-3 mb-6">
                 <div className="w-8 h-8 bg-stone-800 text-stone-300 rounded flex items-center justify-center border border-stone-700 shadow-lg">
                     <FileText size={16} />
@@ -243,12 +361,13 @@ export const NodeContentDisplay: React.FC<NodeContentDisplayProps> = ({ node, er
                     </div>
                  </div>
              </div>
+             {renderNextPrompt('report')}
         </section>
 
         <div className="h-px bg-gradient-to-r from-transparent via-stone-800 to-transparent"></div>
 
-        {places.length > 0 && (
-            <section>
+        {places.length > 0 && isSectionUnlocked('locations') && (
+            <section id={getLessonSectionDomId('locations')} className="scroll-mt-40">
                 <div className="flex items-center gap-3 mb-8">
                     <div className="w-8 h-8 bg-stone-800 text-stone-300 rounded flex items-center justify-center border border-stone-700 shadow-lg">
                         <MapPin size={16} />
@@ -265,11 +384,12 @@ export const NodeContentDisplay: React.FC<NodeContentDisplayProps> = ({ node, er
                         />
                     ))}
                 </div>
+                {renderNextPrompt('locations')}
             </section>
         )}
 
-        {people.length > 0 && (
-            <section>
+        {people.length > 0 && isSectionUnlocked('players') && (
+            <section id={getLessonSectionDomId('players')} className="scroll-mt-40">
                 <div className="flex items-center gap-3 mb-8">
                     <div className="w-8 h-8 bg-stone-800 text-stone-300 rounded flex items-center justify-center border border-stone-700 shadow-lg">
                         <Users size={16} />
@@ -286,11 +406,12 @@ export const NodeContentDisplay: React.FC<NodeContentDisplayProps> = ({ node, er
                         />
                     ))}
                 </div>
+                {renderNextPrompt('players')}
             </section>
         )}
 
-         {inventions.length > 0 && (
-             <section>
+         {inventions.length > 0 && isSectionUnlocked('inventions') && (
+             <section id={getLessonSectionDomId('inventions')} className="scroll-mt-40">
                 <div className="flex items-center gap-3 mb-8">
                     <div className="w-8 h-8 bg-stone-800 text-stone-300 rounded flex items-center justify-center border border-stone-700 shadow-lg">
                         <Zap size={16} />
@@ -307,29 +428,33 @@ export const NodeContentDisplay: React.FC<NodeContentDisplayProps> = ({ node, er
                         />
                     ))}
                 </div>
+                {renderNextPrompt('inventions')}
              </section>
          )}
 
-        <section>
-            <div className="flex items-center gap-4 mb-8 bg-amber-950/10 border border-amber-900/20 p-4 rounded-xl">
-                <div className="w-10 h-10 bg-amber-500/10 text-amber-500 rounded flex items-center justify-center border border-amber-500/20 shadow-[0_0_15px_rgba(245,158,11,0.15)]">
-                    <Target size={20} />
+        {coreResources.length > 0 && isSectionUnlocked('core-resources') && (
+            <section id={getLessonSectionDomId('core-resources')} className="scroll-mt-40">
+                <div className="flex items-center gap-4 mb-8 bg-amber-950/10 border border-amber-900/20 p-4 rounded-xl">
+                    <div className="w-10 h-10 bg-amber-500/10 text-amber-500 rounded flex items-center justify-center border border-amber-500/20 shadow-[0_0_15px_rgba(245,158,11,0.15)]">
+                        <Target size={20} />
+                    </div>
+                    <div>
+                        <h2 className="text-2xl font-display font-bold text-white tracking-wide">Core Resources</h2>
+                        <p className="text-xs text-amber-500/70 uppercase tracking-wider font-mono font-bold">Required Data Analysis</p>
+                    </div>
                 </div>
-                <div>
-                    <h2 className="text-2xl font-display font-bold text-white tracking-wide">Core Resources</h2>
-                    <p className="text-xs text-amber-500/70 uppercase tracking-wider font-mono font-bold">Required Data Analysis</p>
+                
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                    {coreResources.map((res, idx) => (
+                        <ResourceCard key={idx} resource={res} variant="core" />
+                    ))}
                 </div>
-            </div>
-            
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                {coreResources.map((res, idx) => (
-                    <ResourceCard key={idx} resource={res} variant="core" />
-                ))}
-            </div>
-        </section>
+                {renderNextPrompt('core-resources')}
+            </section>
+        )}
 
-         {extraResources.length > 0 && (
-            <section className="bg-stone-900/30 rounded-2xl p-8 border border-dashed border-stone-800 relative overflow-hidden">
+         {extraResources.length > 0 && isSectionUnlocked('deep-dives') && (
+            <section id={getLessonSectionDomId('deep-dives')} className="scroll-mt-40 bg-stone-900/30 rounded-2xl p-8 border border-dashed border-stone-800 relative overflow-hidden">
                 <div className="relative z-10">
                     <h2 className="text-xl font-display font-bold mb-2 flex items-center gap-3 text-stone-300">
                         <Globe size={20} className="text-purple-500" /> 
@@ -403,13 +528,15 @@ export const NodeContentDisplay: React.FC<NodeContentDisplayProps> = ({ node, er
                             );
                         })}
                     </div>
+                    {renderNextPrompt('deep-dives')}
                 </div>
             </section>
          )}
 
          {/* GAMIFICATION MODULE */}
-         {quiz && onQuizComplete && (
-             <section className="mt-16 pt-8 border-t border-stone-800">
+         {quiz && onQuizComplete && isSectionUnlocked('quiz') && (
+             <section id={getLessonSectionDomId('quiz')} className="scroll-mt-40 mt-16 pt-8 border-t border-stone-800">
+                 <LessonRecap content={node.content} region={node.region} />
                  <QuizModule
                     quiz={quiz}
                     nodeId={node.id}
@@ -425,6 +552,149 @@ export const NodeContentDisplay: React.FC<NodeContentDisplayProps> = ({ node, er
       </div>
     </div>
   );
+};
+
+const LessonProgressRail: React.FC<{
+    sections: LessonSectionStep[];
+    unlockedSectionIndex: number;
+    onSelect: (sectionId: LessonSectionId) => void;
+}> = ({ sections, unlockedSectionIndex, onSelect }) => {
+    const currentSection = sections[Math.min(unlockedSectionIndex, sections.length - 1)];
+
+    return (
+        <div className="sticky top-0 z-30 border-b border-stone-800 bg-[#0c0c0e]/95 px-6 py-3 shadow-xl backdrop-blur-xl md:px-10">
+            <div className="mx-auto flex max-w-6xl flex-col gap-2">
+                <div className="flex items-center justify-between gap-4">
+                    <div className="min-w-0">
+                        <div className="text-[10px] font-mono font-bold uppercase tracking-widest text-amber-500/80">
+                            Step {unlockedSectionIndex + 1} of {sections.length}
+                        </div>
+                        <div className="truncate font-display text-sm font-bold text-stone-200">
+                            {currentSection?.label}
+                        </div>
+                    </div>
+                    <div className="hidden text-[10px] font-mono font-bold uppercase tracking-widest text-stone-600 sm:block">
+                        Future sections unlock as you continue
+                    </div>
+                </div>
+                <div className="overflow-x-auto no-scrollbar">
+                    <div className="flex min-w-max items-center gap-2">
+                        {sections.map((section, index) => {
+                            const unlocked = index <= unlockedSectionIndex;
+                            const current = index === unlockedSectionIndex;
+
+                            return (
+                                <button
+                                    key={section.id}
+                                    type="button"
+                                    onClick={() => unlocked && onSelect(section.id)}
+                                    disabled={!unlocked}
+                                    className={`group flex h-9 items-center gap-2 rounded border px-3 text-left transition-colors ${
+                                        current
+                                            ? 'border-amber-500/40 bg-amber-950/20'
+                                            : unlocked
+                                                ? 'border-stone-800 bg-black/30 hover:border-amber-500/30 hover:bg-amber-950/20'
+                                                : 'cursor-not-allowed border-stone-900 bg-black/20 opacity-45'
+                                    }`}
+                                    aria-label={unlocked ? `Go to ${section.label}` : `${section.label} locked`}
+                                >
+                                    <span className={`flex h-5 w-5 shrink-0 items-center justify-center rounded bg-stone-900 text-[10px] font-mono font-bold ring-1 ${
+                                        current
+                                            ? 'text-amber-400 ring-amber-500/50'
+                                            : unlocked
+                                                ? 'text-stone-500 ring-stone-800 group-hover:text-amber-400 group-hover:ring-amber-500/40'
+                                                : 'text-stone-700 ring-stone-900'
+                                    }`}>
+                                        {unlocked ? index + 1 : <Lock size={10} />}
+                                    </span>
+                                    <span className={`text-[11px] font-mono font-bold uppercase tracking-wide ${
+                                        current
+                                            ? 'text-stone-100'
+                                            : unlocked
+                                                ? 'text-stone-500 group-hover:text-stone-200'
+                                                : 'text-stone-700'
+                                    }`}>
+                                        {section.label}
+                                    </span>
+                                </button>
+                            );
+                        })}
+                    </div>
+                </div>
+            </div>
+        </div>
+    );
+};
+
+const NextSectionPrompt: React.FC<{
+    currentStep: LessonSectionStep;
+    nextStep: LessonSectionStep;
+    onNext: () => void;
+}> = ({ currentStep, nextStep, onNext }) => {
+    return (
+        <div className="pt-8">
+            <button
+                type="button"
+                onClick={onNext}
+                className="group flex w-full max-w-3xl items-center justify-between gap-4 rounded-lg border border-stone-800 bg-black/40 p-4 text-left transition-all hover:border-amber-500/40 hover:bg-amber-950/10 sm:w-auto sm:min-w-[28rem]"
+            >
+                <span className="min-w-0">
+                    <span className="mb-1 block text-[10px] font-mono font-bold uppercase tracking-widest text-stone-600 group-hover:text-amber-500/80">
+                        {currentStep.hint}
+                    </span>
+                    <span className="block truncate font-display text-base font-bold text-stone-200 group-hover:text-white">
+                        Continue to {nextStep.label}
+                    </span>
+                    <span className="mt-1 block text-[10px] font-mono font-bold uppercase tracking-wide text-stone-600">
+                        {nextStep.eyebrow}
+                    </span>
+                </span>
+                <span className="flex h-10 w-10 shrink-0 items-center justify-center rounded bg-stone-900 text-amber-500 ring-1 ring-stone-800 transition-transform group-hover:translate-x-1 group-hover:ring-amber-500/40">
+                    <ChevronRightIcon size={20} />
+                </span>
+            </button>
+        </div>
+    );
+};
+
+const LessonRecap: React.FC<{ content: NodeContent; region: string }> = ({ content, region }) => {
+    const locationSummary = content.places.length > 0
+        ? content.places.slice(0, 2).map(place => place.name).join(', ')
+        : region;
+    const peopleSummary = content.people.length > 0
+        ? content.people.slice(0, 2).map(person => person.name).join(', ')
+        : 'Communities and choices';
+    const inventionSummary = content.inventions.length > 0
+        ? content.inventions.slice(0, 2).map(invention => invention.name).join(', ')
+        : 'Cause and effect';
+
+    return (
+        <div className="mb-8 rounded-lg border border-stone-800 bg-stone-950/60 p-5">
+            <div className="mb-4 flex items-center gap-3">
+                <div className="flex h-8 w-8 items-center justify-center rounded bg-stone-900 text-amber-500 ring-1 ring-stone-800">
+                    <Brain size={16} />
+                </div>
+                <div>
+                    <h2 className="font-display text-xl font-bold text-white">Mission Recap</h2>
+                    <p className="text-[10px] font-mono font-bold uppercase tracking-widest text-stone-600">Final Review</p>
+                </div>
+            </div>
+            <div className="grid grid-cols-1 gap-3 md:grid-cols-3">
+                <div className="border-l border-emerald-500/40 bg-black/30 p-3">
+                    <div className="mb-1 text-[10px] font-mono font-bold uppercase tracking-wider text-emerald-400">Where</div>
+                    <div className="text-sm font-medium text-stone-300">{locationSummary}</div>
+                </div>
+                <div className="border-l border-cyan-500/40 bg-black/30 p-3">
+                    <div className="mb-1 text-[10px] font-mono font-bold uppercase tracking-wider text-cyan-400">Who</div>
+                    <div className="text-sm font-medium text-stone-300">{peopleSummary}</div>
+                </div>
+                <div className="border-l border-amber-500/40 bg-black/30 p-3">
+                    <div className="mb-1 text-[10px] font-mono font-bold uppercase tracking-wider text-amber-400">Shift</div>
+                    <div className="text-sm font-medium text-stone-300">{inventionSummary}</div>
+                </div>
+            </div>
+        </div>
+    );
 };
 
 const getImageFitClass = (fit?: 'cover' | 'contain'): string => {
