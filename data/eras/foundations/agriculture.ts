@@ -1204,7 +1204,8 @@ export const FOUNDATIONS_GENERAL: Record<string, NodeContent> = {
       ],
       collectibleCards: [
         { type: 'invention', index: 0, id: 'wheel_and_axle' },
-        { type: 'invention', index: 1, id: 'wheel_wheeled_wagon' }
+        { type: 'invention', index: 1, id: 'wheel_wheeled_wagon' },
+        { type: 'invention', index: 2, id: 'wheel_spoked_wheel' }
       ]
     }
   },
