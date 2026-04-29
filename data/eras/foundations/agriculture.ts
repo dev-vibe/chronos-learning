@@ -720,7 +720,7 @@ export const FOUNDATIONS_GENERAL: Record<string, NodeContent> = {
       ]
     }
   },
-  'wheel': {
+  'wheel_legacy': {
     summary:
       "The wheel seems so obvious now that it's hard to believe it took humans over 100,000 years to invent it. Our ancestors built boats, wove cloth, tamed fire, and created art—but nobody thought to make a cart with wheels until around 3500 BCE in Mesopotamia. Why? Because the wheel isn't as simple as it looks. You can't just stick a circular disk on a vehicle and expect it to work. You need a smooth axle that rotates freely, strong materials that won't crack under weight, flat roads or paths, and—crucially—large domesticated animals like oxen or horses to pull heavy loads. Without all these pieces, wheels are actually less useful than sleds or sledges dragged across the ground.\n\n" +
       "The wheel probably evolved from two earlier inventions. First, potters in Mesopotamia were already using rotating platforms—potter's wheels—to shape clay vessels around 4000 BCE. These weren't for transportation; they just spun in place to make pottery more symmetrical. Second, people were rolling heavy logs underneath objects to move them (imagine sliding a massive stone on top of logs that roll forward). Someone eventually realized: what if you attached a circular disk permanently to an axle, so it rotated as the vehicle moved? The earliest wheels were solid wooden disks carved from planks, heavy and clunky but revolutionary. A cart with wheels could carry five times the weight a person could drag on a sled. Oxen or donkeys could pull these wheeled carts, and suddenly transporting grain, bricks, trade goods, or even soldiers became vastly more efficient. Cities grew larger because farmers could bring food from farther away. Armies moved faster. Trade networks expanded.\n\n" +
@@ -956,6 +956,255 @@ export const FOUNDATIONS_GENERAL: Record<string, NodeContent> = {
           explanation:
             "War chariots (enabled by lightweight spoked wheels) were the ancient world's most feared weapon from 2000-500 BCE. A two-man chariot with a driver and archer could race at high speed while shooting arrows. Infantry couldn't catch them, making chariots nearly unstoppable on flat terrain."
         }
+      ]
+    }
+  },
+  'wheel': {
+    summary:
+      "The wheel seems so obvious now that it feels like someone should have invented it immediately. Humans had boats, baskets, cloth, stone monuments, farms, and cities long before wheeled transport became common. The reason is that a wheel is not just a round thing. A useful transport wheel needs a wheel, an axle, a frame, strong wood, smooth contact surfaces, and a path where rolling is better than dragging. In mud, mountains, forests, or steep steps, a sled, backpack, boat, or pack animal can beat a cart. The wheel was not inevitable everywhere. It was a brilliant answer to a very specific transport problem.\n\n" +
+      "For a long time, many histories connected the transport wheel mostly with Mesopotamia around 3500 BCE, partly because Mesopotamian cities used wheeled carts and because potters had already learned to spin clay on rotating platforms. The newer research does two things. First, it highlights hard evidence that wheeled transport belongs at least in the mid-fourth millennium BCE: wagon-shaped Boleraz clay mugs from the Carpathian region date no later than about 3600 BCE, the Bronocice pot from Poland shows wheeled wagons around 3635-3370 BCE, and the Ljubljana Marshes wheel from Slovenia is about 5100-5350 years old. Second, it offers a hypothesis for what came before those finds. In 2024, engineers Lee Alacoque and Kai James and historian Richard Bulliet used computational mechanics to test whether a wheel-and-axle system could have evolved from simple rollers in Carpathian copper mines as early as 3900 BCE.\n\n" +
+      "The proposed path is beautifully practical. First, miners may have rolled heavy baskets or boxes on loose wooden rollers. That reduced friction, but every roller had to be picked up and moved forward again. In a cramped tunnel, that is miserable work. Next came grooved rollers held in sockets under the load, so the rollers traveled with the box instead of being constantly reset. Over time, the grooves could widen and merge into a narrow middle section: a fixed axle with larger round ends. That made a wheelset, where both wheels and the axle turned together. Later, more advanced carts used wheels that rotated independently around a separate axle, making turns easier and reducing stress on the wheel joints.\n\n" +
+      "So the evidence boundary is important. It is not just a guess that wheeled transport existed by the mid-fourth millennium BCE; artifacts and images show it. What remains hypothetical is the exact birthplace and step-by-step invention story. The Carpathian mine model is powerful because it explains why a wheel would be useful before highways, farm wagons, or chariots: straight tunnels, heavy ore, and a constant need to reduce friction. The better lesson is how inventions often happen: workers face an annoying physical problem, make one small improvement, then another, and eventually create something that changes the world. Once wheeled transport spread, carts could move ore, grain, bricks, timber, trade goods, and armies. Later spoked wheels made chariots fast enough to reshape warfare. But the first breakthrough may have started underground, with miners trying to get heavy rocks out of a tunnel.",
+    funFact:
+      "The mine-origin story is the hypothesis. The early timeline is not: by around 3600-3350 BCE, Europe already has wagon-shaped clay models, wagon drawings, and soon after, surviving wooden wheel-and-axle remains.",
+    people: [],
+    inventions: [
+      {
+        name: "Wheel-and-Axle",
+        description: "A wheel fixed to or rotating around an axle to turn sliding friction into rolling motion",
+        category: "Technology",
+        date: "Attested by c. 3350-3100 BCE; likely earlier",
+        imageUrl: "/images/inventions/wheelset.jpg",
+        imageFit: "contain",
+        problem:
+          "Dragging heavy loads wastes energy because the whole load scrapes against the ground. Rollers help, but loose rollers have to be reset again and again.",
+        solution:
+          "Attach a round wheel to an axle so the load rolls forward. Early fixed wheelsets turned as one piece; later designs allowed wheels to rotate around an axle.",
+        impact:
+          "The wheel-and-axle made land transport far more efficient when paths were suitable. It could move ore, timber, grain, bricks, and trade goods with much less effort."
+      },
+      {
+        name: "Wheeled Wagon",
+        description: "A cargo vehicle using wheels to move loads over land",
+        category: "Technology",
+        date: "Visible in images by c. 3600-3350 BCE",
+        imageUrl: "/images/inventions/wheeled_wagon.jpg",
+        imageFit: "contain",
+        problem:
+          "Farms, workshops, mines, and cities needed to move goods heavier than one person could carry efficiently.",
+        solution:
+          "Mount a cargo bed on two or four wheels and pull or push it along prepared paths. In many places, cattle or other draft animals could supply the pulling force.",
+        impact:
+          "Wagons expanded the carrying range of communities. They helped connect farms, mines, workshops, and settlements into wider exchange networks."
+      },
+      {
+        name: "Spoked Wheel",
+        description: "A lighter wheel built from hub, spokes, and rim",
+        category: "Technology",
+        date: "c. 2000 BCE",
+        imageUrl: "/images/inventions/spoked_wheel.jpg",
+        imageFit: "contain",
+        problem:
+          "Solid wheels are sturdy but heavy, limiting speed and maneuverability.",
+        solution:
+          "Remove most of the solid disk and support the rim with thin wooden spokes radiating from a central hub.",
+        impact:
+          "Spoked wheels made fast chariots possible, turning wheeled transport into a major military and elite-status technology across many ancient societies."
+      }
+    ],
+    places: [
+      {
+        name: "Carpathian Mountains",
+        description:
+          "Copper-mining regions in eastern Europe where Neolithic workers may have needed new ways to move heavy ore through straight, narrow tunnels.",
+        location: "Carpathian Mountains, eastern Europe",
+        significance:
+          "The 2024 computational study supports the idea that this mining environment could have encouraged the step-by-step evolution from rollers to wheelsets. The tunnels were straight enough that poor turning was less of a problem.",
+        lore: "This is a hypothesis, not a final verdict. The exciting part is that the physical setting explains why a wheel might be useful before good roads or farm wagons existed.",
+        imageUrl: "/images/places/carpathian_mines.jpg",
+        imageFit: "contain"
+      },
+      {
+        name: "Carpathian Basin",
+        description:
+          "Central European region where Boleraz culture wagon-shaped clay models were found.",
+        location: "Carpathian Basin, central/eastern Europe",
+        significance:
+          "The Royal Society paper notes more than 150 wagon-shaped clay models from this region, with the Boleraz culture dated no later than about 3600 BCE. These are among the earliest known representations of wheeled transport, so they are firm evidence for an early wheel timeline even if the mine-origin story remains debated.",
+        lore: "The weird question is the fun one: why make a cup shaped like a tiny wagon unless wheeled containers mattered enough to become symbols?",
+        imageUrl: "/images/places/boleraz_wagon_mug.jpg",
+        imageFit: "contain"
+      },
+      {
+        name: "Ljubljana Marshes",
+        description:
+          "A wooden wheel and axle discovered in Slovenia, dated to roughly 5100-5350 years old, or about 3350-3100 BCE.",
+        location: "Ljubljana Marshes, Slovenia",
+        significance:
+          "It is one of the oldest known surviving transport wheels. Its square axle hole suggests a wheelset design where the wheel was fixed to the axle, matching the early stage proposed in the mine-roller hypothesis.",
+        imageUrl: "/images/places/ljubljana_marshes_wheel.jpg",
+        imageFit: "contain"
+      },
+      {
+        name: "Bronocice",
+        description:
+          "Neolithic settlement in southern Poland where the Bronocice pot was found.",
+        location: "Bronocice, southern Poland",
+        significance:
+          "Radiocarbon dates associated with the find fall around 3635-3370 BCE. That makes the Bronocice pot one of the earliest well-dated images of wheeled vehicles, showing that the old wheel timeline has to include Central Europe, not only Mesopotamia.",
+        imageUrl: "/images/places/bronocice_pot.jpg",
+        imageFit: "contain"
+      }
+    ],
+    resources: [
+      {
+        title: "Reconstructing the Invention of the Wheel",
+        type: "Article",
+        url: "https://doi.org/10.1098/rsos.240373",
+        isCore: false,
+        description:
+          "Royal Society Open Science paper presenting the 2024 computational model for how rollers may have evolved into wheelsets in Carpathian copper mines."
+      },
+      {
+        title: "The Invention of the Wheel - See U in History",
+        type: "Video",
+        url: "https://www.youtube.com/watch?v=vC8xmdA4Dmg&rel=0",
+        isCore: true,
+        description:
+          "Animated student-facing overview of why the wheel was difficult to invent, how early wheels and axles worked, and how wheeled transport changed ancient societies."
+      },
+      {
+        title: "History and Evolution of the Wheel",
+        type: "Video",
+        url: "https://www.youtube.com/watch?v=qCnRo6kJ0H0&t=125s&pp=ygURaGlzdG9yeSB0aGUgd2hlZWw%3D&rel=0",
+        isCore: true,
+        description:
+          "Broader visual timeline following wheel technology from early solid wheels through later transport and mechanical uses. Best paired with the research paper for the newest origin details."
+      },
+      {
+        title: "Engineering the Origin of the Wheel - Georgia Tech",
+        type: "Article",
+        url: "https://ae.gatech.edu/news/2024/11/engineering-origin-wheel",
+        isCore: false,
+        description:
+          "University overview of the engineering study, including why mine tunnels may have favored roller-based transport."
+      },
+      {
+        title: "Origins of the Wheel - The Ancients Podcast",
+        type: "Podcast",
+        url: "https://podcasts.apple.com/gb/podcast/origins-of-the-wheel/id1520403988?i=1000679123894",
+        isCore: false,
+        description:
+          "Longer audio discussion of the new research and why wheel origins remain debated."
+      },
+      {
+        title: "Spoked Wheels and War Chariots - World History Encyclopedia",
+        type: "Article",
+        url: "https://www.worldhistory.org/chariot/",
+        isCore: false,
+        description:
+          "Explains the later military leap: lightweight spoked wheels and the rise of chariot warfare."
+      }
+    ],
+    quiz: {
+      title: "Transportation Revolution Protocol",
+      description: "Demonstrate your understanding of the wheel's invention to unlock the artifact.",
+      questions: [
+        {
+          id: "wheel_q1",
+          text: "Why did it take humans so long to invent useful wheeled transport?",
+          options: [
+            "Nobody was smart enough until 3900 BCE",
+            "The wheel needs a whole system: axles, frames, strong materials, and suitable paths",
+            "Ancient people were forbidden to make circles",
+            "Wheels only work if they are made of metal"
+          ],
+          correctIndex: 1,
+          explanation:
+            "A transport wheel is not just a circle. It needs an axle, a frame, durable materials, and a surface where rolling beats dragging. Without that system, wheels can be less useful than sleds, boats, or carrying loads by hand."
+        },
+        {
+          id: "wheel_q2",
+          text: "Which part of the newer wheel story is a hypothesis?",
+          options: [
+            "That wheeled transport existed by the mid-fourth millennium BCE",
+            "That the exact invention path began with copper miners in Carpathian tunnels",
+            "That the Ljubljana wheel is an ancient wooden wheel",
+            "That the Bronocice pot shows wagon-like images"
+          ],
+          correctIndex: 1,
+          explanation:
+            "The artifacts show early wheeled transport by the mid-fourth millennium BCE. The debated part is the exact origin story: whether miners in Carpathian copper tunnels were the first to evolve rollers into wheelsets."
+        },
+        {
+          id: "wheel_q3",
+          text: "What was the advantage of grooved rollers held under a cargo box?",
+          options: [
+            "They let the load float without touching anything",
+            "They moved with the cargo, so workers did not have to keep resetting loose rollers",
+            "They worked best on steep mountain cliffs",
+            "They made the cargo invisible to raiders"
+          ],
+          correctIndex: 1,
+          explanation:
+            "Loose rollers have to be carried back to the front after the load passes over them. Grooved rollers seated under the container could travel with the load, which made much more sense inside a cramped tunnel."
+        },
+        {
+          id: "wheel_q4",
+          text: "Why were early fixed wheelsets useful in mines even though they turned poorly?",
+          options: [
+            "Mine tunnels could be made straight, so turning mattered less",
+            "They were pulled by racing horses",
+            "They worked only underwater",
+            "They were made of bronze instead of wood"
+          ],
+          correctIndex: 0,
+          explanation:
+            "A fixed wheelset is bad at turning because both wheels rotate together. In a straight mine tunnel, that weakness mattered less, so the design could still be practical."
+        },
+        {
+          id: "wheel_q5",
+          text: "Which evidence helps pull the wheel timeline back earlier than a simple Mesopotamia-only story?",
+          options: [
+            "The Boleraz wagon mugs, Bronocice pot, and Ljubljana Marshes wheel",
+            "A written diary by the first wheel inventor",
+            "A Roman road map",
+            "A medieval painting of a cart"
+          ],
+          correctIndex: 0,
+          explanation:
+            "Those finds are real archaeological evidence for early wheeled transport in Europe. They do not prove exactly where the wheel was invented, but they do prove the story is older and broader than a neat Mesopotamia-only origin."
+        },
+        {
+          id: "wheel_q6",
+          text: "How did wheels enable cities to grow larger?",
+          options: [
+            "Wheels made buildings easier to construct",
+            "Farmers could transport food from farther away, feeding more people",
+            "Wheels improved sanitation",
+            "Wheels made defense easier"
+          ],
+          correctIndex: 1,
+          explanation:
+            "Once wheeled carts spread beyond mines, farmers and workers could move heavier loads over land. That helped cities draw food, timber, bricks, and trade goods from a wider area."
+        },
+        {
+          id: "wheel_q7",
+          text: "What role did later spoked wheels play in ancient warfare?",
+          options: [
+            "They were mostly ceremonial and not used in real battles",
+            "They were slow but carried many soldiers",
+            "They made fast chariots possible",
+            "They were only used for transportation, not combat"
+          ],
+          correctIndex: 2,
+          explanation:
+            "Spoked wheels removed weight while keeping strength. That helped make fast chariots possible, turning the wheel from a transport tool into military technology."
+        }
+      ],
+      collectibleCards: [
+        { type: 'invention', index: 0, id: 'wheel_and_axle' },
+        { type: 'invention', index: 1, id: 'wheel_wheeled_wagon' }
       ]
     }
   },

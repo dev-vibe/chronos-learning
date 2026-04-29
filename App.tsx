@@ -52,6 +52,7 @@ const App: React.FC = () => {
   const { profile: userProfile, addXp, completeNode } = useUserProfile();
   const [isProfileOpen, setIsProfileOpen] = useState(false);
   const hasInitializedEra = useRef(false);
+  const hasInitializedNode = useRef(false);
 
   // Debug: log whenever userProfile changes
   useEffect(() => {
@@ -240,6 +241,21 @@ const App: React.FC = () => {
     return year;
   };
 
+  // Open the next available unfinished lesson on initial load.
+  useEffect(() => {
+    if (hasInitializedNode.current || selectedNode) return;
+
+    const completedSet = new Set(userProfile.nodesCompleted);
+    const nextUnlockedNode = INITIAL_NODES.find(node =>
+      !nodeLockStatus[node.id] && !completedSet.has(node.id)
+    );
+
+    if (!nextUnlockedNode) return;
+
+    hasInitializedNode.current = true;
+    handleSelectNode(nextUnlockedNode, true);
+  }, [handleSelectNode, nodeLockStatus, selectedNode, userProfile.nodesCompleted]);
+
   // Find the next unlocked node after completing the current one
   // This needs to account for the CURRENT node being completed (which just happened)
   const getNextLesson = useMemo(() => {
@@ -262,17 +278,14 @@ const App: React.FC = () => {
     
     console.log('[getNextLesson] Era lock status:', updatedEraLockStatus);
     
-    // Sort all nodes chronologically (oldest first for BCE dates)
-    const sortedNodes = [...INITIAL_NODES].sort((a, b) => parseYear(a.year) - parseYear(b.year));
-    
     // Find current node's index
-    const currentIndex = sortedNodes.findIndex(n => n.id === selectedNode.id);
-    console.log('[getNextLesson] Current index in sorted:', currentIndex, 'Total nodes:', sortedNodes.length);
+    const currentIndex = INITIAL_NODES.findIndex(n => n.id === selectedNode.id);
+    console.log('[getNextLesson] Current index in course order:', currentIndex, 'Total nodes:', INITIAL_NODES.length);
     if (currentIndex === -1) return null;
     
     // Find the next unlocked and uncompleted node AFTER current position
-    for (let i = currentIndex + 1; i < sortedNodes.length; i++) {
-      const node = sortedNodes[i];
+    for (let i = currentIndex + 1; i < INITIAL_NODES.length; i++) {
+      const node = INITIAL_NODES[i];
       const isLocked = updatedNodeLockStatus[node.id];
       const isCompleted = completedSet.has(node.id);
       // Node must be unlocked AND not already completed
@@ -287,7 +300,7 @@ const App: React.FC = () => {
     // If no uncompleted node found after current, wrap around from the beginning
     // (but skip nodes before the current one that are already completed)
     for (let i = 0; i < currentIndex; i++) {
-      const node = sortedNodes[i];
+      const node = INITIAL_NODES[i];
       if (!updatedNodeLockStatus[node.id] && !completedSet.has(node.id)) {
         console.log('[getNextLesson] Found wrapped node:', node.id, node.title);
         return node;

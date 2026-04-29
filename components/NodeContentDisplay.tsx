@@ -247,43 +247,47 @@ export const NodeContentDisplay: React.FC<NodeContentDisplayProps> = ({ node, er
 
         <div className="h-px bg-gradient-to-r from-transparent via-stone-800 to-transparent"></div>
 
-        <section>
-            <div className="flex items-center gap-3 mb-8">
-                <div className="w-8 h-8 bg-stone-800 text-stone-300 rounded flex items-center justify-center border border-stone-700 shadow-lg">
-                    <MapPin size={16} />
+        {places.length > 0 && (
+            <section>
+                <div className="flex items-center gap-3 mb-8">
+                    <div className="w-8 h-8 bg-stone-800 text-stone-300 rounded flex items-center justify-center border border-stone-700 shadow-lg">
+                        <MapPin size={16} />
+                    </div>
+                    <h2 className="text-2xl font-display font-bold text-white tracking-wide">Key Locations</h2>
                 </div>
-                <h2 className="text-2xl font-display font-bold text-white tracking-wide">Key Locations</h2>
-            </div>
-            
-             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
-                {places.map((place, idx) => (
-                    <PlaceCard 
-                        key={idx} 
-                        place={place} 
-                        onClick={() => setSelectedItem({ type: 'place', data: place })} 
-                    />
-                ))}
-            </div>
-        </section>
+                
+                 <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+                    {places.map((place, idx) => (
+                        <PlaceCard 
+                            key={idx} 
+                            place={place} 
+                            onClick={() => setSelectedItem({ type: 'place', data: place })} 
+                        />
+                    ))}
+                </div>
+            </section>
+        )}
 
-        <section>
-            <div className="flex items-center gap-3 mb-8">
-                <div className="w-8 h-8 bg-stone-800 text-stone-300 rounded flex items-center justify-center border border-stone-700 shadow-lg">
-                    <Users size={16} />
+        {people.length > 0 && (
+            <section>
+                <div className="flex items-center gap-3 mb-8">
+                    <div className="w-8 h-8 bg-stone-800 text-stone-300 rounded flex items-center justify-center border border-stone-700 shadow-lg">
+                        <Users size={16} />
+                    </div>
+                    <h2 className="text-2xl font-display font-bold text-white tracking-wide">Key Players</h2>
                 </div>
-                <h2 className="text-2xl font-display font-bold text-white tracking-wide">Key Players</h2>
-            </div>
-            
-            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
-                {people.map((person, idx) => (
-                    <TradingCard 
-                        key={idx} 
-                        person={person} 
-                        onClick={() => setSelectedItem({ type: 'person', data: person })}
-                    />
-                ))}
-            </div>
-        </section>
+                
+                <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
+                    {people.map((person, idx) => (
+                        <TradingCard 
+                            key={idx} 
+                            person={person} 
+                            onClick={() => setSelectedItem({ type: 'person', data: person })}
+                        />
+                    ))}
+                </div>
+            </section>
+        )}
 
          {inventions.length > 0 && (
              <section>

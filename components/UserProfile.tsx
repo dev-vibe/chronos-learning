@@ -277,7 +277,7 @@ export const UserProfileModal: React.FC<UserProfileProps> = ({ profile, isOpen, 
                                     <img 
                                         src={imageUrl} 
                                         alt={card.name} 
-                                        className="w-full h-full object-cover opacity-70 group-hover:opacity-100 transition-opacity" 
+                                        className={`w-full h-full ${card.imageFit === 'contain' ? 'object-contain' : 'object-cover'} opacity-70 group-hover:opacity-100 transition-opacity`} 
                                     />
                                     <div className="absolute top-1 left-1 bg-black/70 px-1.5 py-0.5 rounded text-[8px] font-mono uppercase text-purple-400 border border-purple-500/30">
                                         {card.type}

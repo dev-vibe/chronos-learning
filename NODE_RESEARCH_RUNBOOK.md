@@ -1,287 +1,808 @@
 # Node Research & Content Creation Runbook
 
-This document provides step-by-step instructions for researching and creating content for timeline nodes in Chronos Learning Terminal.
+This runbook is for creating Chronos Learning timeline nodes: compact, visual, story-rich history lessons for preteens ages 11-13.
+
+The goal is not "school report, but shorter." The goal is a lesson a kid can remember two weeks later because it gave them a vivid object, a strange problem, a real person, a place they can picture, and a clean explanation of why the moment mattered.
 
 ## Table of Contents
-1. [Data Model Overview](#data-model-overview)
-2. [Research Process](#research-process)
-3. [Content Guidelines](#content-guidelines)
-4. [File Organization](#file-organization)
-5. [Quality Checklist](#quality-checklist)
+
+1. [Mission](#mission)
+2. [Data Model](#data-model)
+3. [Research Standard](#research-standard)
+4. [Wonder Without Nonsense](#wonder-without-nonsense)
+5. [Content Recipe](#content-recipe)
+6. [Project Coverage Priorities](#project-coverage-priorities)
+7. [Image Sourcing](#image-sourcing)
+8. [File Organization](#file-organization)
+9. [Quality Checklist](#quality-checklist)
+10. [Example Node Standard](#example-node-standard)
 
 ---
 
-## Data Model Overview
+## Mission
 
-Each timeline node requires a `NodeContent` object with the following structure:
+Chronos should make history feel like a live investigation.
+
+Every node should answer four questions:
+
+- **What happened?** Give the actual event, discovery, invention, conflict, artwork, system, or turning point.
+- **Why did it happen then?** Explain the pressures: climate, geography, technology, trade, faith, ambition, disease, food, money, fear, curiosity.
+- **What changed afterward?** Show the consequence chain, not just "it was important."
+- **What will stick?** Give the learner a memorable object, scene, phrase, or puzzle.
+
+### Audience
+
+Write for curious 11-13 year olds who are smart enough for complexity but allergic to textbook fog.
+
+They tend to remember:
+
+- A specific artifact: "a 4,500-year-old mosaic box from Ur."
+- A strange constraint: "tin and copper almost never occur in the same place."
+- A human decision: "Hatshepsut sent ships to Punt instead of launching another war."
+- A mystery with boundaries: "We know the site is real; we do not know exactly what every ritual meant."
+- A modern connection: "LiDAR lets archaeologists erase tree cover digitally, revealing cities hidden under jungle."
+
+They tend to forget:
+
+- Lists of rulers.
+- Generic claims that something "changed the world."
+- Abstract values with no physical example.
+- "Some people say..." speculation with no evidence ranking.
+
+### Voice
+
+Use a confident field-report style: clear, concrete, sometimes dramatic, but not breathless. The app already has a "learning terminal" feel, so the writing can use words like "signal," "archive," "field note," and "evidence," but the history itself should stay human.
+
+Good:
+
+> A pyramid was not just a tomb. It was a national project: stonecutters, boat crews, scribes, rope makers, bakers, brewers, doctors, and surveyors all working in sync beside the Nile.
+
+Weak:
+
+> The pyramids were significant because they demonstrated advanced civilization and had a major impact on Egyptian culture.
+
+---
+
+## Data Model
+
+Each timeline node requires a `NodeContent` object.
 
 ```typescript
 interface NodeContent {
-  summary: string;           // 3-4 paragraph historical narrative
-  funFact: string;          // Memorable detail for 11-12 year olds
-  people: HistoricalPerson[]; // 2-4 key figures (trading card format)
-  inventions: Invention[];    // 1-3 innovations (tech blueprint format)
-  places: Place[];           // 1-3 locations (place card format)
-  resources: Resource[];     // 3-4 external learning resources
-  quiz?: Quiz;              // 3-5 questions with collectible card rewards
+  summary: string;
+  funFact: string;
+  people: HistoricalPerson[];
+  inventions: Invention[];
+  places: Place[];
+  resources: Resource[];
+  quiz?: Quiz;
 }
 ```
 
-### HistoricalPerson (Trading Card)
+### HistoricalPerson Card
+
+Use people cards like trading cards. The "person" can be a named individual, a known role, or a representative worker if the node needs ordinary people.
+
 ```typescript
 {
-  name: string;              // Full name
-  role: string;              // Brief title (e.g., "King of Persia")
-  category: string;          // Philosopher | Leader | Scientist | Warrior | etc.
-  description: string;       // 2-3 sentence biography
-  born?: string;             // Birth year/date
-  died?: string;             // Death year/date
-  achievements?: string[];   // 3-5 bullet points
-  legacy?: string;           // 1-2 sentences on lasting impact
-  imageUrl?: string;         // "/images/{era}/{name}.jpg"
+  name: string;
+  role: string;
+  category: 'Philosopher' | 'Leader' | 'Scientist' | 'Villain' | 'Hero' |
+    'Artist' | 'Other' | 'Military' | 'Explorer' | 'Worker' | 'Priest' |
+    'Commoner' | 'Warrior' | 'Athlete' | 'Mythical' | 'Poet';
+  description: string;
+  imageUrl?: string;
+  imageFit?: 'cover' | 'contain';
+  born?: string;
+  died?: string;
+  nationality?: string;
+  achievements?: string[];
+  legacy?: string;
 }
 ```
 
-### Invention (Tech Blueprint)
+Card rules:
+
+- Include 2-4 people per node only when the lesson has real historical actors or historically grounded roles.
+- Mix famous decision-makers with builders, scribes, traders, artists, engineers, sailors, farmers, witnesses, or opponents when those people or roles truly belong to the historical moment.
+- If no named person is known, use a role card only when the role is historically grounded and central to the lesson, like "The Seal Carver," "A Palace Scribe," or "The Dog Handler."
+- Do not create modern researcher/source-author cards. Modern scholars belong in resources, research notes, or the field report.
+- Do not force a people section. If there are no known historical players or grounded historical roles, use `people: []` and let the UI omit the section.
+- Do not invent a "representative" player just to fill space. If the role would not feel like a real participant in the lesson, leave it out.
+- Avoid fake certainty. Use "unknown" or omit dates when unknown.
+- For mythical or semi-legendary figures, set `category: 'Mythical'` and explain what is historical, legendary, or debated.
+
+### Invention Card
+
+Use these as "tech blueprint" cards, not a list of objects.
+
 ```typescript
 {
-  name: string;              // Innovation name
-  description: string;       // Brief explanation
-  category: string;          // Science | Military | Government | Art | etc.
-  problem: string;           // What challenge existed?
-  solution: string;          // How did this innovation solve it?
-  impact: string;            // What changed as a result?
-  date?: string;             // When invented (optional)
-  imageUrl?: string;         // "/images/inventions/{name}.jpg"
+  name: string;
+  description: string;
+  category: string;
+  imageUrl?: string;
+  imageFit?: 'cover' | 'contain';
+  problem?: string;
+  solution?: string;
+  impact?: string;
+  date?: string;
 }
 ```
 
-### Place (Location Card)
+What counts as an invention:
+
+- Tools, materials, weapons, vehicles, food systems, maps, writing systems, medicines.
+- Social technologies: law codes, money, bureaucracy, postal roads, exams, universities, insurance.
+- Methods: LiDAR survey, radiocarbon dating, stratigraphy, double-entry bookkeeping.
+- Use invention cards only for historical technologies, systems, or methods in the lesson's period. Modern research methods may appear only when the node is about a modern discovery.
+- Do not turn a hypothesis, research model, or source author's reconstruction into an invention card unless the lesson clearly marks it as a model and it is not used as a reward card.
+
+Every invention card should use:
+
+- **Problem:** What limitation existed?
+- **Solution:** What did people do differently?
+- **Impact:** What became possible, easier, faster, bigger, safer, or more dangerous?
+
+### Place Card
+
+Places anchor the story physically.
+
 ```typescript
 {
-  name: string;              // Location name
-  description: string;       // What was this place?
-  location: string;          // Geographic location
-  significance: string;      // Why it mattered historically
-  lore?: string;             // Interesting stories/details
-  imageUrl?: string;         // "/images/places/{name}.jpg"
+  name: string;
+  description: string;
+  imageUrl?: string;
+  imageFit?: 'cover' | 'contain';
+  significance?: string;
+  location?: string;
+  lore?: string;
 }
 ```
 
-### Resource (External Learning)
+Place rules:
+
+- Include 1-3 places per node only when the lesson has real places worth anchoring.
+- Place card names must be actual locations by name, not artifacts, peoples, object categories, or research claims.
+- Prefer specific sites over giant regions: "Hawara, Fayum, Egypt" beats "Egypt."
+- Use coordinates-style specificity when useful: "near modern Sanliurfa, southeastern Turkey."
+- `lore` is for strange but grounded details: excavation drama, inscriptions, mistaken identities, shipwreck cargo, hidden rooms, old legends, or what archaeologists still cannot explain.
+- If the evidence is an artifact, name the place where it was found, not the artifact itself. Example: use "Bronocice" as the place card, and describe the Bronocice pot inside it.
+
+### Resource Card
+
 ```typescript
 {
-  title: string;             // Resource title
-  type: string;              // Video | Podcast | Article | Activity
-  url: string;               // REQUIRED: Direct URL (see URL guidelines below)
-  isCore: boolean;           // true = essential, false = supplementary
-  description?: string;      // Brief description of content
+  title: string;
+  type: 'Video' | 'Podcast' | 'Article' | 'Activity';
+  url: string;
+  isCore: boolean;
+  description?: string;
 }
 ```
 
-**CRITICAL URL GUIDELINES:**
-- **YouTube videos**: MUST append `?rel=0` to limit related video suggestions
-  - Format: `https://www.youtube.com/watch?v=VIDEO_ID?rel=0`
-  - For search results: `https://www.youtube.com/results?search_query=your+search+terms`
-- **Articles**: Use authoritative sources (museums, universities, educational sites)
-- **Never use `searchQuery` field** - it's legacy only, always use `url`
+Resource rules:
 
-### Quiz (Gamification)
+- Include 3-4 resources.
+- At least 2 should be core resources.
+- For every node, actively look for at least one strong video. If no video passes the quality bar, do not force one; use an article, activity, or podcast and note the gap in research notes.
+- Prefer museums, universities, peer-reviewed/open access articles, official archives, public broadcasters, and specialist educators.
+- For YouTube, use direct video URLs and append `&rel=0` if the URL already has `?v=`, or `?rel=0` if it has no query string.
+- Never use the legacy `searchQuery` field for new content.
+- Avoid ad-heavy, sensational, partisan, or AI-content-farm sources.
+
+### Video Source Priority
+
+Good videos are especially valuable for this project because many learners will remember a moving map, artifact close-up, reconstruction, or vivid narrator before they remember a paragraph. Treat video search as part of every lesson, not an optional polish step.
+
+Use this priority order.
+
+#### Tier 1: Best Core Video Candidates
+
+These are usually safe to check first:
+
+- **Crash Course World History / US History / Big History:** Excellent high-energy overviews. Existing lessons already use it for the Agricultural Revolution, Persian Empire, Indus Valley, and Bronze Age Collapse. Caveat: it is fast and sometimes assumes background knowledge, so use it as an overview or reinforcement, not the only source.
+- **PBS NOVA:** Strong for archaeology, engineering, genetics, climate, ancient technology, and scientific discovery. Existing lessons use NOVA for dog domestication and the Great Pyramid.
+- **Khan Academy / Smarthistory:** Clear, classroom-safe explainers for art, archaeology, religion, world history, and primary objects. Good core option when Crash Course is too frantic.
+- **TED-Ed:** Short, polished animated lessons. Best for big concepts, myths, inventions, philosophy, and science-adjacent history.
+- **Official museum and archive channels:** British Museum, The Met, Smithsonian, Louvre, Getty, Penn Museum, Field Museum, Ashmolean, National Museum of African American History and Culture, Library of Congress, National Archives.
+- **Public broadcasters and education divisions:** BBC, BBC Teach, PBS LearningMedia, NPR-style education videos, DW Documentary when age-appropriate.
+
+#### Tier 2: Good Deep-Dive Candidates
+
+These can be excellent, but they are often longer or more advanced:
+
+- **Fall of Civilizations:** Superb long-form storytelling for collapses and ancient worlds. Use as a podcast/deep dive, usually not the only core resource for 11-13 year olds.
+- **Tides of History:** Strong narrative context for prehistory, antiquity, and systems change. Often best as an advanced resource.
+- **BBC In Our Time:** Expert audio discussions. Great for researcher background and advanced learners, but usually too dense as the first student-facing source.
+- **History Hit:** Often expert-led and visually rich, especially for ancient and medieval topics. Check whether the specific video is free, not paywalled, and age-appropriate.
+- **National Geographic:** Strong visuals and exploration framing. Check paywalls and rights; use as a resource link when accessible.
+
+#### Tier 3: Use Selectively
+
+These can work well for engagement, maps, or military/event explanation, but must be watched carefully before marking `isCore: true`:
+
+- **Overly Sarcastic Productions:** Engaging for myths, literature, and broad history, but comedic tone can blur nuance. Best for supplementary use after vetting.
+- **Extra History / Extra Credits:** Accessible narrative series, but sometimes dramatized or simplified. Check against authority sources.
+- **Kings and Generals, Invicta, Historia Civilis:** Useful for animated maps, battles, and political systems. Watch for violence level, complexity, sponsor segments, and whether the framing fits preteens.
+- **Oversimplified:** Memorable and funny, but often too meme-heavy or simplified for a core learning source. Use rarely and only when the episode is accurate, age-appropriate, and paired with stronger sources.
+
+#### Avoid For Student Resources
+
+- Conspiracy archaeology or "forbidden history" channels.
+- Content whose main hook is aliens, hidden civilizations, "mainstream historians hate this," or impossible ancient technology.
+- Reaction videos, uncredited AI documentaries, faceless narration channels, and content-farm channels.
+- Videos with graphic violence, profanity-heavy comedy, sexualized thumbnails, or hostile political framing.
+- Videos that are mostly vibes, stock footage, or unsourced claims.
+
+### Video Search Workflow
+
+For each node, run searches in this order:
+
+1. Exact topic + trusted source:
+   - `"Gobekli Tepe" "Khan Academy"`
+   - `"Hatshepsut" "PBS NOVA"`
+   - `"Cyrus the Great" "Crash Course"`
+   - `"Maya LiDAR" "National Geographic"`
+2. Topic + format:
+   - `"Hammurabi code explained students"`
+   - `"Indus Valley civilization for middle school"`
+   - `"Bronze Age collapse documentary kids"`
+3. Site or channel search:
+   - `site:youtube.com "Crash Course World History" "Persian Empire"`
+   - `site:pbs.org NOVA "Great Pyramid"`
+   - `site:khanacademy.org "Pyramids of Giza"`
+4. If direct videos are weak, look for museum videos:
+   - `British Museum [artifact] video`
+   - `Met Museum [artist/artifact] video`
+   - `Smithsonian [topic] video`
+
+When you find a candidate, watch or skim enough to verify:
+
+- The first 60 seconds are appropriate and not clickbait.
+- The main explanation agrees with authoritative sources.
+- It has useful visuals: maps, artifacts, site footage, animation, or primary-source closeups.
+- It is short enough for the role: 5-15 minutes ideal for core, 15-30 acceptable, 30+ usually deep dive.
+- The narrator's pace works for 11-13 year olds, or the description can warn that it is fast/advanced.
+- Sponsor reads, jokes, or side tangents do not overwhelm the lesson.
+- The title and thumbnail are school-safe.
+
+### Video Resource Placement
+
+Use `isCore: true` for a video only when it directly supports the node's main story and is suitable for the target learner.
+
+Good resource set:
+
+```typescript
+resources: [
+  {
+    title: "The Agricultural Revolution - Crash Course World History #1",
+    type: "Video",
+    url: "https://www.youtube.com/watch?v=Yocja_N5s1I&rel=0",
+    isCore: true,
+    description: "Fast, funny 11-minute overview of farming, domestication, and the trade-offs of settled life. Best watched after reading the field report or at 0.75 speed."
+  },
+  {
+    title: "Catalhoyuk Research Project - Site Overview",
+    type: "Article",
+    url: "https://www.catalhoyuk.com/",
+    isCore: true,
+    description: "Official excavation project source for the settlement's layout, art, burials, and current research questions."
+  },
+  {
+    title: "The Neolithic Revolution - National Geographic",
+    type: "Article",
+    url: "https://www.nationalgeographic.com/culture/article/neolithic-agricultural-revolution",
+    isCore: false,
+    description: "Visual overview of how agriculture changed food, settlement, inequality, and population growth."
+  }
+]
+```
+
+Bad resource set:
+
+```typescript
+resources: [
+  {
+    title: "Ancient Mystery PROVES Lost Super Civilization",
+    type: "Video",
+    url: "https://www.youtube.com/watch?v=...",
+    isCore: true,
+    description: "Exciting video about what they do not teach in school."
+  }
+]
+```
+
+For advanced videos or podcasts, include a description that tells learners how to use it:
+
+- "Watch minutes 4-13 for the pyramid worker village."
+- "Long deep dive; best for learners who want the full collapse story."
+- "Advanced audio discussion; useful after the lesson, not before."
+
+### Quiz
+
 ```typescript
 {
-  title: string;             // Quiz title
-  questions: QuizQuestion[]; // 3-5 multiple choice questions
-  collectibleCards?: CollectibleCardRef[]; // Optional: Cards to unlock from lesson content
-}
-
-interface QuizQuestion {
-  id: string;                // Unique ID (e.g., "cyrus_q1")
-  text: string;              // Question text
-  options: string[];         // 4 answer choices
-  correctIndex: number;      // 0-3, which option is correct
-  explanation: string;       // Why this answer is correct (teaches!)
+  title: string;
+  description?: string;
+  questions: QuizQuestion[];
+  collectibleCards?: CollectibleCardRef[];
 }
 ```
+
+Quiz rules:
+
+- Include 3-5 questions for most nodes.
+- Use one factual question, one cause/effect question, one interpretation question, and one image/artifact/location question when possible.
+- Explanations should teach one extra detail, not merely say "Correct."
+- Unlock cards from the lesson content, usually 3-5 cards.
+- Reward cards should default to historical figures and inventions/technologies only. Do not unlock modern researchers, contrived placeholders, or vague artifacts.
+- Location reward cards are opt-in. Ask the user before adding any location reward card, even if the location is strong; the user may manually approve exceptional locations such as Giza during creation.
+- Reward cards must come from real displayed content and should feel collectible. Use fewer cards rather than padding with weak entries.
 
 ---
 
-## Research Process
+## Research Standard
 
-### Step 1: Identify the Node
-- Check `constants.ts` → `INITIAL_NODES` array
-- Find the node stub with: `id`, `title`, `year`, `eraId`, `region`, `tags`
-- Example: `{ id: 'alexander', title: 'Alexander the Great's Conquests', year: '334 BCE', eraId: 'classical', region: 'Macedonia/Persia', tags: ['Military', 'Exploration'] }`
+Use a three-layer source stack.
 
-### Step 2: Background Research (30-45 minutes)
-**Goal**: Understand the historical context and find quality sources
+### Layer 1: Orientation
 
-1. **Web Search** for overview:
-   - Wikipedia (for quick overview, but don't copy directly)
-   - University history department pages
-   - Museum websites (British Museum, Met, Smithsonian, etc.)
-   - Educational sites (Khan Academy, Crash Course, History.com)
+Use fast overview sources to understand the shape of the topic:
 
-2. **Identify Key Questions**:
-   - What happened? (events, timeline)
-   - Who were the main people involved?
-   - What technologies/innovations emerged?
-   - Where did this take place? (geography matters!)
-   - Why does this matter? (impact, legacy, connections)
-   - What would 11-12 year olds find cool/interesting?
+- Encyclopaedia Britannica
+- World History Encyclopedia
+- Khan Academy
+- museum overview pages
+- Wikipedia only as a map to better sources, not as final authority
 
-3. **Find Primary Sources** (if available):
-   - Ancient texts, inscriptions, archaeological findings
-   - These make great "fun facts" and add authenticity
+### Layer 2: Authority
 
-### Step 3: Gather Resource Links (15 minutes)
-**Goal**: Find 3-4 quality external resources
+Use at least two authority sources for the factual core:
 
-1. **Videos** (aim for 2):
-   - Search YouTube: `"{topic} for kids"`, `"{topic} documentary"`, `"{topic} explained"`
-   - Look for channels: Crash Course, Oversimplified, History Hit, PBS, BBC
-   - Check video length (10-20 min ideal for students)
-   - **IMPORTANT**: Add `?rel=0` to all YouTube URLs
-   - Note actual video IDs when possible, or use search result URLs
+- museum collection pages: Met, British Museum, Louvre, Smithsonian, Penn Museum, Field Museum
+- university or excavation project pages
+- peer-reviewed articles, preferably open access
+- official heritage bodies: UNESCO, National Park Service, Historic England, Turkish Ministry of Culture, Egyptian Ministry of Tourism and Antiquities
+- primary sources in translation: inscriptions, letters, law codes, chronicles, oral histories, speeches
 
-2. **Articles** (aim for 1-2):
-   - Educational sites, museum virtual exhibits, university pages
-   - Avoid ad-heavy clickbait sites
-   - Check reading level (ages 10-14 appropriate)
+### Layer 3: Teaching Assets
 
-3. **Podcasts** (optional):
-   - History podcasts for teens: "Stuff You Missed in History Class", "The History Podcast"
+Find material that makes the node visual and memorable:
 
-### Step 4: Content Creation (60-90 minutes)
+- open-license artifact photos
+- maps
+- site photos
+- short videos
+- reconstructions from reputable institutions
+- interactive maps or museum activities
 
-#### A. Write the Summary (3-4 paragraphs)
-**Goal**: Tell an engaging story that captures causes, events, and consequences
+### Required Research Notes
 
-**Paragraph 1**: Set the stage
-- What was the world like before this event?
-- What problem/situation existed?
-- Hook the reader with vivid details or a dramatic moment
+Before writing, create a private research note with:
 
-**Paragraph 2-3**: The main event
-- What happened? (narrative, not just facts)
-- Who did what and why?
-- Include dramatic moments, human details, interesting facts
-- Use active voice, vivid language
+- Node ID, title, date, era, region, and tags from `constants.ts`.
+- 5-8 bullet timeline of what happened.
+- 3 source URLs with one-line notes.
+- 1-3 video candidates checked, with a note on why the winner was chosen or why no video passed.
+- 3 potential card images with source page and license.
+- 3 "sticky details" a kid might repeat later.
+- 1 evidence warning: what is debated, uncertain, or often exaggerated?
 
-**Paragraph 4**: Impact and legacy
-- What changed as a result?
-- Why do we still care about this 500/1000/2000+ years later?
-- Connect to modern world when possible
+These notes do not need to ship in code, but the finished node should clearly reflect them.
 
-**Style Guidelines**:
-- Write for ages 11-12 (7th grade reading level)
-- Use active voice: "Cyrus conquered Babylon" not "Babylon was conquered"
-- Include vivid details: smells, sounds, emotions, drama
-- Avoid dry academic tone: "This was significant because..." ❌
-- Instead: "This changed everything. Here's why..." ✅
-- Use parenthetical asides to explain terms: "satrapies (provinces)"
-- Aim for 400-600 words total
+---
 
-#### B. Create Fun Fact
-**Goal**: One memorable detail kids will remember and share
+## Wonder Without Nonsense
 
-**Good Fun Facts**:
-- Surprising details ("Athletes competed naked!")
-- Clever wordplay or linguistic connections
-- "First/oldest/largest" superlatives
-- Gross/weird/funny details (kids love these!)
-- Modern connections ("Our word 'paper' comes from 'papyrus'")
+This project should absolutely include discoveries that make students feel the human story is bigger, older, stranger, and more inventive than they assumed. But it must not blur the line between evidence and internet mythology.
 
-**Bad Fun Facts**:
-- Generic statements anyone could guess
-- Boring statistics
-- Repeating info from summary
+Use this evidence ladder.
 
-#### C. Identify People (2-4 Trading Cards min)
-**Goal**: Key historical figures with rich detail
+### Green: Use Confidently
 
-**Who to Include**:
-- Primary actors (kings, generals, inventors)
-- Supporting cast (advisors, opponents, family members)
-- "Everyday people" when relevant (workers, scribes, common folk)
-- Both heroes AND villains/opponents (nuance!)
+Evidence is well established by multiple credible sources.
 
-**For Each Person**:
-1. Name and role (brief title)
-2. Category (Leader, Scientist, Warrior, etc.)
-3. Description: 2-3 sentences about who they were
-4. Born/died dates (if known)
-5. Achievements: 3-5 bullet points (concrete accomplishments)
-6. Legacy: 1-2 sentences on lasting impact
+Examples:
 
-**Style**: Write like a trading card - punchy, exciting, highlighting their "stats"
+- The Younger Dryas was a real, abrupt return to colder conditions after warming had begun.
+- Gobekli Tepe is a very early monumental ritual site built by hunter-gatherer or transitional communities before large settled cities.
+- Ancient Egyptian stone vessels are real and often show astonishing craftsmanship.
+- LiDAR has revealed previously unknown or underestimated ancient urban landscapes in Maya and Amazonian regions.
 
-#### D. Identify Inventions (1-3 Tech Blueprints min)
-**Goal**: Actual innovations using Problem→Solution→Impact framework
+### Yellow: Use With Care
 
-**What Counts as an Invention**:
-- Literal technologies (tools, weapons, materials)
-- Political/social innovations (democracy, legal codes, administrative systems)
-- Cultural innovations (writing systems, artistic movements, religious practices)
+Evidence is real, but interpretation is debated.
 
-**For Each Invention**:
-1. Name and brief description
-2. Category (Science, Military, Government, Art, Religion, etc.)
-3. **Problem**: What challenge existed before?
-4. **Solution**: How did this innovation address it?
-5. **Impact**: What changed as a result?
+Examples:
 
-**Avoid**:
-- Vague abstractions ("the concept of justice") - be specific!
-- Things that aren't actually inventions (just events)
+- Younger Dryas causes: meltwater routing, ocean circulation shifts, and impact hypotheses are discussed; do not present one debated cause as settled.
+- Gobekli Tepe meaning: "temple," "ritual center," and "feasting site" are interpretations; avoid claiming we know the full belief system.
+- Hawara labyrinth: ancient authors described a vast structure; archaeology has found remains, but modern claims about huge intact underground chambers need careful sourcing.
+- Egyptian stone vases: precise stoneworking is impressive; specific claims about lost high technology require evidence, not vibes.
 
-#### E. Identify Places (1-3 Location Cards min)
-**Goal**: Physical locations central to the story
+### Red: Do Not Present As Fact
 
-**What to Include**:
-- Cities, buildings, temples, battlefields
-- Places where key events occurred
-- Locations that still exist today (creates tangible connection)
+These can be mentioned only as misconceptions if the node is explicitly teaching evidence literacy.
 
-**For Each Place**:
-1. Name and brief description
-2. Location (geographic specificity helps)
-3. Significance: Why it mattered historically
-4. Lore: Interesting stories, legends, archaeological details
+- Aliens built ancient monuments.
+- Atlantis or a lost global super-civilization is proven.
+- Ancient people "could not have" made difficult artifacts.
+- A single discovery "proves everything historians know is wrong."
+- Viral claims based only on YouTube, TikTok, anonymous maps, or unsourced diagrams.
 
-#### F. Create Quiz (3-5 Questions min)
-**Goal**: Test comprehension while teaching
+### How To Write Story-Changing Discoveries
 
-**Question Types**:
-1. **Factual**: "What did X do?" (test basic knowledge)
-2. **Conceptual**: "Why was X important?" (test understanding)
-3. **Analytical**: "What makes X different from Y?" (test deeper thinking)
+Use this frame:
 
-**For Each Question**:
-- Write clear question text
-- Provide 4 answer options (one correct, three plausible distractors)
-- Indicate correct answer index (0-3)
-- **MOST IMPORTANT**: Write explanation that teaches why the answer is correct
+1. **The old assumption:** What did many people used to think?
+2. **The discovery:** What was found, when, where, and by whom?
+3. **The evidence:** What physical data changed the picture?
+4. **The new picture:** What do historians or archaeologists now think?
+5. **The open question:** What is still unknown?
 
-**Explanation Guidelines**:
-- Don't just repeat the answer
-- Add context, connections, or additional details
-- This is a teaching moment - make it count!
+Example:
 
-**Collectible Cards**:
-- Reference people, inventions, or places from the lesson content
-- Use `{ type: 'person'|'invention'|'place', index: number, id: string }`
-- Cards unlock when quiz is completed perfectly
+> Gobekli Tepe did not prove that aliens or a lost empire built civilization. It did something more interesting: it showed that hunter-gatherer communities could organize huge stone-building projects before farming villages became cities. That flips a simple old story - "first farming, then temples" - into a better question: what if shared rituals helped pull people into larger communities?
+
+### Language To Prefer
+
+- "This complicates the old story..."
+- "Archaeologists now think..."
+- "The evidence suggests..."
+- "One leading explanation is..."
+- "Still debated..."
+- "No one has found evidence for..."
+
+### Language To Avoid
+
+- "Historians are hiding..."
+- "Scientists cannot explain..."
+- "This proves everything is wrong..."
+- "Mainstream archaeology refuses to admit..."
+- "Impossible with ancient tools..."
+
+---
+
+## Content Recipe
+
+### Step 1: Identify The Node
+
+Check `constants.ts` and copy:
+
+- `id`
+- `title`
+- `year`
+- `eraId`
+- `region`
+- `tags`
+
+Example:
+
+```typescript
+{ id: 'maya_lidar', title: 'LiDAR Reveals Hidden Maya Cities', year: '2018 CE', eraId: 'modern', region: 'Mesoamerica', tags: ['Science', 'Exploration'] }
+```
+
+### Step 2: Pick The Core Story Shape
+
+Every node should have one primary shape:
+
+- **Breakthrough:** A tool, method, or idea unlocks a new possibility.
+- **Collision:** Two systems meet: armies, religions, trade worlds, empires, diseases, technologies.
+- **Mystery:** Evidence exists, but meaning or cause is partly unresolved.
+- **System:** A new way of organizing people changes daily life.
+- **Collapse:** A complex world fails under pressure.
+- **Voice:** A person, text, artwork, or speech changes what people can imagine.
+
+Write the node around that shape. Do not try to make every node an all-purpose encyclopedia entry.
+
+### Step 3: Build The Memory Hook
+
+Pick one "anchor object" before drafting.
+
+Examples:
+
+- Younger Dryas: a sudden cold snap written into ice cores and lake sediments.
+- Gobekli Tepe: T-shaped stone pillars carved with animals.
+- Uruk: clay tablets that began as receipts.
+- Egypt stone vases: hard stone vessels with tiny openings and smooth interiors.
+- Hawara: a ruined pyramid complex tied to ancient reports of a vast labyrinth.
+- Bronze Age trade: oxhide copper ingots from a shipwreck.
+- Maya LiDAR: laser maps that reveal roads and platforms beneath forest.
+
+The anchor object should appear in the summary, at least one card, and ideally one quiz question.
+
+### Step 4: Write The Summary
+
+Target 400-650 words, usually 3-5 paragraphs.
+
+Paragraph pattern:
+
+1. **Hook and world before:** Put the learner in a scene. What would they see, hear, carry, fear, or need?
+2. **Pressure:** What problem was building?
+3. **Action/discovery/change:** What happened? Who made decisions? What tool or event mattered?
+4. **Consequence:** What changed immediately?
+5. **Legacy/open question:** Why it matters now, and what historians still debate.
+
+Style rules:
+
+- Use active voice.
+- Explain technical terms in context.
+- Keep sentences varied but not tangled.
+- Prefer concrete nouns over abstractions.
+- Include dates, but do not make the paragraph a date parade.
+- Let hard topics be honest without becoming graphic.
+- Avoid modern political dunking, culture-war framing, or moral performance. Teach the event clearly and fairly.
+
+### Step 5: Write The Fun Fact
+
+The fun fact should be a "tell your friend" detail.
+
+Good types:
+
+- Strange artifact detail.
+- Unexpected scale.
+- A word origin.
+- A record: oldest, largest, first known, deepest, fastest, longest.
+- A discovery story.
+- A surprising daily-life detail.
+
+Bad types:
+
+- "This was very important."
+- A statistic with no image.
+- Repeating the first sentence of the summary.
+- Speculation disguised as a reveal.
+
+### Step 6: Create Cards
+
+Minimum:
+
+- 2 people
+- 1 invention
+- 1 place
+
+Preferred:
+
+- 3 people
+- 2 inventions
+- 2 places
+
+For nodes with no obvious named people, use role cards:
+
+- The Ice-Core Scientist
+- The Natufian Forager
+- The Quarry Worker
+- The Palace Scribe
+- The Caravan Broker
+- The Ship's Pilot
+- The LiDAR Mapper
+
+### Step 7: Create Resources
+
+Use 3-4 resources:
+
+- 1 accessible video whenever a strong one exists
+- 1 authoritative article or museum page
+- 1 deeper article, podcast, or activity
+- 1 optional "advanced" source when the node is complex
+
+For discoveries and archaeology, include at least one source that shows the evidence directly: artifact page, site page, excavation report, scan map, open access article, or museum collection record.
+
+Video rule: search for a good video for every lesson. Start with the priority list above, then widen only if those fail. A fast but reliable overview like Crash Course can be core if paired with an authority source; a beautiful but speculative video should not be used at all.
+
+### Step 8: Create Quiz
+
+Question mix:
+
+- **Recall:** What was discovered/invented/done?
+- **Cause:** Why did it happen?
+- **Evidence:** What artifact/site/source tells us this?
+- **Impact:** What changed afterward?
+- **Boundary:** What is still debated or what should we not claim?
+
+Use plausible distractors. Bad distractors teach nothing.
+
+### Step 9: Advance Demo Progress
+
+After the lesson is fully fleshed out, buildable, and marked complete in `CONTENT_TODO.md`, bump the demo profile progress constant:
+
+```typescript
+export const DEMO_PROFILE_COMPLETED_THROUGH_NODE_ID = 'node_id_here';
+```
+
+Location: `services/gamification.ts`.
+
+This one constant controls the default demo learner state:
+
+- completed nodes through that point in chronological order
+- XP, using `100 XP` per completed node
+- level, based on fully completed eras
+- default collectible rewards/artifacts, derived from every completed lesson through that node that defines `quiz.collectibleCards`
+
+Only set it to the latest lesson that should count as already finished. The app will open the next unlocked unfinished lesson automatically, and the demo user's artifacts/cards should include all collectible rewards from previous completed lessons.
+
+---
+
+## Project Coverage Priorities
+
+Chronos already covers a broad timeline in `constants.ts`. Make it stronger by ensuring each era has a balanced mix of power, daily life, ideas, technology, art, trade, and discovery.
+
+### Prelude and Foundations
+
+This is where the project can shine. Students often get a thin "cavemen to farming" story; Chronos should show deep human intelligence before empires.
+
+High-value angles:
+
+- Younger Dryas and climate shocks.
+- Gobekli Tepe and early monumental ritual life.
+- Natufian communities, Jericho, Catalhoyuk, and the messy transition to farming.
+- Domestication as partnership and control: dogs, sheep/goats, cattle, horses.
+- Egyptian stoneworking, hieroglyphs, state formation, pyramids, and logistics.
+- Mesopotamian accounting, cities, temples, beer, seals, and contracts.
+- Indus urban planning, drains, weights, undeciphered script.
+- Bronze Age trade as a connected world, not isolated kingdoms.
+- Nubia/Kerma, Olmec centers, Shang oracle bones, and Bantu migrations.
+
+Add "discovery lens" where appropriate:
+
+- Ancient DNA.
+- Ice cores and lake sediments.
+- Ground-penetrating radar and magnetometry.
+- Underwater archaeology.
+- LiDAR.
+- Experimental archaeology: how people test ancient tools without assuming ancient people were helpless.
+
+### Classical Antiquity
+
+Avoid making this just Greece and Rome.
+
+Balance:
+
+- Mediterranean: Greece, Rome, Persia, Judea, Egypt.
+- South Asia: Buddha, Mauryan Empire, Ashoka, Gupta math/science.
+- East Asia: Confucius, Qin/Han statecraft, Silk Road, paper.
+- Africa: Meroe, Aksum if added later, Nile and Red Sea trade.
+- Americas: Chavin, Teotihuacan, Maya science and city-building.
+
+### Medieval World
+
+Make the medieval era feel connected and inventive.
+
+Priority arcs:
+
+- Baghdad, translation, algebra, medicine, astronomy.
+- Tang/Song China: exams, printing, gunpowder, paper money.
+- Indian Ocean trade and Swahili Coast.
+- West African gold/salt networks and Mali.
+- Vikings as raiders, traders, settlers, navigators.
+- Byzantine, Islamic, and Latin Christian worlds interacting.
+- Angkor, Khmer water systems, and Southeast Asian statecraft.
+- Polynesian navigation.
+
+### Contact, Renaissance, Enlightenment, Industry
+
+Handle exploration and empire with both adventure and consequence.
+
+Priority arcs:
+
+- Navigation technologies and why ocean routes became possible.
+- Indigenous societies before and after contact.
+- Disease, trade, conquest, resistance, and exchange.
+- Printing, scientific instruments, public debate, salons, coffeehouses.
+- Revolutions as systems under pressure, not just heroic speeches.
+- Industrialization as energy transition: coal, steam, factories, cities, labor, pollution.
+
+### Global Conflict and Modern
+
+Students need clarity without despair.
+
+Priority arcs:
+
+- World War causes as systems, alliances, technology, nationalism, empire.
+- Home fronts, codebreaking, medicine, logistics, propaganda.
+- Holocaust and genocides: truthful, age-aware, non-graphic, humanizing.
+- Decolonization and civil rights.
+- Cold War as competing systems plus nuclear danger.
+- Computing, internet, genetics, climate science, space exploration, AI.
+- Recent archaeology: Maya LiDAR, Amazon LiDAR, ancient DNA.
+
+---
+
+## Image Sourcing
+
+Images are not decoration. They are memory anchors.
+
+### App Rules
+
+- Local assets go under `public/images/...` and use paths like `/images/foundations/gobekli_tepe.jpg`.
+- External URLs work, but local assets are preferred for reliability.
+- Card image layout is controlled by the content data's `imageFit` prop. Do not patch shared card components just to fix one lesson's image cropping.
+- Default to `imageFit: 'cover'` when you want a full-bleed card image that fills the available width and light cropping is acceptable.
+- Use `imageFit: 'contain'` for tall artifacts, inscriptions, maps, tablets, and full-object museum photos.
+- Use `imageFit: 'cover'` for landscapes, site photos, portraits, and reconstructions.
+- If the edges of the real object, artifact, diagram, or inscription are getting cut off, switch that node's card image to `imageFit: 'contain'`.
+- Do not use Google thumbnail URLs, `encrypted-tbn0`, hotlinked blog images, Pinterest, random CDN copies, or AI-generated "historical photos" unless the node is explicitly using generated illustration.
+- For living people and modern events, use reputable sources and respect rights. If no open image exists, use a symbolic object/place image instead.
+
+### License Preference
+
+Prefer:
+
+1. Public domain museum images.
+2. CC0 images.
+3. CC BY images.
+4. CC BY-SA images, with attribution.
+5. Official non-commercial images only if this app's usage allows it.
+
+Avoid:
+
+- "All rights reserved" images.
+- Editorial photos from news sites unless licensed.
+- Museum images marked "usage conditions apply" unless terms are checked.
+
+### Source Ledger
+
+When adding image assets, also add or update an image source note. If this repo does not yet have one, create `public/images/SOURCES.md`.
+
+Use this format:
+
+```markdown
+## /images/foundations/gobekli_tepe.jpg
+
+- Source page: https://commons.wikimedia.org/wiki/File:G%C3%B6bekli_Tepe.jpg
+- Creator: Rolfcosar
+- License: CC BY-SA 3.0 / GFDL
+- Changes: cropped to 16:9, resized to 1400px wide
+- Used in: younger_dryas_reset, neolithic_revolution
+```
+
+### Exact Starter Photo Sources
+
+These are good candidates for current and near-future cards. Check each license page before downloading, then save locally and record attribution.
+
+| Topic / Card Use | Source Page | Suggested Local Path | Fit | Notes |
+|---|---|---|---|---|
+| Gobekli Tepe site panorama | https://commons.wikimedia.org/wiki/File:G%C3%B6bekli_Tepe.jpg | `/images/places/gobekli_tepe_panorama.jpg` | cover | CC BY-SA/GFDL. Strong visual for early monumental ritual. |
+| Gobekli Tepe closer site photo | https://commons.wikimedia.org/wiki/File:G%C3%B6bekli_Tepe_(1).jpg | `/images/places/gobekli_tepe_enclosure.jpg` | cover | CC license on Commons page. Good card crop. |
+| Hawara labyrinth ruins, Petrie photo | https://commons.wikimedia.org/wiki/File:Hawara-labyrinthe-photo.jpg | `/images/places/hawara_labyrinth_ruins.jpg` | contain | Public domain. Use for Hawara/labyrinth claims with careful wording. |
+| Predynastic Egyptian stone vessel | https://www.metmuseum.org/art/collection/search/547462 | `/images/inventions/predynastic_stone_vessel.jpg` | contain | Met Open Access, public domain. Good for Egyptian stoneworking node or card. |
+| Predynastic open-mouth jar | https://www.metmuseum.org/art/collection/search/568267 | `/images/inventions/predynastic_open_mouth_jar.jpg` | contain | Met public domain. Useful when discussing early craft, not "impossible tech." |
+| Vessel lid shaped like turtle | https://www.metmuseum.org/art/collection/search/544113 | `/images/inventions/egyptian_turtle_vessel_lid.jpg` | contain | Memorable object for craft/detail. |
+| Narmer Palette, both sides | https://commons.wikimedia.org/wiki/File:Narmer_Palette.jpg | `/images/inventions/narmer_palette.jpg` | contain | Public domain reproduction. Use for Narmer/unification. |
+| Narmer detail | https://commons.wikimedia.org/wiki/File:King_Narmer.jpg | `/images/foundations/king_narmer_detail.jpg` | cover | Good person-card crop. Verify page license before use. |
+| Standard of Ur | https://commons.wikimedia.org/wiki/File:Standard_of_ur.jpg | `/images/places/standard_of_ur.jpg` | contain | Lower-res but usable. British Museum official image is NC; Commons version has freer terms. |
+| Standard of Ur, Peace side | https://commons.wikimedia.org/wiki/File:Standard_of_Ur_-_Peace.jpg | `/images/inventions/standard_of_ur_peace.jpg` | contain | Higher-res crop, good for daily life/trade contrast. |
+| Hammurabi stele photo | https://commons.wikimedia.org/wiki/File:Law_of_Hammurabi_Stele_(Copy)_(28704241385).jpg | `/images/inventions/hammurabi_stele.jpg` | contain | CC0 photo of a copy; note that it is a copy if used. |
+| Catalhoyuk site | https://commons.wikimedia.org/wiki/File:%C3%87atalh%C3%B6y%C3%BCk,_7400_BC,_Konya,_Turkey_-_UNESCO_World_Heritage_Site,_11.jpg | `/images/places/catalhoyuk_site.jpg` | cover | CC BY-SA 4.0. Strong for early settlement cards. |
+| Catalhoyuk interior/bull horns | https://commons.wikimedia.org/wiki/File:%C3%87atalh%C3%B6y%C3%BCk_view_7.jpg | `/images/places/catalhoyuk_bull_horns.jpg` | cover | CC BY 2.0. Memorable but verify caption/context. |
+| Uluburun shipwreck gallery | https://commons.wikimedia.org/wiki/Shipwreck_from_Uluburun | `/images/places/uluburun_shipwreck.jpg` | cover | Gallery page with multiple files; choose a specific file and record its license. |
+| Maya LiDAR 2018 article | https://www.nationalgeographic.com/history/article/maya-laser-lidar-guatemala-pacunam | research only | cover | Good research/resource link; images are not open by default. |
+| Amazon LiDAR open article | https://www.nature.com/articles/s41586-022-04780-4 | research only | contain | Open access article. Check figure rights before using images. |
+
+### When Exact Photos Are Missing
+
+Use the best honest substitute:
+
+- Unknown person -> artifact, statue, coin, inscription, or site.
+- Everyday role -> tool, workshop, wall painting, seal, reconstruction from a museum.
+- Abstract system -> map, document, token, road, shipwreck cargo, account tablet.
+- Myth/legend -> manuscript, later artwork, archaeological site, or "mythic memory" object with clear label.
+
+Do not invent photorealistic images of real historical individuals unless the app has decided to use generated art consistently and labels it as illustration.
 
 ---
 
 ## File Organization
 
-### Step 1: Determine File Location
-```
+### Content Location
+
+```text
 data/eras/{era_id}/{region_or_theme}.ts
 ```
 
-**Era IDs**:
+Era IDs:
+
 - `prelude` - The Thaw (12,000-4000 BCE)
 - `foundations` - Early Cities & Bronze Age (4000-1000 BCE)
 - `classical` - Classical Antiquity (1000 BCE - 500 CE)
@@ -294,11 +815,13 @@ data/eras/{era_id}/{region_or_theme}.ts
 - `global_conflict` - The World Wars (1914-1945 CE)
 - `modern` - Atomic & Digital Age (1945-Present)
 
-**Region/Theme Examples**:
-- Geographic/region bundles (this repo’s current style): `egypt_kingdoms.ts`, `mesopotamia_cities.ts`, `levant_bronze_age.ts`, `europe_bronze_age.ts`, `asia_early_civilizations.ts`, `americas_africa_early.ts`
-- Thematic bundles (this repo’s current style): `agriculture.ts`, `climate_transition.ts` (or any file that groups related nodes)
+Current content style:
 
-### Step 2: File Structure
+- Geographic bundles: `egypt_kingdoms.ts`, `mesopotamia_cities.ts`, `levant_bronze_age.ts`, `europe_bronze_age.ts`, `asia_early_civilizations.ts`, `americas_africa_early.ts`.
+- Thematic bundles: `agriculture.ts`, `climate_transition.ts`, or any file that groups related nodes into a learning arc.
+
+### File Structure
+
 ```typescript
 import { NodeContent } from '../../../types';
 
@@ -311,19 +834,15 @@ export const FOUNDATIONS_GENERAL: Record<string, NodeContent> = {
     places: [...],
     resources: [...],
     quiz: {...}
-  },
-  'another_node_id': {
-    // ...
   }
 };
 ```
 
-### Step 3: Register in staticContent.ts
-```typescript
-// IMPORTANT (this repo): no manual registration is needed.
-// `staticContent.ts` eagerly loads `./data/**/*.ts` via `import.meta.glob` and merges
-// any exports shaped like `Record<string, NodeContent>`.
-```
+### Registration
+
+No manual registration is needed.
+
+`staticContent.ts` eagerly loads `./data/**/*.ts` via `import.meta.glob` and merges exports shaped like `Record<string, NodeContent>`.
 
 ---
 
@@ -331,342 +850,104 @@ export const FOUNDATIONS_GENERAL: Record<string, NodeContent> = {
 
 Before submitting content, verify:
 
-### Content Quality
-- [ ] Summary is 3-4 paragraphs, 400-600 words
-- [ ] Summary tells a story (not just lists facts)
-- [ ] Summary is engaging for ages 11-12
-- [ ] Fun fact is memorable and surprising
-- [ ] 2-4 people with complete trading card info
-- [ ] 1-3 inventions with Problem→Solution→Impact
-- [ ] 1-3 places with significance and lore
-- [ ] 3-4 resources (at least 2 videos, 1-2 articles)
-- [ ] 3-5 quiz questions with teaching explanations
+### Historical Quality
 
-### Technical Accuracy
-- [ ] All YouTube URLs include `?rel=0` parameter
-- [ ] No `searchQuery` fields used (use `url` instead)
-- [ ] Resource URLs are real and accessible
-- [ ] Node ID matches stub in `constants.ts`
-- [ ] Content lives under `data/` and is exported as a `Record<string, NodeContent>` so `staticContent.ts` can auto-load it
-- [ ] TypeScript compiles without errors
+- [ ] The node has at least two authoritative sources behind it.
+- [ ] Claims are evidence-ranked: settled, debated, or speculative.
+- [ ] No conspiracy framing, "impossible ancient tech," or "historians are hiding this" language.
+- [ ] Important uncertainty is named plainly.
+- [ ] Multiple perspectives are included when the event affected different groups.
+- [ ] Religion and myth are handled respectfully and clearly.
+- [ ] Violence, slavery, genocide, disease, and oppression are age-appropriate but not sanitized into meaninglessness.
 
-### Educational Value
-- [ ] Content is historically accurate
-- [ ] Multiple perspectives included (not just "winners")
-- [ ] Global coverage (not Eurocentric)
-- [ ] Age-appropriate (no graphic violence/content)
-- [ ] Difficult topics handled honestly but sensitively
-- [ ] Quiz explanations teach, not just confirm answers
+### Learning Quality
 
-### Writing Style
-- [ ] Active voice used throughout
-- [ ] Vivid, engaging language
-- [ ] Technical terms explained in context
-- [ ] No emojis (unless explicitly requested)
-- [ ] Reading level appropriate for 7th grade
-- [ ] Avoids academic jargon and dry tone
+- [ ] Summary is 400-650 words unless the node is intentionally short.
+- [ ] Summary tells a story, not a list.
+- [ ] A concrete memory anchor appears in the summary.
+- [ ] Fun fact is surprising and specific.
+- [ ] Cards include human stakes, not only rulers.
+- [ ] People cards are real historical actors or grounded historical roles, not modern researchers or filler personas.
+- [ ] Inventions use Problem -> Solution -> Impact.
+- [ ] Invention cards are historical technologies/systems from the lesson, not modern research models unless the node itself is modern.
+- [ ] Places are specific, visually imaginable, and named as locations rather than artifacts or object categories.
+- [ ] Empty `people`, `places`, or `inventions` arrays are acceptable when the section would otherwise be forced.
+- [ ] Collectible reward cards are historical figures or technologies/inventions that feel worth collecting.
+- [ ] Location reward cards were not added unless the user explicitly approved them during creation.
+- [ ] A good student-facing video was searched for; if included, it was watched or skimmed for accuracy, pacing, visuals, and age fit.
+- [ ] Quiz explanations teach something new.
+
+### Technical Quality
+
+- [ ] Node ID exactly matches `constants.ts`.
+- [ ] Content exports as `Record<string, NodeContent>`.
+- [ ] New files live under `data/eras/{era_id}/`.
+- [ ] New local images live under `public/images/...`.
+- [ ] `imageFit` is chosen intentionally in the content data for new card images.
+- [ ] Collectible card flows still respect that `imageFit` choice.
+- [ ] `imageFit: 'cover'` is used for full-width / full-bleed card presentation unless preserving the whole object matters more.
+- [ ] `imageFit: 'contain'` is used where object cropping would ruin the card.
+- [ ] Resource URLs are direct, real, and accessible.
+- [ ] YouTube URLs include `rel=0`.
+- [ ] No new `searchQuery` fields.
+- [ ] TypeScript compiles.
+
+### Image Quality
+
+- [ ] Image source page and license are recorded.
+- [ ] Image is not a Google thumbnail or random hotlink.
+- [ ] The image actually shows the thing claimed.
+- [ ] If edges are getting cut off, the fix is the node's `imageFit` value, not a lesson-specific layout hack.
+- [ ] Cropping works in the card and the detail overlay.
+- [ ] Public domain/CC attribution is preserved in `SOURCES.md`.
 
 ---
 
-## Common Mistakes to Avoid
+## Common Mistakes To Avoid
 
-1. **Eurocentric Bias**: Ensure non-Western civilizations get equal depth
-2. **"Just the Facts"**: Tell stories, don't write encyclopedia entries
-3. **Presentism**: Don't judge ancient people by modern standards (but do note ethical issues)
-4. **Skipping Context**: Always explain WHY events mattered, not just WHAT happened
-5. **Weak Fun Facts**: Make them actually fun and memorable!
-6. **Teaching Without Teaching**: Quiz explanations should add value, not repeat answers
-7. **URL Errors**: Always use `url` field with real URLs, never `searchQuery`
-8. **Missing `?rel=0`**: YouTube videos without this parameter will show inappropriate suggestions
-9. **Overcomplication**: Keep it simple - you're writing for 11-12 year olds, not PhD candidates
-10. **Missing the Human Element**: Include emotions, motivations, drama - history is human!
-11. **No woke bullshit!!!**: I cannot stress this enough. Be based and reasonable, no culture war takes
+1. **Thin timeline writing:** "Then this happened, then that happened." Find the pressure and consequence.
+2. **Eurocentric default:** Greece and Rome matter, but so do Persia, India, China, Africa, the Americas, Southeast Asia, Oceania, and the Islamic world.
+3. **Famous-man tunnel vision:** Include builders, farmers, scribes, traders, scientists, artists, workers, and witnesses.
+4. **Mystery inflation:** A real mystery is interesting enough. Do not pad it with unsupported claims.
+5. **Ancient-people condescension:** Never imply people in the past were too primitive to build, measure, organize, navigate, or experiment.
+6. **Modern moral flattening:** Be honest about harm and injustice without turning every node into a present-day argument.
+7. **Generic fun facts:** If a kid would not repeat it, rewrite it.
+8. **Weak resources:** Do not send students to clickbait when museums and universities have better material.
+9. **Bad image provenance:** Do not use image URLs you cannot trace.
+10. **Quiz-as-trivia:** The quiz should reinforce the big idea, not ask random dates.
 
 ---
 
-## Example: Complete Node
+## Example Node Standard
 
-Use this as the reference “good outcome” for structure, writing voice, and completeness:
+Use `bronze_age_begins` in `data/eras/foundations/agriculture.ts` as the current structure model:
 
-- **Node id**: `bronze_age_begins` (stub lives in `constants.ts`)
-- **Content file**: `data/eras/foundations/agriculture.ts` → `bronze_age_begins`
+- It has a story arc: soft copper -> bronze breakthrough -> long-distance trade dependency.
+- It explains why the invention mattered economically, not just technologically.
+- It uses role cards, not only famous rulers.
+- It turns inventions into problem/solution/impact cards.
+- It anchors the story in physical places and artifacts.
+- It uses a quiz to teach consequences and evidence.
 
-Full example (verbatim — yes, it’s long on purpose so the “research AI” sees the expected amount of content):
-
-```typescript
-'bronze_age_begins': {
-  summary:
-    "Around 3300 BCE in the Near East, humans were already skilled metalworkers. For over a thousand years, they'd been smelting copper—heating certain greenish rocks in hot ovens until pure reddish metal dripped out. Copper was amazing: it could be melted and poured into molds, hammered into sheets, or shaped into hooks, pins, and simple tools. But it had a fatal weakness—it was soft. A copper axe blade would dull quickly. A copper sword would bend in battle. Copper was beautiful and useful, but it couldn't compete with good stone tools for serious work.\n\n" +
-    "Then came the breakthrough, probably by accident. A metalworker somewhere—maybe in Anatolia (Turkey), maybe in Mesopotamia (Iraq), maybe in Iran—smelted copper ore that naturally contained traces of tin or arsenic. The result was harder, tougher, and kept a sharp edge much longer. Once smiths realized they could deliberately mix about 10% tin with 90% copper to create bronze, everything changed. Bronze tools cut through wood like butter. Bronze plow blades dug deeper into soil, boosting crop yields. Bronze weapons—swords, daggers, spearheads, arrowheads—gave armies equipped with them a devastating advantage. Bronze also had a lower melting point than copper, making it easier to cast into complex shapes. Suddenly, kings, priests, and wealthy merchants wanted bronze everything: tools, weapons, ritual objects, jewelry, and elaborate decorations.\n\n" +
-    "But there was a catch—a huge one that would shape the next 2,000 years of human history. Copper and tin are almost never found in the same place. Copper deposits were scattered across the Near East, Anatolia, Cyprus, and the Sinai Peninsula. Tin was even rarer, found mainly in distant mountains in Anatolia, Afghanistan, and possibly Central Asia. To make bronze, you needed long-distance trade networks. Miners in remote mountains extracted ore. Merchants loaded it onto donkeys or ships and hauled it hundreds or thousands of miles. Cities controlled trade routes, taxed metal shipments, and employed specialist smiths who guarded their bronze-making secrets. A farmer's bronze plow in Egypt might contain copper from Cyprus and tin from Afghanistan—places he'd never heard of. The Bronze Age wasn't just about a better metal; it was about the first truly interconnected, globalized economy. When those trade routes collapsed around 1200 BCE—due to wars, droughts, and invasions—the whole Bronze Age system came crashing down.",
-  funFact:
-    "Bronze was so valuable in the early Bronze Age that it was often recycled obsessively. Broken tools and weapons were melted down and recast. Archaeologists joke that the same atoms of bronze might have been a dagger in 2000 BCE, a cooking pot in 1500 BCE, and a statue in 1000 BCE.",
-  people: [
-    {
-      name: "The Master Smith",
-      role: "Bronze Metalworker",
-      category: "Scientist",
-      description:
-        "Elite craftspeople who controlled the secrets of bronze-making: the right ratio of copper to tin, the correct furnace temperature (over 1000°C), and how to pour molten metal into intricate molds. Smiths were so valuable that kings kept them close, sometimes even marking them with special tattoos so they couldn't run away to rival kingdoms.",
-      achievements: [
-        "Perfected the copper-tin alloy ratio (typically 90% copper, 10% tin)",
-        "Developed lost-wax casting for complex sculptures and ritual objects",
-        "Created standardized bronze ingots for trade (like ancient currency)"
-      ],
-      legacy: "Bronze smiths were among the first true specialists—craftspeople who didn't farm but were supported by society because their skills were irreplaceable.",
-      imageUrl: "/images/foundations/bronze_smith.jpg"
-    },
-    {
-      name: "The Tin Trader",
-      role: "Long-Distance Merchant",
-      category: "Explorer",
-      description:
-        "Merchants who organized caravans of donkeys and camels to haul tin from distant mountains (Afghanistan, Central Asia, Anatolia) to bronze-hungry cities in Mesopotamia and Egypt. These were dangerous journeys through deserts, mountains, and territories controlled by bandits or rival kingdoms. Successful tin traders became wealthy and powerful.",
-      achievements: [
-        "Established trade routes spanning thousands of miles",
-        "Negotiated safe passage through multiple kingdoms and territories",
-        "Created early forms of credit and contracts for long-distance trade"
-      ],
-      legacy: "Tin traders created the first truly international trade networks, proving that valuable commodities could connect civilizations across vast distances.",
-      imageUrl: "/images/foundations/tin_trader.jpg"
-    },
-    {
-      name: "The Bronze-Armed Warrior",
-      role: "Elite Soldier",
-      category: "Military",
-      description:
-        "Soldiers equipped with bronze weapons and armor had an overwhelming advantage over those with stone or copper weapons. Bronze swords didn't shatter, bronze-tipped spears pierced leather armor, and bronze helmets protected against blows. Only wealthy kingdoms could afford to equip entire armies with bronze, creating a military aristocracy.",
-      legacy: "Bronze weapons created the first true warrior elites and made large-scale organized warfare deadlier than ever before.",
-      imageUrl: "/images/foundations/bronze_warrior.jpg"
-    }
-  ],
-  inventions: [
-    {
-      name: "Bronze Alloy (Copper + Tin)",
-      description: "Deliberate mixing of 90% copper with 10% tin to create a metal superior to either alone",
-      category: "Science",
-      date: "c. 3300 BCE",
-      imageUrl: "/images/inventions/bronze_ingot.jpg",
-      problem:
-        "Pure copper is soft—it bends easily, dulls quickly, and can't hold a sharp edge. Copper tools are prettier than stone tools, but not much more effective. Stone axes often outperform copper axes. For a metal to truly replace stone, it needs to be significantly harder and more durable.",
-      solution:
-        "Metalworkers discovered (probably by accident at first) that adding a small amount of tin to molten copper creates an alloy called bronze. The tin atoms disrupt the copper's crystal structure, making it much harder. Bronze holds a sharp edge, resists bending, and can be remelted and recast repeatedly. The ideal ratio is about 10% tin, though smiths experimented with 5-15% depending on whether they wanted hardness (weapons) or workability (tools).",
-      impact:
-        "Bronze tools revolutionized agriculture (better plows = more food = larger populations), construction (bronze chisels carved stone monuments), and especially warfare (bronze weapons were so superior that armies without them stood little chance). Bronze also created economic interdependence: no region had everything it needed, so trade became essential. This interconnected economy lasted 2,000 years until it collapsed catastrophically around 1200 BCE."
-    },
-    {
-      name: "Lost-Wax Casting",
-      description: "Advanced technique for creating detailed bronze sculptures and complex shapes",
-      category: "Art",
-      date: "c. 3000 BCE",
-      imageUrl: "/images/inventions/lost_wax_casting.jpg",
-      problem:
-        "Simple open molds can create flat objects, but how do you cast a three-dimensional statue with intricate details—like a god's face, or fingers holding a weapon? Hammering bronze by hand limits what shapes are possible.",
-      solution:
-        "Sculptors carve a model in wax with all the fine details they want. They cover the wax model in clay, leaving a small hole. When heated, the wax melts and drains out (hence 'lost wax'), leaving a hollow clay mold with the exact shape of the original. Pour molten bronze in, let it cool, break open the clay, and you have a perfect bronze replica. Each mold is single-use, but the results are stunning.",
-      impact:
-        "Lost-wax casting enabled Bronze Age artists to create masterpieces: elaborate statues of gods and kings, intricate jewelry, ceremonial vessels, and ritual objects. It turned bronze from a utilitarian material into an artistic medium. Many Bronze Age sculptures we admire today were made this way."
-    },
-    {
-      name: "Bronze Ingot Standardization",
-      description: "Standardized shapes and weights for bronze, making it easier to trade",
-      category: "Politics",
-      date: "c. 2000 BCE",
-      imageUrl: "/images/inventions/bronze_ingot.jpg",
-      problem:
-        "Bronze is valuable, but raw bronze is hard to transport and trade. How do you know you're getting a fair deal? How do merchants and kings keep track of bronze being shipped across hundreds of miles?",
-      solution:
-        "Bronze was cast into standardized shapes—most famously, the 'oxhide ingot' shaped like a stretched animal hide with four handles for carrying. These ingots had consistent weights (typically 20-30kg), making them easy to trade, stack on ships, and account for in palace records. They functioned like large-denomination currency.",
-      impact:
-        "Standardized ingots facilitated long-distance trade and helped create a Bronze Age 'common market.' Shipwrecks from this era (like the Uluburun wreck off Turkey, c. 1300 BCE) are loaded with dozens of identical oxhide ingots—evidence of a sophisticated trade system spanning the Mediterranean."
-    }
-  ],
-  places: [
-    {
-      name: "Kestel Mine & Göltepe, Turkey",
-      description:
-        "One of the world's oldest known tin mines, located in the Taurus Mountains of central Anatolia (Turkey). Active around 3000 BCE, this mine supplied tin to early Bronze Age civilizations in Mesopotamia. The nearby site of Göltepe shows evidence of tin processing and smelting.",
-      location: "Taurus Mountains, central Turkey (near modern Niğde Province)",
-      significance:
-        "Kestel is crucial because tin sources are so rare. For centuries, archaeologists wondered where Bronze Age civilizations got their tin. Kestel proved that Anatolia had accessible tin deposits, helping explain how the Bronze Age started in the Near East. Control of tin mines like this gave kingdoms immense power—without tin, you can't make bronze, and without bronze, you can't compete.",
-      imageUrl: "/images/places/kestel_mine.jpg"
-    },
-    {
-      name: "The Uluburun Shipwreck Site",
-      description:
-        "A Bronze Age merchant ship that sank off the coast of Turkey around 1300 BCE. Discovered in 1982 and excavated over 11 years, it contained an astonishing cargo: 10 tons of copper ingots, 1 ton of tin ingots, luxury goods (ivory, glass, ebony, gold, jewelry), weapons, pottery from multiple civilizations, and even an Egyptian scarab of Queen Nefertiti.",
-      location: "Mediterranean Sea off the coast of Kaş, southwestern Turkey (50 meters underwater)",
-      significance:
-        "The Uluburun shipwreck is like a time capsule showing how interconnected the Bronze Age world was. The copper was from Cyprus, the tin likely from Afghanistan or Anatolia, the pottery from Cyprus and Canaan, the ivory from Africa or Syria, the glass from Egypt. One ship carried goods from at least seven different civilizations. It proves that the Bronze Age wasn't isolated city-states—it was a genuinely globalized trade network. When that network collapsed around 1200 BCE, it triggered a dark age.",
-      imageUrl: "/images/places/uluburun_wreck.jpg"
-    }
-  ],
-  resources: [
-    {
-      title: "The Bronze Age | What Was the Bronze Age",
-      type: "Video",
-      url: "https://www.youtube.com/watch?v=PYqHA5C82Xs&rel=0",
-      isCore: true,
-      description:
-        "Comprehensive video explaining the Bronze Age period (c. 3000-1000 BCE), how bronze alloy was discovered, its advantages over copper, the rise of trade networks, and why bronze revolutionized warfare, agriculture, and craftsmanship."
-    },
-    {
-      title: "The Bronze Age Collapse - Fall of Civilizations Podcast",
-      type: "Podcast",
-      url: "https://podcasts.apple.com/us/podcast/2-the-bronze-age-collapse-mediterranean-apocalypse/id1449884495?i=1000428254681",
-      isCore: true,
-      description:
-        "65-minute podcast exploring Bronze Age civilizations at their height—their trade networks, technology, and interconnected economies—and what caused their dramatic collapse around 1200 BCE. Shows why bronze was so crucial to ancient societies."
-    },
-    {
-      title: "Ingots and Bronze Age Copper Trade - Penn Museum",
-      type: "Article",
-      url: "https://www.penn.museum/sites/expedition/ingots-and-the-bronze-age-copper-trade-in-the-mediterranean/",
-      isCore: false,
-      description:
-        "Scholarly article examining copper ingots found across the Mediterranean, how they reveal Bronze Age trade networks spanning thousands of miles, and the logistics of transporting heavy metals across ancient seas."
-    },
-    {
-      title: "Uluburun Shipwreck - World History Encyclopedia",
-      type: "Article",
-      url: "https://www.worldhistory.org/Uluburun_Shipwreck/",
-      isCore: false,
-      description:
-        "Documentary about the incredible underwater archaeology of the Uluburun wreck and what it reveals about Bronze Age trade."
-    }
-  ],
-  quiz: {
-    title: "Metallurgy Mastery Protocol",
-    description: "Prove your understanding of the Bronze Age revolution to unlock collectible cards.",
-    questions: [
-      {
-        id: "bronze_q1",
-        text: "What is bronze made from?",
-        options: [
-          "Pure copper heated to very high temperatures",
-          "Copper mixed with about 10% tin",
-          "Iron mixed with carbon",
-          "Gold mixed with silver"
-        ],
-        correctIndex: 1,
-        explanation:
-          "Bronze is an alloy of approximately 90% copper and 10% tin. The tin makes the copper much harder and better at holding a sharp edge. Different ratios were used for different purposes—more tin for weapons, less for tools."
-      },
-      {
-        id: "bronze_q2",
-        text: "Why was the Bronze Age so dependent on long-distance trade?",
-        options: [
-          "Bronze was too heavy to produce locally",
-          "Copper and tin deposits are almost never found in the same place",
-          "Only one civilization knew how to make bronze",
-          "Kings wanted exotic decorations"
-        ],
-        correctIndex: 1,
-        explanation:
-          "Copper deposits and tin deposits are rarely found together. Tin was especially rare, found mainly in Anatolia, Afghanistan, and Central Asia. To make bronze, you needed trade networks spanning hundreds or thousands of miles. This created the first truly globalized economy."
-      },
-      {
-        id: "bronze_q3",
-        text: "What major advantage did bronze have over copper?",
-        options: [
-          "It was easier to find in nature",
-          "It was much harder and held a sharp edge longer",
-          "It was lighter and easier to carry",
-          "It looked more impressive"
-        ],
-        correctIndex: 1,
-        explanation:
-          "Bronze is significantly harder than pure copper and keeps a sharp edge much longer. This made bronze tools far more effective than copper tools, and bronze weapons dominated battlefields. A bronze sword could cut through copper armor easily."
-      },
-      {
-        id: "bronze_q4",
-        text: "What were 'oxhide ingots'?",
-        options: [
-          "Bronze shields shaped like animal hides",
-          "Standardized bronze blocks shaped like stretched hides, used for trade",
-          "Leather bags for carrying tin",
-          "Ceremonial objects used in rituals"
-        ],
-        correctIndex: 1,
-        explanation:
-          "Oxhide ingots were standardized bronze blocks weighing 20-30kg, shaped like stretched animal hides with four handles. They made bronze easier to transport, trade, and account for—functioning almost like large-denomination currency."
-      },
-      {
-        id: "bronze_q5",
-        text: "What technique allowed Bronze Age artists to create detailed sculptures?",
-        options: [
-          "Hammering thin bronze sheets",
-          "Carving cooled bronze with chisels",
-          "Lost-wax casting",
-          "Stone molds"
-        ],
-        correctIndex: 2,
-        explanation:
-          "Lost-wax casting involved making a wax model, covering it in clay, melting out the wax, and pouring bronze into the hollow mold. This allowed incredibly detailed three-dimensional sculptures and objects. Each mold was single-use, but the results were stunning."
-      },
-      {
-        id: "bronze_q6",
-        text: "Why did control of tin mines give kingdoms enormous power?",
-        options: [
-          "Tin was used to make coins",
-          "Without tin, you couldn't make bronze weapons and tools",
-          "Tin was needed for food preservation",
-          "Tin mines produced gold as a byproduct"
-        ],
-        correctIndex: 1,
-        explanation:
-          "Tin was essential for making bronze, and tin deposits were extremely rare. Kingdoms that controlled tin mines or tin trade routes had a monopoly on bronze production. Without access to tin, your civilization couldn't make modern weapons or tools—you were stuck in the Stone Age while your neighbors had bronze."
-      },
-      {
-        id: "bronze_q7",
-        text: "What does the Uluburun shipwreck tell us about the Bronze Age?",
-        options: [
-          "Ships were very small and primitive",
-          "Trade was limited to nearby regions",
-          "The Bronze Age was a highly interconnected, globalized economy",
-          "Bronze was only used by wealthy elites"
-        ],
-        correctIndex: 2,
-        explanation:
-          "The Uluburun shipwreck (c. 1300 BCE) contained goods from at least seven different civilizations: Cypriot copper, Afghan or Anatolian tin, Egyptian gold, African ivory, Canaanite pottery, and more. One ship carried materials that had traveled thousands of miles. This proves the Bronze Age had a sophisticated, interconnected trade network spanning the known world."
-      }
-    ],
-    collectibleCards: [
-      { type: 'person', index: 0, id: 'bronze_master_smith' },      // The Master Smith
-      { type: 'person', index: 1, id: 'bronze_tin_trader' },        // The Tin Trader
-      { type: 'invention', index: 0, id: 'bronze_alloy' },          // Bronze Alloy
-      { type: 'invention', index: 1, id: 'lost_wax_casting' },       // Lost-Wax Casting
-      { type: 'place', index: 1, id: 'uluburun_shipwreck' }         // The Uluburun Shipwreck
-    ]
-  }
-},
-```
-
-Key features:
-- Engaging narrative summary that explains the “metal recipe” *and* the trade-network consequences
-- Memorable fun fact that’s actually sticky for kids
-- People cards that include “roles” beyond famous kings (smiths, merchants, soldiers)
-- Inventions written as **Problem → Solution → Impact**
-- Places that physically anchor the story (mines, shipwrecks) + why they matter
-- Resources with real `url` values (YouTube includes `rel=0`)
-- Quiz explanations that teach (not just confirm)
+When improving future nodes, aim for the same density but with stronger sourcing, cleaner image provenance, and a sharper evidence boundary for discoveries that are exciting but debated.
 
 ---
 
 ## Research Time Estimates
 
-- **Quick Node** (well-documented topic): 90-120 minutes
-- **Standard Node** (moderate research): 120-180 minutes
-- **Complex Node** (requires deep research): 180-240 minutes
+- **Quick node:** 90-120 minutes. Well-documented, clear images, little controversy.
+- **Standard node:** 2-3 hours. Several sources, cards, resources, and quiz.
+- **Complex node:** 3-5 hours. Debated evidence, sensitive topic, weak image availability, or major global consequences.
+- **Discovery node:** 3-6 hours. Requires extra care on evidence boundaries, image rights, and current scholarship.
 
-Budget your time accordingly and don't rush - quality matters!
+Quality matters more than speed. A single excellent node can teach a whole pattern of history.
 
 ---
 
-## Questions or Issues?
+## When In Doubt
 
-If you encounter problems:
-1. Check existing completed nodes for reference
-2. Verify data model in `types.ts`
-3. Review CLAUDE.md for project-specific guidance
-4. When in doubt, prioritize educational value and engaging storytelling
+1. Check existing completed nodes for structure.
+2. Verify types in `types.ts`.
+3. Check `constants.ts` for exact node IDs.
+4. Prefer evidence over drama, but do not drain the wonder out of real discoveries.
+5. Ask: "What object, place, or decision will the learner remember?"

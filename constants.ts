@@ -169,7 +169,7 @@ export const INITIAL_NODES: TimelineNodeStub[] = [
   { id: 'neolithic_revolution', title: 'The Agricultural Revolution', year: 'c. 10,000 BCE', eraId: 'foundations', region: 'Fertile Crescent', tags: ['Science'] },
   { id: 'animal_domestication', title: 'Domestication of Animals', year: 'c. 8000 BCE', eraId: 'foundations', region: 'Middle East', tags: ['Science'] },
   { id: 'bronze_age_begins', title: 'Bronze Age Begins', year: 'c. 3300 BCE', eraId: 'foundations', region: 'Middle East', tags: ['Science'] },
-  { id: 'wheel', title: 'Invention of the Wheel', year: 'c. 3500 BCE', eraId: 'foundations', region: 'Mesopotamia', tags: ['Science'] },
+  { id: 'wheel', title: 'Invention of the Wheel', year: 'by c. 3600 BCE', eraId: 'foundations', region: 'Europe/Mesopotamia', tags: ['Science'] },
   { id: 'sumer_writing', title: 'Invention of Cuneiform', year: 'c. 3400 BCE', eraId: 'foundations', region: 'Mesopotamia', tags: ['Science', 'Literature'] },
   { id: 'uruk', title: 'Uruk Grows into First Big City', year: 'c. 3200 BCE', eraId: 'foundations', region: 'Mesopotamia', tags: ['Politics', 'Science'] },
   { id: 'hieroglyphs', title: 'Egyptian Hieroglyphs Standardized', year: 'c. 3200 BCE', eraId: 'foundations', region: 'Egypt', tags: ['Literature', 'Art'] },

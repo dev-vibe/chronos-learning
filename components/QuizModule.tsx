@@ -29,6 +29,7 @@ const resolveCollectibleCards = (quiz: Quiz, nodeContent?: NodeContent): Collect
         name: person.name,
         description: person.description,
         imageUrl: person.imageUrl,
+        imageFit: person.imageFit,
         category: person.category,
         role: person.role,
         rarity: 'Common' // Default rarity, can be customized per card
@@ -41,6 +42,7 @@ const resolveCollectibleCards = (quiz: Quiz, nodeContent?: NodeContent): Collect
         name: invention.name,
         description: invention.description,
         imageUrl: invention.imageUrl,
+        imageFit: invention.imageFit,
         category: invention.category,
         rarity: 'Common'
       };
@@ -52,6 +54,7 @@ const resolveCollectibleCards = (quiz: Quiz, nodeContent?: NodeContent): Collect
         name: place.name,
         description: place.description,
         imageUrl: place.imageUrl,
+        imageFit: place.imageFit,
         location: place.location,
         rarity: 'Common'
       };
@@ -186,7 +189,7 @@ export const QuizModule: React.FC<QuizModuleProps> = ({ quiz, nodeId, isComplete
                                                       <img 
                                                           src={imageUrl} 
                                                           alt={card.name}
-                                                          className="w-full h-full object-cover opacity-70 group-hover:opacity-100 transition-opacity"
+                                                          className={`w-full h-full ${card.imageFit === 'contain' ? 'object-contain' : 'object-cover'} opacity-70 group-hover:opacity-100 transition-opacity`}
                                                       />
                                                   </div>
                                                   <h4 className="text-stone-200 font-bold text-xs truncate font-display">{card.name}</h4>

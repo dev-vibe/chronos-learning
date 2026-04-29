@@ -3,8 +3,8 @@
  * Profile state is managed by react-query via UserProfileContext
  */
 
-import { FOUNDATIONS_YOUNGER_DRYAS } from '../data/eras/prelude/climate_transition';
-import { FOUNDATIONS_GENERAL } from '../data/eras/foundations/agriculture';
+import { ERAS, INITIAL_NODES } from '../constants';
+import { STATIC_CONTENT } from '../staticContent';
 import { CollectibleCard, CollectibleCardRef, NodeContent } from '../types';
 
 export interface UserProfile {
@@ -14,11 +14,75 @@ export interface UserProfile {
   nodesCompleted: string[];
 }
 
-const FIRST_ERA_NODE_ID = 'younger_dryas_reset';
-const AGRICULTURE_NODE_ID = 'neolithic_revolution';
-const DEFAULT_USER_XP = 200;
-const DEFAULT_USER_LEVEL = 2;
-const DEFAULT_COMPLETED_NODES = [FIRST_ERA_NODE_ID, AGRICULTURE_NODE_ID];
+const XP_PER_COMPLETED_NODE = 100;
+
+// Bump this after a lesson is fully fleshed out and should count as completed
+// in the demo profile. The app will open the next unlocked unfinished lesson.
+export const DEMO_PROFILE_COMPLETED_THROUGH_NODE_ID = 'animal_domestication';
+
+// Use this only when the unlock chain needs extra completed lessons while
+// keeping a specific target lesson open for the demo profile.
+export const DEMO_PROFILE_ADDITIONAL_COMPLETED_NODE_IDS: string[] = [];
+
+const parseYearForProgress = (year: string): number => {
+  let cleaned = year.replace(/^(c\.|ca\.|circa|~)\s*/i, '').trim();
+  cleaned = cleaned.replace(/,/g, '');
+
+  const match = cleaned.match(/(\d+(?:\.\d+)?)/);
+  if (!match) return 0;
+
+  const numericYear = parseFloat(match[1]);
+  if (cleaned.toUpperCase().includes('BCE') || cleaned.toUpperCase().includes('BC')) {
+    return -numericYear;
+  }
+
+  return numericYear;
+};
+
+const getChronologicalNodeIds = (): string[] => {
+  return [...INITIAL_NODES]
+    .sort((a, b) => parseYearForProgress(a.year) - parseYearForProgress(b.year))
+    .map(node => node.id);
+};
+
+const getCompletedNodeIdsThrough = (nodeId: string): string[] => {
+  const chronologicalNodeIds = getChronologicalNodeIds();
+  const completedThroughIndex = chronologicalNodeIds.indexOf(nodeId);
+
+  if (completedThroughIndex === -1) {
+    console.warn(`[Gamification] Demo profile progress node not found: ${nodeId}`);
+    return [];
+  }
+
+  return chronologicalNodeIds.slice(0, completedThroughIndex + 1);
+};
+
+const getDemoCompletedNodeIds = (): string[] => {
+  const completedNodeIds = new Set(getCompletedNodeIdsThrough(DEMO_PROFILE_COMPLETED_THROUGH_NODE_ID));
+
+  DEMO_PROFILE_ADDITIONAL_COMPLETED_NODE_IDS.forEach(nodeId => {
+    completedNodeIds.add(nodeId);
+  });
+
+  return getChronologicalNodeIds().filter(nodeId => completedNodeIds.has(nodeId));
+};
+
+const calculateDefaultLevel = (nodesCompleted: string[]): number => {
+  const completedNodeIds = new Set(nodesCompleted);
+  const completedEraCount = ERAS.filter(era => {
+    const eraNodeIds = INITIAL_NODES
+      .filter(node => node.eraId === era.id)
+      .map(node => node.id);
+
+    return eraNodeIds.length > 0 && eraNodeIds.every(nodeId => completedNodeIds.has(nodeId));
+  }).length;
+
+  return 1 + completedEraCount;
+};
+
+const DEFAULT_COMPLETED_NODES = getDemoCompletedNodeIds();
+const DEFAULT_USER_XP = DEFAULT_COMPLETED_NODES.length * XP_PER_COMPLETED_NODE;
+const DEFAULT_USER_LEVEL = calculateDefaultLevel(DEFAULT_COMPLETED_NODES);
 
 const resolveCollectibleCard = (ref: CollectibleCardRef, content: NodeContent, fallbackIndex: number): CollectibleCard | null => {
   if (ref.type === 'person') {
@@ -31,6 +95,7 @@ const resolveCollectibleCard = (ref: CollectibleCardRef, content: NodeContent, f
       name: person.name,
       description: person.description,
       imageUrl: person.imageUrl,
+      imageFit: person.imageFit,
       category: person.category,
       role: person.role,
       rarity: 'Common'
@@ -47,6 +112,7 @@ const resolveCollectibleCard = (ref: CollectibleCardRef, content: NodeContent, f
       name: invention.name,
       description: invention.description,
       imageUrl: invention.imageUrl,
+      imageFit: invention.imageFit,
       category: invention.category,
       rarity: 'Common'
     };
@@ -61,6 +127,7 @@ const resolveCollectibleCard = (ref: CollectibleCardRef, content: NodeContent, f
     name: place.name,
     description: place.description,
     imageUrl: place.imageUrl,
+    imageFit: place.imageFit,
     location: place.location,
     rarity: 'Common'
   };
@@ -76,18 +143,9 @@ export const getNodeCollectibleCards = (node?: NodeContent): CollectibleCard[] =
     .filter((card): card is CollectibleCard => card !== null);
 };
 
-export const getFirstEraCollectibleCards = (): CollectibleCard[] => {
-  return getNodeCollectibleCards(FOUNDATIONS_YOUNGER_DRYAS[FIRST_ERA_NODE_ID]);
-};
-
-export const getAgricultureCollectibleCards = (): CollectibleCard[] => {
-  return getNodeCollectibleCards(FOUNDATIONS_GENERAL[AGRICULTURE_NODE_ID]);
-};
-
-export const DEFAULT_COLLECTIBLE_CARDS = [
-  ...getFirstEraCollectibleCards(),
-  ...getAgricultureCollectibleCards()
-];
+export const DEFAULT_COLLECTIBLE_CARDS = DEFAULT_COMPLETED_NODES.flatMap(nodeId =>
+  getNodeCollectibleCards(STATIC_CONTENT[nodeId])
+);
 
 export const createDefaultUserProfile = (): UserProfile => ({
   xp: DEFAULT_USER_XP,

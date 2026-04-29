@@ -3,8 +3,8 @@
 This document tracks which timeline nodes have content and which still need to be created.
 
 **Total Nodes**: ~475
-**Completed**: ~48 (Foundations era mostly complete, 6 classical nodes done)
-**Remaining**: ~427
+**Completed**: ~49 (Foundations era mostly complete, 7 classical nodes done)
+**Remaining**: ~426
 
 ---
 
@@ -39,18 +39,18 @@ This document tracks which timeline nodes have content and which still need to b
 
 ## CLASSICAL ANTIQUITY (1000 BCE - 500 CE) - ~40 nodes
 
-### ✅ Completed (6/40)
+### ✅ Completed (7/40)
 - ✅ `david` - Reign of King David (~1000 BCE) - **data/eras/classical/judaism_diaspora.ts**
 - ✅ `chavin` - Chavín Culture (~900 BCE) - **data/eras/classical/americas_classical.ts**
 - ✅ `olympics` - First Olympic Games (776 BCE) - **data/eras/classical/greece_golden_age.ts**
 - ✅ `homer` - Homer's Iliad & Odyssey (~750 BCE) - **data/eras/classical/greece_golden_age.ts**
 - ✅ `rome_founded` - Founding of Rome (~753 BCE) - **data/eras/classical/rome_republic_empire.ts**
 - ✅ `cyrus` - Cyrus the Great & Persian Empire (550 BCE) - **data/eras/classical/persian_empires.ts**
+- ✅ `marathon` - Battle of Marathon (490 BCE) - **data/eras/classical/greece_golden_age.ts**
 
-### ❌ Needs Content (34/40)
+### ❌ Needs Content (33/40)
 
 **Greece/Macedonia** (suggested file: `data/eras/classical/greece_golden_age.ts` - expand existing):
-- ❌ `marathon` - Battle of Marathon (490 BCE)
 - ❌ `pericles` - Golden Age of Athens (Pericles) (~450 BCE)
 - ❌ `peloponnesian_war` - Peloponnesian War Begins (431 BCE)
 - ❌ `socrates` - Trial of Socrates (399 BCE)

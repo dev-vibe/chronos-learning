@@ -100,6 +100,7 @@ export interface CollectibleCard {
   name: string;
   description: string;
   imageUrl?: string;
+  imageFit?: 'cover' | 'contain';
   rarity?: 'Common' | 'Rare' | 'Legendary' | 'Mythic' | 'Epic';
   // Additional fields based on type
   category?: string; // For person or invention

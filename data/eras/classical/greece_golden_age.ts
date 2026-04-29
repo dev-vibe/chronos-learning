@@ -392,5 +392,218 @@ export const CLASSICAL_GREECE: Record<string, NodeContent> = {
         }
       ]
     }
+  },
+
+  'marathon': {
+    summary:
+      "In 490 BCE, the Persian Empire sent an invasion force across the Aegean Sea to punish Athens. A few years earlier, Athens had helped Greek cities in Ionia rebel against Persian rule. King Darius I wanted revenge, and he also wanted to show the Greek city-states that resisting Persia was hopeless. The Persians captured and burned Eretria, then landed at Marathon, a flat plain about 26 miles from Athens. Their ships carried archers, infantry, and cavalry; behind them stood the power of the largest empire the Mediterranean world had ever seen. Athens had no walls strong enough to hide behind, and Sparta could not arrive in time. The Athenians had to decide: wait and risk being trapped, or attack a larger imperial army in the open.\n\n" +
+      "The decision fell to the Athenian generals, especially Miltiades, who had experience with Persian warfare. Athens fielded roughly 10,000 citizen-soldiers called hoplites, joined by about 1,000 loyal allies from Plataea. These were not professional imperial troops. They were farmers, craftsmen, fathers, sons, and neighbors who owned their own armor and fought in a dense shield-wall formation called a phalanx. According to later tradition, a runner named Pheidippides had already been sent to Sparta for help, covering an astonishing distance in two days. But the Spartans were delayed by a religious festival. Marathon would be fought by Athens and Plataea alone.\n\n" +
+      "Miltiades took a huge risk. The Persian army was dangerous at range, especially with archers, and its cavalry could crush troops caught in the open. But the Persian cavalry may have been absent or not ready when the Greeks attacked. Miltiades stretched his line so it matched the Persian front, strengthening the wings while leaving the center thinner. Then the hoplites advanced rapidly across the plain, closing the distance before Persian arrows could do their worst. The Persian center pushed back the weaker Greek middle, but the stronger Greek wings smashed through on both sides. Then they wheeled inward, trapping the Persians in a deadly squeeze. It was one of history's classic battlefield maneuvers: a double envelopment, won by discipline, armor, and nerve.\n\n" +
+      "The result stunned the ancient world. The Athenians and Plataeans drove the Persians back to their ships, killing thousands while losing only 192 Athenians according to Herodotus. The victory did not end the Persian Wars. Ten years later, Darius's son Xerxes would return with an even larger invasion, leading to Thermopylae, Salamis, and Plataea. But Marathon changed the story. It proved Persia could be beaten. It gave Athens enormous confidence just before its democratic culture, navy, drama, philosophy, and architecture reached their height. It also created one of history's most famous legends: a messenger running from Marathon to Athens to announce victory. Herodotus tells a different story about Pheidippides running to Sparta before the battle, but the later victory-run legend inspired the modern marathon race. Whether or not that final sprint happened exactly as told, Marathon became a symbol of a small community gambling everything to defend its freedom.",
+    funFact:
+      "The modern marathon race comes from a later legend about a messenger running from Marathon to Athens after the battle. The more reliable ancient source, Herodotus, says Pheidippides ran from Athens to Sparta before the battle - about 150 miles in two days!",
+    people: [
+      {
+        name: "Miltiades",
+        role: "Athenian General",
+        category: "Military",
+        description:
+          "The Athenian commander most associated with the victory at Marathon. Miltiades had previously lived under Persian power in the Chersonese, so he understood both Persian strengths and Greek fears. At Marathon, he argued for attack and used a bold formation that strengthened the Greek wings while thinning the center.",
+        born: "c. 550 BCE",
+        died: "489 BCE",
+        nationality: "Athenian",
+        achievements: [
+          "Persuaded the Athenians to attack instead of waiting passively",
+          "Used a risky battle plan that helped the Greek wings envelop the Persian line",
+          "Became one of Athens's most celebrated military leaders"
+        ],
+        legacy: "Miltiades showed that tactics, timing, and morale could overcome a larger imperial force. His victory became a foundation story for Athenian confidence.",
+        imageUrl: "/images/classical/miltiades.jpg"
+      },
+      {
+        name: "Callimachus",
+        role: "Athenian Polemarch",
+        category: "Military",
+        description:
+          "The polemarch was a senior Athenian war official. When the generals were split over whether to attack, Herodotus says Callimachus cast the deciding vote in favor of battle. He fought on the Greek right wing and died in the fighting.",
+        died: "490 BCE",
+        nationality: "Athenian",
+        achievements: [
+          "Cast the deciding vote to attack the Persians at Marathon",
+          "Led the honored right wing of the Athenian army",
+          "Died in the battle he helped make possible"
+        ],
+        legacy: "Callimachus represents the civic courage behind Marathon: democratic Athens did not wait for a king to decide its fate.",
+        imageUrl: "/images/classical/callimachus.jpg"
+      },
+      {
+        name: "Pheidippides",
+        role: "Long-Distance Messenger",
+        category: "Other",
+        description:
+          "A professional runner, or hemerodromos, remembered for carrying urgent messages across dangerous terrain. Herodotus says he ran from Athens to Sparta before the battle to ask for help. Later tradition transformed him into the messenger who ran from Marathon to Athens after the victory.",
+        nationality: "Athenian",
+        achievements: [
+          "Ran from Athens to Sparta to request military aid",
+          "Became linked to the legendary origin of the marathon race",
+          "Represents the speed of communication before telegraphs, radios, or phones"
+        ],
+        legacy: "His story became a symbol of endurance. Even though the famous victory-run version is later legend, it inspired one of the world's best-known athletic events.",
+        imageUrl: "/images/classical/pheidippides.jpg"
+      },
+      {
+        name: "Datis",
+        role: "Persian Commander",
+        category: "Military",
+        description:
+          "A Median admiral and general serving King Darius I. Datis helped lead the Persian expedition that crossed the Aegean, captured Eretria, and landed at Marathon to threaten Athens.",
+        nationality: "Persian Empire",
+        achievements: [
+          "Commanded part of Darius I's punitive expedition against Greece",
+          "Captured Eretria before moving against Athens",
+          "Led Persian forces during the first major Persian invasion of mainland Greece"
+        ],
+        legacy: "Datis's defeat showed that Persian imperial power was formidable but not invincible, especially when facing heavily armored hoplites on ground chosen by determined defenders.",
+        imageUrl: "/images/classical/datis.jpg"
+      }
+    ],
+    inventions: [
+      {
+        name: "Hoplite Phalanx",
+        description: "Dense formation of armored citizen-soldiers fighting shoulder to shoulder",
+        category: "Military",
+        problem: "A city-state needed ordinary citizens to stand against professional armies and cavalry without breaking apart in panic.",
+        solution: "Hoplites carried large round shields, spears, helmets, and body armor, locking together into a disciplined wall that protected each soldier's neighbor.",
+        impact: "The phalanx gave Greek city-states a battlefield advantage in close combat and connected military service to citizenship and civic identity."
+      },
+      {
+        name: "Double Envelopment Tactic",
+        description: "Battlefield maneuver where strong wings fold inward around an enemy center",
+        category: "Military Strategy",
+        problem: "The Athenians needed to defeat a larger army without being overwhelmed by Persian numbers and missile fire.",
+        solution: "Miltiades strengthened the Greek flanks, allowed the center to bend, and then used the victorious wings to close around the Persians.",
+        impact: "Marathon became a famous example of winning through formation and timing, not just numbers. Later commanders studied similar enveloping maneuvers for centuries."
+      },
+      {
+        name: "Hemerodromos Messenger System",
+        description: "Use of trained long-distance runners for urgent military communication",
+        category: "Communication",
+        problem: "Greek cities needed to request help quickly across mountains and rough roads with no fast mechanical communication.",
+        solution: "Professional day-runners carried messages over huge distances, sometimes running for days between city-states.",
+        impact: "Pheidippides's run to Sparta shows how communication could shape strategy. The later Marathon legend turned this practical military job into a global symbol of endurance."
+      }
+    ],
+    places: [
+      {
+        name: "Plain of Marathon",
+        description: "Coastal battlefield in northeastern Attica where Athens and Plataea defeated Persia",
+        location: "Marathon, Attica, Greece",
+        significance: "The Persians landed here because the plain offered room for cavalry and access to Athens by sea and road. The terrain forced the Athenians to make a direct decision: attack or risk letting the invaders move on the city.",
+        lore: "A burial mound, the Soros, still marks the Athenians who died at Marathon. Herodotus says 192 Athenians fell in the battle."
+      },
+      {
+        name: "Athens",
+        description: "Greek city-state whose survival was at stake in the battle",
+        location: "Attica, Greece",
+        significance: "Athens had recently developed democratic institutions, and its citizens fought at Marathon as a civic army. Victory helped give Athens the confidence that fueled its later Golden Age.",
+        lore: "The Athenians feared that Persian ships might sail around the coast and attack the city while the army was still at Marathon, so they rushed back quickly after the battle."
+      },
+      {
+        name: "Plataea",
+        description: "Small Boeotian city-state that sent soldiers to help Athens",
+        location: "Boeotia, Greece",
+        significance: "Plataea was Athens's only battlefield ally at Marathon. Its support mattered because Greek city-states often acted out of rivalry, but Plataea chose loyalty at a moment of real danger.",
+        lore: "The Plataeans fought on the Greek left wing. Their loyalty was remembered with honor by Athens."
+      }
+    ],
+    resources: [
+      {
+        title: "Battle of Marathon - Britannica",
+        type: "Article",
+        url: "https://www.britannica.com/event/Battle-of-Marathon",
+        isCore: true,
+        description: "Clear overview of the battle, commanders, tactics, casualties, and the later marathon legend"
+      },
+      {
+        title: "Battle of Marathon - World History Encyclopedia",
+        type: "Article",
+        url: "https://www.worldhistory.org/marathon/",
+        isCore: true,
+        description: "Student-friendly explanation of why Marathon mattered in the Persian Wars"
+      },
+      {
+        title: "Miltiades - World History Encyclopedia",
+        type: "Article",
+        url: "https://www.worldhistory.org/Miltiades/",
+        isCore: false,
+        description: "Profile of the Athenian general and his risky battlefield plan"
+      },
+      {
+        title: "Battle of Marathon Animated Maps",
+        type: "Video",
+        url: "https://www.youtube.com/results?search_query=Battle+of+Marathon+animated+map+students",
+        isCore: false,
+        description: "Search results for visual explanations of troop movement and battlefield tactics"
+      }
+    ],
+    quiz: {
+      title: "Battle of Marathon",
+      questions: [
+        {
+          id: "marathon_q1",
+          text: "Why did Persia attack Athens in 490 BCE?",
+          options: [
+            "Athens had helped Greek cities in Ionia rebel against Persian rule",
+            "Athens had conquered Babylon",
+            "Sparta asked Persia to destroy Athens",
+            "Persia wanted to compete in the Olympic Games"
+          ],
+          correctIndex: 0,
+          explanation: "Athens had supported the Ionian Revolt against Persian rule. King Darius I sent forces across the Aegean partly to punish Athens and Eretria and partly to bring mainland Greece under Persian control."
+        },
+        {
+          id: "marathon_q2",
+          text: "What made Miltiades's battle plan risky but effective?",
+          options: [
+            "He ordered the Athenians to surrender first",
+            "He thinned the center and strengthened the wings so the Greeks could surround the Persians",
+            "He used war elephants to break the Persian line",
+            "He waited for Sparta to win the battle alone"
+          ],
+          correctIndex: 1,
+          explanation: "Miltiades stretched the Greek line, made the wings stronger, and accepted a weaker center. When the wings broke through, they turned inward and trapped the Persian troops."
+        },
+        {
+          id: "marathon_q3",
+          text: "Who fought beside Athens at Marathon?",
+          options: [
+            "Rome",
+            "Egypt",
+            "Plataea",
+            "Carthage"
+          ],
+          correctIndex: 2,
+          explanation: "The small city-state of Plataea sent about 1,000 soldiers to help Athens. Sparta was asked for aid but arrived too late because of a religious delay."
+        },
+        {
+          id: "marathon_q4",
+          text: "Why did the Battle of Marathon become so important to Greek memory?",
+          options: [
+            "It permanently destroyed the Persian Empire",
+            "It proved a Greek citizen army could defeat Persian imperial forces",
+            "It made Miltiades king of Greece",
+            "It ended all wars between Greek city-states"
+          ],
+          correctIndex: 1,
+          explanation: "Marathon did not end the Persian Wars, but it proved that Persia could be beaten. That victory gave Athens confidence and became a symbol of defending freedom against overwhelming power."
+        }
+      ],
+      collectibleCards: [
+        { type: 'person', index: 0, id: 'marathon_miltiades' },
+        { type: 'person', index: 1, id: 'marathon_callimachus' },
+        { type: 'invention', index: 0, id: 'marathon_hoplite_phalanx' },
+        { type: 'place', index: 0, id: 'marathon_plain' }
+      ]
+    }
   }
 };
