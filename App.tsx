@@ -58,7 +58,6 @@ const AuthenticatedApp: React.FC = () => {
   const { profile: userProfile, loading: profileLoading, addXp, completeNode } = useUserProfile();
   const [isProfileOpen, setIsProfileOpen] = useState(false);
   const hasInitializedEra = useRef(false);
-  const hasInitializedNode = useRef(false);
 
   // Debug: log whenever userProfile changes
   useEffect(() => {
@@ -96,45 +95,41 @@ const AuthenticatedApp: React.FC = () => {
     return result;
   }, [userProfile.nodesCompleted, eraLockStatus]);
 
-  // Find the last unlocked node and open its era on initial load
+  const getFirstAvailableNodeInEra = useCallback((eraId: string): TimelineNodeStub | null => {
+    const completedSet = new Set(userProfile.nodesCompleted);
+    const eraNodes = INITIAL_NODES.filter(node => eraId === node.eraId);
+
+    return (
+      eraNodes.find(node => !nodeLockStatus[node.id] && !completedSet.has(node.id)) ||
+      eraNodes.find(node => !nodeLockStatus[node.id]) ||
+      null
+    );
+  }, [nodeLockStatus, userProfile.nodesCompleted]);
+
+  const openEraBriefing = useCallback((era: Era) => {
+    setShowMobileDetail(true);
+    setSelectedEraId(era.id);
+    setSelectedNode(null);
+    setSelectedEra(era);
+    setError(null);
+  }, []);
+
+  // Find the next available era and open its briefing on initial load.
   useEffect(() => {
-    // Only run once on initial load
     if (hasInitializedEra.current || profileLoading) return;
-    
-    // Find the last unlocked node chronologically
-    const unlockedNodes = INITIAL_NODES.filter(node => !nodeLockStatus[node.id]);
-    
-    if (unlockedNodes.length > 0) {
-      // Parse year for sorting (similar to nodeLocking service)
-      const parseYear = (yearStr: string): number => {
-        let cleaned = yearStr.replace(/^(c\.|ca\.|circa|~)\s*/i, '').trim();
-        cleaned = cleaned.replace(/,/g, '');
-        const match = cleaned.match(/(\d+(?:\.\d+)?)/);
-        if (!match) return 0;
-        const num = parseFloat(match[1]);
-        if (cleaned.toUpperCase().includes('BCE') || cleaned.toUpperCase().includes('BC')) {
-          return -num; // Negative for BCE
-        }
-        return num;
-      };
-      
-      // Sort nodes chronologically (most recent first)
-      const sortedUnlockedNodes = [...unlockedNodes].sort((a, b) => {
-        const yearA = parseYear(a.year);
-        const yearB = parseYear(b.year);
-        return yearB - yearA; // Descending order to get the latest
-      });
-      
-      const lastUnlockedNode = sortedUnlockedNodes[0]; // Most recent unlocked node
-      if (lastUnlockedNode) {
-        setSelectedEraId(lastUnlockedNode.eraId);
-        hasInitializedEra.current = true;
-      }
-    } else {
-      // If no unlocked nodes, default to first era
-      hasInitializedEra.current = true;
+
+    const completedSet = new Set(userProfile.nodesCompleted);
+    const nextUnlockedNode = INITIAL_NODES.find(node =>
+      !nodeLockStatus[node.id] && !completedSet.has(node.id)
+    ) || INITIAL_NODES.find(node => !nodeLockStatus[node.id]);
+    const nextEra = ERAS.find(era => era.id === nextUnlockedNode?.eraId) || ERAS.find(era => !eraLockStatus[era.id]);
+
+    if (nextEra) {
+      openEraBriefing(nextEra);
     }
-  }, [nodeLockStatus, profileLoading]); // Run when lock status is computed
+
+    hasInitializedEra.current = true;
+  }, [eraLockStatus, nodeLockStatus, openEraBriefing, profileLoading, userProfile.nodesCompleted]);
 
   // Keep the era containing the selected node open
   // This ensures that whenever a node is selected, its era is automatically opened
@@ -150,23 +145,15 @@ const AuthenticatedApp: React.FC = () => {
     if (eraLockStatus[id]) {
       return;
     }
-    // If a node is selected, prevent closing its era
-    // The era containing the selected node should always stay open
-    if (selectedNode && selectedNode.eraId === id) {
-      // Don't allow closing the era that contains the selected node
-      return;
+
+    const era = ERAS.find(candidate => candidate.id === id);
+    if (era) {
+      openEraBriefing(era);
     }
-    // If no node is selected, allow toggling eras
-    // If a node is selected and clicking a different era, open that era
-    // (but the selected node's era will be kept open by the useEffect)
-    setSelectedEraId(id);
   };
 
   const handleSelectEraBriefing = (era: Era) => {
-    setShowMobileDetail(true);
-    setSelectedNode(null);
-    setSelectedEra(era);
-    setError(null);
+    openEraBriefing(era);
   };
 
   const handleSelectNode = useCallback(async (stub: TimelineNodeStub, bypassLockCheck = false) => {
@@ -236,32 +223,6 @@ const AuthenticatedApp: React.FC = () => {
     console.log('[handleQuizComplete] Profile updated via context');
   };
 
-  // Helper to parse year for sorting nodes chronologically
-  const parseYear = (yearStr: string): number => {
-    const match = yearStr.match(/([\d,]+)\s*(BCE|CE|BC|AD)?/i);
-    if (!match) return 0;
-    let year = parseInt(match[1].replace(/,/g, ''), 10);
-    if (match[2] && (match[2].toUpperCase() === 'BCE' || match[2].toUpperCase() === 'BC')) {
-      year = -year;
-    }
-    return year;
-  };
-
-  // Open the next available unfinished lesson on initial load.
-  useEffect(() => {
-    if (hasInitializedNode.current || selectedNode || profileLoading) return;
-
-    const completedSet = new Set(userProfile.nodesCompleted);
-    const nextUnlockedNode = INITIAL_NODES.find(node =>
-      !nodeLockStatus[node.id] && !completedSet.has(node.id)
-    );
-
-    if (!nextUnlockedNode) return;
-
-    hasInitializedNode.current = true;
-    handleSelectNode(nextUnlockedNode, true);
-  }, [handleSelectNode, nodeLockStatus, profileLoading, selectedNode, userProfile.nodesCompleted]);
-
   // Find the next unlocked node after completing the current one
   // This needs to account for the CURRENT node being completed (which just happened)
   const getNextLesson = useMemo(() => {
@@ -319,11 +280,29 @@ const AuthenticatedApp: React.FC = () => {
 
   console.log('[App] getNextLesson result:', getNextLesson?.id, getNextLesson?.title);
 
+  const eraBriefingNextNode = useMemo(() => {
+    if (!selectedEra) return null;
+    return getFirstAvailableNodeInEra(selectedEra.id);
+  }, [getFirstAvailableNodeInEra, selectedEra]);
+
+  const handleGoToEraLesson = () => {
+    if (eraBriefingNextNode) {
+      handleSelectNode(eraBriefingNextNode, true);
+    }
+  };
+
   const handleGoToNextLesson = () => {
     console.log('[handleGoToNextLesson] Called, getNextLesson:', getNextLesson?.id);
     if (getNextLesson) {
       console.log('[handleGoToNextLesson] Navigating to:', getNextLesson.id, getNextLesson.title);
-      // Bypass lock check - we already validated this node is unlocked in getNextLesson
+      if (selectedNode && getNextLesson.eraId !== selectedNode.eraId) {
+        const nextEra = ERAS.find(era => era.id === getNextLesson.eraId);
+        if (nextEra) {
+          openEraBriefing(nextEra);
+          return;
+        }
+      }
+
       handleSelectNode(getNextLesson, true);
     } else {
       console.log('[handleGoToNextLesson] No next lesson available!');
@@ -390,6 +369,8 @@ const AuthenticatedApp: React.FC = () => {
              era={selectedEra}
              loading={false}
              onBack={handleBackToTimeline}
+             onGoToNextLesson={handleGoToEraLesson}
+             hasNextLesson={!!eraBriefingNextNode}
            />
         ) : selectedNode ? (
           <NodeContentDisplay 

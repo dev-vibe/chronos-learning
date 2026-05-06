@@ -213,13 +213,37 @@ export const NodeContentDisplay: React.FC<NodeContentDisplayProps> = ({ node, er
                         <p className="text-stone-300 leading-relaxed whitespace-pre-wrap">{era.prehistoryContext}</p>
                     </div>
                 )}
-                 {era.modernDiscoveries && (
+                {era.modernDiscoveries && (
                     <div className="bg-stone-900/50 border border-stone-800 rounded-xl overflow-hidden p-6 md:p-8 space-y-4">
                          <h2 className="text-2xl font-bold text-white font-display flex items-center gap-3">
                             <Scan className="text-purple-400" /> 
                             Modern Discoveries
                         </h2>
                         <p className="text-stone-300 leading-relaxed whitespace-pre-wrap">{era.modernDiscoveries}</p>
+                    </div>
+                )}
+                {hasNextLesson && onGoToNextLesson && (
+                    <div className="pt-2">
+                        <button
+                            type="button"
+                            onClick={onGoToNextLesson}
+                            className="group flex w-full max-w-3xl items-center justify-between gap-4 rounded-lg border border-stone-800 bg-black/40 p-4 text-left transition-all hover:border-blue-500/40 hover:bg-blue-950/10 sm:w-auto sm:min-w-[28rem]"
+                        >
+                            <span className="min-w-0">
+                                <span className="mb-1 block text-[10px] font-mono font-bold uppercase tracking-widest text-stone-600 group-hover:text-blue-400/80">
+                                    Briefing complete
+                                </span>
+                                <span className="block truncate font-display text-base font-bold text-stone-200 group-hover:text-white">
+                                    Continue to First Lesson
+                                </span>
+                                <span className="mt-1 block text-[10px] font-mono font-bold uppercase tracking-wide text-stone-600">
+                                    Mission Start
+                                </span>
+                            </span>
+                            <span className="flex h-10 w-10 shrink-0 items-center justify-center rounded bg-stone-900 text-blue-400 ring-1 ring-stone-800 transition-transform group-hover:translate-x-1 group-hover:ring-blue-500/40">
+                                <ChevronRightIcon size={20} />
+                            </span>
+                        </button>
                     </div>
                 )}
             </div>
