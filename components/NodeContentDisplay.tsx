@@ -261,7 +261,7 @@ export const NodeContentDisplay: React.FC<NodeContentDisplayProps> = ({ node, er
     );
   }
 
-  const { summary, people, inventions, places, resources, funFact, quiz } = node.content;
+  const { heroImageUrl, heroImageFit, summary, people, inventions, places, resources, funFact, quiz } = node.content;
   const coreResources = resources.filter(r => r.isCore);
   const extraResources = resources.filter(r => !r.isCore);
   const getNextStep = (sectionId: LessonSectionId) => {
@@ -281,6 +281,7 @@ export const NodeContentDisplay: React.FC<NodeContentDisplayProps> = ({ node, er
     const currentStep = lessonSections.find(section => section.id === sectionId);
     const nextStep = getNextStep(sectionId);
     if (!currentStep || !nextStep) return null;
+    if (isSectionUnlocked(nextStep.id)) return null;
 
     return (
       <NextSectionPrompt
@@ -329,6 +330,13 @@ export const NodeContentDisplay: React.FC<NodeContentDisplayProps> = ({ node, er
       )}
 
       <div className="max-w-6xl mx-auto px-6 md:px-10 py-10 space-y-16 relative z-10">
+        {heroImageUrl && (
+          <LessonHeroImage
+            imageUrl={heroImageUrl}
+            imageFit={heroImageFit}
+            title={node.title}
+          />
+        )}
         
         <section id={getLessonSectionDomId('report')} className="scroll-mt-40 space-y-8">
              <div className="flex items-center gap-3 mb-6">
@@ -701,6 +709,28 @@ const getImageFitClass = (fit?: 'cover' | 'contain'): string => {
   return fit === 'contain' ? 'object-contain' : 'object-cover';
 };
 
+const LessonHeroImage: React.FC<{ imageUrl: string; imageFit?: 'cover' | 'contain'; title: string }> = ({ imageUrl, imageFit, title }) => {
+  const [imgError, setImgError] = useState(false);
+  const normalizedImageUrl = getImageUrlWithFallback(imageUrl);
+  const imageFitClass = getImageFitClass(imageFit);
+
+  if (imgError) return null;
+
+  return (
+    <div className="overflow-hidden rounded-xl border border-stone-800 bg-black shadow-2xl">
+      <div className="relative aspect-[16/9] w-full bg-stone-950">
+        <img
+          src={normalizedImageUrl}
+          alt={`${title} lesson artwork`}
+          onError={() => setImgError(true)}
+          className={`h-full w-full ${imageFitClass} opacity-90`}
+        />
+        <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-black/50 via-transparent to-black/10"></div>
+      </div>
+    </div>
+  );
+};
+
 const TradingCard: React.FC<{ person: HistoricalPerson; onClick: () => void }> = ({ person, onClick }) => {
   const [imgError, setImgError] = useState(false);
   const [imgLoaded, setImgLoaded] = useState(false);
@@ -773,19 +803,36 @@ const TradingCard: React.FC<{ person: HistoricalPerson; onClick: () => void }> =
 }
 
 const TechCard: React.FC<{ invention: Invention; index: number; onClick: () => void }> = ({ invention, index, onClick }) => {
+    const [imgError, setImgError] = useState(false);
+    const imageUrl = getImageUrlWithFallback(invention.imageUrl);
+    const imageFitClass = getImageFitClass(invention.imageFit);
+
     return (
-        <button onClick={onClick} className="text-left w-full bg-stone-950/50 border border-stone-800 p-5 rounded-xl hover:bg-stone-900 hover:border-cyan-500/30 transition-all duration-300 group relative overflow-hidden outline-none">
+        <button onClick={onClick} className="text-left w-full bg-stone-950/50 border border-stone-800 rounded-xl hover:bg-stone-900 hover:border-cyan-500/30 transition-all duration-300 group relative overflow-hidden outline-none">
             <div className="absolute inset-0 bg-[linear-gradient(0deg,rgba(34,211,238,0.03)_1px,transparent_1px),linear-gradient(90deg,rgba(34,211,238,0.03)_1px,transparent_1px)] bg-[size:20px_20px] opacity-0 group-hover:opacity-100 transition-opacity pointer-events-none"></div>
-            
-            <div className="flex justify-between items-start mb-3 relative z-10">
-                <h4 className="font-bold text-cyan-100 text-lg font-display group-hover:text-cyan-400 transition-colors">{invention.name}</h4>
+
+            <div className="relative aspect-[4/3] w-full bg-stone-900 overflow-hidden border-b border-stone-800">
+                <img
+                    src={imgError ? DEFAULT_FALLBACK_IMAGE : imageUrl}
+                    alt={invention.name}
+                    onError={() => setImgError(true)}
+                    className={`w-full h-full ${imageFitClass} opacity-75 group-hover:opacity-95 transition-all duration-500 group-hover:scale-[1.02]`}
+                />
+                <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-transparent to-transparent pointer-events-none"></div>
             </div>
-            <p className="text-sm text-stone-500 leading-relaxed relative z-10 group-hover:text-stone-400 line-clamp-3">{invention.description}</p>
-            <div className="mt-4 pt-3 border-t border-stone-800/50 flex items-center justify-between relative z-10">
-                <span className="text-[10px] font-mono text-cyan-900 uppercase font-bold group-hover:text-cyan-700">Blueprint #{index + 1}</span>
-                <Badge label={invention.category} />
+
+            <div className="p-5 relative z-10">
+                <div className="flex justify-between items-start mb-3">
+                    <h4 className="font-bold text-cyan-100 text-lg font-display group-hover:text-cyan-400 transition-colors">{invention.name}</h4>
+                </div>
+                <p className="text-sm text-stone-500 leading-relaxed group-hover:text-stone-400 line-clamp-3">{invention.description}</p>
+                <div className="mt-4 pt-3 border-t border-stone-800/50 flex items-center justify-between">
+                    <span className="text-[10px] font-mono text-cyan-900 uppercase font-bold group-hover:text-cyan-700">Blueprint #{index + 1}</span>
+                    <Badge label={invention.category} />
+                </div>
             </div>
-             <div className="absolute top-3 right-3 opacity-0 group-hover:opacity-100 transition-opacity">
+
+            <div className="absolute top-3 right-3 opacity-0 group-hover:opacity-100 transition-opacity">
                 <ExternalLink size={14} className="text-cyan-500" />
             </div>
         </button>

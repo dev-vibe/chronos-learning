@@ -2,6 +2,8 @@ import { NodeContent } from '../../../types';
 
 export const FOUNDATIONS_MESOPOTAMIA: Record<string, NodeContent> = {
   'sumer_writing': {
+    heroImageUrl: "/images/lessons/cuneiform2.png",
+    heroImageFit: "contain",
     summary:
       "Around 3400 BCE in the city of Uruk in southern Mesopotamia, life had become dizzyingly complex. Temples owned vast estates, employed hundreds of workers, and collected grain, livestock, textiles, and metals as offerings and taxes. Merchants traded wool, silver, and imported goods across hundreds of miles. Priests managed ritual calendars with dozens of festivals. How do you keep track of who gave what, who owes what, when payments are due, and how much grain is sitting in the storehouses? Human memory wasn't enough anymore. At first, officials used small clay tokens—a cone shape for a unit of grain, a sphere for a jar of oil, a cylinder for an animal. They stored these tokens in clay containers called bullae as receipts. But this system was clunky and limited. Then someone had a breakthrough: instead of keeping the tokens, just press their shapes into wet clay and bake the tablet. The symbol becomes the record.\n\n" +
       "These early pressed symbols were simple pictures: a jar shape meant oil, a head shape meant a person or worker, a sheaf meant grain. This proto-writing (called proto-cuneiform) could record quantities and transactions but couldn't express full sentences, grammar, or abstract ideas. But over the next few centuries, something revolutionary happened. Scribes rotated their tablets 90 degrees and started pressing wedge-shaped marks with the cut end of a reed stylus instead of drawing pictures. These wedge-marks (Latin cuneus = wedge, hence 'cuneiform') were faster to write and could represent sounds, not just objects. By 2600 BCE, cuneiform had evolved into a full writing system capable of recording the Sumerian language—complete sentences, names, verbs, grammar, everything. Suddenly you could write anything you could say. What started as accounting became literature, law, letters, prayers, contracts, royal propaganda, school exercises, medical texts, and even sarcastic complaints about bad copper shipments.\n\n" +
@@ -21,7 +23,8 @@ export const FOUNDATIONS_MESOPOTAMIA: Record<string, NodeContent> = {
           "Preserved literature, laws, contracts, and historical records for millennia"
         ],
         legacy: "Professional scribes were the ancestors of modern bureaucrats, accountants, lawyers, and writers—people whose power comes from controlling information.",
-        imageUrl: "/images/foundations/sumerian_scribe.jpg"
+        imageUrl: "/images/foundations/sumerian_scribe.jpg",
+        imageFit: "contain"
       },
       {
         name: "Enheduanna",
@@ -38,16 +41,8 @@ export const FOUNDATIONS_MESOPOTAMIA: Record<string, NodeContent> = {
           "Her writings survived because scribes copied them for 500 years after her death"
         ],
         legacy: "Enheduanna established the tradition of personal authorship and showed that women could be powerful intellectuals and political figures. Her hymns influenced Mesopotamian literature for centuries.",
-        imageUrl: "/images/foundations/enheduanna.jpg"
-      },
-      {
-        name: "The Edubba Student",
-        role: "Scribe-in-Training",
-        category: "Worker",
-        description:
-          "Young boys (rarely girls) sent to Tablet Houses to learn the scribe profession. Students practiced writing the same cuneiform signs over and over on clay tablets. If they made mistakes, the teacher recycled the clay and they started again. School was strict—corporal punishment was common. One student tablet complains: 'The teacher said my work was bad and hit me!' But if you graduated, you had a career for life.",
-        legacy: "Edubba students were the first to experience formal education—homework, exams, strict teachers, and the promise that suffering through school would lead to a good job.",
-        imageUrl: "/images/foundations/edubba_student.jpg"
+        imageUrl: "/images/foundations/enheduanna.jpg",
+        imageFit: "contain"
       }
     ],
     inventions: [
@@ -87,13 +82,15 @@ export const FOUNDATIONS_MESOPOTAMIA: Record<string, NodeContent> = {
         name: "Uruk (Modern Warka, Iraq)",
         description: "The world's first true city and the birthplace of writing. By 3200 BCE, Uruk housed 40,000–50,000 people—larger than any settlement in human history up to that point. The city featured massive temple complexes (including the ziggurat dedicated to the sky god Anu and the temple of Inanna), dense residential neighborhoods, workshops, markets, and administrative buildings where scribes recorded everything on cuneiform tablets.",
         imageUrl: "/images/places/uruk.jpg",
+        imageFit: "cover",
         location: "Southern Iraq, near modern Warka (about 300 km south of Baghdad)",
         significance: "Uruk was the crucible where civilization was forged. Writing, monumental architecture, complex administration, social classes, and urban life all emerged here. The city appears in the Epic of Gilgamesh as the domain of the hero-king Gilgamesh. The earliest proto-cuneiform tablets (c. 3400 BCE) come from Uruk's temple precincts, where priests tracked offerings and rations. Uruk remained an important city for 5,000 years, finally abandoned around 700 CE."
       },
       {
         name: "Edubba (Tablet House / Scribe School)",
         description: "The world's first formal schools, found in every major Sumerian city. Boys as young as 7 enrolled to learn cuneiform writing, mathematics, and literature. Schooldays were long (sunrise to sunset), discipline was harsh (beatings for mistakes were common), and the curriculum was rigorous. Students practiced on wet clay tablets, copying classic texts and doing math problems. If they made errors, the teacher recycled the clay. Only after years of training could a student graduate as a professional scribe.",
-        imageUrl: "/images/places/edubba.jpg",
+        imageUrl: "/images/places/edubba.png",
+        imageFit: "contain",
         location: "Every major Sumerian city (Ur, Uruk, Nippur, Lagash, etc.)",
         significance: "Edubba schools created the first literate bureaucratic class. Graduates became temple accountants, palace scribes, merchants' clerks, or teachers. The profession was prestigious and well-paid. Interestingly, archaeologists have found thousands of student practice tablets with mistakes, teacher corrections, and even student complaints ('My teacher hit me for no reason!'). These tablets are hilarious and humanizing—Sumerian students 4,000 years ago dealt with homework, strict teachers, and the stress of exams just like students today."
       }

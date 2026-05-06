@@ -116,6 +116,8 @@ export interface Quiz {
 }
 
 export interface NodeContent {
+  heroImageUrl?: string;
+  heroImageFit?: 'cover' | 'contain';
   summary: string;
   people: HistoricalPerson[];
   inventions: Invention[];
