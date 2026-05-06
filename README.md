@@ -115,3 +115,13 @@ When a quiz is completed perfectly:
 - Cards are displayed immediately after completion and stored in the user profile
 
 If a lesson has no collectible cards, simply omit the `collectibleCards` field or leave it empty.
+
+### Local Development Unlock
+
+By default, era and lesson locks use the current user's saved progress. For local testing, you can unlock the whole timeline in `.env.local`:
+
+```env
+VITE_UNLOCK_ALL_ERAS=true
+```
+
+Leave it unset for production-like progress behavior.
