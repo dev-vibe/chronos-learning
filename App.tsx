@@ -12,7 +12,7 @@ import { useUserProfile } from './contexts/UserProfileContext';
 import { useAuth } from './contexts/AuthContext';
 import { getEraLockStatus } from './services/eraLocking';
 import { getAllNodeLockStatus } from './services/nodeLocking';
-import { AlertCircle, PlayCircle, Terminal } from 'lucide-react';
+import { AlertCircle, LogOut, PlayCircle, Terminal } from 'lucide-react';
 
 // Development/Testing Flag: Set to true to unlock all eras regardless of completion status
 const UNLOCK_ALL_ERAS = false;
@@ -25,7 +25,6 @@ const TEMPORARILY_UNLOCKED_NODE_IDS = [
 const App: React.FC = () => {
   const { user, loading: authLoading, isGuest } = useAuth();
 
-  // Show auth screen if not logged in and not guest
   if (authLoading) {
     return (
       <div className="flex h-screen w-screen bg-black text-stone-200 items-center justify-center">
@@ -40,6 +39,13 @@ const App: React.FC = () => {
   if (!user && !isGuest) {
     return <AuthScreen />;
   }
+
+  return <AuthenticatedApp />;
+};
+
+const AuthenticatedApp: React.FC = () => {
+  const { signOut } = useAuth();
+
   const [selectedEraId, setSelectedEraId] = useState<string | null>(ERAS[0].id);
   const [selectedNode, setSelectedNode] = useState<TimelineNode | null>(null);
   const [selectedEra, setSelectedEra] = useState<Era | null>(null);
@@ -49,7 +55,7 @@ const App: React.FC = () => {
   const [nodeCache, setNodeCache] = useState<Record<string, TimelineNode>>({});
 
   // Gamification State - use context (synced with DB)
-  const { profile: userProfile, addXp, completeNode } = useUserProfile();
+  const { profile: userProfile, loading: profileLoading, addXp, completeNode } = useUserProfile();
   const [isProfileOpen, setIsProfileOpen] = useState(false);
   const hasInitializedEra = useRef(false);
   const hasInitializedNode = useRef(false);
@@ -93,7 +99,7 @@ const App: React.FC = () => {
   // Find the last unlocked node and open its era on initial load
   useEffect(() => {
     // Only run once on initial load
-    if (hasInitializedEra.current) return;
+    if (hasInitializedEra.current || profileLoading) return;
     
     // Find the last unlocked node chronologically
     const unlockedNodes = INITIAL_NODES.filter(node => !nodeLockStatus[node.id]);
@@ -128,7 +134,7 @@ const App: React.FC = () => {
       // If no unlocked nodes, default to first era
       hasInitializedEra.current = true;
     }
-  }, [nodeLockStatus]); // Run when lock status is computed
+  }, [nodeLockStatus, profileLoading]); // Run when lock status is computed
 
   // Keep the era containing the selected node open
   // This ensures that whenever a node is selected, its era is automatically opened
@@ -243,7 +249,7 @@ const App: React.FC = () => {
 
   // Open the next available unfinished lesson on initial load.
   useEffect(() => {
-    if (hasInitializedNode.current || selectedNode) return;
+    if (hasInitializedNode.current || selectedNode || profileLoading) return;
 
     const completedSet = new Set(userProfile.nodesCompleted);
     const nextUnlockedNode = INITIAL_NODES.find(node =>
@@ -254,7 +260,7 @@ const App: React.FC = () => {
 
     hasInitializedNode.current = true;
     handleSelectNode(nextUnlockedNode, true);
-  }, [handleSelectNode, nodeLockStatus, selectedNode, userProfile.nodesCompleted]);
+  }, [handleSelectNode, nodeLockStatus, profileLoading, selectedNode, userProfile.nodesCompleted]);
 
   // Find the next unlocked node after completing the current one
   // This needs to account for the CURRENT node being completed (which just happened)
@@ -344,21 +350,30 @@ const App: React.FC = () => {
           onSelectEra={handleSelectEra}
           onSelectNode={handleSelectNode}
           onSelectEraBriefing={handleSelectEraBriefing}
+          onSignOut={signOut}
         />
       </div>
 
       <main className={`flex-1 flex-col h-full relative overflow-hidden ${showMobileDetail ? 'flex' : 'hidden md:flex'}`}>
         {/* Top Bar / Profile Trigger - Only visible on desktop here, mobile handles it in sidebar? Or overlay. Let's put it absolute top right. */}
         <div className="absolute top-4 right-4 z-40 flex items-center gap-2">
-            <button 
-                onClick={() => setIsProfileOpen(true)}
-                className="bg-stone-900/80 backdrop-blur border border-stone-800 hover:border-amber-500/50 text-stone-300 hover:text-white px-3 py-1.5 rounded-full flex items-center gap-2 transition-all shadow-lg"
-            >
-                <div className="w-5 h-5 bg-amber-500 rounded-full text-black text-[10px] font-bold flex items-center justify-center">
-                    {userProfile.level}
-                </div>
-                <span className="text-xs font-mono font-bold hidden sm:inline uppercase">Agent Status</span>
-            </button>
+          <button
+            onClick={() => setIsProfileOpen(true)}
+            className="bg-stone-900/80 backdrop-blur border border-stone-800 hover:border-amber-500/50 text-stone-300 hover:text-white px-3 py-1.5 rounded-full flex items-center gap-2 transition-all shadow-lg"
+          >
+            <div className="w-5 h-5 bg-amber-500 rounded-full text-black text-[10px] font-bold flex items-center justify-center">
+              {userProfile.level}
+            </div>
+            <span className="text-xs font-mono font-bold hidden sm:inline uppercase">Agent Status</span>
+          </button>
+          <button
+            onClick={signOut}
+            aria-label="Log out"
+            title="Log out"
+            className="w-9 h-9 bg-stone-900/80 backdrop-blur border border-stone-800 hover:border-red-500/50 text-stone-400 hover:text-red-200 rounded-full flex items-center justify-center transition-all shadow-lg"
+          >
+            <LogOut size={16} />
+          </button>
         </div>
 
         {error && (

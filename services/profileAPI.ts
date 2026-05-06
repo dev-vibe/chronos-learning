@@ -4,9 +4,14 @@
 
 import { supabase, isSupabaseConfigured } from '../lib/supabase';
 import { ERAS, INITIAL_NODES } from '../constants';
-import { DEFAULT_COLLECTIBLE_CARDS, createDefaultUserProfile, UserProfile } from './gamification';
+import {
+  DEFAULT_COLLECTIBLE_CARDS,
+  createDefaultUserProfile,
+  createEmptyUserProfile,
+  UserProfile
+} from './gamification';
 
-const HARD_CODED_DEMO_PROFILE = true;
+const USE_DEMO_PROFILE = import.meta.env.VITE_DEMO_PROFILE === 'true';
 
 // Level = 1 + number of fully completed eras
 export const calculateLevel = (nodesCompleted: string[]): number => {
@@ -26,8 +31,12 @@ export const calculateLevel = (nodesCompleted: string[]): number => {
  * Fetch user profile from database
  */
 export const fetchUserProfile = async (userId: string): Promise<UserProfile> => {
-  if (HARD_CODED_DEMO_PROFILE || !isSupabaseConfigured()) {
+  if (USE_DEMO_PROFILE) {
     return createDefaultUserProfile();
+  }
+
+  if (!isSupabaseConfigured()) {
+    return createEmptyUserProfile();
   }
 
   // Fetch progress
@@ -78,7 +87,7 @@ export const fetchUserProfile = async (userId: string): Promise<UserProfile> => 
  * Add XP to user
  */
 export const addXpToUser = async (userId: string, amount: number, currentProfile: UserProfile): Promise<UserProfile> => {
-  if (!isSupabaseConfigured()) {
+  if (USE_DEMO_PROFILE || !isSupabaseConfigured()) {
     return {
       ...currentProfile,
       xp: currentProfile.xp + amount
@@ -134,7 +143,7 @@ export const completeNodeForUser = async (
 
   console.log('[ProfileAPI] completeNodeForUser - userId:', userId, 'nodeId:', nodeId, 'newLevel:', newLevel);
 
-  if (isSupabaseConfigured()) {
+  if (isSupabaseConfigured() && !USE_DEMO_PROFILE) {
     // Insert completed node (ignore if already exists)
     const { data: nodeData, error: nodeError } = await supabase
       .from('completed_nodes')
@@ -171,8 +180,6 @@ export const completeNodeForUser = async (
     }
 
     console.log('[ProfileAPI] user_progress upsert result:', progressData);
-  } else {
-    console.warn('[ProfileAPI] Supabase not configured, skipping DB operations');
   }
 
   return {

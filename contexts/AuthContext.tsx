@@ -16,7 +16,6 @@ interface AuthContextType {
   signUp: (email: string, password: string, name?: string) => Promise<{ error: AuthError | null }>;
   signIn: (email: string, password: string) => Promise<{ error: AuthError | null }>;
   signInWithGoogle: () => Promise<{ error: AuthError | null }>;
-  signInWithApple: () => Promise<{ error: AuthError | null }>;
   signOut: () => Promise<void>;
   continueAsGuest: () => void;
   updateUserName: (name: string) => Promise<{ error: AuthError | null }>;
@@ -24,6 +23,12 @@ interface AuthContextType {
 }
 
 const AuthContext = createContext<AuthContextType | undefined>(undefined);
+const GUEST_SESSION_KEY = 'chronos.guestSession.v1';
+
+const getStoredGuestSession = (): boolean => {
+  if (typeof window === 'undefined') return false;
+  return window.localStorage.getItem(GUEST_SESSION_KEY) === 'true';
+};
 
 export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children }) => {
   const [user, setUser] = useState<User | null>(null);
@@ -36,6 +41,7 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children
     // Only set up auth if Supabase is configured
     if (!isConfigured) {
       console.log('[Auth] Supabase not configured, skipping auth setup');
+      setIsGuest(getStoredGuestSession());
       setLoading(false);
       return;
     }
@@ -47,6 +53,7 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children
       console.log('[Auth] Initial session:', session?.user?.id || 'none');
       setSession(session);
       setUser(session?.user ?? null);
+      setIsGuest(session?.user ? false : getStoredGuestSession());
       setLoading(false);
     });
 
@@ -57,6 +64,10 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children
       console.log('[Auth] Auth state change:', event, session?.user?.id || 'none');
       setSession(session);
       setUser(session?.user ?? null);
+      if (session?.user) {
+        window.localStorage.removeItem(GUEST_SESSION_KEY);
+        setIsGuest(false);
+      }
       setLoading(false);
     });
 
@@ -116,35 +127,22 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children
     return { error };
   };
 
-  // Sign in with Apple OAuth
-  const signInWithApple = async () => {
-    if (!isConfigured) {
-      return { error: new Error('Supabase not configured') as AuthError };
-    }
-
-    const { error } = await supabase.auth.signInWithOAuth({
-      provider: 'apple',
-      options: {
-        redirectTo: `${window.location.origin}/`,
-      },
-    });
-
-    return { error };
-  };
-
   // Sign out
   const signOut = async () => {
-    if (!isConfigured) return;
-
-    await supabase.auth.signOut();
+    if (isConfigured) {
+      await supabase.auth.signOut();
+    }
     setUser(null);
     setSession(null);
+    setIsGuest(false);
+    window.localStorage.removeItem(GUEST_SESSION_KEY);
   };
 
   // Continue as guest (no authentication)
   const continueAsGuest = () => {
     setIsGuest(true);
     setLoading(false);
+    window.localStorage.setItem(GUEST_SESSION_KEY, 'true');
     // User and session remain null, indicating guest mode
   };
 
@@ -188,7 +186,6 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children
     signUp,
     signIn,
     signInWithGoogle,
-    signInWithApple,
     signOut,
     continueAsGuest,
     updateUserName,

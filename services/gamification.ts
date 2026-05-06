@@ -14,7 +14,7 @@ export interface UserProfile {
   nodesCompleted: string[];
 }
 
-const XP_PER_COMPLETED_NODE = 100;
+export const XP_PER_COMPLETED_NODE = 100;
 
 // Bump this after a lesson is fully fleshed out and should count as completed
 // in the demo profile. The app will open the next unlocked unfinished lesson.
@@ -67,7 +67,7 @@ const getDemoCompletedNodeIds = (): string[] => {
   return getChronologicalNodeIds().filter(nodeId => completedNodeIds.has(nodeId));
 };
 
-const calculateDefaultLevel = (nodesCompleted: string[]): number => {
+export const calculateLevel = (nodesCompleted: string[]): number => {
   const completedNodeIds = new Set(nodesCompleted);
   const completedEraCount = ERAS.filter(era => {
     const eraNodeIds = INITIAL_NODES
@@ -82,7 +82,7 @@ const calculateDefaultLevel = (nodesCompleted: string[]): number => {
 
 const DEFAULT_COMPLETED_NODES = getDemoCompletedNodeIds();
 const DEFAULT_USER_XP = DEFAULT_COMPLETED_NODES.length * XP_PER_COMPLETED_NODE;
-const DEFAULT_USER_LEVEL = calculateDefaultLevel(DEFAULT_COMPLETED_NODES);
+const DEFAULT_USER_LEVEL = calculateLevel(DEFAULT_COMPLETED_NODES);
 
 const resolveCollectibleCard = (ref: CollectibleCardRef, content: NodeContent, fallbackIndex: number): CollectibleCard | null => {
   if (ref.type === 'person') {
@@ -147,11 +147,30 @@ export const DEFAULT_COLLECTIBLE_CARDS = DEFAULT_COMPLETED_NODES.flatMap(nodeId 
   getNodeCollectibleCards(STATIC_CONTENT[nodeId])
 );
 
+export const getCollectibleCardsForCompletedNodes = (nodeIds: string[]): CollectibleCard[] => {
+  const cardsById = new Map<string, CollectibleCard>();
+
+  nodeIds.forEach(nodeId => {
+    getNodeCollectibleCards(STATIC_CONTENT[nodeId]).forEach(card => {
+      cardsById.set(card.id, card);
+    });
+  });
+
+  return [...cardsById.values()];
+};
+
 export const createDefaultUserProfile = (): UserProfile => ({
   xp: DEFAULT_USER_XP,
   level: DEFAULT_USER_LEVEL,
   collectibleCards: [...DEFAULT_COLLECTIBLE_CARDS],
   nodesCompleted: [...DEFAULT_COMPLETED_NODES]
+});
+
+export const createEmptyUserProfile = (): UserProfile => ({
+  xp: 0,
+  level: 1,
+  collectibleCards: [],
+  nodesCompleted: []
 });
 
 // In-memory collectible cards cache

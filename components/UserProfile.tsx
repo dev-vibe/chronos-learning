@@ -2,7 +2,7 @@
 import React, { useState } from 'react';
 import { UserProfile as UserProfileType } from '../services/gamification';
 import { getImageUrlWithFallback } from '../utils/imageUtils';
-import { X, Shield, Sparkles, User, Loader, CheckCircle, Settings, Save, Edit2 } from 'lucide-react';
+import { X, Shield, Sparkles, User, Loader, CheckCircle, Settings, Save, Edit2, LogOut } from 'lucide-react';
 import { useAuth } from '../contexts/AuthContext';
 import { User as SupabaseUser } from '@supabase/supabase-js';
 
@@ -40,7 +40,7 @@ const getUserDisplayName = (user: SupabaseUser | null, isGuest: boolean): string
 };
 
 export const UserProfileModal: React.FC<UserProfileProps> = ({ profile, isOpen, onClose }) => {
-  const { user, isGuest, updateUserName, refreshUser } = useAuth();
+  const { user, isGuest, updateUserName, refreshUser, signOut } = useAuth();
   const [showSettings, setShowSettings] = useState(false);
   const [editingName, setEditingName] = useState(false);
   const [nameValue, setNameValue] = useState('');
@@ -231,6 +231,17 @@ export const UserProfileModal: React.FC<UserProfileProps> = ({ profile, isOpen, 
                         {user.email || 'N/A'}
                       </p>
                     </div>
+
+                    <button
+                      onClick={async () => {
+                        await signOut();
+                        onClose();
+                      }}
+                      className="w-full bg-stone-800 hover:bg-stone-700 text-stone-100 rounded-lg px-3 py-2 transition-colors flex items-center justify-center gap-2"
+                    >
+                      <LogOut size={14} />
+                      <span className="text-xs font-mono uppercase">Sign Out</span>
+                    </button>
                   </div>
                 )}
               </div>

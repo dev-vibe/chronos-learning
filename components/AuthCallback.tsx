@@ -1,6 +1,6 @@
 /**
  * Auth Callback Component
- * Handles OAuth redirects from Google/Apple
+ * Handles OAuth redirects from Google
  *
  * Note: This app doesn't use react-router, so OAuth callbacks are handled
  * automatically by Supabase in the AuthContext. This component is provided

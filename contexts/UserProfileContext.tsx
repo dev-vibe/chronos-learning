@@ -3,29 +3,44 @@
  * Simple wrapper around react-query hooks
  */
 
-import React, { createContext, useContext, useMemo } from 'react';
+import React, { createContext, useContext, useMemo, useState } from 'react';
 import { useAuth } from './AuthContext';
-import { GamificationService, createDefaultUserProfile, UserProfile } from '../services/gamification';
+import {
+  createDefaultUserProfile,
+  createEmptyUserProfile,
+  getCollectibleCardsForCompletedNodes,
+  UserProfile
+} from '../services/gamification';
 import {
   useProfileQuery,
   useAddXpMutation,
   useCompleteNodeMutation,
   useRefreshProfile
 } from '../hooks/useProfileQueries';
+import { LocalStorageService } from '../services/localStorage';
+import { UserAPI } from '../services/userAPI';
 
 interface UserProfileContextType {
   profile: UserProfile;
   loading: boolean;
+  syncStatus: 'synced' | 'syncing' | 'error';
+  queueSize: number;
+  showMigrationDialog: boolean;
+  setShowMigrationDialog: React.Dispatch<React.SetStateAction<boolean>>;
   addXp: (amount: number) => Promise<void>;
   completeNode: (nodeId: string) => Promise<void>;
   refreshProfile: () => Promise<void>;
+  migrateLocalData: () => Promise<boolean>;
 }
 
 const UserProfileContext = createContext<UserProfileContextType | undefined>(undefined);
+const USE_DEMO_PROFILE = import.meta.env.VITE_DEMO_PROFILE === 'true';
 
 export const UserProfileProvider: React.FC<{ children: React.ReactNode }> = ({ children }) => {
   const { user, isGuest } = useAuth();
   const userId = user?.id || null;
+  const [showMigrationDialog, setShowMigrationDialog] = useState(false);
+  const [syncStatus, setSyncStatus] = useState<'synced' | 'syncing' | 'error'>('synced');
 
   // Fetch profile
   const { data: dbProfile, isLoading } = useProfileQuery(userId, isGuest);
@@ -36,10 +51,14 @@ export const UserProfileProvider: React.FC<{ children: React.ReactNode }> = ({ c
   const refreshProfile = useRefreshProfile(userId);
 
   // Merge DB profile with in-memory collectible cards
-  const profile = useMemo(() => ({
-    ...(dbProfile || createDefaultUserProfile()),
-    collectibleCards: GamificationService.getCollectibleCards()
-  }), [dbProfile]);
+  const profile = useMemo(() => {
+    const baseProfile = dbProfile || (USE_DEMO_PROFILE ? createDefaultUserProfile() : createEmptyUserProfile());
+
+    return {
+      ...baseProfile,
+      collectibleCards: getCollectibleCardsForCompletedNodes(baseProfile.nodesCompleted)
+    };
+  }, [dbProfile]);
 
   const addXp = async (amount: number) => {
     try {
@@ -72,12 +91,35 @@ export const UserProfileProvider: React.FC<{ children: React.ReactNode }> = ({ c
     refreshProfile();
   };
 
+  const migrateLocalData = async (): Promise<boolean> => {
+    if (!userId) return false;
+
+    const localProfile = LocalStorageService.getProfileForMigration();
+    if (!localProfile) return true;
+
+    setSyncStatus('syncing');
+    const success = await UserAPI.migrateProfile(userId, localProfile);
+    setSyncStatus(success ? 'synced' : 'error');
+
+    if (success) {
+      LocalStorageService.setMigrationCompleted();
+      refreshProfile();
+    }
+
+    return success;
+  };
+
   const value: UserProfileContextType = {
     profile,
     loading: isLoading,
+    syncStatus,
+    queueSize: LocalStorageService.getQueue().length,
+    showMigrationDialog,
+    setShowMigrationDialog,
     addXp,
     completeNode,
-    refreshProfile: refreshProfileAsync
+    refreshProfile: refreshProfileAsync,
+    migrateLocalData
   };
 
   return <UserProfileContext.Provider value={value}>{children}</UserProfileContext.Provider>;

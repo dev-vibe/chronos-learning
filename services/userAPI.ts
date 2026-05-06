@@ -6,7 +6,7 @@
 import { supabase, isSupabaseConfigured } from '../lib/supabase';
 import { DEFAULT_COLLECTIBLE_CARDS, createDefaultUserProfile, UserProfile, calculateLevel } from './gamification';
 
-const HARD_CODED_DEMO_PROFILE = true;
+const USE_DEMO_PROFILE = import.meta.env.VITE_DEMO_PROFILE === 'true';
 
 export interface CloudUserProfile {
   id: string;
@@ -58,7 +58,7 @@ export const UserAPI = {
    * Returns null if user has no profile yet (new user)
    */
   getProfile: async (userId: string): Promise<UserProfile | null> => {
-    if (HARD_CODED_DEMO_PROFILE || !isSupabaseConfigured()) {
+    if (USE_DEMO_PROFILE || !isSupabaseConfigured()) {
       console.warn('Demo profile override active, returning hardcoded progress');
       return {
         ...createDefaultUserProfile()
@@ -380,12 +380,14 @@ export const UserAPI = {
       // Update progress (XP and level)
       const { error: progressError } = await supabase
         .from('user_progress')
-        .update({
+        .upsert({
+          user_id: userId,
           xp: profile.xp,
           level: profile.level,
           updated_at: new Date().toISOString()
-        })
-        .eq('user_id', userId);
+        }, {
+          onConflict: 'user_id'
+        });
 
       if (progressError) {
         console.error('Error updating progress during migration:', progressError);

@@ -5,10 +5,10 @@
 
 import React, { useState } from 'react';
 import { useAuth } from '../contexts/AuthContext';
-import { Shield, Mail, Lock, Chrome, Apple, User, AlertCircle, Loader } from 'lucide-react';
+import { Shield, Mail, Lock, Chrome, User, AlertCircle, Loader } from 'lucide-react';
 
 export const AuthScreen: React.FC = () => {
-  const { signUp, signIn, signInWithGoogle, signInWithApple, continueAsGuest, isConfigured } = useAuth();
+  const { signUp, signIn, signInWithGoogle, continueAsGuest, isConfigured } = useAuth();
   const [mode, setMode] = useState<'signin' | 'signup'>('signin');
   const [name, setName] = useState('');
   const [email, setEmail] = useState('');
@@ -53,22 +53,6 @@ export const AuthScreen: React.FC = () => {
         setLoading(false);
       }
       // If successful, user will be redirected to Google OAuth
-    } catch (err) {
-      setError('An unexpected error occurred');
-      setLoading(false);
-    }
-  };
-
-  const handleAppleAuth = async () => {
-    setError(null);
-    setLoading(true);
-    try {
-      const { error: authError } = await signInWithApple();
-      if (authError) {
-        setError(authError.message);
-        setLoading(false);
-      }
-      // If successful, user will be redirected to Apple OAuth
     } catch (err) {
       setError('An unexpected error occurred');
       setLoading(false);
@@ -236,24 +220,15 @@ export const AuthScreen: React.FC = () => {
                 </div>
               </div>
 
-              {/* OAuth Buttons */}
-              <div className="grid grid-cols-2 gap-3">
+              {/* OAuth Button */}
+              <div>
                 <button
                   onClick={handleGoogleAuth}
                   disabled={loading}
-                  className="bg-stone-900/50 hover:bg-stone-800 border border-stone-700 text-white py-3 rounded-lg transition-colors disabled:opacity-50 disabled:cursor-not-allowed flex items-center justify-center gap-2"
+                  className="w-full bg-stone-900/50 hover:bg-stone-800 border border-stone-700 text-white py-3 rounded-lg transition-colors disabled:opacity-50 disabled:cursor-not-allowed flex items-center justify-center gap-2"
                 >
                   <Chrome size={18} />
                   <span className="font-medium">Google</span>
-                </button>
-
-                <button
-                  onClick={handleAppleAuth}
-                  disabled={loading}
-                  className="bg-stone-900/50 hover:bg-stone-800 border border-stone-700 text-white py-3 rounded-lg transition-colors disabled:opacity-50 disabled:cursor-not-allowed flex items-center justify-center gap-2"
-                >
-                  <Apple size={18} />
-                  <span className="font-medium">Apple</span>
                 </button>
               </div>
             </>

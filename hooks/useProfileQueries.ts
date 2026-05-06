@@ -4,11 +4,14 @@
  */
 
 import { useQuery, useMutation, useQueryClient } from '@tanstack/react-query';
-import { createDefaultUserProfile, UserProfile } from '../services/gamification';
+import { createDefaultUserProfile, createEmptyUserProfile, UserProfile } from '../services/gamification';
 import { fetchUserProfile, addXpToUser, completeNodeForUser, calculateLevel } from '../services/profileAPI';
 import { useAuth } from '../contexts/AuthContext';
+import { LocalStorageService } from '../services/localStorage';
 
-const INITIAL_PROFILE: UserProfile = createDefaultUserProfile();
+const USE_DEMO_PROFILE = import.meta.env.VITE_DEMO_PROFILE === 'true';
+const INITIAL_GUEST_PROFILE: UserProfile = USE_DEMO_PROFILE ? createDefaultUserProfile() : createEmptyUserProfile();
+const EMPTY_PROFILE: UserProfile = createEmptyUserProfile();
 
 /**
  * Query key factory for profile queries
@@ -28,7 +31,7 @@ export const useProfileQuery = (userId: string | null, isGuest: boolean) => {
       if (userId && !isGuest) {
         return await fetchUserProfile(userId);
       }
-      return INITIAL_PROFILE;
+      return LocalStorageService.getGuestProfile();
     },
     enabled: !!userId || isGuest,
     staleTime: 1000 * 60 * 5, // 5 minutes
@@ -63,17 +66,18 @@ export const useAddXpMutation = (userId: string | null, isGuest: boolean) => {
       if (!currentUserId || actuallyIsGuest) {
         console.log('[useAddXpMutation] Guest mode - updating cache only');
         // Guest mode - just update local cache optimistically
-        const current = queryClient.getQueryData<UserProfile>(queryKey) || INITIAL_PROFILE;
+        const current = queryClient.getQueryData<UserProfile>(queryKey) || INITIAL_GUEST_PROFILE;
         const updated = {
           ...current,
           xp: current.xp + amount
         };
         queryClient.setQueryData(queryKey, updated);
+        LocalStorageService.saveGuestProfile(updated);
         return updated;
       }
 
       console.log('[useAddXpMutation] Authenticated user - calling API');
-      const current = queryClient.getQueryData<UserProfile>(queryKey) || INITIAL_PROFILE;
+      const current = queryClient.getQueryData<UserProfile>(queryKey) || EMPTY_PROFILE;
       console.log('[useAddXpMutation] Current profile:', current);
       const updated = await addXpToUser(currentUserId, amount, current);
       console.log('[useAddXpMutation] Updated profile:', updated);
@@ -114,7 +118,7 @@ export const useCompleteNodeMutation = (userId: string | null, isGuest: boolean)
       if (!currentUserId || actuallyIsGuest) {
         console.log('[useCompleteNodeMutation] Guest mode - updating cache only');
         // Guest mode - just update local cache optimistically
-        const current = queryClient.getQueryData<UserProfile>(queryKey) || INITIAL_PROFILE;
+        const current = queryClient.getQueryData<UserProfile>(queryKey) || INITIAL_GUEST_PROFILE;
         if (current.nodesCompleted.includes(nodeId)) {
           return current;
         }
@@ -127,11 +131,12 @@ export const useCompleteNodeMutation = (userId: string | null, isGuest: boolean)
           level: newLevel
         };
         queryClient.setQueryData(queryKey, updated);
+        LocalStorageService.saveGuestProfile(updated);
         return updated;
       }
 
       console.log('[useCompleteNodeMutation] Authenticated user - calling API');
-      const current = queryClient.getQueryData<UserProfile>(queryKey) || INITIAL_PROFILE;
+      const current = queryClient.getQueryData<UserProfile>(queryKey) || EMPTY_PROFILE;
       console.log('[useCompleteNodeMutation] Current profile:', current);
       const updated = await completeNodeForUser(currentUserId, nodeId, current);
       console.log('[useCompleteNodeMutation] Updated profile:', updated);

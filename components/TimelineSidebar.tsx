@@ -1,7 +1,7 @@
 
 import React, { useRef, useEffect } from 'react';
 import { Era, TimelineNodeStub } from '../types';
-import { ChevronRight, Terminal, Info, Lock } from 'lucide-react';
+import { ChevronRight, Terminal, Info, Lock, LogOut } from 'lucide-react';
 import { getEraNodesSorted } from '../services/nodeLocking';
 
 interface TimelineSidebarProps {
@@ -15,6 +15,7 @@ interface TimelineSidebarProps {
   onSelectEra: (id: string) => void;
   onSelectNode: (node: TimelineNodeStub) => void;
   onSelectEraBriefing: (era: Era) => void;
+  onSignOut: () => void | Promise<void>;
 }
 
 export const TimelineSidebar: React.FC<TimelineSidebarProps> = ({
@@ -28,6 +29,7 @@ export const TimelineSidebar: React.FC<TimelineSidebarProps> = ({
   onSelectEra,
   onSelectNode,
   onSelectEraBriefing,
+  onSignOut,
 }) => {
   const eraRefs = useRef<Record<string, HTMLDivElement | null>>({});
 
@@ -202,7 +204,17 @@ export const TimelineSidebar: React.FC<TimelineSidebarProps> = ({
       <div className="p-3 border-t border-stone-800 bg-[#080808]">
         <div className="flex items-center justify-between text-[9px] text-stone-600 font-mono uppercase tracking-wider">
            <span className="flex items-center gap-1"><span className="w-1.5 h-1.5 bg-green-500 rounded-full animate-pulse"></span> Connected</span>
-           <span>Ver 1.0.6</span>
+           <div className="flex items-center gap-3">
+            <span>Ver 1.0.6</span>
+            <button
+              onClick={onSignOut}
+              aria-label="Log out"
+              title="Log out"
+              className="text-stone-500 hover:text-red-300 transition-colors"
+            >
+              <LogOut size={14} />
+            </button>
+           </div>
         </div>
       </div>
     </div>

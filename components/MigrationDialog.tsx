@@ -98,8 +98,8 @@ export const MigrationDialog: React.FC = () => {
                 <div className="text-xs text-stone-500 uppercase">Level</div>
               </div>
               <div>
-                <div className="text-2xl font-display font-bold text-emerald-400">{localProfile.artifacts.length}</div>
-                <div className="text-xs text-stone-500 uppercase">Artifacts</div>
+                <div className="text-2xl font-display font-bold text-emerald-400">{localProfile.collectibleCards.length}</div>
+                <div className="text-xs text-stone-500 uppercase">Cards</div>
               </div>
               <div>
                 <div className="text-2xl font-display font-bold text-blue-400">{localProfile.nodesCompleted.length}</div>
@@ -166,7 +166,7 @@ export const MigrationDialog: React.FC = () => {
 
           {/* Note */}
           <p className="text-xs text-stone-600 text-center">
-            If you have cloud progress, importing will merge both datasets (keeping the maximum XP and combining artifacts).
+            If you have cloud progress, importing will sync the local XP and completed lessons to this account.
           </p>
         </div>
       </div>
