@@ -2,7 +2,7 @@ import { NodeContent } from '../../../types';
 
 export const FOUNDATIONS_MESOPOTAMIA: Record<string, NodeContent> = {
   'sumer_writing': {
-    heroImageUrl: "/images/lessons/cuneiform2.png",
+    heroImageUrl: "/images/lessons/cuneiform_hero.png",
     heroImageFit: "contain",
     summary:
       "Around 3400 BCE in the city of Uruk in southern Mesopotamia, life had become dizzyingly complex. Temples owned vast estates, employed hundreds of workers, and collected grain, livestock, textiles, and metals as offerings and taxes. Merchants traded wool, silver, and imported goods across hundreds of miles. Priests managed ritual calendars with dozens of festivals. How do you keep track of who gave what, who owes what, when payments are due, and how much grain is sitting in the storehouses? Human memory wasn't enough anymore. At first, officials used small clay tokens—a cone shape for a unit of grain, a sphere for a jar of oil, a cylinder for an animal. They stored these tokens in clay containers called bullae as receipts. But this system was clunky and limited. Then someone had a breakthrough: instead of keeping the tokens, just press their shapes into wet clay and bake the tablet. The symbol becomes the record.\n\n" +
