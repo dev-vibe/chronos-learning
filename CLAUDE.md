@@ -163,7 +163,7 @@ Key interfaces:
 
 Each node should be:
 - **Concise but Complete**: Capture the essential story without overwhelming detail
-- **Engaging for 11-12 year olds**: Use vivid language, avoid dry academic tone
+- **Engaging for 11-14 year olds**: Use vivid language, avoid dry academic tone
 - **Historically Rigorous**: Cite modern scholarship, acknowledge debates
 - **Globally Inclusive**: Cover non-Western civilizations with equal depth
 - **Fun Fact Driven**: Include memorable details that stick

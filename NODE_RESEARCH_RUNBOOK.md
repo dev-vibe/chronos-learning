@@ -2,6 +2,10 @@
 
 This document provides step-by-step instructions for researching and creating content for timeline nodes in Chronos Learning Terminal.
 
+For the full one-lesson-at-a-time research and drafting routine, start with
+`LESSON_CREATION_STARTER_PROMPT.md`, then use this runbook for implementation
+details and schema checks.
+
 ## Table of Contents
 1. [Data Model Overview](#data-model-overview)
 2. [Research Process](#research-process)
@@ -18,7 +22,7 @@ Each timeline node requires a `NodeContent` object with the following structure:
 ```typescript
 interface NodeContent {
   summary: string;           // 3-4 paragraph historical narrative
-  funFact: string;          // Memorable detail for 11-12 year olds
+  funFact: string;          // Memorable detail for 11-14 year olds
   people: HistoricalPerson[]; // 2-4 key figures (trading card format)
   inventions: Invention[];    // 1-3 innovations (tech blueprint format)
   places: Place[];           // 1-3 locations (place card format)
@@ -127,7 +131,7 @@ interface QuizQuestion {
    - What technologies/innovations emerged?
    - Where did this take place? (geography matters!)
    - Why does this matter? (impact, legacy, connections)
-   - What would 11-12 year olds find cool/interesting?
+   - What would 11-14 year olds find cool/interesting?
 
 3. **Find Primary Sources** (if available):
    - Ancient texts, inscriptions, archaeological findings
@@ -173,7 +177,7 @@ interface QuizQuestion {
 - Connect to modern world when possible
 
 **Style Guidelines**:
-- Write for ages 11-12 (7th grade reading level)
+- Write for ages 11-14 (roughly middle school reading level)
 - Use active voice: "Cyrus conquered Babylon" not "Babylon was conquered"
 - Include vivid details: smells, sounds, emotions, drama
 - Avoid dry academic tone: "This was significant because..." ❌
@@ -334,7 +338,7 @@ Before submitting content, verify:
 ### Content Quality
 - [ ] Summary is 3-4 paragraphs, 400-600 words
 - [ ] Summary tells a story (not just lists facts)
-- [ ] Summary is engaging for ages 11-12
+- [ ] Summary is engaging for ages 11-14
 - [ ] Fun fact is memorable and surprising
 - [ ] 2-4 people with complete trading card info
 - [ ] 1-3 inventions with Problem→Solution→Impact
@@ -363,7 +367,7 @@ Before submitting content, verify:
 - [ ] Vivid, engaging language
 - [ ] Technical terms explained in context
 - [ ] No emojis (unless explicitly requested)
-- [ ] Reading level appropriate for 7th grade
+- [ ] Reading level appropriate for middle school
 - [ ] Avoids academic jargon and dry tone
 
 ---
@@ -378,9 +382,9 @@ Before submitting content, verify:
 6. **Teaching Without Teaching**: Quiz explanations should add value, not repeat answers
 7. **URL Errors**: Always use `url` field with real URLs, never `searchQuery`
 8. **Missing `?rel=0`**: YouTube videos without this parameter will show inappropriate suggestions
-9. **Overcomplication**: Keep it simple - you're writing for 11-12 year olds, not PhD candidates
+9. **Overcomplication**: Keep it clear - you're writing for 11-14 year olds, not PhD candidates
 10. **Missing the Human Element**: Include emotions, motivations, drama - history is human!
-11. **No woke bullshit!!!**: I cannot stress this enough. Be based and reasonable, no culture war takes
+11. **Present-day culture-war framing**: Be accurate, humane, and reasonable without turning the lesson into a modern political sermon
 
 ---
 

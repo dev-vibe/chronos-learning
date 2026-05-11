@@ -15,31 +15,15 @@ import { getAllNodeLockStatus } from './services/nodeLocking';
 import { AlertCircle, PlayCircle, Terminal } from 'lucide-react';
 
 // Development/Testing Flag: Set to true to unlock all eras regardless of completion status
-const UNLOCK_ALL_ERAS = false;
-const TEMPORARILY_UNLOCKED_NODE_IDS = [
-  'younger_dryas_reset',
-  'neolithic_revolution',
-  // 'animal_domestication',
-];
+const UNLOCK_ALL_ERAS = true;
+
+// Node IDs to force-unlock (and unlock their containing era) even when UNLOCK_ALL_ERAS is false.
+// Leave empty when UNLOCK_ALL_ERAS is true.
+const TEMPORARILY_UNLOCKED_NODE_IDS: string[] = [];
 
 const App: React.FC = () => {
   const { user, loading: authLoading, isGuest } = useAuth();
 
-  // Show auth screen if not logged in and not guest
-  if (authLoading) {
-    return (
-      <div className="flex h-screen w-screen bg-black text-stone-200 items-center justify-center">
-        <div className="text-center">
-          <Terminal size={48} className="mx-auto mb-4 text-stone-600 animate-pulse" />
-          <p className="text-stone-500 font-mono">Initializing...</p>
-        </div>
-      </div>
-    );
-  }
-
-  if (!user && !isGuest) {
-    return <AuthScreen />;
-  }
   const [selectedEraId, setSelectedEraId] = useState<string | null>(ERAS[0].id);
   const [selectedNode, setSelectedNode] = useState<TimelineNode | null>(null);
   const [selectedEra, setSelectedEra] = useState<Era | null>(null);
@@ -310,6 +294,22 @@ const App: React.FC = () => {
       console.log('[handleGoToNextLesson] No next lesson available!');
     }
   };
+
+  // Auth gating — placed AFTER all hooks to satisfy the Rules of Hooks.
+  if (authLoading) {
+    return (
+      <div className="flex h-screen w-screen bg-black text-stone-200 items-center justify-center">
+        <div className="text-center">
+          <Terminal size={48} className="mx-auto mb-4 text-stone-600 animate-pulse" />
+          <p className="text-stone-500 font-mono">Initializing...</p>
+        </div>
+      </div>
+    );
+  }
+
+  if (!user && !isGuest) {
+    return <AuthScreen />;
+  }
 
   return (
     <div className="flex h-screen w-screen bg-black text-stone-200 overflow-hidden font-sans">

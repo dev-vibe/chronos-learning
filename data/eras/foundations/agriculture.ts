@@ -483,161 +483,216 @@ export const FOUNDATIONS_GENERAL: Record<string, NodeContent> = {
   },
   'bronze_age_begins': {
     summary:
-      "Around 3300 BCE in the Near East, humans were already skilled metalworkers. For over a thousand years, they'd been smelting copper—heating certain greenish rocks in hot ovens until pure reddish metal dripped out. Copper was amazing: it could be melted and poured into molds, hammered into sheets, or shaped into hooks, pins, and simple tools. But it had a fatal weakness—it was soft. A copper axe blade would dull quickly. A copper sword would bend in battle. Copper was beautiful and useful, but it couldn't compete with good stone tools for serious work.\n\n" +
-      "Then came the breakthrough, probably by accident. A metalworker somewhere—maybe in Anatolia (Turkey), maybe in Mesopotamia (Iraq), maybe in Iran—smelted copper ore that naturally contained traces of tin or arsenic. The result was harder, tougher, and kept a sharp edge much longer. Once smiths realized they could deliberately mix about 10% tin with 90% copper to create bronze, everything changed. Bronze tools cut through wood like butter. Bronze plow blades dug deeper into soil, boosting crop yields. Bronze weapons—swords, daggers, spearheads, arrowheads—gave armies equipped with them a devastating advantage. Bronze also had a lower melting point than copper, making it easier to cast into complex shapes. Suddenly, kings, priests, and wealthy merchants wanted bronze everything: tools, weapons, ritual objects, jewelry, and elaborate decorations.\n\n" +
-      "But there was a catch—a huge one that would shape the next 2,000 years of human history. Copper and tin are almost never found in the same place. Copper deposits were scattered across the Near East, Anatolia, Cyprus, and the Sinai Peninsula. Tin was even rarer, found mainly in distant mountains in Anatolia, Afghanistan, and possibly Central Asia. To make bronze, you needed long-distance trade networks. Miners in remote mountains extracted ore. Merchants loaded it onto donkeys or ships and hauled it hundreds or thousands of miles. Cities controlled trade routes, taxed metal shipments, and employed specialist smiths who guarded their bronze-making secrets. A farmer's bronze plow in Egypt might contain copper from Cyprus and tin from Afghanistan—places he'd never heard of. The Bronze Age wasn't just about a better metal; it was about the first truly interconnected, globalized economy. When those trade routes collapsed around 1200 BCE—due to wars, droughts, and invasions—the whole Bronze Age system came crashing down.",
+      "Imagine a craftsperson in the Near East around 3300 BCE watching a furnace glow white-hot. People already knew copper: it could be melted, hammered, polished, and shaped into pins, hooks, mirrors, and blades. But copper had a problem. It was often too soft for the hardest jobs. A copper edge could bend or dull where a sharp stone blade still worked well. Metal looked powerful before it always was powerful.\n\n" +
+      "Bronze changed that. When copper was mixed with tin, and sometimes when copper ores naturally included other elements such as arsenic, the result could be harder and better at holding an edge. No one left us a diary saying, 'Today I invented bronze.' The first discoveries were probably experiments, accidents, and local tricks learned in workshops. Over time, metalworkers learned that an alloy, a mixture of metals, could do things pure copper could not. Bronze axes cleared wood, bronze chisels shaped stone and timber, bronze daggers and spearheads made warfare deadlier, and bronze vessels, jewelry, and ritual objects gave rulers and temples a new language of shine and authority.\n\n" +
+      "The catch was tin. Copper sources were easier to find across parts of Anatolia, Cyprus, the Sinai, Iran, and the Levant, but tin was scarce and often far away. That meant bronze was not just a recipe. It was a system: miners crawling into narrow shafts, charcoal burners feeding furnaces, smiths controlling heat, merchants arranging donkey caravans, sailors moving heavy ingots, scribes recording shipments, and rulers trying to tax or command the flow. A bronze blade in one city might depend on ore, fuel, labor, and trust stretched across hundreds of miles.\n\n" +
+      "This made the Bronze Age both brilliant and fragile. Bronze helped cities build, farm, fight, worship, and display wealth on a larger scale. It also sharpened inequality: elite warriors and palace workshops could get metal first, while ordinary farmers might still rely on wood, bone, stone, and repaired tools. Archaeology also keeps the story honest. We can see bronze objects, mines, crucibles, ingots, shipwreck cargoes, and letters about copper, but many details remain debated, especially where early tin came from. The Bronze Age begins as a metal story, but it quickly becomes a human story about skill, risk, power, trade, and dependence.",
     funFact:
-      "Bronze was so valuable in the early Bronze Age that it was often recycled obsessively. Broken tools and weapons were melted down and recast. Archaeologists joke that the same atoms of bronze might have been a dagger in 2000 BCE, a cooking pot in 1500 BCE, and a statue in 1000 BCE.",
+      "Bronze could be recycled again and again. A broken tool was not trash; it was future metal waiting for the furnace.",
     people: [
       {
-        name: "The Master Smith",
-        role: "Bronze Metalworker",
+        name: "Workshop Smith",
+        role: "Early Bronze Metalworker",
         category: "Scientist",
         description:
-          "Elite craftspeople who controlled the secrets of bronze-making: the right ratio of copper to tin, the correct furnace temperature (over 1000°C), and how to pour molten metal into intricate molds. Smiths were so valuable that kings kept them close, sometimes even marking them with special tattoos so they couldn't run away to rival kingdoms.",
+          "A specialist who turns ore and scrap metal into useful objects by controlling heat, molds, hammering, and alloy mixtures. Early smiths did not all use one perfect formula; they learned by experiment, local materials, and workshop tradition. Their skill mattered because a small change in metal, temperature, or cooling could mean the difference between a strong blade and a failed lump.",
         achievements: [
-          "Perfected the copper-tin alloy ratio (typically 90% copper, 10% tin)",
-          "Developed lost-wax casting for complex sculptures and ritual objects",
-          "Created standardized bronze ingots for trade (like ancient currency)"
+          "Helped turn copper metallurgy into harder bronze toolmaking",
+          "Used molds and hammering to make repeatable tools, weapons, and ornaments",
+          "Recycled broken objects into new metal instead of wasting scarce material"
         ],
-        legacy: "Bronze smiths were among the first true specialists—craftspeople who didn't farm but were supported by society because their skills were irreplaceable.",
-        imageUrl: "/images/foundations/bronze_smith.jpg"
+        legacy: "Smiths show how civilization depends on specialists: people whose knowledge is valuable enough that others feed, protect, employ, or control them.",
+        imageUrl: "https://collectionapi.metmuseum.org/api/collection/v1/iiif/244175/498946/main-image",
+        imageFit: "contain"
       },
       {
-        name: "The Tin Trader",
-        role: "Long-Distance Merchant",
+        name: "Tin Caravan Merchant",
+        role: "Long-Distance Trader",
         category: "Explorer",
         description:
-          "Merchants who organized caravans of donkeys and camels to haul tin from distant mountains (Afghanistan, Central Asia, Anatolia) to bronze-hungry cities in Mesopotamia and Egypt. These were dangerous journeys through deserts, mountains, and territories controlled by bandits or rival kingdoms. Successful tin traders became wealthy and powerful.",
+          "A merchant who moves small but precious loads of tin through dangerous trade routes. In the Old Assyrian trade world, merchants used letters, contracts, family partnerships, and donkey caravans to connect Mesopotamia with Anatolia. Tin was light compared with grain or stone, but it was valuable enough to attract taxes, debt, arguments, and theft.",
         achievements: [
-          "Established trade routes spanning thousands of miles",
-          "Negotiated safe passage through multiple kingdoms and territories",
-          "Created early forms of credit and contracts for long-distance trade"
+          "Linked distant mining zones, cities, and workshops",
+          "Used written contracts and credit to manage risky trade",
+          "Made bronze production possible in places without local tin"
         ],
-        legacy: "Tin traders created the first truly international trade networks, proving that valuable commodities could connect civilizations across vast distances.",
-        imageUrl: "/images/foundations/tin_trader.jpg"
+        legacy: "Bronze Age merchants reveal an early version of supply chains: one broken route could raise prices or stop production far away.",
+        imageUrl: "https://www.britishmuseum.org/collection/object/W_1888-1013-38",
+        imageFit: "contain"
       },
       {
-        name: "The Bronze-Armed Warrior",
+        name: "Bronze-Armed Fighter",
         role: "Elite Soldier",
-        category: "Military",
+        category: "Warrior",
         description:
-          "Soldiers equipped with bronze weapons and armor had an overwhelming advantage over those with stone or copper weapons. Bronze swords didn't shatter, bronze-tipped spears pierced leather armor, and bronze helmets protected against blows. Only wealthy kingdoms could afford to equip entire armies with bronze, creating a military aristocracy.",
-        legacy: "Bronze weapons created the first true warrior elites and made large-scale organized warfare deadlier than ever before.",
-        imageUrl: "/images/foundations/bronze_warrior.jpg"
+          "A fighter equipped with metal weapons that required mining, smelting, skilled crafting, and wealth. Bronze did not make every soldier unstoppable, and many armies still used wood, leather, stone, and simple gear. But for elites, a bronze dagger, spearhead, axe, or helmet could become both a practical weapon and a status symbol.",
+        achievements: [
+          "Used bronze weapons that could be cast, repaired, sharpened, and reused",
+          "Helped rulers turn metal access into military advantage",
+          "Made warfare more expensive and more organized"
+        ],
+        legacy: "Bronze weapons tied violence to economics: armies depended not only on courage, but on mines, fuel, workshops, and trade.",
+        imageUrl: "https://collectionapi.metmuseum.org/api/collection/v1/iiif/244167/498932/main-image",
+        imageFit: "contain"
+      },
+      {
+        name: "Mine Worker",
+        role: "Ore Extractor",
+        category: "Worker",
+        description:
+          "An ordinary laborer who digs, carries, crushes, or washes ore before any smith can make bronze. Mining could be dangerous, cramped, and exhausting. Sites such as Kestel and Goltepe in Anatolia remind us that shiny palace objects began with hidden labor in hillsides, tunnels, and processing areas.",
+        achievements: [
+          "Supplied the raw materials behind bronze tools and weapons",
+          "Worked in mining and ore-processing systems that required planning and supervision",
+          "Made elite metal culture possible without becoming famous"
+        ],
+        legacy: "The Bronze Age was not built only by kings and inventors. It depended on workers whose names were not written down.",
+        imageUrl: "https://www.mdpi.com/minerals/minerals-11-00091/article_deploy/html/images/minerals-11-00091-g001.png",
+        imageFit: "contain"
       }
     ],
     inventions: [
       {
-        name: "Bronze Alloy (Copper + Tin)",
-        description: "Deliberate mixing of 90% copper with 10% tin to create a metal superior to either alone",
+        name: "Bronze Alloy",
+        description: "A harder metal made by mixing copper with tin or other alloying elements",
         category: "Science",
-        date: "c. 3300 BCE",
-        imageUrl: "/images/inventions/bronze_ingot.jpg",
+        date: "c. 3300 BCE in parts of the Near East; later elsewhere",
+        imageUrl: "https://collectionapi.metmuseum.org/api/collection/v1/iiif/244175/498946/main-image",
+        imageFit: "contain",
         problem:
-          "Pure copper is soft—it bends easily, dulls quickly, and can't hold a sharp edge. Copper tools are prettier than stone tools, but not much more effective. Stone axes often outperform copper axes. For a metal to truly replace stone, it needs to be significantly harder and more durable.",
+          "Pure copper is useful and beautiful, but it is often too soft for demanding cutting edges, heavy tools, and reliable weapons.",
         solution:
-          "Metalworkers discovered (probably by accident at first) that adding a small amount of tin to molten copper creates an alloy called bronze. The tin atoms disrupt the copper's crystal structure, making it much harder. Bronze holds a sharp edge, resists bending, and can be remelted and recast repeatedly. The ideal ratio is about 10% tin, though smiths experimented with 5-15% depending on whether they wanted hardness (weapons) or workability (tools).",
+          "Metalworkers learned that adding tin to copper, or using ores with natural alloying elements, could create bronze: a metal that was usually harder, more castable, and better at holding an edge than pure copper.",
         impact:
-          "Bronze tools revolutionized agriculture (better plows = more food = larger populations), construction (bronze chisels carved stone monuments), and especially warfare (bronze weapons were so superior that armies without them stood little chance). Bronze also created economic interdependence: no region had everything it needed, so trade became essential. This interconnected economy lasted 2,000 years until it collapsed catastrophically around 1200 BCE."
+          "Bronze expanded what workshops could make: axes, chisels, pins, daggers, spearheads, vessels, mirrors, and ritual objects. It also made metal access a political issue because rulers and temples wanted control over scarce materials."
       },
       {
-        name: "Lost-Wax Casting",
-        description: "Advanced technique for creating detailed bronze sculptures and complex shapes",
+        name: "Casting in Molds",
+        description: "Pouring molten metal into prepared shapes to make repeated tools and objects",
         category: "Art",
-        date: "c. 3000 BCE",
-        imageUrl: "/images/inventions/lost_wax_casting.jpg",
+        date: "4th-3rd millennium BCE",
+        imageUrl: "https://collectionapi.metmuseum.org/api/collection/v1/iiif/244149/498908/main-image",
+        imageFit: "contain",
         problem:
-          "Simple open molds can create flat objects, but how do you cast a three-dimensional statue with intricate details—like a god's face, or fingers holding a weapon? Hammering bronze by hand limits what shapes are possible.",
+          "Hammering metal by hand limits the shapes a craftsperson can make, especially when many similar tools or detailed objects are needed.",
         solution:
-          "Sculptors carve a model in wax with all the fine details they want. They cover the wax model in clay, leaving a small hole. When heated, the wax melts and drains out (hence 'lost wax'), leaving a hollow clay mold with the exact shape of the original. Pour molten bronze in, let it cool, break open the clay, and you have a perfect bronze replica. Each mold is single-use, but the results are stunning.",
+          "Smiths carved or built molds from stone, clay, or other materials, then poured molten copper alloy into them. More complex casting methods developed over time for detailed objects.",
         impact:
-          "Lost-wax casting enabled Bronze Age artists to create masterpieces: elaborate statues of gods and kings, intricate jewelry, ceremonial vessels, and ritual objects. It turned bronze from a utilitarian material into an artistic medium. Many Bronze Age sculptures we admire today were made this way."
+          "Casting made metalwork more repeatable and more ambitious. It supported practical tools, weapons, luxury display, and sacred objects, turning metallurgy into both technology and art."
       },
       {
-        name: "Bronze Ingot Standardization",
-        description: "Standardized shapes and weights for bronze, making it easier to trade",
-        category: "Politics",
-        date: "c. 2000 BCE",
-        imageUrl: "/images/inventions/bronze_ingot.jpg",
+        name: "Metal Ingots",
+        description: "Transportable blocks of raw copper or tin used in long-distance exchange",
+        category: "Economy",
+        date: "especially visible in the Late Bronze Age",
+        imageUrl: "https://www.britishmuseum.org/collection/object/G_1897-0401-1535",
+        imageFit: "contain",
         problem:
-          "Bronze is valuable, but raw bronze is hard to transport and trade. How do you know you're getting a fair deal? How do merchants and kings keep track of bronze being shipped across hundreds of miles?",
+          "Raw metal is heavy, valuable, and difficult to measure casually. Traders needed forms that could be carried, counted, stored, and recorded.",
         solution:
-          "Bronze was cast into standardized shapes—most famously, the 'oxhide ingot' shaped like a stretched animal hide with four handles for carrying. These ingots had consistent weights (typically 20-30kg), making them easy to trade, stack on ships, and account for in palace records. They functioned like large-denomination currency.",
+          "Metal was cast into ingots, including the famous oxhide-shaped copper ingots of the eastern Mediterranean. Their handles and recognizable shape made them easier to move and identify.",
         impact:
-          "Standardized ingots facilitated long-distance trade and helped create a Bronze Age 'common market.' Shipwrecks from this era (like the Uluburun wreck off Turkey, c. 1300 BCE) are loaded with dozens of identical oxhide ingots—evidence of a sophisticated trade system spanning the Mediterranean."
+          "Ingots helped connect mines, ports, palaces, and workshops. Shipwrecks such as Uluburun show metal moving in huge quantities, but they also remind historians that the exact routes and sources, especially for tin, are still debated."
       }
     ],
     places: [
       {
-        name: "Kestel Mine & Göltepe, Turkey",
+        name: "Kestel Mine and Goltepe",
         description:
-          "One of the world's oldest known tin mines, located in the Taurus Mountains of central Anatolia (Turkey). Active around 3000 BCE, this mine supplied tin to early Bronze Age civilizations in Mesopotamia. The nearby site of Göltepe shows evidence of tin processing and smelting.",
-        location: "Taurus Mountains, central Turkey (near modern Niğde Province)",
+          "A mining and processing zone in the Taurus Mountains of Anatolia. Archaeologists have found ancient galleries at Kestel and evidence of ore processing at nearby Goltepe. The site has been central to debates about whether local Anatolian tin helped supply early bronze production.",
+        location: "Central Taurus Mountains, near modern Nigde Province, Turkey",
         significance:
-          "Kestel is crucial because tin sources are so rare. For centuries, archaeologists wondered where Bronze Age civilizations got their tin. Kestel proved that Anatolia had accessible tin deposits, helping explain how the Bronze Age started in the Near East. Control of tin mines like this gave kingdoms immense power—without tin, you can't make bronze, and without bronze, you can't compete.",
-        imageUrl: "/images/places/kestel_mine.jpg"
+          "Kestel matters because tin is the hard part of the bronze recipe. Some scholars challenged whether the mine was really worked mainly for tin, but newer mineralogical research supports cassiterite tin ore as an important target. That makes the site perfect for showing how archaeology tests claims instead of simply repeating them.",
+        imageUrl: "https://www.mdpi.com/minerals/minerals-11-00091/article_deploy/html/images/minerals-11-00091-g001.png",
+        imageFit: "contain"
       },
       {
-        name: "The Uluburun Shipwreck Site",
+        name: "Cyprus and Alashiya",
         description:
-          "A Bronze Age merchant ship that sank off the coast of Turkey around 1300 BCE. Discovered in 1982 and excavated over 11 years, it contained an astonishing cargo: 10 tons of copper ingots, 1 ton of tin ingots, luxury goods (ivory, glass, ebony, gold, jewelry), weapons, pottery from multiple civilizations, and even an Egyptian scarab of Queen Nefertiti.",
-        location: "Mediterranean Sea off the coast of Kaş, southwestern Turkey (50 meters underwater)",
+          "Cyprus was famous in the Late Bronze Age for copper. Several ancient texts refer to a land called Alashiya sending copper to Egypt; many scholars identify Alashiya with Cyprus, though the identification is discussed carefully rather than treated as perfectly simple.",
+        location: "Island of Cyprus, eastern Mediterranean",
         significance:
-          "The Uluburun shipwreck is like a time capsule showing how interconnected the Bronze Age world was. The copper was from Cyprus, the tin likely from Afghanistan or Anatolia, the pottery from Cyprus and Canaan, the ivory from Africa or Syria, the glass from Egypt. One ship carried goods from at least seven different civilizations. It proves that the Bronze Age wasn't isolated city-states—it was a genuinely globalized trade network. When that network collapsed around 1200 BCE, it triggered a dark age.",
-        imageUrl: "/images/places/uluburun_wreck.jpg"
+          "Cyprus shows how geography can become power. A place rich in copper could become a key partner in diplomacy, trade, and palace economies across the eastern Mediterranean.",
+        imageUrl: "https://www.britishmuseum.org/collection/object/W_1888-1013-37",
+        imageFit: "contain"
+      },
+      {
+        name: "Uluburun Shipwreck",
+        description:
+          "A Late Bronze Age ship that sank off the coast of southwestern Turkey around 1300 BCE. Its cargo included hundreds of copper ingots, many tin ingots, glass, ivory, pottery, jewelry, and objects connected with several regions.",
+        location: "Off the coast near Kas, southwestern Turkey",
+        significance:
+          "Uluburun is later than the beginning of the Bronze Age, but it is one of the clearest snapshots of what the bronze system became: a seaborne network moving raw materials and luxury goods across political borders.",
+        imageUrl: "https://www.penn.museum/sites/expedition/archaeometry-and-shipwrecks/",
+        imageFit: "contain"
       }
     ],
     resources: [
       {
-        title: "The Bronze Age | What Was the Bronze Age",
-        type: "Video",
-        url: "https://www.youtube.com/watch?v=PYqHA5C82Xs&rel=0",
+        title: "Bronze Age - Encyclopaedia Britannica",
+        type: "Article",
+        url: "https://www.britannica.com/event/Bronze-Age",
         isCore: true,
         description:
-          "Comprehensive video explaining the Bronze Age period (c. 3000-1000 BCE), how bronze alloy was discovered, its advantages over copper, the rise of trade networks, and why bronze revolutionized warfare, agriculture, and craftsmanship."
+          "Reliable overview of the Bronze Age, including regional differences, copper before bronze, the rise of true bronze, and the transition toward iron."
       },
       {
-        title: "The Bronze Age Collapse - Fall of Civilizations Podcast",
-        type: "Podcast",
-        url: "https://podcasts.apple.com/us/podcast/2-the-bronze-age-collapse-mediterranean-apocalypse/id1449884495?i=1000428254681",
+        title: "Bronze Age - Britannica Kids",
+        type: "Article",
+        url: "https://kids.britannica.com/kids/article/Bronze-Age/352883",
         isCore: true,
         description:
-          "65-minute podcast exploring Bronze Age civilizations at their height—their trade networks, technology, and interconnected economies—and what caused their dramatic collapse around 1200 BCE. Shows why bronze was so crucial to ancient societies."
+          "Student-friendly explanation of bronze as a copper-tin alloy and why bronze tools mattered."
       },
       {
-        title: "Ingots and Bronze Age Copper Trade - Penn Museum",
+        title: "Mineralogical Analysis of the Kestel Mine",
         type: "Article",
-        url: "https://www.penn.museum/sites/expedition/ingots-and-the-bronze-age-copper-trade-in-the-mediterranean/",
+        url: "https://www.mdpi.com/2075-163X/11/1/91",
         isCore: false,
         description:
-          "Scholarly article examining copper ingots found across the Mediterranean, how they reveal Bronze Age trade networks spanning thousands of miles, and the logistics of transporting heavy metals across ancient seas."
+          "Scholarly open-access article explaining why Kestel is important, why the evidence was debated, and how mineral analysis supports early tin exploitation."
       },
       {
-        title: "Uluburun Shipwreck - World History Encyclopedia",
+        title: "Amarna Letter from the King of Alashiya",
         type: "Article",
-        url: "https://www.worldhistory.org/Uluburun_Shipwreck/",
+        url: "https://www.britishmuseum.org/collection/object/W_1888-1013-37",
         isCore: false,
         description:
-          "Documentary about the incredible underwater archaeology of the Uluburun wreck and what it reveals about Bronze Age trade."
+          "British Museum object page for a 14th-century BCE clay letter from Alashiya to Egypt, useful primary evidence for copper diplomacy and trade."
+      },
+      {
+        title: "Archaeometry and Shipwrecks - Penn Museum",
+        type: "Article",
+        url: "https://www.penn.museum/sites/expedition/archaeometry-and-shipwrecks/",
+        isCore: false,
+        description:
+          "Explains the Uluburun and Cape Gelidonya shipwreck cargoes, oxhide ingots, lead isotope analysis, and the unresolved problems of metal provenance."
       }
     ],
     quiz: {
       title: "Metallurgy Mastery Protocol",
       description: "Prove your understanding of the Bronze Age revolution to unlock the artifact.",
+      collectibleCards: [
+        { type: 'person', index: 0, id: 'bronze_age_begins_person_workshop_smith' },
+        { type: 'person', index: 2, id: 'bronze_age_begins_person_bronze_armed_fighter' },
+        { type: 'person', index: 3, id: 'bronze_age_begins_person_mine_worker' },
+        { type: 'invention', index: 0, id: 'bronze_age_begins_invention_bronze_alloy' },
+        { type: 'invention', index: 1, id: 'bronze_age_begins_invention_casting_in_molds' },
+        { type: 'place', index: 0, id: 'bronze_age_begins_place_kestel_goltepe' }
+      ],
       questions: [
         {
           id: "bronze_q1",
-          text: "What is bronze made from?",
+          text: "What is true bronze usually made from?",
           options: [
             "Pure copper heated to very high temperatures",
-            "Copper mixed with about 10% tin",
+            "Copper mixed with tin",
             "Iron mixed with carbon",
             "Gold mixed with silver"
           ],
           correctIndex: 1,
           explanation:
-            "Bronze is an alloy of approximately 90% copper and 10% tin. The tin makes the copper much harder and better at holding a sharp edge. Different ratios were used for different purposes—more tin for weapons, less for tools."
+            "Bronze is an alloy, which means a mixture of metals. Copper plus tin usually makes a harder and more useful metal than pure copper, though ancient smiths used different recipes and sometimes worked with arsenical copper too."
         },
         {
           id: "bronze_q2",
@@ -650,7 +705,7 @@ export const FOUNDATIONS_GENERAL: Record<string, NodeContent> = {
           ],
           correctIndex: 1,
           explanation:
-            "Copper deposits and tin deposits are rarely found together. Tin was especially rare, found mainly in Anatolia, Afghanistan, and Central Asia. To make bronze, you needed trade networks spanning hundreds or thousands of miles. This created the first truly globalized economy."
+            "The bronze recipe created a supply-chain problem. Copper was available in several regions, but tin was much rarer, so workshops often depended on merchants, miners, sailors, and rulers far away."
         },
         {
           id: "bronze_q3",
@@ -663,46 +718,46 @@ export const FOUNDATIONS_GENERAL: Record<string, NodeContent> = {
           ],
           correctIndex: 1,
           explanation:
-            "Bronze is significantly harder than pure copper and keeps a sharp edge much longer. This made bronze tools far more effective than copper tools, and bronze weapons dominated battlefields. A bronze sword could cut through copper armor easily."
+            "Bronze is usually harder than pure copper and can hold an edge better. That made it useful for tools and weapons, though stone, bone, wood, and copper continued to be used too."
         },
         {
           id: "bronze_q4",
-          text: "What were 'oxhide ingots'?",
+          text: "What were oxhide ingots?",
           options: [
             "Bronze shields shaped like animal hides",
-            "Standardized bronze blocks shaped like stretched hides, used for trade",
+            "Transportable copper blocks shaped like stretched hides, used in trade",
             "Leather bags for carrying tin",
             "Ceremonial objects used in rituals"
           ],
           correctIndex: 1,
           explanation:
-            "Oxhide ingots were standardized bronze blocks weighing 20-30kg, shaped like stretched animal hides with four handles. They made bronze easier to transport, trade, and account for—functioning almost like large-denomination currency."
+            "Oxhide ingots were raw metal, usually copper, cast into a shape with four handle-like corners. They show that Bronze Age trade moved heavy industrial materials, not just luxury trinkets."
         },
         {
           id: "bronze_q5",
-          text: "What technique allowed Bronze Age artists to create detailed sculptures?",
+          text: "Why is Kestel/Goltepe important to Bronze Age history?",
           options: [
-            "Hammering thin bronze sheets",
-            "Carving cooled bronze with chisels",
-            "Lost-wax casting",
-            "Stone molds"
+            "It was the capital of the first empire",
+            "It provides debated but important evidence for early tin mining and processing",
+            "It was where iron was invented",
+            "It was the largest Bronze Age shipwreck"
           ],
-          correctIndex: 2,
+          correctIndex: 1,
           explanation:
-            "Lost-wax casting involved making a wax model, covering it in clay, melting out the wax, and pouring bronze into the hollow mold. This allowed incredibly detailed three-dimensional sculptures and objects. Each mold was single-use, but the results were stunning."
+            "Kestel and nearby Goltepe matter because tin sources are hard to trace. The site has been debated, which makes it a good example of how archaeologists test claims with mineral analysis, tools, crucibles, and dating."
         },
         {
           id: "bronze_q6",
           text: "Why did control of tin mines give kingdoms enormous power?",
           options: [
             "Tin was used to make coins",
-            "Without tin, you couldn't make bronze weapons and tools",
+            "Without tin, you could not make true bronze weapons and tools",
             "Tin was needed for food preservation",
             "Tin mines produced gold as a byproduct"
           ],
           correctIndex: 1,
           explanation:
-            "Tin was essential for making bronze, and tin deposits were extremely rare. Kingdoms that controlled tin mines or tin trade routes had a monopoly on bronze production. Without access to tin, your civilization couldn't make modern weapons or tools—you were stuck in the Stone Age while your neighbors had bronze."
+            "Tin was a key ingredient in true bronze. Control over tin sources or tin routes could give rulers leverage over workshops, armies, temples, and trade partners."
         },
         {
           id: "bronze_q7",
@@ -710,12 +765,25 @@ export const FOUNDATIONS_GENERAL: Record<string, NodeContent> = {
           options: [
             "Ships were very small and primitive",
             "Trade was limited to nearby regions",
-            "The Bronze Age was a highly interconnected, globalized economy",
+            "The Bronze Age developed highly interconnected trade networks",
             "Bronze was only used by wealthy elites"
           ],
           correctIndex: 2,
           explanation:
-            "The Uluburun shipwreck (c. 1300 BCE) contained goods from at least seven different civilizations: Cypriot copper, Afghan or Anatolian tin, Egyptian gold, African ivory, Canaanite pottery, and more. One ship carried materials that had traveled thousands of miles. This proves the Bronze Age had a sophisticated, interconnected trade network spanning the known world."
+            "Uluburun sank much later than the beginning of bronze, but its cargo shows what the bronze system grew into: ships carrying copper, tin, glass, ivory, pottery, and luxury goods across an interconnected eastern Mediterranean."
+        },
+        {
+          id: "bronze_q8",
+          text: "Which statement best explains why historians are careful about early bronze?",
+          options: [
+            "No bronze objects survive, so everything is imaginary",
+            "Ancient people wrote detailed invention diaries",
+            "Evidence survives, but dates, recipes, and tin sources vary by region and are sometimes debated",
+            "Bronze was invented in exactly one city on one known day"
+          ],
+          correctIndex: 2,
+          explanation:
+            "The Bronze Age did not begin everywhere at once. Archaeologists use objects, mines, texts, and scientific tests, but they still debate some details, especially where early tin came from and how fast techniques spread."
         }
       ]
     }
