@@ -1,6 +1,255 @@
 import { NodeContent } from '../../../types';
 
 export const FOUNDATIONS_EUROPE: Record<string, NodeContent> = {
+  'cycladic_culture': {
+    summary:
+      "Long before classical Greece, the small Cycladic islands in the Aegean Sea become a world of sailors, marble carvers, farmers, fishers, and traders. The islands do not have huge river valleys like Egypt or Mesopotamia. They have harbors, winds, stone, metal sources nearby, and short sea crossings. That geography matters. In the Early Bronze Age, boats turn scattered islands into stepping-stones between mainland Greece, Crete, Anatolia, and the wider eastern Mediterranean.\n\n" +
+      "Cycladic culture is most famous for marble figures: smooth human forms with folded arms, tilted heads, and faces that often show only a long nose. They look modern to us, but they were not modern art. Most were found in graves, though many were looted before archaeologists could study them properly. That missing context is a big problem. Were the figures ancestors, mourners, deities, companions for the dead, or something else? Good historians resist pretending the answer is settled.\n\n" +
+      "The islands also produced musicians, metal tools, pottery, stone vessels, and fortified or planned settlements. The site of Keros and the nearby islet of Dhaskalio have become especially important in recent research. Excavations show a major ritual and building center where people brought broken marble objects from many islands. Dhaskalio also had impressive architecture and evidence for metalworking. That means Cycladic people were not isolated villagers making pretty statues. They were organizing movement, memory, craft, and ceremony across the sea.\n\n" +
+      "Cycladic culture asks a sharp question: how can small islands become big historical players? The answer is connection. Boats moved obsidian, copper, marble, food, songs, styles, and people. Art made identity visible. Ritual gatherings turned scattered communities into a shared world. Even when their own writing is absent, the objects they left behind show a society that knew how to use the sea as a road.",
+    funFact:
+      "Many Cycladic figures were originally painted with details such as eyes, hair, jewelry, or tattoos, but most of that paint has faded away.",
+    people: [
+      {
+        name: "Cycladic Marble Carver",
+        role: "Island Sculptor",
+        category: "Artist",
+        description:
+          "A craftsperson who shapes hard white marble into folded-arm figures, vessels, and other objects using stone tools, abrasives, patience, and a sharp sense of form.",
+        achievements: [
+          "Created some of the most recognizable art of the Early Bronze Age Aegean",
+          "Worked marble into smooth figures without iron tools",
+          "Helped build a shared island style across separate communities"
+        ],
+        legacy:
+          "Cycladic carvers show that small communities could produce art with a long afterlife, even when we cannot fully recover its original meaning.",
+        imageUrl: "https://upload.wikimedia.org/wikipedia/commons/thumb/a/a4/Marble_seated_harp_player_MET_DP266958.jpg/770px-Marble_seated_harp_player_MET_DP266958.jpg",
+        imageFit: "contain"
+      },
+      {
+        name: "Aegean Boat Captain",
+        role: "Island Navigator",
+        category: "Explorer",
+        description:
+          "A sailor who reads winds, currents, stars, coastlines, and island silhouettes to move people and goods through the Aegean. Travel by boat made the Cyclades feel connected instead of remote.",
+        achievements: [
+          "Linked islands with mainland Greece, Crete, and Anatolia",
+          "Moved marble, pottery, food, metal, and ritual objects",
+          "Turned the Aegean Sea into a route rather than a barrier"
+        ],
+        legacy:
+          "Island navigators helped create the maritime habits that later Aegean cultures, including the Minoans and Greeks, would build upon.",
+        imageUrl: "https://www.metmuseum.org/art/collection/search/254587",
+        imageFit: "contain"
+      },
+      {
+        name: "Keros Ritual Gatherer",
+        role: "Pilgrim or Participant",
+        category: "Commoner",
+        description:
+          "A person who travels to Keros carrying broken pieces of special marble objects. Archaeology suggests people gathered there from different islands, but the exact beliefs behind the ritual remain uncertain.",
+        achievements: [
+          "Participated in shared island ceremonies",
+          "Helped create a ritual center visited by many communities",
+          "Left evidence that movement and belief linked the Cyclades"
+        ],
+        legacy:
+          "The Keros gatherer reminds us that ordinary participants, not just chiefs, can create a sacred landscape.",
+        imageUrl: "https://www.cam.ac.uk/research/news/ancient-greek-island-was-the-site-of-one-of-the-worlds-earliest-maritime-sanctuaries",
+        imageFit: "contain"
+      }
+    ],
+    inventions: [
+      {
+        name: "Folded-Arm Marble Figure",
+        description: "A stylized Cycladic human figure carved from island marble",
+        category: "Art",
+        date: "c. 2800-2300 BCE",
+        imageUrl: "https://upload.wikimedia.org/wikipedia/commons/thumb/a/a4/Marble_seated_harp_player_MET_DP266958.jpg/770px-Marble_seated_harp_player_MET_DP266958.jpg",
+        imageFit: "contain",
+        problem:
+          "Communities need durable symbols for memory, burial, identity, or ritual, but the meaning must be carried without writing.",
+        solution:
+          "Carve marble figures with repeated body forms and, originally, painted details that could signal identity, beauty, or sacred meaning.",
+        impact:
+          "Cycladic figures became a shared visual language across the islands and remain a powerful case study in how much context looting can destroy."
+      },
+      {
+        name: "Island Maritime Network",
+        description: "A web of boat routes connecting small Aegean communities",
+        category: "Transportation",
+        date: "Early Bronze Age",
+        imageUrl: "https://www.metmuseum.org/essays/early-cycladic-art-and-culture",
+        imageFit: "contain",
+        problem:
+          "Small islands have limited farmland and resources, so no single island can easily supply everything its people want or need.",
+        solution:
+          "Use seafaring to connect harbors, exchange materials, and gather people for rituals and trade.",
+        impact:
+          "The network made the Cyclades influential far beyond their size and helped shape later Aegean maritime cultures."
+      }
+    ],
+    places: [
+      {
+        name: "Cyclades",
+        description:
+          "A cluster of islands in the central Aegean Sea, including Naxos, Paros, Keros, Syros, and many smaller islands.",
+        location: "Aegean Sea, between mainland Greece, Crete, and Anatolia",
+        significance:
+          "Their location made the islands natural stepping-stones for Bronze Age travel, trade, and cultural exchange.",
+        imageUrl: "https://www.metmuseum.org/essays/early-cycladic-art-and-culture",
+        imageFit: "contain"
+      },
+      {
+        name: "Keros and Dhaskalio",
+        description:
+          "A ritual center and nearby built-up islet where archaeologists have found broken marble objects, architecture, and evidence for craft activity.",
+        location: "Small islands in the central Cyclades, Greece",
+        significance:
+          "Recent excavations show that Early Bronze Age islanders could organize large gatherings, long-distance movement, and complex building projects.",
+        imageUrl: "https://www.cam.ac.uk/research/news/ancient-greek-island-was-the-site-of-one-of-the-worlds-earliest-maritime-sanctuaries",
+        imageFit: "contain"
+      }
+    ],
+    resources: [
+      {
+        title: "Early Cycladic Art and Culture - The Met",
+        type: "Article",
+        url: "https://www.metmuseum.org/essays/early-cycladic-art-and-culture",
+        isCore: true,
+        description:
+          "Museum overview of Cycladic island life, marble figures, graves, seafaring, and archaeological uncertainty."
+      },
+      {
+        title: "Marble Seated Harp Player - The Met",
+        type: "Article",
+        url: "https://www.metmuseum.org/art/collection/search/254587",
+        isCore: true,
+        description:
+          "Primary object page for a Cycladic musician figure, useful for discussing art, music, and ritual."
+      },
+      {
+        title: "Keros Maritime Sanctuary - University of Cambridge",
+        type: "Article",
+        url: "https://www.cam.ac.uk/research/news/ancient-greek-island-was-the-site-of-one-of-the-worlds-earliest-maritime-sanctuaries",
+        isCore: false,
+        description:
+          "Research news on Keros and Dhaskalio, emphasizing ritual gathering and maritime organization."
+      },
+      {
+        title: "Male Harp Player - Getty Explore Ancient Worlds",
+        type: "Article",
+        url: "https://exploreancientworlds.getty.edu/art-objects/male-harp-player-of-the-early-spedos-type",
+        isCore: false,
+        description:
+          "Student-friendly object page explaining a Cycladic harp player and how archaeologists interpret Cycladic culture."
+      }
+    ],
+    quiz: {
+      title: "Aegean Island Network Protocol",
+      description: "Show how small islands became powerful connectors in the Bronze Age.",
+      collectibleCards: [
+        { type: 'person', index: 0, id: 'cycladic_culture_person_marble_carver' },
+        { type: 'person', index: 1, id: 'cycladic_culture_person_boat_captain' },
+        { type: 'invention', index: 0, id: 'cycladic_culture_invention_marble_figure' },
+        { type: 'invention', index: 1, id: 'cycladic_culture_invention_maritime_network' },
+        { type: 'place', index: 1, id: 'cycladic_culture_place_keros_dhaskalio' }
+      ],
+      questions: [
+        {
+          id: "cycladic_culture_q1",
+          text: "Where did Cycladic culture develop?",
+          options: [
+            "The central Aegean islands",
+            "The Nile Delta",
+            "The Andes Mountains",
+            "The Yellow River valley"
+          ],
+          correctIndex: 0,
+          explanation:
+            "The Cyclades are islands in the central Aegean Sea. Their position made boats, harbors, and short sea crossings central to daily life."
+        },
+        {
+          id: "cycladic_culture_q2",
+          text: "What are Cycladic folded-arm figures usually made from?",
+          options: [
+            "Bronze",
+            "Marble",
+            "Papyrus",
+            "Fired brick"
+          ],
+          correctIndex: 1,
+          explanation:
+            "Cycladic figures were commonly carved from marble. Their smooth white surfaces often lost the painted details they once had."
+        },
+        {
+          id: "cycladic_culture_q3",
+          text: "Why are many Cycladic figures hard to interpret?",
+          options: [
+            "No examples have survived",
+            "Many were looted, so their archaeological context was lost",
+            "They all include long written labels",
+            "They were made only in modern times"
+          ],
+          correctIndex: 1,
+          explanation:
+            "Looting removes objects from graves or settlements without recording where they were found. That destroys clues about use, date, and meaning."
+        },
+        {
+          id: "cycladic_culture_q4",
+          text: "What recent research site has changed how scholars view Cycladic organization?",
+          options: [
+            "Keros and Dhaskalio",
+            "Rome",
+            "Giza",
+            "Mohenjo-Daro"
+          ],
+          correctIndex: 0,
+          explanation:
+            "Keros and Dhaskalio show that Cycladic islanders organized ritual gatherings, building projects, and craft activity across island communities."
+        },
+        {
+          id: "cycladic_culture_q5",
+          text: "Why were boats so important in the Cyclades?",
+          options: [
+            "The islands were connected by rivers",
+            "Boats turned the sea into a travel and trade route",
+            "No one lived near the coast",
+            "Boats replaced all farming"
+          ],
+          correctIndex: 1,
+          explanation:
+            "Island life depends on movement. Boats helped people exchange food, stone, metal, ideas, and ritual objects."
+        },
+        {
+          id: "cycladic_culture_q6",
+          text: "Which lesson is best supported by Cycladic archaeology?",
+          options: [
+            "Small islands cannot influence history",
+            "Only literate societies can be complex",
+            "Art, travel, and ritual can connect communities without writing",
+            "All Bronze Age cultures were ruled by pharaohs"
+          ],
+          correctIndex: 2,
+          explanation:
+            "Cycladic people left little writing, but their art, settlements, and ritual deposits show organized and connected communities."
+        },
+        {
+          id: "cycladic_culture_q7",
+          text: "What is one reason historians avoid a single certain meaning for Cycladic figures?",
+          options: [
+            "Their exact ritual role is debated",
+            "They were all found with instruction manuals",
+            "They were made of plastic",
+            "They only show animals"
+          ],
+          correctIndex: 0,
+          explanation:
+            "The figures may have been connected to burial, identity, ritual, or belief, but the evidence does not let historians settle on one simple answer."
+        }
+      ]
+    }
+  },
   'otzi': {
     summary:
       "Around 3300 BCE, a man we now call Ötzi hikes high in the Alps. He wears a fur-trimmed coat, leggings, and grass-stuffed shoes. He carries a copper axe, a bow and arrows, a knife, and a backpack stuffed with tools, tinder, and food.\n\n" +

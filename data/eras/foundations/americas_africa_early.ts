@@ -1,6 +1,280 @@
 import { NodeContent } from '../../../types';
 
 export const FOUNDATIONS_AMERICAS_AFRICA: Record<string, NodeContent> = {
+  'caral_norte_chico': {
+    summary:
+      "Around 2600 BCE, while pyramids rise in Egypt and cities grow in Mesopotamia, people in the Supe Valley of Peru are building a very different kind of civilization. Caral stands on a dry desert terrace above a green river valley. It has platform mounds, sunken circular plazas, elite residences, and carefully planned ceremonial spaces. But it does not fit the usual textbook checklist. There is no pottery in its earliest phase, no known writing system like cuneiform, and no obvious evidence for armies conquering neighbors.\n\n" +
+      "Caral belongs to the Norte Chico, or Caral-Supe, civilization. Its power seems to have grown from managing labor, ritual, farming, fishing, and exchange between coast and inland valleys. Cotton from irrigated fields could become fishing nets. Fish and shellfish from the Pacific could feed inland communities. Gourds, squash, beans, and other crops moved through the system. Instead of bronze weapons or chariot armies, Caral's leaders used ceremony, feasting, architecture, music, and organized work to hold people together.\n\n" +
+      "The site also gives historians a beautiful problem: how do you identify a state when it does not look like Egypt or Sumer? Archaeologists point to Caral's city plan, huge monuments, labor organization, elite spaces, and a quipu, a knotted cord recording device, as signs of complexity. Flutes made from bird bones and shell trumpets suggest public rituals filled with sound. Recent work in the broader Caral world, including the 2025 unveiling of Penico, shows that this civilization was part of a wider regional story of trade, climate stress, adaptation, and continuity.\n\n" +
+      "Caral matters because it expands the map of the Bronze Age world. The people of the Andes did not need bronze, writing, or wheels to build complex cities. They solved different problems with different tools. Their story warns us that civilization is not one recipe. It can grow from river valleys, deserts, coastlines, cotton fields, fish routes, sacred plazas, and the shared decision to build something much bigger than one household.",
+    funFact:
+      "Caral had no known pottery in its earliest period, but it had monumental pyramids, plazas, musical instruments, and evidence for a quipu.",
+    people: [
+      {
+        name: "Caral Labor Organizer",
+        role: "Work Crew Coordinator",
+        category: "Leader",
+        description:
+          "A person who helps gather, feed, and direct groups building platform mounds, plazas, canals, or ceremonial spaces. Caral's monuments required planning even without kings whose names survive.",
+        achievements: [
+          "Coordinated large construction projects in a desert valley",
+          "Helped organize food, materials, and labor for public architecture",
+          "Turned shared ritual work into social power"
+        ],
+        legacy:
+          "The organizer shows that early states were built by logistics, not just by rulers and warriors.",
+        imageUrl: "https://upload.wikimedia.org/wikipedia/commons/thumb/8/89/PeruCaral19.jpg/800px-PeruCaral19.jpg",
+        imageFit: "contain"
+      },
+      {
+        name: "Cotton and Net Maker",
+        role: "Textile Worker",
+        category: "Worker",
+        description:
+          "A craft worker who turns cotton into cord, bags, and fishing nets. Cotton helped connect inland farmers with coastal fishing communities, making textiles part of the food system.",
+        achievements: [
+          "Produced fiber goods essential for exchange and fishing",
+          "Linked river-valley farming to Pacific coast food supplies",
+          "Helped make a complex economy without metal money"
+        ],
+        legacy:
+          "In Caral, textiles were not just clothing. They were infrastructure: tools that helped people move food and information.",
+        imageUrl: "https://whc.unesco.org/en/list/1269/",
+        imageFit: "contain"
+      },
+      {
+        name: "Ruth Shady",
+        role: "Archaeologist of Caral",
+        category: "Scientist",
+        description:
+          "A Peruvian archaeologist whose work helped bring Caral-Supe to world attention as one of the earliest centers of civilization in the Americas. Her team also connects Caral to newer discoveries in nearby valleys.",
+        achievements: [
+          "Led major research on Caral and the Caral-Supe civilization",
+          "Helped show that complex cities in the Americas were far older than many assumed",
+          "Connected architecture, economy, ritual, and environment in the study of early Peru"
+        ],
+        legacy:
+          "Shady's work reminds students that archaeology can rewrite the map of where and how civilization began.",
+        imageUrl: "https://www.smithsonianmag.com/smart-news/archaeologists-unveil-a-3500-year-old-city-in-peru-that-sheds-light-on-the-caral-culture-180986944/",
+        imageFit: "contain"
+      }
+    ],
+    inventions: [
+      {
+        name: "Sunken Circular Plaza",
+        description: "A ceremonial public space built below ground level",
+        category: "Architecture",
+        date: "c. 3000-1800 BCE",
+        imageUrl: "https://upload.wikimedia.org/wikipedia/commons/thumb/8/89/PeruCaral19.jpg/800px-PeruCaral19.jpg",
+        imageFit: "contain",
+        problem:
+          "A growing society needs spaces where many people can gather, witness rituals, and feel part of a larger community.",
+        solution:
+          "Build plazas and platform mounds that organize movement, sound, sightlines, and ceremony.",
+        impact:
+          "Caral's public architecture helped leaders create unity and authority without leaving written royal histories or obvious military monuments."
+      },
+      {
+        name: "Cotton-Fishing Exchange System",
+        description: "An economy linking inland cotton farmers with coastal fishers",
+        category: "Economy",
+        date: "Late Archaic Period",
+        imageUrl: "https://whc.unesco.org/en/list/1269/",
+        imageFit: "contain",
+        problem:
+          "Desert valleys can produce crops with irrigation, while the coast provides fish, but communities need a way to exchange what each area does best.",
+        solution:
+          "Use cotton to make fishing nets and other fiber goods, then exchange inland products and coastal foods through regional networks.",
+        impact:
+          "This system helps explain how Caral supported large settlements without the same grain-and-bronze economy seen in Afro-Eurasia."
+      },
+      {
+        name: "Quipu Record Keeping",
+        description: "Knotted cord technology used to store or communicate information",
+        category: "Communication",
+        date: "evidence at Caral-Supe",
+        imageUrl: "https://whc.unesco.org/en/list/1269/",
+        imageFit: "contain",
+        problem:
+          "Complex societies need ways to remember quantities, obligations, rituals, or messages, even without written signs on clay or paper.",
+        solution:
+          "Use cords, knots, colors, and positions to encode information in a durable, portable form.",
+        impact:
+          "The quipu from Caral shows that Andean information systems have very deep roots, long before the Inca made quipus famous."
+      }
+    ],
+    places: [
+      {
+        name: "Sacred City of Caral-Supe",
+        description:
+          "A 626-hectare archaeological site with platform mounds, sunken circular courts, elite residences, and ceremonial spaces overlooking the Supe River valley.",
+        location: "Supe Valley, north-central coast of Peru",
+        significance:
+          "UNESCO identifies Caral-Supe as the oldest known center of civilization in the Americas and a key example of Late Archaic Andean urbanism.",
+        imageUrl: "https://upload.wikimedia.org/wikipedia/commons/thumb/8/89/PeruCaral19.jpg/800px-PeruCaral19.jpg",
+        imageFit: "contain"
+      },
+      {
+        name: "Supe Valley",
+        description:
+          "A green river valley cutting through Peru's dry coastal desert, close enough to the Pacific for exchange with fishing communities.",
+        location: "North of Lima, Peru",
+        significance:
+          "The valley's geography helped connect inland farming, coastal fishing, and ceremonial centers in one regional system.",
+        imageUrl: "https://whc.unesco.org/en/list/1269/",
+        imageFit: "contain"
+      },
+      {
+        name: "Penico",
+        description:
+          "A nearby Caral-era site unveiled to the public in 2025 after years of research, with ceremonial and residential structures that may show how Caral traditions continued after climate stress.",
+        location: "Northern Barranca Province, Peru",
+        significance:
+          "Penico is a recent discovery that helps archaeologists ask what happened after Caral's peak, especially how trade routes and communities reorganized.",
+        imageUrl: "https://www.smithsonianmag.com/smart-news/archaeologists-unveil-a-3500-year-old-city-in-peru-that-sheds-light-on-the-caral-culture-180986944/",
+        imageFit: "contain"
+      }
+    ],
+    resources: [
+      {
+        title: "Sacred City of Caral-Supe - UNESCO World Heritage Centre",
+        type: "Article",
+        url: "https://whc.unesco.org/en/list/1269/",
+        isCore: true,
+        description:
+          "Institution-backed overview of Caral's age, architecture, quipu evidence, and world heritage significance."
+      },
+      {
+        title: "Dating Caral, a Preceramic Site in the Supe Valley - Science",
+        type: "Article",
+        url: "https://www.science.org/doi/10.1126/science.1059519",
+        isCore: true,
+        description:
+          "Scholarly radiocarbon study that helped establish Caral's early date and importance."
+      },
+      {
+        title: "Archaeologists Unveil a 3,500-Year-Old City in Peru - Smithsonian Magazine",
+        type: "Article",
+        url: "https://www.smithsonianmag.com/smart-news/archaeologists-unveil-a-3500-year-old-city-in-peru-that-sheds-light-on-the-caral-culture-180986944/",
+        isCore: false,
+        description:
+          "Student-accessible report on the 2025 unveiling of Penico and what it may reveal about continuity after Caral."
+      },
+      {
+        title: "Sacred City of Caral-Supe Video - UNESCO/NHK",
+        type: "Video",
+        url: "https://whc.unesco.org/en/list/1269/video",
+        isCore: false,
+        description:
+          "Short visual introduction to Caral-Supe's landscape and monumental architecture."
+      }
+    ],
+    quiz: {
+      title: "Andean City Protocol",
+      description: "Prove how Caral became a city without following the usual textbook recipe.",
+      collectibleCards: [
+        { type: 'person', index: 0, id: 'caral_norte_chico_person_labor_organizer' },
+        { type: 'person', index: 1, id: 'caral_norte_chico_person_cotton_net_maker' },
+        { type: 'invention', index: 0, id: 'caral_norte_chico_invention_sunken_plaza' },
+        { type: 'invention', index: 2, id: 'caral_norte_chico_invention_quipu' },
+        { type: 'place', index: 0, id: 'caral_norte_chico_place_caral_supe' },
+        { type: 'place', index: 2, id: 'caral_norte_chico_place_penico' }
+      ],
+      questions: [
+        {
+          id: "caral_norte_chico_q1",
+          text: "Where was Caral located?",
+          options: [
+            "The Supe Valley of Peru",
+            "The Nile Delta",
+            "The island of Crete",
+            "The Yellow River plain"
+          ],
+          correctIndex: 0,
+          explanation:
+            "Caral stood in Peru's Supe Valley, on a dry terrace above a green river valley near the Pacific coast."
+        },
+        {
+          id: "caral_norte_chico_q2",
+          text: "Which feature makes early Caral surprising compared with many Old World Bronze Age societies?",
+          options: [
+            "It had no buildings",
+            "It built monumental architecture without known pottery, bronze weapons, or writing like cuneiform",
+            "It was ruled by Roman emperors",
+            "It used iron railroads"
+          ],
+          correctIndex: 1,
+          explanation:
+            "Caral challenges simple checklists for civilization. It had monumental planning and social complexity, but not the same technologies as Egypt or Mesopotamia."
+        },
+        {
+          id: "caral_norte_chico_q3",
+          text: "How did cotton help connect Caral's economy?",
+          options: [
+            "Cotton could be made into fishing nets and traded with coastal communities",
+            "Cotton was used to build stone pyramids",
+            "Cotton replaced all food crops",
+            "Cotton was mined from mountains"
+          ],
+          correctIndex: 0,
+          explanation:
+            "Cotton fiber could become nets and other useful goods. That linked inland farmers to coastal fishers and helped move food through the region."
+        },
+        {
+          id: "caral_norte_chico_q4",
+          text: "What is a quipu?",
+          options: [
+            "A bronze sword",
+            "A knotted cord system for recording information",
+            "A wheeled cart",
+            "A type of pyramid stone"
+          ],
+          correctIndex: 1,
+          explanation:
+            "A quipu stores information using cords and knots. UNESCO notes a quipu found at Caral as evidence for social complexity."
+        },
+        {
+          id: "caral_norte_chico_q5",
+          text: "What did sunken circular plazas likely help Caral leaders do?",
+          options: [
+            "Hide all farming activity",
+            "Gather people for rituals and public events",
+            "Launch ocean ships",
+            "Smelt iron ore"
+          ],
+          correctIndex: 1,
+          explanation:
+            "Public plazas organize crowds, movement, sound, and spectacle. They help turn architecture into shared social experience."
+        },
+        {
+          id: "caral_norte_chico_q6",
+          text: "Why is the 2025 unveiling of Penico useful for this lesson?",
+          options: [
+            "It proves Caral was in Europe",
+            "It may show how Caral traditions and trade networks continued after climate stress",
+            "It explains cuneiform writing",
+            "It shows bronze chariots in Peru"
+          ],
+          correctIndex: 1,
+          explanation:
+            "Penico appears later than Caral's peak and may help scholars understand continuity, trade, and adaptation in the broader Caral world."
+        },
+        {
+          id: "caral_norte_chico_q7",
+          text: "What is the main historical lesson of Caral?",
+          options: [
+            "All civilizations must develop in exactly the same way",
+            "Civilization can develop through different combinations of environment, labor, ritual, and exchange",
+            "Cities require bronze weapons",
+            "Only written societies can build monuments"
+          ],
+          correctIndex: 1,
+          explanation:
+            "Caral shows that complex society is not one recipe. The Andes produced urbanism through local resources, exchange, public ritual, and organized work."
+        }
+      ]
+    }
+  },
   'kerma': {
     summary:
       "South of Egypt, along the Nile in what is now Sudan, another powerful kingdom grows at a site we call Kerma.\n\n" +
