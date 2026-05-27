@@ -376,6 +376,14 @@ export const FOUNDATIONS_EUROPE: Record<string, NodeContent> = {
     ],
     resources: [
       {
+        title: "Otzi the Iceman",
+        type: "Video",
+        url: "https://www.youtube.com/watch?v=Lr9jXJE363w",
+        isCore: true,
+        description:
+          "Introductory video overview of Otzi, his discovery, and why his preserved body matters for understanding Copper Age life."
+      },
+      {
         title: "Otzi the Iceman - South Tyrol Museum of Archaeology",
         type: "Article",
         url: "https://www.iceman.it/en/oetzi/the-iceman/",
