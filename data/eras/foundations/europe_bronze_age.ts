@@ -251,8 +251,8 @@ export const FOUNDATIONS_EUROPE: Record<string, NodeContent> = {
     }
   },
   'otzi': {
-    heroImageUrl: "https://www.iceman.it/wp-content/uploads/2016/09/01_iceman_mummy.jpg",
-    heroImageFit: "contain",
+    heroImageUrl: "/images/lessons/otzi_hero.png",
+    heroImageFit: "cover",
     summary:
       "Around 3300 BCE, a man now nicknamed Otzi climbs through a high Alpine pass near today's Italy-Austria border. He is not wandering empty-handed. His gear is a portable survival system: a copper axe with a yew handle, a flint dagger, a long unfinished bow, arrows in different stages of repair, a grass cloak, leather clothing stitched from several animals, fire-starting material, birch-bark containers, and fungi that may have helped with medicine or tinder. In a world without roads, maps, or rescue teams, every object has to earn its place.\n\n" +
       "Then the evidence turns dark. Otzi has a flint arrowhead lodged in his left shoulder, a deep cut on one hand, and blood traces linked to several people on his gear. Scientists cannot replay the final hour like a movie, but the clues point to violence, injury, and flight or pursuit. He eats a heavy final meal of ibex, red deer, einkorn wheat, and fat, then dies high at Tisenjoch. Snow and ice seal him away. Most prehistoric people leave only bones, stone tools, or pottery. Otzi leaves skin, hair, clothing, food, tools, tattoos, disease evidence, and a crime scene.\n\n" +
