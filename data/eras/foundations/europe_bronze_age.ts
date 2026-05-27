@@ -395,7 +395,7 @@ export const FOUNDATIONS_EUROPE: Record<string, NodeContent> = {
         title: "Iceman Reborn - PBS NOVA",
         type: "Video",
         url: "https://www.pbs.org/video/nova-iceman-reborn/",
-        isCore: true,
+        isCore: false,
         description:
           "Full NOVA episode on how scientists study Otzi and reconstruct his body. Long, but strong for learners who want the full investigation."
       },
@@ -403,7 +403,7 @@ export const FOUNDATIONS_EUROPE: Record<string, NodeContent> = {
         title: "The Equipment - South Tyrol Museum of Archaeology",
         type: "Article",
         url: "https://www.iceman.it/en/equipment/",
-        isCore: true,
+        isCore: false,
         description:
           "Official object-level guide to Otzi's clothing, tools, containers, weapons, and repair materials."
       },
