@@ -217,240 +217,238 @@ export const FOUNDATIONS_MESOPOTAMIA: Record<string, NodeContent> = {
     }
   },
   'uruk': {
+    heroImageUrl: "/images/places/uruk.jpg",
+    heroImageFit: "cover",
     summary:
-      "Around 3200 BCE, something unprecedented is happening in southern Mesopotamia. A settlement called Uruk, located between the Tigris and Euphrates rivers, is exploding in size. Villages merge together. Mud-brick buildings spread across hundreds of acres. By 3000 BCE, Uruk houses between 40,000 and 80,000 people—larger than any human settlement in history. This isn't just a big village. This is the world's first true city. Before Uruk, humans lived in small farming communities of a few hundred people where everyone knew everyone else, most people farmed, and social hierarchies were relatively flat. Uruk shatters that model. Here, tens of thousands of strangers live packed together in dense neighborhoods. Most people don't farm—they're specialists: potters, weavers, metalworkers, builders, priests, scribes, soldiers, merchants, or laborers. A massive temple complex to the goddess Inanna dominates the city center, surrounded by workshops, granaries, markets, and residential districts. The city is fed by surrounding villages that send grain as taxes or tribute. This is the birth of urban civilization.\n\n" +
-      "What made Uruk possible? Several things came together. First, irrigation agriculture in the fertile river valley produced food surpluses—enough to feed people who didn't farm. Second, the Euphrates River provided water, transportation, and trade routes. Third, religion created a focal point: the temples of Inanna and the sky god Anu became not just places of worship but economic powerhouses. Temple priests controlled vast estates, collected offerings and taxes, employed hundreds of workers, and redistributed food and goods. Fourth, writing emerged (proto-cuneiform tablets from Uruk around 3400 BCE are the world's oldest) to manage this complexity. Finally, specialization and trade networks developed: Uruk imported timber from Lebanon, copper from Anatolia, and precious stones from Afghanistan. In return, it exported textiles, grain, and manufactured goods. The city became a magnet for people seeking opportunities, safety behind massive city walls (Uruk's walls were 6 miles long and 30 feet high), and access to trade networks.\n\n" +
-      "But Uruk wasn't paradise. It was noisy, crowded, unequal, and hierarchical. The city had neighborhoods for the wealthy near temples—large houses with multiple rooms, courtyards, and private chapels. But most people lived in cramped mud-brick tenements in winding alleys, working brutal hours hauling bricks, digging canals, or laboring in workshops. Slaves and war captives had it worst. Disease spread quickly in dense neighborhoods with poor sanitation. Crime, disputes over property, and debt were constant problems (hence the need for written contracts and laws). Yet people kept coming because cities offered things villages couldn't: protection, jobs, trade goods, religious spectacles, and a chance—however slim—to rise through skill or luck. Uruk proved that humans could organize into massive, complex, unequal societies. It became the template: later cities across Mesopotamia, Egypt, the Indus Valley, and China copied its model. Gilgamesh, the legendary hero-king of Uruk, supposedly built those famous walls. Centuries later, poets wrote the Epic of Gilgamesh partly as a nostalgia piece for Uruk's vanished glory. The city's ruins still stand in southern Iraq—a monument to humanity's first experiment with urban life.",
+      "Around 3200 BCE, Uruk is doing something no village has ever done: it is becoming a city big enough for tens of thousands of strangers. Its mud-brick neighborhoods spread across the flat land of southern Mesopotamia. Workshops, storehouses, temples, canals, and streets crowd together near the Euphrates. In a village, most people know one another and most families farm. In Uruk, many people specialize. Some shape pots, weave cloth, haul bricks, brew beer, guard gates, keep accounts, or serve the temples. The city is a machine made of people.\n\n" +
+      "The machine runs on grain, water, labor, and records. Irrigation canals help farmers produce surplus food outside the city. Temple institutions, especially the Eanna precinct linked with Inanna, gather grain, wool, animals, and offerings. Workers receive rations of barley, oil, and beer. Scribes press signs into clay tablets because memory cannot manage thousands of people, animals, jars, fields, and work teams. Early writing at Uruk begins as administration before it becomes literature. That detail matters: one of humanity's most powerful inventions starts because accountants need receipts.\n\n" +
+      "Uruk also changes what power looks like. Monumental temples rise above the plain. Beveled-rim bowls appear in huge numbers, probably connected to ration distribution. Cylinder seals mark ownership and authority. City walls and gates make community visible, defensible, and proud. Later stories say Gilgamesh built Uruk's great walls and invite the listener to walk around them and inspect the brickwork. Whether Gilgamesh was historical or legendary, the pride is real: Uruk made people imagine the city itself as an achievement worth boasting about.\n\n" +
+      "But the first city also creates first-city problems. Crowding spreads disease. Ration systems create dependency. Temple and elite households gain more control over labor. Some people benefit from trade and specialization; others do the exhausting work that keeps the whole system alive. Uruk matters because it is not just bigger. It invents an urban pattern that later societies keep wrestling with: cities make people more connected, productive, unequal, creative, vulnerable, and powerful all at once.",
     funFact:
-      "Uruk's city walls were so massive (6 miles long, 30 feet high, with 900 towers) that the Epic of Gilgamesh brags about them for pages. Gilgamesh supposedly tells visitors: 'Go up on the wall and walk around! Inspect its foundation, examine the brickwork!' Ancient civic pride.",
+      "Uruk's ordinary beveled-rim bowls are so common that archaeologists treat them like fingerprints of the city's ration economy.",
     people: [
       {
-        name: "The High Priest of Inanna",
-        role: "Temple Administrator and Religious Leader",
-        category: "Leader",
+        name: "Eanna Temple Administrator",
+        role: "Manager of Grain, Labor, and Ritual",
+        category: "Priest",
         description:
-          "The High Priest of Inanna's Eanna temple complex wasn't just a religious figure—he was an economic and political powerhouse. The temple owned vast agricultural estates worked by hundreds of laborers, collected offerings and taxes from across the region, employed scribes to track everything, and redistributed grain as rations to workers. The High Priest negotiated with other cities, commissioned monumental buildings, and performed elaborate public rituals. Some scholars believe the 'priest-king' was the real ruler of early Uruk before secular kings emerged.",
+          "A temple official who helps organize offerings, fields, storehouses, workers, and ceremonies in Uruk's sacred center. Religion and economics are not separate here; the temple is also an employer and warehouse.",
         achievements: [
-          "Managed the Eanna temple complex, one of the largest economic institutions in the ancient world",
-          "Oversaw vast agricultural estates and hundreds of workers",
-          "Commissioned the earliest proto-cuneiform tablets to track temple resources"
+          "Coordinated labor and food storage for a large urban population",
+          "Used seals and tablets to control goods and authority",
+          "Turned the temple into one of the first large institutions"
         ],
-        legacy: "The temple-as-economic-powerhouse model spread across Mesopotamia and beyond. Religious institutions controlled wealth, land, and labor for millennia.",
-        imageUrl: "/images/foundations/inanna_priest.jpg"
+        legacy:
+          "The temple administrator shows how early cities needed managers long before modern governments existed.",
+        imageUrl: "/images/inventions/cylinder_seal.jpg",
+        imageFit: "contain"
       },
       {
-        name: "The Master Potter",
-        role: "Specialized Craftsperson",
+        name: "Uruk Scribe",
+        role: "Proto-Cuneiform Record Keeper",
         category: "Worker",
         description:
-          "Uruk's size enabled specialization impossible in small villages. Master potters didn't farm—they spent all day making pottery on wheels, producing thousands of identical storage jars, cooking vessels, and serving bowls for trade. They employed apprentices and sold goods in markets. Specialization meant higher quality, faster production, and the ability to trade surplus goods. The same pattern applied to metalworkers, weavers, leather-workers, and scribes.",
+          "A trained record keeper who presses signs into wet clay to track rations, animals, grain, workers, and deliveries. The scribe turns city life into data.",
         achievements: [
-          "Used potter's wheels to mass-produce ceramics",
-          "Employed apprentices, creating the first craft guilds",
-          "Traded pottery across long-distance networks"
+          "Recorded temple and household transactions on clay tablets",
+          "Helped transform counting marks into early writing",
+          "Made administration possible at urban scale"
         ],
-        legacy: "Specialization enabled by cities drove technological innovation and economic growth. The division of labor made civilization possible.",
-        imageUrl: "/images/foundations/master_potter.jpg"
+        legacy:
+          "The scribe links Uruk to one of history's great turning points: written memory.",
+        imageUrl: "/images/foundations/sumerian_scribe.jpg",
+        imageFit: "contain"
       },
       {
-        name: "The Laborer",
-        role: "Construction Worker and Low-Class Resident",
+        name: "Ration Worker",
+        role: "Builder, Hauler, or Canal Laborer",
         category: "Worker",
         description:
-          "Most of Uruk's population were laborers—people who hauled mud-bricks, dug irrigation canals, built city walls, and worked temple fields in exchange for daily rations of barley and beer. Their lives were hard: long hours, backbreaking work, little hope of advancement. They lived in cramped tenements, often in debt to temple or palace officials. Yet they chose city life because villages offered even less—at least Uruk had walls for protection, steady rations, and occasional festivals.",
-        legacy: "The urban working poor emerged with the first cities—a permanent underclass whose labor built civilization but who benefited least from it.",
-        imageUrl: "/images/foundations/uruk_laborer.jpg"
+          "One of the many workers who moves mud-bricks, digs canals, carries loads, or processes goods in exchange for food rations from major institutions.",
+        achievements: [
+          "Built and maintained the city that elites claimed credit for",
+          "Kept canals, walls, workshops, and storehouses functioning",
+          "Made specialization possible through daily labor"
+        ],
+        legacy:
+          "The worker reminds us that cities are built by ordinary bodies as much as by famous rulers or priests.",
+        imageUrl: "/images/places/uruk.jpg",
+        imageFit: "cover"
       }
     ],
     inventions: [
       {
-        name: "The Ziggurat (Monumental Temple Architecture)",
-        description: "Massive stepped pyramid temples made of mud-brick, topped with shrines to gods",
-        category: "Architecture",
-        imageUrl: "/images/inventions/ziggurat.jpg",
-        date: "c. 3200 BCE (early forms)",
-        problem:
-          "In the flat Mesopotamian floodplain, there are no mountains or high places. How do priests create an impressive, visible home for the gods? How do rulers demonstrate their power and the city's wealth? How do you make a temple visible from miles away?",
-        solution:
-          "Build a massive artificial mountain. Layer platform upon platform of mud-brick, each smaller than the one below, creating a stepped pyramid. Top it with a shrine where priests perform rituals 'closer to the gods.' Decorate the exterior with colored mosaics and buttresses. The result: a structure dominating the skyline, visible from anywhere in the city and the surrounding countryside.",
-        impact:
-          "Ziggurats became the visual and symbolic center of Mesopotamian cities for 2,500 years. They required enormous labor (thousands of workers for decades), demonstrating state power. They also served practical functions: elevated shrines were safe from floods, and the platforms could store grain. The ziggurat became the template for monumental religious architecture worldwide—from Egyptian pyramids to Maya temples."
-      },
-      {
-        name: "Urban Planning and City Walls",
-        description: "Massive defensive walls, organized districts, and infrastructure for tens of thousands",
-        category: "Architecture",
-        imageUrl: "/images/inventions/city_walls.jpg",
-        date: "c. 3000 BCE",
-        problem:
-          "How do you organize 40,000-80,000 people living in one place? How do you provide clean water, remove waste, prevent crime, defend against enemies, and prevent chaos? Small villages don't have these problems—everyone knows each other and informal rules suffice. Cities need formal organization.",
-        solution:
-          "Build massive city walls (Uruk's were 6 miles long, 30 feet high, with 900 defensive towers) to protect residents. Create organized districts: temple zones, residential neighborhoods, workshop areas, markets. Dig canals to bring clean water. Establish patrols and guards. Have scribes register residents and track taxes. Create laws enforced by officials. The city becomes an organized machine requiring constant maintenance and administration.",
-        impact:
-          "Uruk invented urban planning. Later cities worldwide—from Rome to Beijing—copied the model: walls for defense, organized districts, infrastructure for water and sanitation, and a bureaucracy to manage it all. The city-state became the fundamental unit of civilization for millennia."
-      },
-      {
-        name: "The Redistributive Economy",
-        description: "Temple and palace institutions collect taxes, pay workers in rations, and redistribute goods",
+        name: "Urban Institution",
+        description: "A temple-centered system for organizing food, labor, storage, ritual, and authority.",
         category: "Politics",
-        imageUrl: "/images/inventions/redistributive_economy.jpg",
-        date: "c. 3200 BCE",
+        date: "c. 3400-3000 BCE",
+        imageUrl: "/images/places/uruk.jpg",
+        imageFit: "cover",
         problem:
-          "In villages, families produce most of what they need. But in cities, specialists don't grow their own food. Potters, weavers, and scribes can't eat pottery or tablets. How do you feed tens of thousands of people, most of whom don't farm?",
+          "A city cannot run by village memory and personal trust when thousands of strangers need food, work, rules, and protection.",
         solution:
-          "Create a redistributive economy. The temple and palace collect grain, livestock, and goods as taxes and offerings from surrounding villages. They store massive quantities in granaries. They pay workers daily rations (typically barley, dates, oil, and beer). They organize labor gangs for construction projects. Scribes record everything on clay tablets to prevent theft and disputes. The temple becomes a combination government, bank, warehouse, and employer.",
+          "Use temple and elite institutions to collect goods, store resources, assign labor, hold rituals, and keep records.",
         impact:
-          "The redistributive economy enabled specialization and urban life. It also concentrated power: whoever controlled the granaries controlled the city. This economic model spread across early civilizations. It created bureaucracy (scribes to track everything), taxation systems, and the beginnings of market economies when workers traded their surplus rations."
+          "This created the administrative backbone of city life, but also concentrated power in institutions that controlled food and work."
+      },
+      {
+        name: "Proto-Cuneiform Accounting",
+        description: "Early clay-tablet record keeping for quantities, goods, people, and work.",
+        category: "Literature",
+        date: "c. 3400-3200 BCE",
+        imageUrl: "/images/lessons/cuneiform_hero.png",
+        imageFit: "contain",
+        problem:
+          "Officials need to remember who delivered grain, who received rations, and what belongs to the temple or household.",
+        solution:
+          "Press numerical and pictorial signs into clay tablets that can be stored, checked, and compared later.",
+        impact:
+          "Writing begins as a practical city tool before expanding into letters, law, literature, and history."
+      },
+      {
+        name: "Beveled-Rim Ration Bowl",
+        description: "A mass-produced clay bowl probably used in food distribution or accounting systems.",
+        category: "Economy",
+        date: "Uruk period",
+        problem:
+          "Large workforces need standardized ways to distribute, count, and control food portions.",
+        solution:
+          "Produce simple, repeatable bowls in huge numbers so rations can be measured and handed out consistently.",
+        impact:
+          "The bowls are humble objects, but they reveal the scale and discipline of Uruk's labor economy."
       }
     ],
     places: [
       {
-        name: "Eanna Temple District (Uruk)",
+        name: "Uruk (Warka)",
         description:
-          "The massive temple complex dedicated to Inanna, goddess of love, war, and fertility. By 3000 BCE, the Eanna occupied over 20 acres at the heart of Uruk. It included multiple shrines, courtyards, monumental gates, administrative buildings where scribes worked, and vast storehouses filled with grain, wool, metals, and trade goods. The temple was a city within a city—a religious, economic, and political powerhouse employing hundreds of priests, scribes, laborers, and guards.",
-        imageUrl: "/images/places/eanna_district.jpg",
-        location: "Uruk, southern Mesopotamia (modern Warka, Iraq)",
+          "The ancient city site in southern Iraq where monumental architecture, early writing, mass production, and large-scale urban life came together.",
+        imageUrl: "/images/places/uruk.jpg",
+        imageFit: "cover",
+        location: "Near modern Warka, southern Iraq",
         significance:
-          "The Eanna is where civilization's administrative machinery was invented. The earliest proto-cuneiform tablets (c. 3400 BCE) come from the Eanna's archives—temple bureaucrats tracking offerings, rations, and labor. It proves that early Mesopotamian civilization was theocratic: religious institutions were economic institutions. Excavations revealed massive columns decorated with colored mosaics, monumental gates, and evidence of lavish rituals. The Eanna wasn't just a temple—it was the heart of Uruk's power."
+          "Uruk is one of the strongest candidates for the world's first true city and became a model for later Mesopotamian urban life."
       },
       {
-        name: "Uruk's Great City Walls",
+        name: "Eanna Precinct",
         description:
-          "The legendary walls of Uruk, supposedly built by the hero-king Gilgamesh. Archaeological evidence confirms that by 3000 BCE, Uruk was surrounded by a massive double wall system stretching 6 miles (9.5 km) in circumference, standing 30 feet (9 meters) high, with about 900 semicircular defensive towers spaced along the circuit. The walls were built from millions of mud-bricks baked in kilns—a staggering engineering feat requiring decades of labor by thousands of workers.",
-        imageUrl: "/images/places/uruk_walls.jpg",
-        location: "Uruk, southern Iraq (ruins still partly visible near modern Warka)",
+          "A major sacred and administrative district associated with Inanna, filled with temples, courtyards, storehouses, and record keeping.",
+        imageUrl: "/images/places/uruk.jpg",
+        imageFit: "cover",
+        location: "Central Uruk",
         significance:
-          "The walls of Uruk became legendary. The Epic of Gilgamesh devotes its opening passages to describing them in awe: 'Go up on the wall of Uruk and walk around! Examine its foundation, inspect its brickwork!' The walls represented civic pride, military might, and the ability to organize massive labor forces. They also reflect a harsh reality: cities needed protection from raiders, rival cities, and bandits. Urban civilization and warfare evolved together."
+          "The Eanna precinct shows how religious authority, economic storage, labor management, and early writing developed together."
       }
     ],
     resources: [
       {
-        title: "Uruk: The First Cities - The Ancients Podcast",
-        type: "Podcast",
-        url: "https://podcasts.apple.com/us/podcast/uruk-the-first-cities/id1520403988?i=1000588246865",
+        title: "Uruk: The First City - The Met",
+        type: "Article",
+        url: "https://www.metmuseum.org/en/essays/uruk-the-first-city",
         isCore: true,
         description:
-          "52-minute podcast exploring Uruk's monumental building programs, pioneering irrigation systems, and recent archaeological findings. Features Dr. Paul Collins from the British Museum discussing why Uruk may have been the first true city in history."
-      },
-      {
-        title: "Uruk: The First City - Metropolitan Museum of Art",
-        type: "Article",
-        url: "https://www.metmuseum.org/essays/uruk-the-first-city",
-        isCore: true,
-        description:
-          "Comprehensive article from the Met Museum exploring how Uruk became the largest settlement in southern Mesopotamia by 3200 BCE, with monumental mud-brick buildings, artistic innovations, and the world's first true urban center."
-      },
-      {
-        title: "Uruk - World History Encyclopedia",
-        type: "Article",
-        url: "https://www.worldhistory.org/uruk/",
-        isCore: false,
-        description:
-          "Detailed history of Uruk from its founding through its role in the Epic of Gilgamesh. Covers architecture, administration, the invention of writing, and the city's lasting legacy."
+          "Museum overview of Uruk's growth, monumental buildings, art, and administrative complexity."
       },
       {
         title: "Uruk - Khan Academy Big History Project",
         type: "Article",
         url: "https://www.khanacademy.org/humanities/big-history-project/agriculture-civilization/first-cities-states/a/uruk",
+        isCore: true,
+        description:
+          "Student-friendly explanation of why cities emerged and how Uruk changed human organization."
+      },
+      {
+        title: "Uruk: The First Cities - The Ancients Podcast",
+        type: "Podcast",
+        url: "https://podcasts.apple.com/us/podcast/uruk-the-first-cities/id1520403988?i=1000588246865",
         isCore: false,
         description:
-          "Explores why cities emerged, what made them possible, and how they changed human society forever."
+          "Longer expert discussion with British Museum curator Paul Collins; best for learners who want a deeper dive."
+      },
+      {
+        title: "Beveled-Rim Bowl - The Met",
+        type: "Article",
+        url: "https://www.metmuseum.org/art/collection/search/324561",
+        isCore: false,
+        description:
+          "Primary object page for a common Uruk-period bowl, useful for seeing how ordinary artifacts reveal city systems."
       }
     ],
     quiz: {
-      title: "Urban Civilization Mastery",
-      description: "Demonstrate your understanding of the world's first city to unlock the artifact.",
+      title: "First City Systems Check",
+      description: "Trace how Uruk turned surplus, labor, temples, and writing into urban life.",
+      collectibleCards: [
+        { type: 'person', index: 0, id: 'uruk_person_temple_administrator' },
+        { type: 'person', index: 1, id: 'uruk_person_scribe' },
+        { type: 'person', index: 2, id: 'uruk_person_ration_worker' },
+        { type: 'invention', index: 0, id: 'uruk_invention_urban_institution' },
+        { type: 'invention', index: 1, id: 'uruk_invention_proto_cuneiform' }
+      ],
       questions: [
         {
           id: "uruk_q1",
-          text: "What made Uruk the world's first true city?",
+          text: "What made Uruk different from earlier villages?",
           options: [
-            "It had the first temples",
-            "It housed 40,000-80,000 people with specialized workers, not farmers",
-            "It was the biggest village",
-            "It had the first king"
+            "It had a much larger population with many specialized workers",
+            "Everyone in Uruk was a farmer",
+            "It was built of iron and concrete",
+            "It had no temples or records"
           ],
-          correctIndex: 1,
+          correctIndex: 0,
           explanation:
-            "Uruk was the first settlement to break 40,000+ people (some estimates go to 80,000 by 3000 BCE). Most residents were specialists—potters, weavers, scribes, builders—not farmers. This combination of size and specialization defines a true city."
+            "Uruk was not just larger; it organized strangers, specialists, institutions, and records at a new scale."
         },
         {
           id: "uruk_q2",
-          text: "What role did temples play in early Uruk?",
+          text: "Why did early writing develop at Uruk?",
           options: [
-            "They were only for religious worship",
-            "They were economic powerhouses that employed workers, collected taxes, and redistributed grain",
-            "They were defensive fortresses",
-            "They were only decorative"
+            "To write adventure stories first",
+            "To track goods, labor, rations, and temple resources",
+            "To label modern museum objects",
+            "To replace farming"
           ],
           correctIndex: 1,
           explanation:
-            "Temples like the Eanna were the economic engines of early cities. They owned land, employed hundreds, collected taxes and offerings, stored grain, and paid workers in rations. Priests were economic managers as much as religious leaders."
+            "The earliest tablets are administrative. Literature came later, after record keeping created a working writing system."
         },
         {
           id: "uruk_q3",
-          text: "How long were Uruk's legendary city walls?",
+          text: "What does a beveled-rim bowl help archaeologists understand?",
           options: [
-            "1 mile",
-            "3 miles",
-            "6 miles with 900 defensive towers",
-            "12 miles"
+            "How Uruk distributed or measured food rations",
+            "How people wrote poetry",
+            "How iron weapons were forged",
+            "How pharaohs were buried"
           ],
-          correctIndex: 2,
+          correctIndex: 0,
           explanation:
-            "Uruk's walls stretched 6 miles (9.5 km) in circumference, stood 30 feet high, and had about 900 semicircular towers. Building them required millions of bricks and decades of labor—a testament to the city's power and organization."
+            "These simple bowls appear in huge numbers and are often linked to ration distribution or standardized food systems."
         },
         {
           id: "uruk_q4",
-          text: "Why did writing (cuneiform) first develop in Uruk?",
+          text: "Which statement best captures the trade-off of early city life?",
           options: [
-            "To write poetry",
-            "To write religious texts",
-            "To track temple resources, taxes, and rations for tens of thousands of people",
-            "To write laws"
+            "Cities created opportunity and complexity, but also crowding, hierarchy, and dependency",
+            "Cities made everyone equal",
+            "Cities ended labor and disease",
+            "Cities had no need for food storage"
           ],
-          correctIndex: 2,
+          correctIndex: 0,
           explanation:
-            "The earliest proto-cuneiform tablets from Uruk (c. 3400 BCE) are accounting records: grain deliveries, worker rations, temple inventories. Writing emerged because human memory couldn't manage a city's economic complexity."
+            "Uruk shows both sides of urban civilization: connection, creativity, and power alongside inequality and harder control systems."
         },
         {
           id: "uruk_q5",
-          text: "What is a ziggurat?",
+          text: "Why is the Eanna precinct important?",
           options: [
-            "A type of pottery",
-            "A stepped pyramid temple made of mud-brick",
-            "A city wall",
-            "A type of boat"
+            "It shows how temple, economy, administration, and writing worked together",
+            "It was a modern museum",
+            "It was a Greek theater",
+            "It proves Uruk had no religion"
           ],
-          correctIndex: 1,
+          correctIndex: 0,
           explanation:
-            "Ziggurats were massive stepped pyramid temples, built layer by layer from mud-brick. They dominated city skylines and served as homes for gods, visible from miles away. Uruk's ziggurat to Anu and Inanna was one of the earliest."
-        },
-        {
-          id: "uruk_q6",
-          text: "How did Uruk's laborers get paid for their work?",
-          options: [
-            "With coins",
-            "With daily rations of barley, beer, and oil",
-            "With land",
-            "They were volunteers"
-          ],
-          correctIndex: 1,
-          explanation:
-            "Uruk used a redistributive economy. Workers received daily rations (typically barley, dates, beer, and oil) from temple or palace storehouses. This system enabled specialization—potters and builders didn't need to farm because they got food rations."
-        },
-        {
-          id: "uruk_q7",
-          text: "What legendary hero-king supposedly built Uruk's walls?",
-          options: [
-            "Hammurabi",
-            "Sargon",
-            "Gilgamesh",
-            "Cyrus"
-          ],
-          correctIndex: 2,
-          explanation:
-            "The Epic of Gilgamesh (written centuries later) credits the legendary king Gilgamesh with building Uruk's walls. The epic opens with: 'Go up on the wall of Uruk and walk around! Examine its foundation!' Whether Gilgamesh was a real person is debated, but the walls were real."
+            "The Eanna precinct was sacred, but also administrative and economic. That overlap is central to understanding Uruk."
         }
       ]
     }

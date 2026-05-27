@@ -11,243 +11,238 @@ export const FOUNDATIONS_EGYPT: Record<string, NodeContent> = {
   // Okay, I will provide the FULL content of FOUNDATIONS_EGYPT based on the user's provided file content.
   
   'hieroglyphs': {
+    heroImageUrl: "https://commons.wikimedia.org/wiki/Special:Redirect/file/Rosetta%20Stone.JPG",
+    heroImageFit: "contain",
     summary:
-      "Around 3200 BCE, Egypt is unifying into a single state under powerful kings. Towns are growing into cities, temples are accumulating wealth, and the Nile trade is booming. But there's a problem: memory is fragile. Who donated 50 jars of grain to the temple? Which villages owe taxes? Which king conquered which enemy? Oral tradition isn't enough anymore. Egypt needs a system to record information permanently—and so hieroglyphs are born.\n\n" +
-      "Hieroglyphs aren't just a simple alphabet. They're a sophisticated hybrid system combining three types of symbols. Phonetic signs represent sounds (like our letters)—there are 24 single-consonant signs that work like an alphabet, plus two-consonant and three-consonant signs. Logographic signs stand for whole words or concepts—a picture of a house means 'house,' a picture of the sun means 'sun' or the sun god Ra. And determinatives are silent 'helper' signs placed at the end of words to clarify meaning—the same consonants 'hD' could mean 'silver' or 'white,' but the determinative shows which one. With over 700 symbols to memorize, learning hieroglyphs takes years of training. Boys (almost never girls) start scribal school around age 9 at temple-run schools called Houses of Life, practicing on broken pottery shards (ostraca) because papyrus is expensive. Training can take a decade. Graduates become the literate elite: temple scribes, royal record-keepers, tax collectors, and architects. They're exempt from manual labor and taxes—a huge privilege. Hieroglyphs are written in multiple directions: top to bottom, left to right, or right to left. To figure out which way to read, look at any animal or bird symbols—they face the direction you should start reading from.\n\n" +
-      "For over 3,600 years, hieroglyphs are the written voice of Egyptian civilization—carved on temple walls, tomb inscriptions, royal decrees, and everyday papyrus documents. They record everything from tax receipts and love poems to magical spells and royal propaganda. But around 394 CE, as Egypt becomes Christian and then Islamic, hieroglyphs fall out of use. The last known hieroglyphic inscription is carved at the Temple of Philae in 394 CE. After that... silence. For the next 1,500 years, nobody on Earth can read them. Scholars stare at the beautiful symbols on temple walls and have no idea what they say. Then in 1799, French soldiers in Egypt discover the Rosetta Stone—a decree written in three scripts: hieroglyphs, demotic (everyday Egyptian script), and ancient Greek (which scholars can read). French linguist Jean-François Champollion spends years comparing the scripts. On September 14, 1822, he cracks the code, realizing hieroglyphs are both phonetic and ideographic. He ran down the street shouting 'Je tiens mon affaire!' (I've got it!) and collapsed from excitement. Suddenly, after 1,500 years, Egyptian voices could be heard again—telling us who they were, what they believed, and how they saw the world.",
+      "Around 3200 BCE, Egypt is becoming harder to manage by memory alone. Towns along the Nile are growing. Powerful chiefs are turning into kings. Temples and elite tombs collect goods from farms, workshops, and trade routes. Someone has to track jars of oil, bolts of linen, cattle, offerings, names, and royal claims. The result is one of the world's earliest writing systems: Egyptian hieroglyphs. At first, the surviving signs appear on small tags and labels from elite tombs, especially at Abydos. They are tiny, practical, and political at the same time. A label can say what a jar contains, where it came from, and whose authority controls it.\n\n" +
+      "Hieroglyphs look like pictures, but they are not just picture-writing. The system combines signs for sounds, signs for whole words, and silent helper signs called determinatives that clarify meaning. A bird, a reed, a mouth, or a hand might be part image and part sound clue. This makes the script flexible enough to write names, titles, offerings, royal victories, prayers, myths, and eventually long religious and literary texts. It also makes the system hard to master. Scribes spend years learning signs, copying model texts, and practicing on cheap broken pottery or limestone flakes before using expensive papyrus.\n\n" +
+      "Writing changes Egyptian power. A king's name can be fixed inside a serekh or cartouche. Tomb walls can speak for the dead. Temples can preserve rituals. Officials can record taxes and labor. Monumental inscriptions make royal power visible even to people who cannot read every sign. Hieroglyphs are beautiful, but beauty is only part of their job. They turn memory into an institution. They help a stretched-out Nile kingdom coordinate work, defend authority, and tell later generations what rulers wanted remembered.\n\n" +
+      "There is an evidence boundary here. The oldest surviving hieroglyphs are already sophisticated, which means the first experiments may be missing, possibly written on wood, leather, or other materials that decayed. Scholars still debate exactly how Egyptian writing began and how much contact with Mesopotamia mattered. What is clear is that Egyptians built a durable system of their own. It lasted for more than 3,000 years, fell silent after late antiquity, and was unlocked again when scholars used the Rosetta Stone's Greek, Demotic, and hieroglyphic texts to read the ancient signs. A tiny tomb label and a famous black stone both tell the same big story: writing lets voices travel across time.",
     funFact:
-      "For 1,500 years after hieroglyphs stopped being used (394 CE), nobody on Earth could read them. Scholars stared at temple walls covered in beautiful symbols and had no idea what they said—until Jean-François Champollion deciphered them in 1822 using the Rosetta Stone. It's the longest literacy gap in history.",
+      "To know which way to read a line of hieroglyphs, look at the animals or people. They usually face toward the beginning of the line.",
     people: [
       {
-        name: "The Professional Scribe",
-        role: "Literate Elite of Ancient Egypt",
+        name: "Abydos Label Scribe",
+        role: "Early Royal Record Keeper",
         category: "Worker",
         description:
-          "Egyptian scribes were the educated elite who could read and write hieroglyphs—a skill so rare and valuable that it granted tax exemption, freedom from manual labor, and high social status. Training started around age 9 and could take 10 years, learning over 700 symbols by copying texts on broken pottery (ostraca) and eventually papyrus. Scribes worked in temples, palaces, and government offices, recording tax payments, copying religious texts, writing royal decrees, and managing construction projects. The god Thoth was their patron, said to have invented writing itself.",
+          "A trained writer who marks goods, names, and places on small tags for elite tombs and royal administration before Egypt is fully unified.",
         achievements: [
-          "Developed cuneiform from simple pictograms into a full phonetic writing system",
-          "Created the first formal schools (Houses of Life) to train new generations of literate professionals",
-          "Preserved literature, laws, contracts, and historical records for millennia"
+          "Helped turn labels and signs into a durable record system",
+          "Connected goods, places, and rulers through writing",
+          "Made early Egyptian administration visible to archaeologists"
         ],
-        legacy: "Scribes were the memory keepers of Egyptian civilization. Without them, we'd know almost nothing about ancient Egypt—no names of pharaohs, no stories of gods, no records of battles or building projects. Their work, carved in stone and written on papyrus, survived for thousands of years, allowing modern scholars to resurrect Egyptian voices from silence.",
-        imageUrl: "/images/foundations/egyptian_scribe.jpg"
+        legacy:
+          "The label scribe shows that writing began with practical state problems before it filled temples and tombs with long texts.",
+        imageUrl: "https://commons.wikimedia.org/wiki/Special:Redirect/file/Hieroglyphs_from_the_tomb_of_Seti_I.jpg",
+        imageFit: "contain"
       },
       {
-        name: "Jean-François Champollion",
-        role: "French Linguist Who Deciphered Hieroglyphs",
-        category: "Scientist",
-        description:
-          "Champollion (1790-1832) was a French scholar obsessed with ancient Egypt from childhood. He studied Coptic (the last descendant of ancient Egyptian) and analyzed the Rosetta Stone for years, competing with English scholar Thomas Young. On September 14, 1822, while comparing hieroglyphs to Coptic, he realized hieroglyphs combined phonetic and ideographic elements—they weren't just pictures, but sounds and meanings. He identified the names of pharaohs Ramesses and Thutmose written in cartouches (oval frames). He ran to his brother's office yelling 'Je tiens mon affaire!' (I've got it!) and collapsed from excitement. On September 27, 1822, he presented his findings to the French Academy, unlocking 1,500 years of silence.",
-        born: "1790 CE",
-        died: "1832 CE",
-        achievements: [
-          "Deciphered Egyptian hieroglyphs in 1822 after years of study",
-          "Proved hieroglyphs combined phonetic (sound-based) and ideographic (meaning-based) elements",
-          "Identified pharaohs' names written in cartouches (oval frames)",
-          "Opened the door to understanding 3,000+ years of Egyptian history and literature"
-        ],
-        legacy: "Champollion's decipherment resurrected ancient Egypt. Before 1822, hieroglyphs were mysterious decorations. After 1822, they became readable texts—history, literature, religion, science. Champollion died young (age 41), exhausted by his work, but his breakthrough changed archaeology and history forever.",
-        imageUrl: "/images/foundations/champollion.jpg"
-      },
-      {
-        name: "The Temple Student",
-        role: "Apprentice Scribe at a House of Life",
+        name: "House of Life Student",
+        role: "Apprentice Scribe",
         category: "Worker",
         description:
-          "At age 9, a boy from a literate family enters the temple school (House of Life) to begin scribal training. For the next decade, he practices hieroglyphs by copying classic texts onto ostraca (broken pottery shards, since papyrus is expensive). He memorizes over 700 symbols, learns mathematics and astronomy, and copies literature like the Tale of Sinuhe and the Instructions of Ptahhotep. Training is strict—one ancient text complains about beatings for lazy students. But graduation means joining the elite: no manual labor, no taxes, and respected jobs in temples, government, or royal courts.",
-        legacy: "Temple students preserved Egyptian knowledge across millennia. Without their discipline and dedication, Egyptian literature, science, and history would have been lost forever.",
-        imageUrl: "/images/foundations/temple_student.jpg"
+          "A student who learns signs, sounds, copying, mathematics, and formal language in the scribal world attached to temples and government.",
+        achievements: [
+          "Practiced on ostraca before using costly papyrus",
+          "Memorized signs and model texts over years of training",
+          "Prepared for work in temples, estates, and royal administration"
+        ],
+        legacy:
+          "Scribal students kept Egyptian knowledge moving from one generation to the next.",
+        imageUrl: "https://commons.wikimedia.org/wiki/Special:Redirect/file/Hieroglyphs_from_the_tomb_of_Seti_I.jpg",
+        imageFit: "contain"
+      },
+      {
+        name: "Temple Carver",
+        role: "Stone Inscription Artisan",
+        category: "Artist",
+        description:
+          "A craft worker who cuts hieroglyphs into stone so names, prayers, victories, and offerings can survive for centuries.",
+        achievements: [
+          "Turned written signs into durable public monuments",
+          "Combined art, literacy, and royal messaging",
+          "Helped preserve Egyptian religion and history in stone"
+        ],
+        legacy:
+          "The carver reminds us that writing was also a visual craft, not just a mental skill.",
+        imageUrl: "https://commons.wikimedia.org/wiki/Special:Redirect/file/Hieroglyphe_karnak.jpg",
+        imageFit: "contain"
       }
     ],
     inventions: [
       {
-        name: "The Hieroglyphic Writing System",
-        description: "Complex script combining phonetic, logographic, and determinative symbols",
+        name: "Hieroglyphic Writing System",
+        description: "A script combining sound signs, word signs, and determinatives.",
         category: "Literature",
         date: "c. 3200 BCE",
-        imageUrl: "/images/inventions/hieroglyphs.jpg",
+        imageUrl: "https://commons.wikimedia.org/wiki/Special:Redirect/file/Hieroglyphs_from_the_tomb_of_Seti_I.jpg",
+        imageFit: "contain",
         problem:
-          "Around 3200 BCE, Egypt is unifying into a single state with complex administration. Temples collect offerings, kings levy taxes, and trade networks span hundreds of kilometers. How do you track who owes what? Who donated grain to the temple? Which villages paid taxes? Oral tradition and simple tally marks aren't enough. Egypt needs a flexible system to record information permanently—names, numbers, concepts, and stories.",
+          "A growing kingdom needs to record names, goods, offerings, taxes, titles, and royal claims more permanently than speech or memory allows.",
         solution:
-          "Egyptian scribes develop a hybrid writing system with three types of symbols: (1) Phonetic signs representing sounds (24 single-consonant signs work like an alphabet, plus multi-consonant signs); (2) Logograms representing whole words or concepts (a house symbol means 'house,' a sun symbol means 'sun' or the god Ra); (3) Determinatives—silent symbols placed at the end of words to clarify meaning (the consonants 'hD' could mean 'silver' or 'white,' but the determinative shows which). Over 700 symbols must be memorized. The system can be written left-to-right, right-to-left, or top-to-bottom—look which way animal/bird symbols face to know the reading direction.",
+          "Use a mixed script: phonetic signs for sounds, logograms for words, and determinatives to clarify meaning.",
         impact:
-          "Hieroglyphs enabled Egyptian civilization to scale. Temples managed vast estates with written records. Pharaohs issued decrees that could be copied and distributed. Literature, religious texts, and historical records survived millennia because they were carved in stone or written on papyrus. The system lasted over 3,600 years (c. 3200 BCE - 394 CE)—longer than any other writing system in history. When hieroglyphs died out around 394 CE, they remained unreadable for 1,500 years until Champollion deciphered them in 1822. Today, hieroglyphs let us hear ancient Egyptian voices directly: their prayers, their stories, their kings' boasts, and their everyday complaints."
+          "Hieroglyphs helped Egypt coordinate administration, preserve ritual and literature, and project royal power for more than 3,000 years."
       },
       {
-        name: "Papyrus - The World's First Paper",
-        description: "Writing material made from pressed papyrus reed fibers",
-        category: "Science",
-        date: "c. 3000 BCE",
-        imageUrl: "/images/inventions/papyrus.jpg",
+        name: "Papyrus Record Keeping",
+        description: "Lightweight writing sheets made from Nile papyrus reeds.",
+        category: "Technology",
+        date: "c. 3000 BCE and later",
+        imageUrl: "https://commons.wikimedia.org/wiki/Special:Redirect/file/Papyrus_Ebers.png",
+        imageFit: "contain",
         problem:
-          "Stone is permanent but impractical—too heavy to carry, too expensive to produce for everyday records. Clay tablets (used in Mesopotamia) are fragile and bulky. Leather is costly. How do you create a lightweight, portable, affordable writing surface for recording tax receipts, letters, contracts, literature, and religious texts?",
+          "Stone is durable but too heavy for everyday notes, letters, accounts, and teaching exercises.",
         solution:
-          "Egyptian scribes discover that the papyrus plant (a reed growing abundantly along the Nile) can be processed into writing material. Cut the papyrus stalk into thin strips, lay them side-by-side vertically, place another layer horizontally on top, pound them together, press and dry. The plant's natural sap acts like glue, bonding the layers into a smooth sheet. Multiple sheets can be glued end-to-end to create scrolls up to 40 meters long. Write on papyrus with reed pens dipped in ink (carbon black for text, red ochre for headings).",
+          "Split, layer, press, and dry papyrus stems into portable writing sheets used with reed pens and ink.",
         impact:
-          "Papyrus revolutionized information storage and transmission. It's lighter than stone, cheaper than leather, and more durable than clay. Egypt exported papyrus across the Mediterranean—Greeks and Romans used it for centuries (the word 'paper' comes from 'papyrus'). Egyptian literature, medical texts, mathematical treatises, and religious spells survived on papyrus for millennia. The oldest surviving papyrus with writing dates to around 2500 BCE. Some documents—like the Diary of Merer (c. 2560 BCE), written by a worker on Khufu's pyramid—give us direct, everyday voices from 4,500 years ago. Papyrus remained the dominant writing material in the Mediterranean until parchment (treated animal skin) and eventually paper (invented in China) replaced it."
+          "Papyrus made Egyptian writing portable and helped records, stories, medical texts, and religious books circulate."
       },
       {
-        name: "Scribal Education System - The Houses of Life",
-        description: "Temple-run schools training scribes over 10+ years",
-        category: "Politics",
-        date: "c. 3000 BCE",
-        imageUrl: "/images/inventions/houses_of_life.jpg",
+        name: "Determinative Signs",
+        description: "Silent helper signs that show what category or meaning a word belongs to.",
+        category: "Language",
+        date: "Early dynastic Egypt onward",
+        imageUrl: "https://commons.wikimedia.org/wiki/Special:Redirect/file/Rosetta%20Stone.JPG",
+        imageFit: "contain",
         problem:
-          "Hieroglyphs are complex—over 700 symbols combining phonetic, logographic, and determinative elements. Learning to read and write them is a multi-year process requiring memorization, practice, and discipline. How do you create a professional class of literate scribes to run temples, government, and royal administration? How do you ensure knowledge is passed down accurately across generations?",
+          "Words with similar sounds can be confusing when a script often leaves out vowels or uses signs in several ways.",
         solution:
-          "Temples establish formal schools called 'Houses of Life' (Per-Ankh). Boys (rarely girls) start around age 9, usually sons of existing scribes or wealthy families. Training takes 10 years. Students practice on ostraca (broken pottery shards—papyrus is too expensive for beginners), copying classic texts like the Instructions of Ptahhotep or the Tale of Sinuhe. They memorize 700+ hieroglyphic symbols, learn mathematics (for taxes and construction), astronomy (for calendars), and religious literature. Discipline is strict—one text complains 'a boy's ear is on his back; he listens when he is beaten.' Graduates join the literate elite, exempt from manual labor and taxes, working as temple scribes, tax collectors, architects, or royal record-keepers.",
+          "Add silent signs at the end of words to mark categories such as person, place, motion, god, material, or abstract idea.",
         impact:
-          "The scribal education system created Egypt's administrative backbone. Without trained scribes, Egypt's complex state—collecting taxes, organizing pyramid construction, managing temple estates, recording history—would have collapsed. The Houses of Life also preserved Egyptian culture: students copied ancient texts, ensuring literature and knowledge survived across dynasties. Scribes became so respected that the god Thoth (inventor of writing) was their patron deity. The system lasted for thousands of years, training the literate elite who ran Egyptian civilization."
+          "Determinatives made hieroglyphs more readable and reveal how Egyptians grouped ideas in their writing system."
       }
     ],
     places: [
       {
-        name: "Abydos - Cemetery U, Tomb J",
+        name: "Abydos Tomb U-j",
         description:
-          "Archaeological site in Upper Egypt where the earliest securely dated Egyptian hieroglyphs were discovered, written on small bone and ivory tags attached to goods in elite tombs. The tags date to c. 3200 BCE (Naqada III/Dynasty 0 period), just before Egypt's unification. German excavations in the 1980s-90s revealed about 150 surviving labels in Tomb U-j (belonging to a wealthy ruler known as 'Scorpion I'). The hieroglyphs are already sophisticated—combining phonetic and logographic elements—suggesting writing had been developing for some time before this.",
-        location: "Abydos, Upper Egypt (modern Sohag Governorate), about 450 km south of Cairo",
+          "An elite Predynastic tomb where archaeologists found early inscribed bone and ivory labels attached to goods.",
+        location: "Abydos, Upper Egypt",
         significance:
-          "Abydos proves Egyptian hieroglyphs emerged around the same time as Mesopotamian cuneiform (c. 3400-3200 BCE), making them one of the two oldest writing systems in the world. The discovery challenged the older theory that Mesopotamia invented writing first and Egyptians copied the idea. Instead, both systems likely developed independently in response to similar pressures: managing complex early states with taxes, trade, and administration. The fact that these earliest hieroglyphs are already complex suggests we haven't found the very first experiments—simpler proto-hieroglyphs might have existed earlier on perishable materials like wood or leather that didn't survive.",
-        imageUrl: "/images/places/abydos_cemetery_u.jpg"
+          "The labels are among the earliest secure evidence for Egyptian hieroglyphic writing and early royal administration."
       },
       {
-        name: "The British Museum - Rosetta Stone",
+        name: "Rosetta Stone",
         description:
-          "The Rosetta Stone is a granite slab inscribed in 196 BCE with the same decree written in three scripts: ancient Greek (which scholars could read), demotic (everyday Egyptian script), and hieroglyphs (unreadable for 1,500 years). It was discovered by French soldiers in 1799 near the town of Rashid (Rosetta) in the Nile Delta during Napoleon's Egyptian campaign. After the French were defeated, the British took the stone as a war prize, and it's been in the British Museum in London since 1802. French linguist Jean-François Champollion used the stone (along with other bilingual inscriptions) to finally decipher hieroglyphs in 1822, comparing the known Greek text to the unknown hieroglyphic text.",
-        location: "British Museum, London, England (stone originally from Rashid/Rosetta, Egypt)",
+          "A 196 BCE decree written in hieroglyphs, Demotic, and Greek, later used to decipher Egyptian hieroglyphs.",
+        imageUrl: "https://commons.wikimedia.org/wiki/Special:Redirect/file/Rosetta%20Stone.JPG",
+        imageFit: "contain",
+        location: "British Museum, London; originally found near Rashid/Rosetta, Egypt",
         significance:
-          "The Rosetta Stone is the key that unlocked 3,000+ years of ancient Egyptian history and literature. Before 1822, hieroglyphs were mysterious decorations; after Champollion's decipherment, they became readable texts. Suddenly, scholars could read pharaohs' inscriptions, religious spells, love poems, medical texts, and everyday letters. The stone symbolizes how linguistic breakthroughs can resurrect lost civilizations. (Note: Egypt has requested its return, arguing it was taken as colonial loot, but it remains in the British Museum.)",
-        imageUrl: "/images/places/rosetta_stone.jpg"
+          "The stone shows how multilingual evidence can unlock a writing system after centuries of silence."
       }
     ],
     resources: [
       {
-        title: "What are Hieroglyphics for Kids - Ancient Egyptian Facts",
-        type: "Video",
-        url: "https://www.youtube.com/watch?v=9KD4UbNX23Q&rel=0",
+        title: "Explore the Rosetta Stone - British Museum",
+        type: "Article",
+        url: "https://www.britishmuseum.org/collection/egypt/explore-rosetta-stone",
         isCore: true,
         description:
-          "Kid-friendly educational video explaining what hieroglyphics are, how they work, and their importance in ancient Egypt. Engaging and accessible for young learners, covering the basics of how this ancient writing system functioned."
+          "Primary museum resource explaining the Rosetta Stone, its three scripts, and why it unlocked hieroglyphs."
+      },
+      {
+        title: "Ancient Egypt - British Museum Schools",
+        type: "Activity",
+        url: "https://www.britishmuseum.org/learn/schools/ages-7-11/ancient-egypt",
+        isCore: true,
+        description:
+          "Student-facing British Museum learning page with a timeline, Rosetta Stone material, and classroom activities."
       },
       {
         title: "How Egyptian Hieroglyphs Work - National Geographic Kids",
         type: "Article",
         url: "https://www.natgeokids.com/uk/discover/history/egypt/hieroglyphics-uncovered/",
-        isCore: true,
+        isCore: false,
         description:
-          "Kid-friendly explanation of how hieroglyphs combine three types of symbols: phonetic (sounds), logograms (words/concepts), and determinatives (meaning clarifiers). Includes examples and fun facts."
+          "Accessible explanation of hieroglyphic signs, reading direction, and the Rosetta Stone."
       },
       {
-        title: "Write Your Name in Hieroglyphs - Royal Ontario Museum Activity",
+        title: "Write Your Name in Hieroglyphs - Royal Ontario Museum",
         type: "Activity",
         url: "https://www.rom.on.ca/learn/resource-hub/activity-write-your-name-egyptian-hieroglyphs",
         isCore: false,
         description:
-          "Interactive activity where students translate their names into hieroglyphs using the 24 single-consonant signs (Egyptian 'alphabet'). Includes downloadable PDF with hieroglyph key."
-      },
-      {
-        title: "Explore the Rosetta Stone - British Museum",
-        type: "Article",
-        url: "https://www.britishmuseum.org/collection/egypt/explore-rosetta-stone",
-        isCore: false,
-        description:
-          "Online exhibition about the Rosetta Stone, the decipherment of hieroglyphs, and what they reveal about Egyptian life, religion, and history."
+          "Hands-on activity using the single-consonant signs; useful after students understand this is only one part of the system."
       }
     ],
     quiz: {
-      title: "Scribal Certification Protocol",
-      description: "Demonstrate your knowledge of Egyptian hieroglyphs to earn your scribe's artifact.",
+      title: "Scribe Signal Check",
+      description: "Read the evidence behind one of the world's oldest writing systems.",
+      collectibleCards: [
+        { type: 'person', index: 0, id: 'hieroglyphs_person_abydos_label_scribe' },
+        { type: 'person', index: 1, id: 'hieroglyphs_person_house_of_life_student' },
+        { type: 'invention', index: 0, id: 'hieroglyphs_invention_writing_system' },
+        { type: 'invention', index: 1, id: 'hieroglyphs_invention_papyrus_record_keeping' },
+        { type: 'invention', index: 2, id: 'hieroglyphs_invention_determinatives' }
+      ],
       questions: [
         {
           id: "hieroglyphs_q1",
-          text: "What three types of symbols make up the hieroglyphic writing system?",
+          text: "Why did early Egyptian writing become useful around 3200 BCE?",
           options: [
-            "Vowels, consonants, and punctuation",
-            "Phonetic, logographic, and determinative",
-            "Capital letters, lowercase letters, and numbers",
-            "Pictures, words, and sentences"
+            "Growing elites and temples needed durable records for goods, names, and authority",
+            "Egyptians wanted to replace speech",
+            "Roman officials ordered it",
+            "It was invented only for modern tourists"
           ],
-          correctIndex: 1,
+          correctIndex: 0,
           explanation:
-            "Hieroglyphs combine phonetic signs (representing sounds), logograms (representing whole words/concepts), and determinatives (silent symbols clarifying meaning). This hybrid system made hieroglyphs flexible but complex—requiring years of training to master."
+            "Early labels and inscriptions are tied to administration, goods, names, and elite power in a growing Nile society."
         },
         {
           id: "hieroglyphs_q2",
-          text: "How long did scribal training typically take in ancient Egypt?",
+          text: "Which three sign types made hieroglyphs flexible?",
           options: [
-            "1 year",
-            "3 years",
-            "10 years",
-            "20 years"
+            "Sounds, whole words, and determinatives",
+            "Only vowels, commas, and numbers",
+            "Coins, maps, and statues",
+            "Alphabet letters only"
           ],
-          correctIndex: 2,
+          correctIndex: 0,
           explanation:
-            "Scribal training started around age 9 and could take 10 years or more. Students had to memorize over 700 symbols, learn mathematics and astronomy, and practice writing by copying classic texts. Only then could they join the literate elite."
+            "Hieroglyphs combine phonetic signs, logograms, and silent determinatives that clarify meaning."
         },
         {
           id: "hieroglyphs_q3",
-          text: "How can you tell which direction to read hieroglyphs?",
+          text: "What is one evidence warning about the origin of hieroglyphs?",
           options: [
-            "Always read left to right like English",
-            "Look which way animal or bird symbols are facing—read from that direction",
-            "Hieroglyphs can only be read top to bottom",
-            "You must read them backwards"
+            "The earliest surviving signs are already complex, so earlier experiments may be missing",
+            "No hieroglyphs have ever been found",
+            "All hieroglyphs were written in English",
+            "Only modern copies exist"
           ],
-          correctIndex: 1,
+          correctIndex: 0,
           explanation:
-            "Hieroglyphs can be written left-to-right, right-to-left, or top-to-bottom. To know which direction, look at animal or bird symbols—they face the direction you should start reading from. For example, if birds face left, read from left to right."
+            "The earliest preserved examples are not necessarily the first attempts. Perishable materials could have disappeared."
         },
         {
           id: "hieroglyphs_q4",
-          text: "Who deciphered Egyptian hieroglyphs in 1822?",
+          text: "How can readers often tell which direction to read hieroglyphs?",
           options: [
-            "Napoleon Bonaparte",
-            "Howard Carter",
-            "Jean-François Champollion",
-            "Cleopatra"
+            "Look which way people or animals face",
+            "Always read from bottom to top",
+            "Always read right to left",
+            "Count the number of colors"
           ],
-          correctIndex: 2,
+          correctIndex: 0,
           explanation:
-            "French linguist Jean-François Champollion deciphered hieroglyphs on September 14, 1822, using the Rosetta Stone and his knowledge of Coptic. He realized hieroglyphs combined phonetic and ideographic elements. He was so excited he ran down the street yelling 'I've got it!' and collapsed."
+            "Figures usually face the beginning of the line, giving a practical clue to reading direction."
         },
         {
           id: "hieroglyphs_q5",
-          text: "What material did Egyptian scribes write on for everyday documents?",
+          text: "Why was the Rosetta Stone so important much later?",
           options: [
-            "Stone tablets",
-            "Clay tablets",
-            "Papyrus made from reeds",
-            "Animal skins (parchment)"
+            "It had related text in Greek, Demotic, and hieroglyphs",
+            "It was the first pyramid",
+            "It listed every pharaoh",
+            "It was made of gold"
           ],
-          correctIndex: 2,
+          correctIndex: 0,
           explanation:
-            "Scribes wrote on papyrus—sheets made from pressed papyrus reed fibers. It was lighter than stone, cheaper than leather, and more durable than clay. Students practiced on ostraca (broken pottery) because papyrus was expensive."
-        },
-        {
-          id: "hieroglyphs_q6",
-          text: "For how long were hieroglyphs used as a writing system?",
-          options: [
-            "500 years",
-            "1,000 years",
-            "Over 3,600 years (c. 3200 BCE - 394 CE)",
-            "They're still used today"
-          ],
-          correctIndex: 2,
-          explanation:
-            "Hieroglyphs were used from around 3200 BCE until 394 CE—over 3,600 years! The last known hieroglyphic inscription was carved at the Temple of Philae in 394 CE. No other writing system has lasted so long."
-        },
-        {
-          id: "hieroglyphs_q7",
-          text: "What did the Egyptians call hieroglyphs?",
-          options: [
-            "Holy writing",
-            "Medu netjer (the gods' words)",
-            "Picture language",
-            "Pharaoh's script"
-          ],
-          correctIndex: 1,
-          explanation:
-            "The Egyptians called hieroglyphs 'medu netjer,' which means 'the gods' words.' The word 'hieroglyph' comes from Greek: 'hieros' (holy) + 'glyphe' (carving). Greeks called them 'holy carvings' because they appeared on temples and tombs."
+            "Because scholars could read Greek, the parallel text helped them work out the Egyptian scripts."
         }
       ]
     }

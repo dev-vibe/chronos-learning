@@ -251,84 +251,242 @@ export const FOUNDATIONS_EUROPE: Record<string, NodeContent> = {
     }
   },
   'otzi': {
+    heroImageUrl: "https://www.iceman.it/wp-content/uploads/2016/09/01_iceman_mummy.jpg",
+    heroImageFit: "contain",
     summary:
-      "Around 3300 BCE, a man we now call Ötzi hikes high in the Alps. He wears a fur-trimmed coat, leggings, and grass-stuffed shoes. He carries a copper axe, a bow and arrows, a knife, and a backpack stuffed with tools, tinder, and food.\n\n" +
-      "Something goes wrong. An arrow hits him in the shoulder. He collapses and dies in the cold. His body quickly freezes and is covered by ice and snow. For over 5,000 years, he lies there, perfectly preserved.\n\n" +
-      "In 1991, hikers find his body. Scientists study his clothes, his tattoos, his last meals, his DNA, and every tool he carried. Ötzi turns out to be a time capsule of an ordinary (but armed) man at the dawn of the European Bronze Age, showing us what people wore, ate, feared, and fought with.",
+      "Around 3300 BCE, a man now nicknamed Otzi climbs through a high Alpine pass near today's Italy-Austria border. He is not wandering empty-handed. His gear is a portable survival system: a copper axe with a yew handle, a flint dagger, a long unfinished bow, arrows in different stages of repair, a grass cloak, leather clothing stitched from several animals, fire-starting material, birch-bark containers, and fungi that may have helped with medicine or tinder. In a world without roads, maps, or rescue teams, every object has to earn its place.\n\n" +
+      "Then the evidence turns dark. Otzi has a flint arrowhead lodged in his left shoulder, a deep cut on one hand, and blood traces linked to several people on his gear. Scientists cannot replay the final hour like a movie, but the clues point to violence, injury, and flight or pursuit. He eats a heavy final meal of ibex, red deer, einkorn wheat, and fat, then dies high at Tisenjoch. Snow and ice seal him away. Most prehistoric people leave only bones, stone tools, or pottery. Otzi leaves skin, hair, clothing, food, tools, tattoos, disease evidence, and a crime scene.\n\n" +
+      "That is why the 1991 discovery mattered so much. Two hikers first thought they had found a modern accident victim. Radiocarbon dating revealed something stranger: a naturally preserved Copper Age man more than 5,000 years old. Since then, researchers have studied his DNA, stomach contents, pollen, tattoos, teeth, parasites, wounds, and equipment. The results make the Copper Age feel less blurry. Otzi lived among farming communities but still hunted, traveled, and carried mountain-ready gear. He was lactose intolerant, had worn joints, and probably suffered from intestinal parasites. His tattoos cluster near painful areas of the body, which may suggest treatment rather than decoration, though the exact purpose is debated.\n\n" +
+      "Otzi's lesson is not just an ancient murder mystery. It is evidence literacy in one frozen body. A copper axe shows metalworking and status. Repair kits show planning. Pollen and food show movement through landscapes. Wounds show conflict. DNA shows ancestry and health, but not his name, language, personality, or the full reason he died. The ice preserved more than a person. It preserved a warning: the past is most powerful when we let artifacts speak clearly, without pretending they answer every question.",
     funFact:
-      "Ötzi has more than 60 tattoos—many placed near joints and along his spine. Some researchers think they were a kind of pain treatment, like very early acupuncture.",
+      "Otzi had 61 tattoos, mostly simple lines and crosses. Many sit near his lower back, knees, ankles, and other worn or painful joints.",
     people: [
       {
-        name: "Ötzi",
-        role: "Iceman",
+        name: "Otzi the Iceman",
+        role: "Copper Age Mountain Traveler",
         category: "Explorer",
         description:
-          "A Copper Age traveler whose frozen body gives us a rare, detailed look at prehistoric life.",
-        imageUrl: "/images/dawn_of_civilization/otzi.jpg"
+          "A man who died in the Alps around 3300 BCE and was preserved by ice with his clothing, tools, food remains, wounds, and tattoos. He gives historians a rare person-level view of Copper Age Europe.",
+        achievements: [
+          "Carried one of the best-preserved prehistoric tool kits ever found",
+          "Shows how farming, hunting, metal tools, and mountain travel overlapped in Copper Age Europe",
+          "Preserved evidence of health, diet, clothing, injury, and ancestry"
+        ],
+        legacy:
+          "Otzi is one of the most studied ancient individuals in the world because his body connects archaeology, medicine, genetics, and forensic science.",
+        imageUrl: "https://www.iceman.it/wp-content/uploads/2016/09/01_iceman_mummy.jpg",
+        imageFit: "contain"
       },
       {
-        name: "Glacier Archaeologist",
-        role: "Modern Scientist",
-        category: "Scientist",
+        name: "Alpine Tool Maker",
+        role: "Copper Age Craftsperson",
+        category: "Worker",
         description:
-          "A present-day researcher who carefully studies frozen remains and artifacts revealed by melting ice.",
-        imageUrl: "/images/dawn_of_civilization/glacier_archaeologist.jpg"
+          "A skilled maker who understands wood, flint, hide, plant fiber, and copper. Otzi's gear shows that survival depended on many crafts working together.",
+        achievements: [
+          "Shaped wood for bows, axe handles, and arrow shafts",
+          "Prepared leather and plant fiber for clothing and containers",
+          "Maintained repairable gear for travel through dangerous terrain"
+        ],
+        legacy:
+          "The tool maker represents the practical intelligence behind prehistoric technology: carefully chosen materials fitted to real problems.",
+        imageUrl: "https://commons.wikimedia.org/wiki/Special:Redirect/file/ReconstructedOetziAxe.jpg",
+        imageFit: "contain"
+      },
+      {
+        name: "Alpine Farmer-Herder",
+        role: "Mountain Community Member",
+        category: "Commoner",
+        description:
+          "A person from the farming and herding world around the Alps. Otzi's wheat, animal-hide clothing, and copper axe point to communities that mixed fields, livestock, hunting, and exchange.",
+        achievements: [
+          "Grew or traded for einkorn wheat and other farm products",
+          "Raised or processed animals for hide, meat, and equipment",
+          "Moved through mountain routes that linked valleys and communities"
+        ],
+        legacy:
+          "Otzi's world was not simply hunter-gatherer or farmer. It was a mixed landscape where people combined old skills with new materials.",
+        imageUrl: "https://www.iceman.it/wp-content/uploads/2016/09/07_clothing.jpg",
+        imageFit: "cover"
       }
     ],
     inventions: [
       {
-        name: "Composite Tool Kit",
-        description: "A set of tools made from wood, stone, copper, leather, and plant fibers.",
+        name: "Alpine Survival Kit",
+        description: "A portable set of tools, clothing, containers, repair materials, and fire-starting gear.",
         category: "Tool",
-        imageUrl: "/images/dawn_of_civilization/otzi_tools.jpg",
-        problem: "Traveling through mountains requires tools for cutting, repairing, and shelter-building.",
+        date: "c. 3300 BCE",
+        imageUrl: "https://www.iceman.it/wp-content/uploads/2016/09/11_tools.jpg",
+        imageFit: "contain",
+        problem: "Mountain travel is risky. A broken bowstring, wet fire starter, torn shoe, or dull blade can become life-threatening.",
         solution:
-          "Carry a carefully selected set of multi-purpose tools and materials, all repairable and replaceable.",
+          "Carry a layered kit: knife, bow, arrows, axe, containers, cordage, tinder, spare parts, and clothing made from several animals and plant materials.",
         impact:
-          "Shows how much planning and skill went into long-distance travel even before big states and roads."
+          "The kit reveals planning, repair culture, and detailed environmental knowledge before states, roads, or written instructions."
       },
       {
         name: "Copper Axe",
-        description: "A wooden handle with a cast copper blade.",
+        description: "A nearly pure copper blade hafted into a yew handle.",
         category: "Technology",
-        imageUrl: "/images/dawn_of_civilization/otzi_axe.jpg",
-        problem: "Stone axes chip and wear down quickly when used on dense wood.",
+        date: "c. 3300 BCE",
+        imageUrl: "https://commons.wikimedia.org/wiki/Special:Redirect/file/ReconstructedOetziAxe.jpg",
+        imageFit: "contain",
+        problem: "Stone tools work, but metal can hold a sharp edge, be reshaped, and signal access to valuable materials and craft networks.",
         solution:
-          "Cast a copper blade that can be sharpened and repaired more easily.",
+          "Smelt and shape copper into a blade, then fix it into a wooden handle with binding and adhesive.",
         impact:
-          "Proof that metal tools had already reached ordinary people in some areas of Europe by 3300 BCE."
+          "Otzi's axe is key evidence that metal tools and exchange networks had reached Alpine communities by the Copper Age."
+      },
+      {
+        name: "Therapeutic Tattooing",
+        description: "Simple tattoos placed near worn or painful parts of the body.",
+        category: "Medicine",
+        date: "c. 3300 BCE",
+        imageUrl: "https://www.iceman.it/wp-content/uploads/2016/09/06_tattoos.jpg",
+        imageFit: "contain",
+        problem:
+          "People living hard physical lives suffered joint pain, back pain, injuries, and chronic illness without modern medicine.",
+        solution:
+          "Mark or treat painful areas with repeated lines and crosses made by inserting pigment into the skin.",
+        impact:
+          "The exact purpose is debated, but Otzi's tattoos show that body treatment, pain, and medical thinking have very deep roots."
       }
     ],
     places: [
       {
-        name: "Ötztal Alps",
+        name: "Tisenjoch Pass",
         description:
-          "High mountain range where Ötzi died and was preserved in ice for thousands of years.",
-        imageUrl: "/images/dawn_of_civilization/otztal_alps.jpg",
-        location: "Border of modern Italy and Austria",
+          "The high Alpine pass where Otzi died and was preserved by ice until hikers found him in 1991.",
+        imageUrl: "https://www.iceman.it/wp-content/uploads/2016/09/03_finding_place.jpg",
+        imageFit: "cover",
+        location: "Otztal Alps, near the modern Italy-Austria border",
         significance:
-          "Shows how extreme environments can accidentally preserve human history better than any museum."
+          "The site turned a death in the mountains into an archaeological time capsule, preserving organic materials that normally decay."
+      },
+      {
+        name: "South Tyrol Museum of Archaeology",
+        description:
+          "The museum in Bolzano, Italy, where Otzi and his equipment are conserved and studied.",
+        imageUrl: "https://www.iceman.it/wp-content/uploads/2016/09/02_museum.jpg",
+        imageFit: "cover",
+        location: "Bolzano, South Tyrol, Italy",
+        significance:
+          "Its controlled cold chamber keeps the mummy stable while researchers continue to study the body and artifacts."
       }
     ],
     resources: [
       {
-        title: "The Iceman Murder Mystery",
-        type: "Video",
-        searchQuery: "Otzi iceman documentary",
+        title: "Otzi the Iceman - South Tyrol Museum of Archaeology",
+        type: "Article",
+        url: "https://www.iceman.it/en/oetzi/the-iceman/",
         isCore: true,
-        description: "Documentary that walks through the discovery and science behind Ötzi."
+        description:
+          "Official museum overview of Otzi, his discovery, preservation, equipment, health, and historical importance."
       },
       {
-        title: "What Ötzi’s Last Meal Tells Us",
+        title: "Iceman Reborn - PBS NOVA",
+        type: "Video",
+        url: "https://www.pbs.org/video/nova-iceman-reborn/",
+        isCore: true,
+        description:
+          "Full NOVA episode on how scientists study Otzi and reconstruct his body. Long, but strong for learners who want the full investigation."
+      },
+      {
+        title: "The Equipment - South Tyrol Museum of Archaeology",
         type: "Article",
-        searchQuery: "Otzi last meal analysis",
+        url: "https://www.iceman.it/en/equipment/",
+        isCore: true,
+        description:
+          "Official object-level guide to Otzi's clothing, tools, containers, weapons, and repair materials."
+      },
+      {
+        title: "The Iceman's Last Meal - Current Biology",
+        type: "Article",
+        url: "https://www.cell.com/current-biology/fulltext/S0960-9822(18)30703-6",
         isCore: false,
         description:
-          "Short article about what was found in Ötzi’s stomach and what it reveals about his final hours."
+          "Open scientific article reconstructing Otzi's final meal from stomach contents; advanced but excellent evidence."
       }
-    ]
-  },
-  'stonehenge': {
+    ],
+    quiz: {
+      title: "Ice Archive Investigation",
+      description: "Use the evidence from Otzi's body and gear to reconstruct Copper Age life.",
+      collectibleCards: [
+        { type: 'person', index: 0, id: 'otzi_person_iceman' },
+        { type: 'person', index: 1, id: 'otzi_person_tool_maker' },
+        { type: 'invention', index: 0, id: 'otzi_invention_survival_kit' },
+        { type: 'invention', index: 1, id: 'otzi_invention_copper_axe' },
+        { type: 'invention', index: 2, id: 'otzi_invention_therapeutic_tattooing' }
+      ],
+      questions: [
+        {
+          id: "otzi_q1",
+          text: "Why is Otzi unusually valuable to archaeologists?",
+          options: [
+            "He left behind only a stone monument",
+            "His body, clothing, tools, food remains, wounds, and tattoos were preserved together",
+            "He wrote a diary about his travels",
+            "He was the first king of Europe"
+          ],
+          correctIndex: 1,
+          explanation:
+            "Most Copper Age evidence is fragmentary. Otzi preserves a whole evidence package: body, gear, food, injuries, and context."
+        },
+        {
+          id: "otzi_q2",
+          text: "What does Otzi's copper axe show?",
+          options: [
+            "Metal tools had reached Alpine communities by the Copper Age",
+            "Iron was common in Europe",
+            "Otzi lived in the Roman Empire",
+            "Stone tools had completely disappeared"
+          ],
+          correctIndex: 0,
+          explanation:
+            "The axe is strong evidence for copper technology and exchange networks, but it does not mean everyone had metal tools."
+        },
+        {
+          id: "otzi_q3",
+          text: "Which clue points most directly to violence in Otzi's final hours?",
+          options: [
+            "A flint arrowhead lodged in his shoulder",
+            "His grass cloak",
+            "His birch-bark containers",
+            "His einkorn wheat"
+          ],
+          correctIndex: 0,
+          explanation:
+            "The arrowhead and other injuries are the strongest evidence that Otzi died after a violent encounter."
+        },
+        {
+          id: "otzi_q4",
+          text: "Why do historians avoid claiming they know exactly why Otzi died?",
+          options: [
+            "There is no evidence at all",
+            "The evidence shows injury, movement, and conflict, but not the full motive or sequence",
+            "Scientists refuse to study him",
+            "His body was found in a written tomb"
+          ],
+          correctIndex: 1,
+          explanation:
+            "Good evidence can still have limits. Otzi tells us a lot about what happened to his body, but not the whole human story behind the attack."
+        },
+        {
+          id: "otzi_q5",
+          text: "What makes Otzi's tattoos historically interesting?",
+          options: [
+            "They spell his name",
+            "They are placed near worn or painful parts of his body",
+            "They show a map of the Alps",
+            "They are painted on his clothing"
+          ],
+          correctIndex: 1,
+          explanation:
+            "Many tattoos cluster near joints and the lower back, which is why researchers discuss possible therapeutic uses."
+        }
+      ]
+    }
+  },  'stonehenge': {
     summary:
       "Stonehenge looks like a simple stone circle, but it’s actually the final stage of a project that took centuries.\n\n" +
       "Early builders dig a circular ditch and bank. Later, they haul in massive upright stones (sarsens) and smaller “bluestones” from far-away quarries, including in Wales. They arrange them in circles and horseshoes, carefully aligning some stones with the sunrise and sunset on the longest and shortest days of the year.\n\n" +

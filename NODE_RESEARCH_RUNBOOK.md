@@ -23,6 +23,13 @@ The goal is not "school report, but shorter." The goal is a lesson a kid can rem
 
 Chronos should make history feel like a live investigation.
 
+Before drafting a node, inspect the local repo state and nearby lesson patterns:
+
+- `constants.ts` for the exact node ID, title, year, era, region, tags, and neighboring chronology.
+- `types.ts` for the current `NodeContent` contract and category values.
+- nearby completed lessons in the same era or unit file to match density, tone, quiz structure, and card quality.
+- `CONTENT_TODO.md` when relevant, so the node status and sequence stay aligned with the project plan.
+
 Every node should answer four questions:
 
 - **What happened?** Give the actual event, discovery, invention, conflict, artwork, system, or turning point.
@@ -346,6 +353,8 @@ Quiz rules:
 
 Use a three-layer source stack.
 
+Start each node with a compelling historical question, not just a topic label. Good questions ask what problem people were solving, what changed for ordinary people, what evidence survives, what later societies copied or feared, or why a decision made sense at the time.
+
 ### Layer 1: Orientation
 
 Use fast overview sources to understand the shape of the topic:
@@ -366,6 +375,8 @@ Use at least two authority sources for the factual core:
 - official heritage bodies: UNESCO, National Park Service, Historic England, Turkish Ministry of Culture, Egyptian Ministry of Tourism and Antiquities
 - primary sources in translation: inscriptions, letters, law codes, chronicles, oral histories, speeches
 
+Whenever possible, include at least one direct primary-source or object-level source in the research pass: an artifact page, inscription, excavation report, map, object record, site plan, or ancient text in translation. For source-poor topics, name the limitation instead of pretending the evidence is stronger than it is.
+
 ### Layer 3: Teaching Assets
 
 Find material that makes the node visual and memorable:
@@ -382,12 +393,17 @@ Find material that makes the node visual and memorable:
 Before writing, create a private research note with:
 
 - Node ID, title, date, era, region, and tags from `constants.ts`.
+- neighboring nodes and the main continuity link to what comes before or after.
 - 5-8 bullet timeline of what happened.
-- 3 source URLs with one-line notes.
+- at least 3 strong source URLs with one-line notes on contribution and limitations.
+- at least 1 source that complicates the simple story: a debate, missing evidence warning, minority perspective, or historiographical caution.
+- at least 2 student-friendly sources suitable for the target age range.
 - 1-3 video candidates checked, with a note on why the winner was chosen or why no video passed.
-- 3 potential card images with source page and license.
+- 3 potential card images with source page, rights/license note, and why each fits the card.
 - 3 "sticky details" a kid might repeat later.
 - 1 evidence warning: what is debated, uncertain, or often exaggerated?
+
+Treat this note as a compact research dossier. It does not ship in code, but it should be strong enough that another contributor could understand the source base, image choices, and uncertainty boundaries without redoing the entire search.
 
 These notes do not need to ship in code, but the finished node should clearly reflect them.
 
@@ -844,6 +860,8 @@ No manual registration is needed.
 
 `staticContent.ts` eagerly loads `./data/**/*.ts` via `import.meta.glob` and merges exports shaped like `Record<string, NodeContent>`.
 
+When adding a node, prefer the smallest appropriate existing era bundle. Create a new file only when the lesson would make an existing bundle meaningfully less coherent.
+
 ---
 
 ## Quality Checklist
@@ -880,6 +898,7 @@ Before submitting content, verify:
 ### Technical Quality
 
 - [ ] Node ID exactly matches `constants.ts`.
+- [ ] The lesson reflects neighboring chronology and does not contradict adjacent nodes.
 - [ ] Content exports as `Record<string, NodeContent>`.
 - [ ] New files live under `data/eras/{era_id}/`.
 - [ ] New local images live under `public/images/...`.
@@ -895,6 +914,7 @@ Before submitting content, verify:
 ### Image Quality
 
 - [ ] Image source page and license are recorded.
+- [ ] Collectible-worthy people, inventions, and places each have a real image candidate or an explicit fallback plan.
 - [ ] Image is not a Google thumbnail or random hotlink.
 - [ ] The image actually shows the thing claimed.
 - [ ] If edges are getting cut off, the fix is the node's `imageFit` value, not a lesson-specific layout hack.

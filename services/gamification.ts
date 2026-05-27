@@ -18,7 +18,7 @@ export const XP_PER_COMPLETED_NODE = 100;
 
 // Bump this after a lesson is fully fleshed out and should count as completed
 // in the demo profile. The app will open the next unlocked unfinished lesson.
-export const DEMO_PROFILE_COMPLETED_THROUGH_NODE_ID = 'animal_domestication';
+export const DEMO_PROFILE_COMPLETED_THROUGH_NODE_ID = 'hieroglyphs';
 
 // Use this only when the unlock chain needs extra completed lessons while
 // keeping a specific target lesson open for the demo profile.
