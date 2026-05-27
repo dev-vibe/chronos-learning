@@ -392,14 +392,6 @@ export const FOUNDATIONS_EUROPE: Record<string, NodeContent> = {
           "Official museum overview of Otzi, his discovery, preservation, equipment, health, and historical importance."
       },
       {
-        title: "Iceman Reborn - PBS NOVA",
-        type: "Video",
-        url: "https://www.pbs.org/video/nova-iceman-reborn/",
-        isCore: false,
-        description:
-          "Full NOVA episode on how scientists study Otzi and reconstruct his body. Long, but strong for learners who want the full investigation."
-      },
-      {
         title: "The Equipment - South Tyrol Museum of Archaeology",
         type: "Article",
         url: "https://www.iceman.it/en/equipment/",
