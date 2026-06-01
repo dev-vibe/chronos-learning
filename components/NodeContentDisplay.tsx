@@ -729,25 +729,20 @@ const LessonRecap: React.FC<{ content: NodeContent; region: string }> = ({ conte
     );
 };
 
-const getImageFitClass = (fit?: 'cover' | 'contain'): string => {
-  return fit === 'contain' ? 'object-contain' : 'object-cover';
-};
-
-const LessonHeroImage: React.FC<{ imageUrl: string; imageFit?: 'cover' | 'contain'; title: string }> = ({ imageUrl, imageFit, title }) => {
+const LessonHeroImage: React.FC<{ imageUrl: string; imageFit?: 'cover' | 'contain'; title: string }> = ({ imageUrl, title }) => {
   const [imgError, setImgError] = useState(false);
   const normalizedImageUrl = getImageUrlWithFallback(imageUrl);
-  const imageFitClass = getImageFitClass(imageFit);
 
   if (imgError) return null;
 
   return (
     <div className="overflow-hidden rounded-xl border border-stone-800 bg-black shadow-2xl">
-      <div className="relative aspect-[16/9] w-full bg-stone-950">
+      <div className="relative w-full bg-stone-950">
         <img
           src={normalizedImageUrl}
           alt={`${title} lesson artwork`}
           onError={() => setImgError(true)}
-          className={`h-full w-full ${imageFitClass}`}
+          className="block h-auto w-full"
         />
       </div>
     </div>
