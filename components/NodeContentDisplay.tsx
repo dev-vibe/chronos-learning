@@ -747,9 +747,8 @@ const LessonHeroImage: React.FC<{ imageUrl: string; imageFit?: 'cover' | 'contai
           src={normalizedImageUrl}
           alt={`${title} lesson artwork`}
           onError={() => setImgError(true)}
-          className={`h-full w-full ${imageFitClass} opacity-90`}
+          className={`h-full w-full ${imageFitClass}`}
         />
-        <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-black/50 via-transparent to-black/10"></div>
       </div>
     </div>
   );
