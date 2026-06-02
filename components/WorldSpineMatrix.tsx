@@ -77,10 +77,7 @@ export const WorldSpineMatrix: React.FC<WorldSpineMatrixProps> = ({
     () => createMatrixProgressResolver(completedNodeIds, nodes, unlockAll),
     [completedNodeIds, nodes, unlockAll]
   );
-  const spineRows = useMemo(
-    () => rows.filter((row): row is Extract<MatrixRow, { type: 'spine-node' }> => row.type === 'spine-node'),
-    [rows]
-  );
+  const matrixSections = useMemo(() => groupMatrixRowsIntoSections(rows), [rows]);
   const totalLessonCount = nodes.length;
   const completedCount = completedNodeIds.size;
   const progressPercent = totalLessonCount > 0 ? Math.min(100, Math.round((completedCount / totalLessonCount) * 100)) : 0;
@@ -161,86 +158,107 @@ export const WorldSpineMatrix: React.FC<WorldSpineMatrixProps> = ({
             className="chronos-scroll-y relative min-h-0 flex-1 overflow-y-auto overflow-x-hidden rounded border border-stone-800/90 bg-black/35 shadow-2xl"
           >
             <div>
-              {rows.map(row => {
-                if (row.type === 'separator') {
-                  return <SeparatorRow key={row.id} row={row} />;
+              {matrixSections.map((section, sectionIndex) => {
+                const isFutureSection =
+                  !unlockAll &&
+                  section.spineRows.length > 0 &&
+                  section.spineRows.every(
+                    row => progress.getSpineNodeState(row.nodeId) === 'future-locked'
+                  );
+
+                if (isFutureSection) {
+                  return (
+                    <CollapsedEraSection
+                      key={section.separator?.id ?? `collapsed-${sectionIndex}`}
+                      label={section.separator?.label ?? 'Upcoming'}
+                      lessonCount={section.spineRows.length}
+                    />
+                  );
                 }
 
-                const node = nodeById.get(row.nodeId);
-                if (!node) return null;
-
-                const state = progress.getSpineNodeState(node.id);
-                const laneArcId = getActiveLaneArcId(row);
-                const activeArc = getArcById(laneArcId);
-                const arcNodes = laneArcId ? getMatrixArcNodes(laneArcId, row.nodeId, nodes) : [];
-                const isArcRow = Boolean(laneArcId && activeArc);
-                const isSelected = isArcRow
-                  ? arcNodes.some(arcNode => arcNode.id === selectedNode?.id)
-                  : selectedNode?.id === node.id;
-                const isMobileExpanded = expandedMobileNodeId === node.id || isSelected;
-
                 return (
-                  <div
-                    key={row.nodeId}
-                    className="grid min-h-[104px] border-b border-cyan-900/30 md:h-[104px] md:grid-cols-[260px_minmax(0,1fr)] lg:grid-cols-[280px_minmax(0,1fr)]"
-                  >
-                    <div className="sticky left-0 z-20 flex h-full items-center border-r border-stone-800 bg-[#071014]/95 px-2 backdrop-blur md:px-3">
-                      {isArcRow && activeArc && laneArcId ? (
-                        <ArcSpineCard
-                          arc={activeArc}
-                          state={state}
-                          selected={isSelected}
-                          familyTitle={getArcFamily(activeArc)?.title ?? activeArc.kind}
-                          nodeCount={arcNodes.length}
-                          onSelect={() => {
-                            if (state === 'future-locked') return;
+                  <React.Fragment key={section.separator?.id ?? `section-${sectionIndex}`}>
+                    {section.separator && <SeparatorRow row={section.separator} />}
+                    {section.spineRows.map(row => {
+                      const node = nodeById.get(row.nodeId);
+                      if (!node) return null;
 
-                            const firstSelectableArcNode =
-                              arcNodes.find(arcNode => progress.getLaneNodeState(laneArcId, arcNode.id) !== 'future-locked') ??
-                              arcNodes[0];
-                            if (!firstSelectableArcNode) return;
+                      const state = progress.getSpineNodeState(node.id);
+                      const laneArcId = getActiveLaneArcId(row);
+                      const activeArc = getArcById(laneArcId);
+                      const arcNodes = laneArcId ? getMatrixArcNodes(laneArcId, row.nodeId, nodes) : [];
+                      const isArcRow = Boolean(laneArcId && activeArc);
+                      const isSelected = isArcRow
+                        ? arcNodes.some(arcNode => arcNode.id === selectedNode?.id)
+                        : selectedNode?.id === node.id;
+                      const isMobileExpanded = expandedMobileNodeId === node.id || isSelected;
 
-                            selectMatrixNode(firstSelectableArcNode, progress.getLaneNodeState(laneArcId, firstSelectableArcNode.id));
-                          }}
-                        />
-                      ) : (
-                        <SpineNodeCard
-                          node={node}
-                          state={state}
-                          selected={isSelected}
-                          role={node.arcRoles?.['world-spine']}
-                          onSelect={() => selectMatrixNode(node, state)}
-                        />
-                      )}
-                    </div>
+                      return (
+                        <div
+                          key={row.nodeId}
+                          className="grid min-h-[104px] border-b border-cyan-900/30 md:h-[104px] md:grid-cols-[260px_minmax(0,1fr)] lg:grid-cols-[280px_minmax(0,1fr)]"
+                        >
+                          <div className="sticky left-0 z-20 flex h-full items-center border-r border-stone-800 bg-[#071014]/95 px-2 backdrop-blur md:px-3">
+                            {isArcRow && activeArc && laneArcId ? (
+                              <ArcSpineCard
+                                arc={activeArc}
+                                state={state}
+                                selected={isSelected}
+                                familyTitle={getArcFamily(activeArc)?.title ?? activeArc.kind}
+                                nodeCount={arcNodes.length}
+                                onSelect={() => {
+                                  if (state === 'future-locked') return;
 
-                    <div className={`${isMobileExpanded ? 'block' : 'hidden'} h-auto px-3 py-2 md:flex md:h-full md:items-center md:py-0`}>
-                      {laneArcId ? (
-        <ArcLane
-                          anchorNodeId={row.nodeId}
-                          arcId={laneArcId}
-                          nodes={nodes}
-                          selectedNodeId={selectedNode?.id ?? null}
-                          laneUnlocked={progress.isLaneUnlocked(row.nodeId)}
-                          completedNodeIds={completedNodeIds}
-                          getLaneNodeState={progress.getLaneNodeState}
-                          onSelectNode={(laneNode, laneNodeState) => selectMatrixNode(laneNode, laneNodeState)}
-                          onLaneScrollLeftChange={onLaneScrollLeftChange}
-                          laneRefs={laneRefs}
-                        />
-                      ) : (
-                        <div aria-hidden="true" />
-                      )}
-                    </div>
-                  </div>
+                                  const firstSelectableArcNode =
+                                    arcNodes.find(
+                                      arcNode => progress.getLaneNodeState(laneArcId, arcNode.id) !== 'future-locked'
+                                    ) ?? arcNodes[0];
+                                  if (!firstSelectableArcNode) return;
+
+                                  selectMatrixNode(
+                                    firstSelectableArcNode,
+                                    progress.getLaneNodeState(laneArcId, firstSelectableArcNode.id)
+                                  );
+                                }}
+                              />
+                            ) : (
+                              <SpineNodeCard
+                                node={node}
+                                state={state}
+                                selected={isSelected}
+                                role={node.arcRoles?.['world-spine']}
+                                onSelect={() => selectMatrixNode(node, state)}
+                              />
+                            )}
+                          </div>
+
+                          <div
+                            className={`${isMobileExpanded ? 'block' : 'hidden'} h-auto px-3 py-2 md:flex md:h-full md:items-center md:py-0`}
+                          >
+                            {laneArcId ? (
+                              <ArcLane
+                                anchorNodeId={row.nodeId}
+                                arcId={laneArcId}
+                                nodes={nodes}
+                                selectedNodeId={selectedNode?.id ?? null}
+                                laneUnlocked={progress.isLaneUnlocked(row.nodeId)}
+                                completedNodeIds={completedNodeIds}
+                                getLaneNodeState={progress.getLaneNodeState}
+                                onSelectNode={(laneNode, laneNodeState) => selectMatrixNode(laneNode, laneNodeState)}
+                                onLaneScrollLeftChange={onLaneScrollLeftChange}
+                                laneRefs={laneRefs}
+                              />
+                            ) : (
+                              <div aria-hidden="true" />
+                            )}
+                          </div>
+                        </div>
+                      );
+                    })}
+                  </React.Fragment>
                 );
               })}
             </div>
-          </div>
-
-          <div className="mt-3 flex flex-wrap items-center justify-between gap-2 text-[10px] font-mono uppercase tracking-wider text-stone-600">
-            <span>{spineRows.length} spine nodes</span>
-            <span>Locked nodes show the future path without lesson details.</span>
           </div>
         </div>
       </section>
@@ -326,6 +344,49 @@ const MatrixTopBar: React.FC<MatrixTopBarProps> = ({
     </header>
   );
 };
+
+interface MatrixSection {
+  separator: Extract<MatrixRow, { type: 'separator' }> | null;
+  spineRows: Extract<MatrixRow, { type: 'spine-node' }>[];
+}
+
+function groupMatrixRowsIntoSections(rows: MatrixRow[]): MatrixSection[] {
+  const sections: MatrixSection[] = [];
+  let current: MatrixSection = { separator: null, spineRows: [] };
+
+  for (const row of rows) {
+    if (row.type === 'separator') {
+      if (current.separator !== null || current.spineRows.length > 0) {
+        sections.push(current);
+      }
+      current = { separator: row, spineRows: [] };
+      continue;
+    }
+
+    current.spineRows.push(row);
+  }
+
+  if (current.separator !== null || current.spineRows.length > 0) {
+    sections.push(current);
+  }
+
+  return sections;
+}
+
+const CollapsedEraSection: React.FC<{ label: string; lessonCount: number }> = ({ label, lessonCount }) => (
+  <div className="grid h-10 border-b border-stone-800/80 bg-black/25 md:grid-cols-[260px_minmax(0,1fr)] lg:grid-cols-[280px_minmax(0,1fr)]">
+    <div className="sticky left-0 z-20 flex items-center gap-2 border-r border-stone-800 bg-[#071014]/95 px-4 backdrop-blur">
+      <Lock size={12} className="shrink-0 text-stone-600" />
+      <span className="truncate text-[10px] font-mono font-bold uppercase tracking-widest text-stone-600">{label}</span>
+      <span className="ml-auto shrink-0 text-[9px] font-mono uppercase tracking-wider text-stone-700">
+        {lessonCount} {lessonCount === 1 ? 'lesson' : 'lessons'}
+      </span>
+    </div>
+    <div className="hidden items-center px-3 md:flex">
+      <div className="h-px w-full bg-stone-800/60" />
+    </div>
+  </div>
+);
 
 const SeparatorRow: React.FC<{ row: Extract<MatrixRow, { type: 'separator' }> }> = ({ row }) => (
   <div
