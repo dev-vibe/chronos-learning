@@ -72,6 +72,7 @@ async function main() {
       deviceScaleFactor: 1,
       mobile: false,
     });
+    const desktopMetrics = await collectMatrixMetrics(cdp);
 
     const mobile = await captureViewport(cdp, {
       name: 'mobile',
@@ -80,34 +81,15 @@ async function main() {
       deviceScaleFactor: 2,
       mobile: true,
     });
-
-    const metrics = await send(cdp, 'Runtime.evaluate', {
-      returnByValue: true,
-      expression: `(() => {
-        const rail = document.querySelector('aside');
-        const matrixHeader = [...document.querySelectorAll('*')].find(el => el.textContent?.trim() === 'World Spine');
-        const separators = [...document.querySelectorAll('*')].filter(el => /Prehistory|First Cities and Bronze Age|Classical and Axial Age/.test(el.textContent || '')).length;
-        const buttons = [...document.querySelectorAll('button')].map(button => button.textContent?.trim()).filter(Boolean).slice(0, 20);
-        const locked = [...document.querySelectorAll('button')].filter(button => button.disabled).length;
-        const rows = [...document.querySelectorAll('[style*="104px"]')].length;
-        return {
-          title: document.title,
-          bodyTextStart: document.body.innerText.slice(0, 900),
-          railVisible: Boolean(rail),
-          matrixHeaderVisible: Boolean(matrixHeader),
-          passiveSeparatorTextMatches: separators,
-          disabledButtonCount: locked,
-          fixedHeightRowCount: rows,
-          viewport: { width: innerWidth, height: innerHeight },
-          firstButtons: buttons,
-        };
-      })()`,
-    });
+    const mobileMetrics = await collectMatrixMetrics(cdp);
 
     const report = {
       desktop,
       mobile,
-      metrics: metrics.result.value,
+      metrics: {
+        desktop: desktopMetrics,
+        mobile: mobileMetrics,
+      },
       consoleMessages,
       chromeStderrTail: stderr.slice(-2000),
     };
@@ -135,6 +117,84 @@ async function captureViewport(cdp, viewport) {
   const fileName = `${viewport.name}.png`;
   await writeFile(new URL(fileName, outDir), Buffer.from(screenshot.data, 'base64'));
   return { file: new URL(fileName, outDir).pathname, viewport };
+}
+
+async function collectMatrixMetrics(cdp) {
+  const metrics = await send(cdp, 'Runtime.evaluate', {
+    returnByValue: true,
+    awaitPromise: true,
+    expression: `(async () => {
+      const rail = document.querySelector('aside');
+      const matrixHeader = [...document.querySelectorAll('*')].find(el => el.textContent?.trim() === 'World Spine');
+      const matrixScroller = document.querySelector('section .chronos-scroll-y');
+      const separators = [...document.querySelectorAll('*')].filter(el => /Prehistory|First Cities and Bronze Age|Classical and Axial Age/.test(el.textContent || '')).length;
+      const buttons = [...document.querySelectorAll('button')].map(button => button.textContent?.trim()).filter(Boolean).slice(0, 20);
+      const locked = [...document.querySelectorAll('button')].filter(button => button.disabled).length;
+      const rows = [...document.querySelectorAll('[style*="104px"]')].length;
+      const matrixNodeIds = [...document.querySelectorAll('[data-node-id]')]
+        .map(el => el.getAttribute('data-node-id'))
+        .filter(Boolean);
+      const matrixNodeIdCounts = matrixNodeIds.reduce((counts, nodeId) => {
+        counts[nodeId] = (counts[nodeId] ?? 0) + 1;
+        return counts;
+      }, {});
+      const duplicateMatrixNodeIds = Object.entries(matrixNodeIdCounts)
+        .filter(([, count]) => count > 1)
+        .map(([nodeId]) => nodeId)
+        .sort();
+      let scrollStability = null;
+      if (matrixScroller) {
+        matrixScroller.scrollTop = 0;
+        await new Promise(resolve => requestAnimationFrame(resolve));
+        matrixScroller.scrollTop = 812;
+        await new Promise(resolve => requestAnimationFrame(resolve));
+        const immediate = Math.round(matrixScroller.scrollTop);
+        await new Promise(resolve => setTimeout(resolve, 800));
+        const settled = Math.round(matrixScroller.scrollTop);
+        scrollStability = {
+          immediate,
+          settled,
+          delta: settled - immediate,
+        };
+      }
+      const overflowingElements = [...document.querySelectorAll('body *')]
+        .filter(el => {
+          const rect = el.getBoundingClientRect();
+          return rect.right > window.innerWidth + 1 || rect.left < -1;
+        })
+        .slice(0, 10)
+        .map(el => ({
+          tag: el.tagName.toLowerCase(),
+          className: typeof el.className === 'string' ? el.className.slice(0, 160) : '',
+          text: (el.textContent || '').trim().slice(0, 80),
+          right: Math.round(el.getBoundingClientRect().right),
+          left: Math.round(el.getBoundingClientRect().left),
+        }));
+      return {
+        title: document.title,
+        bodyTextStart: document.body.innerText.slice(0, 900),
+        railVisible: Boolean(rail),
+        matrixHeaderVisible: Boolean(matrixHeader),
+        passiveSeparatorTextMatches: separators,
+        disabledButtonCount: locked,
+        fixedHeightRowCount: rows,
+        matrixNodePlacement: {
+          nodeCardCount: matrixNodeIds.length,
+          duplicateMatrixNodeIds,
+        },
+        scrollStability,
+        horizontalOverflow: {
+          documentElement: document.documentElement.scrollWidth - document.documentElement.clientWidth,
+          body: document.body.scrollWidth - document.body.clientWidth,
+          overflowingElements,
+        },
+        viewport: { width: innerWidth, height: innerHeight },
+        firstButtons: buttons,
+      };
+    })()`,
+  });
+
+  return metrics.result.value;
 }
 
 async function waitForBrowserWsUrl() {

@@ -51,8 +51,8 @@ const AuthenticatedApp: React.FC = () => {
   const [isFullLessonOpen, setIsFullLessonOpen] = useState(false);
   const [nodeCache, setNodeCache] = useState<Record<string, TimelineNode>>({});
   const [isProfileOpen, setIsProfileOpen] = useState(false);
-  const [matrixScrollTop, setMatrixScrollTop] = useState(0);
-  const [laneScrollLefts, setLaneScrollLefts] = useState<Record<string, number>>({});
+  const matrixScrollTopRef = useRef(0);
+  const laneScrollLeftsRef = useRef<Record<string, number>>({});
   const hasInitializedSelection = useRef(false);
 
   const eraLockStatus = useMemo<Record<string, boolean>>(() => {
@@ -133,6 +133,17 @@ const AuthenticatedApp: React.FC = () => {
   const handleBackToMatrix = () => {
     setIsFullLessonOpen(false);
   };
+
+  const handleMatrixScrollTopChange = useCallback((scrollTop: number) => {
+    matrixScrollTopRef.current = scrollTop;
+  }, []);
+
+  const handleLaneScrollLeftChange = useCallback((laneKey: string, scrollLeft: number) => {
+    laneScrollLeftsRef.current = {
+      ...laneScrollLeftsRef.current,
+      [laneKey]: scrollLeft,
+    };
+  }, []);
 
   const handleQuizComplete = async (xp: number, collectibleCards?: CollectibleCard[]) => {
     await addXp(xp);
@@ -232,13 +243,11 @@ const AuthenticatedApp: React.FC = () => {
           userProfile={userProfile}
           selectedNode={selectedNode}
           selectedNodeLoading={loading}
-          initialScrollTop={matrixScrollTop}
-          initialLaneScrollLefts={laneScrollLefts}
+          initialScrollTop={matrixScrollTopRef.current}
+          initialLaneScrollLefts={laneScrollLeftsRef.current}
           unlockAll={false}
-          onMatrixScrollTopChange={setMatrixScrollTop}
-          onLaneScrollLeftChange={(laneKey, scrollLeft) => {
-            setLaneScrollLefts(current => ({ ...current, [laneKey]: scrollLeft }));
-          }}
+          onMatrixScrollTopChange={handleMatrixScrollTopChange}
+          onLaneScrollLeftChange={handleLaneScrollLeftChange}
           onSelectNode={handleSelectNode}
           onOpenLesson={handleOpenFullLesson}
           onOpenProfile={() => setIsProfileOpen(true)}
