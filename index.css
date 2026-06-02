@@ -11,3 +11,75 @@
   scrollbar-width: none; /* Firefox */
 }
 
+.chronos-scroll-y {
+  scrollbar-width: thin;
+  scrollbar-color: rgba(34, 211, 238, 0.38) rgba(8, 18, 23, 0.82);
+}
+
+.chronos-scroll-y::-webkit-scrollbar {
+  width: 8px;
+}
+
+.chronos-scroll-y::-webkit-scrollbar-track {
+  background: rgba(8, 18, 23, 0.82);
+  border-left: 1px solid rgba(41, 37, 36, 0.9);
+}
+
+.chronos-scroll-y::-webkit-scrollbar-thumb {
+  background: linear-gradient(
+    180deg,
+    rgba(34, 211, 238, 0.62),
+    rgba(68, 64, 60, 0.76)
+  );
+  border-radius: 999px;
+  border: 2px solid rgba(8, 18, 23, 0.95);
+}
+
+.chronos-scroll-y::-webkit-scrollbar-thumb:hover {
+  background: rgba(34, 211, 238, 0.78);
+}
+
+.chronos-scroll-x {
+  scrollbar-width: none;
+}
+
+.chronos-scroll-x:hover,
+.chronos-scroll-x:focus,
+.chronos-scroll-x:focus-within,
+.chronos-scroll-x.is-scrolling {
+  scrollbar-width: thin;
+  scrollbar-color: rgba(34, 211, 238, 0.42) rgba(8, 18, 23, 0.82);
+}
+
+.chronos-scroll-x::-webkit-scrollbar {
+  height: 0;
+}
+
+.chronos-scroll-x:hover::-webkit-scrollbar,
+.chronos-scroll-x:focus::-webkit-scrollbar,
+.chronos-scroll-x:focus-within::-webkit-scrollbar,
+.chronos-scroll-x.is-scrolling::-webkit-scrollbar {
+  height: 8px;
+}
+
+.chronos-scroll-x::-webkit-scrollbar-track {
+  background: rgba(8, 18, 23, 0.82);
+  border-top: 1px solid rgba(41, 37, 36, 0.9);
+}
+
+.chronos-scroll-x::-webkit-scrollbar-thumb {
+  background: rgba(34, 211, 238, 0.42);
+  border-radius: 999px;
+  border: 2px solid rgba(8, 18, 23, 0.95);
+}
+
+.chronos-scroll-x::-webkit-scrollbar-thumb:hover {
+  background: rgba(34, 211, 238, 0.74);
+}
+
+.chronos-field-report-clamp {
+  display: -webkit-box;
+  -webkit-line-clamp: 8;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}

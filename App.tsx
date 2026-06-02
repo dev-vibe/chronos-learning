@@ -1,18 +1,19 @@
-
-import React, { useState, useCallback, useEffect, useMemo, useRef } from 'react';
-import { TimelineSidebar } from './components/TimelineSidebar';
+import React, { useCallback, useEffect, useMemo, useRef, useState } from 'react';
+import { AlertCircle, ArrowLeft, Terminal } from 'lucide-react';
 import { NodeContentDisplay } from './components/NodeContentDisplay';
+import { WorldSpineMatrix } from './components/WorldSpineMatrix';
 import { UserProfileModal } from './components/UserProfile';
 import { AuthScreen } from './components/AuthScreen';
 import { ERAS, INITIAL_NODES } from './constants';
-import { TimelineNode, TimelineNodeStub, Era, CollectibleCard } from './types';
+import { HISTORY_ARCS } from './data/arcs';
+import { CollectibleCard, TimelineNode, TimelineNodeStub } from './types';
 import { fetchNodeContent } from './services/geminiService';
 import { GamificationService } from './services/gamification';
 import { useUserProfile } from './contexts/UserProfileContext';
 import { useAuth } from './contexts/AuthContext';
 import { getEraLockStatus } from './services/eraLocking';
 import { getAllNodeLockStatus } from './services/nodeLocking';
-import { AlertCircle, LogOut, PlayCircle, Terminal } from 'lucide-react';
+import { createMatrixProgressResolver } from './services/worldSpineMatrix';
 
 const parseBooleanEnv = (value: string | undefined): boolean => value === 'true' || value === '1';
 
@@ -24,10 +25,10 @@ const App: React.FC = () => {
 
   if (authLoading) {
     return (
-      <div className="flex h-screen w-screen bg-black text-stone-200 items-center justify-center">
+      <div className="flex h-screen w-screen items-center justify-center bg-black text-stone-200">
         <div className="text-center">
-          <Terminal size={48} className="mx-auto mb-4 text-stone-600 animate-pulse" />
-          <p className="text-stone-500 font-mono">Initializing...</p>
+          <Terminal size={48} className="mx-auto mb-4 animate-pulse text-stone-600" />
+          <p className="font-mono text-stone-500">Initializing...</p>
         </div>
       </div>
     );
@@ -42,118 +43,36 @@ const App: React.FC = () => {
 
 const AuthenticatedApp: React.FC = () => {
   const { signOut } = useAuth();
+  const { profile: userProfile, loading: profileLoading, addXp, completeNode } = useUserProfile();
 
-  const [selectedEraId, setSelectedEraId] = useState<string | null>(ERAS[0].id);
   const [selectedNode, setSelectedNode] = useState<TimelineNode | null>(null);
-  const [selectedEra, setSelectedEra] = useState<Era | null>(null);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
-  const [showMobileDetail, setShowMobileDetail] = useState(false);
+  const [isFullLessonOpen, setIsFullLessonOpen] = useState(false);
   const [nodeCache, setNodeCache] = useState<Record<string, TimelineNode>>({});
-
-  // Gamification State - use context (synced with DB)
-  const { profile: userProfile, loading: profileLoading, addXp, completeNode } = useUserProfile();
   const [isProfileOpen, setIsProfileOpen] = useState(false);
-  const hasInitializedEra = useRef(false);
+  const [matrixScrollTop, setMatrixScrollTop] = useState(0);
+  const [laneScrollLefts, setLaneScrollLefts] = useState<Record<string, number>>({});
+  const hasInitializedSelection = useRef(false);
 
-  // Debug: log whenever userProfile changes
-  useEffect(() => {
-    console.log('%c[userProfile CHANGED]', 'background: #0f0; color: #000; font-size: 14px;', userProfile);
-  }, [userProfile]);
-
-  // Compute era lock status based on completed nodes
   const eraLockStatus = useMemo<Record<string, boolean>>(() => {
-    console.log('[eraLockStatus] Computing with nodesCompleted:', userProfile.nodesCompleted);
-    const completedNodeIds: Set<string> = new Set(userProfile.nodesCompleted);
-    const result = getEraLockStatus(ERAS, INITIAL_NODES, completedNodeIds, {
+    const completedNodeIds = new Set(userProfile.nodesCompleted);
+    return getEraLockStatus(ERAS, INITIAL_NODES, completedNodeIds, {
       unlockAll: UNLOCK_ALL_ERAS,
     });
-    console.log('[eraLockStatus] Result:', result);
-    return result;
   }, [userProfile.nodesCompleted]);
 
-  // Compute node lock status based on completed nodes and era lock status
   const nodeLockStatus = useMemo<Record<string, boolean>>(() => {
-    const completedNodeIds: Set<string> = new Set(userProfile.nodesCompleted);
-    const result = getAllNodeLockStatus(ERAS, INITIAL_NODES, completedNodeIds, eraLockStatus, {
+    const completedNodeIds = new Set(userProfile.nodesCompleted);
+    return getAllNodeLockStatus(ERAS, INITIAL_NODES, completedNodeIds, eraLockStatus, {
       unlockAll: UNLOCK_ALL_ERAS,
     });
-    return result;
-  }, [userProfile.nodesCompleted, eraLockStatus]);
-
-  const getFirstAvailableNodeInEra = useCallback((eraId: string): TimelineNodeStub | null => {
-    const completedSet = new Set(userProfile.nodesCompleted);
-    const eraNodes = INITIAL_NODES.filter(node => eraId === node.eraId);
-
-    return (
-      eraNodes.find(node => !nodeLockStatus[node.id] && !completedSet.has(node.id)) ||
-      eraNodes.find(node => !nodeLockStatus[node.id]) ||
-      null
-    );
-  }, [nodeLockStatus, userProfile.nodesCompleted]);
-
-  const openEraBriefing = useCallback((era: Era) => {
-    setShowMobileDetail(true);
-    setSelectedEraId(era.id);
-    setSelectedNode(null);
-    setSelectedEra(era);
-    setError(null);
-  }, []);
-
-  // Find the next available era and open its briefing on initial load.
-  useEffect(() => {
-    if (hasInitializedEra.current || profileLoading) return;
-
-    const completedSet = new Set(userProfile.nodesCompleted);
-    const nextUnlockedNode = INITIAL_NODES.find(node =>
-      !nodeLockStatus[node.id] && !completedSet.has(node.id)
-    ) || INITIAL_NODES.find(node => !nodeLockStatus[node.id]);
-    const nextEra = ERAS.find(era => era.id === nextUnlockedNode?.eraId) || ERAS.find(era => !eraLockStatus[era.id]);
-
-    if (nextEra) {
-      openEraBriefing(nextEra);
-    }
-
-    hasInitializedEra.current = true;
-  }, [eraLockStatus, nodeLockStatus, openEraBriefing, profileLoading, userProfile.nodesCompleted]);
-
-  // Keep the era containing the selected node open
-  // This ensures that whenever a node is selected, its era is automatically opened
-  useEffect(() => {
-    if (selectedNode) {
-      // Force the era to be open - this will override any manual era selection
-      setSelectedEraId(selectedNode.eraId);
-    }
-  }, [selectedNode]);
-
-  const handleSelectEra = (id: string) => {
-    // Prevent selecting locked eras
-    if (eraLockStatus[id]) {
-      return;
-    }
-
-    const era = ERAS.find(candidate => candidate.id === id);
-    if (era) {
-      openEraBriefing(era);
-    }
-  };
-
-  const handleSelectEraBriefing = (era: Era) => {
-    openEraBriefing(era);
-  };
+  }, [eraLockStatus, userProfile.nodesCompleted]);
 
   const handleSelectNode = useCallback(async (stub: TimelineNodeStub, bypassLockCheck = false) => {
-    // Prevent selecting locked nodes (unless bypassed, e.g., from "Continue to Next Lesson")
     if (!bypassLockCheck && nodeLockStatus[stub.id]) {
-      console.log('[handleSelectNode] Node is locked, returning:', stub.id);
       return;
     }
-    
-    // Automatically open the era that contains this node
-    setSelectedEraId(stub.eraId);
-    
-    setShowMobileDetail(true);
-    setSelectedEra(null);
 
     if (nodeCache[stub.id] && nodeCache[stub.id].content) {
       setSelectedNode(nodeCache[stub.id]);
@@ -169,230 +88,163 @@ const AuthenticatedApp: React.FC = () => {
     setError(null);
 
     try {
-      console.log(`Requesting content for: ${stub.title}`);
       const content = await fetchNodeContent(stub);
       const fullNode: TimelineNode = { ...stub, content };
       setNodeCache(prev => ({ ...prev, [stub.id]: fullNode }));
       setSelectedNode(fullNode);
-    } catch (err: any) {
-      const msg = err instanceof Error ? err.message : "Unknown error occurred";
-      setError(msg);
-      console.error("Content Fetch Failed:", err);
+    } catch (err: unknown) {
+      const message = err instanceof Error ? err.message : 'Unknown error occurred';
+      setError(message);
+      console.error('Content Fetch Failed:', err);
     } finally {
       setLoading(false);
     }
-  }, [nodeCache, selectedNode, loading, nodeLockStatus]);
+  }, [loading, nodeCache, nodeLockStatus, selectedNode?.id]);
+
+  useEffect(() => {
+    if (hasInitializedSelection.current || profileLoading) return;
+
+    const completedSet = new Set(userProfile.nodesCompleted);
+    const progress = createMatrixProgressResolver(completedSet, INITIAL_NODES, false);
+    const nextSpineNode =
+      INITIAL_NODES.find(node => progress.getSpineNodeState(node.id) === 'current') ||
+      INITIAL_NODES.find(node => progress.getSpineNodeState(node.id) === 'available') ||
+      INITIAL_NODES.find(node => progress.worldSpineNodeIds.includes(node.id));
+
+    if (nextSpineNode) {
+      handleSelectNode(nextSpineNode, true);
+    }
+
+    hasInitializedSelection.current = true;
+  }, [handleSelectNode, profileLoading, userProfile.nodesCompleted]);
 
   const handleRetry = () => {
     if (selectedNode) {
-      handleSelectNode(selectedNode);
+      handleSelectNode(selectedNode, true);
     }
   };
 
-  const handleBackToTimeline = () => {
-    setShowMobileDetail(false);
+  const handleOpenFullLesson = () => {
+    if (selectedNode) {
+      setIsFullLessonOpen(true);
+    }
+  };
+
+  const handleBackToMatrix = () => {
+    setIsFullLessonOpen(false);
   };
 
   const handleQuizComplete = async (xp: number, collectibleCards?: CollectibleCard[]) => {
-    console.log('%c[handleQuizComplete] ========== CALLED ==========', 'background: #ff0; color: #000; font-size: 16px;');
-    console.log('[handleQuizComplete] XP:', xp, 'selectedNode:', selectedNode?.id);
-    
-    // Use context methods - profile state updates automatically
     await addXp(xp);
+
     if (collectibleCards && collectibleCards.length > 0) {
       GamificationService.unlockCollectibleCards(collectibleCards);
     }
+
     if (selectedNode) {
       await completeNode(selectedNode.id);
     }
-    
-    console.log('[handleQuizComplete] Profile updated via context');
   };
 
-  // Find the next unlocked node after completing the current one
-  // This needs to account for the CURRENT node being completed (which just happened)
   const getNextLesson = useMemo(() => {
     if (!selectedNode) return null;
-    
-    // Use React state (userProfile.nodesCompleted) as the source of truth
-    // Add the current node to the completed set since we just completed it
+
     const completedSet = new Set([...userProfile.nodesCompleted, selectedNode.id]);
-    
-    console.log('[getNextLesson] Current node:', selectedNode.id);
-    console.log('[getNextLesson] Completed set:', [...completedSet]);
-    
-    // Recalculate lock status with completed nodes INCLUDING the current one
     const updatedEraLockStatus = getEraLockStatus(ERAS, INITIAL_NODES, completedSet, {
       unlockAll: UNLOCK_ALL_ERAS,
     });
     const updatedNodeLockStatus = getAllNodeLockStatus(ERAS, INITIAL_NODES, completedSet, updatedEraLockStatus, {
       unlockAll: UNLOCK_ALL_ERAS,
     });
-    
-    console.log('[getNextLesson] Era lock status:', updatedEraLockStatus);
-    
-    // Find current node's index
-    const currentIndex = INITIAL_NODES.findIndex(n => n.id === selectedNode.id);
-    console.log('[getNextLesson] Current index in course order:', currentIndex, 'Total nodes:', INITIAL_NODES.length);
+
+    const currentIndex = INITIAL_NODES.findIndex(node => node.id === selectedNode.id);
     if (currentIndex === -1) return null;
-    
-    // Find the next unlocked and uncompleted node AFTER current position
-    for (let i = currentIndex + 1; i < INITIAL_NODES.length; i++) {
-      const node = INITIAL_NODES[i];
-      const isLocked = updatedNodeLockStatus[node.id];
-      const isCompleted = completedSet.has(node.id);
-      // Node must be unlocked AND not already completed
-      if (!isLocked && !isCompleted) {
-        console.log('[getNextLesson] Found next node:', node.id, node.title);
-        return node;
-      }
-    }
-    
-    console.log('[getNextLesson] No node found after current, checking from start...');
-    
-    // If no uncompleted node found after current, wrap around from the beginning
-    // (but skip nodes before the current one that are already completed)
-    for (let i = 0; i < currentIndex; i++) {
-      const node = INITIAL_NODES[i];
+
+    for (let index = currentIndex + 1; index < INITIAL_NODES.length; index += 1) {
+      const node = INITIAL_NODES[index];
       if (!updatedNodeLockStatus[node.id] && !completedSet.has(node.id)) {
-        console.log('[getNextLesson] Found wrapped node:', node.id, node.title);
         return node;
       }
     }
-    
-    console.log('[getNextLesson] No next lesson found!');
+
+    for (let index = 0; index < currentIndex; index += 1) {
+      const node = INITIAL_NODES[index];
+      if (!updatedNodeLockStatus[node.id] && !completedSet.has(node.id)) {
+        return node;
+      }
+    }
+
     return null;
   }, [selectedNode, userProfile.nodesCompleted]);
 
-  console.log('[App] getNextLesson result:', getNextLesson?.id, getNextLesson?.title);
-
-  const eraBriefingNextNode = useMemo(() => {
-    if (!selectedEra) return null;
-    return getFirstAvailableNodeInEra(selectedEra.id);
-  }, [getFirstAvailableNodeInEra, selectedEra]);
-
-  const handleGoToEraLesson = () => {
-    if (eraBriefingNextNode) {
-      handleSelectNode(eraBriefingNextNode, true);
-    }
-  };
-
   const handleGoToNextLesson = () => {
-    console.log('[handleGoToNextLesson] Called, getNextLesson:', getNextLesson?.id);
     if (getNextLesson) {
-      console.log('[handleGoToNextLesson] Navigating to:', getNextLesson.id, getNextLesson.title);
-      if (selectedNode && getNextLesson.eraId !== selectedNode.eraId) {
-        const nextEra = ERAS.find(era => era.id === getNextLesson.eraId);
-        if (nextEra) {
-          openEraBriefing(nextEra);
-          return;
-        }
-      }
-
       handleSelectNode(getNextLesson, true);
-    } else {
-      console.log('[handleGoToNextLesson] No next lesson available!');
     }
   };
 
   return (
-    <div className="flex h-screen w-screen bg-black text-stone-200 overflow-hidden font-sans">
-      <UserProfileModal 
-        profile={userProfile} 
-        isOpen={isProfileOpen} 
-        onClose={() => setIsProfileOpen(false)} 
+    <div className="h-screen w-screen overflow-hidden bg-black text-stone-200 font-sans">
+      <UserProfileModal
+        profile={userProfile}
+        isOpen={isProfileOpen}
+        onClose={() => setIsProfileOpen(false)}
       />
 
-      <div className={`h-full flex-shrink-0 transition-all duration-300 ${showMobileDetail ? 'hidden md:block' : 'block w-full md:w-auto'}`}>
-        <TimelineSidebar
-          eras={ERAS}
-          nodes={INITIAL_NODES}
-          selectedEraId={selectedEraId}
-          selectedNodeId={selectedNode?.id || null}
-          showEraBriefing={!!selectedEra}
-          eraLockStatus={eraLockStatus}
-          nodeLockStatus={nodeLockStatus}
-          onSelectEra={handleSelectEra}
-          onSelectNode={handleSelectNode}
-          onSelectEraBriefing={handleSelectEraBriefing}
-          onSignOut={signOut}
-        />
-      </div>
-
-      <main className={`flex-1 flex-col h-full relative overflow-hidden ${showMobileDetail ? 'flex' : 'hidden md:flex'}`}>
-        {/* Top Bar / Profile Trigger - Only visible on desktop here, mobile handles it in sidebar? Or overlay. Let's put it absolute top right. */}
-        <div className="absolute top-4 right-4 z-40 flex items-center gap-2">
-          <button
-            onClick={() => setIsProfileOpen(true)}
-            className="bg-stone-900/80 backdrop-blur border border-stone-800 hover:border-amber-500/50 text-stone-300 hover:text-white px-3 py-1.5 rounded-full flex items-center gap-2 transition-all shadow-lg"
-          >
-            <div className="w-5 h-5 bg-amber-500 rounded-full text-black text-[10px] font-bold flex items-center justify-center">
-              {userProfile.level}
-            </div>
-            <span className="text-xs font-mono font-bold hidden sm:inline uppercase">Agent Status</span>
-          </button>
-          <button
-            onClick={signOut}
-            aria-label="Log out"
-            title="Log out"
-            className="w-9 h-9 bg-stone-900/80 backdrop-blur border border-stone-800 hover:border-red-500/50 text-stone-400 hover:text-red-200 rounded-full flex items-center justify-center transition-all shadow-lg"
-          >
-            <LogOut size={16} />
+      {error && (
+        <div className="absolute right-4 top-4 z-50 flex max-w-md items-center gap-2 rounded-md border border-red-800 bg-red-950/90 px-4 py-3 text-red-200 shadow-lg backdrop-blur-sm">
+          <AlertCircle size={18} className="shrink-0 text-red-500" />
+          <span className="text-sm font-medium leading-tight">{error}</span>
+          <button onClick={() => setError(null)} className="ml-auto p-1 text-red-400 hover:text-red-200">
+            x
           </button>
         </div>
+      )}
 
-        {error && (
-          <div className="absolute top-16 right-4 z-50 bg-red-950/90 border border-red-800 text-red-200 px-4 py-3 rounded-md shadow-lg flex items-center gap-2 max-w-md animate-in slide-in-from-top-2 backdrop-blur-sm">
-            <AlertCircle size={18} className="text-red-500 flex-shrink-0" />
-            <span className="text-sm font-medium leading-tight">{error}</span>
-            <button onClick={() => setError(null)} className="ml-auto text-red-400 hover:text-red-200 p-1">✕</button>
-          </div>
-        )}
-
-        {selectedEra ? (
-           <NodeContentDisplay
-             node={null} 
-             era={selectedEra}
-             loading={false}
-             onBack={handleBackToTimeline}
-             onGoToNextLesson={handleGoToEraLesson}
-             hasNextLesson={!!eraBriefingNextNode}
-           />
-        ) : selectedNode ? (
-          <NodeContentDisplay 
-            key={selectedNode.id}
-            node={selectedNode} 
-            loading={loading} 
-            onRetry={handleRetry}
-            onBack={handleBackToTimeline}
-            // Gamification Props
-            onQuizComplete={handleQuizComplete}
-            isNodeCompleted={userProfile.nodesCompleted.includes(selectedNode.id)}
-            onGoToNextLesson={handleGoToNextLesson}
-            hasNextLesson={!!getNextLesson}
-          />
-        ) : (
-          <div className="h-full flex flex-col items-center justify-center p-8 text-center bg-[#09090b] relative overflow-hidden">
-             <div className="absolute inset-0 bg-[linear-gradient(0deg,rgba(255,255,255,0.02)_1px,transparent_1px),linear-gradient(90deg,rgba(255,255,255,0.02)_1px,transparent_1px)] bg-[size:50px_50px] opacity-50 pointer-events-none"></div>
-             
-             <div className="w-24 h-24 bg-stone-900 rounded-xl flex items-center justify-center mb-6 text-stone-700 border border-stone-800 shadow-[0_0_40px_rgba(0,0,0,0.5)] relative z-10 group hover:border-amber-500/30 transition-colors duration-500">
-               <Terminal size={48} strokeWidth={1} className="group-hover:text-amber-500 transition-colors duration-500" />
-             </div>
-             
-             <h2 className="text-3xl font-display font-bold text-white mb-3 tracking-tight">System Ready</h2>
-             <p className="text-stone-500 max-w-md mx-auto leading-relaxed mb-8 font-mono text-sm">
-               Select a mission parameter from the left timeline to access the archives.
-             </p>
-             
-             <div className="p-4 bg-emerald-950/20 border border-emerald-500/20 rounded-lg text-emerald-400 text-sm relative z-10 animate-in fade-in slide-in-from-bottom-4 duration-700">
-                <p className="font-bold flex items-center gap-2 justify-center uppercase tracking-wider text-xs font-mono mb-1">
-                  <PlayCircle size={14} /> Priority Mission Available
-                </p>
-                <p className="text-emerald-200/70">Select <strong>Great Pyramid of Giza</strong> to begin simulation.</p>
-             </div>
-          </div>
-        )}
-      </main>
+      {isFullLessonOpen ? (
+        <main className="relative h-full w-full overflow-hidden">
+          <button
+            type="button"
+            onClick={handleBackToMatrix}
+            className="absolute left-4 top-4 z-50 hidden items-center gap-2 rounded-full border border-stone-800 bg-black/70 px-4 py-2 text-xs font-mono font-bold uppercase tracking-wider text-stone-300 backdrop-blur transition-colors hover:border-cyan-500/50 hover:text-white md:flex"
+          >
+            <ArrowLeft size={16} />
+            Back to Matrix
+          </button>
+          {selectedNode && (
+            <NodeContentDisplay
+              key={selectedNode.id}
+              node={selectedNode}
+              loading={loading}
+              onRetry={handleRetry}
+              onBack={handleBackToMatrix}
+              onQuizComplete={handleQuizComplete}
+              isNodeCompleted={userProfile.nodesCompleted.includes(selectedNode.id)}
+              onGoToNextLesson={handleGoToNextLesson}
+              hasNextLesson={!!getNextLesson}
+            />
+          )}
+        </main>
+      ) : (
+        <WorldSpineMatrix
+          nodes={INITIAL_NODES}
+          arcs={HISTORY_ARCS}
+          userProfile={userProfile}
+          selectedNode={selectedNode}
+          selectedNodeLoading={loading}
+          initialScrollTop={matrixScrollTop}
+          initialLaneScrollLefts={laneScrollLefts}
+          unlockAll={false}
+          onMatrixScrollTopChange={setMatrixScrollTop}
+          onLaneScrollLeftChange={(laneKey, scrollLeft) => {
+            setLaneScrollLefts(current => ({ ...current, [laneKey]: scrollLeft }));
+          }}
+          onSelectNode={handleSelectNode}
+          onOpenLesson={handleOpenFullLesson}
+          onOpenProfile={() => setIsProfileOpen(true)}
+          onSignOut={signOut}
+        />
+      )}
     </div>
   );
 };

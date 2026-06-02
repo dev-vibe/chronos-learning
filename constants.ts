@@ -1,4 +1,5 @@
 
+import { applyArcMemberships } from './data/arcs';
 import { Era, TimelineNodeStub } from './types';
 
 export const ERAS: Era[] = [
@@ -161,7 +162,7 @@ export const ERAS: Era[] = [
   },
 ];
 
-export const INITIAL_NODES: TimelineNodeStub[] = [
+const INITIAL_NODE_STUBS: TimelineNodeStub[] = [
   // --- PRELUDE (~10,500 BCE) ---
   { id: 'younger_dryas_reset', title: 'Younger Dryas: The Great Freeze', year: 'c. 10,800 BCE', eraId: 'prelude', region: 'Global', tags: ['Science', 'Climate', 'Myth'] },
 
@@ -565,3 +566,5 @@ export const INITIAL_NODES: TimelineNodeStub[] = [
   { id: 'amazon_lidar', title: 'LiDAR Uncovers Ancient Amazon Cities', year: '2024 CE', eraId: 'modern', region: 'Amazon', tags: ['Science', 'Exploration'] },
   { id: 'ai_boom', title: 'Generative AI Boom', year: '2022 CE', eraId: 'modern', region: 'Global', tags: ['Science'] },
 ];
+
+export const INITIAL_NODES: TimelineNodeStub[] = applyArcMemberships(INITIAL_NODE_STUBS);
