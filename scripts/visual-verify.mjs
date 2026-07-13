@@ -1,7 +1,8 @@
 import { chromium } from 'playwright';
 import { mkdir } from 'node:fs/promises';
 
-const base = 'http://127.0.0.1:3000';
+const base = process.env.VISUAL_BASE_URL ?? 'http://127.0.0.1:3000';
+const accessUrl = process.env.VISUAL_ACCESS_URL;
 const output = 'docs/pr/ash-54';
 await mkdir(output, { recursive: true });
 const browser = await chromium.launch({ headless: true });
@@ -11,6 +12,7 @@ for (const [width, height] of [[1440, 900], [1024, 768], [390, 844], [360, 800]]
   const context = await browser.newContext({ viewport: { width, height }, colorScheme: 'light' });
   const page = await context.newPage();
   page.on('pageerror', (error) => errors.push(`${width}x${height}: ${error.message}`));
+  if (accessUrl) await page.goto(accessUrl, { waitUntil: 'networkidle' });
   await page.goto(`${base}/learn/lesson.uruk.first-city`, { waitUntil: 'networkidle' });
   await page.getByRole('heading', { name: 'Uruk: Life in an Early City' }).waitFor();
   await page.screenshot({ path: `${output}/uruk-${width}x${height}-light.png`, fullPage: false });
@@ -30,6 +32,7 @@ for (const [width, height] of [[1440, 900], [1024, 768], [390, 844], [360, 800]]
 const flow = await browser.newContext({ viewport: { width: 390, height: 844 }, colorScheme: 'light' });
 const page = await flow.newPage();
 page.on('pageerror', (error) => errors.push(`flow: ${error.message}`));
+if (accessUrl) await page.goto(accessUrl, { waitUntil: 'networkidle' });
 await page.goto(`${base}/learn/lesson.uruk.first-city`, { waitUntil: 'networkidle' });
 await page.getByLabel('Administrative tablets and cylinder seals').check();
 await page.getByText('Good investigation.').waitFor();
