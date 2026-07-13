@@ -1,6 +1,6 @@
 import { beforeEach, describe, expect, it, vi } from 'vitest';
 import { urukContent } from '../../content/uruk';
-import { LocalPreviewGateway, mapCompletionRpcResult } from '../../src/learn/progress';
+import { LocalPreviewGateway, mapCompletionRpcResult, SupabaseLearnGateway } from '../../src/learn/progress';
 import { canExplicitlyComplete } from '../../src/domains/contracts';
 
 const values = new Map<string, string>();
@@ -31,6 +31,44 @@ describe('Uruk Learn progress boundary', () => {
   it('rejects local completion before required attempts', async () => {
     const gateway = new LocalPreviewGateway();
     await expect(gateway.complete('lesson.uruk.first-city', 'blocked-key')).rejects.toThrow('required prompt attempts missing');
+  });
+
+  it('bootstraps authenticated progress with the hardened insert-only contract', async () => {
+    const upserts: Array<{ table: string; payload: unknown; options: unknown }> = [];
+    const query = (data: unknown) => {
+      const chain: any = {
+        select: () => chain,
+        eq: () => chain,
+        single: async () => ({ data, error: null }),
+        maybeSingle: async () => ({ data, error: null }),
+        then: (resolve: (value: unknown) => unknown) => Promise.resolve({ data, error: null }).then(resolve),
+      };
+      return chain;
+    };
+    const client: any = {
+      from: (table: string) => ({
+        upsert: async (payload: unknown, options: unknown) => {
+          upserts.push({ table, payload, options });
+          return { error: null };
+        },
+        select: () => query(table === 'lesson_progress' ? { status: 'in_progress', completed_at: null } : []),
+      }),
+    };
+
+    await new SupabaseLearnGateway('11111111-1111-1111-1111-111111111111', client).load('lesson.uruk.first-city');
+
+    expect(upserts).toEqual([
+      {
+        table: 'learners',
+        payload: { id: '11111111-1111-1111-1111-111111111111' },
+        options: { onConflict: 'id', ignoreDuplicates: true },
+      },
+      {
+        table: 'lesson_progress',
+        payload: { learner_id: '11111111-1111-1111-1111-111111111111', lesson_id: 'lesson.uruk.first-city' },
+        options: { onConflict: 'learner_id,lesson_id', ignoreDuplicates: true },
+      },
+    ]);
   });
 
   it('maps the exact camelCase, hyphenated RPC payload contract', () => {

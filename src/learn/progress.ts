@@ -56,19 +56,34 @@ export const mapCompletionRpcResult = (data: unknown): CompleteLessonResult => {
 export class SupabaseLearnGateway implements LearnProgressGateway {
   constructor(private learnerId: string, private client: SupabaseClient = supabase) {}
   private async ensure(lessonId: string) {
-    await this.client.from('learners').upsert({ id: this.learnerId }, { onConflict: 'id' });
-    await this.client.from('lesson_progress').upsert({ learner_id: this.learnerId, lesson_id: lessonId, status: 'in_progress' }, { onConflict: 'learner_id,lesson_id', ignoreDuplicates: true });
+    const learner = await this.client.from('learners').upsert(
+      { id: this.learnerId },
+      { onConflict: 'id', ignoreDuplicates: true },
+    );
+    if (learner.error) throw learner.error;
+
+    const progress = await this.client.from('lesson_progress').upsert(
+      { learner_id: this.learnerId, lesson_id: lessonId },
+      { onConflict: 'learner_id,lesson_id', ignoreDuplicates: true },
+    );
+    if (progress.error) throw progress.error;
   }
   async load(lessonId: string): Promise<LearnState> {
     await this.ensure(lessonId);
-    const [{ data: progress, error }, { data: resume }, { data: explored }, { data: attempts }, { data: ownership }] = await Promise.all([
+    const [progressResult, resumeResult, exploredResult, attemptsResult, ownershipResult] = await Promise.all([
       this.client.from('lesson_progress').select('status,completed_at').eq('learner_id', this.learnerId).eq('lesson_id', lessonId).single(),
       this.client.from('section_resume_state').select('section_id').eq('learner_id', this.learnerId).eq('lesson_id', lessonId).maybeSingle(),
       this.client.from('lesson_section_exploration').select('section_id').eq('learner_id', this.learnerId).eq('lesson_id', lessonId),
       this.client.from('understanding_prompt_attempts').select('prompt_id,response').eq('learner_id', this.learnerId).eq('lesson_id', lessonId),
       this.client.from('card_ownership').select('card_id').eq('learner_id', this.learnerId).eq('source_lesson_id', lessonId).maybeSingle(),
     ]);
-    if (error) throw error;
+    const failed = [progressResult, resumeResult, exploredResult, attemptsResult, ownershipResult].find((result) => result.error);
+    if (failed?.error) throw failed.error;
+    const { data: progress } = progressResult;
+    const { data: resume } = resumeResult;
+    const { data: explored } = exploredResult;
+    const { data: attempts } = attemptsResult;
+    const { data: ownership } = ownershipResult;
     const responses = Object.fromEntries((attempts ?? []).map((item: any) => [item.prompt_id, String(item.response?.answer ?? item.response?.value ?? '')]));
     return { learnerId: this.learnerId, lessonId, status: progress.status === 'completed' ? 'completed' : 'in-progress', completedAt: progress.completed_at ?? undefined, resumeSectionId: resume?.section_id, attemptedPromptIds: Object.keys(responses), exploredSectionIds: (explored ?? []).map((item: any) => item.section_id), responses, cardId: ownership?.card_id, version: 1 };
   }
