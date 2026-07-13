@@ -2,6 +2,8 @@ import { createClient } from '@supabase/supabase-js';
 
 const supabaseUrl = import.meta.env.VITE_SUPABASE_URL;
 const supabaseAnonKey = import.meta.env.VITE_SUPABASE_ANON_KEY;
+const hasBrowserStorage = typeof window !== 'undefined' && typeof window.localStorage?.getItem === 'function';
+const hasSupabaseCredentials = Boolean(supabaseUrl && supabaseAnonKey);
 
 if (!supabaseUrl || !supabaseAnonKey) {
   console.warn(
@@ -20,9 +22,9 @@ export const supabase = createClient(
       // Use PKCE flow (more secure than implicit)
       flowType: 'pkce',
       // Persist session in localStorage
-      storage: typeof window === 'undefined' ? undefined : window.localStorage,
+      storage: hasBrowserStorage ? window.localStorage : undefined,
       // Auto-refresh tokens
-      autoRefreshToken: true,
+      autoRefreshToken: hasSupabaseCredentials && hasBrowserStorage,
       // Detect session from URL (for OAuth callbacks)
       detectSessionInUrl: true,
       // Persist session across page reloads
@@ -33,7 +35,7 @@ export const supabase = createClient(
 
 // Helper to check if Supabase is properly configured
 export const isSupabaseConfigured = () => {
-  return Boolean(supabaseUrl && supabaseAnonKey &&
+  return Boolean(hasSupabaseCredentials &&
     supabaseUrl !== 'https://placeholder.supabase.co' &&
     supabaseAnonKey !== 'placeholder-key');
 };

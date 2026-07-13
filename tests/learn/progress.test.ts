@@ -1,6 +1,6 @@
 import { beforeEach, describe, expect, it, vi } from 'vitest';
 import { urukContent } from '../../content/uruk';
-import { LocalPreviewGateway } from '../../src/learn/progress';
+import { LocalPreviewGateway, mapCompletionRpcResult } from '../../src/learn/progress';
 import { canExplicitlyComplete } from '../../src/domains/contracts';
 
 const values = new Map<string, string>();
@@ -26,6 +26,16 @@ describe('Uruk Learn progress boundary', () => {
     expect(canExplicitlyComplete(urukContent.lessons[1].promptIds, { lessonId, idempotencyKey: 'stable-key', explicitCompletion: true, attemptedPromptIds: state.attemptedPromptIds })).toBe(true);
     expect(await gateway.complete(lessonId, 'stable-key')).toMatchObject({ completion: 'newly-completed', cardOwnership: 'newly-acquired', cardId: 'card.place.uruk' });
     expect(await gateway.complete(lessonId, 'retry-key')).toMatchObject({ completion: 'already-completed', cardOwnership: 'already-owned' });
+  });
+
+  it('rejects local completion before required attempts', async () => {
+    const gateway = new LocalPreviewGateway();
+    await expect(gateway.complete('lesson.uruk.first-city', 'blocked-key')).rejects.toThrow('required prompt attempts missing');
+  });
+
+  it('maps the exact camelCase, hyphenated RPC payload contract', () => {
+    expect(mapCompletionRpcResult({ completion: 'already-completed', cardOwnership: 'already-owned', cardId: 'card.place.uruk' })).toEqual({ completion: 'already-completed', cardOwnership: 'already-owned', cardId: 'card.place.uruk' });
+    expect(mapCompletionRpcResult({ completion: 'newly-completed', cardOwnership: 'newly-acquired', cardId: 'card.place.uruk' })).toEqual({ completion: 'newly-completed', cardOwnership: 'newly-acquired', cardId: 'card.place.uruk' });
   });
 
   it('renders all canonical semantic sections and evidence metadata from the fixture', () => {
