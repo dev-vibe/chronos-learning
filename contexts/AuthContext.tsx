@@ -11,6 +11,7 @@ interface AuthContextType {
   user: User | null;
   session: Session | null;
   loading: boolean;
+  error: string | null;
   isConfigured: boolean;
   isGuest: boolean;
   signUp: (email: string, password: string, name?: string) => Promise<{ error: AuthError | null }>;
@@ -34,28 +35,65 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children
   const [user, setUser] = useState<User | null>(null);
   const [session, setSession] = useState<Session | null>(null);
   const [loading, setLoading] = useState<boolean>(true);
+  const [error, setError] = useState<string | null>(null);
   const [isConfigured] = useState<boolean>(isSupabaseConfigured());
   const [isGuest, setIsGuest] = useState<boolean>(false);
 
   useEffect(() => {
+    let isMounted = true;
+
     // Only set up auth if Supabase is configured
     if (!isConfigured) {
       console.log('[Auth] Supabase not configured, skipping auth setup');
       setIsGuest(getStoredGuestSession());
       setLoading(false);
-      return;
+      return () => {
+        isMounted = false;
+      };
     }
 
     console.log('[Auth] Setting up auth...');
 
-    // Get initial session
-    supabase.auth.getSession().then(({ data: { session } }) => {
+    const initializeAuth = async () => {
+      const { error: initializationError } = await supabase.auth.initialize();
+
+      if (!isMounted) return;
+
+      if (initializationError) {
+        console.error('[Auth] Failed to complete auth callback:', initializationError);
+        setError(
+          `Unable to complete sign-in: ${initializationError.message}. Please start sign-in again in this browser.`
+        );
+        setSession(null);
+        setUser(null);
+        setIsGuest(getStoredGuestSession());
+        setLoading(false);
+        return;
+      }
+
+      const { data: { session }, error: sessionError } = await supabase.auth.getSession();
+
+      if (!isMounted) return;
+
+      if (sessionError) {
+        console.error('[Auth] Failed to restore session:', sessionError);
+        setError('Unable to restore your session. Please sign in again.');
+        setSession(null);
+        setUser(null);
+        setIsGuest(getStoredGuestSession());
+        setLoading(false);
+        return;
+      }
+
       console.log('[Auth] Initial session:', session?.user?.id || 'none');
       setSession(session);
       setUser(session?.user ?? null);
+      setError(null);
       setIsGuest(session?.user ? false : getStoredGuestSession());
       setLoading(false);
-    });
+    };
+
+    void initializeAuth();
 
     // Listen for auth changes
     const {
@@ -64,6 +102,7 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children
       console.log('[Auth] Auth state change:', event, session?.user?.id || 'none');
       setSession(session);
       setUser(session?.user ?? null);
+      setError(null);
       if (session?.user) {
         window.localStorage.removeItem(GUEST_SESSION_KEY);
         setIsGuest(false);
@@ -71,7 +110,10 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children
       setLoading(false);
     });
 
-    return () => subscription.unsubscribe();
+    return () => {
+      isMounted = false;
+      subscription.unsubscribe();
+    };
   }, [isConfigured]);
 
   // Sign up with email/password
@@ -181,6 +223,7 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children
     user,
     session,
     loading,
+    error,
     isConfigured,
     isGuest,
     signUp,

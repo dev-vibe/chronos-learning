@@ -8,7 +8,14 @@ import { useAuth } from '../contexts/AuthContext';
 import { Shield, Mail, Lock, Chrome, User, AlertCircle, Loader } from 'lucide-react';
 
 export const AuthScreen: React.FC = () => {
-  const { signUp, signIn, signInWithGoogle, continueAsGuest, isConfigured } = useAuth();
+  const {
+    signUp,
+    signIn,
+    signInWithGoogle,
+    continueAsGuest,
+    isConfigured,
+    error: authInitializationError,
+  } = useAuth();
   const [mode, setMode] = useState<'signin' | 'signup'>('signin');
   const [name, setName] = useState('');
   const [email, setEmail] = useState('');
@@ -97,10 +104,10 @@ export const AuthScreen: React.FC = () => {
         <div className="p-6 space-y-6">
 
           {/* Error message */}
-          {error && (
+          {(error || authInitializationError) && (
             <div className="bg-red-950/30 border border-red-500/50 rounded-lg p-3 flex items-start gap-2">
               <AlertCircle size={18} className="text-red-400 flex-shrink-0 mt-0.5" />
-              <p className="text-sm text-red-300">{error}</p>
+              <p className="text-sm text-red-300">{error || authInitializationError}</p>
             </div>
           )}
 
