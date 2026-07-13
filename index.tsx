@@ -24,6 +24,7 @@ if (!rootElement) {
 
 const root = ReactDOM.createRoot(rootElement);
 const learnLessonId = lessonIdFromPath(window.location.pathname);
+document.body.classList.toggle('learn-route', Boolean(learnLessonId));
 root.render(
   <React.StrictMode>
     {learnLessonId ? <LearnApp lessonId={learnLessonId} /> : <QueryClientProvider client={queryClient}>
