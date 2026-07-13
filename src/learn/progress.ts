@@ -1,0 +1,89 @@
+import type { CompleteLessonResult, LessonProgress } from '../domains/contracts';
+import { isSupabaseConfigured, supabase } from '../../lib/supabase';
+
+export type PromptResponses = Record<string, string>;
+export type LearnState = LessonProgress & { exploredSectionIds: string[]; responses: PromptResponses; cardId?: string; version: 1 };
+export interface LearnProgressGateway {
+  load(lessonId: string): Promise<LearnState>;
+  markSection(lessonId: string, sectionId: string): Promise<LearnState>;
+  saveAttempt(lessonId: string, promptId: string, response: string): Promise<LearnState>;
+  complete(lessonId: string, idempotencyKey: string): Promise<CompleteLessonResult>;
+}
+
+const key = (lessonId: string) => `chronos.learn.preview.v1:${lessonId}`;
+const empty = (lessonId: string): LearnState => ({ learnerId: 'anonymous-preview', lessonId, status: 'in-progress', attemptedPromptIds: [], exploredSectionIds: [], responses: {}, version: 1 });
+
+export class LocalPreviewGateway implements LearnProgressGateway {
+  private read(lessonId: string) {
+    try {
+      const raw = localStorage.getItem(key(lessonId));
+      const parsed = raw ? JSON.parse(raw) : null;
+      return parsed?.version === 1 && parsed.lessonId === lessonId ? parsed as LearnState : empty(lessonId);
+    } catch { return empty(lessonId); }
+  }
+  private write(state: LearnState) { localStorage.setItem(key(state.lessonId), JSON.stringify(state)); return state; }
+  async load(lessonId: string) { return this.read(lessonId); }
+  async markSection(lessonId: string, sectionId: string) {
+    const state = this.read(lessonId);
+    if (!state.exploredSectionIds.includes(sectionId)) state.exploredSectionIds.push(sectionId);
+    state.resumeSectionId = sectionId;
+    return this.write(state);
+  }
+  async saveAttempt(lessonId: string, promptId: string, response: string) {
+    const state = this.read(lessonId);
+    state.responses[promptId] = response;
+    if (!state.attemptedPromptIds.includes(promptId)) state.attemptedPromptIds.push(promptId);
+    return this.write(state);
+  }
+  async complete(lessonId: string, _idempotencyKey: string) {
+    const state = this.read(lessonId);
+    if (state.status === 'completed') return { completion: 'already-completed', cardOwnership: 'already-owned', cardId: state.cardId } as const;
+    state.status = 'completed'; state.completedAt = new Date().toISOString(); state.cardId = 'card.place.uruk'; this.write(state);
+    return { completion: 'newly-completed', cardOwnership: 'newly-acquired', cardId: state.cardId } as const;
+  }
+}
+
+export class SupabaseLearnGateway implements LearnProgressGateway {
+  constructor(private learnerId: string) {}
+  private async ensure(lessonId: string) {
+    await supabase.from('learners').upsert({ id: this.learnerId }, { onConflict: 'id' });
+    await supabase.from('lesson_progress').upsert({ learner_id: this.learnerId, lesson_id: lessonId, status: 'in_progress' }, { onConflict: 'learner_id,lesson_id', ignoreDuplicates: true });
+  }
+  async load(lessonId: string): Promise<LearnState> {
+    await this.ensure(lessonId);
+    const [{ data: progress, error }, { data: resume }, { data: attempts }, { data: ownership }] = await Promise.all([
+      supabase.from('lesson_progress').select('status,completed_at').eq('learner_id', this.learnerId).eq('lesson_id', lessonId).single(),
+      supabase.from('section_resume_state').select('section_id').eq('learner_id', this.learnerId).eq('lesson_id', lessonId).maybeSingle(),
+      supabase.from('understanding_prompt_attempts').select('prompt_id,response').eq('learner_id', this.learnerId).eq('lesson_id', lessonId),
+      supabase.from('card_ownership').select('card_id').eq('learner_id', this.learnerId).eq('source_lesson_id', lessonId).maybeSingle(),
+    ]);
+    if (error) throw error;
+    const responses = Object.fromEntries((attempts ?? []).map((item: any) => [item.prompt_id, String(item.response?.answer ?? item.response?.value ?? '')]));
+    return { learnerId: this.learnerId, lessonId, status: progress.status === 'completed' ? 'completed' : 'in-progress', completedAt: progress.completed_at ?? undefined, resumeSectionId: resume?.section_id, attemptedPromptIds: Object.keys(responses), exploredSectionIds: resume?.section_id ? [resume.section_id] : [], responses, cardId: ownership?.card_id, version: 1 };
+  }
+  async markSection(lessonId: string, sectionId: string) {
+    await this.ensure(lessonId);
+    const { error } = await supabase.from('section_resume_state').upsert({ learner_id: this.learnerId, lesson_id: lessonId, section_id: sectionId, updated_at: new Date().toISOString() }, { onConflict: 'learner_id,lesson_id' });
+    if (error) throw error; return this.load(lessonId);
+  }
+  async saveAttempt(lessonId: string, promptId: string, response: string) {
+    await this.ensure(lessonId);
+    const { error } = await supabase.from('understanding_prompt_attempts').insert({ learner_id: this.learnerId, lesson_id: lessonId, prompt_id: promptId, response: { answer: response } });
+    if (error) throw error; return this.load(lessonId);
+  }
+  async complete(lessonId: string, idempotencyKey: string) {
+    const { data, error } = await supabase.rpc('complete_lesson_and_acquire_card', { p_lesson_id: lessonId, p_idempotency_key: idempotencyKey });
+    if (error) throw error;
+    return { completion: data.completion === 'already_completed' ? 'already-completed' : 'newly-completed', cardOwnership: data.card_ownership === 'already_owned' ? 'already-owned' : data.card_ownership === 'newly_acquired' ? 'newly-acquired' : 'not-configured', cardId: data.card_id } as CompleteLessonResult;
+  }
+}
+
+export async function createProgressGateway(): Promise<LearnProgressGateway> {
+  if (isSupabaseConfigured()) {
+    const { data } = await supabase.auth.getUser();
+    if (data.user) return new SupabaseLearnGateway(data.user.id);
+  }
+  return new LocalPreviewGateway();
+}
+
+export const completionKey = (lessonId: string) => `${lessonId}:${crypto.randomUUID()}`;

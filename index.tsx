@@ -5,6 +5,7 @@ import App from './App';
 import './index.css';
 import { AuthProvider } from './contexts/AuthContext';
 import { UserProfileProvider } from './contexts/UserProfileContext';
+import { LearnApp } from './src/learn/LearnApp';
 
 const queryClient = new QueryClient({
   defaultOptions: {
@@ -21,14 +22,15 @@ if (!rootElement) {
 }
 
 const root = ReactDOM.createRoot(rootElement);
+const learnMatch = window.location.pathname.match(/^\/learn\/([^/]+)\/?$/);
 root.render(
   <React.StrictMode>
-    <QueryClientProvider client={queryClient}>
+    {learnMatch ? <LearnApp lessonId={decodeURIComponent(learnMatch[1])} /> : <QueryClientProvider client={queryClient}>
       <AuthProvider>
         <UserProfileProvider>
           <App />
         </UserProfileProvider>
       </AuthProvider>
-    </QueryClientProvider>
+    </QueryClientProvider>}
   </React.StrictMode>
 );

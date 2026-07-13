@@ -20,7 +20,7 @@ export const supabase = createClient(
       // Use PKCE flow (more secure than implicit)
       flowType: 'pkce',
       // Persist session in localStorage
-      storage: window.localStorage,
+      storage: typeof window === 'undefined' ? undefined : window.localStorage,
       // Auto-refresh tokens
       autoRefreshToken: true,
       // Detect session from URL (for OAuth callbacks)
