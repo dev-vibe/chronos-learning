@@ -11,11 +11,23 @@ export const SourceSchema = z.object({ id: StableId, title: z.string(), url: z.s
 const MediaPathSchema = z.string().regex(/^\/[a-z0-9][a-z0-9._/-]*$/).refine((path) => !path.includes('..'), 'media paths cannot traverse directories');
 const MediaObjectKeySchema = z.string().regex(/^[a-z0-9][a-z0-9._/-]*$/).refine((path) => !path.includes('..'), 'media object keys cannot traverse directories');
 const MediaDimensionsSchema = z.object({ width: z.number().int().positive(), height: z.number().int().positive() });
+const MediaCompressionSchema = z.object({
+  profile: z.literal('ql-v1'),
+  codec: z.enum(['jpeg', 'png', 'webp']),
+  encoder: z.enum(['source-passthrough', 'webp-lossless', 'webp-lossy']),
+  quality: z.number().int().min(1).max(100).optional(),
+});
+const MediaFidelitySchema = z.discriminatedUnion('mode', [
+  z.object({ mode: z.literal('pixel-exact'), psnrDb: z.null(), meanAbsoluteError: z.literal(0), maximumChannelDelta: z.literal(0) }),
+  z.object({ mode: z.literal('measured-quasi-lossless'), psnrDb: z.number().min(45), meanAbsoluteError: z.number().max(1), maximumChannelDelta: z.number().int().max(16) }),
+]);
 export const MediaVariantSchema = MediaDimensionsSchema.extend({
   objectKey: MediaObjectKeySchema,
   mimeType: z.enum(['image/avif', 'image/jpeg', 'image/png', 'image/webp']),
   bytes: z.number().int().positive(),
   sha256: z.string().regex(/^[a-f0-9]{64}$/),
+  compression: MediaCompressionSchema,
+  fidelity: MediaFidelitySchema,
 });
 export const MediaLocatorSchema = z.discriminatedUnion('provider', [
   MediaDimensionsSchema.extend({ provider: z.literal('repository'), path: MediaPathSchema }),
