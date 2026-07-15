@@ -2,6 +2,7 @@ import React, { useCallback, useEffect, useMemo, useRef, useState } from 'react'
 import { Archive, BookOpen, Check, ChevronRight, Compass, Landmark, Menu, Moon, RotateCcw, ScrollText, Sun, X } from 'lucide-react';
 import { urukContent } from '../../content/uruk';
 import type { LessonModule, LessonSection } from '../domains/contracts';
+import { HistoricalMapModule } from './HistoricalMapModule';
 import { completionKey, createProgressGateway, LocalPreviewGateway, type LearnProgressGateway, type LearnState } from './progress';
 import './learn.css';
 
@@ -65,6 +66,10 @@ function Module({ module, state, onAttempt }: ModuleProps) {
     const media = mediaById.get(module.mediaId)!;
     return <figure className="evidence-module"><div className="evidence-image"><img src={media.path} alt={media.alt} /><span>{module.artifactLabel}</span></div><figcaption><div className="evidence-type"><Archive /><span>From the evidence room</span></div><h3>{module.title}</h3><p>{module.body}</p><dl><div><dt>Depiction</dt><dd>{media.depictionLabel}</dd></div><div><dt>Review state</dt><dd>{media.reviewStatus.replaceAll('-', ' ')}</dd></div><div><dt>Source context</dt><dd>The Metropolitan Museum of Art</dd></div></dl></figcaption></figure>;
   }
+  if (module.type === 'historical-map') {
+    const media = mediaById.get(module.mediaId)!;
+    return <HistoricalMapModule module={module} media={media} />;
+  }
   if (module.type === 'connection') return <aside className="connection-module"><span className="connection-icon"><ScrollText /></span><div><small>{module.eyebrow}</small><h3>{module.title}</h3><p>{module.body}</p></div><span className="connection-arrow" aria-hidden="true"><ChevronRight /></span></aside>;
   const prompt = promptById.get(module.promptId)!;
   const answer = state.responses[prompt.id] ?? '';
@@ -73,7 +78,8 @@ function Module({ module, state, onAttempt }: ModuleProps) {
 }
 
 function Section({ section, state, onAttempt }: { section: LessonSection; state: LearnState; onAttempt(id: string, response: string): void }) {
-  return <section id={section.id} className={`lesson-section section-${section.modules[0].type}`} data-section-id={section.id} tabIndex={-1}><header className="section-heading"><span>{section.purpose}</span><h2>{section.heading}</h2></header><div className="section-modules">{section.modules.map((module) => <React.Fragment key={module.id}><Module module={module} state={state} onAttempt={onAttempt} /></React.Fragment>)}</div></section>;
+  const hasHistoricalMap = section.modules.some((module) => module.type === 'historical-map');
+  return <section id={section.id} className={`lesson-section section-${section.modules[0].type}${hasHistoricalMap ? ' section-has-historical-map' : ''}`} data-section-id={section.id} tabIndex={-1}><header className="section-heading"><span>{section.purpose}</span><h2>{section.heading}</h2></header><div className="section-modules">{section.modules.map((module) => <React.Fragment key={module.id}><Module module={module} state={state} onAttempt={onAttempt} /></React.Fragment>)}</div></section>;
 }
 
 function KnowledgeCard() {
