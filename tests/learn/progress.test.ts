@@ -80,6 +80,6 @@ describe('Uruk Learn progress boundary', () => {
     const lesson = urukContent.lessons.find((item) => item.id === 'lesson.uruk.first-city')!;
     expect(lesson.sections.map((section) => section.id)).toEqual(lesson.sectionIdsRequired);
     expect(lesson.sections).toHaveLength(8);
-    expect(urukContent.media[0]).toMatchObject({ depictionMode: 'evidence-based-reconstruction', reviewStatus: 'provenance-review-required' });
+    expect(urukContent.media[0]).toMatchObject({ depictionMode: 'evidence-based-reconstruction', reviewStatus: 'approved' });
   });
 });

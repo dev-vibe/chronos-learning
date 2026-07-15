@@ -14,10 +14,10 @@ describe('media quality contract', () => {
     }
   });
 
-  it('preserves source bytes when a lossy rewrite would save less than five percent', () => {
+  it('records a pixel-exact fallback when it fits the quality budget', () => {
     const reconstruction = manifest.assets.find((asset) => asset.id === 'media.uruk.reconstruction');
     const largest = reconstruction?.locator.variants.at(-1);
-    expect(largest?.compression.encoder).toBe('source-passthrough');
+    expect(largest?.compression.encoder).toBe('webp-lossless');
     expect(largest?.fidelity.mode).toBe('pixel-exact');
   });
 
