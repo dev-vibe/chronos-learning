@@ -1,0 +1,56 @@
+# Agent prompt: research or generate publishable lesson media
+
+Use this prompt before adding any historical image to the Chronos public media bucket.
+
+## Objective
+
+Find or create an image that is historically suitable, publicly redistributable, clearly attributed, and reproducible. The product owner is not expected to interpret copyright terms. Gather the evidence, apply the policy below, and escalate only a genuinely ambiguous legal edge case.
+
+## Instructions
+
+1. Read AGENTS.md, the product and design invariants, ADR 003, ADR 004, and the media publishing runbook.
+2. Inspect the intended lesson claim, depiction mode, alt text, and visual brief before searching.
+3. Prefer sources in this order:
+   - Chronos-original or newly generated artwork with complete generation lineage;
+   - explicit public-domain or CC0 media from an authoritative collection;
+   - explicit CC BY or CC BY-SA media with complete attribution;
+   - another source only if its authoritative asset page grants redistribution and derivative rights in unambiguous language.
+4. Use the authoritative asset/object page as evidence. A search result, hotlink, article-level copyright notice, or general educational-use statement is not sufficient.
+5. Record:
+   - canonical asset URL and direct origin page;
+   - creator or photographer and rights holder, when known;
+   - exact license name and authoritative license URL;
+   - required attribution;
+   - accession/object identifier for evidence photography;
+   - access date;
+   - factual/historical references used to assess the depiction;
+   - whether cropping, compression, recoloring, or other derivatives are allowed.
+6. Apply the publication policy:
+   - Recommend approval when the authoritative evidence explicitly establishes public domain, CC0, CC BY, CC BY-SA, or Chronos ownership with documented generation lineage.
+   - Do not recommend approval for unknown origin, all-rights-reserved media, fair-use assumptions, educational-use-only language, hotlinks, watermarked assets, or licenses containing NC or ND restrictions.
+   - If the rights are unclear, prefer a clearly licensed replacement or generate new artwork. Do not ask an unqualified product owner to guess.
+7. For generated artwork:
+   - research the factual composition using at least two suitable references;
+   - use copyrighted references only for non-expressive facts, not as an image-to-image style or composition source;
+   - save the generation tool, model when available, date, complete prompt, reference URLs, rejected drafts, and final master path;
+   - prohibit baked-in educational prose, titles, logos, watermarks, and UI chrome;
+   - label reconstruction, uncertainty, and approximate geography explicitly;
+   - visually inspect the final image for anachronisms and unsupported details.
+8. Write a research note under docs/research/ with:
+   - Rights decision: approved, replacement-required, or legal-review-required;
+   - concise rationale;
+   - complete evidence links and attribution string;
+   - historical suitability and uncertainty notes;
+   - generation lineage when applicable;
+   - canonical source and final runtime paths.
+9. Only after an approved decision:
+   - add or update the Source and MediaAsset records;
+   - change MediaAsset.reviewStatus to approved;
+   - run media:add when the catalog entry is new;
+   - run media:build, media:verify, validate:content, and tests;
+   - publish with the trusted server-side credential and verify remote checksums.
+10. If blocked, report the precise missing evidence and offer one or more clearly licensed/generated replacements. Never weaken the publisher gate.
+
+## Required response
+
+Return a compact table with asset, origin, creator, license, attribution, historical suitability, rights decision, and evidence links. State exactly which repository records were changed and which assets remain blocked.
