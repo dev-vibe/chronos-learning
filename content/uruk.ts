@@ -1,4 +1,11 @@
-import type { Claim, Journey, KnowledgeCard, Lesson, MediaAsset, Source, UnderstandingPrompt } from '../src/domains/contracts';
+import urukMediaManifest from './media/generated/uruk-media.json';
+import { MediaLocatorSchema, type Claim, type Journey, type KnowledgeCard, type Lesson, type MediaAsset, type Source, type UnderstandingPrompt } from '../src/domains/contracts';
+
+const mediaLocator = (id: string) => {
+  const entry = urukMediaManifest.assets.find((asset) => asset.id === id);
+  if (!entry) throw new Error(`Missing generated media locator for ${id}`);
+  return MediaLocatorSchema.parse(entry.locator);
+};
 
 export const sources: Source[] = [
   { id: 'source.met.uruk', title: 'Uruk: First City of the Ancient World', url: 'https://www.metmuseum.org/toah/hd/uruk/hd_uruk.htm', publisher: 'The Metropolitan Museum of Art', accessedOn: '2026-07-13', licenseOrUse: 'Institutional educational reference; runtime reuse not asserted', reviewStatus: 'review-required' },
@@ -16,10 +23,10 @@ export const claims: Claim[] = [
 ];
 
 export const media: MediaAsset[] = [
-  { id: 'media.uruk.reconstruction', path: '/images/places/uruk-reconstruction.webp', alt: 'Aerial evidence-based reconstruction of ancient Uruk with a monumental precinct at its center', depictionMode: 'evidence-based-reconstruction', depictionLabel: 'Evidence-based reconstruction — provenance and historical review required', sourceIds: ['source.met.uruk'], visualBriefRef: 'docs/architecture/uruk-vertical-slice.md#evidence-and-reconstruction-treatment', reviewStatus: 'provenance-review-required' },
-  { id: 'media.uruk.site', path: '/images/places/uruk-site-evidence.jpg', alt: 'Archaeological remains at the site of Uruk in the modern landscape', depictionMode: 'evidence', depictionLabel: 'Archaeological site photograph — provenance review required', sourceIds: ['source.met.uruk'], visualBriefRef: 'docs/architecture/uruk-vertical-slice.md#evidence-and-reconstruction-treatment', reviewStatus: 'provenance-review-required' },
-  { id: 'media.uruk.clay-envelope', path: '/images/inventions/clay_envelope.jpg', alt: 'Clay accounting envelope and tablet with impressed marks', depictionMode: 'evidence', depictionLabel: 'Surviving clay record — object identification and provenance review required', sourceIds: ['source.met.uruk'], visualBriefRef: 'docs/architecture/uruk-vertical-slice.md#evidence-and-reconstruction-treatment', reviewStatus: 'provenance-review-required' },
-  { id: 'media.uruk.southern-mesopotamia-map', path: '/images/maps/uruk-southern-mesopotamia-map.webp', alt: 'Illustrated map of the southern Mesopotamian plain showing the relative positions of Uruk, Ur, and Eridu, the Tigris and Euphrates river system, the Zagros highlands, and an approximate ancient Gulf and wetland margin', depictionMode: 'map', depictionLabel: 'Illustrative historical map — coordinate-verified cities with approximate ancient waterways and wetland margin', sourceIds: ['source.unesco.ahwar-maps', 'source.ur.southern-mesopotamia', 'source.archatlas.uruk-ur'], visualBriefRef: 'docs/research/uruk-southern-mesopotamia-map.md', reviewStatus: 'provenance-review-required' },
+  { id: 'media.uruk.reconstruction', locator: mediaLocator('media.uruk.reconstruction'), alt: 'Aerial evidence-based reconstruction of ancient Uruk with a monumental precinct at its center', depictionMode: 'evidence-based-reconstruction', depictionLabel: 'Evidence-based reconstruction — provenance and historical review required', sourceIds: ['source.met.uruk'], visualBriefRef: 'docs/architecture/uruk-vertical-slice.md#evidence-and-reconstruction-treatment', reviewStatus: 'provenance-review-required' },
+  { id: 'media.uruk.site', locator: mediaLocator('media.uruk.site'), alt: 'Archaeological remains at the site of Uruk in the modern landscape', depictionMode: 'evidence', depictionLabel: 'Archaeological site photograph — provenance review required', sourceIds: ['source.met.uruk'], visualBriefRef: 'docs/architecture/uruk-vertical-slice.md#evidence-and-reconstruction-treatment', reviewStatus: 'provenance-review-required' },
+  { id: 'media.uruk.clay-envelope', locator: mediaLocator('media.uruk.clay-envelope'), alt: 'Clay accounting envelope and tablet with impressed marks', depictionMode: 'evidence', depictionLabel: 'Surviving clay record — object identification and provenance review required', sourceIds: ['source.met.uruk'], visualBriefRef: 'docs/architecture/uruk-vertical-slice.md#evidence-and-reconstruction-treatment', reviewStatus: 'provenance-review-required' },
+  { id: 'media.uruk.southern-mesopotamia-map', locator: mediaLocator('media.uruk.southern-mesopotamia-map'), alt: 'Illustrated map of the southern Mesopotamian plain showing the relative positions of Uruk, Ur, and Eridu, the Tigris and Euphrates river system, the Zagros highlands, and an approximate ancient Gulf and wetland margin', depictionMode: 'map', depictionLabel: 'Illustrative historical map — coordinate-verified cities with approximate ancient waterways and wetland margin', sourceIds: ['source.unesco.ahwar-maps', 'source.ur.southern-mesopotamia', 'source.archatlas.uruk-ur'], visualBriefRef: 'docs/research/uruk-southern-mesopotamia-map.md', reviewStatus: 'provenance-review-required' },
 ];
 
 export const prompts: UnderstandingPrompt[] = [

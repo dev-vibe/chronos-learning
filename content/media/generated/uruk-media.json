@@ -1,0 +1,135 @@
+{
+  "schemaVersion": 1,
+  "collection": "uruk",
+  "generatedBy": "npm run media:build",
+  "assets": [
+    {
+      "id": "media.uruk.reconstruction",
+      "locator": {
+        "provider": "object-storage",
+        "bucket": "media-public",
+        "fallback": {
+          "path": "/images/places/uruk-reconstruction.webp",
+          "width": 1600,
+          "height": 800
+        },
+        "variants": [
+          {
+            "objectKey": "uruk/media.uruk.reconstruction/bfbc7a7253595793/480w-f4a6dfc0d3e798eb.webp",
+            "mimeType": "image/webp",
+            "bytes": 43966,
+            "sha256": "f4a6dfc0d3e798eba198342831f974f435871d34a5ffc636369af6680a770de0",
+            "width": 480,
+            "height": 240
+          },
+          {
+            "objectKey": "uruk/media.uruk.reconstruction/bfbc7a7253595793/960w-2c4e111c13569385.webp",
+            "mimeType": "image/webp",
+            "bytes": 118524,
+            "sha256": "2c4e111c13569385384fec986dfd697f9ac221c3c41bf546edeaab8f4a582315",
+            "width": 960,
+            "height": 480
+          },
+          {
+            "objectKey": "uruk/media.uruk.reconstruction/bfbc7a7253595793/1600w-2e000abd798aef57.webp",
+            "mimeType": "image/webp",
+            "bytes": 228602,
+            "sha256": "2e000abd798aef57b3d53437c45d2c8e770503ac0732cccdc646a1514007d3d0",
+            "width": 1600,
+            "height": 800
+          }
+        ]
+      }
+    },
+    {
+      "id": "media.uruk.site",
+      "locator": {
+        "provider": "object-storage",
+        "bucket": "media-public",
+        "fallback": {
+          "path": "/images/places/uruk-site-evidence.jpg",
+          "width": 1200,
+          "height": 600
+        },
+        "variants": [
+          {
+            "objectKey": "uruk/media.uruk.site/53dbaa3d51bc8b0e/480w-688365440888e052.webp",
+            "mimeType": "image/webp",
+            "bytes": 19062,
+            "sha256": "688365440888e052bd73d503ba0e964c21f45a2ec729d47c54753b97bec0d86e",
+            "width": 480,
+            "height": 240
+          },
+          {
+            "objectKey": "uruk/media.uruk.site/53dbaa3d51bc8b0e/960w-a21e85efe7de038f.webp",
+            "mimeType": "image/webp",
+            "bytes": 45802,
+            "sha256": "a21e85efe7de038fdf9cc612beb5b74cb4ea95a8d8d22d6df49dd19b0c825a8e",
+            "width": 960,
+            "height": 480
+          }
+        ]
+      }
+    },
+    {
+      "id": "media.uruk.clay-envelope",
+      "locator": {
+        "provider": "object-storage",
+        "bucket": "media-public",
+        "fallback": {
+          "path": "/images/inventions/clay_envelope.jpg",
+          "width": 476,
+          "height": 700
+        },
+        "variants": [
+          {
+            "objectKey": "uruk/media.uruk.clay-envelope/b7fede35d1d9bcef/476w-f1ea7a4c66acd9f3.webp",
+            "mimeType": "image/webp",
+            "bytes": 35518,
+            "sha256": "f1ea7a4c66acd9f3de961fd647838ba7000ccd40affd9264909fea4c062885f0",
+            "width": 476,
+            "height": 700
+          }
+        ]
+      }
+    },
+    {
+      "id": "media.uruk.southern-mesopotamia-map",
+      "locator": {
+        "provider": "object-storage",
+        "bucket": "media-public",
+        "fallback": {
+          "path": "/images/maps/uruk-southern-mesopotamia-map.webp",
+          "width": 1732,
+          "height": 908
+        },
+        "variants": [
+          {
+            "objectKey": "uruk/media.uruk.southern-mesopotamia-map/5294a3a24342d844/480w-e731e9894028bb9e.webp",
+            "mimeType": "image/webp",
+            "bytes": 9198,
+            "sha256": "e731e9894028bb9e2c172eb2d0a3135c7905eaaeb3617b8b6cfdef0dc8d419ab",
+            "width": 480,
+            "height": 252
+          },
+          {
+            "objectKey": "uruk/media.uruk.southern-mesopotamia-map/5294a3a24342d844/960w-046132b222dcefdb.webp",
+            "mimeType": "image/webp",
+            "bytes": 29662,
+            "sha256": "046132b222dcefdb2b5f0607782948d41493b2e70ae219d06d1045ae99a7c8e2",
+            "width": 960,
+            "height": 503
+          },
+          {
+            "objectKey": "uruk/media.uruk.southern-mesopotamia-map/5294a3a24342d844/1600w-1c27be631952bdb8.webp",
+            "mimeType": "image/webp",
+            "bytes": 64332,
+            "sha256": "1c27be631952bdb87ad037e60dec5755ebc01a44c44d7d619f517cc77e0a7148",
+            "width": 1600,
+            "height": 839
+          }
+        ]
+      }
+    }
+  ]
+}

@@ -8,7 +8,25 @@ export type HistoricalDateRange = z.infer<typeof HistoricalDateRangeSchema>;
 
 export const ClaimSchema = z.object({ id: StableId, statement: z.string().min(1), kind: z.enum(['observation','interpretation','reconstruction','later-tradition']), certainty: z.enum(['high','moderate','low','contested']), sourceIds: z.array(StableId).min(1), reviewStatus: z.enum(['reviewed','editorial-review-required']) });
 export const SourceSchema = z.object({ id: StableId, title: z.string(), url: z.string().url(), publisher: z.string(), accessedOn: z.string(), licenseOrUse: z.string().min(1), reviewStatus: z.enum(['reviewed','review-required']) });
-export const MediaAssetSchema = z.object({ id: StableId, path: z.string(), alt: z.string().min(1), depictionMode: z.enum(['evidence','evidence-based-reconstruction','diagram','map']), depictionLabel: z.string().min(1), sourceIds: z.array(StableId).min(1), visualBriefRef: z.string().min(1), reviewStatus: z.enum(['approved','provenance-review-required']) });
+const MediaPathSchema = z.string().regex(/^\/[a-z0-9][a-z0-9._/-]*$/).refine((path) => !path.includes('..'), 'media paths cannot traverse directories');
+const MediaObjectKeySchema = z.string().regex(/^[a-z0-9][a-z0-9._/-]*$/).refine((path) => !path.includes('..'), 'media object keys cannot traverse directories');
+const MediaDimensionsSchema = z.object({ width: z.number().int().positive(), height: z.number().int().positive() });
+export const MediaVariantSchema = MediaDimensionsSchema.extend({
+  objectKey: MediaObjectKeySchema,
+  mimeType: z.enum(['image/avif', 'image/jpeg', 'image/png', 'image/webp']),
+  bytes: z.number().int().positive(),
+  sha256: z.string().regex(/^[a-f0-9]{64}$/),
+});
+export const MediaLocatorSchema = z.discriminatedUnion('provider', [
+  MediaDimensionsSchema.extend({ provider: z.literal('repository'), path: MediaPathSchema }),
+  z.object({
+    provider: z.literal('object-storage'),
+    bucket: z.string().regex(/^[a-z0-9][a-z0-9-]*$/),
+    fallback: MediaDimensionsSchema.extend({ path: MediaPathSchema }),
+    variants: z.array(MediaVariantSchema).min(1),
+  }),
+]);
+export const MediaAssetSchema = z.object({ id: StableId, locator: MediaLocatorSchema, alt: z.string().min(1), depictionMode: z.enum(['evidence','evidence-based-reconstruction','diagram','map']), depictionLabel: z.string().min(1), sourceIds: z.array(StableId).min(1), visualBriefRef: z.string().min(1), reviewStatus: z.enum(['approved','provenance-review-required']) });
 
 const BaseModule = z.object({ id: StableId, claimIds: z.array(StableId).default([]), sourceIds: z.array(StableId).default([]) });
 export const HistoricalMapModuleSchema = BaseModule.extend({
