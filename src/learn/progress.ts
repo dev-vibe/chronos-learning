@@ -14,13 +14,26 @@ export interface LearnProgressGateway {
 const key = (lessonId: string) => `chronos.learn.preview.v1:${lessonId}`;
 const empty = (lessonId: string): LearnState => ({ learnerId: 'anonymous-preview', lessonId, status: 'in-progress', attemptedPromptIds: [], exploredSectionIds: [], responses: {}, version: 1 });
 const requiredPrompts = (lessonId: string) => urukContent.lessons.find((item) => item.id === lessonId)?.promptIds ?? [];
+const retiredResumeSections = new Map([['section.uruk.connections', 'section.uruk.check-and-complete']]);
+const currentSectionIds = (lessonId: string) => new Set(urukContent.lessons.find((item) => item.id === lessonId)?.sections.map((section) => section.id) ?? []);
+
+export function normalizeLearnState(state: LearnState): LearnState {
+  const validSections = currentSectionIds(state.lessonId);
+  const candidateResume = state.resumeSectionId ? retiredResumeSections.get(state.resumeSectionId) ?? state.resumeSectionId : undefined;
+  const resumeSectionId = candidateResume && validSections.has(candidateResume) ? candidateResume : undefined;
+  const exploredSectionIds = [...new Set(state.exploredSectionIds.filter((sectionId) => validSections.has(sectionId)))];
+  return { ...state, resumeSectionId, exploredSectionIds };
+}
 
 export class LocalPreviewGateway implements LearnProgressGateway {
   private read(lessonId: string) {
     try {
       const raw = localStorage.getItem(key(lessonId));
       const parsed = raw ? JSON.parse(raw) : null;
-      return parsed?.version === 1 && parsed.lessonId === lessonId ? parsed as LearnState : empty(lessonId);
+      if (parsed?.version !== 1 || parsed.lessonId !== lessonId) return empty(lessonId);
+      const normalized = normalizeLearnState(parsed as LearnState);
+      if (JSON.stringify(normalized) !== JSON.stringify(parsed)) localStorage.setItem(key(lessonId), JSON.stringify(normalized));
+      return normalized;
     } catch { return empty(lessonId); }
   }
   private write(state: LearnState) { localStorage.setItem(key(state.lessonId), JSON.stringify(state)); return state; }
@@ -85,7 +98,7 @@ export class SupabaseLearnGateway implements LearnProgressGateway {
     const { data: attempts } = attemptsResult;
     const { data: ownership } = ownershipResult;
     const responses = Object.fromEntries((attempts ?? []).map((item: any) => [item.prompt_id, String(item.response?.answer ?? item.response?.value ?? '')]));
-    return { learnerId: this.learnerId, lessonId, status: progress.status === 'completed' ? 'completed' : 'in-progress', completedAt: progress.completed_at ?? undefined, resumeSectionId: resume?.section_id, attemptedPromptIds: Object.keys(responses), exploredSectionIds: (explored ?? []).map((item: any) => item.section_id), responses, cardId: ownership?.card_id, version: 1 };
+    return normalizeLearnState({ learnerId: this.learnerId, lessonId, status: progress.status === 'completed' ? 'completed' : 'in-progress', completedAt: progress.completed_at ?? undefined, resumeSectionId: resume?.section_id, attemptedPromptIds: Object.keys(responses), exploredSectionIds: (explored ?? []).map((item: any) => item.section_id), responses, cardId: ownership?.card_id, version: 1 });
   }
   async markSection(lessonId: string, sectionId: string) {
     await this.ensure(lessonId);
