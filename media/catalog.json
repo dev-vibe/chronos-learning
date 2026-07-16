@@ -4,7 +4,7 @@
     {
       "id": "media.uruk.reconstruction",
       "collection": "uruk",
-      "sourcePath": "public/images/places/uruk-reconstruction-researched-20260715.png",
+      "sourcePath": "public/images/places/uruk-reconstruction.webp",
       "fallbackPath": "/images/optimized/uruk/reconstruction.optimized.webp",
       "preset": "picture",
       "widths": [480, 960, 1600]
@@ -12,16 +12,16 @@
     {
       "id": "media.uruk.site",
       "collection": "uruk",
-      "sourcePath": "public/images/places/uruk-site-context-researched-20260715.png",
+      "sourcePath": "public/images/places/uruk-site-evidence.jpg",
       "fallbackPath": "/images/optimized/uruk/site-evidence.optimized.webp",
-      "preset": "picture",
+      "preset": "photo",
       "widths": [480, 960, 1600]
     },
     {
       "id": "media.uruk.clay-envelope",
       "collection": "uruk",
-      "sourcePath": "public/images/inventions/uruk-clay-envelope-researched-20260715.png",
-      "fallbackPath": "/images/optimized/uruk/clay-envelope.optimized.webp",
+      "sourcePath": "public/images/inventions/clay_envelope.jpg",
+      "fallbackPath": "/images/optimized/uruk/clay-envelope.optimized.jpg",
       "preset": "picture",
       "widths": [480, 960, 1600]
     },

@@ -18,15 +18,15 @@
         "bucket": "media-public",
         "fallback": {
           "path": "/images/optimized/uruk/reconstruction.optimized.webp",
-          "width": 960,
-          "height": 480
+          "width": 1600,
+          "height": 800
         },
         "variants": [
           {
-            "objectKey": "uruk/media.uruk.reconstruction/97a152d2273d11a4/optimized/ql-v1/480w-webp-lossless-f755358450047cab.webp",
+            "objectKey": "uruk/media.uruk.reconstruction/bfbc7a7253595793/optimized/ql-v1/480w-webp-lossless-a430adfc10f1f71b.webp",
             "mimeType": "image/webp",
-            "bytes": 157828,
-            "sha256": "f755358450047cab5c978759f9a029e2fb72e61922290344134834ee1d21f0dc",
+            "bytes": 167322,
+            "sha256": "a430adfc10f1f71bbf1df1d2caa4545e627407f8cd2f5dc05a93c3cfae1d24e4",
             "width": 480,
             "height": 240,
             "compression": {
@@ -42,16 +42,36 @@
             }
           },
           {
-            "objectKey": "uruk/media.uruk.reconstruction/97a152d2273d11a4/optimized/ql-v1/960w-webp-lossless-5f27dacf7acbdbca.webp",
+            "objectKey": "uruk/media.uruk.reconstruction/bfbc7a7253595793/optimized/ql-v1/960w-webp-q96-2e1fb0f83732b1c7.webp",
             "mimeType": "image/webp",
-            "bytes": 632884,
-            "sha256": "5f27dacf7acbdbcac46eda2d43e369090002ffdbccb367be4065b58d78ad84b8",
+            "bytes": 224706,
+            "sha256": "2e1fb0f83732b1c792766edfaba0ef6306afe1d712be75e7ec77dcf3990b9689",
             "width": 960,
             "height": 480,
             "compression": {
               "profile": "ql-v1",
               "codec": "webp",
-              "encoder": "webp-lossless"
+              "encoder": "webp-lossy",
+              "quality": 96
+            },
+            "fidelity": {
+              "mode": "measured-quasi-lossless",
+              "psnrDb": 45.76,
+              "meanAbsoluteError": 0.832,
+              "maximumChannelDelta": 10
+            }
+          },
+          {
+            "objectKey": "uruk/media.uruk.reconstruction/bfbc7a7253595793/optimized/ql-v1/1600w-source-webp-bfbc7a7253595793.webp",
+            "mimeType": "image/webp",
+            "bytes": 303742,
+            "sha256": "bfbc7a72535957939d835274f13dabaccfb65b74b644ae50e0e12460eb444420",
+            "width": 1600,
+            "height": 800,
+            "compression": {
+              "profile": "ql-v1",
+              "codec": "webp",
+              "encoder": "source-passthrough"
             },
             "fidelity": {
               "mode": "pixel-exact",
@@ -70,46 +90,68 @@
         "bucket": "media-public",
         "fallback": {
           "path": "/images/optimized/uruk/site-evidence.optimized.webp",
-          "width": 960,
-          "height": 480
+          "width": 1200,
+          "height": 600
         },
         "variants": [
           {
-            "objectKey": "uruk/media.uruk.site/777ae8a5f5b1605b/optimized/ql-v1/480w-webp-lossless-fe5a4b681e4d3848.webp",
+            "objectKey": "uruk/media.uruk.site/53dbaa3d51bc8b0e/optimized/ql-v1/480w-webp-q96-b72880586f4e4f63.webp",
             "mimeType": "image/webp",
-            "bytes": 133350,
-            "sha256": "fe5a4b681e4d384817ec2130e2fd2263d9a9bc1c2ebc26abf008e826abbae373",
+            "bytes": 43042,
+            "sha256": "b72880586f4e4f6399c355e5b5daa2ca32e41fb6f7f2cf45645e4db2fc37363c",
             "width": 480,
             "height": 240,
             "compression": {
               "profile": "ql-v1",
               "codec": "webp",
-              "encoder": "webp-lossless"
+              "encoder": "webp-lossy",
+              "quality": 96
             },
             "fidelity": {
-              "mode": "pixel-exact",
-              "psnrDb": null,
-              "meanAbsoluteError": 0,
-              "maximumChannelDelta": 0
+              "mode": "measured-quasi-lossless",
+              "psnrDb": 45.74,
+              "meanAbsoluteError": 0.863,
+              "maximumChannelDelta": 8
             }
           },
           {
-            "objectKey": "uruk/media.uruk.site/777ae8a5f5b1605b/optimized/ql-v1/960w-webp-lossless-f618383dd5008b22.webp",
+            "objectKey": "uruk/media.uruk.site/53dbaa3d51bc8b0e/optimized/ql-v1/960w-webp-q94-334a6086ae3dd0d4.webp",
             "mimeType": "image/webp",
-            "bytes": 519680,
-            "sha256": "f618383dd5008b2275db76d3457b1616b88b076307d4f44cf1d59ba35f8db089",
+            "bytes": 91414,
+            "sha256": "334a6086ae3dd0d4f9e6b721f9fb39bf7d88e445e5f85c2ea42c1476d9b9001a",
             "width": 960,
             "height": 480,
             "compression": {
               "profile": "ql-v1",
               "codec": "webp",
-              "encoder": "webp-lossless"
+              "encoder": "webp-lossy",
+              "quality": 94
             },
             "fidelity": {
-              "mode": "pixel-exact",
-              "psnrDb": null,
-              "meanAbsoluteError": 0,
-              "maximumChannelDelta": 0
+              "mode": "measured-quasi-lossless",
+              "psnrDb": 45.3,
+              "meanAbsoluteError": 0.895,
+              "maximumChannelDelta": 10
+            }
+          },
+          {
+            "objectKey": "uruk/media.uruk.site/53dbaa3d51bc8b0e/optimized/ql-v1/1200w-webp-q92-7ccb954fbed8c2a0.webp",
+            "mimeType": "image/webp",
+            "bytes": 101094,
+            "sha256": "7ccb954fbed8c2a0f86caeef06bb51fb2f206fb697f901dffeb90c8993ca58fd",
+            "width": 1200,
+            "height": 600,
+            "compression": {
+              "profile": "ql-v1",
+              "codec": "webp",
+              "encoder": "webp-lossy",
+              "quality": 92
+            },
+            "fidelity": {
+              "mode": "measured-quasi-lossless",
+              "psnrDb": 45.14,
+              "meanAbsoluteError": 0.898,
+              "maximumChannelDelta": 11
             }
           }
         ]
@@ -121,41 +163,22 @@
         "provider": "object-storage",
         "bucket": "media-public",
         "fallback": {
-          "path": "/images/optimized/uruk/clay-envelope.optimized.webp",
-          "width": 640,
-          "height": 960
+          "path": "/images/optimized/uruk/clay-envelope.optimized.jpg",
+          "width": 476,
+          "height": 700
         },
         "variants": [
           {
-            "objectKey": "uruk/media.uruk.clay-envelope/ec70fca19d3dec9b/optimized/ql-v1/480w-webp-lossless-629aa9d87e4b80f1.webp",
-            "mimeType": "image/webp",
-            "bytes": 360240,
-            "sha256": "629aa9d87e4b80f159218a208944bc790ff619eeea278fe435b478141d85308b",
-            "width": 480,
-            "height": 720,
+            "objectKey": "uruk/media.uruk.clay-envelope/b7fede35d1d9bcef/optimized/ql-v1/476w-source-jpeg-b7fede35d1d9bcef.jpg",
+            "mimeType": "image/jpeg",
+            "bytes": 34249,
+            "sha256": "b7fede35d1d9bcef065f722d319dbc81ce45a37cb975b81a6908436dede575ad",
+            "width": 476,
+            "height": 700,
             "compression": {
               "profile": "ql-v1",
-              "codec": "webp",
-              "encoder": "webp-lossless"
-            },
-            "fidelity": {
-              "mode": "pixel-exact",
-              "psnrDb": null,
-              "meanAbsoluteError": 0,
-              "maximumChannelDelta": 0
-            }
-          },
-          {
-            "objectKey": "uruk/media.uruk.clay-envelope/ec70fca19d3dec9b/optimized/ql-v1/640w-webp-lossless-63303e4eb9b89873.webp",
-            "mimeType": "image/webp",
-            "bytes": 644174,
-            "sha256": "63303e4eb9b89873e242b78552cb8dce9f1dbdc8b6531bd98cf8c31350a9c33a",
-            "width": 640,
-            "height": 960,
-            "compression": {
-              "profile": "ql-v1",
-              "codec": "webp",
-              "encoder": "webp-lossless"
+              "codec": "jpeg",
+              "encoder": "source-passthrough"
             },
             "fidelity": {
               "mode": "pixel-exact",

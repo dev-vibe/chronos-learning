@@ -1,6 +1,6 @@
 # Media ingestion and publishing runbook
 
-The media pipeline preserves full-resolution documented masters under assets/generated/, keeps bounded delivery inputs under public/images/, commits a compact optimized rollback copy, stages responsive derivatives under ignored tmp/chronos-media/, and publishes immutable objects to Supabase Storage. ADR 004 defines the measured ql-v1 compression contract.
+The media pipeline keeps canonical sources unchanged, commits a compact optimized rollback copy, stages responsive derivatives under ignored tmp/chronos-media/, and publishes immutable objects to Supabase Storage. ADR 004 defines the measured ql-v1 compression contract.
 ## Automated research and approval
 
 Before sourcing or generating an image, run the workflow in [the media provenance research and generation prompt](../prompts/media-provenance-research-and-generation.md). The agent gathers authoritative license evidence, records attribution and historical suitability, and either recommends approval or replaces the asset.
@@ -15,7 +15,7 @@ The product owner is not the default copyright analyst. Clear public-domain, CC0
        npm run media:add -- --id media.uruk.example --source public/images/places/example.jpg --collection uruk --fallback /images/optimized/uruk/example.optimized.webp --preset photo --widths 480,960,1600
 
    Use photo for photographs, picture for mixed illustrations, drawing only after checking its output, and default when unsure. The build always includes the source width and refuses unsafe paths or duplicate IDs.
-3. Add the assetâ€™s source/provenance, alt text, depiction mode, and review state to authored content. New assets stay provenance-review-required until redistribution rights are actually confirmed.
+3. Add the asset’s source/provenance, alt text, depiction mode, and review state to authored content. New assets stay provenance-review-required until redistribution rights are actually confirmed.
 4. Build and verify:
 
        npm run media:build
@@ -23,7 +23,7 @@ The product owner is not the default copyright analyst. Clear public-domain, CC0
        npm run validate:content
        npm test
 
-Review the consoleâ€™s chosen encoder, byte count, PSNR, and mean error. Review the manifest diff and visually inspect the committed file under public/images/optimized/. Do not hand-edit generated manifests or optimized binaries.
+Review the console’s chosen encoder, byte count, PSNR, and mean error. Review the manifest diff and visually inspect the committed file under public/images/optimized/. Do not hand-edit generated manifests or optimized binaries.
 
 If the selected full-size codec differs from the fallback extension, update fallbackPath to the extension requested by the build and rerun it. A source-passthrough result is intentional when re-encoding is not materially smaller.
 
@@ -45,9 +45,9 @@ Object keys include the source checksum, optimized/ql-v1, encoder, and derivativ
 
 | Asset | Canonical source | Optimized rollback | Decision |
 | --- | ---: | ---: | --- |
-| Reconstruction | 865,357 B | 632,884 B | pixel-exact WebP lossless at 960px delivery width |
-| Site evidence | 719,326 B | 519,680 B | pixel-exact WebP lossless at 960px delivery width |
-| Clay envelope | 909,225 B | 644,174 B | pixel-exact WebP lossless at 640px delivery width |
+| Reconstruction | 303,742 B | 303,742 B | exact source passthrough; lossy savings were under 5% |
+| Site evidence | 109,191 B | 101,094 B | WebP q92; PSNR 45.14 dB |
+| Clay envelope | 34,249 B | 34,249 B | exact JPEG passthrough |
 | Southern Mesopotamia map | 241,550 B | 221,460 B | WebP q92; PSNR 49.25 dB |
 
 Responsive variants provide the larger learner-bandwidth win. Widths that are bigger in bytes than a larger alternative are omitted from the catalog.
