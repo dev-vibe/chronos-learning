@@ -56,14 +56,13 @@ Typical required lesson:
 1. Masthead and significance
 2. Cinematic hero reconstruction or evidence-led opening
 3. Opening hook
-4. Five to eight semantic narrative/evidence sections, with contextual comparison only when it has teaching value
-5. World Check and one-to-three-prompt Check Your Understanding
-6. Explicit completion panel
-7. Post-completion next step: continue the current journey, then an optional card or authored exploration when meaningful
+4. Five to eight semantic narrative/evidence sections
+5. Connections and World Check
+6. One-to-three-prompt Check Your Understanding
+7. Explicit completion panel
+8. Next lesson, card reveal, or contextual journey invitation
 
 A thin sticky treatment and compact text such as “4 of 7 sections explored” show current-lesson progress. Do not add large section checklists. Persist stable section IDs and resume at the last meaningful section rather than an exact scroll pixel.
-
-Do not create a progress-bearing “Connections” or “Follow the idea forward” section whose primary job is navigation. Historical before/elsewhere/reappearance context belongs inside the lesson where it explains the subject and should not be hidden until completion. A related lesson, Story Arc, Idea Trail, or Investigation may be surfaced at a pedagogically meaningful point, but its control is visually separate from the explanation, clearly optional, non-disruptive, and subordinate to the learner's current required action.
 
 ## Understanding checks
 

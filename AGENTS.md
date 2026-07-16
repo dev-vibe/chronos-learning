@@ -19,7 +19,6 @@ For UI work, inspect the images in `docs/design/references/`. They express visua
 - Every journey uses the same Learn shell: journey rail/drawer plus scrolling lesson.
 - World History is the default chronological spine; Story Arcs, Idea Trails, and Investigations are authored optional paths.
 - Lessons use stable semantic sections, unobtrusive local progress, meaningful resume state, short understanding checks, and explicit completion.
-- Related lessons and optional journeys never masquerade as progress-bearing lesson sections. Keep useful historical connections in the lesson where they teach; keep navigation visually distinct, non-disruptive, and subordinate to the current required action.
 - Required core lessons normally include one to three explanatory prompts. Sincere attempt, not perfect accuracy, is the default completion requirement.
 - Knowledge Cards are deterministic memory/reward objects. No XP economy, random packs, duplicates, currencies, rarity spectacle, combat stats, or punitive streaks.
 - Reconstruction, evidence, interpretation, uncertainty, and later tradition must be explicitly distinguished.

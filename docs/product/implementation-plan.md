@@ -530,19 +530,13 @@ CHR-028 \| Implement contextual journey invitation service
 | **Priority:** P0 | **Dependencies:** CHR-021, CHR-023 | **Sequence:** 28 |
 |------------------|------------------------------------|------------------|
 
-**Outcome:** Return at most one authored optional invitation at a contextually meaningful moment without disrupting required learning.
+**Outcome:** Return at most one relevant invitation at defined lesson moments.
 
-**Implementation notes:** Invitations are authored, not inferred solely from tags. They may appear in a lesson, at completion, or on a later discovery surface, but never as lesson sections or completion gates. Include save/dismiss/snooze/open behavior and preserve the learner's lesson position.
+**Implementation notes:** Invitations are authored, not inferred solely from tags. Include dismiss/snooze/open behavior.
 
 **Acceptance criteria**
 
-- Invitations never count as lesson sections or required progress.
-
-- Any current required action remains visually primary.
-
-- Invitation state is excluded from lesson-section and journey-completion calculations.
-
-- Opening or dismissing an invitation from an in-lesson surface returns the learner to the same meaningful position without progress loss.
+- No more than one invitation competes with lesson completion.
 
 - Dismissal is remembered.
 
@@ -709,22 +703,22 @@ CHR-037 \| Build inline knowledge blocks
 
 - Blocks work without an associated collectible card.
 
-CHR-038 \| Build historical context and World Check modules
+CHR-038 \| Build lesson connections and World Check modules
 
 | **Priority:** P0 | **Dependencies:** CHR-035 | **Sequence:** 38 |
 |------------------|---------------------------|------------------|
 
-**Outcome:** Teach useful before/after, elsewhere-at-the-time, and future-reappearance context without turning related content into disguised navigation.
+**Outcome:** Show before/after, elsewhere-at-the-time, and future-reappearance context.
 
-**Implementation notes:** Keep historical context curated and limited rather than generating a graph browser. Render it only when the comparison adds instructional value; do not create a progress-bearing “Connections” or “Follow the idea forward” section whose primary purpose is linking elsewhere.
+**Implementation notes:** Keep connections curated and limited rather than generating a graph browser.
 
 **Acceptance criteria**
 
-- Module supports short curated explanations and, when needed, non-primary references.
+- Module supports curated links and short explanations.
 
 - No more than the configured number is shown by default.
 
-- Historical connections remain visible where they teach; any related-path affordance is visually separate, clearly optional, and non-disruptive.
+- Destination type and completion state are clear.
 
 CHR-039 \| Build checks for understanding
 
@@ -748,9 +742,9 @@ CHR-040 \| Build lesson completion and next-step panel
 | **Priority:** P0 | **Dependencies:** CHR-023, CHR-024, CHR-028, CHR-035 | **Sequence:** 40 |
 |------------------|------------------------------------------------------|------------------|
 
-**Outcome:** Complete the core loop with explicit completion, one clear current-journey action, and optional post-completion reward or exploration.
+**Outcome:** Complete the core loop with next lesson, optional reveal, and contextual invitation.
 
-**Implementation notes:** Before completion, the only forward action is “Complete lesson” once its requirements are met. After completion, “Continue [current journey]” is primary. Card presentation and at most one contextual exploration are subordinate and must not resemble required lesson sections.
+**Implementation notes:** Sequence the UI so the learner always sees a clear primary action.
 
 **Acceptance criteria**
 
@@ -759,8 +753,6 @@ CHR-040 \| Build lesson completion and next-step panel
 - Next required action is visually primary.
 
 - Card and invitation moments never appear simultaneously unless explicitly designed.
-
-- Ignoring, dismissing, or opening optional exploration cannot change lesson completion.
 
 CHR-041 \| Build shared-lesson revisit experience
 
@@ -843,17 +835,11 @@ CHR-045 \| Build contextual journey invitation card
 
 **Outcome:** Implement the authored invitation UI and actions.
 
-**Implementation notes:** Support in-lesson, completion, Home, and Library placements selected by authored context. Support save, explore, dismiss, and—when shown at completion—continue current, with the current required action visually primary and optionality stated in text.
+**Implementation notes:** Support open, continue current, and dismiss.
 
 **Acceptance criteria**
 
 - Only eligible invitations render.
-
-- The invitation never appears in lesson section progress or changes completion eligibility.
-
-- When shown at completion, Continue current journey is the primary action and lands on the derived next entry.
-
-- When shown during a lesson, opening or dismissing preserves the learner's position and required flow.
 
 - Dismissal is persisted.
 
@@ -1637,7 +1623,7 @@ CHR-089 \| Create end-to-end critical-path tests
 
 **Outcome:** Automate the complete learner experience across desktop and mobile viewports.
 
-**Implementation notes:** Cover first lesson, completion, primary next-lesson navigation, contextual invitations before and after completion, switching, shared revisit, collection, and Investigation. Assert that related-path invitations never appear as lesson sections, change completion eligibility, or interrupt the required check/completion flow.
+**Implementation notes:** Cover first lesson, completion, card reveal, journey invitation, switching, shared revisit, collection, and Investigation.
 
 **Acceptance criteria**
 
