@@ -40,6 +40,8 @@ export const lessons: Lesson[] = [
         body: 'Uruk stood on the southern Mesopotamian plain, where rivers, channels, wetlands, and dry ground shifted over generations. Its position connected fields and settlements while demanding constant coordination around water.',
         mediaId: 'media.uruk.southern-mesopotamia-map', periodLabel: 'c. 3200 BCE', focusPlace: 'Uruk', modernContext: 'Near modern Warka, Iraq',
         accessibleSummary: 'Uruk lies northwest of Ur and Eridu on the southern Mesopotamian plain. The Euphrates system runs along the western side, the Tigris system lies farther east toward the Zagros highlands, and a shifting wetland and Gulf zone lies to the southeast.',
+        compactLabel: 'Illustrative map · ancient waterways approximate',
+        coordinateNote: 'Uruk, Ur, and Eridu are placed using official UNESCO World Heritage coordinates.',
         uncertaintyNote: 'City locations follow UNESCO World Heritage coordinates. Ancient river channels, marshes, and the Gulf shoreline shifted over time and are shown approximately.',
         depictionStatus: 'illustrative-reconstruction', claimIds: ['claim.uruk.wetland-landscape'], sourceIds: ['source.unesco.ahwar', 'source.unesco.ahwar-maps', 'source.ur.southern-mesopotamia', 'source.archatlas.uruk-ur'],
       }] },

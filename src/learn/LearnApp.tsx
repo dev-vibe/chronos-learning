@@ -68,7 +68,8 @@ function Module({ module, state, onAttempt }: ModuleProps) {
   }
   if (module.type === 'historical-map') {
     const media = mediaById.get(module.mediaId)!;
-    return <HistoricalMapModule module={module} media={media} />;
+    const sources = module.sourceIds.map((sourceId) => urukContent.sources.find((source) => source.id === sourceId)!).filter(Boolean);
+    return <HistoricalMapModule module={module} media={media} sources={sources} />;
   }
   const prompt = promptById.get(module.promptId)!;
   const answer = state.responses[prompt.id] ?? '';
