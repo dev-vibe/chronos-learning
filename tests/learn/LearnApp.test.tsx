@@ -1,7 +1,7 @@
 // @vitest-environment jsdom
 import React from 'react';
 import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest';
-import { cleanup, fireEvent, render, screen, waitFor } from '@testing-library/react';
+import { cleanup, fireEvent, render, screen, waitFor, within } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import { LearnApp } from '../../src/learn/LearnApp';
 import { lessonIdFromPath } from '../../src/learn/route';
@@ -24,8 +24,35 @@ afterEach(() => cleanup());
 describe('Learn route and interactions', () => {
   it('parses the stable route and rejects unrelated paths', () => { expect(lessonIdFromPath('/learn/lesson.uruk.first-city')).toBe('lesson.uruk.first-city'); expect(lessonIdFromPath('/legacy')).toBeNull(); });
   it('renders an invalid lesson state', () => { render(<LearnApp lessonId="lesson.unknown" />); expect(screen.getByRole('heading', { name: /archive entry isn’t available/i })).toBeTruthy(); });
-  it('renders the decoded-asset contract and typed editorial modules', async () => { const gateway = new TestGateway(); render(<LearnApp lessonId="lesson.uruk.first-city" gatewayFactory={async () => gateway} />); expect(await screen.findByRole('heading', { name: 'Uruk: Life in an Early City' })).toBeTruthy(); const hero = document.querySelector('.hero-image'); expect(hero?.getAttribute('aria-label')).toMatch(/aerial evidence-based reconstruction/i); expect(hero?.getAttribute('style')).toContain('/images/places/uruk-reconstruction.webp'); const probe = document.querySelector('.hero-probe'); expect(probe?.getAttribute('src')).toBe('/images/places/uruk-reconstruction.webp'); expect(probe?.getAttribute('width')).toBe('1600'); expect(probe?.getAttribute('height')).toBe('800'); expect(screen.getByText('City at a glance')).toBeTruthy(); expect(screen.getAllByText('From the evidence room')).toHaveLength(2); expect(screen.getByText('This lesson opens')).toBeTruthy(); expect(screen.getByRole('heading', { name: 'World Check' })).toBeTruthy(); });
-  it('renders the generated historical map inside the opening content card', async () => { const gateway = new TestGateway(); render(<LearnApp lessonId="lesson.uruk.first-city" gatewayFactory={async () => gateway} />); await screen.findByRole('heading', { name: 'Uruk: Life in an Early City' }); const image=screen.getByAltText(/Illustrated map of the southern Mesopotamian plain/i);expect(image.getAttribute('src')).toBe('/images/maps/uruk-southern-mesopotamia-map.webp');expect(image.getAttribute('width')).toBe('1732');expect(image.getAttribute('height')).toBe('908');expect(image.closest('[data-section-id]')?.getAttribute('data-section-id')).toBe('section.uruk.masthead');expect(screen.queryByRole('button',{name:'A city shaped by water'})).toBeNull(); });
+  it('renders the decoded-asset contract and typed editorial modules', async () => { const gateway = new TestGateway(); render(<LearnApp lessonId="lesson.uruk.first-city" gatewayFactory={async () => gateway} />); expect(await screen.findByRole('heading', { name: 'Uruk: Life in an Early City' })).toBeTruthy(); const hero = document.querySelector('.hero-image'); expect(hero?.getAttribute('aria-label')).toMatch(/aerial evidence-based reconstruction/i); expect(hero?.getAttribute('style')).toContain('/images/places/uruk-reconstruction.webp'); const probe = document.querySelector('.hero-probe'); expect(probe?.getAttribute('src')).toBe('/images/places/uruk-reconstruction.webp'); expect(probe?.getAttribute('width')).toBe('1600'); expect(probe?.getAttribute('height')).toBe('800'); expect(screen.getByText('Place & landscape')).toBeTruthy(); expect(screen.getAllByText('From the evidence room')).toHaveLength(2); expect(screen.getByText('This lesson opens')).toBeTruthy(); expect(screen.getByRole('heading', { name: 'World Check' })).toBeTruthy(); });
+  it('renders the complete historical map caption and visible provenance language', async () => {
+    const gateway = new TestGateway();
+    render(<LearnApp lessonId="lesson.uruk.first-city" gatewayFactory={async () => gateway} />);
+    await screen.findByRole('heading', { name: 'Uruk: Life in an Early City' });
+    const image = screen.getByAltText(/Illustrated map of the southern Mesopotamian plain/i);
+    const figure = image.closest('figure')!;
+    const map = within(figure);
+
+    expect(image.getAttribute('src')).toBe('/images/maps/uruk-southern-mesopotamia-map.webp');
+    expect(image.getAttribute('width')).toBe('1732');
+    expect(image.getAttribute('height')).toBe('908');
+    expect(image.closest('[data-section-id]')?.getAttribute('data-section-id')).toBe('section.uruk.masthead');
+    expect(map.getByRole('heading', { name: 'A city shaped by water' })).toBeTruthy();
+    expect(map.getByText('c. 3200 BCE')).toBeTruthy();
+    expect(map.getByText('Near modern Warka, Iraq')).toBeTruthy();
+    expect(map.getByText('Illustrative Reconstruction')).toBeTruthy();
+    const uncertainty = map.getByText(/City locations follow UNESCO World Heritage coordinates/);
+    const verifiedCities = map.getByText(/Uruk, Ur, and Eridu follow official UNESCO World Heritage coordinates/);
+    const provenance = map.getByText('Geographic references');
+    expect(uncertainty.hidden).toBe(false);
+    expect(verifiedCities.hidden).toBe(false);
+    expect(provenance.hidden).toBe(false);
+    expect(uncertainty.closest('.sr-only')).toBeNull();
+    expect(verifiedCities.closest('.sr-only')).toBeNull();
+    expect(provenance.closest('.sr-only')).toBeNull();
+    expect(map.getAllByRole('link', { name: 'UNESCO World Heritage Centre' })).toHaveLength(2);
+    expect(map.getByText(/Uruk lies northwest of Ur and Eridu/).classList.contains('sr-only')).toBe(true);
+  });
   it('opens the native Explore the Scene field guide', async () => { const gateway = new TestGateway(); render(<LearnApp lessonId="lesson.uruk.first-city" gatewayFactory={async () => gateway} />); await screen.findByRole('heading', { name: 'Uruk: Life in an Early City' }); const title = screen.getByText('Explore the scene'); const details = title.closest('details'); expect(details?.hasAttribute('open')).toBe(false); await userEvent.click(title); expect(details?.hasAttribute('open')).toBe(true); expect(screen.getByText('Monumental precinct')).toBeTruthy(); });
   it('offers retry after progress load failure', async () => { const gateway = new TestGateway(); gateway.load.mockRejectedValueOnce(new Error('offline')).mockResolvedValueOnce(gateway.state); render(<LearnApp lessonId="lesson.uruk.first-city" gatewayFactory={async () => gateway} />); await screen.findByRole('button', { name: 'Retry loading progress' }); await userEvent.click(screen.getByRole('button', { name: 'Retry loading progress' })); expect(await screen.findByRole('heading', { name: 'Uruk: Life in an Early City' })).toBeTruthy(); expect(gateway.load).toHaveBeenCalledTimes(2); });
   it('closes the mobile drawer with Escape and returns focus', async () => { const gateway = new TestGateway(); render(<LearnApp lessonId="lesson.uruk.first-city" gatewayFactory={async () => gateway} />); await screen.findByRole('heading', { name: 'Uruk: Life in an Early City' }); const open = screen.getByRole('button', { name: 'Open journey' }); await userEvent.click(open); expect(screen.getByRole('dialog', { name: 'World History journey' })).toBeTruthy(); fireEvent.keyDown(document, { key: 'Escape' }); expect(open).toBe(document.activeElement); });

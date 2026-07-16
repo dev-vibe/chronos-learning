@@ -10,6 +10,7 @@ const lesson = urukContent.lessons.find((item) => item.id === 'lesson.uruk.first
 const journey = urukContent.journeys[0];
 const promptById = new Map(urukContent.prompts.map((item) => [item.id, item]));
 const mediaById = new Map(urukContent.media.map((item) => [item.id, item]));
+const sourceById = new Map(urukContent.sources.map((item) => [item.id, item]));
 const card = urukContent.cards[0];
 const reconstruction = mediaById.get('media.uruk.reconstruction')!;
 
@@ -68,7 +69,11 @@ function Module({ module, state, onAttempt }: ModuleProps) {
   }
   if (module.type === 'historical-map') {
     const media = mediaById.get(module.mediaId)!;
-    return <HistoricalMapModule module={module} media={media} />;
+    const sources = module.sourceIds.flatMap((id) => {
+      const source = sourceById.get(id);
+      return source ? [source] : [];
+    });
+    return <HistoricalMapModule module={module} media={media} sources={sources} />;
   }
   if (module.type === 'connection') return <aside className="connection-module"><span className="connection-icon"><ScrollText /></span><div><small>{module.eyebrow}</small><h3>{module.title}</h3><p>{module.body}</p></div><span className="connection-arrow" aria-hidden="true"><ChevronRight /></span></aside>;
   const prompt = promptById.get(module.promptId)!;
