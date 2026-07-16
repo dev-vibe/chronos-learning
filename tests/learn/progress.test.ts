@@ -18,22 +18,22 @@ describe('Uruk Learn progress boundary', () => {
     expect(state.status).toBe('in-progress');
   });
 
-  it('migrates the retired connections resume point without inflating section progress', async () => {
+  it('drops removed semantic section IDs from resume and exploration state', async () => {
     const lessonId = 'lesson.uruk.first-city';
     values.set(`chronos.learn.preview.v1:${lessonId}`, JSON.stringify({
       learnerId: 'anonymous-preview',
       lessonId,
       status: 'in-progress',
-      resumeSectionId: 'section.uruk.connections',
+      resumeSectionId: 'section.uruk.removed-experiment',
       attemptedPromptIds: [],
-      exploredSectionIds: ['section.uruk.the-built-city', 'section.uruk.connections'],
+      exploredSectionIds: ['section.uruk.the-built-city', 'section.uruk.removed-experiment'],
       responses: {},
       version: 1,
     }));
 
     const state = await new LocalPreviewGateway().load(lessonId);
 
-    expect(state.resumeSectionId).toBe('section.uruk.check-and-complete');
+    expect(state.resumeSectionId).toBeUndefined();
     expect(state.exploredSectionIds).toEqual(['section.uruk.the-built-city']);
   });
 

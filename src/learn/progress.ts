@@ -14,13 +14,11 @@ export interface LearnProgressGateway {
 const key = (lessonId: string) => `chronos.learn.preview.v1:${lessonId}`;
 const empty = (lessonId: string): LearnState => ({ learnerId: 'anonymous-preview', lessonId, status: 'in-progress', attemptedPromptIds: [], exploredSectionIds: [], responses: {}, version: 1 });
 const requiredPrompts = (lessonId: string) => urukContent.lessons.find((item) => item.id === lessonId)?.promptIds ?? [];
-const retiredResumeSections = new Map([['section.uruk.connections', 'section.uruk.check-and-complete']]);
 const currentSectionIds = (lessonId: string) => new Set(urukContent.lessons.find((item) => item.id === lessonId)?.sections.map((section) => section.id) ?? []);
 
 export function normalizeLearnState(state: LearnState): LearnState {
   const validSections = currentSectionIds(state.lessonId);
-  const candidateResume = state.resumeSectionId ? retiredResumeSections.get(state.resumeSectionId) ?? state.resumeSectionId : undefined;
-  const resumeSectionId = candidateResume && validSections.has(candidateResume) ? candidateResume : undefined;
+  const resumeSectionId = state.resumeSectionId && validSections.has(state.resumeSectionId) ? state.resumeSectionId : undefined;
   const exploredSectionIds = [...new Set(state.exploredSectionIds.filter((sectionId) => validSections.has(sectionId)))];
   return { ...state, resumeSectionId, exploredSectionIds };
 }

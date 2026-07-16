@@ -10,12 +10,6 @@ describe('legacy Uruk reconciliation', () => {
     expect(result.ignoredGameFields).toEqual(['xp', 'rarity']);
   });
 
-  it('maps the retired connections section to World Check', () => {
-    const result = reconcileLegacyUruk([{ resumeSectionId: 'section.uruk.connections' }]);
-    expect(result.resumeSectionId).toBe('section.uruk.check-and-complete');
-    expect(result.exceptionsRequiringReview).toEqual([]);
-  });
-
   it('reports invalid resume and preserves canonical ownership', () => {
     const result = reconcileLegacyUruk([{ resumeSectionId: 'missing', canonicalCardIds: ['card.place.uruk'] }]);
     expect(result.exceptionsRequiringReview).toHaveLength(1);
