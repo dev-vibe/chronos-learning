@@ -28,8 +28,8 @@ type BuiltVariant = {
 const root = process.cwd();
 const stagingRoot = resolve(root, 'tmp/chronos-media');
 const catalogPath = resolve(root, 'media/catalog.json');
-const runtimeManifestPath = resolve(root, 'content/media/generated/uruk-media.json');
-const releaseManifestPath = resolve(root, 'media/manifests/uruk-release.json');
+const runtimeManifestPath = resolve(root, 'content/media/generated/chronos-media.json');
+const releaseManifestPath = resolve(root, 'media/manifests/chronos-release.json');
 const optimizedFallbackRoot = resolve(root, 'public/images/optimized');
 const checkOnly = process.argv.includes('--check');
 const browserExtensions = new Set(['.jpg', '.jpeg', '.png', '.webp']);
@@ -129,7 +129,8 @@ for (const asset of catalog.assets) {
     console.log(asset.id + ' ' + reference.width + 'w: ' + candidate.bytes.byteLength + ' bytes, ' + encoding + ', ' + fidelity);
   }
 
-  const fallback = built.at(-1);
+  const publishableBuilt = built.filter((entry, index, all) => index === all.length - 1 || entry.variant.bytes < Math.min(...all.slice(index + 1).map((candidate) => candidate.variant.bytes)));
+  const fallback = publishableBuilt.at(-1);
   if (!fallback) throw new Error(asset.id + ' produced no variants');
   if (extname(asset.fallbackPath).toLowerCase() !== fallback.candidate.extension) {
     throw new Error(asset.id + ' fallback extension must be ' + fallback.candidate.extension + ' for the selected candidate');
@@ -144,7 +145,7 @@ for (const asset of catalog.assets) {
       provider: 'object-storage' as const,
       bucket: 'media-public',
       fallback: { path: asset.fallbackPath, width: fallback.variant.width, height: fallback.variant.height },
-      variants: built.map(({ variant }) => variant),
+      variants: publishableBuilt.map(({ variant }) => variant),
     },
     source: {
       bucket: 'media-source',
@@ -167,8 +168,8 @@ const qualityPolicy = {
   maximumVariantBytes: QUALITY_POLICY.maximumVariantBytes,
   minimumSavingsRatioForLossyReencode: QUALITY_POLICY.minimumSavingsRatioForLossyReencode,
 };
-const runtimeManifest = { schemaVersion: 1, collection: 'uruk', generatedBy, qualityPolicy, assets: manifestAssets.map(({ id, locator }) => ({ id, locator })) };
-const releaseManifest = { schemaVersion: 1, collection: 'uruk', generatedBy, qualityPolicy, assets: manifestAssets };
+const runtimeManifest = { schemaVersion: 1, collection: 'chronos', generatedBy, qualityPolicy, assets: manifestAssets.map(({ id, locator }) => ({ id, locator })) };
+const releaseManifest = { schemaVersion: 1, collection: 'chronos', generatedBy, qualityPolicy, assets: manifestAssets };
 const renderedRuntime = JSON.stringify(runtimeManifest, null, 2) + '\n';
 const renderedRelease = JSON.stringify(releaseManifest, null, 2) + '\n';
 if (checkOnly) {

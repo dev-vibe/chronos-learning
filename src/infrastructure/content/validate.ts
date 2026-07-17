@@ -1,18 +1,142 @@
-import { ClaimSchema, JourneySchema, KnowledgeCardSchema, LessonSchema, MediaAssetSchema, SourceSchema, UnderstandingPromptSchema } from '../../domains/contracts';
 import { existsSync } from 'node:fs';
 import { resolve } from 'node:path';
-export type ContentBundle={sources:unknown[];claims:unknown[];media:unknown[];prompts:unknown[];lessons:unknown[];journeys:unknown[];cards:unknown[]};
-const MAX_PUBLISHED_VARIANT_BYTES=768*1024;
-export function validateContent(input:ContentBundle){
- const errors:string[]=[]; const parse=<T>(items:unknown[],schema:any,label:string):T[]=>items.flatMap((item,i)=>{const r=schema.safeParse(item);if(!r.success){errors.push(`${label}[${i}]: ${r.error.issues.map((x:any)=>x.message).join(', ')}`);return []}return [r.data]});
- const sources=parse<any>(input.sources,SourceSchema,'source'),claims=parse<any>(input.claims,ClaimSchema,'claim'),media=parse<any>(input.media,MediaAssetSchema,'media'),prompts=parse<any>(input.prompts,UnderstandingPromptSchema,'prompt'),lessons=parse<any>(input.lessons,LessonSchema,'lesson'),journeys=parse<any>(input.journeys,JourneySchema,'journey'),cards=parse<any>(input.cards,KnowledgeCardSchema,'card');
- const all=[...sources,...claims,...media,...prompts,...lessons,...journeys,...cards]; const ids=new Set<string>(); for(const x of all){if(ids.has(x.id))errors.push(`duplicate ID: ${x.id}`);ids.add(x.id)}
- const sourceIds=new Set(sources.map(x=>x.id)),lessonIds=new Set(lessons.map(x=>x.id)),claimIds=new Set(claims.map(x=>x.id)),mediaIds=new Set(media.map(x=>x.id)),promptIds=new Set(prompts.map(x=>x.id)),mediaById=new Map(media.map(x=>[x.id,x]));
- const refs=(owner:string,values:string[],known:Set<string>,kind:string)=>values.forEach(id=>{if(!known.has(id))errors.push(`${owner}: broken ${kind} reference ${id}`)});
- for(const l of lessons){const sectionIds=new Set<string>(); for(const s of l.sections){if(sectionIds.has(s.id))errors.push(`${l.id}: duplicate section ID ${s.id}`);sectionIds.add(s.id);for(const m of s.modules){refs(m.id,m.sourceIds,sourceIds,'source');refs(m.id,m.claimIds,claimIds,'claim');if((m.type==='evidence'||m.type==='historical-map')&&!mediaIds.has(m.mediaId))errors.push(`${m.id}: broken media reference ${m.mediaId}`);if(m.type==='historical-map'){const asset=mediaById.get(m.mediaId);if(asset&&asset.depictionMode!=='map')errors.push(`${m.id}: historical map media must use map depiction mode`)}if(m.type==='prompt'&&!promptIds.has(m.promptId))errors.push(`${m.id}: broken prompt reference ${m.promptId}`)}} refs(l.id,l.sectionIdsRequired,sectionIds,'required section');refs(l.id,l.sourceIds,sourceIds,'source');refs(l.id,l.claimIds,claimIds,'claim');refs(l.id,l.mediaIds,mediaIds,'media');refs(l.id,l.promptIds,promptIds,'prompt')}
- for(const c of claims)refs(c.id,c.sourceIds,sourceIds,'source'); for(const m of media){refs(m.id,m.sourceIds,sourceIds,'source');if(!m.depictionLabel)errors.push(`${m.id}: missing depiction label`);const fallbackPath=m.locator.provider==='repository'?m.locator.path:m.locator.fallback.path;if(!existsSync(resolve(process.cwd(),'public',fallbackPath.slice(1))))errors.push(`${m.id}: missing local media asset ${fallbackPath}`);if(m.locator.provider==='object-storage'){const widths=new Set<number>();for(const variant of m.locator.variants){if(widths.has(variant.width))errors.push(`${m.id}: duplicate media variant width ${variant.width}`);widths.add(variant.width);if(!variant.objectKey.includes(variant.sha256.slice(0,16)))errors.push(`${m.id}: media object key is not content-addressed ${variant.objectKey}`);if(variant.bytes>MAX_PUBLISHED_VARIANT_BYTES)errors.push(`${m.id}: media variant exceeds ${MAX_PUBLISHED_VARIANT_BYTES} byte budget ${variant.objectKey}`)}}}
- for(const p of prompts)if(!p.explanation.trim())errors.push(`${p.id}: missing prompt explanation`);
- for(const j of journeys){for(const chapter of j.chapters){const positions=new Set<number>();for(const e of chapter.entries){if(positions.has(e.position))errors.push(`${chapter.id}: duplicate journey entry position ${e.position}`);positions.add(e.position);if(!lessonIds.has(e.lessonId))errors.push(`${e.id}: unreachable required journey entry ${e.lessonId}`)}}}
- for(const c of cards){refs(c.id,c.lessonIds,lessonIds,'lesson');refs(c.id,c.sourceIds,sourceIds,'source');if(!lessonIds.has(c.unlockLessonId))errors.push(`${c.id}: invalid card unlock reference ${c.unlockLessonId}`);if(!mediaIds.has(c.mediaId))errors.push(`${c.id}: broken media reference ${c.mediaId}`)}
- return {success:errors.length===0,errors};
+import {
+  ClaimSchema,
+  JourneySchema,
+  KnowledgeCardSchema,
+  LessonSchema,
+  MediaAssetSchema,
+  SourceSchema,
+  UnderstandingPromptSchema,
+} from '../../domains/contracts';
+
+export type ContentBundle = {
+  sources: unknown[];
+  claims: unknown[];
+  media: unknown[];
+  prompts: unknown[];
+  lessons: unknown[];
+  journeys: unknown[];
+  cards: unknown[];
+};
+
+const MAX_PUBLISHED_VARIANT_BYTES = 768 * 1024;
+
+export function validateContent(input: ContentBundle) {
+  const errors: string[] = [];
+  const parse = <T>(items: unknown[], schema: any, label: string): T[] => items.flatMap((item, index) => {
+    const result = schema.safeParse(item);
+    if (!result.success) {
+      errors.push(`${label}[${index}]: ${result.error.issues.map((issue: any) => issue.message).join(', ')}`);
+      return [];
+    }
+    return [result.data];
+  });
+
+  const sources = parse<any>(input.sources, SourceSchema, 'source');
+  const claims = parse<any>(input.claims, ClaimSchema, 'claim');
+  const media = parse<any>(input.media, MediaAssetSchema, 'media');
+  const prompts = parse<any>(input.prompts, UnderstandingPromptSchema, 'prompt');
+  const lessons = parse<any>(input.lessons, LessonSchema, 'lesson');
+  const journeys = parse<any>(input.journeys, JourneySchema, 'journey');
+  const cards = parse<any>(input.cards, KnowledgeCardSchema, 'card');
+  const all = [...sources, ...claims, ...media, ...prompts, ...lessons, ...journeys, ...cards];
+  const ids = new Set<string>();
+  for (const item of all) {
+    if (ids.has(item.id)) errors.push(`duplicate ID: ${item.id}`);
+    ids.add(item.id);
+  }
+
+  const sourceIds = new Set(sources.map((item) => item.id));
+  const lessonIds = new Set(lessons.map((item) => item.id));
+  const claimIds = new Set(claims.map((item) => item.id));
+  const mediaIds = new Set(media.map((item) => item.id));
+  const promptIds = new Set(prompts.map((item) => item.id));
+  const mediaById = new Map(media.map((item) => [item.id, item]));
+  const promptById = new Map(prompts.map((item) => [item.id, item]));
+  const lessonById = new Map(lessons.map((item) => [item.id, item]));
+  const refs = (owner: string, values: string[], known: Set<string>, kind: string) => values.forEach((id) => {
+    if (!known.has(id)) errors.push(`${owner}: broken ${kind} reference ${id}`);
+  });
+
+  for (const lesson of lessons) {
+    const sectionIds = new Set<string>();
+    for (const section of lesson.sections) {
+      if (sectionIds.has(section.id)) errors.push(`${lesson.id}: duplicate section ID ${section.id}`);
+      sectionIds.add(section.id);
+      for (const module of section.modules) {
+        refs(module.id, module.sourceIds, sourceIds, 'source');
+        refs(module.id, module.claimIds, claimIds, 'claim');
+        if ((module.type === 'evidence' || module.type === 'historical-map') && !mediaIds.has(module.mediaId)) errors.push(`${module.id}: broken media reference ${module.mediaId}`);
+        if (module.type === 'historical-map') {
+          const asset = mediaById.get(module.mediaId);
+          if (asset && asset.depictionMode !== 'map') errors.push(`${module.id}: historical map media must use map depiction mode`);
+        }
+        if (module.type === 'prompt') {
+          const prompt = promptById.get(module.promptId);
+          if (!prompt) errors.push(`${module.id}: broken prompt reference ${module.promptId}`);
+          else if (prompt.lessonId !== lesson.id) errors.push(`${module.id}: prompt ${module.promptId} belongs to ${prompt.lessonId}`);
+          if (!lesson.promptIds.includes(module.promptId)) errors.push(`${module.id}: prompt ${module.promptId} is missing from ${lesson.id} promptIds`);
+        }
+      }
+    }
+    refs(lesson.id, lesson.sectionIdsRequired, sectionIds, 'required section');
+    refs(lesson.id, lesson.sourceIds, sourceIds, 'source');
+    refs(lesson.id, lesson.claimIds, claimIds, 'claim');
+    refs(lesson.id, lesson.mediaIds, mediaIds, 'media');
+    refs(lesson.id, lesson.promptIds, promptIds, 'prompt');
+    if (lesson.heroMediaId && !mediaIds.has(lesson.heroMediaId)) errors.push(`${lesson.id}: broken hero media reference ${lesson.heroMediaId}`);
+    for (const promptId of lesson.promptIds) {
+      const prompt = promptById.get(promptId);
+      if (prompt && prompt.lessonId !== lesson.id) errors.push(`${lesson.id}: prompt ${promptId} belongs to ${prompt.lessonId}`);
+    }
+    const requiredPromptCount = lesson.promptIds.filter((id: string) => promptById.get(id)?.required).length;
+    if (lesson.status === 'published' && (requiredPromptCount < 1 || requiredPromptCount > 3)) errors.push(`${lesson.id}: published lessons require one to three required prompts`);
+  }
+
+  for (const claim of claims) refs(claim.id, claim.sourceIds, sourceIds, 'source');
+  for (const asset of media) {
+    refs(asset.id, asset.sourceIds, sourceIds, 'source');
+    if (!asset.depictionLabel) errors.push(`${asset.id}: missing depiction label`);
+    const fallbackPath = asset.locator.provider === 'repository' ? asset.locator.path : asset.locator.fallback.path;
+    if (!existsSync(resolve(process.cwd(), 'public', fallbackPath.slice(1)))) errors.push(`${asset.id}: missing local media asset ${fallbackPath}`);
+    if (asset.locator.provider === 'object-storage') {
+      const widths = new Set<number>();
+      for (const variant of asset.locator.variants) {
+        if (widths.has(variant.width)) errors.push(`${asset.id}: duplicate media variant width ${variant.width}`);
+        widths.add(variant.width);
+        if (!variant.objectKey.includes(variant.sha256.slice(0, 16))) errors.push(`${asset.id}: media object key is not content-addressed ${variant.objectKey}`);
+        if (variant.bytes > MAX_PUBLISHED_VARIANT_BYTES) errors.push(`${asset.id}: media variant exceeds ${MAX_PUBLISHED_VARIANT_BYTES} byte budget ${variant.objectKey}`);
+      }
+    }
+  }
+
+  for (const prompt of prompts) {
+    if (!prompt.explanation.trim()) errors.push(`${prompt.id}: missing prompt explanation`);
+    if (!lessonIds.has(prompt.lessonId)) errors.push(`${prompt.id}: broken lesson reference ${prompt.lessonId}`);
+    else if (!lessonById.get(prompt.lessonId).promptIds.includes(prompt.id)) errors.push(`${prompt.id}: not registered by lesson ${prompt.lessonId}`);
+  }
+
+  for (const journey of journeys) {
+    for (const chapter of journey.chapters) {
+      const positions = new Set<number>();
+      for (const entry of chapter.entries) {
+        if (positions.has(entry.position)) errors.push(`${chapter.id}: duplicate journey entry position ${entry.position}`);
+        positions.add(entry.position);
+        if (!lessonIds.has(entry.lessonId)) errors.push(`${entry.id}: unreachable required journey entry ${entry.lessonId}`);
+      }
+    }
+  }
+
+  const cardUnlocks = new Set<string>();
+  for (const card of cards) {
+    refs(card.id, card.lessonIds, lessonIds, 'lesson');
+    refs(card.id, card.sourceIds, sourceIds, 'source');
+    if (!lessonIds.has(card.unlockLessonId)) errors.push(`${card.id}: invalid card unlock reference ${card.unlockLessonId}`);
+    if (cardUnlocks.has(card.unlockLessonId)) errors.push(`${card.id}: duplicate deterministic unlock for ${card.unlockLessonId}`);
+    cardUnlocks.add(card.unlockLessonId);
+    if (!mediaIds.has(card.mediaId)) errors.push(`${card.id}: broken media reference ${card.mediaId}`);
+  }
+
+  return { success: errors.length === 0, errors };
 }

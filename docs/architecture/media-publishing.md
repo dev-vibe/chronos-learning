@@ -35,15 +35,15 @@ For each requested width, media:build compares pixel-exact WebP and a high-quali
 
 The build writes:
 
-- content/media/generated/uruk-media.json: browser-safe provider-neutral locators;
-- media/manifests/uruk-release.json: sources, checksums, compression, and fidelity;
+- content/media/generated/chronos-media.json: browser-safe provider-neutral locators;
+- media/manifests/chronos-release.json: sources, checksums, compression, and fidelity;
 - public/images/optimized/: committed canary rollback files;
 - tmp/chronos-media/media-source/: unchanged private source objects;
 - tmp/chronos-media/media-public/: immutable learner-facing derivatives.
 
 Object keys include the source checksum, optimized/ql-v1, encoder, and derivative checksum. Published keys are never overwritten.
 
-## Current Uruk result
+## Current asset results
 
 | Asset | Canonical source | Optimized rollback | Decision |
 | --- | ---: | ---: | --- |
@@ -51,8 +51,9 @@ Object keys include the source checksum, optimized/ql-v1, encoder, and derivativ
 | Site evidence | 109,191 B | 101,094 B | WebP q92; PSNR 45.14 dB |
 | Clay envelope | 34,249 B | 34,249 B | exact JPEG passthrough |
 | Southern Mesopotamia map | 241,550 B | 221,460 B | WebP q92; PSNR 49.25 dB |
+| Proto-cuneiform tablet | 1,014,869 B | 728,374 B | Public-domain photograph; WebP q92; PSNR 47.08 dB |
 
-Responsive variants provide the larger learner-bandwidth win. Widths that are bigger in bytes than a larger alternative are omitted from the catalog.
+Responsive variants provide the larger learner-bandwidth win. Widths that are bigger in bytes than a larger alternative are omitted from the manifest.
 
 ## Publish
 

@@ -2,12 +2,28 @@
   "schemaVersion": 1,
   "assets": [
     {
+      "id": "media.uruk.clay-envelope",
+      "collection": "uruk",
+      "sourcePath": "public/images/inventions/clay_envelope.jpg",
+      "fallbackPath": "/images/optimized/uruk/clay-envelope.optimized.jpg",
+      "preset": "picture",
+      "widths": [
+        480,
+        960,
+        1600
+      ]
+    },
+    {
       "id": "media.uruk.reconstruction",
       "collection": "uruk",
       "sourcePath": "public/images/places/uruk-reconstruction.webp",
       "fallbackPath": "/images/optimized/uruk/reconstruction.optimized.webp",
       "preset": "picture",
-      "widths": [480, 960, 1600]
+      "widths": [
+        480,
+        960,
+        1600
+      ]
     },
     {
       "id": "media.uruk.site",
@@ -15,15 +31,11 @@
       "sourcePath": "public/images/places/uruk-site-evidence.jpg",
       "fallbackPath": "/images/optimized/uruk/site-evidence.optimized.webp",
       "preset": "photo",
-      "widths": [480, 960, 1600]
-    },
-    {
-      "id": "media.uruk.clay-envelope",
-      "collection": "uruk",
-      "sourcePath": "public/images/inventions/clay_envelope.jpg",
-      "fallbackPath": "/images/optimized/uruk/clay-envelope.optimized.jpg",
-      "preset": "picture",
-      "widths": [480, 960, 1600]
+      "widths": [
+        480,
+        960,
+        1600
+      ]
     },
     {
       "id": "media.uruk.southern-mesopotamia-map",
@@ -31,7 +43,22 @@
       "sourcePath": "public/images/maps/uruk-southern-mesopotamia-map.webp",
       "fallbackPath": "/images/optimized/uruk/southern-mesopotamia-map.optimized.webp",
       "preset": "default",
-      "widths": [480, 1732]
+      "widths": [
+        480,
+        1732
+      ]
+    },
+    {
+      "id": "media.writing.proto-cuneiform-tablet",
+      "collection": "early-writing",
+      "sourcePath": "public/images/evidence/proto-cuneiform-tablet-met-329081.jpg",
+      "fallbackPath": "/images/optimized/early-writing/proto-cuneiform-tablet.optimized.webp",
+      "preset": "photo",
+      "widths": [
+        480,
+        960,
+        1600
+      ]
     }
   ]
 }

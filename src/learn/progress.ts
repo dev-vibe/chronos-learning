@@ -1,6 +1,6 @@
 import type { CompleteLessonResult, LessonProgress } from '../domains/contracts';
 import { isSupabaseConfigured, supabase } from '../../lib/supabase';
-import { urukContent } from '../../content/uruk';
+import { chronosContent } from '../../content/chronos';
 
 export type PromptResponses = Record<string, string>;
 export type LearnState = LessonProgress & { exploredSectionIds: string[]; responses: PromptResponses; cardId?: string; version: 1 };
@@ -13,8 +13,9 @@ export interface LearnProgressGateway {
 
 const key = (lessonId: string) => `chronos.learn.preview.v1:${lessonId}`;
 const empty = (lessonId: string): LearnState => ({ learnerId: 'anonymous-preview', lessonId, status: 'in-progress', attemptedPromptIds: [], exploredSectionIds: [], responses: {}, version: 1 });
-const requiredPrompts = (lessonId: string) => urukContent.lessons.find((item) => item.id === lessonId)?.promptIds ?? [];
-const currentSectionIds = (lessonId: string) => new Set(urukContent.lessons.find((item) => item.id === lessonId)?.sections.map((section) => section.id) ?? []);
+const requiredPrompts = (lessonId: string) => chronosContent.lessons.find((item) => item.id === lessonId)?.promptIds.filter((id) => chronosContent.prompts.find((prompt) => prompt.id === id)?.required) ?? [];
+const currentSectionIds = (lessonId: string) => new Set(chronosContent.lessons.find((item) => item.id === lessonId)?.sections.map((section) => section.id) ?? []);
+const cardForLesson = (lessonId: string) => chronosContent.cards.find((card) => card.unlockLessonId === lessonId)?.id;
 
 export function normalizeLearnState(state: LearnState): LearnState {
   const validSections = currentSectionIds(state.lessonId);
@@ -52,8 +53,8 @@ export class LocalPreviewGateway implements LearnProgressGateway {
     const state = this.read(lessonId);
     if (state.status === 'completed') return { completion: 'already-completed', cardOwnership: 'already-owned', cardId: state.cardId } as const;
     if (!requiredPrompts(lessonId).every((id) => state.attemptedPromptIds.includes(id))) throw new Error('required prompt attempts missing');
-    state.status = 'completed'; state.completedAt = new Date().toISOString(); state.cardId = 'card.place.uruk'; this.write(state);
-    return { completion: 'newly-completed', cardOwnership: 'newly-acquired', cardId: state.cardId } as const;
+    state.status = 'completed'; state.completedAt = new Date().toISOString(); state.cardId = cardForLesson(lessonId); this.write(state);
+    return { completion: 'newly-completed', cardOwnership: state.cardId ? 'newly-acquired' : 'not-configured', ...(state.cardId ? { cardId: state.cardId } : {}) } as const;
   }
 }
 

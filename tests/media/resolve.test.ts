@@ -1,5 +1,5 @@
 import { describe, expect, it } from 'vitest';
-import { media } from '../../content/uruk';
+import { media } from '../../content/chronos';
 import { resolveMediaAsset } from '../../src/media/resolve';
 
 const reconstruction = media.find((asset) => asset.id === 'media.uruk.reconstruction')!;
