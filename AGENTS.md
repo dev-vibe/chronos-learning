@@ -20,7 +20,7 @@ For generated historical maps, follow `docs/content/historical-map-production.md
 - Complexity belongs in the knowledge model, not learner controls.
 - Every journey uses the same Learn shell: journey rail/drawer plus scrolling lesson.
 - World History is the default chronological spine; Story Arcs, Idea Trails, and Investigations are authored optional paths.
-- Lessons use stable semantic sections, unobtrusive local progress, meaningful resume state, short understanding checks, and explicit completion.
+- Lessons use stable semantic sections, unobtrusive explored-section progress, short understanding checks, and explicit completion. Reopening a lesson always starts at the top; do not add within-lesson resume banners, buttons, automatic scrolling, or scroll-position restoration.
 - Related lessons and optional journeys never masquerade as progress-bearing lesson sections. Keep useful historical connections in the lesson where they teach; keep navigation visually distinct, non-disruptive, and subordinate to the current required action.
 - Required core lessons normally include one to three explanatory prompts. Sincere attempt, not perfect accuracy, is the default completion requirement.
 - Knowledge Cards are deterministic memory/reward objects. No XP economy, random packs, duplicates, currencies, rarity spectacle, combat stats, or punitive streaks.
