@@ -25,5 +25,6 @@ dist-ssr
 *.sw?
 
 # Temporary files
+tmp/chronos-media/
 tmpclaude-*
 nul

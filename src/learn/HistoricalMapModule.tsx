@@ -1,6 +1,7 @@
 import { Info, X } from 'lucide-react';
 import { useRef } from 'react';
 import type { HistoricalMapModule as HistoricalMapData, MediaAsset, Source } from '../domains/contracts';
+import { ResponsiveMedia } from './ResponsiveMedia';
 
 type HistoricalMapModuleProps = {
   module: HistoricalMapData;
@@ -36,7 +37,7 @@ export function HistoricalMapModule({ module, media, sources }: HistoricalMapMod
   };
 
   return <figure className="historical-map" aria-label={module.title} aria-describedby={summaryId}>
-    <img src={media.path} alt={media.alt} width="1732" height="908" loading="lazy" decoding="async" />
+    <ResponsiveMedia media={media} alt={media.alt} sizes="(max-width: 800px) 100vw, 960px" loading="lazy" />
     <figcaption className="historical-map__meta">
       <span>{module.compactLabel}</span>
       <button ref={triggerRef} type="button" onClick={openDialog} aria-label={`About this map: ${module.title}`}>

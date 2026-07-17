@@ -1,0 +1,247 @@
+{
+  "schemaVersion": 1,
+  "collection": "uruk",
+  "generatedBy": "npm run media:build",
+  "qualityPolicy": {
+    "profile": "ql-v1",
+    "minimumPsnrDb": 45,
+    "maximumMeanAbsoluteError": 1,
+    "maximumChannelDelta": 16,
+    "maximumVariantBytes": 786432,
+    "minimumSavingsRatioForLossyReencode": 0.05
+  },
+  "assets": [
+    {
+      "id": "media.uruk.reconstruction",
+      "locator": {
+        "provider": "object-storage",
+        "bucket": "media-public",
+        "fallback": {
+          "path": "/images/optimized/uruk/reconstruction.optimized.webp",
+          "width": 1600,
+          "height": 800
+        },
+        "variants": [
+          {
+            "objectKey": "uruk/media.uruk.reconstruction/bfbc7a7253595793/optimized/ql-v1/480w-webp-lossless-a430adfc10f1f71b.webp",
+            "mimeType": "image/webp",
+            "bytes": 167322,
+            "sha256": "a430adfc10f1f71bbf1df1d2caa4545e627407f8cd2f5dc05a93c3cfae1d24e4",
+            "width": 480,
+            "height": 240,
+            "compression": {
+              "profile": "ql-v1",
+              "codec": "webp",
+              "encoder": "webp-lossless"
+            },
+            "fidelity": {
+              "mode": "pixel-exact",
+              "psnrDb": null,
+              "meanAbsoluteError": 0,
+              "maximumChannelDelta": 0
+            }
+          },
+          {
+            "objectKey": "uruk/media.uruk.reconstruction/bfbc7a7253595793/optimized/ql-v1/960w-webp-q96-2e1fb0f83732b1c7.webp",
+            "mimeType": "image/webp",
+            "bytes": 224706,
+            "sha256": "2e1fb0f83732b1c792766edfaba0ef6306afe1d712be75e7ec77dcf3990b9689",
+            "width": 960,
+            "height": 480,
+            "compression": {
+              "profile": "ql-v1",
+              "codec": "webp",
+              "encoder": "webp-lossy",
+              "quality": 96
+            },
+            "fidelity": {
+              "mode": "measured-quasi-lossless",
+              "psnrDb": 45.76,
+              "meanAbsoluteError": 0.832,
+              "maximumChannelDelta": 10
+            }
+          },
+          {
+            "objectKey": "uruk/media.uruk.reconstruction/bfbc7a7253595793/optimized/ql-v1/1600w-source-webp-bfbc7a7253595793.webp",
+            "mimeType": "image/webp",
+            "bytes": 303742,
+            "sha256": "bfbc7a72535957939d835274f13dabaccfb65b74b644ae50e0e12460eb444420",
+            "width": 1600,
+            "height": 800,
+            "compression": {
+              "profile": "ql-v1",
+              "codec": "webp",
+              "encoder": "source-passthrough"
+            },
+            "fidelity": {
+              "mode": "pixel-exact",
+              "psnrDb": null,
+              "meanAbsoluteError": 0,
+              "maximumChannelDelta": 0
+            }
+          }
+        ]
+      }
+    },
+    {
+      "id": "media.uruk.site",
+      "locator": {
+        "provider": "object-storage",
+        "bucket": "media-public",
+        "fallback": {
+          "path": "/images/optimized/uruk/site-evidence.optimized.webp",
+          "width": 1200,
+          "height": 600
+        },
+        "variants": [
+          {
+            "objectKey": "uruk/media.uruk.site/53dbaa3d51bc8b0e/optimized/ql-v1/480w-webp-q96-b72880586f4e4f63.webp",
+            "mimeType": "image/webp",
+            "bytes": 43042,
+            "sha256": "b72880586f4e4f6399c355e5b5daa2ca32e41fb6f7f2cf45645e4db2fc37363c",
+            "width": 480,
+            "height": 240,
+            "compression": {
+              "profile": "ql-v1",
+              "codec": "webp",
+              "encoder": "webp-lossy",
+              "quality": 96
+            },
+            "fidelity": {
+              "mode": "measured-quasi-lossless",
+              "psnrDb": 45.74,
+              "meanAbsoluteError": 0.863,
+              "maximumChannelDelta": 8
+            }
+          },
+          {
+            "objectKey": "uruk/media.uruk.site/53dbaa3d51bc8b0e/optimized/ql-v1/960w-webp-q94-334a6086ae3dd0d4.webp",
+            "mimeType": "image/webp",
+            "bytes": 91414,
+            "sha256": "334a6086ae3dd0d4f9e6b721f9fb39bf7d88e445e5f85c2ea42c1476d9b9001a",
+            "width": 960,
+            "height": 480,
+            "compression": {
+              "profile": "ql-v1",
+              "codec": "webp",
+              "encoder": "webp-lossy",
+              "quality": 94
+            },
+            "fidelity": {
+              "mode": "measured-quasi-lossless",
+              "psnrDb": 45.3,
+              "meanAbsoluteError": 0.895,
+              "maximumChannelDelta": 10
+            }
+          },
+          {
+            "objectKey": "uruk/media.uruk.site/53dbaa3d51bc8b0e/optimized/ql-v1/1200w-webp-q92-7ccb954fbed8c2a0.webp",
+            "mimeType": "image/webp",
+            "bytes": 101094,
+            "sha256": "7ccb954fbed8c2a0f86caeef06bb51fb2f206fb697f901dffeb90c8993ca58fd",
+            "width": 1200,
+            "height": 600,
+            "compression": {
+              "profile": "ql-v1",
+              "codec": "webp",
+              "encoder": "webp-lossy",
+              "quality": 92
+            },
+            "fidelity": {
+              "mode": "measured-quasi-lossless",
+              "psnrDb": 45.14,
+              "meanAbsoluteError": 0.898,
+              "maximumChannelDelta": 11
+            }
+          }
+        ]
+      }
+    },
+    {
+      "id": "media.uruk.clay-envelope",
+      "locator": {
+        "provider": "object-storage",
+        "bucket": "media-public",
+        "fallback": {
+          "path": "/images/optimized/uruk/clay-envelope.optimized.jpg",
+          "width": 476,
+          "height": 700
+        },
+        "variants": [
+          {
+            "objectKey": "uruk/media.uruk.clay-envelope/b7fede35d1d9bcef/optimized/ql-v1/476w-source-jpeg-b7fede35d1d9bcef.jpg",
+            "mimeType": "image/jpeg",
+            "bytes": 34249,
+            "sha256": "b7fede35d1d9bcef065f722d319dbc81ce45a37cb975b81a6908436dede575ad",
+            "width": 476,
+            "height": 700,
+            "compression": {
+              "profile": "ql-v1",
+              "codec": "jpeg",
+              "encoder": "source-passthrough"
+            },
+            "fidelity": {
+              "mode": "pixel-exact",
+              "psnrDb": null,
+              "meanAbsoluteError": 0,
+              "maximumChannelDelta": 0
+            }
+          }
+        ]
+      }
+    },
+    {
+      "id": "media.uruk.southern-mesopotamia-map",
+      "locator": {
+        "provider": "object-storage",
+        "bucket": "media-public",
+        "fallback": {
+          "path": "/images/optimized/uruk/southern-mesopotamia-map.optimized.webp",
+          "width": 1732,
+          "height": 908
+        },
+        "variants": [
+          {
+            "objectKey": "uruk/media.uruk.southern-mesopotamia-map/5294a3a24342d844/optimized/ql-v1/480w-webp-lossless-c560048e05f4f2af.webp",
+            "mimeType": "image/webp",
+            "bytes": 106966,
+            "sha256": "c560048e05f4f2af79f776085ddf553e4d51bbe9de546cd737d9a1abf34e11a1",
+            "width": 480,
+            "height": 252,
+            "compression": {
+              "profile": "ql-v1",
+              "codec": "webp",
+              "encoder": "webp-lossless"
+            },
+            "fidelity": {
+              "mode": "pixel-exact",
+              "psnrDb": null,
+              "meanAbsoluteError": 0,
+              "maximumChannelDelta": 0
+            }
+          },
+          {
+            "objectKey": "uruk/media.uruk.southern-mesopotamia-map/5294a3a24342d844/optimized/ql-v1/1732w-webp-q92-311346e9ae21c8bc.webp",
+            "mimeType": "image/webp",
+            "bytes": 221460,
+            "sha256": "311346e9ae21c8bc8d2fd30fb0f7047ed4caf0ae303780fd52965dacf433bd86",
+            "width": 1732,
+            "height": 908,
+            "compression": {
+              "profile": "ql-v1",
+              "codec": "webp",
+              "encoder": "webp-lossy",
+              "quality": 92
+            },
+            "fidelity": {
+              "mode": "measured-quasi-lossless",
+              "psnrDb": 49.25,
+              "meanAbsoluteError": 0.425,
+              "maximumChannelDelta": 11
+            }
+          }
+        ]
+      }
+    }
+  ]
+}
