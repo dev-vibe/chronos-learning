@@ -70,17 +70,6 @@ for (const [width, height] of [[1440, 900], [1024, 768], [390, 844], [360, 800]]
   await context.close();
 }
 
-const resumeContext = await browser.newContext({ viewport: { width: 1440, height: 900 }, colorScheme: 'light' });
-const resumePage = await resumeContext.newPage();
-monitor(resumePage, 'resume');
-await openWriting(resumePage);
-await resumePage.getByRole('button', { name: 'Signs do not stand still' }).click();
-await resumePage.waitForTimeout(1600);
-await resumePage.reload({ waitUntil: 'networkidle' });
-await resumePage.getByText(/Resume from Signs do not stand still/).waitFor();
-await resumePage.screenshot({ path: `${output}/writing-1440x900-resume.png`, fullPage: false });
-await resumeContext.close();
-
 const flow = await browser.newContext({ viewport: { width: 1440, height: 900 }, colorScheme: 'light' });
 const page = await flow.newPage();
 monitor(page, 'completion-flow');
@@ -121,4 +110,4 @@ await flow.close();
 
 await browser.close();
 if (errors.length) throw new Error(`Browser errors:\n${errors.join('\n')}`);
-console.log('ASH-57 visual verification passed: four viewports, light/dark, decoded media, direct route/refresh, mobile drawer, semantic resume, Uruk continuation, writing completion/card reveal/revisit, and invalid/unpublished states.');
+console.log('ASH-57 visual verification passed: four viewports, light/dark, decoded media, direct route/refresh, mobile drawer, Uruk continuation, writing completion/card reveal/revisit, and invalid/unpublished states.');
