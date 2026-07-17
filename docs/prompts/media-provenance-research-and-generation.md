@@ -9,7 +9,7 @@ Find or create an image that is historically suitable, publicly redistributable,
 ## Instructions
 
 1. Read AGENTS.md, the product and design invariants, ADR 003, ADR 004, and the media publishing runbook.
-2. Inspect the intended lesson claim, depiction mode, alt text, and visual brief before searching.
+2. Inspect the intended lesson claim, depiction mode, alt text, and visual brief before searching. For a historical map, also follow the additional map requirements below.
 3. Prefer sources in this order:
    - Chronos-original or newly generated artwork with complete generation lineage;
    - explicit public-domain or CC0 media from an authoritative collection;
@@ -36,6 +36,18 @@ Find or create an image that is historically suitable, publicly redistributable,
    - prohibit baked-in educational prose, titles, logos, watermarks, and UI chrome;
    - label reconstruction, uncertainty, and approximate geography explicitly;
    - visually inspect the final image for anachronisms and unsupported details.
+
+### Additional requirements for historical maps
+
+- Select one authoritative real map as the primary geographic reference and use at least one independent cross-check. Generated output is never a geographic source.
+- Prefer UNESCO and other official heritage bodies, archaeological institutes, museums, universities, peer-reviewed publications, scholarly atlases, and clearly licensed maps.
+- Record what each reference contributes, its license or reference-only status, and where suitable sources disagree.
+- Coordinate-check known locations against an authoritative source when coordinates are available.
+- Classify important features as coordinate-verified, source-supported, approximate, or omitted. Never present changing rivers, wetlands, coastlines, routes, or boundaries as exact without evidence.
+- Treat image generation as a stylistic transformation of researched geography. Do not invent settlements, waterways, borders, ruins, roads, or landmarks.
+- Short geographic labels or concise spatial annotations may appear in the raster only when the reviewed brief provides their exact wording. Manually verify spelling and placement; keep prose, captions, provenance, and uncertainty explanations in application content.
+- Preserve research maps outside runtime asset directories unless their redistribution rights and intended publication are separately approved.
+
 8. Write a research note under docs/research/ with:
    - Rights decision: approved, replacement-required, or legal-review-required;
    - concise rationale;

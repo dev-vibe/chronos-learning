@@ -5,6 +5,8 @@ The media pipeline keeps canonical sources unchanged, commits a compact optimize
 
 Before sourcing or generating an image, run the workflow in [the media provenance research and generation prompt](../prompts/media-provenance-research-and-generation.md). The agent gathers authoritative license evidence, records attribution and historical suitability, and either recommends approval or replaces the asset.
 
+Historical lesson maps also follow the [map-specific requirements in the media provenance prompt](../prompts/media-provenance-research-and-generation.md#additional-requirements-for-historical-maps). That workflow establishes the real geographic reference, coordinate checks, uncertainty boundary, generated-art lineage, and label review before this runbook ingests and publishes the accepted master.
+
 The product owner is not the default copyright analyst. Clear public-domain, CC0, CC BY, CC BY-SA, or documented Chronos-original assets can follow the automated approval path. Unknown origin, educational-use-only, fair-use assumptions, all-rights-reserved, NC, ND, hotlinked, or watermarked assets remain blocked and should normally be replaced. Ambiguous edge cases go to a qualified reviewer; the publisher gate is never bypassed.
 
 ## Add an image
