@@ -11,7 +11,7 @@ create table if not exists public.user_profiles (
 );
 
 create table if not exists public.user_progress (
-  id uuid default uuid_generate_v4() primary key,
+  id uuid default extensions.uuid_generate_v4() primary key,
   user_id uuid references auth.users(id) on delete cascade not null,
   xp integer not null default 0,
   level integer not null default 1,
@@ -21,7 +21,7 @@ create table if not exists public.user_progress (
 );
 
 create table if not exists public.completed_nodes (
-  id uuid default uuid_generate_v4() primary key,
+  id uuid default extensions.uuid_generate_v4() primary key,
   user_id uuid references auth.users(id) on delete cascade not null,
   node_id text not null,
   completed_at timestamptz not null default now(),
