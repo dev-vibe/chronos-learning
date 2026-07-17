@@ -16,6 +16,7 @@
     "media:publish": "npm run media:verify && tsx scripts/media/publish.ts",
     "media:verify:remote": "tsx scripts/media/publish.ts --verify-only",
     "test:domain": "vitest run tests/domain tests/content tests/legacy",
+    "test:hero-delivery": "node scripts/verify-hero-delivery.mjs",
     "test": "vitest run"
   },
   "dependencies": {
