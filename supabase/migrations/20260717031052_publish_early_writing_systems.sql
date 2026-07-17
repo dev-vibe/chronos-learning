@@ -21,7 +21,7 @@ values (
   'lesson.writing.early-systems',
   'lesson',
   true,
-  'ASH-57 preserved stable writing identity for the reviewed proto-cuneiform lesson'
+  'ASH-63 preserved stable writing identity for the reviewed proto-cuneiform lesson'
 );
 
 insert into public.lesson_completion_configuration (lesson_id, completion_enabled)

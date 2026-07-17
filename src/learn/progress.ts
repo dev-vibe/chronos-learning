@@ -4,8 +4,10 @@ import { chronosContent } from '../../content/chronos';
 
 export type PromptResponses = Record<string, string>;
 export type LearnState = LessonProgress & { exploredSectionIds: string[]; responses: PromptResponses; cardId?: string; version: 1 };
+export type JourneyProgressSummary = Pick<LessonProgress, 'lessonId' | 'status' | 'completedAt'>;
 export interface LearnProgressGateway {
   load(lessonId: string): Promise<LearnState>;
+  loadJourneySummaries(lessonIds: readonly string[]): Promise<Record<string, JourneyProgressSummary>>;
   markSection(lessonId: string, sectionId: string): Promise<LearnState>;
   saveAttempt(lessonId: string, promptId: string, response: string): Promise<LearnState>;
   complete(lessonId: string, idempotencyKey: string): Promise<CompleteLessonResult>;
@@ -37,6 +39,12 @@ export class LocalPreviewGateway implements LearnProgressGateway {
   }
   private write(state: LearnState) { localStorage.setItem(key(state.lessonId), JSON.stringify(state)); return state; }
   async load(lessonId: string) { return this.read(lessonId); }
+  async loadJourneySummaries(lessonIds: readonly string[]) {
+    return Object.fromEntries([...new Set(lessonIds)].map((lessonId) => {
+      const state = this.read(lessonId);
+      return [lessonId, { lessonId, status: state.status, completedAt: state.completedAt }];
+    }));
+  }
   async markSection(lessonId: string, sectionId: string) {
     const state = this.read(lessonId);
     if (!state.exploredSectionIds.includes(sectionId)) state.exploredSectionIds.push(sectionId);
@@ -98,6 +106,25 @@ export class SupabaseLearnGateway implements LearnProgressGateway {
     const { data: ownership } = ownershipResult;
     const responses = Object.fromEntries((attempts ?? []).map((item: any) => [item.prompt_id, String(item.response?.answer ?? item.response?.value ?? '')]));
     return normalizeLearnState({ learnerId: this.learnerId, lessonId, status: progress.status === 'completed' ? 'completed' : 'in-progress', completedAt: progress.completed_at ?? undefined, resumeSectionId: resume?.section_id, attemptedPromptIds: Object.keys(responses), exploredSectionIds: (explored ?? []).map((item: any) => item.section_id), responses, cardId: ownership?.card_id, version: 1 });
+  }
+  async loadJourneySummaries(lessonIds: readonly string[]): Promise<Record<string, JourneyProgressSummary>> {
+    const uniqueIds = [...new Set(lessonIds)];
+    if (uniqueIds.length === 0) return {};
+    const { data, error } = await this.client
+      .from('lesson_progress')
+      .select('lesson_id,status,completed_at')
+      .eq('learner_id', this.learnerId)
+      .in('lesson_id', uniqueIds);
+    if (error) throw error;
+    const stored = new Map((data ?? []).map((row: any) => [row.lesson_id, row]));
+    return Object.fromEntries(uniqueIds.map((lessonId) => {
+      const row = stored.get(lessonId);
+      return [lessonId, {
+        lessonId,
+        status: row?.status === 'completed' ? 'completed' : 'in-progress',
+        completedAt: row?.completed_at ?? undefined,
+      }];
+    }));
   }
   async markSection(lessonId: string, sectionId: string) {
     await this.ensure(lessonId);

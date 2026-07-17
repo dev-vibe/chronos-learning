@@ -1,6 +1,6 @@
 # Early Writing Systems research and editorial note
 
-Reviewed 2026-07-16 for ASH-57. Repository content remains canonical; the database stores only publication, prompt, completion, and deterministic unlock configuration.
+Reviewed 2026-07-16 for [ASH-63](https://linear.app/ashs-workshop/issue/ASH-63/publish-early-writing-systems-and-prove-the-reusable-learn-pipeline). Repository content remains canonical; the database stores only publication, prompt, completion, and deterministic unlock configuration.
 
 ## Learner-facing scope
 
@@ -26,7 +26,9 @@ Approximate chronology: c. 3200-2800 BCE. Journey position: immediately after `l
 - **Archive limits:** durable administrative tablets are a surviving sample, not a complete record of writing's uses or everyone's experience.
 - **Wider context:** Mesopotamian proto-cuneiform is not presented as the ancestor of every writing system.
 
-Each material learner-facing statement is attached to reviewed claim and source IDs in `content/chronos.ts`. Observation, interpretation, reconstruction, certainty, and review state remain explicit in the content contract.
+Each material learner-facing statement is attached to reviewed claim and source IDs in `content/lessons/early-writing-systems.ts`. Observation, interpretation, reconstruction, certainty, and review state remain explicit in the content contract.
+
+- **Power and access interpretation:** `claim.writing.power-access` records, at moderate certainty, the interpretation that specialized training and institutional control may have concentrated access to durable records and decisions. It cites The Met writing overview and CDLI epistemological scholarship. The lesson explicitly says the surviving tablets do not directly identify everyone who could read or decide what was recorded.
 
 ## Media and card provenance
 

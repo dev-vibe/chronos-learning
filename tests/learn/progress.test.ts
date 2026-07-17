@@ -121,3 +121,31 @@ describe('multi-lesson local progress boundary', () => {
     expect(await gateway.load('lesson.uruk.first-city')).toMatchObject({ status: 'in-progress', attemptedPromptIds: [], exploredSectionIds: [] });
   });
 });
+describe('journey progress summaries', () => {
+  it('uses one bounded lesson_progress query instead of five detailed reads per published lesson', async () => {
+    const lessonIds = Array.from({ length: 250 }, (_, index) => `lesson.test.${index}`);
+    const inFilter = vi.fn(async () => ({
+      data: [{ lesson_id: lessonIds[1], status: 'completed', completed_at: '2026-07-17T00:00:00.000Z' }],
+      error: null,
+    }));
+    const chain: any = {
+      select: () => chain,
+      eq: () => chain,
+      in: inFilter,
+    };
+    const client: any = { from: vi.fn(() => chain) };
+
+    const summaries = await new SupabaseLearnGateway(
+      '11111111-1111-1111-1111-111111111111',
+      client,
+    ).loadJourneySummaries(lessonIds);
+
+    expect(client.from).toHaveBeenCalledTimes(1);
+    expect(client.from).toHaveBeenCalledWith('lesson_progress');
+    expect(inFilter).toHaveBeenCalledTimes(1);
+    expect(inFilter).toHaveBeenCalledWith('lesson_id', lessonIds);
+    expect(Object.keys(summaries)).toHaveLength(250);
+    expect(summaries[lessonIds[1]]).toMatchObject({ status: 'completed' });
+    expect(summaries[lessonIds[249]]).toMatchObject({ status: 'in-progress' });
+  });
+});

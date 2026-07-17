@@ -1,4 +1,10 @@
-import{describe,expect,it}from'vitest';import{chronosContent}from'../../content/chronos';import{LessonModuleSchema}from'../../src/domains/contracts';import{validateContent}from'../../src/infrastructure/content/validate';
+import{describe,expect,it}from'vitest';
+import { assembleContent } from '../../content/assemble';
+import { earlyWritingSystemsContent } from '../../content/lessons/early-writing-systems';
+import { farmingSettlementsContent } from '../../content/lessons/farming-settlements';
+import { urukContent } from '../../content/lessons/uruk';
+import { worldHistoryJourney } from '../../content/journeys/world-history';
+import{chronosContent}from'../../content/chronos';import{LessonModuleSchema}from'../../src/domains/contracts';import{validateContent}from'../../src/infrastructure/content/validate';
 describe('content validation',()=>{it('accepts canonical Uruk fixtures',()=>expect(validateContent(chronosContent)).toEqual({success:true,errors:[]}));it('catches duplicate ids and broken unlocks',()=>{const bad=structuredClone(chronosContent);bad.cards.push({...bad.cards[0],unlockLessonId:'lesson.missing'});const r=validateContent(bad);expect(r.success).toBe(false);expect(r.errors.join(' ')).toMatch(/duplicate ID|invalid card unlock/)})});
 
 it('allows each chapter to begin at entry position zero',()=>{const fixture=structuredClone(chronosContent);fixture.journeys[0].chapters.push({id:'chapter.world-history.second',title:'Second chapter',position:1,entries:[{id:'entry.world-history.second-start',lessonId:'lesson.uruk.first-city',position:0,required:true,framing:'A valid new chapter start'}]});expect(validateContent(fixture).errors).not.toContain(expect.stringMatching(/duplicate journey entry position/))});
@@ -35,4 +41,20 @@ it('catches broken writing sources, claims, prompts, media, hero, and unlock ref
   expect(errors).toMatch(/broken media reference media.missing.writing/);
   expect(errors).toMatch(/broken hero media reference media.missing.hero/);
   expect(errors).toMatch(/invalid card unlock reference lesson.missing.writing/);
+});
+it('validates the assembled cross-module graph for duplicates and broken references', () => {
+  const duplicateBundle = assembleContent(
+    [farmingSettlementsContent, urukContent, earlyWritingSystemsContent, urukContent],
+    [worldHistoryJourney],
+  );
+  expect(validateContent(duplicateBundle).errors.join(' ')).toMatch(/duplicate ID: source\.met\.uruk/);
+
+  const missingUrukBundle = assembleContent(
+    [farmingSettlementsContent, earlyWritingSystemsContent],
+    [worldHistoryJourney],
+  );
+  const errors = validateContent(missingUrukBundle).errors.join(' ');
+  expect(errors).toMatch(/unreachable required journey entry lesson\.uruk\.first-city/);
+  expect(errors).toMatch(/broken claim reference claim\.uruk\.city-life/);
+  expect(errors).toMatch(/broken source reference source\.met\.uruk/);
 });

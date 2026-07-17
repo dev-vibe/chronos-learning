@@ -4,7 +4,7 @@ import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest';
 import { cleanup, fireEvent, render, screen, waitFor, within } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import { LearnApp } from '../../src/learn/LearnApp';
-import type { LearnProgressGateway, LearnState } from '../../src/learn/progress';
+import type { JourneyProgressSummary, LearnProgressGateway, LearnState } from '../../src/learn/progress';
 
 const emptyState = (lessonId: string): LearnState => ({
   learnerId: 'multi-lesson-test', lessonId, status: 'in-progress', attemptedPromptIds: [], exploredSectionIds: [], responses: {}, version: 1,
@@ -16,6 +16,10 @@ class MultiLessonGateway implements LearnProgressGateway {
     ['lesson.writing.early-systems', emptyState('lesson.writing.early-systems')],
   ]);
   load = vi.fn(async (lessonId: string) => this.states.get(lessonId)!);
+  loadJourneySummaries = vi.fn(async (lessonIds: readonly string[]) => Object.fromEntries(lessonIds.map((lessonId) => {
+    const state = this.states.get(lessonId);
+    return [lessonId, { lessonId, status: state?.status ?? 'in-progress', completedAt: state?.completedAt }];
+  })) as Record<string, JourneyProgressSummary>);
   markSection = vi.fn(async (lessonId: string, sectionId: string) => {
     const state = this.states.get(lessonId)!;
     const next = { ...state, resumeSectionId: sectionId, exploredSectionIds: [...new Set([...state.exploredSectionIds, sectionId])] };
@@ -58,6 +62,10 @@ describe('multi-lesson Learn runtime', () => {
     const publishedLinks = within(journey).getAllByRole('link').map((link) => link.getAttribute('href'));
     expect(publishedLinks).toEqual(['/learn/lesson.uruk.first-city', '/learn/lesson.writing.early-systems']);
     expect(within(journey).getByText('Farming and Settlements').closest('[aria-disabled="true"]')).toBeTruthy();
+    expect(gateway.load).toHaveBeenCalledTimes(1);
+    expect(gateway.load).toHaveBeenCalledWith('lesson.writing.early-systems');
+    expect(gateway.loadJourneySummaries).toHaveBeenCalledTimes(1);
+    expect(gateway.loadJourneySummaries).toHaveBeenCalledWith(['lesson.uruk.first-city', 'lesson.writing.early-systems']);
   });
 
   it('completes writing once, reveals its deterministic card once, and keeps Uruk isolated', async () => {

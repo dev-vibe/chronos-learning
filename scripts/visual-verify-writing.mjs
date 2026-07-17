@@ -2,7 +2,7 @@ import { chromium } from 'playwright';
 import { mkdir } from 'node:fs/promises';
 
 const base = process.env.VISUAL_BASE_URL ?? 'http://127.0.0.1:4174';
-const output = 'docs/pr/ash-57';
+const output = 'docs/pr/ash-63';
 await mkdir(output, { recursive: true });
 const browser = await chromium.launch({ headless: true });
 const errors = [];
@@ -110,4 +110,4 @@ await flow.close();
 
 await browser.close();
 if (errors.length) throw new Error(`Browser errors:\n${errors.join('\n')}`);
-console.log('ASH-57 visual verification passed: four viewports, light/dark, decoded media, direct route/refresh, mobile drawer, Uruk continuation, writing completion/card reveal/revisit, and invalid/unpublished states.');
+console.log('ASH-63 visual verification passed: four viewports, light/dark, decoded media, direct route/refresh, mobile drawer, Uruk continuation, writing completion/card reveal/revisit, and invalid/unpublished states.');
