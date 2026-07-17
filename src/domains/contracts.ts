@@ -44,7 +44,8 @@ const BaseModule = z.object({ id: StableId, claimIds: z.array(StableId).default(
 export const HistoricalMapModuleSchema = BaseModule.extend({
   type: z.literal('historical-map'), eyebrow: z.string().min(1), title: z.string().min(1), body: z.string().min(1), mediaId: StableId,
   periodLabel: z.string().min(1), focusPlace: z.string().min(1), modernContext: z.string().min(1), accessibleSummary: z.string().min(1),
-  uncertaintyNote: z.string().min(1), depictionStatus: z.enum(['evidence-based-reconstruction', 'illustrative-reconstruction']),
+  compactLabel: z.string().min(1), coordinateNote: z.string().min(1), uncertaintyNote: z.string().min(1),
+  depictionStatus: z.enum(['evidence-based-reconstruction', 'illustrative-reconstruction']),
 });
 export const LessonModuleSchema = z.discriminatedUnion('type', [
   BaseModule.extend({ type: z.literal('prose'), body: z.string().min(1) }),
@@ -52,7 +53,6 @@ export const LessonModuleSchema = z.discriminatedUnion('type', [
   BaseModule.extend({ type: z.literal('scene'), title: z.string().min(1), body: z.string().min(1), mediaId: StableId, hotspots: z.array(z.object({ label: z.string().min(1), detail: z.string().min(1) })).min(2).max(4) }),
   BaseModule.extend({ type: z.literal('evidence'), title: z.string().min(1), artifactLabel: z.string().min(1), body: z.string().min(1), mediaId: StableId }),
   HistoricalMapModuleSchema,
-  BaseModule.extend({ type: z.literal('connection'), eyebrow: z.string().min(1), title: z.string().min(1), body: z.string().min(1), lessonIds: z.array(StableId).min(1) }),
   BaseModule.extend({ type: z.literal('prompt'), promptId: StableId }),
 ]);
 export type LessonModule = z.infer<typeof LessonModuleSchema>;

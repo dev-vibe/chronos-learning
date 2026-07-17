@@ -177,21 +177,24 @@ Every journey uses the same shell. The left side shows the current journey as an
 3. Narrative sections: short, scannable segments with clear headings.
 4. Embedded media: image, map, audio, video, artifact viewer, or source excerpt.
 5. Knowledge blocks: person, invention, place, artifact, event, or idea in a simple inline form.
-6. Connections: what came before, what was happening elsewhere, and where this reappears.
+6. Optional contextual synthesis: what came before, what was happening elsewhere, or where a pattern reappears. Include it only when the comparison itself teaches something; it is lesson content, not a disguised link to another lesson.
 7. Check for understanding: retrieval, ordering, comparison, source interpretation, or explanation.
-8. Completion moment: next lesson and, only when meaningful, a card reveal or journey invitation.
+8. Explicit completion moment.
+9. Post-completion next step: continuing the current journey is primary; a card reveal or one authored optional exploration may appear when meaningful.
+
+A required lesson must not include a progress-bearing “Connections,” “Follow the idea forward,” or similar section whose main purpose is to route the learner elsewhere. Useful historical connections should appear at the point where they strengthen understanding. Any affordance to open a related lesson, Story Arc, Idea Trail, or Investigation must be visually distinct from that explanatory content, clearly optional, and unable to interrupt or alter required progress.
 
 ## 6.4 Contextual journey invitation
 
-When a lesson opens a meaningful deeper path, Chronos may display one contextual invitation after lesson completion. The invitation must identify the story, explain why it is now understandable, and preserve the option to continue the current journey.
+When a lesson opens a meaningful deeper path, Chronos may display one authored contextual invitation at the point where the relationship is most understandable—in the lesson, at completion, or later on Home or Library. It is never a lesson section, completion requirement, or substitute for explanatory content. The invitation must identify the related path, explain why it matters, preserve the learner’s lesson position, and remain subordinate to any current required action. Exploring, dismissing, saving, or ignoring it must not affect lesson or journey completion.
 
 ```
-A NEW STORY IS OPEN
+CONTINUE EXPLORING (OPTIONAL)
 
 ANCIENT EGYPT
 Follow Egypt from the first kingdoms to Cleopatra and beyond.
 
-[Explore this story]   [Continue World History]
+[Continue World History]   [Explore this story]
 ```
 
 ## 6.5 Shared lesson revisit behavior
@@ -606,6 +609,8 @@ type VisualBrief = {
 9. Media rights and attribution review.
 10. Publish and monitor learner comprehension.
 
+Historical lesson maps follow the repository's historical map production runbook. Their geography is grounded in authoritative real maps, independently cross-checked, and explicit about approximate or disputed features before any stylistic generation occurs.
+
 ## 13.2 Audience levels
 
 | Level | Target | Treatment |
@@ -646,7 +651,7 @@ Audience adaptation must change depth and assumptions, not merely replace simple
 
 ## 14.3 Generation constraints
 
-- No text, logos, watermarks, card titles, or UI chrome baked into generated artwork.
+- No educational prose, titles, logos, watermarks, generated legends, or UI chrome baked into generated artwork. Historical maps may contain only the short source-verified geographic labels or concise spatial annotations explicitly listed in the reviewed map brief; spelling and placement require manual review, while captions, provenance, and uncertainty explanations remain application content.
 - Prompts must specify a narrow date, place, role, and material culture rather than a broad label such as “Roman soldier.”
 - Prompts must list prohibited anachronisms.
 - Where evidence is insufficient, prefer artifact-focused or symbolic imagery.
@@ -665,7 +670,7 @@ Audience adaptation must change depth and assumptions, not merely replace simple
 | FR-005 | Completing a lesson updates it globally. | Must |
 | FR-006 | Journey progress derives from required entries. | Must |
 | FR-007 | Learner can browse Stories, Idea Trails, and Investigations. | Must |
-| FR-008 | System can invite a learner into a contextually relevant journey. | Must |
+| FR-008 | The system can offer at most one authored, contextually relevant optional journey without presenting it as lesson progress or competing with the learner's current required action. | Must |
 | FR-009 | Previously completed shared lessons can present a context-specific bridge. | Must |
 | FR-010 | Lesson completion can deterministically unlock a Knowledge Card. | Must |
 | FR-011 | Card unlock is idempotent and produces no duplicates. | Must |
@@ -718,6 +723,7 @@ Audience adaptation must change depth and assumptions, not merely replace simple
 - Card reveal abandonment should remain low and reveal duration short.
 - Collection mechanics should not cause distress over incompleteness.
 - Optional content should not make required progress ambiguous.
+- Related-lesson and journey invitations should not be mistaken for required lesson sections or the next required action.
 - Recommendations should not over-concentrate on already overrepresented regions or famous rulers.
 
 # 18. Delivery plan
@@ -787,6 +793,7 @@ Audience adaptation must change depth and assumptions, not merely replace simple
 - Given a mobile viewport, the journey rail is accessible without permanently reducing the lesson width.
 - Given a locked lesson, its reason is understandable or it is not shown as locked.
 - At every point, one primary next action is visually dominant.
+- Related paths never appear as progress-bearing lesson sections; their controls remain distinct from explanatory content and subordinate to the learner's current required action.
 
 ## 20.2 Progress
 
@@ -832,7 +839,6 @@ Audience adaptation must change depth and assumptions, not merely replace simple
 - Whether desktop global navigation uses a narrow icon rail or labeled sidebar.
 - Whether undiscovered cards appear as silhouettes, partial clues, or remain hidden.
 - How many World Spine lessons are appropriate for the first complete curriculum.
-- Whether journey invitations may interrupt the end-of-lesson flow or should appear only after the primary Continue action.
 - What level of educator assignment and reporting belongs in the consumer MVP.
 - Whether physical/printable card support is strategically valuable after digital validation.
 
@@ -1000,11 +1006,11 @@ Purpose: visualizes how “weird puzzle pieces” can become first-class learnin
 ## 23.12 Prompt 11 - Contextual journey invitation
 
 ```
-Create a high-fidelity 1440x1024 CHRONOS lesson-completion state after the learner finishes “Egypt Unifies.” Keep the standard Learn shell visible. At the natural end of the lesson, place a focused but non-blocking invitation panel.
+Create a high-fidelity 1440x1024 CHRONOS completed-lesson state after the learner explicitly finishes “Egypt Unifies.” Keep the standard Learn shell visible. Include a focused but subordinate optional exploration panel without prescribing a fixed position beneath the completion controls. It is not a lesson section and does not contribute to lesson progress.
 
-Panel eyebrow: “A NEW STORY IS OPEN.” Title: “ANCIENT EGYPT.” Description: “Follow Egypt from the first kingdoms to Cleopatra and beyond.” Include a small cinematic cover image of the Nile, early monumental architecture, and desert horizon. Two actions: primary amber-accent button “Explore this story,” secondary text button “Continue World History.” Add a concise detail “15 lessons · 3 chapters.”
+Panel eyebrow: “CONTINUE EXPLORING · OPTIONAL.” Title: “ANCIENT EGYPT.” Description: “Follow Egypt from the first kingdoms to Cleopatra and beyond.” Include a small cinematic cover image of the Nile, early monumental architecture, and desert horizon. Keep “Continue World History” as the primary action and “Explore this story” as the secondary action. Add a concise detail “15 lessons · 3 chapters.”
 
-The invitation should feel like a door opening from knowledge already earned, not an advertisement or modal interruption. Use [the full shared CHRONOS design language]. Keep the next action hierarchy obvious and preserve the learner’s existing journey.
+The invitation should feel like a door opening from knowledge already earned, not an advertisement, modal interruption, or replacement for the next lesson. Use [the full shared CHRONOS design language]. Keep the next action hierarchy obvious and preserve the learner’s existing journey.
 ```
 
 Purpose: defines the preferred discovery mechanism for deeper paths.
@@ -1055,6 +1061,8 @@ Purpose: checks visual consistency across the entire proposed product before imp
 # 24. Prompt template for production card artwork
 
 The previous prompts visualize the application. Production card artwork should be generated from a researched visual brief using a narrower template such as the following.
+
+Historical lesson maps use the separate [historical map production runbook](../content/historical-map-production.md), which includes a map-specific research and generation prompt. Do not adapt the card-art prompt below into a map prompt.
 
 ```
 Create a vertical historical illustration for a CHRONOS knowledge card. Generate ARTWORK ONLY: no border, no typography, no title, no symbols, no UI, no watermark.

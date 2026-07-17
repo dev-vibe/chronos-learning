@@ -18,6 +18,25 @@ describe('Uruk Learn progress boundary', () => {
     expect(state.status).toBe('in-progress');
   });
 
+  it('drops removed semantic section IDs from resume and exploration state', async () => {
+    const lessonId = 'lesson.uruk.first-city';
+    values.set(`chronos.learn.preview.v1:${lessonId}`, JSON.stringify({
+      learnerId: 'anonymous-preview',
+      lessonId,
+      status: 'in-progress',
+      resumeSectionId: 'section.uruk.removed-experiment',
+      attemptedPromptIds: [],
+      exploredSectionIds: ['section.uruk.the-built-city', 'section.uruk.removed-experiment'],
+      responses: {},
+      version: 1,
+    }));
+
+    const state = await new LocalPreviewGateway().load(lessonId);
+
+    expect(state.resumeSectionId).toBeUndefined();
+    expect(state.exploredSectionIds).toEqual(['section.uruk.the-built-city']);
+  });
+
   it('persists attempts and idempotently returns revisit completion states', async () => {
     const gateway = new LocalPreviewGateway(); const lessonId = 'lesson.uruk.first-city';
     await gateway.saveAttempt(lessonId, 'prompt.uruk.administration-evidence', 'Administrative tablets and cylinder seals');
@@ -79,7 +98,8 @@ describe('Uruk Learn progress boundary', () => {
   it('renders all canonical semantic sections and evidence metadata from the fixture', () => {
     const lesson = urukContent.lessons.find((item) => item.id === 'lesson.uruk.first-city')!;
     expect(lesson.sections.map((section) => section.id)).toEqual(lesson.sectionIdsRequired);
-    expect(lesson.sections).toHaveLength(8);
+    expect(lesson.sections).toHaveLength(7);
+    expect(lesson.sections.some((section) => section.id === 'section.uruk.connections')).toBe(false);
     expect(urukContent.media[0]).toMatchObject({ depictionMode: 'evidence-based-reconstruction', reviewStatus: 'provenance-review-required' });
   });
 });

@@ -19,16 +19,17 @@ A learner can open the World History journey, study one canonical Uruk lesson in
 
 ## Lesson structure
 
-The lesson uses five to eight stable semantic sections. Proposed IDs and intent:
+The lesson uses seven stable semantic sections. Proposed IDs and intent:
 
 1. `masthead` — c. 3500–3000 BCE, southern Mesopotamia, significance: city-scale coordination changed human life.
 2. `opening-city-question` — hook: what makes a settlement a city, and what problems appear when thousands live together?
 3. `water-food-and-labor` — irrigation, surplus, specialization, institutions, inequality; avoid a simple “civilization began” claim.
 4. `the-built-city` — Eanna/monumental precinct, mudbrick environment, neighborhoods, walls, and what archaeology can support.
-5. `tablets-and-administration` — clay tokens/tablets and proto-cuneiform as evidence of administration; connect to the separate writing lesson without absorbing it.
+5. `tablets-and-administration` — clay tokens/tablets and proto-cuneiform as evidence of administration; close with the concise synthesis that records and ideas could travel beyond one person's memory, connecting to the separate writing lesson without absorbing it.
 6. `evidence-and-reconstruction` — compare an actual artifact/site record with a clearly labeled reconstruction and list uncertainty.
-7. `connections` — earlier farming and later writing/cities; one restrained World Check.
-8. `check-and-complete` — two prompts, explanatory feedback, explicit completion, and next action.
+7. `check-and-complete` — one restrained World Check, two prompts, explanatory feedback, explicit completion, and post-completion next action.
+
+Uruk does not use a standalone `connections` section. Its relationship to earlier farming and later writing remains authored curriculum metadata and visible instructional synthesis inside `tablets-and-administration`; this useful knowledge is not withheld until completion. Because Early Writing Systems is already the next required World History entry, the actual navigation control appears in the completed state as the primary “Continue World History” action rather than through a separate link-like section.
 
 Each section has an immutable ID, heading, purpose, typed modules, and source/claim references. Copy from the legacy `uruk` record is input to a new research/editorial pass, not copied wholesale.
 
@@ -62,6 +63,8 @@ After the required attempts, the completion panel enables a single primary “Co
 
 Refresh, retry, double-click, and a second journey context must not duplicate completion or ownership. Card reveal is presentation after a successful command; closing it never rolls back completion.
 
+After completion, “Continue World History: Early Writing Systems” is the primary next action. It has no effect on Uruk completion beyond navigating to the derived next entry. No optional exploration panel is shown unless a distinct authored Story Arc, Idea Trail, or Investigation is eligible.
+
 ## Evidence and reconstruction treatment
 
 - Use at least one actual evidence asset (artifact, excavation/site plan, or institutionally sourced site image) on a neutral evidence surface with source, license, caption, and alt text.
@@ -69,7 +72,9 @@ Refresh, retry, double-click, and a second journey context must not duplicate co
 - The reconstruction caption identifies which details are supported, inferred, generalized, or unknown.
 - Administrative tablets/seals must not be described as proof of every social or political claim.
 - Claims distinguish observation, interpretation, and uncertainty. Avoid presenting Uruk as the uncontested first or only city.
-- Generated artwork contains no title, educational paragraph, or UI chrome.
+- The lesson may use a simple Chronos-styled raster map to explain Uruk's relationship to the southern Mesopotamian river, wetland, and Gulf system. Its geography follows real scholarly references and authoritative city coordinates; changing channels, marshes, and shoreline remain explicitly approximate.
+- The Uruk map's references, coordinate checks, uncertainty boundary, and generated-art lineage are recorded in `docs/research/uruk-southern-mesopotamia-map.md` and follow `docs/content/historical-map-production.md` as the reusable lesson-map process.
+- Generated artwork contains no title, educational paragraph, or UI chrome. The map may contain only the short, source-verified geographic labels and spatial annotations listed in its reviewed brief.
 
 The existing `public/images/places/uruk.jpg` is a candidate only. It must pass provenance, rights, historical, crop, resolution, and depiction review before use.
 
@@ -122,7 +127,7 @@ The migration output reports imported completion, ignored game fields, unresolve
 - Ancient Egypt, Writing Changes the World, Rapa Nui, shared-lesson UI beyond the minimum global-completion proof.
 - Audience variants beyond one default Explorer presentation.
 - Editorial CMS; repository files plus validation are sufficient.
-- Atlas, maps as global exploration, graph UI, analytics dashboards, educator views, offline lesson packs, and broad content migration.
+- Atlas and maps as a global exploration interface, graph UI, analytics dashboards, educator views, offline lesson packs, and broad content migration. A bounded explanatory map inside the authored Uruk lesson is part of the slice, not the deferred Atlas.
 - Deletion of `App.tsx` or other legacy runtime files before entry-point parity and rollback gates pass.
 
 ## Implementation sequence

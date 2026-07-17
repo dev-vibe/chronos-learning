@@ -1,5 +1,5 @@
 import React, { useCallback, useEffect, useMemo, useRef, useState } from 'react';
-import { Archive, BookOpen, Check, ChevronRight, Compass, Landmark, Menu, Moon, RotateCcw, ScrollText, Sun, X } from 'lucide-react';
+import { Archive, BookOpen, Check, ChevronRight, Compass, Landmark, Menu, Moon, RotateCcw, Sun, X } from 'lucide-react';
 import { urukContent } from '../../content/uruk';
 import type { LessonModule, LessonSection } from '../domains/contracts';
 import { resolveMediaAsset } from '../media/resolve';
@@ -70,9 +70,9 @@ function Module({ module, state, onAttempt }: ModuleProps) {
   }
   if (module.type === 'historical-map') {
     const media = mediaById.get(module.mediaId)!;
-    return <HistoricalMapModule module={module} media={media} />;
+    const sources = module.sourceIds.map((sourceId) => urukContent.sources.find((source) => source.id === sourceId)!).filter(Boolean);
+    return <HistoricalMapModule module={module} media={media} sources={sources} />;
   }
-  if (module.type === 'connection') return <aside className="connection-module"><span className="connection-icon"><ScrollText /></span><div><small>{module.eyebrow}</small><h3>{module.title}</h3><p>{module.body}</p></div><span className="connection-arrow" aria-hidden="true"><ChevronRight /></span></aside>;
   const prompt = promptById.get(module.promptId)!;
   const answer = state.responses[prompt.id] ?? '';
   if (prompt.kind === 'supported-selection') return <fieldset className="prompt"><legend>{prompt.question}</legend>{['A reconstruction painting of the city', 'Administrative tablets and cylinder seals', 'A later story about Uruk’s walls'].map((choice) => <label key={choice}><input type="radio" name={prompt.id} checked={answer === choice} onChange={() => onAttempt(prompt.id, choice)} /><span>{choice}</span></label>)}{answer && <p className="feedback" role="status"><strong>Good investigation.</strong> {prompt.explanation}</p>}</fieldset>;
