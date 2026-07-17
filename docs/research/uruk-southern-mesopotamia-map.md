@@ -4,6 +4,8 @@ Date: 2026-07-14
 Runtime media ID: `media.uruk.southern-mesopotamia-map`
 Module ID: `module.uruk.southern-mesopotamia-map`
 
+This note is the Uruk instance of the reusable [historical lesson map production runbook](../content/historical-map-production.md). New maps should start from the [historical map research-note template](templates/historical-map-research-note.md).
+
 ## Selected geographic reference
 
 The primary composition reference is Figure 28.1, “Southern Mesopotamia,” in Jason Ur’s chapter “Southern Mesopotamia,” in *A Companion to the Archaeology of the Ancient Near East* (D. T. Potts, ed., Blackwell, 2012):

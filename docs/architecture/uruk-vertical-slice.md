@@ -72,7 +72,9 @@ After completion, “Continue World History: Early Writing Systems” is the pri
 - The reconstruction caption identifies which details are supported, inferred, generalized, or unknown.
 - Administrative tablets/seals must not be described as proof of every social or political claim.
 - Claims distinguish observation, interpretation, and uncertainty. Avoid presenting Uruk as the uncontested first or only city.
-- Generated artwork contains no title, educational paragraph, or UI chrome.
+- The lesson may use a simple Chronos-styled raster map to explain Uruk's relationship to the southern Mesopotamian river, wetland, and Gulf system. Its geography follows real scholarly references and authoritative city coordinates; changing channels, marshes, and shoreline remain explicitly approximate.
+- The Uruk map's references, coordinate checks, uncertainty boundary, and generated-art lineage are recorded in `docs/research/uruk-southern-mesopotamia-map.md` and follow `docs/content/historical-map-production.md` as the reusable lesson-map process.
+- Generated artwork contains no title, educational paragraph, or UI chrome. The map may contain only the short, source-verified geographic labels and spatial annotations listed in its reviewed brief.
 
 The existing `public/images/places/uruk.jpg` is a candidate only. It must pass provenance, rights, historical, crop, resolution, and depiction review before use.
 
@@ -125,7 +127,7 @@ The migration output reports imported completion, ignored game fields, unresolve
 - Ancient Egypt, Writing Changes the World, Rapa Nui, shared-lesson UI beyond the minimum global-completion proof.
 - Audience variants beyond one default Explorer presentation.
 - Editorial CMS; repository files plus validation are sufficient.
-- Atlas, maps as global exploration, graph UI, analytics dashboards, educator views, offline lesson packs, and broad content migration.
+- Atlas and maps as a global exploration interface, graph UI, analytics dashboards, educator views, offline lesson packs, and broad content migration. A bounded explanatory map inside the authored Uruk lesson is part of the slice, not the deferred Atlas.
 - Deletion of `App.tsx` or other legacy runtime files before entry-point parity and rollback gates pass.
 
 ## Implementation sequence

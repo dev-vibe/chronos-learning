@@ -609,6 +609,8 @@ type VisualBrief = {
 9. Media rights and attribution review.
 10. Publish and monitor learner comprehension.
 
+Historical lesson maps follow the repository's historical map production runbook. Their geography is grounded in authoritative real maps, independently cross-checked, and explicit about approximate or disputed features before any stylistic generation occurs.
+
 ## 13.2 Audience levels
 
 | Level | Target | Treatment |
@@ -649,7 +651,7 @@ Audience adaptation must change depth and assumptions, not merely replace simple
 
 ## 14.3 Generation constraints
 
-- No text, logos, watermarks, card titles, or UI chrome baked into generated artwork.
+- No educational prose, titles, logos, watermarks, generated legends, or UI chrome baked into generated artwork. Historical maps may contain only the short source-verified geographic labels or concise spatial annotations explicitly listed in the reviewed map brief; spelling and placement require manual review, while captions, provenance, and uncertainty explanations remain application content.
 - Prompts must specify a narrow date, place, role, and material culture rather than a broad label such as “Roman soldier.”
 - Prompts must list prohibited anachronisms.
 - Where evidence is insufficient, prefer artifact-focused or symbolic imagery.
@@ -1059,6 +1061,8 @@ Purpose: checks visual consistency across the entire proposed product before imp
 # 24. Prompt template for production card artwork
 
 The previous prompts visualize the application. Production card artwork should be generated from a researched visual brief using a narrower template such as the following.
+
+Historical lesson maps use the separate [historical map production runbook](../content/historical-map-production.md), which includes a map-specific research and generation prompt. Do not adapt the card-art prompt below into a map prompt.
 
 ```
 Create a vertical historical illustration for a CHRONOS knowledge card. Generate ARTWORK ONLY: no border, no typography, no title, no symbols, no UI, no watermark.

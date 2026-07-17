@@ -13,6 +13,8 @@ Before changing product behavior, data models, or UI, read:
 
 For UI work, inspect the images in `docs/design/references/`. They express visual intent, hierarchy, and product personality. Rebuild them with real responsive components and accessible native text; do not embed screenshots or imitate generated text errors.
 
+For generated historical maps, follow `docs/content/historical-map-production.md`. A real authoritative map must anchor the geography; generated output is never the geographic source.
+
 ## Product invariants
 
 - Complexity belongs in the knowledge model, not learner controls.
@@ -23,7 +25,7 @@ For UI work, inspect the images in `docs/design/references/`. They express visua
 - Required core lessons normally include one to three explanatory prompts. Sincere attempt, not perfect accuracy, is the default completion requirement.
 - Knowledge Cards are deterministic memory/reward objects. No XP economy, random packs, duplicates, currencies, rarity spectacle, combat stats, or punitive streaks.
 - Reconstruction, evidence, interpretation, uncertainty, and later tradition must be explicitly distinguished.
-- Generated art contains no baked-in educational paragraphs, titles, or UI chrome.
+- Generated art contains no baked-in educational paragraphs, titles, or UI chrome. Historical maps may use only the short source-verified labels or spatial annotations explicitly listed in their reviewed map brief.
 - Historical accuracy, source provenance, accessibility, progress integrity, migrations, and recovery are release requirements.
 
 ## Rebuild strategy
