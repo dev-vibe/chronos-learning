@@ -40,7 +40,7 @@
 | Phase 0 - Product and Technical Foundation                      | CHR-001–009 | Validated scope, architecture, and interaction prototypes | Target learners understand the stable journey model.  |
 | Phase 1 - Core Platform and Data Model                          | CHR-010–028 | Typed domain model, persistence, and application services | Core rules work independently of UI.                  |
 | Phase 2 - Design System and Stable Learning Shell               | CHR-029–042 | Responsive stable Learn shell                             | A learner can complete lessons across journeys.       |
-| Phase 3 - Home, Journeys, and Discovery                         | CHR-043–051 | Home, switching, contextual discovery, and Library        | Learners can resume and intentionally open paths.     |
+| Phase 3 - Home, Journeys, and Discovery                         | CHR-043–051 | Home, switching, contextual discovery, and Library        | Learners can continue and intentionally open paths.   |
 | Phase 4 - Knowledge Cards and Personal Atlas                    | CHR-052–061 | Knowledge Cards, collection, and media pipeline           | Cards reward learning and preserve provenance.        |
 | Phase 5 - Investigations and Historical Reasoning               | CHR-062–065 | Evidence-based Investigation engine                       | Learners can reason under uncertainty.                |
 | Phase 6 - Audience Depth, Accessibility, and Resilience         | CHR-066–072 | Audience depth, accessibility, and resilience             | Core flows work inclusively and reliably.             |
@@ -502,7 +502,7 @@ CHR-026 \| Implement active journey and journey-switching service
 
 **Acceptance criteria**
 
-- User resumes each journey at its last meaningful entry.
+- User continues each journey at its active lesson; reopened lessons start at the top.
 
 - Switching is atomic and reflected across devices.
 
@@ -807,13 +807,13 @@ CHR-043 \| Build Home dashboard
 | **Priority:** P0 | **Dependencies:** CHR-026, CHR-030, CHR-031 | **Sequence:** 43 |
 |------------------|---------------------------------------------|------------------|
 
-**Outcome:** Provide resume, open stories, one recommendation, and restrained progress.
+**Outcome:** Provide current-journey continuation, open stories, one recommendation, and restrained progress.
 
 **Implementation notes:** Avoid dense analytics and catalogs.
 
 **Acceptance criteria**
 
-- Resume opens the exact active location.
+- Continue opens the active lesson at the top.
 
 - Open journeys show useful progress.
 
@@ -906,13 +906,13 @@ CHR-048 \| Build journey preview/detail page
 
 **Acceptance criteria**
 
-- Start/resume/save actions reflect state.
+- Start/continue/save actions reflect state.
 
 - Required versus optional scope is summarized.
 
 - Related journeys are curated and limited.
 
-CHR-049 \| Implement save, open, close, and resume journey actions
+CHR-049 \| Implement save, open, close, and continue journey actions
 
 | **Priority:** P0 | **Dependencies:** CHR-026, CHR-048 | **Sequence:** 49 |
 |------------------|------------------------------------|------------------|
@@ -1175,7 +1175,7 @@ CHR-063 \| Implement investigation response persistence
 
 **Acceptance criteria**
 
-- State resumes across devices.
+- State persists across devices.
 
 - Learner can revise without losing earlier reasoning history.
 
@@ -1550,7 +1550,7 @@ CHR-084 \| Instrument core product events
 
 **Outcome:** Implement the approved taxonomy across critical flows.
 
-**Implementation notes:** Capture starts, completions, resumes, switches, invitation actions, reveals, card revisits, and investigation revisions.
+**Implementation notes:** Capture starts, completions, returns, switches, invitation actions, reveals, card revisits, and investigation revisions.
 
 **Acceptance criteria**
 
@@ -1567,7 +1567,7 @@ CHR-085 \| Build product and learning-health dashboards
 
 **Outcome:** Make adoption, completion, confusion, and guardrail signals visible to the team.
 
-**Implementation notes:** Include journey completion, resume success, abandon points, reveal skips, revisit use, and investigation revision behavior.
+**Implementation notes:** Include journey completion, return-to-active-lesson success, abandon points, reveal skips, revisit use, and investigation revision behavior.
 
 **Acceptance criteria**
 
