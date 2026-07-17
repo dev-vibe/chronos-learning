@@ -4,7 +4,7 @@ Status: exact proposed scope for the first implementation after ASH-52. This doc
 
 ## Outcome
 
-A learner can open the World History journey, study one canonical Uruk lesson in the stable Learn shell, resume at a meaningful section, sincerely attempt a short understanding check, explicitly complete the lesson, and discover one Uruk Knowledge Card exactly once. The flow demonstrates content validation, evidence-aware visuals, durable progress, and the legacy migration seam without attempting the full rebuild.
+A learner can open the World History journey, study one canonical Uruk lesson in the stable Learn shell, track explored sections, sincerely attempt a short understanding check, explicitly complete the lesson, and discover one Uruk Knowledge Card exactly once. The flow demonstrates content validation, evidence-aware visuals, durable progress, and the legacy migration seam without attempting the full rebuild.
 
 ## Included end-to-end scope
 
@@ -13,7 +13,7 @@ A learner can open the World History journey, study one canonical Uruk lesson in
 - One journey with a small Foundations chapter and enough neighboring entry stubs to show previous/current/next state. Only Uruk requires full content.
 - Repository-authored, schema-validated content and a typed module renderer.
 - Authenticated durable progress plus a versioned local guest adapter.
-- Stable section resume, one understanding check, explicit completion, and deterministic card unlock.
+- Stable explored-section progress, one understanding check, explicit completion, and deterministic card unlock.
 - One Knowledge Card for Uruk with provenance and depiction labeling.
 - Migration fixtures for the legacy Uruk content and representative `completed_nodes` states.
 
@@ -33,14 +33,14 @@ Uruk does not use a standalone `connections` section. Its relationship to earlie
 
 Each section has an immutable ID, heading, purpose, typed modules, and source/claim references. Copy from the legacy `uruk` record is input to a new research/editorial pass, not copied wholesale.
 
-## Local progress and resume
+## Section exploration without lesson resume
 
 - Entering the lesson records `in_progress` without implying completion.
-- The client observes section visibility and stores a debounced local hint; only stable section IDs are persisted, never exact scroll pixels.
-- A meaningful resume update occurs after the learner engages with or passes a section threshold, not on every scroll event.
-- Returning opens the lesson at the last meaningful section with a quiet “Resume from…” option and an equally clear way to start at the top.
-- Authenticated state is durable across devices. Guest state is namespaced and versioned locally, with an explicit future migration seam.
-- If a stored section no longer exists, resume falls back to the nearest valid predecessor and records a recoverable diagnostic.
+- The client observes meaningful section visibility and persists stable explored-section IDs, never exact scroll pixels.
+- Explored sections support the compact progress count and journey-rail state only; they do not select a return position.
+- Every lesson open or reopen starts at the top. Do not show a resume banner/button, auto-scroll to a prior section, or restore a prior viewport.
+- Authenticated exploration state is durable across devices. Guest state is namespaced and versioned locally, with an explicit future migration seam.
+- If stored explored-section IDs no longer exist, ignore or clean them and record a recoverable diagnostic.
 
 ## Understanding check
 
@@ -49,7 +49,7 @@ Two required explanatory prompts are sufficient for the slice:
 1. A supported selection/comparison prompt: which evidence best supports the claim that Uruk required organized administration? Feedback explains why a tablet or seal is evidence and why a reconstruction is not direct evidence.
 2. A concise explanation prompt: name one opportunity and one cost or challenge of city life in Uruk, using lesson evidence.
 
-Completion requires a sincere attempt at both prompts, not perfect accuracy. Multiple-choice retries are unpunished; explanation acceptance uses transparent minimum engagement (non-empty, reasonable length) and does not pretend to grade historical sophistication automatically. Attempts have stable prompt IDs and are retained for resume; free text is excluded from general analytics.
+Completion requires a sincere attempt at both prompts, not perfect accuracy. Multiple-choice retries are unpunished; explanation acceptance uses transparent minimum engagement (non-empty, reasonable length) and does not pretend to grade historical sophistication automatically. Attempts have stable prompt IDs and are retained for completion eligibility and revisit; free text is excluded from general analytics.
 
 ## Explicit completion
 
@@ -100,7 +100,7 @@ The slice must include a reviewed mapping from legacy `uruk` to the canonical ID
 - legacy `completed_nodes` contains `uruk`;
 - duplicate/retried legacy rows after normalization;
 - legacy XP/card indexes present but ignored;
-- missing or invalid resume section;
+- missing or invalid explored-section ID;
 - existing canonical card ownership.
 
 The migration output reports imported completion, ignored game fields, unresolved assets, and exceptions. It does not write to the hosted project outside committed/rehearsed migrations.
@@ -108,7 +108,7 @@ The migration output reports imported completion, ignored game fields, unresolve
 ## Acceptance criteria
 
 - A new learner can reach Uruk from a stable World History rail/drawer and the URL identifies both journey and lesson context.
-- Refresh restores the selected journey, lesson, and last meaningful section.
+- Refresh restores the selected journey and lesson, preserves explored-section status, and opens the lesson at the top.
 - Desktop and mobile use the same lesson semantics; mobile replaces the pinned rail with an accessible drawer.
 - All lesson modules and references pass schema/content validation in CI.
 - The lesson presents five to eight semantic sections and distinguishes evidence from reconstruction.
@@ -136,6 +136,6 @@ The migration output reports imported completion, ignored game fields, unresolve
 2. Add domain schemas, content validation, and Uruk fixtures.
 3. Add committed empty-database migrations and RLS/integration tests.
 4. Build the routed shell and typed Uruk renderer.
-5. Implement resume, prompts, explicit completion, and card acquisition.
+5. Implement explored-section progress, prompts, explicit completion, and card acquisition.
 6. Run migration reconciliation, accessibility checks, responsive end-to-end tests, and a focused learner walkthrough.
 7. Switch an opt-in development entry point only after all acceptance criteria pass.
