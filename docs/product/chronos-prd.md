@@ -599,7 +599,7 @@ type VisualBrief = {
 
 ## 13.1 Lesson production workflow
 
-The canonical, step-by-step process is `docs/content/lesson-creation-runbook.md`. It governs research planning, source and claim weighting, content triage, learning design for ages 11–14, section/component storyboarding, images/maps/audio/video decisions, Knowledge Cards, understanding prompts, repository implementation, review, publication, learner observation, and correction. If a shorter summary or older runbook conflicts with it, the canonical runbook wins.
+The canonical, step-by-step process is `docs/content/lesson-creation-runbook.md`; the ordered source of work is `docs/content/lesson-production-queue.md`. A request equivalent to “Let's create the next Chronos lesson” invokes both: continue active work or select the first eligible Ready lesson, create/reuse its issue and branch, run the research/editorial approval gate, and continue through publication after approval. The runbook governs research planning, source and claim weighting, content triage, learning design for ages 11–14, section/component storyboarding, images/maps/audio/video decisions, Knowledge Cards, understanding prompts, repository implementation, review, publication, learner observation, and correction. If a shorter summary or older runbook conflicts with it, the canonical runbook wins.
 
 1. Node proposal: define why the lesson exists and where it may appear.
 2. Research brief: chronology, geography, claims, controversies, and sources.
