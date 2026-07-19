@@ -4,6 +4,51 @@ Status: canonical authoring process for every Chronos `Lesson` node. This runboo
 
 Use it for World History, Story Arc, Idea Trail, and Investigation lessons. A lesson may be small or ambitious, but no step may be skipped silently. If a step does not apply, record why.
 
+## Invocation contract: “Create the next lesson”
+
+The user should not need to restate this runbook. A request equivalent to:
+
+> Let's create the next Chronos lesson.
+
+is a complete instruction to start or continue lesson production.
+
+On that request, the agent must perform this boot sequence without asking the user to identify a subject:
+
+1. Locate `dev-vibe/chronos-learning`, fetch current remote state, and read [`AGENTS.md`](../../AGENTS.md).
+2. Confirm this runbook and [`docs/content/lesson-production-queue.md`](lesson-production-queue.md) exist on the latest `main`. If not, report the missing prerequisite instead of reconstructing the workflow from chat.
+3. Read this runbook, the production queue, its master Linear issue [ASH-65](https://linear.app/ashs-workshop/issue/ASH-65/maintain-the-canonical-chronos-lesson-production-queue), and all active issue/PR context referenced by the selected row.
+4. Inspect the repository's current lessons, journeys, cards, research notes, media, migrations, and content contracts before selecting or changing work.
+5. If exactly one queue entry is already `Researching`, `Awaiting approval`, `Implementing`, or `Review`, continue that lesson on its existing issue/branch/PR. “Next” never abandons unfinished active work.
+6. Otherwise, select the first `Ready` entry whose prerequisites are `Complete`. Skip `Planned`, `Blocked`, `Review`, and `Complete` entries. Never infer priority from legacy array order, tags, or whichever topic seems interesting.
+7. If no entry is eligible, summarize the queue and ask for the smallest necessary curriculum decision. Do not invent, reorder, or promote a lesson silently.
+8. Create or reuse one per-lesson Linear issue under the curriculum epic. Do not pre-create the rest of the queue as granular issues.
+9. Create or reuse the prescribed lesson branch from latest `main`, and change the selected queue row to `Researching` in that branch.
+10. Execute Stages 0–14 below and produce the durable research/editorial note and decision packet.
+11. Commit and push the research checkpoint, update Linear, set the queue row to `Awaiting approval`, and ask the user to approve only the material decisions identified by the runbook. Do not make the user repeat operational instructions.
+12. After approval, continue on the same issue, branch, and PR through Stages 15–18. Set the queue row to `Implementing`, then `Review`, and finally `Complete` only when the corresponding gates pass.
+13. When the lesson becomes `Complete`, ensure the queue still has reviewed future candidates. If fewer than three candidates remain, flag curriculum-queue replenishment without inventing entries.
+
+The agent may ask an early question only when a missing decision materially changes lesson identity, curriculum order, audience, or scope and cannot be resolved from the queue, repository, PRD, or existing issue. Ordinary research and implementation choices belong to this runbook.
+
+### Mandatory research/editorial checkpoint
+
+Stages 0–14 are one coherent discovery and design phase. Production lesson code, final asset acquisition/generation, publication migrations, and hosted changes wait until its decision packet is approved.
+
+The packet must concisely show:
+
+1. recommended learner-facing title and scope;
+2. essential question and durable understanding;
+3. major claims, sources, disagreement, and uncertainty;
+4. content deliberately deferred or rejected;
+5. ages 11–14 learning decisions;
+6. proposed section/component flow;
+7. media/map/video/no-media decisions;
+8. Knowledge Card or explicit no-card decision;
+9. understanding-check plan;
+10. only the decisions that genuinely require product-owner judgment.
+
+The user should be able to respond with “approved” or a few substantive changes. After approval, the agent continues without requiring a second implementation prompt.
+
 ## What this runbook protects
 
 Chronos exists to teach history well. Shipping a page is not the goal; helping an approximately 11–14-year-old build an accurate, memorable, evidence-aware mental model is the goal.
@@ -31,6 +76,7 @@ Read these before authoring:
 3. [`docs/design/design-system.md`](../design/design-system.md)
 4. [`docs/architecture/target-architecture.md`](../architecture/target-architecture.md)
 5. the active Linear issue and journey/curriculum context
+6. [`docs/content/lesson-production-queue.md`](lesson-production-queue.md)
 
 Use these specialist runbooks when triggered:
 
