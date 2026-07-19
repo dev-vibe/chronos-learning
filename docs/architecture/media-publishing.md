@@ -17,7 +17,7 @@ The product owner is not the default copyright analyst. Clear public-domain, CC0
        npm run media:add -- --id media.uruk.example --source public/images/places/example.jpg --collection uruk --fallback /images/optimized/uruk/example.optimized.webp --preset photo --widths 480,960,1600
 
    Use photo for photographs, picture for mixed illustrations, drawing only after checking its output, and default when unsure. The build always includes the source width and refuses unsafe paths or duplicate IDs.
-3. Add the asset’s source/provenance, alt text, depiction mode, and review state to authored content. New assets stay provenance-review-required until redistribution rights are actually confirmed.
+3. Add the asset’s source/provenance, alt text, depiction mode, learner-facing `rightsLabel`, and internal review state to authored content. New assets stay `provenance-review-required` until redistribution rights are actually confirmed. The publisher uses `reviewStatus`; learner UI must never present that internal workflow field as historical or editorial approval.
 4. Build and verify:
 
        npm run media:build

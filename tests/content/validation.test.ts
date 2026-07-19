@@ -42,6 +42,12 @@ it('catches broken writing sources, claims, prompts, media, hero, and unlock ref
   expect(errors).toMatch(/broken hero media reference media.missing.hero/);
   expect(errors).toMatch(/invalid card unlock reference lesson.missing.writing/);
 });
+it('requires learner-facing media rights copy independently of the internal publication gate', () => {
+  const fixture = structuredClone(chronosContent);
+  const writingMedia = fixture.media.find((media) => media.id === 'media.writing.proto-cuneiform-tablet')!;
+  delete (writingMedia as Partial<typeof writingMedia>).rightsLabel;
+  expect(validateContent(fixture).errors.join(' ')).toMatch(/rightsLabel/);
+});
 it('validates the assembled cross-module graph for duplicates and broken references', () => {
   const duplicateBundle = assembleContent(
     [farmingSettlementsContent, urukContent, earlyWritingSystemsContent, urukContent],

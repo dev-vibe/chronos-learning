@@ -157,6 +157,7 @@ export const earlyWritingMedia: MediaAsset[] = [
     alt: 'Small clay tablet with incised signs, round numerical impressions, and part of a rolled cylinder-seal image',
     depictionMode: 'evidence',
     depictionLabel: 'Surviving proto-cuneiform tablet — The Met, 1988.433.1, Public Domain',
+    rightsLabel: 'Public Domain · The Met Open Access',
     sourceIds: ['source.met.proto-cuneiform-tablet'],
     visualBriefRef: 'docs/research/early-writing-systems.md#media-and-knowledge-card-plan',
     reviewStatus: 'approved',

@@ -137,7 +137,7 @@ Research stopped when the central claims were supported by an object record plus
 
 ## Media and Knowledge Card plan
 
-The single runtime asset remains `media.writing.proto-cuneiform-tablet`, using The Met’s public-domain image of 1988.433.1. Its teaching purpose is close observation of surviving evidence. Depiction mode is `evidence`; the alt text names visible incisions, impressions, clay, and the partial seal without claiming that “barley distribution” is visible. Detailed lineage remains in the catalog and release manifests. No map, video, diagram, or reconstruction passes the teaching-purpose gate.
+The single runtime asset remains `media.writing.proto-cuneiform-tablet`, using The Met’s public-domain image of 1988.433.1. Its teaching purpose is close observation of surviving evidence. Depiction mode is `evidence`; the alt text names visible incisions, impressions, clay, and the partial seal without claiming that “barley distribution” is visible. Learner-facing provenance uses `rightsLabel: Public Domain · The Met Open Access`; the separate `approved` media review status remains an internal publication gate and is not rendered as lesson approval. Detailed lineage remains in the catalog and release manifests. No map, video, diagram, or reconstruction passes the teaching-purpose gate.
 
 The lesson earns one deterministic Witness card: `card.artifact.proto-cuneiform-tablet`. The card anchors the distinction between the surviving object and the scholarly reading. Stable identity, media, and unlock configuration remain unchanged; revised facts emphasize observation, probable interpretation, and uncertainty.
 

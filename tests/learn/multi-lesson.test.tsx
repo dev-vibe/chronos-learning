@@ -57,6 +57,11 @@ describe('multi-lesson Learn runtime', () => {
     expect(document.title).toContain('From Marks to Proto-Cuneiform');
     expect(document.querySelectorAll('[data-section-id]')).toHaveLength(8);
     expect((document.querySelector('.hero-media') as HTMLImageElement).src).toContain('/images/optimized/early-writing/proto-cuneiform-tablet.optimized.webp');
+    expect(screen.getByText('Public Domain · The Met Open Access')).toBeTruthy();
+    const sourceLink = screen.getByRole('link', { name: 'The Metropolitan Museum of Art' });
+    expect(sourceLink.getAttribute('href')).toBe('https://www.metmuseum.org/art/collection/search/329081');
+    expect(screen.queryByText('Review state')).toBeNull();
+    expect(screen.queryByText(/^approved$/i)).toBeNull();
     expect(screen.getByRole('link', { name: /Previous: Uruk/ }).getAttribute('href')).toBe('/learn/lesson.uruk.first-city');
     const journey = screen.getByLabelText('World History journey');
     const publishedLinks = within(journey).getAllByRole('link').map((link) => link.getAttribute('href'));

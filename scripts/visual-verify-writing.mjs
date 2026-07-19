@@ -20,6 +20,13 @@ async function openWriting(page) {
   if (await page.locator('[data-section-id]').count() !== 8) throw new Error('Writing lesson did not render eight semantic sections.');
   const previous = page.getByRole('link', { name: /Previous: Uruk/ }).first();
   if (await previous.getAttribute('href') !== '/learn/lesson.uruk.first-city') throw new Error('Writing previous action does not resolve to Uruk.');
+  const evidence = page.locator('.evidence-module').first();
+  const provenance = await evidence.locator('dl').innerText();
+  const normalizedProvenance = provenance.toLowerCase();
+  if (!normalizedProvenance.includes('source') || !provenance.includes('The Metropolitan Museum of Art') || !normalizedProvenance.includes('rights') || !provenance.includes('Public Domain · The Met Open Access')) throw new Error('Evidence provenance did not render the learner-facing source and rights copy.');
+  if (provenance.includes('Review state') || /^approved$/im.test(provenance)) throw new Error('Evidence provenance exposed the internal media publication review state.');
+  const sourceHref = await evidence.getByRole('link', { name: 'The Metropolitan Museum of Art' }).getAttribute('href');
+  if (sourceHref !== 'https://www.metmuseum.org/art/collection/search/329081') throw new Error('Evidence source link did not resolve to the canonical institutional record.');
   const images = page.locator('article img');
   for (let index = 0; index < await images.count(); index += 1) {
     await images.nth(index).evaluate(async (image) => {

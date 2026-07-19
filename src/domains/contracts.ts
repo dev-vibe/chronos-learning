@@ -38,7 +38,7 @@ export const MediaLocatorSchema = z.discriminatedUnion('provider', [
     variants: z.array(MediaVariantSchema).min(1),
   }),
 ]);
-export const MediaAssetSchema = z.object({ id: StableId, locator: MediaLocatorSchema, alt: z.string().min(1), depictionMode: z.enum(['evidence','evidence-based-reconstruction','diagram','map']), depictionLabel: z.string().min(1), sourceIds: z.array(StableId).min(1), visualBriefRef: z.string().min(1), reviewStatus: z.enum(['approved','provenance-review-required']) });
+export const MediaAssetSchema = z.object({ id: StableId, locator: MediaLocatorSchema, alt: z.string().min(1), depictionMode: z.enum(['evidence','evidence-based-reconstruction','diagram','map']), depictionLabel: z.string().min(1), rightsLabel: z.string().min(1), sourceIds: z.array(StableId).min(1), visualBriefRef: z.string().min(1), reviewStatus: z.enum(['approved','provenance-review-required']) });
 
 const BaseModule = z.object({ id: StableId, claimIds: z.array(StableId).default([]), sourceIds: z.array(StableId).default([]) });
 export const HistoricalMapModuleSchema = BaseModule.extend({

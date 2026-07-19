@@ -27,7 +27,10 @@ export function validateContent(input: ContentBundle) {
   const parse = <T>(items: unknown[], schema: any, label: string): T[] => items.flatMap((item, index) => {
     const result = schema.safeParse(item);
     if (!result.success) {
-      errors.push(`${label}[${index}]: ${result.error.issues.map((issue: any) => issue.message).join(', ')}`);
+      errors.push(result.error.issues.map((issue: any) => {
+        const path = issue.path.length ? `.` + issue.path.join('.') : '';
+        return `${label}[${index}]${path}: ${issue.message}`;
+      }).join(', '));
       return [];
     }
     return [result.data];

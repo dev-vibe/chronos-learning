@@ -144,9 +144,10 @@ MediaAsset
   kind
   alt
   depictionMode
+  rightsLabel (learner-facing license/rights summary)
   sourceIds
   license
-  reviewStatus
+  reviewStatus (internal publication gate; never learner-facing)
   original: bucket, objectKey, sha256, bytes
   variants[]: width, height, format, bucket, objectKey, sha256, bytes
 ```
