@@ -56,8 +56,8 @@ Find or create an image that is historically suitable, publicly redistributable,
    - generation lineage when applicable;
    - canonical source and final runtime paths.
 9. Only after an approved decision:
-   - add or update the Source and MediaAsset records;
-   - change MediaAsset.reviewStatus to approved;
+   - add or update the Source and MediaAsset records, including a concise learner-facing `rightsLabel`;
+   - change the internal `MediaAsset.reviewStatus` publication gate to approved; never render that workflow value as learner-facing historical/editorial approval;
    - run media:add when the catalog entry is new;
    - run media:build, media:verify, validate:content, and tests;
    - publish with the trusted server-side credential and verify remote checksums.

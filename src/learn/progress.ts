@@ -1,11 +1,13 @@
 import type { CompleteLessonResult, LessonProgress } from '../domains/contracts';
 import { isSupabaseConfigured, supabase } from '../../lib/supabase';
-import { urukContent } from '../../content/uruk';
+import { chronosContent } from '../../content/chronos';
 
 export type PromptResponses = Record<string, string>;
 export type LearnState = LessonProgress & { exploredSectionIds: string[]; responses: PromptResponses; cardId?: string; version: 1 };
+export type JourneyProgressSummary = Pick<LessonProgress, 'lessonId' | 'status' | 'completedAt'>;
 export interface LearnProgressGateway {
   load(lessonId: string): Promise<LearnState>;
+  loadJourneySummaries(lessonIds: readonly string[]): Promise<Record<string, JourneyProgressSummary>>;
   markSection(lessonId: string, sectionId: string): Promise<LearnState>;
   saveAttempt(lessonId: string, promptId: string, response: string): Promise<LearnState>;
   complete(lessonId: string, idempotencyKey: string): Promise<CompleteLessonResult>;
@@ -13,8 +15,9 @@ export interface LearnProgressGateway {
 
 const key = (lessonId: string) => `chronos.learn.preview.v1:${lessonId}`;
 const empty = (lessonId: string): LearnState => ({ learnerId: 'anonymous-preview', lessonId, status: 'in-progress', attemptedPromptIds: [], exploredSectionIds: [], responses: {}, version: 1 });
-const requiredPrompts = (lessonId: string) => urukContent.lessons.find((item) => item.id === lessonId)?.promptIds ?? [];
-const currentSectionIds = (lessonId: string) => new Set(urukContent.lessons.find((item) => item.id === lessonId)?.sections.map((section) => section.id) ?? []);
+const requiredPrompts = (lessonId: string) => chronosContent.lessons.find((item) => item.id === lessonId)?.promptIds.filter((id) => chronosContent.prompts.find((prompt) => prompt.id === id)?.required) ?? [];
+const currentSectionIds = (lessonId: string) => new Set(chronosContent.lessons.find((item) => item.id === lessonId)?.sections.map((section) => section.id) ?? []);
+const cardForLesson = (lessonId: string) => chronosContent.cards.find((card) => card.unlockLessonId === lessonId)?.id;
 
 export function normalizeLearnState(state: LearnState): LearnState {
   const validSections = currentSectionIds(state.lessonId);
@@ -36,6 +39,12 @@ export class LocalPreviewGateway implements LearnProgressGateway {
   }
   private write(state: LearnState) { localStorage.setItem(key(state.lessonId), JSON.stringify(state)); return state; }
   async load(lessonId: string) { return this.read(lessonId); }
+  async loadJourneySummaries(lessonIds: readonly string[]) {
+    return Object.fromEntries([...new Set(lessonIds)].map((lessonId) => {
+      const state = this.read(lessonId);
+      return [lessonId, { lessonId, status: state.status, completedAt: state.completedAt }];
+    }));
+  }
   async markSection(lessonId: string, sectionId: string) {
     const state = this.read(lessonId);
     if (!state.exploredSectionIds.includes(sectionId)) state.exploredSectionIds.push(sectionId);
@@ -52,8 +61,8 @@ export class LocalPreviewGateway implements LearnProgressGateway {
     const state = this.read(lessonId);
     if (state.status === 'completed') return { completion: 'already-completed', cardOwnership: 'already-owned', cardId: state.cardId } as const;
     if (!requiredPrompts(lessonId).every((id) => state.attemptedPromptIds.includes(id))) throw new Error('required prompt attempts missing');
-    state.status = 'completed'; state.completedAt = new Date().toISOString(); state.cardId = 'card.place.uruk'; this.write(state);
-    return { completion: 'newly-completed', cardOwnership: 'newly-acquired', cardId: state.cardId } as const;
+    state.status = 'completed'; state.completedAt = new Date().toISOString(); state.cardId = cardForLesson(lessonId); this.write(state);
+    return { completion: 'newly-completed', cardOwnership: state.cardId ? 'newly-acquired' : 'not-configured', ...(state.cardId ? { cardId: state.cardId } : {}) } as const;
   }
 }
 
@@ -97,6 +106,25 @@ export class SupabaseLearnGateway implements LearnProgressGateway {
     const { data: ownership } = ownershipResult;
     const responses = Object.fromEntries((attempts ?? []).map((item: any) => [item.prompt_id, String(item.response?.answer ?? item.response?.value ?? '')]));
     return normalizeLearnState({ learnerId: this.learnerId, lessonId, status: progress.status === 'completed' ? 'completed' : 'in-progress', completedAt: progress.completed_at ?? undefined, resumeSectionId: resume?.section_id, attemptedPromptIds: Object.keys(responses), exploredSectionIds: (explored ?? []).map((item: any) => item.section_id), responses, cardId: ownership?.card_id, version: 1 });
+  }
+  async loadJourneySummaries(lessonIds: readonly string[]): Promise<Record<string, JourneyProgressSummary>> {
+    const uniqueIds = [...new Set(lessonIds)];
+    if (uniqueIds.length === 0) return {};
+    const { data, error } = await this.client
+      .from('lesson_progress')
+      .select('lesson_id,status,completed_at')
+      .eq('learner_id', this.learnerId)
+      .in('lesson_id', uniqueIds);
+    if (error) throw error;
+    const stored = new Map((data ?? []).map((row: any) => [row.lesson_id, row]));
+    return Object.fromEntries(uniqueIds.map((lessonId) => {
+      const row = stored.get(lessonId);
+      return [lessonId, {
+        lessonId,
+        status: row?.status === 'completed' ? 'completed' : 'in-progress',
+        completedAt: row?.completed_at ?? undefined,
+      }];
+    }));
   }
   async markSection(lessonId: string, sectionId: string) {
     await this.ensure(lessonId);

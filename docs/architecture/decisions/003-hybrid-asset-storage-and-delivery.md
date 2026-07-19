@@ -3,7 +3,7 @@
 - Status: Accepted; Uruk canary implementation in progress
 - Date: 2026-07-14
 - Decision owners: Chronos product and engineering
-- Related work: ASH-56 / CHR-058 through CHR-061, ASH-57 / CHR-073 through CHR-082
+- Related work: ASH-56 / CHR-058 through CHR-061, ASH-63 / CHR-073 through CHR-082
 
 ## Decision summary
 
@@ -144,9 +144,10 @@ MediaAsset
   kind
   alt
   depictionMode
+  rightsLabel (learner-facing license/rights summary)
   sourceIds
   license
-  reviewStatus
+  reviewStatus (internal publication gate; never learner-facing)
   original: bucket, objectKey, sha256, bytes
   variants[]: width, height, format, bucket, objectKey, sha256, bytes
 ```

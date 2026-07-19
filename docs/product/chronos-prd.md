@@ -129,7 +129,7 @@ Progress
 
 | Destination | Purpose |
 | --- | --- |
-| Home | Resume the current journey, see a few open stories, and receive one restrained recommendation. |
+| Home | Continue the current journey at its active lesson, see a few open stories, and receive one restrained recommendation. |
 | Learn | Open the current journey and lesson in the stable rail-plus-content interface. |
 | Library | Browse authored Stories, Idea Trails, and Investigations. |
 | Collection | Browse discovered Knowledge Cards and their connections. |
@@ -139,7 +139,8 @@ On mobile, use a five-item bottom navigation only if Collection merits a primary
 
 ## 5.2 Navigation rules
 
-- Learn always resumes the most recent active journey and lesson.
+- Learn opens the most recent active journey and lesson; the lesson always starts at the top.
+- Explored-section progress is informational only. Reopening a lesson never restores a prior section, scroll position, or viewport.
 - The current journey selector changes the authored path, not the visual layout.
 - The Library never opens as an overwhelming undifferentiated catalog; it begins with three comprehensible categories and curated recommendations.
 - Contextual journey invitations are preferred over asking learners to browse first.
@@ -589,7 +590,7 @@ type VisualBrief = {
 
 - Lesson completion is global and keyed by learner plus canonical lesson.
 - Journey completion percentage is computed from required entries only unless the UI explicitly shows optional completion separately.
-- Opening a journey creates journey progress but does not change the active journey until the learner starts or resumes it.
+- Opening a journey creates journey progress but does not change the active journey until the learner starts or continues it.
 - Card discovery is idempotent.
 - Revisiting a shared lesson may record contextual completion for analytics but does not create a second canonical completion.
 - Audience-level changes do not erase completion; the learner may revisit richer content voluntarily.
@@ -663,7 +664,7 @@ Audience adaptation must change depth and assumptions, not merely replace simple
 
 | ID | Requirement | Priority |
 | --- | --- | --- |
-| FR-001 | Learner can resume the current journey and lesson from Home. | Must |
+| FR-001 | Learner can continue the current journey at its active lesson from Home; the lesson opens at the top. | Must |
 | FR-002 | Learner can switch among opened journeys without losing progress. | Must |
 | FR-003 | Every journey renders in the same learning shell. | Must |
 | FR-004 | A lesson may appear in multiple journeys through separate Journey Entries. | Must |
@@ -700,7 +701,7 @@ Audience adaptation must change depth and assumptions, not merely replace simple
 ## 17.1 Product health
 
 - Percentage of new learners who begin the first lesson without assistance.
-- Percentage who can resume correctly after returning.
+- Percentage who return to the correct active journey and lesson.
 - Lesson completion and comprehension by lesson, not merely click-through.
 - Journey completion and voluntary journey switching.
 - Rate at which contextual invitations are opened, deferred, or dismissed.
@@ -918,7 +919,7 @@ Purpose: specifies the mobile replacement for a persistent desktop rail.
 ```
 Create a high-fidelity 1440x1024 desktop Home dashboard for CHRONOS.
 
-Use a narrow global navigation rail at left. Main page title “Welcome back.” The dominant module is a large Continue card for “World History — The Bronze Age Network,” with progress, a beautiful historically grounded image crop, and one clear “Resume lesson” button. Below, show “Your Open Stories” with exactly three refined journey cards: Ancient Egypt 4/15, Writing Changes the World 2/12, Archaeological Mysteries 1/10. Each journey card contains a subtle period label, progress, and calm image, not excessive metadata.
+Use a narrow global navigation rail at left. Main page title “Welcome back.” The dominant module is a large Continue card for “World History — The Bronze Age Network,” with progress, a beautiful historically grounded image crop, and one clear “Continue lesson” button. Below, show “Your Open Stories” with exactly three refined journey cards: Ancient Egypt 4/15, Writing Changes the World 2/12, Archaeological Mysteries 1/10. Each journey card contains a subtle period label, progress, and calm image, not excessive metadata.
 
 Add one featured recommendation labeled “Because you explored early writing,” recommending “How Humans Stored Memory.” Add a restrained “Recently Discovered” row with three small premium knowledge-card previews: Rosetta Stone, Hatshepsut, and Cuneiform.
 

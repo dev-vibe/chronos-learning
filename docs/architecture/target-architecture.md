@@ -19,7 +19,7 @@ Status: proposed architecture for ASH-52. It establishes boundaries and the migr
 | `identity` | session resolution, learner identity, guest-to-account handoff, profile preferences | lesson completion rules |
 | `curriculum` | canonical Lesson, typed modules, historical dates, claims, entities, sources, visual assets | journey order or user state |
 | `journeys` | Journey, Chapter, JourneyEntry, requirement level, framing, prerequisites, next-entry derivation | canonical lesson copy |
-| `progress` | lesson start/section/resume/check/completion commands, active journey location, derived journey progress | XP, levels, UI animation |
+| `progress` | lesson start/section exploration/check/completion commands, active journey location, derived journey progress | XP, levels, UI animation |
 | `cards` | KnowledgeCard, unlock configuration, unique ownership, reveal result, card detail connections | random drops, duplicates, rarity |
 | `content-ingestion` | parse, validate, resolve references, publish snapshots, migration fixtures | learner requests |
 | `media` | asset identity, provenance, license, depiction mode, derivatives, review state | baked-in educational text |
@@ -40,7 +40,7 @@ flowchart LR
   Legacy["Legacy adapters + mapping ledger"] --> Services
 ```
 
-The client owns transient interaction state, optimistic presentation, current viewport behavior, and a local resume hint. It never decides canonical completion, unlocks, prerequisites, or ownership. Server/application services authorize commands and return learner-safe projections. Repository interfaces isolate Supabase queries from domain rules. The database owns durable identities, uniqueness, foreign keys, command idempotency, and transaction boundaries.
+The client owns transient interaction state, optimistic presentation, current viewport behavior, and a local explored-section hint. It never decides canonical completion, unlocks, prerequisites, or ownership. Server/application services authorize commands and return learner-safe projections. Repository interfaces isolate Supabase queries from domain rules. The database owns durable identities, uniqueness, foreign keys, command idempotency, and transaction boundaries.
 
 For the first slice, a Vite SPA may call Supabase through narrowly typed repository adapters if no trusted server runtime exists yet, but this is a temporary seam: RLS must enforce ownership and all domain command behavior must remain in testable services, not components. Before public beta, completion plus card acquisition should run through a trusted transactional boundary (database function or server endpoint) with explicit authorization and tests.
 
@@ -52,7 +52,7 @@ A Journey is an authored path, not a query or tag filter. `journeys` owns its ki
 
 ### Lesson
 
-`curriculum` owns the canonical Lesson identity, chronology, significance, claims, sources, entities, semantic sections, and typed modules. Stable section IDs support resume. Journey-specific introductions, transitions, title overrides, and significance live on JourneyEntry.
+`curriculum` owns the canonical Lesson identity, chronology, significance, claims, sources, entities, semantic sections, and typed modules. Stable section IDs support explored-section tracking and anchor navigation. Reopening a lesson always starts at the top. Journey-specific introductions, transitions, title overrides, and significance live on JourneyEntry.
 
 ### Knowledge Card
 
@@ -84,7 +84,7 @@ src/
   infrastructure/
     supabase/
     content/
-    local-resume/
+    local-progress/
   ui/
     primitives/
     learn/
@@ -117,7 +117,7 @@ Folder names may change when routing/runtime choices are implemented, but depend
 
 Authoring records should be typed, schema-validated repository files during the initial slice. The ingestion layer produces a resolved, immutable learner-facing snapshot. This keeps reviews and diffs in Git without forcing UI components to import raw files. Publication can later target database tables or versioned bundles without changing domain APIs.
 
-Learner data belongs in PostgreSQL: profile/preferences, journey locations, lesson progress, section resume, prompt attempts, idempotency commands, and card ownership. Content IDs stored with progress must reference immutable canonical IDs or a versioned alias table. Editorial content and learner data have separate lifecycles.
+Learner data belongs in PostgreSQL: profile/preferences, journey locations, lesson progress, explored sections, prompt attempts, idempotency commands, and card ownership. Content IDs stored with progress must reference immutable canonical IDs or a versioned alias table. Editorial content and learner data have separate lifecycles.
 
 ## Initial persistence constraints
 
@@ -125,7 +125,7 @@ Learner data belongs in PostgreSQL: profile/preferences, journey locations, less
 - unique `(journey_id, position)` and `(journey_id, lesson_id, context_variant)` as authored;
 - unique `(learner_id, lesson_id)` progress;
 - unique `(learner_id, card_id)` ownership;
-- stable `(lesson_id, section_id)` resume target;
+- stable unique `(lesson_id, section_id)` explored-section identity;
 - idempotency key on completion commands;
 - RLS on every exposed learner table with ownership checks in `USING` and `WITH CHECK`;
 - no authorization based on editable `user_metadata`;
@@ -153,7 +153,7 @@ Legacy ID aliases are migration metadata, not permanent permission to preserve b
 - Content validation: IDs, references, sources, licenses, section IDs, depiction labels, journey reachability.
 - Repository/integration tests: RLS ownership, retries, completion plus card transaction, guest migration reconciliation.
 - UI tests: typed module rendering, keyboard/focus, reduced motion, responsive rail/drawer.
-- End-to-end: resume Uruk, attempt check, explicitly complete, reveal once, revisit without duplicate.
+- End-to-end: open Uruk at the top with prior exploration state intact, attempt check, explicitly complete, reveal once, revisit without duplicate.
 
 ## Decisions still open
 

@@ -1,23 +1,31 @@
 import React, { useCallback, useEffect, useMemo, useRef, useState } from 'react';
-import { Archive, BookOpen, Check, ChevronRight, Compass, Landmark, Menu, Moon, RotateCcw, Sun, X } from 'lucide-react';
-import { urukContent } from '../../content/uruk';
-import type { LessonModule, LessonSection } from '../domains/contracts';
+import { Archive, BookOpen, Check, ChevronLeft, ChevronRight, Compass, Landmark, Menu, Moon, RotateCcw, Sun, X } from 'lucide-react';
+import { chronosContent } from '../../content/chronos';
+import type { Journey, KnowledgeCard, Lesson, LessonModule, LessonSection } from '../domains/contracts';
 import { resolveMediaAsset } from '../media/resolve';
 import { HistoricalMapModule } from './HistoricalMapModule';
 import { ResponsiveMedia } from './ResponsiveMedia';
-import { completionKey, createProgressGateway, LocalPreviewGateway, type LearnProgressGateway, type LearnState } from './progress';
+import { completionKey, createProgressGateway, LocalPreviewGateway, type JourneyProgressSummary, type LearnProgressGateway, type LearnState } from './progress';
+import { derivePromptRequirementState } from './prompt-requirements';
 import './learn.css';
 
-const lesson = urukContent.lessons.find((item) => item.id === 'lesson.uruk.first-city')!;
-const journey = urukContent.journeys[0];
-const promptById = new Map(urukContent.prompts.map((item) => [item.id, item]));
-const mediaById = new Map(urukContent.media.map((item) => [item.id, item]));
-const card = urukContent.cards[0];
-const reconstruction = mediaById.get('media.uruk.reconstruction')!;
+const lessonById = new Map(chronosContent.lessons.map((item) => [item.id, item]));
+const promptById = new Map(chronosContent.prompts.map((item) => [item.id, item]));
+const mediaById = new Map(chronosContent.media.map((item) => [item.id, item]));
+const cardById = new Map(chronosContent.cards.map((item) => [item.id, item]));
+const cardByLessonId = new Map(chronosContent.cards.map((item) => [item.unlockLessonId, item]));
+const sourceById = new Map(chronosContent.sources.map((item) => [item.id, item]));
+const firstPublishedLessonId = chronosContent.journeys.flatMap((item) => item.chapters).sort((a, b) => a.position - b.position).flatMap((chapter) => [...chapter.entries].sort((a, b) => a.position - b.position)).map((entry) => entry.lessonId).find((id) => lessonById.get(id)?.status === 'published') ?? chronosContent.lessons.find((item) => item.status === 'published')?.id ?? '';
 
-type JourneyRailProps = { open: boolean; onClose(): void; onNavigate(id: string): void; explored: string[]; currentSectionId?: string; returnFocus: React.RefObject<HTMLButtonElement | null> };
+const findJourney = (lessonId: string) => chronosContent.journeys.find((item) => item.chapters.some((chapter) => chapter.entries.some((entry) => entry.lessonId === lessonId)));
+const orderedEntries = (journey: Journey) => [...journey.chapters].sort((a, b) => a.position - b.position).flatMap((chapter) => [...chapter.entries].sort((a, b) => a.position - b.position).map((entry) => ({ chapter, entry, lesson: lessonById.get(entry.lessonId)! })));
 
-function JourneyRail({ open, onClose, onNavigate, explored, currentSectionId, returnFocus }: JourneyRailProps) {
+type JourneyRailProps = {
+  open: boolean; onClose(): void; onNavigate(id: string): void; lesson: Lesson; journey: Journey;
+  summaries: Record<string, JourneyProgressSummary>; currentState: LearnState; currentSectionId?: string; returnFocus: React.RefObject<HTMLButtonElement | null>;
+};
+
+function JourneyRail({ open, onClose, onNavigate, lesson, journey, summaries, currentState, currentSectionId, returnFocus }: JourneyRailProps) {
   const railRef = useRef<HTMLElement>(null);
   const closeRef = useRef<HTMLButtonElement>(null);
   useEffect(() => {
@@ -27,27 +35,30 @@ function JourneyRail({ open, onClose, onNavigate, explored, currentSectionId, re
       if (event.key === 'Escape') { event.preventDefault(); onClose(); returnFocus.current?.focus(); return; }
       if (event.key !== 'Tab' || !railRef.current) return;
       const focusable = [...railRef.current.querySelectorAll<HTMLElement>('button,[href],[tabindex]:not([tabindex="-1"])')];
-      const first = focusable[0]; const last = focusable[focusable.length - 1];
+      const first = focusable[0]; const last = focusable.at(-1);
       if (event.shiftKey && document.activeElement === first) { event.preventDefault(); last?.focus(); }
       else if (!event.shiftKey && document.activeElement === last) { event.preventDefault(); first?.focus(); }
     };
     document.addEventListener('keydown', onKey);
     return () => document.removeEventListener('keydown', onKey);
   }, [open, onClose, returnFocus]);
-  const entries = journey.chapters[0].entries.map((entry) => ({ entry, lesson: urukContent.lessons.find((item) => item.id === entry.lessonId)! }));
+
+  const entries = orderedEntries(journey);
+  const explored = currentState.exploredSectionIds;
   const close = () => { onClose(); returnFocus.current?.focus(); };
   return <>
     <div className={`learn-scrim ${open ? 'is-open' : ''}`} onClick={close} />
-    <aside ref={railRef} className={`journey-rail ${open ? 'is-open' : ''}`} aria-label="World History journey" aria-modal={open || undefined} role={open ? 'dialog' : undefined}>
+    <aside ref={railRef} className={`journey-rail ${open ? 'is-open' : ''}`} aria-label={`${journey.title} journey`} aria-modal={open || undefined} role={open ? 'dialog' : undefined}>
       <button ref={closeRef} className="icon-button rail-close" onClick={close} aria-label="Close journey"><X /></button>
       <div className="chronos-brand" aria-label="Chronos"><span className="brand-compass" aria-hidden="true"><b>C</b></span><span>Chronos</span></div>
-      <div className="rail-heading"><p className="eyebrow">World History</p><h2>Foundations</h2><p>From settlements to recorded cities</p></div>
+      <div className="rail-heading"><p className="eyebrow">{journey.title}</p><h2>{entries.find((item) => item.lesson.id === lesson.id)?.chapter.title}</h2><p>From settlements to recorded information</p></div>
       <ol className="journey-list">{entries.map(({ entry, lesson: item }, index) => {
-        const status = item.id === lesson.id ? 'current' : index === 0 ? 'complete' : 'upcoming';
-        return <li key={entry.id} className={status}>
-          <span className="journey-node">{status === 'complete' ? <Check size={14} /> : index + 1}</span>
-          <div><small>{item.masthead}</small><strong>{item.title}</strong>{status === 'current' && <span>{explored.length} of {lesson.sections.length} sections explored</span>}</div>
-        </li>;
+        const isCurrent = item.id === lesson.id;
+        const isComplete = isCurrent ? currentState.status === 'completed' : summaries[item.id]?.status === 'completed';
+        const unavailable = item.status !== 'published';
+        const status = isCurrent ? 'current' : isComplete ? 'complete' : unavailable ? 'unavailable' : 'available';
+        const content = <><span className="journey-node">{isComplete ? <Check size={14} /> : index + 1}</span><div><small>{item.masthead}</small><strong>{item.title}</strong>{isCurrent && <span>{explored.length} of {lesson.sections.length} sections explored</span>}{unavailable && <span>Not yet published</span>}</div></>;
+        return <li key={entry.id} className={status}>{unavailable ? <div aria-disabled="true">{content}</div> : <a href={`/learn/${item.id}`} aria-current={isCurrent ? 'page' : undefined} onClick={isCurrent ? (event) => { event.preventDefault(); onNavigate(lesson.sections[0].id); onClose(); } : undefined}>{content}</a>}</li>;
       })}</ol>
       <div className="section-index-label"><span>In this lesson</span><b>{explored.length}/{lesson.sections.length}</b></div>
       <nav className="section-nav" aria-label="Lesson sections">{lesson.sections.map((section, index) => <button key={section.id} className={currentSectionId === section.id ? 'active' : ''} aria-current={currentSectionId === section.id ? 'location' : undefined} onClick={() => { onNavigate(section.id); onClose(); }}><span aria-hidden="true" className={explored.includes(section.id) ? 'done' : ''}>{explored.includes(section.id) ? <Check size={10} /> : index + 1}</span>{section.heading}</button>)}</nav>
@@ -66,17 +77,17 @@ function Module({ module, state, onAttempt }: ModuleProps) {
   }
   if (module.type === 'evidence') {
     const media = mediaById.get(module.mediaId)!;
-    return <figure className="evidence-module"><div className="evidence-image"><ResponsiveMedia media={media} alt={media.alt} sizes="(max-width: 800px) 100vw, 50vw" loading="lazy" /><span>{module.artifactLabel}</span></div><figcaption><div className="evidence-type"><Archive /><span>From the evidence room</span></div><h3>{module.title}</h3><p>{module.body}</p><dl><div><dt>Depiction</dt><dd>{media.depictionLabel}</dd></div><div><dt>Review state</dt><dd>{media.reviewStatus.replaceAll('-', ' ')}</dd></div><div><dt>Source context</dt><dd>The Metropolitan Museum of Art</dd></div></dl></figcaption></figure>;
+    const source = media.sourceIds.map((id) => sourceById.get(id)).find(Boolean);
+    return <figure className="evidence-module"><div className="evidence-image"><ResponsiveMedia media={media} alt={media.alt} sizes="(max-width: 800px) 100vw, 50vw" loading="lazy" /><span>{module.artifactLabel}</span></div><figcaption><div className="evidence-type"><Archive /><span>From the evidence room</span></div><h3>{module.title}</h3><p>{module.body}</p><dl><div><dt>Depiction</dt><dd>{media.depictionLabel}</dd></div><div><dt>Source</dt><dd>{source ? <a href={source.url} target='_blank' rel='noreferrer'>{source.publisher}</a> : 'Institutional source'}</dd></div><div><dt>Rights</dt><dd>{media.rightsLabel}</dd></div></dl></figcaption></figure>;
   }
   if (module.type === 'historical-map') {
     const media = mediaById.get(module.mediaId)!;
-    const sources = module.sourceIds.map((sourceId) => urukContent.sources.find((source) => source.id === sourceId)!).filter(Boolean);
-    return <HistoricalMapModule module={module} media={media} sources={sources} />;
+    return <HistoricalMapModule module={module} media={media} sources={module.sourceIds.map((id) => sourceById.get(id)!).filter(Boolean)} />;
   }
   const prompt = promptById.get(module.promptId)!;
   const answer = state.responses[prompt.id] ?? '';
-  if (prompt.kind === 'supported-selection') return <fieldset className="prompt"><legend>{prompt.question}</legend>{['A reconstruction painting of the city', 'Administrative tablets and cylinder seals', 'A later story about Uruk’s walls'].map((choice) => <label key={choice}><input type="radio" name={prompt.id} checked={answer === choice} onChange={() => onAttempt(prompt.id, choice)} /><span>{choice}</span></label>)}{answer && <p className="feedback" role="status"><strong>Good investigation.</strong> {prompt.explanation}</p>}</fieldset>;
-  return <div className="prompt"><label htmlFor={prompt.id}><strong>{prompt.question}</strong></label><textarea id={prompt.id} defaultValue={answer} minLength={prompt.minimumResponseLength} placeholder="Use an example from the lesson…" onBlur={(event) => event.currentTarget.value.trim().length >= (prompt.minimumResponseLength ?? 1) && onAttempt(prompt.id, event.currentTarget.value.trim())} />{answer && <p className="feedback" role="status"><strong>Your explanation is recorded.</strong> {prompt.explanation}</p>}<small>Write at least {prompt.minimumResponseLength} characters. Thoughtful attempts count; this is not scored.</small></div>;
+  if (prompt.kind === 'supported-selection') return <fieldset className="prompt"><legend>{prompt.question}</legend>{prompt.options.map((choice) => <label key={choice.id}><input type="radio" name={prompt.id} checked={answer === choice.id} onChange={() => onAttempt(prompt.id, choice.id)} /><span>{choice.label}</span></label>)}{answer && <p className="feedback" role="status"><strong>Compare the evidence.</strong> {prompt.explanation}</p>}</fieldset>;
+  return <div className="prompt"><label htmlFor={prompt.id}><strong>{prompt.question}</strong></label><textarea id={prompt.id} defaultValue={answer} minLength={prompt.minimumResponseLength} placeholder="Use an example from the lesson…" onBlur={(event) => event.currentTarget.value.trim().length >= prompt.minimumResponseLength && onAttempt(prompt.id, event.currentTarget.value.trim())} />{answer && <p className="feedback" role="status"><strong>Your explanation is recorded.</strong> {prompt.explanation}</p>}<small>Write at least {prompt.minimumResponseLength} characters. Thoughtful attempts count; this is not scored.</small></div>;
 }
 
 function Section({ section, state, onAttempt }: { section: LessonSection; state: LearnState; onAttempt(id: string, response: string): void }) {
@@ -84,43 +95,106 @@ function Section({ section, state, onAttempt }: { section: LessonSection; state:
   return <section id={section.id} className={`lesson-section section-${section.modules[0].type}${hasHistoricalMap ? ' section-has-historical-map' : ''}`} data-section-id={section.id} tabIndex={-1}><header className="section-heading"><span>{section.purpose}</span><h2>{section.heading}</h2></header><div className="section-modules">{section.modules.map((module) => <React.Fragment key={module.id}><Module module={module} state={state} onAttempt={onAttempt} /></React.Fragment>)}</div></section>;
 }
 
-function KnowledgeCard() {
+function KnowledgeCardReveal({ card }: { card: KnowledgeCard }) {
   const media = mediaById.get(card.mediaId)!;
-  return <div className="card-reveal"><div className="knowledge-card"><div className="card-frame"><div className="card-image"><ResponsiveMedia media={media} alt="Uruk reconstruction used for the Uruk Knowledge Card" sizes="320px" loading="lazy" /><span>Evidence-based reconstruction</span></div><div className="card-body"><span className="card-class"><Landmark /> {card.category} · {card.cardClass}</span><span className="card-kind">Knowledge Card · Place</span><h3>{card.title}</h3><p className="card-date">{card.date.display} · Southern Mesopotamia</p><p>{card.significance}</p><div className="card-ornament" aria-hidden="true"><i /><Compass /><i /></div></div></div></div><div className="card-copy"><p className="eyebrow">Knowledge Card acquired</p><h3>A place worth remembering</h3><p>You earned Uruk by using evidence to explain how early city life changed human coordination.</p><ul>{card.facts.map((fact) => <li key={fact}>{fact}</li>)}</ul></div></div>;
+  return <div className="card-reveal" tabIndex={-1}><div className="knowledge-card"><div className="card-frame"><div className={`card-image card-image-${card.category}`}><ResponsiveMedia media={media} alt={media.alt} sizes="320px" loading="lazy" /><span>{card.depictionLabel}</span></div><div className="card-body"><span className="card-class">{card.category === 'place' ? <Landmark /> : <Archive />} {card.category} · {card.cardClass}</span><span className="card-kind">Knowledge Card · {card.category}</span><h3>{card.title}</h3><p className="card-date">{card.date.display} · {card.place}</p><p>{card.significance}</p><div className="card-ornament" aria-hidden="true"><i /><Compass /><i /></div></div></div></div><div className="card-copy"><p className="eyebrow">Knowledge Card acquired</p><h3>{card.revealTitle}</h3><p>{card.revealBody}</p><ul>{card.facts.map((fact) => <li key={fact}>{fact}</li>)}</ul></div></div>;
 }
 
 export function LearnApp({ lessonId, gatewayFactory = createProgressGateway }: { lessonId: string; gatewayFactory?: () => Promise<LearnProgressGateway> }) {
-  const [state, setState] = useState<LearnState | null>(null);
+  const lesson = lessonById.get(lessonId);
+  const journey = lesson ? findJourney(lesson.id) : undefined;
+  const entries = journey ? orderedEntries(journey) : [];
+  const currentIndex = entries.findIndex((item) => item.lesson.id === lessonId);
+  const previous = entries.slice(0, currentIndex).reverse().find((item) => item.lesson.status === 'published');
+  const next = entries.slice(currentIndex + 1).find((item) => item.lesson.status === 'published');
+  const [currentProgress, setCurrentProgress] = useState<LearnState | null>(null);
+  const [journeySummaries, setJourneySummaries] = useState<Record<string, JourneyProgressSummary>>({});
+  const state = currentProgress?.lessonId === lessonId ? currentProgress : null;
   const [drawer, setDrawer] = useState(false);
   const [theme, setTheme] = useState<'light' | 'dark'>(() => matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light');
   const [error, setError] = useState('');
   const [busy, setBusy] = useState(false);
   const [loadAttempt, setLoadAttempt] = useState(0);
-  const [nextNotice, setNextNotice] = useState(false);
-  const [heroState, setHeroState] = useState<'loading' | 'ready' | 'failed'>('loading');
-  const reconstructionMedia = resolveMediaAsset(reconstruction);
-  const [heroSource, setHeroSource] = useState(reconstructionMedia.src);
+  const [revealedCardId, setRevealedCardId] = useState<string>();
   const observed = useRef(new Set<string>());
   const gatewayRef = useRef<LearnProgressGateway>(new LocalPreviewGateway());
   const menuRef = useRef<HTMLButtonElement>(null);
-  const valid = lessonId === lesson.id;
-  const retryLoad = useCallback(() => { setState(null); setError(''); setLoadAttempt((value) => value + 1); }, []);
-  useEffect(() => { if (!valid) return; let active = true; gatewayFactory().then((selected) => { if (!active) return null; gatewayRef.current = selected; return selected.load(lessonId); }).then((loaded) => { if (active && loaded) setState(loaded); }).catch(() => { if (active) setError('Progress could not be loaded. Check your connection and retry.'); }); return () => { active = false; }; }, [lessonId, valid, loadAttempt, gatewayFactory]);
-  useEffect(() => { if (!state) return; let active = true; const timers = new Set<number>(); const observer = new IntersectionObserver((entries) => entries.forEach((entry) => { if (entry.isIntersecting && entry.intersectionRatio >= .55) { const id = (entry.target as HTMLElement).dataset.sectionId!; if (!observed.current.has(id)) { observed.current.add(id); const timer = window.setTimeout(() => gatewayRef.current.markSection(lessonId, id).then((next) => { if (active) setState(next); }).catch(() => { if (active) setError('Section progress could not be saved. Your lesson remains open.'); }), 900); timers.add(timer); } } }), { threshold: [.55] }); document.querySelectorAll('[data-section-id]').forEach((node) => observer.observe(node)); return () => { active = false; observer.disconnect(); timers.forEach(window.clearTimeout); }; }, [lessonId, Boolean(state)]);
+  const retryLoad = useCallback(() => { setCurrentProgress(null); setJourneySummaries({}); setError(''); setLoadAttempt((value) => value + 1); }, []);
+
+  useEffect(() => {
+    if (!lesson || lesson.status !== 'published' || !journey) return;
+    document.title = `${lesson.title} · Chronos`;
+    document.querySelector('meta[name="description"]')?.setAttribute('content', lesson.significance);
+  }, [lesson, journey]);
+
+  useEffect(() => {
+    if (!lesson || lesson.status !== 'published' || !journey) return;
+    let active = true;
+    gatewayFactory().then(async (selected) => {
+      gatewayRef.current = selected;
+      const publishedIds = orderedEntries(journey).map((item) => item.lesson).filter((item) => item.status === 'published').map((item) => item.id);
+      const [detailed, summaries] = await Promise.all([
+        selected.load(lessonId),
+        selected.loadJourneySummaries(publishedIds),
+      ]);
+      if (active) {
+        setCurrentProgress(detailed);
+        setJourneySummaries(summaries);
+      }
+    }).catch(() => { if (active) setError('Progress could not be loaded. Check your connection and retry.'); });
+    return () => { active = false; };
+  }, [lessonId, lesson, journey, loadAttempt, gatewayFactory]);
+
+  useEffect(() => {
+    if (!state) return;
+    let active = true;
+    const timers = new Set<number>();
+    const observer = new IntersectionObserver((items) => items.forEach((item) => {
+      if (item.isIntersecting) {
+        const id = (item.target as HTMLElement).dataset.sectionId!;
+        if (!observed.current.has(id)) {
+          observed.current.add(id);
+          const timer = window.setTimeout(() => gatewayRef.current.markSection(lessonId, id).then((nextState) => { if (active) setCurrentProgress(nextState); }).catch(() => { if (active) setError('Section progress could not be saved. Your lesson remains open.'); }), 900);
+          timers.add(timer);
+        }
+      }
+    }), { rootMargin: '-15% 0px -65% 0px', threshold: [0, .01] });
+    document.querySelectorAll('[data-section-id]').forEach((node) => observer.observe(node));
+    return () => { active = false; observer.disconnect(); timers.forEach(window.clearTimeout); };
+  }, [lessonId, Boolean(state)]);
+
   const navigate = (id: string) => { const target = document.getElementById(id); if (!target) return; target.scrollIntoView({ behavior: matchMedia('(prefers-reduced-motion: reduce)').matches ? 'auto' : 'smooth', block: 'start' }); target.focus({ preventScroll: true }); };
-  const ready = useMemo(() => state && lesson.promptIds.every((id) => state.attemptedPromptIds.includes(id)), [state]);
-  if (!valid) return <main className="not-found"><BookOpen /><p className="eyebrow">Lesson not found</p><h1>This archive entry isn’t available.</h1><p>Try the published Uruk lesson or return to the legacy timeline.</p><a className="primary" href="/learn/lesson.uruk.first-city">Open Uruk</a><a href="/">Return to Chronos</a></main>;
-  if (!state) return error ? <main className="loading-error" role="alert"><BookOpen /><h1>We couldn’t open your progress.</h1><p>{error}</p><button className="primary" onClick={retryLoad}>Retry loading progress</button></main> : <main className="loading" aria-busy="true">Opening the Uruk archive…</main>;
-  const attempt = async (id: string, response: string) => setState(await gatewayRef.current.saveAttempt(lessonId, id, response));
-  const complete = async () => { setBusy(true); setError(''); try { const result = await gatewayRef.current.complete(lessonId, completionKey(lessonId)); setState(await gatewayRef.current.load(lessonId)); if (!result.cardId) setError('Completion was saved, but no Knowledge Card is configured.'); } catch { setError('The completion command was interrupted. Your attempts are safe; please retry.'); } finally { setBusy(false); } };
+  const requirement = useMemo(() => derivePromptRequirementState(lesson?.promptIds ?? [], promptById, state?.attemptedPromptIds ?? []), [lesson, state?.attemptedPromptIds]);
+  if (!lesson) return <main className="not-found"><BookOpen /><p className="eyebrow">Lesson not found</p><h1>This archive entry isn’t available.</h1><p>Check the lesson address or return to the first published World History lesson.</p><a className="primary" href={`/learn/${firstPublishedLessonId}`}>Open World History</a><a href="/">Return to Chronos</a></main>;
+  if (lesson.status !== 'published' || !journey) return <main className="not-found"><BookOpen /><p className="eyebrow">Lesson in preparation</p><h1>{lesson.title} isn’t completable yet.</h1><p>This journey entry is visible for context, but its reviewed lesson has not been published.</p><a className="primary" href={`/learn/${firstPublishedLessonId}`}>Open a published lesson</a><a href="/">Return to Chronos</a></main>;
+  if (!state) return error ? <main className="loading-error" role="alert"><BookOpen /><h1>We couldn’t open your progress.</h1><p>{error}</p><button className="primary" onClick={retryLoad}>Retry loading progress</button></main> : <main className="loading" aria-busy="true">Opening {lesson.title}…</main>;
+
+  const attempt = async (id: string, response: string) => {
+    const nextState = await gatewayRef.current.saveAttempt(lessonId, id, response);
+    setCurrentProgress(nextState);
+  };
+  const complete = async () => {
+    setBusy(true); setError('');
+    try {
+      const result = await gatewayRef.current.complete(lessonId, completionKey(lessonId));
+      const nextState = await gatewayRef.current.load(lessonId);
+      setCurrentProgress(nextState);
+      if (result.cardOwnership === 'newly-acquired' && result.cardId) setRevealedCardId(result.cardId);
+      else setRevealedCardId(undefined);
+    } catch { setError('The completion command was interrupted. Your attempts are safe; please retry.'); }
+    finally { setBusy(false); }
+  };
+
+  const hero = lesson.heroMediaId ? mediaById.get(lesson.heroMediaId) : undefined;
+  const configuredCard = cardByLessonId.get(lesson.id);
+  const revealedCard = revealedCardId ? cardById.get(revealedCardId) : undefined;
   return <div className="learn-app" data-theme={theme}>
-    <JourneyRail open={drawer} onClose={() => setDrawer(false)} onNavigate={navigate} explored={state.exploredSectionIds} currentSectionId={state.resumeSectionId ?? lesson.sections[0].id} returnFocus={menuRef} />
-    <header className="mobile-progress"><button ref={menuRef} className="icon-button" onClick={() => setDrawer(true)} aria-label="Open journey"><Menu /></button><div><strong>Uruk</strong><span>{state.exploredSectionIds.length} of {lesson.sections.length} sections explored</span></div><button className="icon-button" onClick={() => setTheme(theme === 'light' ? 'dark' : 'light')} aria-label={`Use ${theme === 'light' ? 'dark' : 'light'} theme`}>{theme === 'light' ? <Moon /> : <Sun />}</button></header>
-    <main className="lesson"><div className="lesson-toolbar"><button className="quiet drawer-button" onClick={() => setDrawer(true)}><Menu /> Journey</button><span>World History <ChevronRight /> Foundations <ChevronRight /> Uruk</span><button className="quiet theme-toggle" onClick={() => setTheme(theme === 'light' ? 'dark' : 'light')} aria-label={`Use ${theme === 'light' ? 'dark' : 'light'} theme`}>{theme === 'light' ? <Moon /> : <Sun />}<span>{theme === 'light' ? 'Dark' : 'Light'} mode</span></button></div>
-      {state.resumeSectionId && state.resumeSectionId !== lesson.sections[0].id && state.status !== 'completed' && <div className="resume-banner"><div><strong>Welcome back</strong><span>Resume from {lesson.sections.find((item) => item.id === state.resumeSectionId)?.heading}.</span></div><button className="secondary" onClick={() => navigate(state.resumeSectionId!)}>Resume</button></div>}
-      <article><header className="masthead"><div className="masthead-copy"><p className="eyebrow">c. 3200 BCE <span>·</span> Southern Mesopotamia</p><h1>{lesson.title}</h1><p className="dek">{lesson.significance}</p></div><figure className="hero" data-image-state={heroState}><div className="hero-image"><img className="hero-media" src={heroSource} srcSet={heroSource === reconstructionMedia.fallbackSrc ? undefined : reconstructionMedia.srcSet} sizes="(max-width: 800px) 100vw, 60vw" alt={reconstruction.alt} width={reconstructionMedia.width} height={reconstructionMedia.height} onLoad={(event) => setHeroState(event.currentTarget.naturalWidth > 0 && event.currentTarget.naturalHeight > 0 ? 'ready' : 'failed')} onError={() => { if (heroSource !== reconstructionMedia.fallbackSrc) { setHeroSource(reconstructionMedia.fallbackSrc); return; } setHeroState('failed'); }} /><span className="depiction-label">Evidence-based reconstruction</span>{heroState === 'failed' && <div className="hero-fallback" role="alert">The reconstruction could not be displayed. The lesson remains available below.</div>}</div><figcaption><span>{reconstruction.depictionLabel}</span><span>Interpretation informed by evidence—not a surviving view of Uruk.</span></figcaption></figure></header>
+    <JourneyRail open={drawer} onClose={() => setDrawer(false)} onNavigate={navigate} lesson={lesson} journey={journey} summaries={journeySummaries} currentState={state} currentSectionId={state.resumeSectionId ?? lesson.sections[0].id} returnFocus={menuRef} />
+    <header className="mobile-progress"><button ref={menuRef} className="icon-button" onClick={() => setDrawer(true)} aria-label="Open journey"><Menu /></button><div><strong>{lesson.title}</strong><span>{state.exploredSectionIds.length} of {lesson.sections.length} sections explored</span></div><button className="icon-button" onClick={() => setTheme(theme === 'light' ? 'dark' : 'light')} aria-label={`Use ${theme === 'light' ? 'dark' : 'light'} theme`}>{theme === 'light' ? <Moon /> : <Sun />}</button></header>
+    <main className="lesson"><div className="lesson-toolbar"><button className="quiet drawer-button" onClick={() => setDrawer(true)}><Menu /> Journey</button><span>{journey.title} <ChevronRight /> {entries[currentIndex].chapter.title} <ChevronRight /> {lesson.title}</span><button className="quiet theme-toggle" onClick={() => setTheme(theme === 'light' ? 'dark' : 'light')} aria-label={`Use ${theme === 'light' ? 'dark' : 'light'} theme`}>{theme === 'light' ? <Moon /> : <Sun />}<span>{theme === 'light' ? 'Dark' : 'Light'} mode</span></button></div>
+      <article><header className="masthead"><div className="masthead-copy"><p className="eyebrow">{lesson.masthead} <span>·</span> {lesson.place}</p><h1>{lesson.title}</h1><p className="dek">{lesson.significance}</p></div>{hero && <figure className="hero"><div className="hero-image"><ResponsiveMedia className={`hero-media hero-${hero.depictionMode}`} media={hero} alt={hero.alt} sizes="(max-width: 800px) 100vw, 60vw" loading="eager" decoding="async" /><span className="depiction-label">{lesson.heroLabel}</span></div><figcaption><span>{hero.depictionLabel}</span><span>{lesson.heroCaption}</span></figcaption></figure>}</header>
         {lesson.sections.map((section) => <React.Fragment key={section.id}><Section section={section} state={state} onAttempt={attempt} /></React.Fragment>)}
-        <section className="completion-panel" aria-labelledby="completion-title"><p className="eyebrow">Your next step</p><h2 id="completion-title">{state.status === 'completed' ? 'Lesson explored' : 'Complete your Uruk lesson'}</h2>{state.status === 'completed' ? <><KnowledgeCard /><div className="actions"><button className="primary" onClick={() => setNextNotice(true)}>Preview Early Writing Systems <ChevronRight /></button><button className="secondary" onClick={() => navigate('section.uruk.masthead')}><RotateCcw /> Revisit lesson</button><button className="quiet" onClick={() => document.querySelector('.card-reveal')?.scrollIntoView()}>Inspect Uruk card</button></div>{nextNotice && <p className="next-notice" role="status"><strong>Early Writing Systems is next.</strong> That lesson is not published yet; your place in World History is saved.</p>}</> : <><p>Both understanding prompts need a sincere attempt. Scrolling alone never completes a lesson.</p><button className="primary" disabled={!ready || busy} onClick={complete}>{busy ? 'Completing…' : ready ? 'Complete lesson' : `${state.attemptedPromptIds.length} of 2 prompts attempted`}</button></>}{error && <p className="error" role="alert">{error} <button onClick={complete}>Retry</button></p>}</section>
+        <section className="completion-panel" aria-labelledby="completion-title"><p className="eyebrow">Your next step</p><h2 id="completion-title">{state.status === 'completed' ? 'Lesson explored' : `Complete ${lesson.title}`}</h2>{state.status === 'completed' ? <>{revealedCard && <KnowledgeCardReveal card={revealedCard} />}{!revealedCard && state.cardId && configuredCard && <p className="known-card" role="status"><Check size={16} /> {configuredCard.title} is already in your Knowledge Cards.</p>}<div className="actions">{next ? <a className="primary" href={`/learn/${next.lesson.id}`}>Continue World History <ChevronRight /></a> : <span className="journey-end">World History continues with the next reviewed lesson.</span>}{previous && <a className="secondary" href={`/learn/${previous.lesson.id}`}><ChevronLeft /> Previous: {previous.lesson.title}</a>}<button className="secondary" onClick={() => navigate(lesson.sections[0].id)}><RotateCcw /> Revisit lesson</button></div></> : <><p>{requirement.requiredIds.length === 1 ? 'The required understanding prompt needs' : `All ${requirement.requiredIds.length} required understanding prompts need`} a sincere attempt. Scrolling alone never completes a lesson.</p><button className="primary" disabled={!requirement.ready || busy} onClick={complete}>{busy ? 'Completing…' : requirement.ready ? 'Complete lesson' : `${requirement.attemptedCount} of ${requirement.requiredIds.length} required prompts attempted`}</button>{previous && <a className="quiet previous-link" href={`/learn/${previous.lesson.id}`}><ChevronLeft /> Previous: {previous.lesson.title}</a>}</>}{error && <p className="error" role="alert">{error} <button onClick={complete}>Retry</button></p>}</section>
       </article>
     </main>
   </div>;

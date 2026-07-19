@@ -1,5 +1,5 @@
 import { beforeEach, describe, expect, it, vi } from 'vitest';
-import { urukContent } from '../../content/uruk';
+import { chronosContent } from '../../content/chronos';
 import { LocalPreviewGateway, mapCompletionRpcResult, SupabaseLearnGateway } from '../../src/learn/progress';
 import { canExplicitlyComplete } from '../../src/domains/contracts';
 
@@ -42,7 +42,7 @@ describe('Uruk Learn progress boundary', () => {
     await gateway.saveAttempt(lessonId, 'prompt.uruk.administration-evidence', 'Administrative tablets and cylinder seals');
     await gateway.saveAttempt(lessonId, 'prompt.uruk.opportunity-and-cost', 'Specialized work was possible, but coordinated labor placed unequal burdens on people.');
     const state = await gateway.load(lessonId);
-    expect(canExplicitlyComplete(urukContent.lessons[1].promptIds, { lessonId, idempotencyKey: 'stable-key', explicitCompletion: true, attemptedPromptIds: state.attemptedPromptIds })).toBe(true);
+    expect(canExplicitlyComplete(chronosContent.lessons[1].promptIds, { lessonId, idempotencyKey: 'stable-key', explicitCompletion: true, attemptedPromptIds: state.attemptedPromptIds })).toBe(true);
     expect(await gateway.complete(lessonId, 'stable-key')).toMatchObject({ completion: 'newly-completed', cardOwnership: 'newly-acquired', cardId: 'card.place.uruk' });
     expect(await gateway.complete(lessonId, 'retry-key')).toMatchObject({ completion: 'already-completed', cardOwnership: 'already-owned' });
   });
@@ -96,10 +96,56 @@ describe('Uruk Learn progress boundary', () => {
   });
 
   it('renders all canonical semantic sections and evidence metadata from the fixture', () => {
-    const lesson = urukContent.lessons.find((item) => item.id === 'lesson.uruk.first-city')!;
+    const lesson = chronosContent.lessons.find((item) => item.id === 'lesson.uruk.first-city')!;
     expect(lesson.sections.map((section) => section.id)).toEqual(lesson.sectionIdsRequired);
     expect(lesson.sections).toHaveLength(7);
     expect(lesson.sections.some((section) => section.id === 'section.uruk.connections')).toBe(false);
-    expect(urukContent.media[0]).toMatchObject({ depictionMode: 'evidence-based-reconstruction', reviewStatus: 'provenance-review-required' });
+    expect(chronosContent.media.find((item) => item.id === 'media.uruk.reconstruction')).toMatchObject({ depictionMode: 'evidence-based-reconstruction', reviewStatus: 'provenance-review-required' });
+  });
+});
+
+describe('multi-lesson local progress boundary', () => {
+  beforeEach(() => values.clear());
+
+  it('persists writing resume and prompt attempts without corrupting Uruk', async () => {
+    const gateway = new LocalPreviewGateway();
+    const writingId = 'lesson.writing.early-systems';
+    await gateway.markSection(writingId, 'section.writing.signs-change');
+    await gateway.saveAttempt(writingId, 'prompt.writing.administration-evidence', 'option.writing.tablet');
+    await expect(gateway.complete(writingId, 'blocked')).rejects.toThrow('required prompt attempts missing');
+    await gateway.saveAttempt(writingId, 'prompt.writing.possibility-and-limit', 'Writing made durable allocations possible, while surviving administrative records omit many voices.');
+
+    expect(await gateway.complete(writingId, 'first-key')).toMatchObject({ completion: 'newly-completed', cardOwnership: 'newly-acquired', cardId: 'card.artifact.proto-cuneiform-tablet' });
+    expect(await gateway.complete(writingId, 'second-key')).toMatchObject({ completion: 'already-completed', cardOwnership: 'already-owned', cardId: 'card.artifact.proto-cuneiform-tablet' });
+    expect(await gateway.load(writingId)).toMatchObject({ status: 'completed', resumeSectionId: 'section.writing.signs-change' });
+    expect(await gateway.load('lesson.uruk.first-city')).toMatchObject({ status: 'in-progress', attemptedPromptIds: [], exploredSectionIds: [] });
+  });
+});
+describe('journey progress summaries', () => {
+  it('uses one bounded lesson_progress query instead of five detailed reads per published lesson', async () => {
+    const lessonIds = Array.from({ length: 250 }, (_, index) => `lesson.test.${index}`);
+    const inFilter = vi.fn(async () => ({
+      data: [{ lesson_id: lessonIds[1], status: 'completed', completed_at: '2026-07-17T00:00:00.000Z' }],
+      error: null,
+    }));
+    const chain: any = {
+      select: () => chain,
+      eq: () => chain,
+      in: inFilter,
+    };
+    const client: any = { from: vi.fn(() => chain) };
+
+    const summaries = await new SupabaseLearnGateway(
+      '11111111-1111-1111-1111-111111111111',
+      client,
+    ).loadJourneySummaries(lessonIds);
+
+    expect(client.from).toHaveBeenCalledTimes(1);
+    expect(client.from).toHaveBeenCalledWith('lesson_progress');
+    expect(inFilter).toHaveBeenCalledTimes(1);
+    expect(inFilter).toHaveBeenCalledWith('lesson_id', lessonIds);
+    expect(Object.keys(summaries)).toHaveLength(250);
+    expect(summaries[lessonIds[1]]).toMatchObject({ status: 'completed' });
+    expect(summaries[lessonIds[249]]).toMatchObject({ status: 'in-progress' });
   });
 });

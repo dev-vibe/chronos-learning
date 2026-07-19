@@ -1,0 +1,3 @@
+import type { Journey } from '../../src/domains/contracts';
+
+export const worldHistoryJourney: Journey = { id: 'journey.world-history', title: 'World History', kind: 'world-history', chapters: [{ id: 'chapter.world-history.foundations', title: 'Foundations', position: 0, entries: [{ id: 'entry.world-history.farming', lessonId: 'lesson.farming.settlements', position: 0, required: true, framing: 'From settled farming' }, { id: 'entry.world-history.uruk', lessonId: 'lesson.uruk.first-city', position: 1, required: true, framing: 'How city life changed human coordination' }, { id: 'entry.world-history.writing', lessonId: 'lesson.writing.early-systems', position: 2, required: true, framing: 'How durable records changed coordination' }] }] };

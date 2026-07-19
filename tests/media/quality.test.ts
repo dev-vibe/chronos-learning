@@ -1,6 +1,6 @@
 import { describe, expect, it } from 'vitest';
 import { MediaVariantSchema } from '../../src/domains/contracts';
-import manifest from '../../content/media/generated/uruk-media.json';
+import manifest from '../../content/media/generated/chronos-media.json';
 
 describe('media quality contract', () => {
   it('records policy-compliant, visibly optimized variants', () => {

@@ -61,7 +61,7 @@ Typical required lesson:
 6. Explicit completion panel
 7. Post-completion next step: continue the current journey, then an optional card or authored exploration when meaningful
 
-A thin sticky treatment and compact text such as “4 of 7 sections explored” show current-lesson progress. Do not add large section checklists. Persist stable section IDs and resume at the last meaningful section rather than an exact scroll pixel.
+A thin sticky treatment and compact text such as “4 of 7 sections explored” show current-lesson progress. Do not add large section checklists. Persist stable section IDs only to record which sections were explored. Reopening a lesson always starts at the top; do not add within-lesson resume controls, automatic scrolling, or scroll-position restoration.
 
 Do not create a progress-bearing “Connections” or “Follow the idea forward” section whose primary job is navigation. Historical before/elsewhere/reappearance context belongs inside the lesson where it explains the subject and should not be hidden until completion. A related lesson, Story Arc, Idea Trail, or Investigation may be surfaced at a pedagogically meaningful point, but its control is visually separate from the explanation, clearly optional, non-disruptive, and subordinate to the learner's current required action.
 

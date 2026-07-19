@@ -1,6 +1,6 @@
 {
   "schemaVersion": 1,
-  "collection": "uruk",
+  "collection": "chronos",
   "generatedBy": "npm run media:build",
   "qualityPolicy": {
     "profile": "ql-v1",
@@ -11,6 +11,39 @@
     "minimumSavingsRatioForLossyReencode": 0.05
   },
   "assets": [
+    {
+      "id": "media.uruk.clay-envelope",
+      "locator": {
+        "provider": "object-storage",
+        "bucket": "media-public",
+        "fallback": {
+          "path": "/images/optimized/uruk/clay-envelope.optimized.jpg",
+          "width": 476,
+          "height": 700
+        },
+        "variants": [
+          {
+            "objectKey": "uruk/media.uruk.clay-envelope/b7fede35d1d9bcef/optimized/ql-v1/476w-source-jpeg-b7fede35d1d9bcef.jpg",
+            "mimeType": "image/jpeg",
+            "bytes": 34249,
+            "sha256": "b7fede35d1d9bcef065f722d319dbc81ce45a37cb975b81a6908436dede575ad",
+            "width": 476,
+            "height": 700,
+            "compression": {
+              "profile": "ql-v1",
+              "codec": "jpeg",
+              "encoder": "source-passthrough"
+            },
+            "fidelity": {
+              "mode": "pixel-exact",
+              "psnrDb": null,
+              "meanAbsoluteError": 0,
+              "maximumChannelDelta": 0
+            }
+          }
+        ]
+      }
+    },
     {
       "id": "media.uruk.reconstruction",
       "locator": {
@@ -81,15 +114,6 @@
             }
           }
         ]
-      },
-      "source": {
-        "bucket": "media-source",
-        "objectKey": "uruk/media.uruk.reconstruction/bfbc7a72535957939d835274f13dabaccfb65b74b644ae50e0e12460eb444420/original.webp",
-        "mimeType": "image/webp",
-        "bytes": 303742,
-        "sha256": "bfbc7a72535957939d835274f13dabaccfb65b74b644ae50e0e12460eb444420",
-        "width": 1600,
-        "height": 800
       }
     },
     {
@@ -164,57 +188,6 @@
             }
           }
         ]
-      },
-      "source": {
-        "bucket": "media-source",
-        "objectKey": "uruk/media.uruk.site/53dbaa3d51bc8b0e856750c9061234ca9b7ffe40e513edcdb18688a9182555f1/original.jpg",
-        "mimeType": "image/jpeg",
-        "bytes": 109191,
-        "sha256": "53dbaa3d51bc8b0e856750c9061234ca9b7ffe40e513edcdb18688a9182555f1",
-        "width": 1200,
-        "height": 600
-      }
-    },
-    {
-      "id": "media.uruk.clay-envelope",
-      "locator": {
-        "provider": "object-storage",
-        "bucket": "media-public",
-        "fallback": {
-          "path": "/images/optimized/uruk/clay-envelope.optimized.jpg",
-          "width": 476,
-          "height": 700
-        },
-        "variants": [
-          {
-            "objectKey": "uruk/media.uruk.clay-envelope/b7fede35d1d9bcef/optimized/ql-v1/476w-source-jpeg-b7fede35d1d9bcef.jpg",
-            "mimeType": "image/jpeg",
-            "bytes": 34249,
-            "sha256": "b7fede35d1d9bcef065f722d319dbc81ce45a37cb975b81a6908436dede575ad",
-            "width": 476,
-            "height": 700,
-            "compression": {
-              "profile": "ql-v1",
-              "codec": "jpeg",
-              "encoder": "source-passthrough"
-            },
-            "fidelity": {
-              "mode": "pixel-exact",
-              "psnrDb": null,
-              "meanAbsoluteError": 0,
-              "maximumChannelDelta": 0
-            }
-          }
-        ]
-      },
-      "source": {
-        "bucket": "media-source",
-        "objectKey": "uruk/media.uruk.clay-envelope/b7fede35d1d9bcef065f722d319dbc81ce45a37cb975b81a6908436dede575ad/original.jpg",
-        "mimeType": "image/jpeg",
-        "bytes": 34249,
-        "sha256": "b7fede35d1d9bcef065f722d319dbc81ce45a37cb975b81a6908436dede575ad",
-        "width": 476,
-        "height": 700
       }
     },
     {
@@ -268,15 +241,79 @@
             }
           }
         ]
-      },
-      "source": {
-        "bucket": "media-source",
-        "objectKey": "uruk/media.uruk.southern-mesopotamia-map/5294a3a24342d844c3d6cb1b5cd0be6d05511973f6172ba6752441eb6631da9b/original.webp",
-        "mimeType": "image/webp",
-        "bytes": 241550,
-        "sha256": "5294a3a24342d844c3d6cb1b5cd0be6d05511973f6172ba6752441eb6631da9b",
-        "width": 1732,
-        "height": 908
+      }
+    },
+    {
+      "id": "media.writing.proto-cuneiform-tablet",
+      "locator": {
+        "provider": "object-storage",
+        "bucket": "media-public",
+        "fallback": {
+          "path": "/images/optimized/early-writing/proto-cuneiform-tablet.optimized.webp",
+          "width": 3000,
+          "height": 4000
+        },
+        "variants": [
+          {
+            "objectKey": "early-writing/media.writing.proto-cuneiform-tablet/31dd48dd3ab375b7/optimized/ql-v1/480w-webp-lossless-2cfeaf8fab0ecbf8.webp",
+            "mimeType": "image/webp",
+            "bytes": 150536,
+            "sha256": "2cfeaf8fab0ecbf81c1b09584b2978bb68e5e17ac1df8fdfaf060f01878adbe6",
+            "width": 480,
+            "height": 640,
+            "compression": {
+              "profile": "ql-v1",
+              "codec": "webp",
+              "encoder": "webp-lossless"
+            },
+            "fidelity": {
+              "mode": "pixel-exact",
+              "psnrDb": null,
+              "meanAbsoluteError": 0,
+              "maximumChannelDelta": 0
+            }
+          },
+          {
+            "objectKey": "early-writing/media.writing.proto-cuneiform-tablet/31dd48dd3ab375b7/optimized/ql-v1/1600w-webp-q94-86d4767d5eb5f054.webp",
+            "mimeType": "image/webp",
+            "bytes": 294196,
+            "sha256": "86d4767d5eb5f054e72744452fb50dd6838051035cb66ff3b50c6c186a9bf353",
+            "width": 1600,
+            "height": 2133,
+            "compression": {
+              "profile": "ql-v1",
+              "codec": "webp",
+              "encoder": "webp-lossy",
+              "quality": 94
+            },
+            "fidelity": {
+              "mode": "measured-quasi-lossless",
+              "psnrDb": 47.81,
+              "meanAbsoluteError": 0.501,
+              "maximumChannelDelta": 16
+            }
+          },
+          {
+            "objectKey": "early-writing/media.writing.proto-cuneiform-tablet/31dd48dd3ab375b7/optimized/ql-v1/3000w-webp-q92-5eba8acf6c42e8f4.webp",
+            "mimeType": "image/webp",
+            "bytes": 728374,
+            "sha256": "5eba8acf6c42e8f4f058478d1c145e72d579ddf71975a2e53a5dbe66b823e8aa",
+            "width": 3000,
+            "height": 4000,
+            "compression": {
+              "profile": "ql-v1",
+              "codec": "webp",
+              "encoder": "webp-lossy",
+              "quality": 92
+            },
+            "fidelity": {
+              "mode": "measured-quasi-lossless",
+              "psnrDb": 47.08,
+              "meanAbsoluteError": 0.525,
+              "maximumChannelDelta": 16
+            }
+          }
+        ]
       }
     }
   ]
