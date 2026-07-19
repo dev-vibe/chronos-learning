@@ -786,7 +786,7 @@ CHR-042 \| Implement Learn route state and deep linking
 
 **Outcome:** Make journey and lesson URLs shareable and resilient.
 
-**Implementation notes:** URL should identify journey context and lesson; restore scroll where reasonable.
+**Implementation notes:** URL should identify journey context and lesson. Opening or reopening a lesson starts at the top; temporary overlays such as the mobile journey drawer may preserve the current viewport while they are open.
 
 **Acceptance criteria**
 
