@@ -140,6 +140,16 @@ Preferred order:
 5. high-quality synthesis used to orient or cross-check;
 6. general web sources only to locate stronger evidence or resolve a narrow practical fact.
 
+Use this research loop:
+
+1. Run an orientation search to learn the field's current terminology, major evidence, and obvious disputes.
+2. Identify at least one authoritative anchor source for chronology/geography and one for the lesson's central claim.
+3. Follow citations backward to the underlying object, corpus, excavation, primary source, or study.
+4. Follow later citations forward to see whether the interpretation was refined, rejected, or remains influential.
+5. Search deliberately for disagreement, regional/specialist perspectives, and evidence that would weaken the emerging narrative.
+6. Locate at least one concrete primary/evidence encounter suitable for the learner.
+7. Stop when the essential claims are independently supported, important disagreement is understood, new sources mostly repeat known evidence, and remaining gaps are recorded honestly. Do not stop merely because the first coherent story has appeared.
+
 Wikipedia and search-result summaries may help discover terminology and references. They are not sufficient support for a material claim. A museum label is valuable but not automatically the last word. A single scholar’s interpretation is not “what historians believe.” Popular documentaries and unsourced educational sites are discovery leads, not claim authorities.
 
 For every candidate source, record:
@@ -158,6 +168,21 @@ For every candidate source, record:
 | Review status | Reviewed or further review required |
 
 Open and read the relevant source itself. Do not cite a search snippet, AI summary, bibliography entry, or another article’s description as if it were the source.
+
+### Weighing sources
+
+Do not treat all citations as equal and do not turn source quality into a fake numeric score. Judge each source across these dimensions:
+
+- **Directness:** does it present the object/data/text or summarize someone else?
+- **Relevant expertise:** is the author/institution qualified for this specific claim and region/period?
+- **Method transparency:** can the evidence, translation, excavation context, reasoning, and limits be inspected?
+- **Proximity and context:** how close is it to the event, and what purposes or constraints shaped its creation?
+- **Independence:** do several sources truly corroborate one another, or repeat one publication/tradition?
+- **Scholarly currency:** has newer evidence materially changed an older interpretation?
+- **Perspective and preservation:** whose viewpoint survives, who selected it, and whose experience is absent?
+- **Claim fit:** does the source support the exact learner-facing wording and strength of certainty?
+
+When strong sources conflict, identify whether they disagree about evidence, translation, dating, definition, causal interpretation, or values. Narrow the claim if possible; otherwise represent the major interpretations proportionately and make the uncertainty part of the teaching. Never resolve disagreement by choosing the source with the cleanest prose.
 
 ## Stage 4 — Build the claim ledger before drafting prose
 
