@@ -26,17 +26,17 @@ The author may be an AI agent, human editor, historian, designer, or combination
 
 Read these before authoring:
 
-1. `AGENTS.md`
-2. `docs/product/chronos-prd.md`
-3. `docs/design/design-system.md`
-4. `docs/architecture/target-architecture.md`
+1. [`AGENTS.md`](../../AGENTS.md)
+2. [`docs/product/chronos-prd.md`](../product/chronos-prd.md)
+3. [`docs/design/design-system.md`](../design/design-system.md)
+4. [`docs/architecture/target-architecture.md`](../architecture/target-architecture.md)
 5. the active Linear issue and journey/curriculum context
 
 Use these specialist runbooks when triggered:
 
-- Historical maps: `docs/content/historical-map-production.md`
-- Image research, rights, provenance, or generation: `docs/prompts/media-provenance-research-and-generation.md`
-- Asset ingestion, responsive derivatives, publishing, and rollback: `docs/architecture/media-publishing.md`
+- Historical maps: [`docs/content/historical-map-production.md`](historical-map-production.md)
+- Image research, rights, provenance, or generation: [`docs/prompts/media-provenance-research-and-generation.md`](../prompts/media-provenance-research-and-generation.md)
+- Asset ingestion, responsive derivatives, publishing, and rollback: [`docs/architecture/media-publishing.md`](../architecture/media-publishing.md)
 
 The specialist runbooks own their details. This document decides when they are needed and how their outputs fit the lesson.
 
@@ -365,13 +365,13 @@ Media must either provide evidence, explain a relationship, orient the learner, 
 ### Choosing the form
 
 - Use a **surviving object or primary visual source** when the learner should observe evidence.
-- Use a **map** when location, distance, environment, movement, boundaries, or spatial uncertainty is part of the explanation. Then follow `docs/content/historical-map-production.md`.
+- Use a **map** when location, distance, environment, movement, boundaries, or spatial uncertainty is part of the explanation. Then follow the [historical map production runbook](historical-map-production.md).
 - Use a **diagram** when a process or relationship matters more than literal appearance.
 - Use an **evidence-based reconstruction** when a scene materially helps learners imagine a poorly preserved environment and the brief can distinguish supported, inferred, generalized, and unknown details.
 - Use a **symbolic treatment** sparingly when the subject is an abstract idea or evidence is too thin for a literal scene.
 - Use **no media** when text is clearer and an asset would only create noise.
 
-For every image or generated asset, follow `docs/prompts/media-provenance-research-and-generation.md`; after approval, follow `docs/architecture/media-publishing.md`.
+For every image or generated asset, follow the [media provenance research and generation prompt](../prompts/media-provenance-research-and-generation.md); after approval, follow the [media ingestion and publishing runbook](../architecture/media-publishing.md).
 
 ### Video decision gate
 
@@ -395,6 +395,8 @@ If video passes the gate:
 6. Use native, keyboard-operable controls; never autoplay.
 7. Avoid third-party ads, tracking, algorithmic recommendations, and links that pull learners out of Chronos.
 8. Verify mobile, low-bandwidth, muted, and reduced-motion behavior.
+
+Follow W3C WAI's [planning guidance for accessible audio and video](https://www.w3.org/WAI/media/av/planning/). Captions must include meaningful non-speech audio, not dialogue alone; the transcript/static fallback must preserve the teaching content carried by both sound and visuals.
 
 No MVP lesson is blocked on custom video production. Stabilize the evidence-led lesson first and add video later only if learner observation reveals a real explanatory gap.
 
