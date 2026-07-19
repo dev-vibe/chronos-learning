@@ -11,6 +11,8 @@ Before changing product behavior, data models, or UI, read:
 3. `docs/design/design-system.md`
 4. The active Linear epic in the [Chronos rebuild project](https://linear.app/ashs-workshop/project/chronos-guided-history-learning-rebuild-0fe768438099)
 
+For lesson creation or material lesson revision, follow `docs/content/lesson-creation-runbook.md`. It is the canonical process for research, claim weighting, age calibration, page composition, media, prompts, Knowledge Cards, review, and publication; do not rely on older informal runbooks.
+
 For UI work, inspect the images in `docs/design/references/`. They express visual intent, hierarchy, and product personality. Rebuild them with real responsive components and accessible native text; do not embed screenshots or imitate generated text errors.
 
 For generated historical maps, follow `docs/content/historical-map-production.md`. A real authoritative map must anchor the geography; generated output is never the geographic source.
