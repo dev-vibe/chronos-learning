@@ -72,8 +72,8 @@ describe('multi-lesson Learn runtime', () => {
     const gateway = new MultiLessonGateway();
     render(<LearnApp lessonId="lesson.writing.early-systems" gatewayFactory={async () => gateway} />);
     await screen.findByRole('heading', { name: 'From Marks to Proto-Cuneiform' });
-    await userEvent.click(screen.getByLabelText('A proto-cuneiform tablet recording quantities and goods'));
-    const explanation = screen.getByRole('textbox', { name: /Explain one thing writing made possible/ });
+    await userEvent.click(screen.getByRole('radio', { name: /^A proto-cuneiform tablet combining numbers and signs for goods$/i }));
+    const explanation = screen.getByRole('textbox', { name: /Explain one thing durable records made possible/ });
     await userEvent.type(explanation, 'Writing made allocations durable, but surviving administrative tablets omit many voices.');
     fireEvent.blur(explanation);
     await waitFor(() => expect(screen.getByRole('button', { name: 'Complete lesson' }).hasAttribute('disabled')).toBe(false));

@@ -3,66 +3,427 @@ import type { AuthoredContentModule } from '../assemble';
 import { mediaLocator } from '../shared/media-locator';
 
 export const earlyWritingSources: Source[] = [
-  { id: 'source.met.writing-origins', title: 'The Origins of Writing', url: 'https://www.metmuseum.org/essays/the-origins-of-writing', publisher: 'The Metropolitan Museum of Art', accessedOn: '2026-07-16', licenseOrUse: 'Institutional scholarly reference; article text not redistributed', reviewStatus: 'reviewed' },
-  { id: 'source.met.proto-cuneiform-tablet', title: 'Proto-Cuneiform Tablet with Seal Impressions, 1988.433.1', url: 'https://www.metmuseum.org/art/collection/search/329081', publisher: 'The Metropolitan Museum of Art', accessedOn: '2026-07-16', licenseOrUse: 'Object image explicitly marked Public Domain under The Met Open Access policy; derivatives and redistribution permitted', reviewStatus: 'reviewed' },
-  { id: 'source.cdli.uruk-iv-tablet', title: 'W 20498 (P003801)', url: 'https://cdli.earth/P003801', publisher: 'Cuneiform Digital Library Initiative', accessedOn: '2026-07-16', licenseOrUse: 'Specialist corpus record used as research reference; artifact photograph not redistributed', reviewStatus: 'reviewed' },
-  { id: 'source.cdli.writing-epistemology', title: 'The Origins of Writing as a Problem of Historical Epistemology', url: 'https://cdli.earth/articles/cdlj/2006-1', publisher: 'Cuneiform Digital Library Initiative', accessedOn: '2026-07-16', licenseOrUse: 'Open scholarly reference; article text not redistributed', reviewStatus: 'reviewed' },
-  { id: 'source.antiquity.seals-signs', title: 'Seals and Signs: Tracing the Origins of Writing in Ancient South-west Asia', url: 'https://www.cambridge.org/core/journals/antiquity/article/seals-and-signs-tracing-the-origins-of-writing-in-ancient-southwest-asia/B3C2D400F3F80A7A0162D9035C9C2804', publisher: 'Antiquity / Cambridge University Press', accessedOn: '2026-07-16', licenseOrUse: 'CC BY-NC-ND scholarly reference; no article media redistributed', reviewStatus: 'reviewed' },
-  { id: 'source.isac.visible-language', title: 'Visible Language: Inventions of Writing in the Ancient Middle East and Beyond', url: 'https://isac.uchicago.edu/programs-events/member-events/visible-language-inventions-writing-ancient-middle-east-and-beyond', publisher: 'Institute for the Study of Ancient Cultures, University of Chicago', accessedOn: '2026-07-16', licenseOrUse: 'Institutional reference; runtime reuse not asserted', reviewStatus: 'reviewed' }
+  {
+    id: 'source.met.writing-origins',
+    title: 'The Origins of Writing',
+    url: 'https://www.metmuseum.org/essays/the-origins-of-writing',
+    publisher: 'The Metropolitan Museum of Art',
+    accessedOn: '2026-07-19',
+    licenseOrUse: 'Institutional scholarly reference; article text not redistributed',
+    reviewStatus: 'reviewed',
+  },
+  {
+    id: 'source.met.proto-cuneiform-tablet',
+    title: 'Proto-Cuneiform Tablet with Seal Impressions, 1988.433.1',
+    url: 'https://www.metmuseum.org/art/collection/search/329081',
+    publisher: 'The Metropolitan Museum of Art',
+    accessedOn: '2026-07-19',
+    licenseOrUse: 'Object image explicitly marked Public Domain under The Met Open Access policy; derivatives and redistribution permitted',
+    reviewStatus: 'reviewed',
+  },
+  {
+    id: 'source.cdli.uruk-iv-tablet',
+    title: 'W 20498 (P003801)',
+    url: 'https://cdli.earth/P003801',
+    publisher: 'Cuneiform Digital Library Initiative',
+    accessedOn: '2026-07-19',
+    licenseOrUse: 'Specialist corpus record used as research reference; artifact photograph not redistributed',
+    reviewStatus: 'reviewed',
+  },
+  {
+    id: 'source.cdli.writing-epistemology',
+    title: 'The Origins of Writing as a Problem of Historical Epistemology',
+    url: 'https://cdli.earth/articles/cdlj/2006-1',
+    publisher: 'Cuneiform Digital Library Initiative',
+    accessedOn: '2026-07-19',
+    licenseOrUse: 'Open scholarly reference; article text not redistributed',
+    reviewStatus: 'reviewed',
+  },
+  {
+    id: 'source.antiquity.seals-signs',
+    title: 'Seals and Signs: Tracing the Origins of Writing in Ancient South-west Asia',
+    url: 'https://www.cambridge.org/core/journals/antiquity/article/seals-and-signs-tracing-the-origins-of-writing-in-ancient-southwest-asia/B3C2D400F3F80A7A0162D9035C9C2804',
+    publisher: 'Antiquity / Cambridge University Press',
+    accessedOn: '2026-07-19',
+    licenseOrUse: 'CC BY-NC-ND 4.0 scholarly reference; no article media or derivative text redistributed',
+    reviewStatus: 'reviewed',
+  },
+  {
+    id: 'source.isac.visible-language',
+    title: 'Visible Language: Inventions of Writing in the Ancient Middle East and Beyond',
+    url: 'https://isac.uchicago.edu/research/publications/oimp/oimp-32-visible-language-inventions-writing-ancient-middle-east-and',
+    publisher: 'Institute for the Study of Ancient Cultures, University of Chicago',
+    accessedOn: '2026-07-19',
+    licenseOrUse: 'Institutional edited-volume reference; runtime redistribution not asserted',
+    reviewStatus: 'reviewed',
+  },
 ];
 
 export const earlyWritingClaims: Claim[] = [
-  { id: 'claim.writing.administrative-evidence', statement: 'Surviving proto-cuneiform tablets from Uruk and nearby contexts preserve numerical and commodity signs used in administration and accounting.', kind: 'observation', certainty: 'high', sourceIds: ['source.met.proto-cuneiform-tablet', 'source.cdli.uruk-iv-tablet'], reviewStatus: 'reviewed' },
-  { id: 'claim.writing.precursors', statement: 'Tokens, seals, numerical tablets, and other earlier practices formed part of the administrative environment from which proto-cuneiform emerged, but a simple one-to-one path from every token or seal motif to a later sign is not demonstrated.', kind: 'interpretation', certainty: 'moderate', sourceIds: ['source.antiquity.seals-signs'], reviewStatus: 'reviewed' },
-  { id: 'claim.writing.change-over-time', statement: 'Proto-cuneiform signs and writing practices changed over time; later cuneiform used impressed wedge-shaped signs and more fully represented spoken languages.', kind: 'interpretation', certainty: 'high', sourceIds: ['source.met.writing-origins', 'source.cdli.writing-epistemology'], reviewStatus: 'reviewed' },
-  { id: 'claim.writing.limits', statement: 'Most surviving proto-cuneiform texts concern restricted administrative fields, so they do not preserve the full range of speech, thought, or experience in these communities.', kind: 'interpretation', certainty: 'high', sourceIds: ['source.cdli.writing-epistemology'], reviewStatus: 'reviewed' },
-  { id: 'claim.writing.power-access', statement: 'Because proto-cuneiform was a specialized administrative practice, control of its training and use may have concentrated access to durable records and institutional decisions; the surviving tablets do not directly identify everyone who could read or decide what was recorded.', kind: 'interpretation', certainty: 'moderate', sourceIds: ['source.met.writing-origins', 'source.cdli.writing-epistemology'], reviewStatus: 'reviewed' },
-  { id: 'claim.writing.independent-traditions', statement: 'Mesopotamian proto-cuneiform was one early writing tradition; writing also developed independently in Egypt, China, and Mesoamerica.', kind: 'observation', certainty: 'high', sourceIds: ['source.isac.visible-language'], reviewStatus: 'reviewed' }
+  {
+    id: 'claim.writing.coordination-problem',
+    statement: 'Late-fourth-millennium institutions used durable administrative devices to organize selected information about goods, quantities, people, and activities.',
+    kind: 'interpretation',
+    certainty: 'high',
+    sourceIds: ['source.met.writing-origins', 'source.antiquity.seals-signs', 'source.cdli.writing-epistemology'],
+    reviewStatus: 'editorial-review-required',
+  },
+  {
+    id: 'claim.writing.administrative-evidence',
+    statement: 'Surviving late-fourth-millennium tablets preserve numerical and commodity signs used for administration and accounting.',
+    kind: 'observation',
+    certainty: 'high',
+    sourceIds: ['source.met.proto-cuneiform-tablet', 'source.cdli.uruk-iv-tablet', 'source.antiquity.seals-signs'],
+    reviewStatus: 'editorial-review-required',
+  },
+  {
+    id: 'claim.writing.precursors',
+    statement: 'Tokens, sealings, clay envelopes, numerical tablets, and other marks were used before and alongside proto-cuneiform in administrative settings across South-west Asia.',
+    kind: 'observation',
+    certainty: 'high',
+    sourceIds: ['source.antiquity.seals-signs', 'source.cdli.writing-epistemology'],
+    reviewStatus: 'editorial-review-required',
+  },
+  {
+    id: 'claim.writing.precursor-paths',
+    statement: 'Some proto-cuneiform signs may draw on older visual or administrative practices, but most one-to-one paths from a particular token or seal motif to a later sign are not demonstrable.',
+    kind: 'interpretation',
+    certainty: 'moderate',
+    sourceIds: ['source.antiquity.seals-signs'],
+    reviewStatus: 'editorial-review-required',
+  },
+  {
+    id: 'claim.writing.tablet-object',
+    statement: 'The Met tablet 1988.433.1 is a small clay object dated about 3100–2900 BCE, probably from Uruk, with incised signs, numerical impressions, and a cylinder-seal impression.',
+    kind: 'observation',
+    certainty: 'high',
+    sourceIds: ['source.met.proto-cuneiform-tablet'],
+    reviewStatus: 'editorial-review-required',
+  },
+  {
+    id: 'claim.writing.tablet-reading',
+    statement: 'The Met interprets tablet 1988.433.1 as a probable grain distribution, but the exact transaction remains uncertain.',
+    kind: 'interpretation',
+    certainty: 'moderate',
+    sourceIds: ['source.met.proto-cuneiform-tablet'],
+    reviewStatus: 'editorial-review-required',
+  },
+  {
+    id: 'claim.writing.restricted-information',
+    statement: 'Most surviving proto-cuneiform texts organize restricted administrative information rather than fully encoding the syntax and range of spoken language.',
+    kind: 'interpretation',
+    certainty: 'high',
+    sourceIds: ['source.cdli.writing-epistemology', 'source.antiquity.seals-signs', 'source.isac.visible-language'],
+    reviewStatus: 'editorial-review-required',
+  },
+  {
+    id: 'claim.writing.change-over-time',
+    statement: 'Over centuries, writing tools, sign forms, conventions, phonetic coding, languages, and text types changed into later cuneiform traditions.',
+    kind: 'interpretation',
+    certainty: 'high',
+    sourceIds: ['source.met.writing-origins', 'source.cdli.writing-epistemology', 'source.isac.visible-language'],
+    reviewStatus: 'editorial-review-required',
+  },
+  {
+    id: 'claim.writing.power-access',
+    statement: 'Because proto-cuneiform record-making was a specialized institutional practice, control of it may have concentrated access to durable information and decisions; the tablets do not directly identify every reader, writer, or decision-maker.',
+    kind: 'interpretation',
+    certainty: 'moderate',
+    sourceIds: ['source.cdli.writing-epistemology', 'source.isac.visible-language', 'source.met.writing-origins'],
+    reviewStatus: 'editorial-review-required',
+  },
+  {
+    id: 'claim.writing.limits',
+    statement: 'The surviving administrative corpus is not a complete record of speech, writing practices, or lived experience in early Mesopotamian communities.',
+    kind: 'interpretation',
+    certainty: 'high',
+    sourceIds: ['source.cdli.writing-epistemology', 'source.antiquity.seals-signs'],
+    reviewStatus: 'editorial-review-required',
+  },
+  {
+    id: 'claim.writing.independent-traditions',
+    statement: 'Mesopotamian proto-cuneiform was one early writing tradition; writing also developed independently in Egypt, China, and Mesoamerica.',
+    kind: 'observation',
+    certainty: 'high',
+    sourceIds: ['source.isac.visible-language'],
+    reviewStatus: 'editorial-review-required',
+  },
 ];
 
 export const earlyWritingMedia: MediaAsset[] = [
-  { id: 'media.writing.proto-cuneiform-tablet', locator: mediaLocator('media.writing.proto-cuneiform-tablet'), alt: 'Small clay proto-cuneiform administrative tablet with incised signs, numerical impressions, and a partial cylinder-seal scene', depictionMode: 'evidence', depictionLabel: 'Surviving proto-cuneiform tablet — The Met, 1988.433.1, Public Domain', sourceIds: ['source.met.proto-cuneiform-tablet'], visualBriefRef: 'docs/research/early-writing-systems.md#media-and-card-provenance', reviewStatus: 'approved' }
+  {
+    id: 'media.writing.proto-cuneiform-tablet',
+    locator: mediaLocator('media.writing.proto-cuneiform-tablet'),
+    alt: 'Small clay tablet with incised signs, round numerical impressions, and part of a rolled cylinder-seal image',
+    depictionMode: 'evidence',
+    depictionLabel: 'Surviving proto-cuneiform tablet — The Met, 1988.433.1, Public Domain',
+    sourceIds: ['source.met.proto-cuneiform-tablet'],
+    visualBriefRef: 'docs/research/early-writing-systems.md#media-and-knowledge-card-plan',
+    reviewStatus: 'approved',
+  },
 ];
 
 export const earlyWritingPrompts: UnderstandingPrompt[] = [
-  { id: 'prompt.writing.administration-evidence', lessonId: 'lesson.writing.early-systems', kind: 'supported-selection', question: 'Which surviving evidence best supports the use of early writing for administration or accounting?', explanation: 'A proto-cuneiform tablet that records numbers and commodities is direct surviving evidence. A modern reconstruction or a much later literary story is not.', required: true, options: [{ id: 'option.writing.tablet', label: 'A proto-cuneiform tablet recording quantities and goods' }, { id: 'option.writing.reconstruction', label: 'A modern painting of a scribe at work' }, { id: 'option.writing.later-story', label: 'A literary story copied many centuries later' }] },
-  { id: 'prompt.writing.possibility-and-limit', lessonId: 'lesson.writing.early-systems', kind: 'concise-explanation', question: 'Explain one thing writing made possible and one limitation of what the surviving tablets can tell historians.', explanation: 'A sincere answer might connect durable records, comparison, allocation, or transmission with the limits of an administrative sample that leaves many voices and experiences unrecorded.', required: true, minimumResponseLength: 30 }
+  {
+    id: 'prompt.writing.administration-evidence',
+    lessonId: 'lesson.writing.early-systems',
+    kind: 'supported-selection',
+    question: 'Which surviving evidence best supports the use of proto-cuneiform for administration?',
+    explanation: 'A tablet combining numerical and commodity signs is direct surviving evidence of record-making. Calling it a particular transaction is a scholarly interpretation; a modern reconstruction or much later story is not direct evidence for this early practice.',
+    required: true,
+    options: [
+      { id: 'option.writing.tablet', label: 'A proto-cuneiform tablet combining numbers and signs for goods' },
+      { id: 'option.writing.reconstruction', label: 'A modern painting of a scribe at work' },
+      { id: 'option.writing.later-story', label: 'A literary story copied many centuries later' },
+    ],
+  },
+  {
+    id: 'prompt.writing.possibility-and-limit',
+    lessonId: 'lesson.writing.early-systems',
+    kind: 'concise-explanation',
+    question: 'Explain one thing durable records made possible and one limit of what surviving proto-cuneiform tablets can tell historians.',
+    explanation: 'A sincere answer might connect records with counting, comparison, allocation, checking, or institutional memory, then name a limit: the tablets preserve restricted administrative information, leave many people’s voices out, and often cannot be read as complete sentences or exact transactions.',
+    required: true,
+    minimumResponseLength: 30,
+  },
 ];
 
 export const earlyWritingLesson: Lesson = {
-
-    id: 'lesson.writing.early-systems', legacyAliases: ['sumer_writing'], status: 'published', title: 'From Marks to Proto-Cuneiform', masthead: 'c. 3200–2800 BCE', place: 'Southern Mesopotamia', chronology: { startYear: -3200, endYear: -2800, display: 'c. 3200–2800 BCE', approximate: true },
-
-    significance: 'Following Uruk’s administrative tablets, this lesson asks how durable marks became a powerful—but still limited—system for recording information.', heroMediaId: 'media.writing.proto-cuneiform-tablet', heroLabel: 'Surviving evidence', heroCaption: 'This object survives; its reading and administrative context are scholarly interpretations.',
-
-    sectionIdsRequired: ['section.writing.opening-question', 'section.writing.coordination-problem', 'section.writing.before-tablets', 'section.writing.tablets-as-evidence', 'section.writing.signs-change', 'section.writing.power-and-access', 'section.writing.limits', 'section.writing.world-check'],
-
-    sections: [
-
-      { id: 'section.writing.opening-question', heading: 'Can a mark remember?', purpose: 'Opening question', modules: [{ id: 'module.writing.opening', type: 'prose', body: 'Uruk introduced clay records used in administration. Now look more closely: when a mark outlasts the person who made it, what can a community do that memory alone cannot?', claimIds: ['claim.writing.administrative-evidence'], sourceIds: ['source.met.proto-cuneiform-tablet'] }] },
-
-      { id: 'section.writing.coordination-problem', heading: 'More people, more to remember', purpose: 'The coordination problem', modules: [{ id: 'module.writing.coordination', type: 'knowledge', eyebrow: 'A record can travel', title: 'Information beyond one memory', body: 'Large communities moved grain, animals, textiles, labor, and rations through institutions. Durable records could help people count, compare, allocate, and check information.', items: [{ label: 'Count', detail: 'How much came in or went out?' }, { label: 'Identify', detail: 'Which good, person, or institution was involved?' }, { label: 'Carry', detail: 'Could the record be checked later or elsewhere?' }], claimIds: ['claim.writing.administrative-evidence'], sourceIds: ['source.met.writing-origins'] }] },
-
-      { id: 'section.writing.before-tablets', heading: 'Before the tablet', purpose: 'Earlier administrative practices', modules: [{ id: 'module.writing.precursors', type: 'prose', body: 'Tokens, seals, clay envelopes, numerical marks, and other devices were used before and alongside the earliest tablets. They belong to the same world of accounting, but scholars cannot trace every later sign to one earlier object or declare a single instant when writing was invented.', claimIds: ['claim.writing.precursors'], sourceIds: ['source.antiquity.seals-signs'] }] },
-
-      { id: 'section.writing.tablets-as-evidence', heading: 'A tablet that survives', purpose: 'Read the object carefully', modules: [{ id: 'module.writing.tablet-evidence', type: 'evidence', title: 'Numbers, commodities, and a seal', artifactLabel: 'Surviving evidence', body: 'This small clay tablet, probably from Uruk, dates to about 3100–2900 BCE. The Met interprets it as an administrative account, probably involving barley distribution. The marks and seal impression survive; the exact transaction remains uncertain because early texts omit much that later writing would express.', mediaId: 'media.writing.proto-cuneiform-tablet', claimIds: ['claim.writing.administrative-evidence'], sourceIds: ['source.met.proto-cuneiform-tablet'] }] },
-
-      { id: 'section.writing.signs-change', heading: 'Signs do not stand still', purpose: 'From proto-cuneiform toward cuneiform', modules: [{ id: 'module.writing.change', type: 'knowledge', eyebrow: 'Change over time', title: 'A practice, not a finished invention', body: 'Early signs were often drawn or impressed to organize restricted kinds of information. Over centuries, sign shapes and uses changed; later cuneiform used wedge-shaped impressions and could represent spoken languages much more fully.', items: [{ label: 'Early', detail: 'Numerals and signs organized goods and quantities.' }, { label: 'Changing', detail: 'Tools, sign shapes, and conventions shifted.' }, { label: 'Later', detail: 'Cuneiform represented several languages and many kinds of text.' }], claimIds: ['claim.writing.change-over-time'], sourceIds: ['source.met.writing-origins', 'source.cdli.writing-epistemology'] }] },
-
-      { id: 'section.writing.power-and-access', heading: 'Records make power visible', purpose: 'Possibility and control', modules: [{ id: 'module.writing.power', type: 'prose', body: 'Writing made information more durable and comparable. That could support allocation, obligations, planning, and institutional memory. Yet learning and controlling a specialized record system may also have concentrated access among administrators and trained writers; the tablets do not show that everyone could read or decide what was recorded.', claimIds: ['claim.writing.administrative-evidence', 'claim.writing.power-access', 'claim.writing.limits'], sourceIds: ['source.met.writing-origins', 'source.cdli.writing-epistemology'] }] },
-
-      { id: 'section.writing.limits', heading: 'What the archive leaves out', purpose: 'Evidence, interpretation, and uncertainty', modules: [{ id: 'module.writing.limits', type: 'knowledge', eyebrow: 'Historical caution', title: 'Survival is not the whole society', body: 'Administrative tablets are abundant because clay can survive and institutions kept records. That does not mean administration was writing’s only use, or that the surviving archive captures every person’s experience.', items: [{ label: 'Evidence', detail: 'Clay objects and their marks survive.' }, { label: 'Interpretation', detail: 'Scholars compare signs, numbers, contexts, and later texts.' }, { label: 'Uncertainty', detail: 'Many signs and transactions remain difficult to identify.' }, { label: 'Wider world', detail: 'Other writing traditions developed independently.' }], claimIds: ['claim.writing.limits', 'claim.writing.independent-traditions'], sourceIds: ['source.cdli.writing-epistemology', 'source.isac.visible-language'] }] },
-
-      { id: 'section.writing.world-check', heading: 'World Check', purpose: 'Use evidence and name a limit', modules: [{ id: 'module.writing.prompt-evidence', type: 'prompt', promptId: 'prompt.writing.administration-evidence', claimIds: [], sourceIds: [] }, { id: 'module.writing.prompt-limit', type: 'prompt', promptId: 'prompt.writing.possibility-and-limit', claimIds: [], sourceIds: [] }] },
-
-    ],
-
-    claimIds: ['claim.writing.administrative-evidence', 'claim.writing.precursors', 'claim.writing.change-over-time', 'claim.writing.limits', 'claim.writing.power-access', 'claim.writing.independent-traditions'], sourceIds: ['source.met.writing-origins', 'source.met.proto-cuneiform-tablet', 'source.cdli.uruk-iv-tablet', 'source.cdli.writing-epistemology', 'source.antiquity.seals-signs', 'source.isac.visible-language'], mediaIds: ['media.writing.proto-cuneiform-tablet'], promptIds: ['prompt.writing.administration-evidence', 'prompt.writing.possibility-and-limit'],
-
-  };
+  id: 'lesson.writing.early-systems',
+  legacyAliases: ['sumer_writing'],
+  status: 'published',
+  title: 'From Marks to Proto-Cuneiform',
+  masthead: 'c. 3200–2800 BCE',
+  place: 'Southern Mesopotamia',
+  chronology: {
+    startYear: -3200,
+    endYear: -2800,
+    display: 'c. 3200–2800 BCE',
+    approximate: true,
+  },
+  significance: 'Following Uruk’s clay records, ask how people made selected information last—and why these tablets did not yet work like later written sentences.',
+  heroMediaId: 'media.writing.proto-cuneiform-tablet',
+  heroLabel: 'Surviving evidence',
+  heroCaption: 'The clay, signs, numbers, and seal impression survive. Their probable meaning is a scholarly interpretation.',
+  sectionIdsRequired: [
+    'section.writing.opening-question',
+    'section.writing.coordination-problem',
+    'section.writing.before-tablets',
+    'section.writing.tablets-as-evidence',
+    'section.writing.limits',
+    'section.writing.signs-change',
+    'section.writing.power-and-access',
+    'section.writing.world-check',
+  ],
+  sections: [
+    {
+      id: 'section.writing.opening-question',
+      heading: 'Can a mark remember?',
+      purpose: 'Open with the problem of making selected information last',
+      modules: [
+        {
+          id: 'module.writing.opening',
+          type: 'prose',
+          body: 'Uruk introduced a city where institutions moved grain, animals, textiles, labor, and rations among many people. Spoken instructions and human memory still mattered, but they disappeared when the speaker left. What changes when a mark on clay can carry selected information into another room—or another day?',
+          claimIds: ['claim.writing.coordination-problem', 'claim.writing.administrative-evidence'],
+          sourceIds: ['source.met.writing-origins', 'source.antiquity.seals-signs'],
+        },
+      ],
+    },
+    {
+      id: 'section.writing.coordination-problem',
+      heading: 'When memory is not enough',
+      purpose: 'Explain the coordination problem without treating writing as inevitable progress',
+      modules: [
+        {
+          id: 'module.writing.coordination',
+          type: 'knowledge',
+          eyebrow: 'Information beyond one speaker',
+          title: 'A record can be checked',
+          body: 'Administrative records did not replace memory or conversation. They gave institutions a durable way to keep selected details stable while goods and responsibilities moved.',
+          items: [
+            { label: 'Count', detail: 'Record how many animals, jars, or measures of grain were involved.' },
+            { label: 'Identify', detail: 'Connect a good or quantity with a person, office, place, or activity.' },
+            { label: 'Check', detail: 'Carry information forward so someone could compare it with another record.' },
+          ],
+          claimIds: ['claim.writing.coordination-problem', 'claim.writing.administrative-evidence'],
+          sourceIds: ['source.met.writing-origins', 'source.cdli.writing-epistemology'],
+        },
+      ],
+    },
+    {
+      id: 'section.writing.before-tablets',
+      heading: 'A toolbox before writing',
+      purpose: 'Introduce earlier administrative practices and the limits of a simple origin story',
+      modules: [
+        {
+          id: 'module.writing.precursors',
+          type: 'knowledge',
+          eyebrow: 'No single invention moment',
+          title: 'Counting, sealing, and marking',
+          body: 'People had already developed several ways to make information physical. These practices formed part of proto-cuneiform’s administrative world, but they were not rungs on one perfectly known ladder.',
+          items: [
+            { label: 'Tokens', detail: 'Small shaped objects could stand for counted goods or quantities.' },
+            { label: 'Sealings', detail: 'Stamped or rolled images on clay could mark containers, doors, senders, institutions, or events.' },
+            { label: 'Numerical tablets', detail: 'Impressed numbers recorded quantities before the full proto-cuneiform sign system appeared.' },
+            { label: 'Uncertain paths', detail: 'Some later signs may echo older objects or images; most direct one-to-one matches cannot be proved.' },
+          ],
+          claimIds: ['claim.writing.precursors', 'claim.writing.precursor-paths'],
+          sourceIds: ['source.antiquity.seals-signs', 'source.cdli.writing-epistemology'],
+        },
+      ],
+    },
+    {
+      id: 'section.writing.tablets-as-evidence',
+      heading: 'Read the object, then the claim',
+      purpose: 'Separate close observation from a probable scholarly reading',
+      modules: [
+        {
+          id: 'module.writing.tablet-evidence',
+          type: 'evidence',
+          title: 'Numbers, signs, and a seal',
+          artifactLabel: 'Surviving evidence',
+          body: 'This clay tablet is only about 6 centimeters across. It dates to about 3100–2900 BCE and is probably from Uruk. You can observe incised signs, round numerical impressions, and part of a cylinder-seal image. The Met interprets the record as a probable distribution of grain. The marks survive; the exact transaction does not.',
+          mediaId: 'media.writing.proto-cuneiform-tablet',
+          claimIds: ['claim.writing.tablet-object', 'claim.writing.tablet-reading', 'claim.writing.administrative-evidence'],
+          sourceIds: ['source.met.proto-cuneiform-tablet'],
+        },
+      ],
+    },
+    {
+      id: 'section.writing.limits',
+      heading: 'A record is not yet a sentence',
+      purpose: 'Distinguish proto-cuneiform’s restricted information from later language-rich writing',
+      modules: [
+        {
+          id: 'module.writing.restricted-information',
+          type: 'knowledge',
+          eyebrow: 'Proto-cuneiform',
+          title: 'Structured information, limited language',
+          body: 'Most surviving proto-cuneiform texts arrange information for administration. Their signs do not yet reproduce ordinary speech or sentence structure in the way later cuneiform could.',
+          items: [
+            { label: 'Quantities', detail: 'Different numerical systems counted different kinds of goods.' },
+            { label: 'Categories', detail: 'Signs could identify commodities, people, offices, institutions, places, or activities.' },
+            { label: 'Layout', detail: 'Entries and totals could be organized spatially rather than as a spoken sentence.' },
+            { label: 'Limits', detail: 'Many signs remain disputed, and a tablet often leaves out the context a speaker would supply.' },
+          ],
+          claimIds: ['claim.writing.restricted-information'],
+          sourceIds: ['source.cdli.writing-epistemology', 'source.antiquity.seals-signs', 'source.isac.visible-language'],
+        },
+      ],
+    },
+    {
+      id: 'section.writing.signs-change',
+      heading: 'Signs, tools, and uses change',
+      purpose: 'Show development toward later cuneiform without inventing a clean finish line',
+      modules: [
+        {
+          id: 'module.writing.change',
+          type: 'knowledge',
+          eyebrow: 'Change over centuries',
+          title: 'A practice, not a finished invention',
+          body: 'There was no day when a complete writing system suddenly arrived. People changed how they made signs, what those signs represented, and what kinds of texts they produced.',
+          items: [
+            { label: 'Early', detail: 'Drawn and impressed signs organized restricted administrative information.' },
+            { label: 'Changing', detail: 'Sign shapes, stylus techniques, conventions, and phonetic uses developed unevenly.' },
+            { label: 'Later', detail: 'Wedge-impressed cuneiform represented several languages and supported letters, literature, law, scholarship, and more.' },
+          ],
+          claimIds: ['claim.writing.change-over-time'],
+          sourceIds: ['source.met.writing-origins', 'source.cdli.writing-epistemology', 'source.isac.visible-language'],
+        },
+      ],
+    },
+    {
+      id: 'section.writing.power-and-access',
+      heading: 'What records make visible—and leave out',
+      purpose: 'Connect durable information with institutional power, archive bias, and wider writing traditions',
+      modules: [
+        {
+          id: 'module.writing.power',
+          type: 'prose',
+          body: 'A durable record could help an institution allocate goods, track obligations, compare accounts, and remember a decision. Because this was specialized work, the people who controlled record-making may also have controlled who could inspect or challenge that information. That is a bounded interpretation—not something the tablet directly tells us about every writer, reader, or decision-maker.',
+          claimIds: ['claim.writing.coordination-problem', 'claim.writing.power-access'],
+          sourceIds: ['source.cdli.writing-epistemology', 'source.isac.visible-language', 'source.met.writing-origins'],
+        },
+        {
+          id: 'module.writing.archive-care',
+          type: 'knowledge',
+          eyebrow: 'Read an archive with care',
+          title: 'Survival is not the whole society',
+          body: 'Clay survives well, institutions kept records, and modern scholars can only interpret what has been found. That makes the archive powerful evidence—and a selective sample.',
+          items: [
+            { label: 'Evidence', detail: 'Clay objects, marks, layouts, and find contexts survive.' },
+            { label: 'Interpretation', detail: 'Scholars compare signs, quantities, objects, contexts, and later texts.' },
+            { label: 'Silence', detail: 'Most voices, conversations, motives, and everyday experiences were not recorded here.' },
+            { label: 'Wider world', detail: 'Writing also developed independently in Egypt, China, and Mesoamerica; Mesopotamia was one path, not the path.' },
+          ],
+          claimIds: ['claim.writing.limits', 'claim.writing.independent-traditions'],
+          sourceIds: ['source.cdli.writing-epistemology', 'source.antiquity.seals-signs', 'source.isac.visible-language'],
+        },
+      ],
+    },
+    {
+      id: 'section.writing.world-check',
+      heading: 'World Check',
+      purpose: 'Use surviving evidence and name what it cannot establish',
+      modules: [
+        {
+          id: 'module.writing.prompt-evidence',
+          type: 'prompt',
+          promptId: 'prompt.writing.administration-evidence',
+          claimIds: [],
+          sourceIds: [],
+        },
+        {
+          id: 'module.writing.prompt-limit',
+          type: 'prompt',
+          promptId: 'prompt.writing.possibility-and-limit',
+          claimIds: [],
+          sourceIds: [],
+        },
+      ],
+    },
+  ],
+  claimIds: earlyWritingClaims.map((claim) => claim.id),
+  sourceIds: earlyWritingSources.map((source) => source.id),
+  mediaIds: ['media.writing.proto-cuneiform-tablet'],
+  promptIds: [
+    'prompt.writing.administration-evidence',
+    'prompt.writing.possibility-and-limit',
+  ],
+};
 
 export const earlyWritingCards: KnowledgeCard[] = [
-  { id: 'card.artifact.proto-cuneiform-tablet', title: 'Proto-Cuneiform Tablet', category: 'artifact', cardClass: 'witness', date: { startYear: -3100, endYear: -2900, display: 'c. 3100–2900 BCE', approximate: true }, place: 'Southern Mesopotamia', significance: 'A surviving administrative object that shows numbers, signs, and sealing working together before later cuneiform was fully developed.', revealTitle: 'A record that outlived its makers', revealBody: 'You earned this Witness card by distinguishing the tablet itself from scholarly readings of what its marks recorded.', depictionLabel: 'Artifact-focused · surviving evidence', facts: ['Made from clay and small enough to hold', 'Uses proto-cuneiform signs and numerical impressions', 'Probably records an administrative distribution', 'Its exact transaction remains uncertain'], lessonIds: ['lesson.writing.early-systems'], sourceIds: ['source.met.proto-cuneiform-tablet', 'source.cdli.writing-epistemology'], mediaId: 'media.writing.proto-cuneiform-tablet', unlockLessonId: 'lesson.writing.early-systems' }
+  {
+    id: 'card.artifact.proto-cuneiform-tablet',
+    title: 'Proto-Cuneiform Tablet',
+    category: 'artifact',
+    cardClass: 'witness',
+    date: {
+      startYear: -3100,
+      endYear: -2900,
+      display: 'c. 3100–2900 BCE',
+      approximate: true,
+    },
+    place: 'Southern Mesopotamia, probably Uruk',
+    significance: 'A surviving administrative object that preserves numbers, signs, and sealing while reminding us that an object and its probable reading are not the same thing.',
+    revealTitle: 'A record that outlived its makers',
+    revealBody: 'You earned this Witness card by using a surviving tablet as evidence while keeping its probable reading separate from what is visible.',
+    depictionLabel: 'Artifact-focused · surviving evidence',
+    facts: [
+      'A small clay tablet dated about 3100–2900 BCE',
+      'Probably from Uruk in southern Mesopotamia',
+      'Carries incised signs, numerical impressions, and part of a cylinder-seal image',
+      'Probably records a grain distribution, but the exact transaction remains uncertain',
+    ],
+    lessonIds: ['lesson.writing.early-systems'],
+    sourceIds: [
+      'source.met.proto-cuneiform-tablet',
+      'source.cdli.writing-epistemology',
+    ],
+    mediaId: 'media.writing.proto-cuneiform-tablet',
+    unlockLessonId: 'lesson.writing.early-systems',
+  },
 ];
 
 export const earlyWritingSystemsContent: AuthoredContentModule = {
