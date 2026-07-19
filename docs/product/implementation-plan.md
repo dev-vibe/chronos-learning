@@ -1374,11 +1374,13 @@ CHR-074 \| Build lesson editor or structured authoring workflow
 
 **Outcome:** Allow creation and preview of typed lesson modules without editing application code.
 
-**Implementation notes:** May begin as validated repository files with preview tooling; full CMS is optional. The authoring workflow must implement `docs/content/lesson-creation-runbook.md` rather than reducing lesson work to field entry.
+**Implementation notes:** May begin as validated repository files with preview tooling; full CMS is optional. The authoring workflow must implement `docs/content/lesson-creation-runbook.md` and select work from `docs/content/lesson-production-queue.md` rather than reducing lesson work to field entry or requiring a custom prompt for every lesson.
 
 **Acceptance criteria**
 
 - Editors can create, validate, preview, and submit a lesson.
+
+- An agent can begin with “Let's create the next Chronos lesson,” continue active work or select the first eligible Ready queue entry, and execute the canonical research/editorial checkpoint without additional operational prompting.
 
 - References and sources are searchable or safely enterable.
 
