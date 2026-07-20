@@ -3,6 +3,7 @@ import { resolve } from 'node:path';
 import {
   ClaimSchema,
   JourneySchema,
+  JourneyInvitationSchema,
   KnowledgeCardSchema,
   LessonSchema,
   MediaAssetSchema,
@@ -17,6 +18,7 @@ export type ContentBundle = {
   prompts: unknown[];
   lessons: unknown[];
   journeys: unknown[];
+  invitations: unknown[];
   cards: unknown[];
 };
 
@@ -42,8 +44,9 @@ export function validateContent(input: ContentBundle) {
   const prompts = parse<any>(input.prompts, UnderstandingPromptSchema, 'prompt');
   const lessons = parse<any>(input.lessons, LessonSchema, 'lesson');
   const journeys = parse<any>(input.journeys, JourneySchema, 'journey');
+  const invitations = parse<any>(input.invitations ?? [], JourneyInvitationSchema, 'invitation');
   const cards = parse<any>(input.cards, KnowledgeCardSchema, 'card');
-  const all = [...sources, ...claims, ...media, ...prompts, ...lessons, ...journeys, ...cards];
+  const all = [...sources, ...claims, ...media, ...prompts, ...lessons, ...journeys, ...invitations, ...cards];
   const ids = new Set<string>();
   for (const item of all) {
     if (ids.has(item.id)) errors.push(`duplicate ID: ${item.id}`);
@@ -120,14 +123,34 @@ export function validateContent(input: ContentBundle) {
     else if (!lessonById.get(prompt.lessonId).promptIds.includes(prompt.id)) errors.push(`${prompt.id}: not registered by lesson ${prompt.lessonId}`);
   }
 
+  const journeyById = new Map(journeys.map((journey) => [journey.id, journey]));
   for (const journey of journeys) {
+    const journeyLessonIds = new Set<string>();
     for (const chapter of journey.chapters) {
       const positions = new Set<number>();
       for (const entry of chapter.entries) {
         if (positions.has(entry.position)) errors.push(`${chapter.id}: duplicate journey entry position ${entry.position}`);
         positions.add(entry.position);
         if (!lessonIds.has(entry.lessonId)) errors.push(`${entry.id}: unreachable required journey entry ${entry.lessonId}`);
+        journeyLessonIds.add(entry.lessonId);
       }
+    }
+    if (!journeyLessonIds.has(journey.entryLessonId)) errors.push(`${journey.id}: entry lesson is not part of the journey ${journey.entryLessonId}`);
+    if (journey.status === 'published' && lessonById.get(journey.entryLessonId)?.status !== 'published') errors.push(`${journey.id}: published journey entry lesson must be published ${journey.entryLessonId}`);
+    if (journey.previewMediaId && !mediaIds.has(journey.previewMediaId)) errors.push(`${journey.id}: broken preview media reference ${journey.previewMediaId}`);
+    refs(journey.id, journey.prerequisiteJourneyIds, new Set(journeys.map((item) => item.id)), 'prerequisite journey');
+    refs(journey.id, journey.relatedJourneyIds, new Set(journeys.map((item) => item.id)), 'related journey');
+  }
+
+  for (const invitation of invitations) {
+    const destination = journeyById.get(invitation.destinationJourneyId);
+    if (!destination) errors.push(`${invitation.id}: broken destination journey reference ${invitation.destinationJourneyId}`);
+    const destinationEntries = destination?.chapters.flatMap((chapter: any) => chapter.entries) ?? [];
+    if (!destinationEntries.some((entry: any) => entry.lessonId === invitation.entryLessonId)) errors.push(`${invitation.id}: entry lesson is not in destination journey ${invitation.entryLessonId}`);
+    if (invitation.sourceLessonId && !lessonIds.has(invitation.sourceLessonId)) errors.push(`${invitation.id}: broken source lesson reference ${invitation.sourceLessonId}`);
+    if (invitation.status === 'published') {
+      if (destination?.status !== 'published') errors.push(`${invitation.id}: published invitation destination must be published`);
+      if (lessonById.get(invitation.entryLessonId)?.status !== 'published') errors.push(`${invitation.id}: published invitation entry lesson must be published`);
     }
   }
 
