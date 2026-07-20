@@ -1,6 +1,8 @@
 import type { Journey, Lesson } from '../contracts';
 import type { JourneyProgressSummary } from '../../learn/progress';
 import { publishedEntries } from './catalog';
+import { worldSpineRoadmap } from '../../../content/world-spine/roadmap';
+import { resolveWorldSpineAccess } from './worldSpine';
 
 export const DEFAULT_JOURNEY_ID = 'journey.world-history';
 export type JourneyMembership = 'open' | 'saved' | 'closed';
@@ -21,9 +23,63 @@ export type LearnerJourneyState = {
   invitationStates: Record<string, { action: InvitationAction; updatedAt: string }>;
 };
 
+export type JourneyNextAction =
+  | Readonly<{ kind: 'lesson'; lessonId: string; source: 'active' | 'next' | 'start' | 'backfill' }>
+  | Readonly<{ kind: 'complete' }>
+  | Readonly<{ kind: 'blocked'; blockerId?: string }>;
+
+export function selectJourneyNextAction(
+  journey: Journey,
+  lessons: readonly Lesson[],
+  summaries: Record<string, JourneyProgressSummary>,
+  activeLessonId?: string,
+): JourneyNextAction {
+  const published = publishedEntries(journey, lessons);
+  const required = published.filter(({ entry }) => entry.required);
+  const entries = required.length ? required : published;
+  if (!entries.length) return { kind: 'blocked' };
+
+  const completed = (lessonId: string) => summaries[lessonId]?.status === 'completed';
+  const access = (lessonId: string) => journey.kind === 'world-history'
+    ? resolveWorldSpineAccess(worldSpineRoadmap, lessons, summaries, lessonId)
+    : { accessible: true as const };
+  const activeEntry = published.find(({ entry }) => entry.lessonId === activeLessonId);
+
+  if (activeEntry) {
+    const lessonId = activeEntry.entry.lessonId;
+    if (!completed(lessonId) && access(lessonId).accessible) {
+      return { kind: 'lesson', lessonId, source: 'active' };
+    }
+  }
+
+  const activeIndex = entries.findIndex(({ entry }) => entry.lessonId === activeLessonId);
+  const startIndex = activeIndex >= 0 && completed(entries[activeIndex].entry.lessonId) ? activeIndex + 1 : 0;
+  for (let index = startIndex; index < entries.length; index += 1) {
+    const lessonId = entries[index].entry.lessonId;
+    if (!completed(lessonId) && access(lessonId).accessible) {
+      const source = activeIndex < 0 ? 'start' : index > activeIndex ? 'next' : 'backfill';
+      return { kind: 'lesson', lessonId, source };
+    }
+  }
+  for (let index = 0; index < startIndex; index += 1) {
+    const lessonId = entries[index].entry.lessonId;
+    if (!completed(lessonId) && access(lessonId).accessible) {
+      return { kind: 'lesson', lessonId, source: 'backfill' };
+    }
+  }
+
+  if (entries.every(({ entry }) => completed(entry.lessonId))) return { kind: 'complete' };
+  const blocked = entries
+    .filter(({ entry }) => !completed(entry.lessonId))
+    .map(({ entry }) => access(entry.lessonId))
+    .find((result) => !result.accessible);
+  return { kind: 'blocked', ...(blocked?.blockerId ? { blockerId: blocked.blockerId } : {}) };
+}
+
+/** The first published lesson a new learner may actually open. */
 export const firstPublishedLessonId = (journey: Journey, lessons: readonly Lesson[]) => {
-  const entryIds = publishedEntries(journey, lessons).map(({ entry }) => entry.lessonId);
-  return entryIds.includes(journey.entryLessonId) ? journey.entryLessonId : entryIds[0];
+  const action = selectJourneyNextAction(journey, lessons, {});
+  return action.kind === 'lesson' ? action.lessonId : undefined;
 };
 
 export function createDefaultJourneyState(journeys: readonly Journey[], lessons: readonly Lesson[], now = new Date().toISOString()): LearnerJourneyState {
@@ -66,9 +122,24 @@ export function openJourney(state: LearnerJourneyState, journey: Journey, lesson
   next.journeys[journey.id] = { ...existing, journeyId: journey.id, activeLessonId, status: 'open', openedAt: existing?.openedAt ?? now, closedAt: undefined, lastVisitedAt: existing?.lastVisitedAt ?? now };
   return next;
 }
-export function continueJourney(state: LearnerJourneyState, journey: Journey, lessons: readonly Lesson[], now = new Date().toISOString()) {
-  const next = openJourney(state, journey, lessons, now); const record = next.journeys[journey.id]; if (!record) return next;
-  next.activeJourneyId = journey.id; next.journeys[journey.id] = { ...record, lastVisitedAt: now }; return next;
+export function continueJourney(
+  state: LearnerJourneyState,
+  journey: Journey,
+  lessons: readonly Lesson[],
+  summaries: Record<string, JourneyProgressSummary> = {},
+  now = new Date().toISOString(),
+) {
+  const next = openJourney(state, journey, lessons, now);
+  const record = next.journeys[journey.id];
+  if (!record) return next;
+  const action = selectJourneyNextAction(journey, lessons, summaries, record.activeLessonId);
+  next.activeJourneyId = journey.id;
+  next.journeys[journey.id] = {
+    ...record,
+    ...(action.kind === 'lesson' ? { activeLessonId: action.lessonId } : {}),
+    lastVisitedAt: now,
+  };
+  return next;
 }
 export function closeJourney(state: LearnerJourneyState, journeyId: string, now = new Date().toISOString()) {
   if (journeyId === DEFAULT_JOURNEY_ID) return state;

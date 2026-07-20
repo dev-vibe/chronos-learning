@@ -54,3 +54,8 @@
 @media(max-width:900px){.mobile-nav{grid-template-columns:repeat(3,1fr)}.world-spine-overview>header{grid-template-columns:1fr}.world-spine-overview dl{grid-template-columns:repeat(3,1fr)}}
 @media(max-width:620px){.world-spine-overview{padding-top:48px}.world-spine-overview>header{gap:24px}.world-spine-overview dl{grid-template-columns:1fr}.world-spine-overview dl>div{display:grid;grid-template-columns:52px 1fr;align-items:center;border-left:0;border-top:1px solid var(--line)}.world-spine-chapters summary{grid-template-columns:36px minmax(0,1fr) 18px;gap:10px}.overview-chapter-count{display:none}.world-spine-chapters details>p,.world-spine-chapters ol{margin-left:0}.world-spine-chapters li{grid-template-columns:30px minmax(0,1fr)}.world-spine-chapters li>em{grid-column:2;text-align:left}}
 @media(prefers-reduced-motion:reduce){.world-spine-chapters summary>svg{transition:none}}
+
+
+.continue-card.continue-card-status{grid-template-columns:1fr;min-height:0}
+.continue-card-status .continue-copy{max-width:860px}
+.search-results section a:hover,.search-results section a:focus-visible{border-color:var(--line);background:var(--surface)}

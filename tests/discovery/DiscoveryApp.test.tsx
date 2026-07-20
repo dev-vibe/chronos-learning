@@ -1,4 +1,4 @@
-﻿// @vitest-environment jsdom
+// @vitest-environment jsdom
 import React from 'react';
 import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest';
 import { cleanup, fireEvent, render, screen, waitFor } from '@testing-library/react';
@@ -111,6 +111,42 @@ describe('Home, Library, preview, and search composition', () => {
     expect(harness.journeyGateway.save).toHaveBeenCalledTimes(1);
   });
 
+  it('derives Home and journey-detail Continue from completion and access state', async () => {
+    const harness = makeHarness();
+    vi.mocked(harness.progressGateway.loadJourneySummaries).mockResolvedValue({
+      'lesson.uruk.first-city': { lessonId: 'lesson.uruk.first-city', status: 'completed' },
+    });
+    render(<DiscoveryApp
+      route={{ name: 'home' }}
+      journeyGatewayFactory={async () => harness.journeyGateway}
+      progressGatewayFactory={async () => harness.progressGateway}
+    />);
+    expect((await screen.findByRole('link', { name: /Continue lesson/i })).getAttribute('href')).toBe('/learn/lesson.writing.early-systems');
+
+    cleanup();
+    render(<DiscoveryApp
+      route={{ name: 'journey', journeyId: 'journey.world-history' }}
+      journeyGatewayFactory={async () => harness.journeyGateway}
+      progressGatewayFactory={async () => harness.progressGateway}
+    />);
+    expect((await screen.findByRole('link', { name: /Continue journey/i })).getAttribute('href')).toBe('/learn/lesson.writing.early-systems');
+  });
+
+  it('renders an honest completed state when no published required lesson remains', async () => {
+    const harness = makeHarness();
+    vi.mocked(harness.progressGateway.loadJourneySummaries).mockResolvedValue({
+      'lesson.uruk.first-city': { lessonId: 'lesson.uruk.first-city', status: 'completed' },
+      'lesson.writing.early-systems': { lessonId: 'lesson.writing.early-systems', status: 'completed' },
+    });
+    render(<DiscoveryApp
+      route={{ name: 'home' }}
+      journeyGatewayFactory={async () => harness.journeyGateway}
+      progressGatewayFactory={async () => harness.progressGateway}
+    />);
+    expect(await screen.findByRole('heading', { name: 'You have explored every published lesson.' })).toBeTruthy();
+    expect(screen.queryByRole('link', { name: /Continue lesson/i })).toBeNull();
+    expect(screen.getByRole('link', { name: /View journey/i }).getAttribute('href')).toBe('/library/journey.world-history');
+  });
   it('shows multiple open fixture journeys without publishing them in production', async () => {
     const harness = makeHarness(multiContent, true);
     render(<DiscoveryApp
@@ -206,16 +242,23 @@ describe('Home, Library, preview, and search composition', () => {
       progressGatewayFactory={async () => harness.progressGateway}
       searchProvider={provider}
     />);
-    const input = await screen.findByRole('combobox');
+    const input = await screen.findByRole('searchbox');
+    expect(screen.getByRole('search')).toBeTruthy();
     expect(document.activeElement).toBe(input);
+    expect(input.getAttribute('role')).toBeNull();
+    expect(input.hasAttribute('aria-activedescendant')).toBe(false);
     await userEvent.type(input, 'uruk');
     await screen.findByText('2 published results');
     expect(window.location.search).toBe('?q=uruk');
     expect(screen.getByRole('heading', { name: 'Lessons' })).toBeTruthy();
     expect(screen.getByRole('heading', { name: 'Knowledge Cards' })).toBeTruthy();
-    expect(input.getAttribute('aria-activedescendant')).toBe('search-result-0');
+    expect(screen.queryByRole('listbox')).toBeNull();
+    expect(screen.queryByRole('option')).toBeNull();
+    const firstResult = screen.getByRole('link', { name: /Uruk: Life in an Early City/ });
     fireEvent.keyDown(input, { key: 'ArrowDown' });
-    expect(input.getAttribute('aria-activedescendant')).toBe('search-result-1');
+    expect(document.activeElement).toBe(firstResult);
+    await userEvent.tab();
+    expect(document.activeElement).toBe(screen.getByRole('link', { name: /knowledge card.*Uruk/i }));
   });
 
   it('persists an intentional dark theme and exposes compact primary navigation', async () => {
@@ -261,6 +304,7 @@ describe('Home, Library, preview, and search composition', () => {
       navigate={navigate}
     />);
     const continueLink = await screen.findByRole('link', { name: /Continue lesson/i });
+    expect(continueLink.getAttribute('href')).toBe('/learn/lesson.writing.early-systems');
     await userEvent.click(continueLink);
     expect((await screen.findByRole('alert')).textContent).toMatch(/lesson completion is safe/i);
     expect(navigate).not.toHaveBeenCalled();

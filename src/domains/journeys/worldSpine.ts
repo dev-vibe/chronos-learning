@@ -1,4 +1,5 @@
 import type { WorldSpineChapter, WorldSpineNode } from '../../../content/world-spine/roadmap';
+import { worldSpineAccessPolicy, type WorldSpineAccessPolicy } from '../../../content/world-spine/access-policy';
 import type { Lesson } from '../contracts';
 import type { JourneyProgressSummary } from '../../learn/progress';
 
@@ -18,28 +19,36 @@ export type WorldSpineChapterView = Omit<WorldSpineChapter, 'nodes'> & Readonly<
   containsCurrent: boolean;
 }>;
 
-type Access = Readonly<{ accessible: boolean; blockerId?: string }>;
+export type WorldSpineAccess = Readonly<{ accessible: boolean; blockerId?: string }>;
 
-function publishedSequence(chapters: readonly WorldSpineChapter[], lessons: readonly Lesson[]) {
-  const publishedIds = new Set(lessons.filter((lesson) => lesson.status === 'published').map((lesson) => lesson.id));
-  return chapters.flatMap((chapter) => chapter.nodes).filter((node) => publishedIds.has(node.id));
-}
+const orderedNodes = (chapters: readonly WorldSpineChapter[]) => chapters
+  .flatMap((chapter) => chapter.nodes)
+  .sort((left, right) => left.order - right.order || left.id.localeCompare(right.id));
 
 export function resolveWorldSpineAccess(
   chapters: readonly WorldSpineChapter[],
   lessons: readonly Lesson[],
   summaries: Record<string, JourneyProgressSummary>,
   targetId: string,
-): Access {
-  const sequence = publishedSequence(chapters, lessons);
+  policy: WorldSpineAccessPolicy = worldSpineAccessPolicy,
+): WorldSpineAccess {
+  const publishedIds = new Set(lessons.filter((lesson) => lesson.status === 'published').map((lesson) => lesson.id));
+  if (!publishedIds.has(targetId)) return { accessible: false };
+
+  const sequence = orderedNodes(chapters);
   const index = sequence.findIndex((node) => node.id === targetId);
   if (index < 0) return { accessible: false };
 
   const target = sequence[index];
-  const publishedIds = new Set(sequence.map((node) => node.id));
-  const authoredPrerequisites = target.prerequisiteIds.filter((id) => publishedIds.has(id));
+  if (summaries[targetId]?.status === 'completed') return { accessible: true };
+
+  const cutoffOrder = sequence.find((node) => node.id === policy.openThroughLessonId)?.order;
+  if (cutoffOrder !== undefined && target.order <= cutoffOrder) return { accessible: true };
+
+  // Canonical prerequisites remain gates even while their lessons are not yet
+  // published. Publication timing must never redefine curriculum sequencing.
   const fallbackPrevious = index > 0 ? sequence[index - 1].id : undefined;
-  const gateIds = authoredPrerequisites.length ? authoredPrerequisites : fallbackPrevious ? [fallbackPrevious] : [];
+  const gateIds = target.prerequisiteIds.length ? target.prerequisiteIds : fallbackPrevious ? [fallbackPrevious] : [];
   const blockerId = gateIds.find((id) => summaries[id]?.status !== 'completed');
   return blockerId ? { accessible: false, blockerId } : { accessible: true };
 }

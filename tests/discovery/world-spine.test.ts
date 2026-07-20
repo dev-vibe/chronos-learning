@@ -1,7 +1,12 @@
 import { describe, expect, it } from 'vitest';
 import { chronosContent } from '../../content/chronos';
+import { WORLD_SPINE_DEVELOPMENT_OPEN_THROUGH_LESSON_ID } from '../../content/world-spine/access-policy';
 import { worldSpineNodeCount, worldSpineRoadmap } from '../../content/world-spine/roadmap';
+import type { Lesson } from '../../src/domains/contracts';
 import { createWorldSpineRoadmapView, resolveWorldSpineAccess } from '../../src/domains/journeys/worldSpine';
+
+const publishedLesson = (id: string): Lesson => ({ ...chronosContent.lessons[0], id, status: 'published' });
+const completed = (lessonId: string) => ({ lessonId, status: 'completed' as const });
 
 describe('canonical World Spine roadmap', () => {
   it('projects all 185 stable curriculum nodes into 12 chronological chapters', () => {
@@ -20,15 +25,35 @@ describe('canonical World Spine roadmap', () => {
     expect(farming?.href).toBeUndefined();
   });
 
-  it('gates each available World Spine lesson behind its earlier available prerequisite', () => {
+  it('uses the named Uruk development cutoff without publication-timing regressions', () => {
+    expect(WORLD_SPINE_DEVELOPMENT_OPEN_THROUGH_LESSON_ID).toBe('lesson.uruk.first-city');
+    const farmingOnly = [publishedLesson('lesson.farming.settlements')];
+    expect(resolveWorldSpineAccess(worldSpineRoadmap, farmingOnly, {}, 'lesson.farming.settlements')).toEqual({ accessible: true });
+
+    const prerequisitePublishedLater = [...farmingOnly, publishedLesson('lesson.farming.multiple-origins')];
+    expect(resolveWorldSpineAccess(worldSpineRoadmap, prerequisitePublishedLater, {}, 'lesson.farming.settlements')).toEqual({ accessible: true });
+    expect(resolveWorldSpineAccess(worldSpineRoadmap, prerequisitePublishedLater, {}, 'lesson.farming.multiple-origins')).toEqual({ accessible: true });
+  });
+
+  it('honors unpublished canonical prerequisites after the cutoff and always permits completed revisits', () => {
+    const writingOnly = [publishedLesson('lesson.writing.early-systems')];
+    expect(resolveWorldSpineAccess(worldSpineRoadmap, writingOnly, {}, 'lesson.writing.early-systems')).toEqual({
+      accessible: false,
+      blockerId: 'lesson.uruk.first-city',
+    });
+    expect(resolveWorldSpineAccess(worldSpineRoadmap, writingOnly, {
+      'lesson.writing.early-systems': completed('lesson.writing.early-systems'),
+    }, 'lesson.writing.early-systems')).toEqual({ accessible: true });
+  });
+
+  it('gates a new learner after Uruk and unlocks the next lesson after completion', () => {
     expect(resolveWorldSpineAccess(worldSpineRoadmap, chronosContent.lessons, {}, 'lesson.uruk.first-city')).toEqual({ accessible: true });
     expect(resolveWorldSpineAccess(worldSpineRoadmap, chronosContent.lessons, {}, 'lesson.writing.early-systems')).toEqual({
       accessible: false,
       blockerId: 'lesson.uruk.first-city',
     });
-    const summaries = {
-      'lesson.uruk.first-city': { lessonId: 'lesson.uruk.first-city', status: 'completed' as const },
-    };
-    expect(resolveWorldSpineAccess(worldSpineRoadmap, chronosContent.lessons, summaries, 'lesson.writing.early-systems')).toEqual({ accessible: true });
+    expect(resolveWorldSpineAccess(worldSpineRoadmap, chronosContent.lessons, {
+      'lesson.uruk.first-city': completed('lesson.uruk.first-city'),
+    }, 'lesson.writing.early-systems')).toEqual({ accessible: true });
   });
 });

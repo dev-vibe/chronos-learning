@@ -3,7 +3,7 @@ import { ArrowRight, Check, ChevronDown, X } from 'lucide-react';
 import { chronosContent } from '../../content/chronos';
 import type { ChronosContentBundle } from '../../content/assemble';
 import { createPublishedJourneyCatalog, type CatalogJourney } from '../domains/journeys/catalog';
-import { continueJourney, deriveJourneyProgress, setActiveLesson, type LearnerJourneyState } from '../domains/journeys/state';
+import { continueJourney, deriveJourneyProgress, selectJourneyNextAction, setActiveLesson, type LearnerJourneyState } from '../domains/journeys/state';
 import { createJourneyStateGateway, type JourneyStateGateway } from '../infrastructure/journeys/gateway';
 import { createProgressGateway, type JourneyProgressSummary, type LearnProgressGateway } from '../learn/progress';
 
@@ -16,7 +16,7 @@ export function JourneySwitcher({ currentJourneyId, currentLessonId, content = c
   const catalog = useMemo(() => createPublishedJourneyCatalog(content.journeys, content.lessons), [content]); const items = [catalog.worldHistory, ...Object.values(catalog.groups).flat()].filter((item): item is CatalogJourney => Boolean(item));
   const current = items.find((item) => item.id === currentJourneyId);
   useEffect(() => { let active = true; Promise.all([journeyGatewayFactory(), progressGatewayFactory()]).then(async ([journeyGateway, progressGateway]) => { gatewayRef.current = journeyGateway; const [snapshot, progress] = await Promise.all([journeyGateway.load(), progressGateway.loadJourneySummaries(content.lessons.filter((lesson) => lesson.status === 'published').map((lesson) => lesson.id))]); let next = snapshot.state; const journey = content.journeys.find((item) => item.id === currentJourneyId && item.status === 'published'); if (journey) { next = setActiveLesson(next, currentJourneyId, currentLessonId); await journeyGateway.save(next); } if (active) { setState(next); setSummaries(progress); setError(''); } }).catch(() => { if (active) setError('Journey choices could not be loaded.'); }); return () => { active = false; }; }, [attempt, content, currentJourneyId, currentLessonId, journeyGatewayFactory, progressGatewayFactory]);
-  const switchTo = async (item: CatalogJourney) => { if (!state || !gatewayRef.current) return; const journey = content.journeys.find((entry) => entry.id === item.id)!; const next = continueJourney(state, journey, content.lessons); try { const saved = await gatewayRef.current.save(next); setState(saved.state); navigate(`/learn/${saved.state.journeys[item.id].activeLessonId}`); } catch { setError('Switching failed. Your lesson progress is unchanged.'); } };
+  const switchTo = async (item: CatalogJourney) => { if (!state || !gatewayRef.current) return; const journey = content.journeys.find((entry) => entry.id === item.id)!; const action = selectJourneyNextAction(journey, content.lessons, summaries, state.journeys[item.id]?.activeLessonId); const next = continueJourney(state, journey, content.lessons, summaries); try { const saved = await gatewayRef.current.save(next); setState(saved.state); navigate(action.kind === 'lesson' ? `/learn/${action.lessonId}` : `/library/${item.id}`); } catch { setError('Switching failed. Your lesson progress is unchanged.'); } };
   const sections = state ? [
     { title: 'Active journey', items: items.filter((item) => item.id === state.activeJourneyId) },
     { title: 'Other open journeys', items: items.filter((item) => item.id !== state.activeJourneyId && state.journeys[item.id]?.status === 'open') },

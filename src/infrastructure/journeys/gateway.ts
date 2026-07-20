@@ -27,13 +27,14 @@ export class LocalJourneyStateGateway implements JourneyStateGateway {
     }
   }
   private ownedCards() {
-    return chronosContent.cards.flatMap((card) => {
+    const owned = chronosContent.cards.flatMap((card) => {
       try {
         const raw = localStorage.getItem(`chronos.learn.preview.v1:${card.unlockLessonId}`);
         const state = raw ? JSON.parse(raw) : null;
         return state?.cardId === card.id && state?.completedAt ? [{ cardId: card.id, acquiredAt: String(state.completedAt) }] : [];
       } catch { return []; }
     });
+    return owned.sort((left, right) => right.acquiredAt.localeCompare(left.acquiredAt) || left.cardId.localeCompare(right.cardId));
   }
   async load() { return { ...this.read(), ownedCards: this.ownedCards() }; }
   async save(state: LearnerJourneyState) {

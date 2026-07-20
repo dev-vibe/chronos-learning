@@ -1,4 +1,4 @@
-﻿import { describe, expect, it } from 'vitest';
+import { describe, expect, it } from 'vitest';
 import { chronosContent } from '../../content/chronos';
 import { searchAliases } from '../../content/search/aliases';
 import type { ChronosContentBundle } from '../../content/assemble';
@@ -14,6 +14,7 @@ import {
   normalizeJourneyState,
   openJourney,
   saveJourney,
+  selectJourneyNextAction,
   setActiveLesson,
   setInvitationState,
 } from '../../src/domains/journeys/state';
@@ -68,6 +69,25 @@ const optionalIdea: Journey = {
     }],
   }],
 };
+const mixedScopeJourney: Journey = {
+  ...optionalJourney,
+  id: 'journey.fixture.mixed-scope',
+  chapters: [{
+    ...optionalJourney.chapters[0],
+    id: 'chapter.fixture.mixed-scope',
+    entries: [
+      optionalJourney.chapters[0].entries[0],
+      {
+        id: 'entry.fixture.mixed-scope.writing',
+        lessonId: 'lesson.writing.early-systems',
+        position: 1,
+        required: false,
+        framing: 'Explore an optional published connection.',
+      },
+    ],
+  }],
+};
+
 const fixtureContent: ChronosContentBundle = {
   ...chronosContent,
   journeys: [...chronosContent.journeys, optionalJourney, optionalIdea],
@@ -90,7 +110,7 @@ describe('learner journey state', () => {
     expect(opened.journeys[optionalJourney.id].status).toBe('open');
     const selected = setActiveLesson(opened, optionalJourney.id, 'lesson.uruk.first-city', '2026-01-04T00:00:00.000Z');
     expect(selected.activeJourneyId).toBe(optionalJourney.id);
-    const continued = continueJourney(selected, world, fixtureContent.lessons, '2026-01-05T00:00:00.000Z');
+    const continued = continueJourney(selected, world, fixtureContent.lessons, {}, '2026-01-05T00:00:00.000Z');
     expect(continued.activeJourneyId).toBe(DEFAULT_JOURNEY_ID);
     expect(continued.journeys[optionalJourney.id].activeLessonId).toBe('lesson.uruk.first-city');
     const closed = closeJourney(continued, optionalJourney.id, '2026-01-06T00:00:00.000Z');
@@ -112,6 +132,34 @@ describe('learner journey state', () => {
     const state = createDefaultJourneyState(fixtureContent.journeys, fixtureContent.lessons);
     closeJourney(openJourney(state, optionalJourney, fixtureContent.lessons), optionalJourney.id);
     expect(summaries['lesson.uruk.first-city'].status).toBe('completed');
+  });
+
+  it('selects one valid next action for active, completed, locked, backfilled, and finished states', () => {
+    expect(selectJourneyNextAction(world, chronosContent.lessons, {}, 'lesson.uruk.first-city')).toEqual({
+      kind: 'lesson', lessonId: 'lesson.uruk.first-city', source: 'active',
+    });
+    const urukCompleted = {
+      'lesson.uruk.first-city': { lessonId: 'lesson.uruk.first-city', status: 'completed' as const },
+    };
+    expect(selectJourneyNextAction(world, chronosContent.lessons, urukCompleted, 'lesson.uruk.first-city')).toEqual({
+      kind: 'lesson', lessonId: 'lesson.writing.early-systems', source: 'next',
+    });
+    expect(selectJourneyNextAction(world, chronosContent.lessons, {}, 'lesson.writing.early-systems')).toEqual({
+      kind: 'lesson', lessonId: 'lesson.uruk.first-city', source: 'backfill',
+    });
+    expect(selectJourneyNextAction(world, chronosContent.lessons, {
+      ...urukCompleted,
+      'lesson.writing.early-systems': { lessonId: 'lesson.writing.early-systems', status: 'completed' as const },
+    }, 'lesson.writing.early-systems')).toEqual({ kind: 'complete' });
+  });
+
+  it('preserves an accessible incomplete optional active lesson without counting it as required progress', () => {
+    expect(selectJourneyNextAction(mixedScopeJourney, chronosContent.lessons, {}, 'lesson.writing.early-systems')).toEqual({
+      kind: 'lesson', lessonId: 'lesson.writing.early-systems', source: 'active',
+    });
+    expect(deriveJourneyProgress(mixedScopeJourney, chronosContent.lessons, {
+      'lesson.writing.early-systems': { lessonId: 'lesson.writing.early-systems', status: 'completed' as const },
+    })).toEqual({ completed: 0, total: 1, percent: 0, isCompleted: false });
   });
 
   it('repairs stale local state and removes journeys that are no longer published', () => {
@@ -174,6 +222,7 @@ describe('published catalog and authored invitations', () => {
 
   it('never renders draft or ineligible destinations and does not alter journey progress', () => {
     const state = createDefaultJourneyState(fixtureContent.journeys, fixtureContent.lessons);
+    const before = structuredClone(state.journeys);
     const draftInvitation: JourneyInvitation = {
       id: 'invitation.fixture.draft',
       destinationJourneyId: optionalJourney.id,
@@ -185,7 +234,7 @@ describe('published catalog and authored invitations', () => {
       priority: 100,
     };
     expect(resolveJourneyInvitation([draftInvitation], fixtureContent.journeys, fixtureContent.lessons, state, { placement: 'home' })).toBeUndefined();
-    expect(state.journeys).toEqual(createDefaultJourneyState(fixtureContent.journeys, fixtureContent.lessons).journeys);
+    expect(state.journeys).toEqual(before);
   });
 });
 
@@ -217,5 +266,7 @@ describe('stable routes', () => {
     expect(parseChronosRoute('/library/journey.world-history')).toEqual({ name: 'journey', journeyId: 'journey.world-history' });
     expect(parseChronosRoute('/search', '?q=proto%20cuneiform')).toEqual({ name: 'search', query: 'proto cuneiform' });
     expect(parseChronosRoute('/library/unknown/extra')).toEqual({ name: 'not-found' });
+    expect(parseChronosRoute('/learn/%E0%A4%A')).toEqual({ name: 'not-found' });
+    expect(parseChronosRoute('/library/%E0%A4%A')).toEqual({ name: 'not-found' });
   });
 });

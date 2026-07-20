@@ -102,5 +102,17 @@ describe('multi-lesson Learn runtime', () => {
     expect(screen.queryByText('Farming and Settlements')).toBeNull();
     expect(screen.queryByRole('button', { name: 'Complete lesson' })).toBeNull();
   });
+  it('always permits revisiting a completed lesson even when its prerequisite is incomplete', async () => {
+    const gateway = new MultiLessonGateway();
+    gateway.states.set('lesson.uruk.first-city', emptyState('lesson.uruk.first-city'));
+    gateway.states.set('lesson.writing.early-systems', {
+      ...emptyState('lesson.writing.early-systems'),
+      status: 'completed',
+      completedAt: '2026-01-02T00:00:00.000Z',
+    });
+    render(<LearnApp lessonId="lesson.writing.early-systems" gatewayFactory={async () => gateway} />);
+    expect(await screen.findByRole('heading', { name: 'From Marks to Proto-Cuneiform' })).toBeTruthy();
+    expect(screen.queryByRole('heading', { name: 'This lesson is still locked.' })).toBeNull();
+  });
   it('blocks a later published lesson until the earlier World Spine lesson is complete', async () => { const gateway = new MultiLessonGateway(); gateway.states.set('lesson.uruk.first-city', emptyState('lesson.uruk.first-city')); render(<LearnApp lessonId="lesson.writing.early-systems" gatewayFactory={async () => gateway} />); expect(await screen.findByRole('heading', { name: 'This lesson is still locked.' })).toBeTruthy(); expect(screen.getByText(/Complete Uruk: Life in an Early City/)).toBeTruthy(); expect(document.querySelector('[data-section-id]')).toBeNull(); })
 });
