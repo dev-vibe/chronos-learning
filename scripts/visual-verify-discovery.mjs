@@ -31,6 +31,22 @@ async function assertLayout(page, label) {
   if (overlay) throw new Error(`${label} rendered a development error overlay.`);
 }
 
+async function assertDocumentScroll(page, label) {
+  const metrics = await page.evaluate(() => ({
+    clientHeight: document.documentElement.clientHeight,
+    scrollHeight: document.documentElement.scrollHeight,
+  }));
+  if (metrics.scrollHeight <= metrics.clientHeight + 1) throw new Error(`${label} is not tall enough to exercise document scrolling.`);
+  const target = Math.min(500, metrics.scrollHeight - metrics.clientHeight);
+  const actual = await page.evaluate((next) => {
+    document.documentElement.style.scrollBehavior = 'auto';
+    window.scrollTo(0, next);
+    return window.scrollY;
+  }, target);
+  if (actual < target - 1) throw new Error(`${label} document scroll is locked: expected ${target}, received ${actual}.`);
+  await page.evaluate(() => window.scrollTo(0, 0));
+}
+
 async function verifyHome(page, width, height) {
   await page.goto(`${base}/home`, { waitUntil: 'networkidle' });
   await page.getByRole('heading', { name: 'Welcome back.' }).waitFor();
@@ -39,6 +55,7 @@ async function verifyHome(page, width, height) {
   const navSelector = width <= 900 ? '.mobile-nav a' : '.global-rail nav a';
   if (await page.locator(navSelector).count() !== 3) throw new Error(`${width}x${height}: expected three global destinations.`);
   await assertLayout(page, `Home ${width}x${height} light`);
+  await assertDocumentScroll(page, `Home ${width}x${height}`);
 }
 
 async function verifyLibrary(page, width, height) {
@@ -47,6 +64,7 @@ async function verifyLibrary(page, width, height) {
   await page.getByText('185 lesson roadmap').waitFor();
   await page.getByText('12 chapters').waitFor();
   await assertLayout(page, `Library ${width}x${height} light`);
+  await assertDocumentScroll(page, `Library ${width}x${height}`);
 }
 
 async function verifyWorldSpine(page, width, height) {
@@ -59,6 +77,7 @@ async function verifyWorldSpine(page, width, height) {
   await page.getByText('Farming and Settlements', { exact: true }).waitFor();
   if (await page.getByText('Farming and Settlements', { exact: true }).getAttribute('href')) throw new Error('An unfinished World Spine node became navigable.');
   await assertLayout(page, `World Spine detail ${width}x${height} light`);
+  await assertDocumentScroll(page, `World Spine detail ${width}x${height}`);
 }
 
 async function verifyLearn(page, width, height) {
@@ -114,4 +133,4 @@ await gate.close();
 
 await browser.close();
 if (errors.length) throw new Error(`Browser errors:\n${errors.join('\n')}`);
-console.log('ASH-55 discovery verification passed: four responsive sizes, light/dark, Home, Library, full World Spine detail, Learn drawer, simplified navigation, gating, overflow, and console checks.');
+console.log('ASH-55 discovery verification passed: four responsive sizes, light/dark, Home, Library, full World Spine detail, Learn drawer, simplified navigation, document scrolling, gating, overflow, and console checks.');
