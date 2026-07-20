@@ -28,34 +28,31 @@ export type JourneyNextAction =
   | Readonly<{ kind: 'complete' }>
   | Readonly<{ kind: 'blocked'; blockerId?: string }>;
 
-const actionableEntries = (journey: Journey, lessons: readonly Lesson[]) => {
-  const published = publishedEntries(journey, lessons);
-  const required = published.filter(({ entry }) => entry.required);
-  return required.length ? required : published;
-};
-
 export function selectJourneyNextAction(
   journey: Journey,
   lessons: readonly Lesson[],
   summaries: Record<string, JourneyProgressSummary>,
   activeLessonId?: string,
 ): JourneyNextAction {
-  const entries = actionableEntries(journey, lessons);
+  const published = publishedEntries(journey, lessons);
+  const required = published.filter(({ entry }) => entry.required);
+  const entries = required.length ? required : published;
   if (!entries.length) return { kind: 'blocked' };
 
   const completed = (lessonId: string) => summaries[lessonId]?.status === 'completed';
   const access = (lessonId: string) => journey.kind === 'world-history'
     ? resolveWorldSpineAccess(worldSpineRoadmap, lessons, summaries, lessonId)
     : { accessible: true as const };
-  const activeIndex = entries.findIndex(({ entry }) => entry.lessonId === activeLessonId);
+  const activeEntry = published.find(({ entry }) => entry.lessonId === activeLessonId);
 
-  if (activeIndex >= 0) {
-    const lessonId = entries[activeIndex].entry.lessonId;
+  if (activeEntry) {
+    const lessonId = activeEntry.entry.lessonId;
     if (!completed(lessonId) && access(lessonId).accessible) {
       return { kind: 'lesson', lessonId, source: 'active' };
     }
   }
 
+  const activeIndex = entries.findIndex(({ entry }) => entry.lessonId === activeLessonId);
   const startIndex = activeIndex >= 0 && completed(entries[activeIndex].entry.lessonId) ? activeIndex + 1 : 0;
   for (let index = startIndex; index < entries.length; index += 1) {
     const lessonId = entries[index].entry.lessonId;

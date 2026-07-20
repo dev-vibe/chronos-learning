@@ -69,6 +69,25 @@ const optionalIdea: Journey = {
     }],
   }],
 };
+const mixedScopeJourney: Journey = {
+  ...optionalJourney,
+  id: 'journey.fixture.mixed-scope',
+  chapters: [{
+    ...optionalJourney.chapters[0],
+    id: 'chapter.fixture.mixed-scope',
+    entries: [
+      optionalJourney.chapters[0].entries[0],
+      {
+        id: 'entry.fixture.mixed-scope.writing',
+        lessonId: 'lesson.writing.early-systems',
+        position: 1,
+        required: false,
+        framing: 'Explore an optional published connection.',
+      },
+    ],
+  }],
+};
+
 const fixtureContent: ChronosContentBundle = {
   ...chronosContent,
   journeys: [...chronosContent.journeys, optionalJourney, optionalIdea],
@@ -133,6 +152,16 @@ describe('learner journey state', () => {
       'lesson.writing.early-systems': { lessonId: 'lesson.writing.early-systems', status: 'completed' as const },
     }, 'lesson.writing.early-systems')).toEqual({ kind: 'complete' });
   });
+
+  it('preserves an accessible incomplete optional active lesson without counting it as required progress', () => {
+    expect(selectJourneyNextAction(mixedScopeJourney, chronosContent.lessons, {}, 'lesson.writing.early-systems')).toEqual({
+      kind: 'lesson', lessonId: 'lesson.writing.early-systems', source: 'active',
+    });
+    expect(deriveJourneyProgress(mixedScopeJourney, chronosContent.lessons, {
+      'lesson.writing.early-systems': { lessonId: 'lesson.writing.early-systems', status: 'completed' as const },
+    })).toEqual({ completed: 0, total: 1, percent: 0, isCompleted: false });
+  });
+
   it('repairs stale local state and removes journeys that are no longer published', () => {
     const state = createDefaultJourneyState(fixtureContent.journeys, fixtureContent.lessons);
     const withOptional = openJourney(state, optionalJourney, fixtureContent.lessons);
