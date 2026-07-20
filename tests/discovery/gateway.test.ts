@@ -1,4 +1,4 @@
-﻿// @vitest-environment jsdom
+// @vitest-environment jsdom
 import { beforeEach, describe, expect, it, vi } from 'vitest';
 import { chronosContent } from '../../content/chronos';
 import { LocalJourneyStateGateway } from '../../src/infrastructure/journeys/gateway';
@@ -50,6 +50,19 @@ describe('anonymous journey preview persistence', () => {
     expect(localStorage.setItem).toHaveBeenCalledWith('chronos.discovery.preview.v1', expect.any(String));
   });
 
+  it('orders anonymous Knowledge Cards by newest acquisition rather than repository order', async () => {
+    localStorage.setItem('chronos.learn.preview.v1:lesson.uruk.first-city', JSON.stringify({
+      lessonId: 'lesson.uruk.first-city', status: 'completed', cardId: 'card.place.uruk', completedAt: '2026-01-02T00:00:00.000Z',
+    }));
+    localStorage.setItem('chronos.learn.preview.v1:lesson.writing.early-systems', JSON.stringify({
+      lessonId: 'lesson.writing.early-systems', status: 'completed', cardId: 'card.artifact.proto-cuneiform-tablet', completedAt: '2026-01-04T00:00:00.000Z',
+    }));
+    const loaded = await new LocalJourneyStateGateway(boundary).load();
+    expect(loaded.ownedCards.map(({ cardId }) => cardId)).toEqual([
+      'card.artifact.proto-cuneiform-tablet',
+      'card.place.uruk',
+    ]);
+  });
   it('recovers malformed and stale state without touching lesson completion keys', async () => {
     localStorage.setItem('chronos.discovery.preview.v1', '{broken');
     localStorage.setItem('chronos.learn.preview.v1:lesson.uruk.first-city', JSON.stringify({

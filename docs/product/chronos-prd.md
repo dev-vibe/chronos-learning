@@ -217,6 +217,10 @@ Kadesh also produced one of the earliest surviving international peace treaties.
 
 The World Spine provides chronological orientation and causal scaffolding. It is an authored minimum model, not a ranking of human importance and not an exhaustive list.
 
+### 7.1.1 Temporary curriculum-development access policy
+
+While the opening curriculum is being backfilled, every published World Spine lesson from the start of the roadmap through and including `lesson.uruk.first-city` is intentionally open. Unpublished lessons remain visible as in preparation and cannot be opened. Published lessons after Uruk honor their canonical roster prerequisites even when a prerequisite is not yet published; completed lessons are always reopenable. Home, journey detail, and journey switching must resolve the same valid next action rather than trusting a stored pointer that is completed or inaccessible. An incomplete active pointer is re-evaluated when curriculum is backfilled; completion is never revoked. The named cutoff is temporary configuration and must be explicitly advanced or removed when the opening sequence is ready for normal gating.
+
 ## 7.2 Inclusion criteria
 
 A Spine lesson should satisfy at least one primary criterion and usually several supporting criteria.

@@ -80,6 +80,20 @@ async function verifyWorldSpine(page, width, height) {
   await assertDocumentScroll(page, `World Spine detail ${width}x${height}`);
 }
 
+async function verifySearch(page, width, height) {
+  await page.goto(`${base}/search?q=uruk`, { waitUntil: 'networkidle' });
+  const input = page.getByRole('searchbox', { name: 'Search published Chronos content' });
+  await input.waitFor();
+  await page.locator('#search-result-0').waitFor();
+  if (await page.getByRole('combobox').count()) throw new Error('Search still claims the ARIA combobox pattern.');
+  if (await page.getByRole('listbox').count() || await page.getByRole('option').count()) throw new Error('Search results still claim composite-widget roles.');
+  await input.focus();
+  await input.press('ArrowDown');
+  if (await page.evaluate(() => document.activeElement?.id) !== 'search-result-0') throw new Error('Arrow Down did not move focus to the first search result.');
+  await page.keyboard.press('Tab');
+  if (await page.evaluate(() => document.activeElement?.id) !== 'search-result-1') throw new Error('Tab did not follow normal link focus order through search results.');
+  await assertLayout(page, `Search ${width}x${height} light`);
+}
 async function verifyLearn(page, width, height) {
   await page.goto(`${base}/learn/lesson.uruk.first-city`, { waitUntil: 'networkidle' });
   await page.getByRole('heading', { name: 'Uruk: Life in an Early City', exact: true }).waitFor();
@@ -104,6 +118,7 @@ for (const [width, height] of [[1440, 900], [1024, 768], [390, 844], [360, 800]]
   await verifyLibrary(page, width, height);
   await verifyWorldSpine(page, width, height);
   if (width === 1440 || width === 390) await page.screenshot({ path: `${output}/world-spine-${width}x${height}-light.png`, fullPage: false });
+  await verifySearch(page, width, height);
   await verifyLearn(page, width, height);
   if (width === 360) await page.screenshot({ path: `${output}/learn-spine-${width}x${height}-light.png`, fullPage: false });
 

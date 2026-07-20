@@ -1,4 +1,4 @@
-﻿# Discovery and navigation runtime
+# Discovery and navigation runtime
 
 ASH-55 adds the learner-facing discovery layer around the accepted Learn shell. It does not replace the lesson renderer, progress rules, or authored curriculum pipeline.
 
@@ -42,11 +42,13 @@ Catalog cards stay bounded to published journeys and do not load full lesson mod
 
 `content/world-spine/roadmap.ts` parses the approved canonical roster into 12 learner-facing chronological chapters and 185 stable nodes. This is curriculum orientation, not a publication catalog: every canonical node may be shown in the World History detail and Learn drawer, while only published lessons receive destinations or contribute to progress.
 
-`src/domains/journeys/worldSpine.ts` resolves deterministic access among published required lessons. Authored published prerequisites take precedence, with the preceding published World Spine lesson as fallback. Draft and unimplemented nodes remain visible as in preparation but do not accidentally block the currently available sequence. A locked published lesson links back to its unmet prerequisite, and direct navigation fails safely.
+`content/world-spine/access-policy.ts` names the temporary curriculum-development cutoff at `lesson.uruk.first-city`. Any published roadmap lesson at or before that stable order is open while the beginning of the World Spine is backfilled; draft and unimplemented nodes remain visible as in preparation and non-navigable. Advancing or removing the cutoff requires an explicit product/curriculum change to that configuration value and this documentation.
+
+`src/domains/journeys/worldSpine.ts` applies stable access after the cutoff. A completed published lesson is always reopenable. Otherwise, canonical roster prerequisites remain gates even when the prerequisite lesson is not yet published; a node without authored prerequisites falls back to the preceding canonical node, never the preceding currently published node. Publication timing therefore cannot silently redefine sequencing. An incomplete active pointer is not an access entitlement: it is re-evaluated against this policy, while completed work remains available.
 
 ### Learner journey state
 
-`src/domains/journeys/state.ts` owns deterministic transitions for open, saved, closed, active journey, and active lesson per journey. World History is the stable default and cannot be closed. Journey progress is derived from required published entries and global lesson completion; journey actions never mutate lesson progress.
+`src/domains/journeys/state.ts` owns deterministic transitions for open, saved, closed, active journey, and active lesson per journey. Its shared next-action selector is used by Home, journey detail, and the Learn switcher: it preserves an accessible active incomplete lesson, advances a completed lesson, selects an accessible backfilled entry when required, and returns an explicit completed or blocked state when no lesson can be opened. World History is the stable default and cannot be closed. Journey progress is derived from required published entries and global lesson completion; journey actions never mutate lesson progress.
 
 Closing removes a journey from the open list while preserving its active lesson and all global completion data. State normalization removes unpublished or stale journey records from learner-facing state and safely returns the active pointer to World History.
 
@@ -85,7 +87,7 @@ Home renders the invitation only when the resolver returns one. Open, Save, and 
 
 Ranking is deterministic: exact title, exact alias, title prefix, alias prefix, token prefix, then contained text. Case, accents, and punctuation are normalized. Planning-roster nodes, drafts, research notes, legacy IDs, editorial metadata, and learner data are not indexed.
 
-The current corpus is small enough for an in-memory provider. An external search service is intentionally deferred until measured scale or quality needs justify it.
+The current corpus is small enough for an in-memory provider. An external search service is intentionally deferred until measured scale or quality needs justify it. Search uses a native search input and ordinary focusable result links; Arrow Down moves focus to the first result, after which standard link keyboard behavior applies. It intentionally does not claim the ARIA combobox pattern.
 
 ## Navigation and viewport rules
 
@@ -99,7 +101,7 @@ Mobile uses the same three global destinations—Home, Library, and Search—in 
 
 Production currently exposes one published journey, World History, with two published lessons: Uruk and Early Writing Systems. The complete 185-node World Spine is learner-visible as a roadmap. Unfinished nodes, including Farming and Settlements, are labeled in preparation, cannot be opened, are excluded from search, and do not affect progress.
 
-The sequential access resolver requires Uruk completion before Early Writing opens. Empty Library categories still explain that optional curated journeys are being prepared; multi-journey, invitation, transition, and ordering behavior remains proven with non-production test fixtures.
+The named development cutoff keeps every published lesson through Uruk open; Early Writing, immediately after that boundary, requires Uruk completion. Empty Library categories still explain that optional curated journeys are being prepared; multi-journey, invitation, transition, and ordering behavior remains proven with non-production test fixtures.
 
 ## Deferred work
 
