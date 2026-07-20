@@ -46,6 +46,7 @@ beforeEach(() => {
   vi.stubGlobal('matchMedia', vi.fn(() => ({ matches: false, addEventListener: vi.fn(), removeEventListener: vi.fn() })));
   vi.stubGlobal('IntersectionObserver', class { observe() {} disconnect() {} });
   Element.prototype.scrollIntoView = vi.fn();
+  vi.stubGlobal('scrollTo', vi.fn());
 });
 afterEach(() => { cleanup(); vi.unstubAllEnvs(); });
 
@@ -66,7 +67,7 @@ describe('multi-lesson Learn runtime', () => {
     const journey = screen.getByLabelText('World History journey');
     const publishedLinks = within(journey).getAllByRole('link').map((link) => link.getAttribute('href'));
     expect(publishedLinks).toEqual(['/learn/lesson.uruk.first-city', '/learn/lesson.writing.early-systems']);
-    expect(within(journey).getByText('Farming and Settlements').closest('[aria-disabled="true"]')).toBeTruthy();
+    expect(within(journey).queryByText('Farming and Settlements')).toBeNull();
     expect(gateway.load).toHaveBeenCalledTimes(1);
     expect(gateway.load).toHaveBeenCalledWith('lesson.writing.early-systems');
     expect(gateway.loadJourneySummaries).toHaveBeenCalledTimes(1);
@@ -95,9 +96,10 @@ describe('multi-lesson Learn runtime', () => {
     expect(screen.getByText(/already in your Knowledge Cards/)).toBeTruthy();
   });
 
-  it('keeps the unpublished farming entry visibly non-completable', () => {
+  it('keeps the unpublished farming entry private and non-completable', () => {
     render(<LearnApp lessonId="lesson.farming.settlements" />);
-    expect(screen.getByRole('heading', { name: /completable yet/i })).toBeTruthy();
+    expect(screen.getByRole('heading', { name: /archive entry is not available/i })).toBeTruthy();
+    expect(screen.queryByText('Farming and Settlements')).toBeNull();
     expect(screen.queryByRole('button', { name: 'Complete lesson' })).toBeNull();
   });
 });

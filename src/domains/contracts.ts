@@ -65,9 +65,37 @@ export const UnderstandingPromptSchema = z.discriminatedUnion('kind', [
 export const LessonSchema = z.object({ id: StableId, legacyAliases: z.array(z.string()), status: z.enum(['published','draft']), title: z.string(), masthead: z.string(), place: z.string().min(1), chronology: HistoricalDateRangeSchema, significance: z.string(), heroMediaId: StableId.optional(), heroLabel: z.string().min(1).optional(), heroCaption: z.string().min(1).optional(), sectionIdsRequired: z.array(StableId), sections: z.array(LessonSectionSchema).min(1), claimIds: z.array(StableId).min(1), sourceIds: z.array(StableId).min(1), mediaIds: z.array(StableId), promptIds: z.array(StableId) });
 export const JourneyEntrySchema = z.object({ id: StableId, lessonId: StableId, position: z.number().int().nonnegative(), required: z.boolean(), framing: z.string() });
 export const JourneyChapterSchema = z.object({ id: StableId, title: z.string(), position: z.number().int().nonnegative(), entries: z.array(JourneyEntrySchema).min(1) });
-export const JourneySchema = z.object({ id: StableId, title: z.string(), kind: z.enum(['world-history','story-arc','idea-trail','investigation']), chapters: z.array(JourneyChapterSchema).min(1) });
+export const JourneySchema = z.object({
+  id: StableId,
+  title: z.string().min(1),
+  kind: z.enum(['world-history','story-arc','idea-trail','investigation']),
+  status: z.enum(['published','draft']),
+  learnerPromise: z.string().min(1),
+  openingQuestion: z.string().min(1),
+  description: z.string().min(1),
+  period: z.string().min(1),
+  region: z.string().min(1).optional(),
+  approximateMinutes: z.number().int().positive(),
+  featured: z.boolean().default(false),
+  previewMediaId: StableId.optional(),
+  prerequisiteJourneyIds: z.array(StableId).default([]),
+  relatedJourneyIds: z.array(StableId).default([]),
+  entryLessonId: StableId,
+  chapters: z.array(JourneyChapterSchema).min(1),
+});
+export const JourneyInvitationSchema = z.object({
+  id: StableId,
+  sourceLessonId: StableId.optional(),
+  destinationJourneyId: StableId,
+  entryLessonId: StableId,
+  placements: z.array(z.enum(['lesson','completion','home','library'])).min(1),
+  reason: z.string().min(1),
+  optional: z.literal(true),
+  status: z.enum(['published','draft']),
+  priority: z.number().int(),
+});
 export const KnowledgeCardSchema = z.object({ id: StableId, title: z.string(), category: z.enum(['place','person','artifact','invention','event','idea']), cardClass: z.enum(['foundation','breakthrough','turning-point','masterwork','witness','enigma','legacy']), date: HistoricalDateRangeSchema, place: z.string().min(1), significance: z.string(), revealTitle: z.string().min(1), revealBody: z.string().min(1), depictionLabel: z.string().min(1), facts: z.array(z.string()).min(3).max(5), lessonIds: z.array(StableId).min(1), sourceIds: z.array(StableId).min(1), mediaId: StableId, unlockLessonId: StableId });
-export type Lesson = z.infer<typeof LessonSchema>; export type LessonSection = z.infer<typeof LessonSectionSchema>; export type Journey = z.infer<typeof JourneySchema>; export type JourneyChapter = z.infer<typeof JourneyChapterSchema>; export type JourneyEntry = z.infer<typeof JourneyEntrySchema>; export type Source = z.infer<typeof SourceSchema>; export type Claim = z.infer<typeof ClaimSchema>; export type MediaAsset = z.infer<typeof MediaAssetSchema>; export type UnderstandingPrompt = z.infer<typeof UnderstandingPromptSchema>; export type KnowledgeCard = z.infer<typeof KnowledgeCardSchema>;
+export type Lesson = z.infer<typeof LessonSchema>; export type LessonSection = z.infer<typeof LessonSectionSchema>; export type Journey = z.infer<typeof JourneySchema>; export type JourneyChapter = z.infer<typeof JourneyChapterSchema>; export type JourneyEntry = z.infer<typeof JourneyEntrySchema>; export type JourneyInvitation = z.infer<typeof JourneyInvitationSchema>; export type Source = z.infer<typeof SourceSchema>; export type Claim = z.infer<typeof ClaimSchema>; export type MediaAsset = z.infer<typeof MediaAssetSchema>; export type UnderstandingPrompt = z.infer<typeof UnderstandingPromptSchema>; export type KnowledgeCard = z.infer<typeof KnowledgeCardSchema>;
 
 export type LessonProgress = { learnerId:string; lessonId:string; status:'in-progress'|'completed'; resumeSectionId?:string; attemptedPromptIds:string[]; completedAt?:string };
 export type CardOwnership = { learnerId:string; cardId:string; acquiredAt:string };

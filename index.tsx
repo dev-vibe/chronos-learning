@@ -6,7 +6,8 @@ import './index.css';
 import { AuthProvider } from './contexts/AuthContext';
 import { UserProfileProvider } from './contexts/UserProfileContext';
 import { LearnApp } from './src/learn/LearnApp';
-import { lessonIdFromPath } from './src/learn/route';
+import { DiscoveryApp } from './src/app/ChronosApp';
+import { parseChronosRoute } from './src/app/routes';
 
 const queryClient = new QueryClient({
   defaultOptions: {
@@ -23,16 +24,26 @@ if (!rootElement) {
 }
 
 const root = ReactDOM.createRoot(rootElement);
-const learnLessonId = lessonIdFromPath(window.location.pathname);
-document.body.classList.toggle('learn-route', Boolean(learnLessonId));
+const route = parseChronosRoute(window.location.pathname, window.location.search);
+document.body.classList.toggle('learn-route', route.name === 'learn');
+document.body.classList.toggle('discovery-route', !['learn', 'legacy'].includes(route.name));
+let application: React.ReactNode;
+if (route.name === 'learn') {
+  application = <LearnApp lessonId={route.lessonId} />;
+} else if (route.name === 'legacy') {
+  application = <QueryClientProvider client={queryClient}>
+    <AuthProvider>
+      <UserProfileProvider>
+        <App />
+      </UserProfileProvider>
+    </AuthProvider>
+  </QueryClientProvider>;
+} else {
+  application = <DiscoveryApp route={route} />;
+}
+
 root.render(
   <React.StrictMode>
-    {learnLessonId ? <LearnApp lessonId={learnLessonId} /> : <QueryClientProvider client={queryClient}>
-      <AuthProvider>
-        <UserProfileProvider>
-          <App />
-        </UserProfileProvider>
-      </AuthProvider>
-    </QueryClientProvider>}
+    {application}
   </React.StrictMode>
 );
