@@ -11,6 +11,10 @@ Before changing product behavior, data models, or UI, read:
 3. `docs/design/design-system.md`
 4. The active Linear epic in the [Chronos rebuild project](https://linear.app/ashs-workshop/project/chronos-guided-history-learning-rebuild-0fe768438099)
 
+For lesson creation or material lesson revision, follow `docs/content/lesson-creation-runbook.md` and `docs/content/lesson-production-queue.md`. They are the canonical process and ordered work source; do not rely on older informal runbooks.
+
+A user request equivalent to “Let's create the next Chronos lesson” is complete. Do not ask the user to supply a topic or repeat the workflow. Run the boot sequence in the lesson creation runbook, continue an active queued lesson or select the first eligible Ready lesson, and proceed through its built-in research/editorial approval gate.
+
 For UI work, inspect the images in `docs/design/references/`. They express visual intent, hierarchy, and product personality. Rebuild them with real responsive components and accessible native text; do not embed screenshots or imitate generated text errors.
 
 For generated historical maps, follow `docs/content/historical-map-production.md`. A real authoritative map must anchor the geography; generated output is never the geographic source.
@@ -46,6 +50,12 @@ Do not expand the old monolithic `App.tsx`, XP/level system, rarity/stats model,
 
 ## Starting a new agent thread
 
-Use a prompt such as:
+For lesson production, the preferred complete prompt is:
+
+> Let's create the next Chronos lesson.
+
+The lesson runbook and production queue supply all operational detail.
+
+For other work, use a prompt such as:
 
 > Work on ASH-52 in `dev-vibe/chronos-learning`. Read `AGENTS.md` and the linked source documents first. Inspect the repository, propose the smallest coherent vertical outcome, implement it on a branch, validate it, and open a draft PR. Preserve unrelated existing work.
