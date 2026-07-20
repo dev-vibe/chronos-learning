@@ -4,7 +4,7 @@ Linear anchor: [ASH-65 — Maintain the canonical Chronos lesson production queu
 
 Curriculum source: [Canonical World Spine roster](world-spine-canonical-roster.md) and [World Spine audit](world-spine-audit.md)
 
-Status: **Roster positions 7–14 approved on July 19, 2026.** No later World Spine node is approved for automatic production by this update.
+Status: **Roster positions 7–14 approved on July 19, 2026; position 1 activated by product-owner direction on July 20, 2026.** No other World Spine node is approved for automatic production by this update.
 
 This is the version-controlled source of truth for which canonical lesson is produced next. It is an editorially curated production queue, not the complete knowledge graph, legacy-data order, or a promise that every canonical node is ready for lesson production.
 
@@ -48,6 +48,7 @@ The production order below is operational and may differ from canonical learner 
 
 | Production order | Lesson | Spine position | Why it is queued | Production dependencies | Status | Linear / PR |
 | ---: | --- | ---: | --- | --- | --- | --- |
+| 1 | `lesson.humans.homo-sapiens-origins` — Our Species Begins in Africa | 1 | Begin the learner-facing World Spine at its actual chronological and conceptual starting point, establishing shared African origins and evidence-aware deep history. | Explicit product-owner activation on July 20, 2026; no curriculum prerequisite; source and claim brief is the first research gate | `Awaiting approval` | [ASH-69](https://linear.app/ashs-workshop/issue/ASH-69/research-and-publish-our-species-begins-in-africa) |
 | 10 | `lesson.farming.settlements` — Farming and Settlements | 8 | Finish the existing drafted Southwest Asian settlement case and carry the reusable pipeline forward. | Early Writing Systems merged and verified; reusable multi-lesson pipeline accepted; canonical scope approved | `Ready` | Per-lesson issue created when selected |
 | 20 | `lesson.farming.multiple-origins` — Many Beginnings of Farming | 7 | Establish the global frame that prevents a single “Neolithic Revolution” story. | No prior lesson implementation; source and claim brief is the first research gate | `Ready` | Per-lesson issue created when selected |
 | 30 | `lesson.animals.domestication-and-pastoralism` — Animals, Herding, and Mobility | 9 | Explain mobile pastoral lifeways as a durable complement and alternative to settled farming. | Many Beginnings of Farming implementation available | `Planned` | None |
@@ -55,7 +56,9 @@ The production order below is operational and may differ from canonical learner 
 | 50 | `lesson.egypt.nile-state` — The Nile and an Early Egyptian State | 13 | Add a contrasting, evidence-rich pathway to early state formation. | Uruk reference implementation available | `Ready` | Per-lesson issue created when selected |
 | 60 | `lesson.caral.andean-urbanism` — Caral and Early Andean Urbanism | 14 | Add an independently developed urban case that challenges one-path models of cities. | Many Beginnings of Farming implementation available | `Ready` | Per-lesson issue created when selected |
 
-`lesson.farming.settlements` is the first eligible production task because its actual production dependencies are satisfied and its draft is already available. Producing it before `lesson.farming.multiple-origins` does not change canonical order: learners must still encounter Many Beginnings of Farming first, and that curriculum prerequisite cannot be skipped. Many Beginnings of Farming becomes the next eligible task after Farming and Settlements. The Nile node is also reviewed and ready but follows both in production order. Caral remains approved and ready, with its stated production dependency; Planned rows require explicit promotion before selection.
+`lesson.humans.homo-sapiens-origins` is the active production task by explicit product-owner direction on July 20, 2026. This amendment supersedes the prior default that would have selected Farming and Settlements first; it does not silently promote any other Planned node. After this active lesson leaves production, selection returns to the lowest eligible `Ready` row unless the product owner approves another queue amendment.
+
+`lesson.farming.settlements` remains the first eligible task in the previously approved positions 7–14 runway because its actual production dependencies are satisfied and its draft is already available. Producing it before `lesson.farming.multiple-origins` would not change canonical order: learners must still encounter Many Beginnings of Farming first, and that curriculum prerequisite cannot be skipped. The Nile node is also reviewed and ready but follows both in production order. Caral remains approved and ready, with its stated production dependency; Planned rows require explicit promotion before selection.
 
 ## Completed reference lessons in the approved segment
 
@@ -66,7 +69,7 @@ The production order below is operational and may differ from canonical learner 
 
 ## Approved boundary
 
-This queue update records only World Spine positions 7–14. It does not promote later roster nodes, create per-node Linear issues, or authorize full-lesson work without the queue and runbook gates. The complete roster remains the curriculum source of truth; this file owns operational production state.
+This queue records the approved World Spine positions 7–14 runway plus the explicit July 20 activation of position 1. It does not promote positions 2–6 or later roster nodes, create per-node Linear issues, or authorize full-lesson work without the queue and runbook gates. The complete roster remains the curriculum source of truth; this file owns operational production state.
 
 ## Queue-change checklist
 
