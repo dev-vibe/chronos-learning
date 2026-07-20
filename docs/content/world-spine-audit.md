@@ -1,6 +1,6 @@
 # World Spine audit
 
-Status: **Approved on July 19, 2026.** The audit and roster define curriculum documentation and the approved production runway; runtime fixtures and application behavior remain unchanged.
+Status: **Approved on July 19, 2026; product-owner amendments incorporated on July 19, 2026.** The audit and roster define curriculum documentation and the approved production runway; runtime fixtures and application behavior remain unchanged.
 
 ## Audit question
 
@@ -205,7 +205,7 @@ The product owner approved these resolutions on July 19, 2026. A research gate b
 
 ### Approval record
 
-The product owner approved the complete 186-node roster and the recommendations above on July 19, 2026, adding the explicit global-slavery and Protestant-abolition clarification now incorporated into the methodology, roster scopes, and source notes.
+The product owner approved the complete roster and the recommendations above on July 19, 2026, adding the explicit global-slavery and Protestant-abolition clarification now incorporated into the methodology, roster scopes, and source notes. The product owner then amended the approval during PR review: the standalone **One Species, Many Populations** node was removed because it did not provide a sufficiently distinct historical handoff; its evidence-led material was distributed between the origins and migrations nodes; the Columbus node was renamed and re-identified around **sustained** Atlantic contact in light of the earlier Norse presence; and the production queue was clarified so production dependencies do not override curriculum prerequisites or canonical Journey order. The amended canonical roster contains 185 nodes.
 
 ## Supporting source notes
 
@@ -221,6 +221,7 @@ These are decision anchors for roster approval, not complete lesson bibliographi
 - **Bhakti traditions:** [The Metropolitan Museum of Art, The Art of South and Southeast Asia](https://resources.metmuseum.org/resources/metpublications/pdf/The_Art_of_South_and_Southeast_Asia_A_Resource_for_Educators.pdf) supports the growth of personal devotion and its literary and institutional expression.
 - **Persianate intellectual traditions:** [Encyclopaedia Iranica, Rumi: Philosophy](https://www.iranicaonline.org/articles/rumi-philosophy/) supports locating Persian poetry and Sufi reflection inside wider philosophical and theological traditions.
 - **Human origins:** [Smithsonian Human Origins Program](https://humanorigins.si.edu/evidence/human-fossils/species/homo-sapiens) anchors Homo sapiens origins and fossil chronology; its ancient-DNA material supports interaction and interbreeding.
+- **African population structure and ancient DNA:** the Smithsonian Human Origins Program’s [review of interacting African populations](https://humanorigins.si.edu/research/whats-hot-human-origins/no-single-site-modern-human-origins) supports a structured, interconnected origin rather than one isolated population; its [ancient-DNA review](https://humanorigins.si.edu/evidence/genetics/ancient-dna-and-neanderthals) supports interbreeding and gene flow while modeling the limits of genomic inference.
 - **Peopling the Americas:** [UNESCO's early peopling review](https://whc.unesco.org/document/142605) supports careful Beringia language and preserves uncertainty around routes and earliest sites.
 - **Agricultural origins:** [Smithsonian Tropical Research Institute](https://stri.si.edu/scientist/dolores-piperno) supports multiple independent beginnings of agriculture.
 - **Uruk:** [The Metropolitan Museum of Art](https://www.metmuseum.org/de/essays/uruk-the-first-city) anchors chronology, urban scale, and early administration.
@@ -238,6 +239,7 @@ These are decision anchors for roster approval, not complete lesson bibliographi
 - **Mongol connections:** [Harvard University, I Tatti](https://itatti.harvard.edu/publications/mongol-empire-global-history-and-art-history) supports treating conquest, destruction, administration, and exchange together.
 - **Black Death:** [Cambridge World History of Human Disease](https://www.cambridge.org/core/books/abs/cambridge-world-history-of-human-disease/black-death/16390DE51801A6BFCD9FFC2B18CA00A1) supports global extent while noting uncertainty about precise origin.
 - **Polynesian settlement:** [Te Ara Encyclopedia of New Zealand](https://teara.govt.nz/en/when-was-new-zealand-first-settled/page-1) corrects the legacy New Zealand date to permanent settlement around 1250–1300 CE.
+- **Sustained Atlantic contact:** [UNESCO’s L’Anse aux Meadows record](https://whc.unesco.org/en/list/4) establishes an eleventh-century Norse presence in North America; the [Library of Congress overview of Columbus and the Taíno](https://www.loc.gov/exhibits/exploring-the-early-americas/columbus-and-the-taino.html) anchors the repeated voyages and their imperial sponsorship. Together they support describing 1492 as the beginning of sustained Atlantic contact, invasion, colonization, and exchange—not the first human or European presence in the Americas.
 - **Columbian Exchange:** [Smithsonian Institution](https://www.si.edu/exhibitions/seeds-change%3Aevent-exhib-2294) supports ecological and demographic consequences.
 - **Atlantic slavery:** [SlaveVoyages](https://legacy.slavevoyages.org/about/about) provides a traceable research database for voyages and forced movement.
 - **Global histories of slavery:** [UNESCO's Routes of Enslaved Peoples overview](https://www.unesco.org/en/query-list/h/history-slavery) and [Cambridge's global-slavery historiography](https://www.cambridge.org/core/elements/writing-the-history-of-global-slavery/BF154CAE6000A154754FF571EA30C171) support treating slavery as a worldwide, historically varied institution rather than an Atlantic-only phenomenon.
@@ -254,4 +256,4 @@ These are decision anchors for roster approval, not complete lesson bibliographi
 
 ## Approved implementation boundary
 
-Approval authorizes the canonical audit and roster plus queue entries only for roster positions 8–15. It does not authorize full lesson writing, runtime-fixture changes, schema or application-behavior changes, bulk per-node Linear issues, or automatic promotion of later nodes into production. Research-required nodes keep their explicit editorial gates.
+Approval authorizes the canonical audit and roster plus queue entries only for roster positions 7–14. It does not authorize full lesson writing, runtime-fixture changes, schema or application-behavior changes, bulk per-node Linear issues, or automatic promotion of later nodes into production. Research-required nodes keep their explicit editorial gates.
