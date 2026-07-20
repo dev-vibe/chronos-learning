@@ -12,7 +12,7 @@ const emptyState = (lessonId: string): LearnState => ({
 
 class MultiLessonGateway implements LearnProgressGateway {
   states = new Map([
-    ['lesson.uruk.first-city', emptyState('lesson.uruk.first-city')],
+    ['lesson.uruk.first-city', { ...emptyState('lesson.uruk.first-city'), status: 'completed', completedAt: '2026-01-01T00:00:00.000Z' }],
     ['lesson.writing.early-systems', emptyState('lesson.writing.early-systems')],
   ]);
   load = vi.fn(async (lessonId: string) => this.states.get(lessonId)!);
@@ -64,10 +64,10 @@ describe('multi-lesson Learn runtime', () => {
     expect(screen.queryByText('Review state')).toBeNull();
     expect(screen.queryByText(/^approved$/i)).toBeNull();
     expect(screen.getByRole('link', { name: /Previous: Uruk/ }).getAttribute('href')).toBe('/learn/lesson.uruk.first-city');
-    const journey = screen.getByLabelText('World History journey');
+    const journey = screen.getByLabelText('World History World Spine');
     const publishedLinks = within(journey).getAllByRole('link').map((link) => link.getAttribute('href'));
     expect(publishedLinks).toEqual(['/learn/lesson.uruk.first-city', '/learn/lesson.writing.early-systems']);
-    expect(within(journey).queryByText('Farming and Settlements')).toBeNull();
+    expect(within(journey).getByText('Farming and Settlements').closest('.spine-node')?.classList.contains('preparing')).toBe(true);
     expect(gateway.load).toHaveBeenCalledTimes(1);
     expect(gateway.load).toHaveBeenCalledWith('lesson.writing.early-systems');
     expect(gateway.loadJourneySummaries).toHaveBeenCalledTimes(1);
@@ -86,7 +86,7 @@ describe('multi-lesson Learn runtime', () => {
     await userEvent.click(screen.getByRole('button', { name: 'Complete lesson' }));
     expect(await screen.findByText(/Knowledge Card.*artifact/)).toBeTruthy();
     expect(screen.getByRole('heading', { name: 'Proto-Cuneiform Tablet' })).toBeTruthy();
-    expect(gateway.states.get('lesson.uruk.first-city')?.status).toBe('in-progress');
+    expect(gateway.states.get('lesson.uruk.first-city')?.status).toBe('completed');
     expect(gateway.complete).toHaveBeenCalledTimes(1);
 
     cleanup();
@@ -102,4 +102,5 @@ describe('multi-lesson Learn runtime', () => {
     expect(screen.queryByText('Farming and Settlements')).toBeNull();
     expect(screen.queryByRole('button', { name: 'Complete lesson' })).toBeNull();
   });
+  it('blocks a later published lesson until the earlier World Spine lesson is complete', async () => { const gateway = new MultiLessonGateway(); gateway.states.set('lesson.uruk.first-city', emptyState('lesson.uruk.first-city')); render(<LearnApp lessonId="lesson.writing.early-systems" gatewayFactory={async () => gateway} />); expect(await screen.findByRole('heading', { name: 'This lesson is still locked.' })).toBeTruthy(); expect(screen.getByText(/Complete Uruk: Life in an Early City/)).toBeTruthy(); expect(document.querySelector('[data-section-id]')).toBeNull(); })
 });

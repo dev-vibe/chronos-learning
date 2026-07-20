@@ -36,7 +36,13 @@ Content validation checks these references and prevents a published journey or i
 
 `src/domains/journeys/catalog.ts` creates lightweight summaries from published journeys and published entries only. World History remains distinct. Optional journeys are grouped editorially into Civilizations and Regions, Ideas Across Time, and Investigations with deterministic ordering.
 
-The projection never imports the 185-node planning roster and never loads full lesson modules for catalog cards.
+Catalog cards stay bounded to published journeys and do not load full lesson modules. World History detail adds a separate lightweight roadmap projection from the canonical 185-node roster.
+
+### World Spine roadmap and gating
+
+`content/world-spine/roadmap.ts` parses the approved canonical roster into 12 learner-facing chronological chapters and 185 stable nodes. This is curriculum orientation, not a publication catalog: every canonical node may be shown in the World History detail and Learn drawer, while only published lessons receive destinations or contribute to progress.
+
+`src/domains/journeys/worldSpine.ts` resolves deterministic access among published required lessons. Authored published prerequisites take precedence, with the preceding published World Spine lesson as fallback. Draft and unimplemented nodes remain visible as in preparation but do not accidentally block the currently available sequence. A locked published lesson links back to its unmet prerequisite, and direct navigation fails safely.
 
 ### Learner journey state
 
@@ -85,13 +91,15 @@ The current corpus is small enough for an in-memory provider. An external search
 
 Journey-level Continue selects the journey and its stored active lesson, persists that pointer, and performs intentional navigation. Every lesson ID change synchronously resets the document viewport to the top. Existing explored-section state remains informational, but no saved viewport, resume banner, automatic section scroll, or within-lesson resume action is introduced.
 
-The Learn shell keeps its section rail and adds a compact journey switcher plus Home, Library, and Search access. Mobile uses the same four primary destinations in a compact bottom navigation.
+The Learn shell is a contextual lesson workspace rather than a competing global destination. Home provides the primary Continue action; Library is for choosing and inspecting journeys; Search remains optional. Inside Learn, the World Spine drawer combines the 12-chapter chronology, available/locked/in-preparation lesson states, and the current lesson section index. Home, Library, and Search remain directly reachable.
+
+Mobile uses the same three global destinations—Home, Library, and Search—in a compact bottom navigation. The World Spine opens from the lesson header.
 
 ## Honest current corpus
 
-Production currently exposes one published journey, World History, with two published lessons: Uruk and Early Writing Systems. The draft farming entry remains in the authored source bundle for production work but is absent from Home, Library, preview structure, switcher, search, and learner-facing Learn navigation.
+Production currently exposes one published journey, World History, with two published lessons: Uruk and Early Writing Systems. The complete 185-node World Spine is learner-visible as a roadmap. Unfinished nodes, including Farming and Settlements, are labeled in preparation, cannot be opened, are excluded from search, and do not affect progress.
 
-Empty Library categories explain that curated journeys are being prepared. Multi-journey, invitation, transition, and ordering behavior is proven only with non-production test fixtures.
+The sequential access resolver requires Uruk completion before Early Writing opens. Empty Library categories still explain that optional curated journeys are being prepared; multi-journey, invitation, transition, and ordering behavior remains proven with non-production test fixtures.
 
 ## Deferred work
 

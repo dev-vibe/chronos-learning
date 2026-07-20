@@ -20,3 +20,37 @@
 @media(max-width:620px){.discovery-main{width:calc(100% - 28px);padding-top:30px}.page-intro{margin-bottom:24px}.page-intro h1{font-size:clamp(3rem,15vw,4.3rem)}.continue-card{border-radius:16px}.continue-image{min-height:210px}.continue-copy{padding:25px 20px 27px}.continue-copy h2{font-size:2.65rem}.continue-copy .primary-action{width:100%}.dashboard-section{padding-top:48px}.section-title{align-items:start}.section-title>a{white-space:nowrap}.journey-grid,.library-category .journey-grid{grid-template-columns:1fr}.journey-card{min-height:0}.journey-card>p:not(.label){min-height:0}.discovered-grid{grid-template-columns:repeat(2,minmax(0,1fr));gap:9px}.library-intro{display:grid;gap:22px}.search-entry{width:100%;justify-content:center}.world-feature{display:block;min-height:0;padding:26px 21px}.world-feature>svg{display:none}.world-feature h2{font-size:3.3rem}.world-feature .primary-action{width:100%}.category-stack{gap:52px;padding-top:52px}.empty-category{padding:18px}.detail-hero{padding:28px 20px}.detail-hero h1{font-size:3.6rem}.detail-actions{display:grid}.detail-actions>*{width:100%}.detail-layout{padding:48px 4px;gap:28px}.chapter-list{padding-top:45px}.chapter-list>h2{font-size:2.45rem}.chapter-list>article{grid-template-columns:1fr;gap:12px}.search-box{height:60px;padding-inline:13px}.search-box kbd{display:none}.search-results section a{min-height:88px;grid-template-columns:1fr 28px;gap:3px 10px;padding:13px}.search-results section a>span,.search-results section a>strong,.search-results section a>small{grid-column:1}.search-results section a>svg{grid-column:2;grid-row:1/4}.limited-state{padding:17px}.mobile-nav{padding-inline:5px}}
 @media(max-width:620px){.continue-copy{display:flex;flex-direction:column}.continue-copy>.label{order:1}.continue-copy>h2{order:2}.continue-copy>.primary-action{order:3;margin:2px 0 13px}.continue-copy>p:not(.label){order:4}.continue-copy>.continue-meta{order:5}.continue-copy>.progress-line{order:6}}
 @media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}.discovery-app *{scroll-behavior:auto!important;transition:none!important;animation:none!important}}
+.world-spine-overview{max-width:1060px;padding-top:64px}
+.world-spine-overview>header{display:grid;grid-template-columns:minmax(0,1fr) auto;gap:40px;align-items:end;padding-bottom:28px;border-bottom:1px solid var(--line)}
+.world-spine-overview>header h2{margin:7px 0 10px;font-size:clamp(2.7rem,5vw,4.4rem);line-height:.95}
+.world-spine-overview>header>div>p:last-child{max-width:700px;margin:0;color:var(--muted);line-height:1.65}
+.world-spine-overview dl{display:grid;grid-template-columns:repeat(3,110px);margin:0}
+.world-spine-overview dl>div{padding:8px 13px;border-left:1px solid var(--line)}
+.world-spine-overview dt{color:var(--teal);font:500 2rem Newsreader,serif}
+.world-spine-overview dd{margin:2px 0 0;color:var(--muted);font-size:.62rem;line-height:1.35}
+.world-spine-chapters details{border-bottom:1px solid var(--line)}
+.world-spine-chapters summary{min-height:78px;display:grid;grid-template-columns:42px minmax(0,1fr) auto 22px;gap:14px;align-items:center;padding:11px 4px;list-style:none;cursor:pointer}
+.world-spine-chapters summary::-webkit-details-marker{display:none}
+.world-spine-chapters summary>span:nth-child(2) strong,.world-spine-chapters summary>span:nth-child(2) small{display:block}
+.world-spine-chapters summary>span:nth-child(2) strong{font:500 1.25rem/1.2 Newsreader,serif}
+.world-spine-chapters summary>span:nth-child(2) small{margin-top:3px;color:var(--muted);font-size:.65rem}
+.world-spine-chapters summary>svg{width:18px;color:var(--teal);transition:transform .18s ease}
+.world-spine-chapters details[open] summary>svg{transform:rotate(180deg)}
+.overview-chapter-number{width:38px;height:38px;display:grid;place-items:center;border:1px solid var(--gold);border-radius:50%;color:var(--bronze);font-size:.7rem;font-weight:700}
+.overview-chapter-count{color:var(--muted);font-size:.67rem}
+.world-spine-chapters details>p{max-width:720px;margin:0 0 18px 60px;color:var(--muted);font:400 1rem/1.55 Newsreader,serif}
+.world-spine-chapters ol{list-style:none;margin:0 0 24px 60px;padding:0;border-top:1px solid var(--line)}
+.world-spine-chapters li{min-height:54px;display:grid;grid-template-columns:30px minmax(0,1fr) minmax(120px,auto);align-items:center;gap:12px;padding:8px 4px;border-bottom:1px solid color-mix(in srgb,var(--line) 70%,transparent)}
+.overview-node-marker{width:28px;height:28px;display:grid;place-items:center;border:1px solid var(--line);border-radius:50%;color:var(--muted);font-size:.61rem}
+.overview-node-marker svg{width:13px}
+.overview-node-copy small,.overview-node-copy strong,.overview-node-copy a{display:block}
+.overview-node-copy small{color:var(--muted);font-size:.61rem}
+.overview-node-copy strong,.overview-node-copy a{margin-top:2px;color:var(--ink);font:500 1rem/1.25 Newsreader,serif}
+.world-spine-chapters li>em{color:var(--muted);font-size:.61rem;font-style:normal;text-align:right}
+.world-spine-chapters li.current{background:color-mix(in srgb,var(--gold) 8%,transparent)}
+.world-spine-chapters li.current .overview-node-marker{border-color:var(--bronze);background:var(--bronze);color:#fff}
+.world-spine-chapters li.completed .overview-node-marker{border-color:var(--teal);background:var(--teal);color:#fff}
+.world-spine-chapters li.locked,.world-spine-chapters li.preparing{opacity:.68}
+@media(max-width:900px){.mobile-nav{grid-template-columns:repeat(3,1fr)}.world-spine-overview>header{grid-template-columns:1fr}.world-spine-overview dl{grid-template-columns:repeat(3,1fr)}}
+@media(max-width:620px){.world-spine-overview{padding-top:48px}.world-spine-overview>header{gap:24px}.world-spine-overview dl{grid-template-columns:1fr}.world-spine-overview dl>div{display:grid;grid-template-columns:52px 1fr;align-items:center;border-left:0;border-top:1px solid var(--line)}.world-spine-chapters summary{grid-template-columns:36px minmax(0,1fr) 18px;gap:10px}.overview-chapter-count{display:none}.world-spine-chapters details>p,.world-spine-chapters ol{margin-left:0}.world-spine-chapters li{grid-template-columns:30px minmax(0,1fr)}.world-spine-chapters li>em{grid-column:2;text-align:left}}
+@media(prefers-reduced-motion:reduce){.world-spine-chapters summary>svg{transition:none}}

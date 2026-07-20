@@ -176,7 +176,7 @@ describe('Home, Library, preview, and search composition', () => {
       progressGatewayFactory={async () => harness.progressGateway}
     />);
     expect(await screen.findByRole('heading', { name: /journey.*available/i })).toBeTruthy();
-    expect(screen.getByText(/Draft and planned journeys stay private/i)).toBeTruthy();
+    expect(screen.getByText(/Only reviewed journeys can be opened here/i)).toBeTruthy();
   });
 
   it('shows state-dependent preview actions without allowing World History to close', async () => {
@@ -189,7 +189,7 @@ describe('Home, Library, preview, and search composition', () => {
     expect(await screen.findByRole('heading', { name: 'World History' })).toBeTruthy();
     expect(screen.getByRole('link', { name: /Continue journey/i })).toBeTruthy();
     expect(screen.queryByRole('button', { name: 'Close' })).toBeNull();
-    expect(screen.queryByText('Farming and Settlements')).toBeNull();
+    expect(screen.getByText('Farming and Settlements')).toBeTruthy(); expect(document.querySelectorAll('.world-spine-chapters .preparing')).not.toHaveLength(0);
   });
 
   it('uses a stable query URL, typed results, announcements, and keyboard selection', async () => {
@@ -231,6 +231,7 @@ describe('Home, Library, preview, and search composition', () => {
     expect(localStorage.getItem('chronos.theme.v1')).toBe('dark');
     expect(screen.getAllByLabelText('Chronos navigation')).toHaveLength(2);
     expect(document.querySelector('.mobile-nav')).toBeTruthy();
+    expect(screen.queryByRole('link', { name: 'Learn' })).toBeNull(); expect(document.querySelectorAll('.global-rail nav a')).toHaveLength(3); expect(document.querySelectorAll('.mobile-nav a')).toHaveLength(3);
   });
 
   it('offers retry after a transient navigation-state load failure', async () => {
