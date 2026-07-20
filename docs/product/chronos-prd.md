@@ -176,7 +176,7 @@ Every journey uses the same shell. The left side shows the current journey as an
 1. Lesson masthead: date or date range, title, place, role, and one-sentence significance.
 2. Opening hook: vivid question, dilemma, object, or scene.
 3. Narrative sections: short, scannable segments with clear headings.
-4. Embedded media: image, map, audio, video, artifact viewer, or source excerpt.
+4. Purpose-selected embedded media: evidence image, map, diagram, reconstruction, audio, short video, artifact viewer, or source excerpt. There is no media quota; video is exceptional and used only when motion, sound, performance, technique, testimony, or change over time is itself necessary to the learning.
 5. Knowledge blocks: person, invention, place, artifact, event, or idea in a simple inline form.
 6. Optional contextual synthesis: what came before, what was happening elsewhere, or where a pattern reappears. Include it only when the comparison itself teaches something; it is lesson content, not a disguised link to another lesson.
 7. Check for understanding: retrieval, ordering, comparison, source interpretation, or explanation.
@@ -598,6 +598,8 @@ type VisualBrief = {
 # 13. Content and editorial model
 
 ## 13.1 Lesson production workflow
+
+The canonical, step-by-step process is `docs/content/lesson-creation-runbook.md`; the ordered source of work is `docs/content/lesson-production-queue.md`. A request equivalent to “Let's create the next Chronos lesson” invokes both: continue active work or select the first eligible Ready lesson, create/reuse its issue and branch, run the research/editorial approval gate, and continue through publication after approval. The runbook governs research planning, source and claim weighting, content triage, learning design for ages 11–14, section/component storyboarding, images/maps/audio/video decisions, Knowledge Cards, understanding prompts, repository implementation, review, publication, learner observation, and correction. If a shorter summary or older runbook conflicts with it, the canonical runbook wins.
 
 1. Node proposal: define why the lesson exists and where it may appear.
 2. Research brief: chronology, geography, claims, controversies, and sources.

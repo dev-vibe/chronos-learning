@@ -680,9 +680,9 @@ CHR-036 \| Build embedded media and attribution components
 | **Priority:** P0 | **Dependencies:** CHR-035, CHR-015 | **Sequence:** 36 |
 |------------------|------------------------------------|------------------|
 
-**Outcome:** Render open-source images, maps, audio/video, captions, licenses, and source links consistently.
+**Outcome:** Render approved evidence images, maps, diagrams, reconstructions, audio, exceptional-purpose video, captions/transcripts, licenses, and source links consistently.
 
-**Implementation notes:** Respect aspect ratios and provide full provenance.
+**Implementation notes:** Respect aspect ratios and provide full provenance. Media follows the decision gates in `docs/content/lesson-creation-runbook.md`; there is no per-lesson media or video quota.
 
 **Acceptance criteria**
 
@@ -690,7 +690,9 @@ CHR-036 \| Build embedded media and attribution components
 
 - Media has alt text or an explicit decorative flag.
 
-- Videos do not autoplay or navigate learners away unexpectedly.
+- Video is used only when it uniquely serves the learning purpose; it does not autoplay, depend on ads/algorithmic recommendations, or navigate learners away unexpectedly.
+
+- Published video includes accurate captions, a transcript, keyboard-operable controls, a useful poster frame, and a coherent text/static fallback.
 
 CHR-037 \| Build inline knowledge blocks
 
@@ -1372,11 +1374,13 @@ CHR-074 \| Build lesson editor or structured authoring workflow
 
 **Outcome:** Allow creation and preview of typed lesson modules without editing application code.
 
-**Implementation notes:** May begin as validated repository files with preview tooling; full CMS is optional.
+**Implementation notes:** May begin as validated repository files with preview tooling; full CMS is optional. The authoring workflow must implement `docs/content/lesson-creation-runbook.md` and select work from `docs/content/lesson-production-queue.md` rather than reducing lesson work to field entry or requiring a custom prompt for every lesson.
 
 **Acceptance criteria**
 
 - Editors can create, validate, preview, and submit a lesson.
+
+- An agent can begin with “Let's create the next Chronos lesson,” continue active work or select the first eligible Ready queue entry, and execute the canonical research/editorial checkpoint without additional operational prompting.
 
 - References and sources are searchable or safely enterable.
 

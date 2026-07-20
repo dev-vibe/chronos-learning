@@ -8,7 +8,7 @@ Status: **Roster positions 7–14 approved on July 19, 2026.** No later World Sp
 
 This is the version-controlled source of truth for which canonical lesson is produced next. It is an editorially curated production queue, not the complete knowledge graph, legacy-data order, or a promise that every canonical node is ready for lesson production.
 
-The canonical lesson-creation runbook is being finalized in [ASH-64](https://linear.app/ashs-workshop/issue/ASH-64/create-the-canonical-end-to-end-lesson-creation-runbook). Until `docs/content/lesson-creation-runbook.md` lands on `main`, agents must follow the selection and status rules in this document and stop at the usual research/editorial approval gate.
+The canonical workflow is [`docs/content/lesson-creation-runbook.md`](lesson-creation-runbook.md), tracked by [ASH-64](https://linear.app/ashs-workshop/issue/ASH-64/create-the-canonical-end-to-end-lesson-creation-runbook). A request equivalent to “Let's create the next Chronos lesson” invokes the runbook and this queue automatically.
 
 ## Curriculum prerequisites and production dependencies
 
