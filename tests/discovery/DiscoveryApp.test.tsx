@@ -10,7 +10,7 @@ import { DiscoveryApp } from '../../src/app/ChronosApp';
 import { createDefaultJourneyState, openJourney } from '../../src/domains/journeys/state';
 import type { JourneyStateGateway, JourneyStateLoad } from '../../src/infrastructure/journeys/gateway';
 import type { LearnProgressGateway } from '../../src/learn/progress';
-import type { SearchProvider } from '../../src/domains/search/search';
+import type { SearchProvider, SearchResult } from '../../src/domains/search/search';
 
 const world = chronosContent.journeys.find((journey) => journey.id === 'journey.world-history')!;
 const fixtureJourney: Journey = {
@@ -195,7 +195,7 @@ describe('Home, Library, preview, and search composition', () => {
   it('uses a stable query URL, typed results, announcements, and keyboard selection', async () => {
     const harness = makeHarness();
     const provider: SearchProvider = {
-      search: vi.fn(async () => [
+      search: vi.fn(async (): Promise<SearchResult[]> => [
         { id: 'lesson.uruk.first-city', kind: 'lesson', title: 'Uruk: Life in an Early City', context: 'Lesson · Uruk period', destination: '/learn/lesson.uruk.first-city', score: 800 },
         { id: 'card.place.uruk', kind: 'knowledge-card', title: 'Uruk', context: 'Knowledge Card · place', destination: '/learn/lesson.uruk.first-city', score: 700 },
       ]),
