@@ -8,7 +8,7 @@ Status: **Draft portfolio for product-owner and curriculum review.** Inclusion h
 
 Chronos needs a portfolio map before journey production begins. Without one, the Library will be filled reactively, lesson production will remain almost entirely World-Spine-driven, and “journeys” can decay into tag filters or conventional civilization surveys.
 
-This draft maps four learner-facing shelves while preserving the existing domain model:
+This draft maps four editorial families while preserving the existing domain model and the current three top-level Library categories. **Civilizations & Regions** and bounded **Stories** can appear as curated subgroups/shelves within the current Story category; they do not require a fourth primary navigation category unless later learner testing supports one.
 
 - **Civilizations & Regions** — long-form continuity and transformation; domain kind `story_arc`.
 - **Stories** — bounded movements, networks, eras, and connected historical processes; domain kind `story_arc`.
@@ -242,7 +242,7 @@ The portfolio applies the Chronos PRD and approved World Spine, plus these exter
 # Review decisions requested
 
 1. Approve, revise, or reject the six-item reference portfolio.
-2. Confirm that **Civilizations & Regions** and **Stories** remain separate Library shelves/subgroups while sharing `story_arc` internally.
+2. Confirm that **Civilizations & Regions** and **Stories** remain distinct curated subgroups within the current Story/“Civilizations & Regions” Library category while sharing `story_arc` internally.
 3. Confirm the first Investigation should be the early-tablet evidence slice before Rapa Nui.
 4. Decide whether long transhistorical civilization arcs such as China Across Time should remain one journey with chapters or become a curated family of shorter journeys after blueprinting.
 5. Identify candidates whose titles, scope, or presence should change before this becomes the canonical approved roster.
