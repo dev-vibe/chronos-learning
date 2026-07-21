@@ -14,6 +14,18 @@
       ]
     },
     {
+      "id": "media.farming.catalhoyuk-locator-map",
+      "collection": "farming",
+      "sourcePath": "public/images/maps/catalhoyuk-locator-map.webp",
+      "fallbackPath": "/images/optimized/farming/catalhoyuk-locator-map.optimized.webp",
+      "preset": "drawing",
+      "widths": [
+        480,
+        960,
+        1600
+      ]
+    },
+    {
       "id": "media.uruk.clay-envelope",
       "collection": "uruk",
       "sourcePath": "public/images/inventions/clay_envelope.jpg",

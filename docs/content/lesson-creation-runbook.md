@@ -443,6 +443,14 @@ Media must either provide evidence, explain a relationship, orient the learner, 
 - Use a **symbolic treatment** sparingly when the subject is an abstract idea or evidence is too thin for a literal scene.
 - Use **no media** when text is clearer and an asset would only create noise.
 
+### Approved media plan → Stage 15 duty
+
+After product-owner approval of the Stage 0–14 packet, treat media-plan rows marked **Required**, **Recommended**, or **Recommended core** as Stage 15 deliverables unless the approval packet explicitly defers or rejects them.
+
+Do not invent an “MVP skip” for an approved recommended historical map, diagram, or evidence asset merely to ship prose sooner. If a later lesson already has a working module pattern (for example Uruk’s `historical-map`), reuse that pattern. Deferral requires an explicit product-owner note in the research checkpoint or a follow-up approval comment.
+
+Rows marked **Preferred / optional** (for example an atmospheric hero when a diagram already carries the evidence encounter) may ship after the required and recommended assets, or wait for a bounded follow-up on the same issue when generation or rights block them.
+
 For every image or generated asset, follow the [media provenance research and generation prompt](../prompts/media-provenance-research-and-generation.md); after approval, follow the [media ingestion and publishing runbook](../architecture/media-publishing.md).
 
 ### Video decision gate
@@ -567,7 +575,7 @@ Follow the existing bounded-module architecture:
 1. Create or update `content/lessons/<lesson-slug>.ts`.
 2. Define reviewed `Source[]` entries.
 3. Define atomic `Claim[]` entries with kind, certainty, sources, and review status.
-4. Define approved `MediaAsset[]` entries only after the specialist media process.
+4. Define approved `MediaAsset[]` entries only after the specialist media process. Implement every approved Required/Recommended media row from the checkpoint (maps via the historical-map runbook and `historical-map` module when that is the teaching form).
 5. Define `UnderstandingPrompt[]` entries with stable IDs and `required` flags.
 6. Define the `Lesson` with stable identity, chronology, significance, required section IDs, sections/modules, and complete reference lists.
 7. Define zero or one normally expected `KnowledgeCard`; use more only with explicit product approval.
@@ -577,6 +585,7 @@ Follow the existing bounded-module architecture:
 11. Update the media catalog/manifests through the pipeline, never by hand-editing generated outputs.
 12. Add a committed Supabase migration for publication, required prompts, deterministic unlock configuration, and any reviewed legacy alias.
 13. Keep unpublished or incomplete neighbors fail-closed and non-completable.
+14. Do not mark the lesson Review-ready while an approved Recommended map or core evidence visual remains unimplemented without explicit deferral.
 
 Use stable IDs everywhere. Array position is not identity. Do not duplicate lesson copy inside React components, migrations, or test fixtures when the repository module can be used.
 

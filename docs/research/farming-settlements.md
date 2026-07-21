@@ -171,7 +171,7 @@ Flow exception: seven sections (within the normal five-to-eight band) because th
 | Asset | Teaching purpose | Form | Depiction | Placement | Rights/provenance | Decision |
 | --- | --- | --- | --- | --- | --- | --- |
 | Hero settlement atmosphere | Orient place/time without faces | Chronos-original evidence-based reconstruction of dense rooftop neighborhood OR Konya-plain landscape with distant mound | Reconstruction | Masthead | Must be Chronos-original or redistribution-cleared; CRP John Swogger/Killackey art is interpretive and often NC-licensed → do not scrape | Preferred after approval; no close faces; no burial scenes |
-| Southwest Asia locator map | Place Çatalhöyük (and optional Jericho) without “sole cradle” arrows | Historical map | Map | Dense-settlement section | Follow historical-map runbook; Natural Earth base; site coordinates from UNESCO/project sources | Recommended |
+| Southwest Asia locator map | Place Çatalhöyük without “sole cradle” arrows | Historical map | Map | Dense-settlement section | Follow historical-map runbook; Natural Earth base; site coordinates from UNESCO | **Implemented** (`media.farming.catalhoyuk-locator-map`) |
 | House-plan / storage diagram | Make private pantry vs entrance display readable | Diagram or evidence-based reconstruction with 2–4 hotspots | Diagram / reconstruction | Storage evidence | Chronos-original from published plans; label inferred furnishings | Recommended core visual for evidence encounter |
 | Excavation photographs | Tempting but often NC-licensed; burial photos inappropriate | Evidence photo | Evidence | Only if redistribution-cleared non-burial image exists | Default: defer/reject for MVP | Reject for checkpoint unless rights clear |
 | Video | Not required | — | — | — | — | Rejected |
@@ -226,7 +226,7 @@ Recommended decisions for product-owner approval:
 2. Approve the durable understanding: gradual cultivation + denser settlement + storage tradeoffs + not-yet-city.
 3. Approve **Çatalhöyük household storage/house layout** as the central evidence encounter (Bogaard private pantries / celebrated surplus).
 4. Approve Boncuklu/Pınarbaşı as the short gradual-uptake comparison; keep Jericho as optional brief communal-labor comparison only.
-5. Approve media plan: Chronos-original house/storage diagram (required), source-verified locator map (recommended), optional cinematic settlement reconstruction hero with no faces; reject burial imagery and default excavation-photo scrape because of NC/rights risk.
+5. Approve media plan: Chronos-original house/storage diagram (required), source-verified locator map (recommended → **implemented**), optional cinematic settlement reconstruction hero with no faces; reject burial imagery and default excavation-photo scrape because of NC/rights risk.
 6. Approve one Foundation Place card: **Çatalhöyük**.
 7. Approve two required sincere-attempt prompts: supported model selection; opportunity-and-cost explanation.
 8. Keep production content, final media, migrations, and publication paused until this packet is approved; coordinate merge timing with ASH-69 to avoid journey/migration conflicts.

@@ -94,6 +94,109 @@
       }
     },
     {
+      "id": "media.farming.catalhoyuk-locator-map",
+      "locator": {
+        "provider": "object-storage",
+        "bucket": "media-public",
+        "fallback": {
+          "path": "/images/optimized/farming/catalhoyuk-locator-map.optimized.webp",
+          "width": 1732,
+          "height": 980
+        },
+        "variants": [
+          {
+            "objectKey": "farming/media.farming.catalhoyuk-locator-map/776f1003447bc174/optimized/ql-v1/480w-webp-q96-99f63b335ddfffa5.webp",
+            "mimeType": "image/webp",
+            "bytes": 8940,
+            "sha256": "99f63b335ddfffa519d89901b8228fffa35b117a269ac24a6abdc12a02d8e1bf",
+            "width": 480,
+            "height": 272,
+            "compression": {
+              "profile": "ql-v1",
+              "codec": "webp",
+              "encoder": "webp-lossy",
+              "quality": 96
+            },
+            "fidelity": {
+              "mode": "measured-quasi-lossless",
+              "psnrDb": 51.19,
+              "meanAbsoluteError": 0.194,
+              "maximumChannelDelta": 15
+            }
+          },
+          {
+            "objectKey": "farming/media.farming.catalhoyuk-locator-map/776f1003447bc174/optimized/ql-v1/960w-webp-q92-e68f95072edd68a1.webp",
+            "mimeType": "image/webp",
+            "bytes": 15666,
+            "sha256": "e68f95072edd68a1d03c6dd184fd88f1d7b68c74f599abcec2b6896f302136bc",
+            "width": 960,
+            "height": 543,
+            "compression": {
+              "profile": "ql-v1",
+              "codec": "webp",
+              "encoder": "webp-lossy",
+              "quality": 92
+            },
+            "fidelity": {
+              "mode": "measured-quasi-lossless",
+              "psnrDb": 52.26,
+              "meanAbsoluteError": 0.137,
+              "maximumChannelDelta": 13
+            }
+          },
+          {
+            "objectKey": "farming/media.farming.catalhoyuk-locator-map/776f1003447bc174/optimized/ql-v1/1600w-webp-q90-b486320a04a2d4bd.webp",
+            "mimeType": "image/webp",
+            "bytes": 25046,
+            "sha256": "b486320a04a2d4bd595c7e4e6380092715d87eb794a766e0a0a1829df07c4242",
+            "width": 1600,
+            "height": 905,
+            "compression": {
+              "profile": "ql-v1",
+              "codec": "webp",
+              "encoder": "webp-lossy",
+              "quality": 90
+            },
+            "fidelity": {
+              "mode": "measured-quasi-lossless",
+              "psnrDb": 52.73,
+              "meanAbsoluteError": 0.116,
+              "maximumChannelDelta": 15
+            }
+          },
+          {
+            "objectKey": "farming/media.farming.catalhoyuk-locator-map/776f1003447bc174/optimized/ql-v1/1732w-webp-q88-9267640942b9da2c.webp",
+            "mimeType": "image/webp",
+            "bytes": 28968,
+            "sha256": "9267640942b9da2c389e8d6aa8c7d924490074b7923d33e74a505b9b62f1f250",
+            "width": 1732,
+            "height": 980,
+            "compression": {
+              "profile": "ql-v1",
+              "codec": "webp",
+              "encoder": "webp-lossy",
+              "quality": 88
+            },
+            "fidelity": {
+              "mode": "measured-quasi-lossless",
+              "psnrDb": 53.19,
+              "meanAbsoluteError": 0.107,
+              "maximumChannelDelta": 14
+            }
+          }
+        ]
+      },
+      "source": {
+        "bucket": "media-source",
+        "objectKey": "farming/media.farming.catalhoyuk-locator-map/776f1003447bc1747027095f6e1110cbb8d29496d91f2b1f8cc9ba0e0756d514/original.webp",
+        "mimeType": "image/webp",
+        "bytes": 33982,
+        "sha256": "776f1003447bc1747027095f6e1110cbb8d29496d91f2b1f8cc9ba0e0756d514",
+        "width": 1732,
+        "height": 980
+      }
+    },
+    {
       "id": "media.uruk.clay-envelope",
       "locator": {
         "provider": "object-storage",
