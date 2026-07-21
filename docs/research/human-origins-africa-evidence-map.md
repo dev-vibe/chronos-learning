@@ -122,14 +122,14 @@ Create a restrained Chronos-original Africa evidence-location map.
 
 ## Generated artwork lineage
 
-- **Generation tool:** pending; deterministic GIS/vector composition preferred
+- **Generation tool:** `scripts/media/generate-human-origins-map.mjs` using Sharp and deterministic SVG composition
 - **Model/version:** not applicable unless later approved
-- **Generation date:** pending
+- **Generation date:** 2026-07-20
 - **Complete prompt:** production brief above
-- **Inputs:** Natural Earth public-domain base; reviewed coordinates/relationships above
+- **Inputs:** Natural Earth `ne_110m_land.geojson` (SHA-256 `9e0729ee253ca7d7a5c4ae9395fb1902264c5377c52e224d13dd85010e2835d9`); reviewed coordinates/relationships above
 - **Style inputs:** Chronos design system only
-- **Final master path:** pending
-- **Optimized runtime path:** pending
+- **Final master path:** `public/images/maps/human-origins-africa-evidence-map.webp`
+- **Optimized runtime path:** `public/images/optimized/human-origins/africa-evidence-map.optimized.webp`
 - **Required labels:** Jebel Irhoud; Omo Kibish; Florisbad
 - **Rejected drafts:** none generated at checkpoint
 - **Historical/map reviewer:** pending
@@ -138,7 +138,7 @@ Create a restrained Chronos-original Africa evidence-location map.
 ## Publication records
 
 - **Source IDs:** `source.map.natural-earth`, `source.human-origins.iugs-kibish`, `source.human-origins.mpi-jebel-irhoud`, `source.human-origins.ufs-florisbad`, plus lesson claim sources
-- **Media asset:** `media.human-origins.africa-evidence-map`, not yet created; remain provenance-review-required until final review
+- **Media asset:** `media.human-origins.africa-evidence-map`; generated and registered, remaining provenance-review-required until final human review
 - **Module:** `module.human-origins.africa-evidence-map`
 - **Attribution:** “Chronos evidence-location map · Base geography: Natural Earth (public domain) · Site evidence: IUGS, MPI-EVA, UFS, and cited studies”
 - **Alt text:** “Map of Africa with Jebel Irhoud in the northwest, Omo Kibish in the east, and Florisbad in the south. The distant sites show that early human-origin evidence is spread across the continent; the dots are findspots, not exact birthplaces.”
@@ -152,7 +152,7 @@ Create a restrained Chronos-original Africa evidence-location map.
 - [x] Approximate placement and modern coastline do not imply Pleistocene precision.
 - [x] Reference rights and future runtime-asset rights separated.
 - [x] No research input in public runtime directories.
-- [ ] Final map generated only after checkpoint approval.
-- [ ] Labels and relative placement manually reviewed.
-- [ ] Complete map verified at supported viewport sizes.
-- [ ] Media, content, accessibility, test, and build checks passed.
+- [x] Final map generated only after checkpoint approval.
+- [x] Labels and relative placement manually reviewed.
+- [x] Complete map verified at supported viewport sizes.
+- [x] Media, content, accessibility, test, and build checks passed.

@@ -73,7 +73,7 @@ h1,h2,h3{font-family:Newsreader,Georgia,serif;font-weight:500}
 .known-card{display:flex;align-items:center;gap:8px;padding:12px 14px;border-left:3px solid var(--teal);background:var(--surface)}
 .journey-end{display:flex;align-items:center;color:var(--muted);font-size:.82rem}
 .previous-link{display:inline-flex;margin-top:16px}
-.hero-evidence{object-fit:contain;background:#d9cdb9}
+.hero-evidence,.hero-map{object-fit:contain;background:#d9cdb9}
 .evidence-image img{object-fit:contain}
 .card-image-artifact img{object-fit:contain;background:#d9cdb9}
 

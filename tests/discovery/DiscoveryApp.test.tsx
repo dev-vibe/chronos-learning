@@ -43,11 +43,11 @@ const fixtureJourney: Journey = {
 };
 const fixtureInvitation: JourneyInvitation = {
   id: 'invitation.fixture.rivers',
-  sourceLessonId: 'lesson.uruk.first-city',
+  sourceLessonId: 'lesson.humans.homo-sapiens-origins',
   destinationJourneyId: fixtureJourney.id,
   entryLessonId: 'lesson.uruk.first-city',
   placements: ['home'],
-  reason: 'You saw how water shaped Uruk. Compare that relationship in another authored path.',
+  reason: 'You began with evidence spread across Africa. Compare how place shapes another authored path.',
   optional: true,
   status: 'published',
   priority: 10,
@@ -56,6 +56,10 @@ const fixtureInvitation: JourneyInvitation = {
 const multiContent: ChronosContentBundle = {
   ...chronosContent,
   journeys: [...chronosContent.journeys, fixtureJourney], invitations: [fixtureInvitation],
+};
+const completedThroughUruk = {
+  'lesson.humans.homo-sapiens-origins': { lessonId: 'lesson.humans.homo-sapiens-origins', status: 'completed' as const },
+  'lesson.uruk.first-city': { lessonId: 'lesson.uruk.first-city', status: 'completed' as const },
 };
 
 function makeHarness(content: ChronosContentBundle = chronosContent, multiple = false) {
@@ -103,19 +107,17 @@ describe('Home, Library, preview, and search composition', () => {
       navigate={navigate}
     />);
     const continueLink = await screen.findByRole('link', { name: /Continue lesson/i });
-    expect(continueLink.getAttribute('href')).toBe('/learn/lesson.uruk.first-city');
+    expect(continueLink.getAttribute('href')).toBe('/learn/lesson.humans.homo-sapiens-origins');
     expect(screen.getByText(/only published journey right now/i)).toBeTruthy();
     expect(screen.queryByText(/recommended for you/i)).toBeNull();
     await userEvent.click(continueLink);
-    await waitFor(() => expect(navigate).toHaveBeenCalledWith('/learn/lesson.uruk.first-city'));
+    await waitFor(() => expect(navigate).toHaveBeenCalledWith('/learn/lesson.humans.homo-sapiens-origins'));
     expect(harness.journeyGateway.save).toHaveBeenCalledTimes(1);
   });
 
   it('derives Home and journey-detail Continue from completion and access state', async () => {
     const harness = makeHarness();
-    vi.mocked(harness.progressGateway.loadJourneySummaries).mockResolvedValue({
-      'lesson.uruk.first-city': { lessonId: 'lesson.uruk.first-city', status: 'completed' },
-    });
+    vi.mocked(harness.progressGateway.loadJourneySummaries).mockResolvedValue(completedThroughUruk);
     render(<DiscoveryApp
       route={{ name: 'home' }}
       journeyGatewayFactory={async () => harness.journeyGateway}
@@ -135,7 +137,7 @@ describe('Home, Library, preview, and search composition', () => {
   it('renders an honest completed state when no published required lesson remains', async () => {
     const harness = makeHarness();
     vi.mocked(harness.progressGateway.loadJourneySummaries).mockResolvedValue({
-      'lesson.uruk.first-city': { lessonId: 'lesson.uruk.first-city', status: 'completed' },
+      ...completedThroughUruk,
       'lesson.writing.early-systems': { lessonId: 'lesson.writing.early-systems', status: 'completed' },
     });
     render(<DiscoveryApp
@@ -293,7 +295,7 @@ describe('Home, Library, preview, and search composition', () => {
 
   it('reports failed discovery actions without losing lesson completion', async () => {
     const harness = makeHarness();
-    const summaries = { 'lesson.uruk.first-city': { lessonId: 'lesson.uruk.first-city', status: 'completed' as const } };
+    const summaries = { ...completedThroughUruk };
     vi.mocked(harness.progressGateway.loadJourneySummaries).mockResolvedValue(summaries);
     vi.mocked(harness.journeyGateway.save).mockRejectedValueOnce(new Error('offline'));
     const navigate = vi.fn();

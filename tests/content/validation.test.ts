@@ -2,6 +2,7 @@ import{describe,expect,it}from'vitest';
 import { assembleContent } from '../../content/assemble';
 import { earlyWritingSystemsContent } from '../../content/lessons/early-writing-systems';
 import { farmingSettlementsContent } from '../../content/lessons/farming-settlements';
+import { humanOriginsContent } from '../../content/lessons/homo-sapiens-origins';
 import { urukContent } from '../../content/lessons/uruk';
 import { worldHistoryJourney } from '../../content/journeys/world-history';
 import{chronosContent}from'../../content/chronos';import{LessonModuleSchema}from'../../src/domains/contracts';import{validateContent}from'../../src/infrastructure/content/validate';
@@ -13,15 +14,24 @@ it('validates the typed Uruk historical map and generated raster asset',()=>{con
 
 it('detects a missing local map fallback',()=>{const fixture=structuredClone(chronosContent);const map=fixture.media.find((item)=>item.id==='media.uruk.southern-mesopotamia-map')!;if(map.locator.provider!=='object-storage')throw new Error('object storage locator missing');map.locator.fallback.path='/images/maps/missing-map.webp';expect(validateContent(fixture).errors.join(' ')).toMatch(/missing local media asset \/images\/maps\/missing-map\.webp/)});
 
+it('validates the Human Origins evidence map and its uncertainty boundary', () => {
+  const lesson = chronosContent.lessons.find((item) => item.id === 'lesson.humans.homo-sapiens-origins')!;
+  const module = lesson.sections.flatMap((section) => section.modules).find((item) => item.id === 'module.human-origins.africa-evidence-map')!;
+  expect(LessonModuleSchema.safeParse(module).success).toBe(true);
+  if (module.type !== 'historical-map') throw new Error('historical map missing');
+  expect(module.compactLabel).toMatch(/findspots are not birthplaces/i);
+  expect(module.coordinateNote).toMatch(/placed approximately/i);
+  expect(module.uncertaintyNote).toMatch(/classification is contested/i);
+});
+
 it('rejects duplicate, oversized, or non-content-addressed media variants',()=>{const fixture=structuredClone(chronosContent);const map=fixture.media.find((item)=>item.id==='media.uruk.southern-mesopotamia-map')!;if(map.locator.provider!=='object-storage')throw new Error('object storage locator missing');map.locator.variants[1].width=map.locator.variants[0].width;map.locator.variants[1].objectKey='uruk/unversioned-map.webp';map.locator.variants[1].bytes=800000;const errors=validateContent(fixture).errors.join(' ');expect(errors).toMatch(/duplicate media variant width/);expect(errors).toMatch(/not content-addressed/);expect(errors).toMatch(/exceeds 786432 byte budget/)});
 
-it('publishes exactly the two reviewed World History lessons in journey order', () => {
+it('publishes exactly the three reviewed World History lessons in journey order', () => {
   const published = chronosContent.lessons.filter((lesson) => lesson.status === 'published');
-  expect(published.map((lesson) => lesson.id)).toEqual(['lesson.uruk.first-city', 'lesson.writing.early-systems']);
-  const entries = chronosContent.journeys[0].chapters[0].entries
+  expect(published.map((lesson) => lesson.id)).toEqual(['lesson.humans.homo-sapiens-origins', 'lesson.uruk.first-city', 'lesson.writing.early-systems']);
+  const entries = chronosContent.journeys[0].chapters.flatMap((chapter) => chapter.entries)
     .filter((entry) => published.some((lesson) => lesson.id === entry.lessonId))
-    .sort((left, right) => left.position - right.position);
-  expect(entries.map((entry) => entry.lessonId)).toEqual(['lesson.uruk.first-city', 'lesson.writing.early-systems']);
+  expect(entries.map((entry) => entry.lessonId)).toEqual(['lesson.humans.homo-sapiens-origins', 'lesson.uruk.first-city', 'lesson.writing.early-systems']);
   expect(chronosContent.lessons.find((lesson) => lesson.id === 'lesson.farming.settlements')).toMatchObject({ status: 'draft', promptIds: [] });
 });
 
@@ -50,13 +60,13 @@ it('requires learner-facing media rights copy independently of the internal publ
 });
 it('validates the assembled cross-module graph for duplicates and broken references', () => {
   const duplicateBundle = assembleContent(
-    [farmingSettlementsContent, urukContent, earlyWritingSystemsContent, urukContent],
+    [humanOriginsContent, farmingSettlementsContent, urukContent, earlyWritingSystemsContent, urukContent],
     [worldHistoryJourney],
   );
   expect(validateContent(duplicateBundle).errors.join(' ')).toMatch(/duplicate ID: source\.met\.uruk/);
 
   const missingUrukBundle = assembleContent(
-    [farmingSettlementsContent, earlyWritingSystemsContent],
+    [humanOriginsContent, farmingSettlementsContent, earlyWritingSystemsContent],
     [worldHistoryJourney],
   );
   const errors = validateContent(missingUrukBundle).errors.join(' ');

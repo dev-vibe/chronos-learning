@@ -125,8 +125,8 @@ describe('learner journey state', () => {
     };
     expect(deriveJourneyProgress(world, chronosContent.lessons, summaries)).toEqual({
       completed: 1,
-      total: 2,
-      percent: 50,
+      total: 3,
+      percent: 33,
       isCompleted: false,
     });
     const state = createDefaultJourneyState(fixtureContent.journeys, fixtureContent.lessons);
@@ -139,13 +139,14 @@ describe('learner journey state', () => {
       kind: 'lesson', lessonId: 'lesson.uruk.first-city', source: 'active',
     });
     const urukCompleted = {
+      'lesson.humans.homo-sapiens-origins': { lessonId: 'lesson.humans.homo-sapiens-origins', status: 'completed' as const },
       'lesson.uruk.first-city': { lessonId: 'lesson.uruk.first-city', status: 'completed' as const },
     };
     expect(selectJourneyNextAction(world, chronosContent.lessons, urukCompleted, 'lesson.uruk.first-city')).toEqual({
       kind: 'lesson', lessonId: 'lesson.writing.early-systems', source: 'next',
     });
     expect(selectJourneyNextAction(world, chronosContent.lessons, {}, 'lesson.writing.early-systems')).toEqual({
-      kind: 'lesson', lessonId: 'lesson.uruk.first-city', source: 'backfill',
+      kind: 'lesson', lessonId: 'lesson.humans.homo-sapiens-origins', source: 'backfill',
     });
     expect(selectJourneyNextAction(world, chronosContent.lessons, {
       ...urukCompleted,

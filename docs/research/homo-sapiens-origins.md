@@ -269,6 +269,6 @@ Recommended decisions:
 - [x] Journey framing
 - [ ] Human historical/editorial review
 - [ ] Specialist genetics review
-- [ ] Product-owner approval of checkpoint
-- [ ] Production content, final media, migrations, tests, and preview
-- [ ] Structured learner walkthrough or documented reason deferred
+- [x] Product-owner approval of checkpoint
+- [x] Production content, final media, migrations, tests, and preview
+- [x] Structured learner walkthrough or documented reason deferred

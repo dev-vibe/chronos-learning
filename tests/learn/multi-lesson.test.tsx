@@ -12,6 +12,7 @@ const emptyState = (lessonId: string): LearnState => ({
 
 class MultiLessonGateway implements LearnProgressGateway {
   states = new Map([
+    ['lesson.humans.homo-sapiens-origins', { ...emptyState('lesson.humans.homo-sapiens-origins'), status: 'completed', completedAt: '2025-12-31T00:00:00.000Z' }],
     ['lesson.uruk.first-city', { ...emptyState('lesson.uruk.first-city'), status: 'completed', completedAt: '2026-01-01T00:00:00.000Z' }],
     ['lesson.writing.early-systems', emptyState('lesson.writing.early-systems')],
   ]);
@@ -66,12 +67,12 @@ describe('multi-lesson Learn runtime', () => {
     expect(screen.getByRole('link', { name: /Previous: Uruk/ }).getAttribute('href')).toBe('/learn/lesson.uruk.first-city');
     const journey = screen.getByLabelText('World History World Spine');
     const publishedLinks = within(journey).getAllByRole('link').map((link) => link.getAttribute('href'));
-    expect(publishedLinks).toEqual(['/learn/lesson.uruk.first-city', '/learn/lesson.writing.early-systems']);
+    expect(publishedLinks).toEqual(['/learn/lesson.humans.homo-sapiens-origins', '/learn/lesson.uruk.first-city', '/learn/lesson.writing.early-systems']);
     expect(within(journey).getByText('Farming and Settlements').closest('.spine-node')?.classList.contains('preparing')).toBe(true);
     expect(gateway.load).toHaveBeenCalledTimes(1);
     expect(gateway.load).toHaveBeenCalledWith('lesson.writing.early-systems');
     expect(gateway.loadJourneySummaries).toHaveBeenCalledTimes(1);
-    expect(gateway.loadJourneySummaries).toHaveBeenCalledWith(['lesson.uruk.first-city', 'lesson.writing.early-systems']);
+    expect(gateway.loadJourneySummaries).toHaveBeenCalledWith(['lesson.humans.homo-sapiens-origins', 'lesson.uruk.first-city', 'lesson.writing.early-systems']);
   });
 
   it('completes writing once, reveals its deterministic card once, and keeps Uruk isolated', async () => {

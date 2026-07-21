@@ -1,12 +1,13 @@
 import { assembleContent } from './assemble';
 import { earlyWritingSystemsContent } from './lessons/early-writing-systems';
 import { farmingSettlementsContent } from './lessons/farming-settlements';
+import { humanOriginsContent } from './lessons/homo-sapiens-origins';
 import { urukContent } from './lessons/uruk';
 import { worldHistoryJourney } from './journeys/world-history';
 import { journeyInvitations } from './journeys/invitations';
 
 export const chronosContent = assembleContent(
-  [farmingSettlementsContent, urukContent, earlyWritingSystemsContent],
+  [humanOriginsContent, farmingSettlementsContent, urukContent, earlyWritingSystemsContent],
   [worldHistoryJourney],
   journeyInvitations,
 );

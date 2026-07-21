@@ -10,10 +10,33 @@ export const worldHistoryJourney: Journey = {
   description: 'The primary chronological journey through reviewed turning points in world history.',
   period: 'Deep history to the present',
   region: 'Global',
-  approximateMinutes: 40,
+  approximateMinutes: 52,
   featured: true,
   prerequisiteJourneyIds: [],
   relatedJourneyIds: [],
-  entryLessonId: 'lesson.uruk.first-city',
-  chapters: [{ id: 'chapter.world-history.foundations', title: 'Foundations', position: 0, entries: [{ id: 'entry.world-history.farming', lessonId: 'lesson.farming.settlements', position: 0, required: true, framing: 'From settled farming' }, { id: 'entry.world-history.uruk', lessonId: 'lesson.uruk.first-city', position: 1, required: true, framing: 'How city life changed human coordination' }, { id: 'entry.world-history.writing', lessonId: 'lesson.writing.early-systems', position: 2, required: true, framing: 'How durable records changed coordination' }] }],
+  entryLessonId: 'lesson.humans.homo-sapiens-origins',
+  chapters: [
+    {
+      id: 'chapter.world-history.human-beginnings',
+      title: 'Human Beginnings and Food Systems',
+      position: 0,
+      entries: [{
+        id: 'entry.world-history.human-origins',
+        lessonId: 'lesson.humans.homo-sapiens-origins',
+        position: 0,
+        required: true,
+        framing: 'Begin with the evidence that connects every later human story',
+      }],
+    },
+    {
+      id: 'chapter.world-history.foundations',
+      title: 'Foundations',
+      position: 1,
+      entries: [
+        { id: 'entry.world-history.farming', lessonId: 'lesson.farming.settlements', position: 0, required: true, framing: 'From settled farming' },
+        { id: 'entry.world-history.uruk', lessonId: 'lesson.uruk.first-city', position: 1, required: true, framing: 'How city life changed human coordination' },
+        { id: 'entry.world-history.writing', lessonId: 'lesson.writing.early-systems', position: 2, required: true, framing: 'How durable records changed coordination' },
+      ],
+    },
+  ],
 };

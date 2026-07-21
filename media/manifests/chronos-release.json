@@ -12,6 +12,67 @@
   },
   "assets": [
     {
+      "id": "media.human-origins.africa-evidence-map",
+      "locator": {
+        "provider": "object-storage",
+        "bucket": "media-public",
+        "fallback": {
+          "path": "/images/optimized/human-origins/africa-evidence-map.optimized.webp",
+          "width": 1600,
+          "height": 1000
+        },
+        "variants": [
+          {
+            "objectKey": "human-origins/media.human-origins.africa-evidence-map/9973740876ae97f6/optimized/ql-v1/480w-webp-lossless-4823d09113917905.webp",
+            "mimeType": "image/webp",
+            "bytes": 42644,
+            "sha256": "4823d09113917905326a6ef6b3b8c9ae013eac59418eb0cd0ecd5ce0713d97e2",
+            "width": 480,
+            "height": 300,
+            "compression": {
+              "profile": "ql-v1",
+              "codec": "webp",
+              "encoder": "webp-lossless"
+            },
+            "fidelity": {
+              "mode": "pixel-exact",
+              "psnrDb": null,
+              "meanAbsoluteError": 0,
+              "maximumChannelDelta": 0
+            }
+          },
+          {
+            "objectKey": "human-origins/media.human-origins.africa-evidence-map/9973740876ae97f6/optimized/ql-v1/1600w-webp-lossless-b79c75dda8889475.webp",
+            "mimeType": "image/webp",
+            "bytes": 388714,
+            "sha256": "b79c75dda8889475a4f852716ea12318ded2a31c0071e657ea86755e12f8769a",
+            "width": 1600,
+            "height": 1000,
+            "compression": {
+              "profile": "ql-v1",
+              "codec": "webp",
+              "encoder": "webp-lossless"
+            },
+            "fidelity": {
+              "mode": "pixel-exact",
+              "psnrDb": null,
+              "meanAbsoluteError": 0,
+              "maximumChannelDelta": 0
+            }
+          }
+        ]
+      },
+      "source": {
+        "bucket": "media-source",
+        "objectKey": "human-origins/media.human-origins.africa-evidence-map/9973740876ae97f6a83f11316b5621b9a794d91d682f581f2ba968d375b60fd9/original.webp",
+        "mimeType": "image/webp",
+        "bytes": 438712,
+        "sha256": "9973740876ae97f6a83f11316b5621b9a794d91d682f581f2ba968d375b60fd9",
+        "width": 1600,
+        "height": 1000
+      }
+    },
+    {
       "id": "media.uruk.clay-envelope",
       "locator": {
         "provider": "object-storage",
