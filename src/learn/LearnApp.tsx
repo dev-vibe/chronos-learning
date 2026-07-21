@@ -3,7 +3,6 @@ import { Archive, BookOpen, Check, ChevronLeft, ChevronRight, Compass, Home, Lan
 import { chronosContent } from '../../content/chronos';
 import type { Journey, KnowledgeCard, Lesson, LessonModule, LessonSection } from '../domains/contracts';
 import { isLessonOpenable } from '../config/runtimeFlags';
-import { resolveMediaAsset } from '../media/resolve';
 import { HistoricalMapModule } from './HistoricalMapModule';
 import { ResponsiveMedia } from './ResponsiveMedia';
 import { completionKey, createProgressGateway, LocalPreviewGateway, type JourneyProgressSummary, type LearnProgressGateway, type LearnState } from './progress';
