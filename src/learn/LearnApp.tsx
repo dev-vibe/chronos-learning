@@ -86,7 +86,7 @@ type ModuleProps = { module: LessonModule; state: LearnState; onAttempt(id: stri
 
 function Module({ module, state, onAttempt }: ModuleProps) {
   if (module.type === 'prose') return <p className="prose-module">{module.body}</p>;
-  if (module.type === 'knowledge') return <aside className="knowledge-block"><div className="module-heading"><span>{module.eyebrow}</span><h3>{module.title}</h3><p>{module.body}</p></div><dl>{module.items.map((item) => <div key={item.label}><dt>{item.label}</dt><dd>{item.detail}</dd></div>)}</dl></aside>;
+  if (module.type === 'knowledge') return <aside className="knowledge-block"><div className="module-heading"><span>{module.eyebrow}</span><h3>{module.title}</h3><p>{module.body}</p></div><dl data-count={module.items.length}>{module.items.map((item) => <div key={item.label}><dt>{item.label}</dt><dd>{item.detail}</dd></div>)}</dl></aside>;
   if (module.type === 'scene') {
     const media = mediaById.get(module.mediaId)!;
     return <details className="scene-module"><summary><span className="scene-thumb"><ResponsiveMedia media={media} alt="" sizes="96px" loading="lazy" /></span><span><small>Visual field guide</small><strong>{module.title}</strong><em>{module.body}</em></span><ChevronRight /></summary><div className="scene-details"><ResponsiveMedia media={media} alt={media.alt} sizes="(max-width: 800px) 100vw, 50vw" loading="lazy" /><ol>{module.hotspots.map((spot, index) => <li key={spot.label}><span>{index + 1}</span><div><strong>{spot.label}</strong><p>{spot.detail}</p></div></li>)}</ol></div></details>;

@@ -49,7 +49,7 @@ export const HistoricalMapModuleSchema = BaseModule.extend({
 });
 export const LessonModuleSchema = z.discriminatedUnion('type', [
   BaseModule.extend({ type: z.literal('prose'), body: z.string().min(1) }),
-  BaseModule.extend({ type: z.literal('knowledge'), eyebrow: z.string().min(1), title: z.string().min(1), body: z.string().min(1), items: z.array(z.object({ label: z.string().min(1), detail: z.string().min(1) })).min(2).max(4) }),
+  BaseModule.extend({ type: z.literal('knowledge'), eyebrow: z.string().min(1), title: z.string().min(1), body: z.string().min(1), items: z.array(z.object({ label: z.string().min(1), detail: z.string().min(1) })).min(2).max(5) }),
   BaseModule.extend({ type: z.literal('scene'), title: z.string().min(1), body: z.string().min(1), mediaId: StableId, hotspots: z.array(z.object({ label: z.string().min(1), detail: z.string().min(1) })).min(2).max(4) }),
   BaseModule.extend({ type: z.literal('evidence'), title: z.string().min(1), artifactLabel: z.string().min(1), body: z.string().min(1), mediaId: StableId }),
   HistoricalMapModuleSchema,
