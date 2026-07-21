@@ -43,11 +43,11 @@ const fixtureJourney: Journey = {
 };
 const fixtureInvitation: JourneyInvitation = {
   id: 'invitation.fixture.rivers',
-  sourceLessonId: 'lesson.uruk.first-city',
+  sourceLessonId: 'lesson.farming.settlements',
   destinationJourneyId: fixtureJourney.id,
   entryLessonId: 'lesson.uruk.first-city',
   placements: ['home'],
-  reason: 'You saw how water shaped Uruk. Compare that relationship in another authored path.',
+  reason: 'You saw how denser farming settlements changed daily life. Compare a city and its river setting in another authored path.',
   optional: true,
   status: 'published',
   priority: 10,
@@ -103,11 +103,11 @@ describe('Home, Library, preview, and search composition', () => {
       navigate={navigate}
     />);
     const continueLink = await screen.findByRole('link', { name: /Continue lesson/i });
-    expect(continueLink.getAttribute('href')).toBe('/learn/lesson.uruk.first-city');
+    expect(continueLink.getAttribute('href')).toBe('/learn/lesson.farming.settlements');
     expect(screen.getByText(/only published journey right now/i)).toBeTruthy();
     expect(screen.queryByText(/recommended for you/i)).toBeNull();
     await userEvent.click(continueLink);
-    await waitFor(() => expect(navigate).toHaveBeenCalledWith('/learn/lesson.uruk.first-city'));
+    await waitFor(() => expect(navigate).toHaveBeenCalledWith('/learn/lesson.farming.settlements'));
     expect(harness.journeyGateway.save).toHaveBeenCalledTimes(1);
   });
 
@@ -139,6 +139,7 @@ describe('Home, Library, preview, and search composition', () => {
   it('derives Home and journey-detail Continue from completion and access state', async () => {
     const harness = makeHarness();
     vi.mocked(harness.progressGateway.loadJourneySummaries).mockResolvedValue({
+      'lesson.farming.settlements': { lessonId: 'lesson.farming.settlements', status: 'completed' },
       'lesson.uruk.first-city': { lessonId: 'lesson.uruk.first-city', status: 'completed' },
     });
     render(<DiscoveryApp
@@ -160,6 +161,7 @@ describe('Home, Library, preview, and search composition', () => {
   it('renders an honest completed state when no published required lesson remains', async () => {
     const harness = makeHarness();
     vi.mocked(harness.progressGateway.loadJourneySummaries).mockResolvedValue({
+      'lesson.farming.settlements': { lessonId: 'lesson.farming.settlements', status: 'completed' },
       'lesson.uruk.first-city': { lessonId: 'lesson.uruk.first-city', status: 'completed' },
       'lesson.writing.early-systems': { lessonId: 'lesson.writing.early-systems', status: 'completed' },
     });
@@ -318,7 +320,10 @@ describe('Home, Library, preview, and search composition', () => {
 
   it('reports failed discovery actions without losing lesson completion', async () => {
     const harness = makeHarness();
-    const summaries = { 'lesson.uruk.first-city': { lessonId: 'lesson.uruk.first-city', status: 'completed' as const } };
+    const summaries = {
+      'lesson.farming.settlements': { lessonId: 'lesson.farming.settlements', status: 'completed' as const },
+      'lesson.uruk.first-city': { lessonId: 'lesson.uruk.first-city', status: 'completed' as const },
+    };
     vi.mocked(harness.progressGateway.loadJourneySummaries).mockResolvedValue(summaries);
     vi.mocked(harness.journeyGateway.save).mockRejectedValueOnce(new Error('offline'));
     const navigate = vi.fn();

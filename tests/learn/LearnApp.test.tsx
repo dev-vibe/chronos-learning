@@ -37,7 +37,19 @@ describe('Learn route and interactions', () => {
   it('closes the mobile drawer with Escape and returns focus', async () => { const gateway = new TestGateway(); render(<LearnApp lessonId="lesson.uruk.first-city" gatewayFactory={async () => gateway} />); await screen.findByRole('heading', { name: 'Uruk: Life in an Early City' }); const open = screen.getByRole('button', { name: 'Open World Spine' }); await userEvent.click(open); expect(screen.getByRole('dialog', { name: 'World History World Spine' })).toBeTruthy(); fireEvent.keyDown(document, { key: 'Escape' }); expect(open).toBe(document.activeElement); });
   it('navigates to a semantic section and moves focus with the journey control', async () => { const gateway = new TestGateway(); render(<LearnApp lessonId="lesson.uruk.first-city" gatewayFactory={async () => gateway} />); await screen.findByRole('heading', { name: 'Uruk: Life in an Early City' }); await userEvent.click(screen.getByRole('button', { name: 'The built city' })); const section = document.getElementById('section.uruk.the-built-city'); expect(section?.scrollIntoView).toHaveBeenCalledWith({ behavior: 'smooth', block: 'start' }); expect(section).toBe(document.activeElement); });
   it('does not interrupt the lesson with a resume banner', async () => { const gateway = new TestGateway(); gateway.state = { ...gateway.state, resumeSectionId: 'section.uruk.the-built-city', exploredSectionIds: ['section.uruk.the-built-city'] }; render(<LearnApp lessonId="lesson.uruk.first-city" gatewayFactory={async () => gateway} />); await screen.findByRole('heading', { name: 'Uruk: Life in an Early City' }); expect(screen.queryByText('Welcome back')).toBeNull(); expect(screen.queryByRole('button', { name: 'Resume' })).toBeNull(); expect(window.scrollTo).toHaveBeenCalledWith({ top: 0, left: 0, behavior: 'auto' }); });
-  it('fails closed for an unpublished lesson without leaking its title', () => { render(<LearnApp lessonId="lesson.farming.settlements" />); expect(screen.getByRole('heading', { name: 'This archive entry is not available.' })).toBeTruthy(); expect(screen.queryByText('Farming and Settlements')).toBeNull(); });
+  it('fails closed for a missing lesson without leaking a spine title', () => {
+    render(<LearnApp lessonId="lesson.farming.multiple-origins" />);
+    expect(screen.getByRole('heading', { name: /This archive entry isn.t available\./i })).toBeTruthy();
+    expect(screen.queryByText('Many Beginnings of Farming')).toBeNull();
+  });
+  it('opens the published Farming and Settlements lesson', async () => {
+    const gateway = new TestGateway();
+    gateway.state = { ...gateway.state, lessonId: 'lesson.farming.settlements' };
+    gateway.loadJourneySummaries = vi.fn(async (lessonIds: readonly string[]) => Object.fromEntries(lessonIds.map((lessonId) => [lessonId, { lessonId, status: 'in-progress' as const }])));
+    render(<LearnApp lessonId="lesson.farming.settlements" gatewayFactory={async () => gateway} />);
+    expect(await screen.findByRole('heading', { name: 'Farming and Settlements' })).toBeTruthy();
+    expect(screen.queryByText('This archive entry is not available.')).toBeNull();
+  });
   it('opens draft lessons when VITE_UNLOCK_PREVIEW_LESSONS is enabled', async () => {
     const { setUnlockPreviewLessonsForTests } = await import('../../src/config/runtimeFlags');
     setUnlockPreviewLessonsForTests(true);

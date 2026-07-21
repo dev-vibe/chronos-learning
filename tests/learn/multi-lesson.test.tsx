@@ -66,12 +66,20 @@ describe('multi-lesson Learn runtime', () => {
     expect(screen.getByRole('link', { name: /Previous: Uruk/ }).getAttribute('href')).toBe('/learn/lesson.uruk.first-city');
     const journey = screen.getByLabelText('World History World Spine');
     const publishedLinks = within(journey).getAllByRole('link').map((link) => link.getAttribute('href'));
-    expect(publishedLinks).toEqual(['/learn/lesson.uruk.first-city', '/learn/lesson.writing.early-systems']);
-    expect(within(journey).getByText('Farming and Settlements').closest('.spine-node')?.classList.contains('preparing')).toBe(true);
+    expect(publishedLinks).toEqual([
+      '/learn/lesson.farming.settlements',
+      '/learn/lesson.uruk.first-city',
+      '/learn/lesson.writing.early-systems',
+    ]);
+    expect(within(journey).getByText('Farming and Settlements').closest('.spine-node')?.classList.contains('preparing')).toBe(false);
     expect(gateway.load).toHaveBeenCalledTimes(1);
     expect(gateway.load).toHaveBeenCalledWith('lesson.writing.early-systems');
     expect(gateway.loadJourneySummaries).toHaveBeenCalledTimes(1);
-    expect(gateway.loadJourneySummaries).toHaveBeenCalledWith(['lesson.uruk.first-city', 'lesson.writing.early-systems']);
+    expect(gateway.loadJourneySummaries).toHaveBeenCalledWith([
+      'lesson.farming.settlements',
+      'lesson.uruk.first-city',
+      'lesson.writing.early-systems',
+    ]);
   });
 
   it('completes writing once, reveals its deterministic card once, and keeps Uruk isolated', async () => {
@@ -96,10 +104,10 @@ describe('multi-lesson Learn runtime', () => {
     expect(screen.getByText(/already in your Knowledge Cards/)).toBeTruthy();
   });
 
-  it('keeps the unpublished farming entry private and non-completable', () => {
-    render(<LearnApp lessonId="lesson.farming.settlements" />);
-    expect(screen.getByRole('heading', { name: /archive entry is not available/i })).toBeTruthy();
-    expect(screen.queryByText('Farming and Settlements')).toBeNull();
+  it('keeps an unpublished spine neighbor private and non-completable', () => {
+    render(<LearnApp lessonId="lesson.farming.multiple-origins" />);
+    expect(screen.getByRole('heading', { name: /archive entry isn.t available/i })).toBeTruthy();
+    expect(screen.queryByText('Many Beginnings of Farming')).toBeNull();
     expect(screen.queryByRole('button', { name: 'Complete lesson' })).toBeNull();
   });
   it('always permits revisiting a completed lesson even when its prerequisite is incomplete', async () => {

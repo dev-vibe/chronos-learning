@@ -17,13 +17,16 @@ select throws_ok(
 
 select set_config('request.jwt.claim.sub','11111111-1111-1111-1111-111111111111',true);
 insert into public.learners(id) values(auth.uid());
+insert into public.content_lessons(id,snapshot_version,published_at)
+values ('lesson.test.unpublished-neighbor','test-unpublished-v1',null);
 insert into public.lesson_progress(learner_id,lesson_id) values
  (auth.uid(),'lesson.uruk.first-city'),
  (auth.uid(),'lesson.writing.early-systems'),
- (auth.uid(),'lesson.farming.settlements');
+ (auth.uid(),'lesson.farming.settlements'),
+ (auth.uid(),'lesson.test.unpublished-neighbor');
 
 select throws_ok(
-  $$select public.complete_lesson_and_acquire_card('lesson.farming.settlements','test-unpublished-lesson')$$,
+  $$select public.complete_lesson_and_acquire_card('lesson.test.unpublished-neighbor','test-unpublished-lesson')$$,
   '22023','lesson is unpublished or completion is unsupported','unpublished neighbor stub is rejected'
 );
 select throws_ok(
@@ -52,7 +55,7 @@ select is(
  'already-completed','different key after completion reports existing completion'
 );
 select throws_ok(
- $$select public.complete_lesson_and_acquire_card('lesson.farming.settlements','test-success-command')$$,
+ $$select public.complete_lesson_and_acquire_card('lesson.test.unpublished-neighbor','test-success-command')$$,
  '22023','idempotency key reused for another lesson','idempotency key cannot be reused for another lesson'
 );
 select is(

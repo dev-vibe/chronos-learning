@@ -124,9 +124,9 @@ describe('learner journey state', () => {
       'lesson.farming.settlements': { lessonId: 'lesson.farming.settlements', status: 'completed' as const },
     };
     expect(deriveJourneyProgress(world, chronosContent.lessons, summaries)).toEqual({
-      completed: 1,
-      total: 2,
-      percent: 50,
+      completed: 2,
+      total: 3,
+      percent: 67,
       isCompleted: false,
     });
     const state = createDefaultJourneyState(fixtureContent.journeys, fixtureContent.lessons);
@@ -145,9 +145,10 @@ describe('learner journey state', () => {
       kind: 'lesson', lessonId: 'lesson.writing.early-systems', source: 'next',
     });
     expect(selectJourneyNextAction(world, chronosContent.lessons, {}, 'lesson.writing.early-systems')).toEqual({
-      kind: 'lesson', lessonId: 'lesson.uruk.first-city', source: 'backfill',
+      kind: 'lesson', lessonId: 'lesson.farming.settlements', source: 'backfill',
     });
     expect(selectJourneyNextAction(world, chronosContent.lessons, {
+      'lesson.farming.settlements': { lessonId: 'lesson.farming.settlements', status: 'completed' as const },
       ...urukCompleted,
       'lesson.writing.early-systems': { lessonId: 'lesson.writing.early-systems', status: 'completed' as const },
     }, 'lesson.writing.early-systems')).toEqual({ kind: 'complete' });
@@ -179,7 +180,9 @@ describe('published catalog and authored invitations', () => {
     expect(catalog.groups['civilizations-regions'].map((item) => item.id)).toEqual([optionalJourney.id]);
     expect(catalog.groups['ideas-across-time'].map((item) => item.id)).toEqual([optionalIdea.id]);
     expect(catalog.groups.investigations).toEqual([]);
-    expect(JSON.stringify(catalog)).not.toContain('lesson.farming.settlements');
+    expect(catalog.worldHistory?.lessonCount).toBe(3);
+    expect(catalog.worldHistory?.requiredLessonCount).toBe(3);
+    expect(JSON.stringify(catalog)).not.toContain('lesson.farming.multiple-origins');
   });
 
   it('selects at most one eligible invitation by priority and stable ID', () => {
@@ -253,7 +256,8 @@ describe('bounded published search', () => {
     expect(exact[0].title).toBe('Uruk');
     expect(exact.some((item) => item.title === 'Uruk: Life in an Early City')).toBe(true);
     expect(exact[0].score).toBeGreaterThanOrEqual(exact.at(-1)!.score);
-    expect((await provider.search('farm')).some((item) => item.title.toLowerCase().includes('farming'))).toBe(false);
+    expect((await provider.search('farm')).some((item) => item.title.toLowerCase().includes('farming'))).toBe(true);
+    expect((await provider.search('farm')).some((item) => item.title === 'Farming and Settlements')).toBe(true);
     expect(await provider.search('industrial revolution')).toEqual([]);
   });
 });

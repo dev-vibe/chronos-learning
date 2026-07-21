@@ -12,6 +12,88 @@
   },
   "assets": [
     {
+      "id": "media.farming.catalhoyuk-house-diagram",
+      "locator": {
+        "provider": "object-storage",
+        "bucket": "media-public",
+        "fallback": {
+          "path": "/images/optimized/farming/catalhoyuk-house-diagram.optimized.webp",
+          "width": 1600,
+          "height": 1200
+        },
+        "variants": [
+          {
+            "objectKey": "farming/media.farming.catalhoyuk-house-diagram/5339f6baaab51100/optimized/ql-v1/480w-webp-q92-8df55f24c205ab8b.webp",
+            "mimeType": "image/webp",
+            "bytes": 3220,
+            "sha256": "8df55f24c205ab8bb5e571705051abf7c96f209075cc176266f83e4b701d7b8c",
+            "width": 480,
+            "height": 360,
+            "compression": {
+              "profile": "ql-v1",
+              "codec": "webp",
+              "encoder": "webp-lossy",
+              "quality": 92
+            },
+            "fidelity": {
+              "mode": "measured-quasi-lossless",
+              "psnrDb": 52.12,
+              "meanAbsoluteError": 0.16,
+              "maximumChannelDelta": 13
+            }
+          },
+          {
+            "objectKey": "farming/media.farming.catalhoyuk-house-diagram/5339f6baaab51100/optimized/ql-v1/960w-webp-q90-9bd8f127b6f914f1.webp",
+            "mimeType": "image/webp",
+            "bytes": 5790,
+            "sha256": "9bd8f127b6f914f190ced8fafe4c65ab4dbe539ffce0fc08cae8b69fe2d77d56",
+            "width": 960,
+            "height": 720,
+            "compression": {
+              "profile": "ql-v1",
+              "codec": "webp",
+              "encoder": "webp-lossy",
+              "quality": 90
+            },
+            "fidelity": {
+              "mode": "measured-quasi-lossless",
+              "psnrDb": 52.27,
+              "meanAbsoluteError": 0.133,
+              "maximumChannelDelta": 14
+            }
+          },
+          {
+            "objectKey": "farming/media.farming.catalhoyuk-house-diagram/5339f6baaab51100/optimized/ql-v1/1600w-source-webp-5339f6baaab51100.webp",
+            "mimeType": "image/webp",
+            "bytes": 10210,
+            "sha256": "5339f6baaab511002df8659e7ddf21bab3e92cb3c8cd60c0730a1b6768d7c71e",
+            "width": 1600,
+            "height": 1200,
+            "compression": {
+              "profile": "ql-v1",
+              "codec": "webp",
+              "encoder": "source-passthrough"
+            },
+            "fidelity": {
+              "mode": "pixel-exact",
+              "psnrDb": null,
+              "meanAbsoluteError": 0,
+              "maximumChannelDelta": 0
+            }
+          }
+        ]
+      },
+      "source": {
+        "bucket": "media-source",
+        "objectKey": "farming/media.farming.catalhoyuk-house-diagram/5339f6baaab511002df8659e7ddf21bab3e92cb3c8cd60c0730a1b6768d7c71e/original.webp",
+        "mimeType": "image/webp",
+        "bytes": 10210,
+        "sha256": "5339f6baaab511002df8659e7ddf21bab3e92cb3c8cd60c0730a1b6768d7c71e",
+        "width": 1600,
+        "height": 1200
+      }
+    },
+    {
       "id": "media.uruk.clay-envelope",
       "locator": {
         "provider": "object-storage",

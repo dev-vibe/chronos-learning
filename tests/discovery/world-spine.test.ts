@@ -21,17 +21,24 @@ describe('canonical World Spine roadmap', () => {
 
   it('keeps unfinished roadmap nodes visible but non-navigable', () => {
     const view = createWorldSpineRoadmapView(worldSpineRoadmap, chronosContent.lessons, {}, 'lesson.uruk.first-city');
-    const farming = view.flatMap((chapter) => chapter.nodes).find((node) => node.id === 'lesson.farming.settlements');
-    expect(farming).toMatchObject({ title: 'Farming and Settlements', status: 'preparing' });
-    expect(farming?.href).toBeUndefined();
+    const multipleOrigins = view.flatMap((chapter) => chapter.nodes).find((node) => node.id === 'lesson.farming.multiple-origins');
+    expect(multipleOrigins).toMatchObject({ title: 'Many Beginnings of Farming', status: 'preparing' });
+    expect(multipleOrigins?.href).toBeUndefined();
   });
 
   it('makes authored draft lessons navigable when preview unlock is enabled', () => {
     setUnlockPreviewLessonsForTests(true);
+    const view = createWorldSpineRoadmapView(worldSpineRoadmap, chronosContent.lessons, {}, 'lesson.farming.multiple-origins');
+    const multipleOrigins = view.flatMap((chapter) => chapter.nodes).find((node) => node.id === 'lesson.farming.multiple-origins');
+    // Preview unlock cannot invent missing lesson modules; unpublished spine nodes stay preparing.
+    expect(multipleOrigins).toMatchObject({ status: 'preparing' });
+    expect(resolveWorldSpineAccess(worldSpineRoadmap, chronosContent.lessons, {}, 'lesson.writing.early-systems')).toEqual({ accessible: true });
+  });
+
+  it('publishes Farming and Settlements as a navigable World Spine node', () => {
     const view = createWorldSpineRoadmapView(worldSpineRoadmap, chronosContent.lessons, {}, 'lesson.farming.settlements');
     const farming = view.flatMap((chapter) => chapter.nodes).find((node) => node.id === 'lesson.farming.settlements');
     expect(farming).toMatchObject({ status: 'current', href: '/learn/lesson.farming.settlements' });
-    expect(resolveWorldSpineAccess(worldSpineRoadmap, chronosContent.lessons, {}, 'lesson.writing.early-systems')).toEqual({ accessible: true });
   });
 
   it('uses the named Uruk development cutoff without publication-timing regressions', () => {

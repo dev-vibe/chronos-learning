@@ -1,15 +1,433 @@
-import type { Lesson } from '../../src/domains/contracts';
+import type { Claim, KnowledgeCard, Lesson, MediaAsset, Source, UnderstandingPrompt } from '../../src/domains/contracts';
 import type { AuthoredContentModule } from '../assemble';
+import { mediaLocator } from '../shared/media-locator';
 
-const stubSection = (id: string) => ({
-  id,
-  heading: 'Coming later',
-  purpose: 'Journey context only',
-  modules: [{ id: id.replace('section', 'module'), type: 'prose' as const, body: 'Editorial stub; not a published lesson.', claimIds: [], sourceIds: [] }],
-});
+export const farmingSettlementsSources: Source[] = [
+  {
+    id: 'source.farming.baird-2018-anatolia',
+    title: 'Agricultural origins on the Anatolian plateau',
+    url: 'https://doi.org/10.1073/pnas.1800163115',
+    publisher: 'Proceedings of the National Academy of Sciences',
+    accessedOn: '2026-07-21',
+    licenseOrUse: 'Peer-reviewed research citation; figures not redistributed',
+    reviewStatus: 'reviewed',
+  },
+  {
+    id: 'source.farming.bogaard-2009-pantries',
+    title: 'Private pantries and celebrated surplus: storing and sharing food at Neolithic Çatalhöyük, Central Anatolia',
+    url: 'https://doi.org/10.1017/S0003598X00098896',
+    publisher: 'Antiquity / Cambridge University Press',
+    accessedOn: '2026-07-21',
+    licenseOrUse: 'Peer-reviewed research citation; article media not redistributed',
+    reviewStatus: 'reviewed',
+  },
+  {
+    id: 'source.farming.unesco-catalhoyuk',
+    title: 'Neolithic Site of Çatalhöyük',
+    url: 'https://whc.unesco.org/en/list/1405/',
+    publisher: 'UNESCO World Heritage Centre',
+    accessedOn: '2026-07-21',
+    licenseOrUse: 'Institutional World Heritage description under CC-BY-SA IGO 3.0; used for place framing, not redistributed as lesson media',
+    reviewStatus: 'reviewed',
+  },
+  {
+    id: 'source.farming.catalhoyuk-architecture',
+    title: 'Architecture',
+    url: 'http://www.catalhoyuk.com/site/architecture',
+    publisher: 'Çatalhöyük Research Project',
+    accessedOn: '2026-07-21',
+    licenseOrUse: 'Project outreach synthesizing excavation results; project illustrations not redistributed',
+    reviewStatus: 'reviewed',
+  },
+  {
+    id: 'source.farming.larsen-2019-bioarch',
+    title: 'Bioarchaeology of Neolithic Çatalhöyük reveals fundamental transitions in health, mobility, and lifestyle in early farmers',
+    url: 'https://doi.org/10.1073/pnas.1904345116',
+    publisher: 'Proceedings of the National Academy of Sciences',
+    accessedOn: '2026-07-21',
+    licenseOrUse: 'Peer-reviewed research citation; no burial imagery redistributed',
+    reviewStatus: 'reviewed',
+  },
+  {
+    id: 'source.farming.milner-2019-commentary',
+    title: 'Early agriculture’s toll on human health',
+    url: 'https://doi.org/10.1073/pnas.1908960116',
+    publisher: 'Proceedings of the National Academy of Sciences',
+    accessedOn: '2026-07-21',
+    licenseOrUse: 'Peer-reviewed commentary used as research reference; burial excavation imagery rejected for learner use',
+    reviewStatus: 'reviewed',
+  },
+  {
+    id: 'source.farming.bogaard-2017-resilience',
+    title: 'Agricultural innovation and resilience in a long-lived early farming community: the 1,500-year sequence at Neolithic to early Chalcolithic Çatalhöyük, central Anatolia',
+    url: 'https://doi.org/10.1017/S0066154617000072',
+    publisher: 'Anatolian Studies / Cambridge University Press',
+    accessedOn: '2026-07-21',
+    licenseOrUse: 'Peer-reviewed research citation; article media not redistributed',
+    reviewStatus: 'reviewed',
+  },
+];
 
-export const farmingSettlementsLesson: Lesson = { id: 'lesson.farming.settlements', legacyAliases: [], status: 'draft', title: 'Farming and Settlements', masthead: 'Before 3500 BCE', place: 'Southwest Asia', chronology: { startYear: -9000, endYear: -3500, display: 'Before 3500 BCE', approximate: true }, significance: 'Neighboring stub.', sectionIdsRequired: ['section.stub.farming'], sections: [stubSection('section.stub.farming')], claimIds: ['claim.uruk.city-life'], sourceIds: ['source.met.uruk'], mediaIds: [], promptIds: [] };
+export const farmingSettlementsClaims: Claim[] = [
+  {
+    id: 'claim.farming.case-not-global',
+    statement: 'This lesson is a Southwest Asian case and does not establish a single worldwide origin of farming.',
+    kind: 'interpretation',
+    certainty: 'high',
+    sourceIds: ['source.farming.baird-2018-anatolia', 'source.farming.unesco-catalhoyuk'],
+    reviewStatus: 'editorial-review-required',
+  },
+  {
+    id: 'claim.farming.gradual-uptake',
+    statement: 'In Central Anatolia, cultivation could be adopted at low intensity beside foraging for centuries, and nearby communities could differ in whether they cultivated.',
+    kind: 'interpretation',
+    certainty: 'high',
+    sourceIds: ['source.farming.baird-2018-anatolia'],
+    reviewStatus: 'editorial-review-required',
+  },
+  {
+    id: 'claim.farming.settlement-density',
+    statement: 'Çatalhöyük East was a long-lived, densely packed settlement of conjoined mudbrick houses entered from roofs, without streets between houses.',
+    kind: 'observation',
+    certainty: 'high',
+    sourceIds: ['source.farming.unesco-catalhoyuk', 'source.farming.catalhoyuk-architecture', 'source.farming.baird-2018-anatolia'],
+    reviewStatus: 'editorial-review-required',
+  },
+  {
+    id: 'claim.farming.mixed-farming',
+    statement: 'By the time of Çatalhöyük East, communities practiced substantial mixed farming of domesticated plants and animals that could sustain a large sedentary community.',
+    kind: 'interpretation',
+    certainty: 'high',
+    sourceIds: ['source.farming.baird-2018-anatolia', 'source.farming.bogaard-2017-resilience', 'source.farming.larsen-2019-bioarch'],
+    reviewStatus: 'editorial-review-required',
+  },
+  {
+    id: 'claim.farming.private-storage',
+    statement: 'Households stored plant foods in interior bins and side rooms that functioned as private pantries.',
+    kind: 'observation',
+    certainty: 'high',
+    sourceIds: ['source.farming.bogaard-2009-pantries', 'source.farming.catalhoyuk-architecture'],
+    reviewStatus: 'editorial-review-required',
+  },
+  {
+    id: 'claim.farming.shared-feasting',
+    statement: 'Displays of aurochs heads or horns and related evidence point to shared feasting that could ease tensions created by private stores.',
+    kind: 'interpretation',
+    certainty: 'moderate',
+    sourceIds: ['source.farming.bogaard-2009-pantries'],
+    reviewStatus: 'editorial-review-required',
+  },
+  {
+    id: 'claim.farming.tradeoffs',
+    statement: 'Denser farming life brought labor demands, crowding-related disease exposure, and other biological stresses that varied across the occupation.',
+    kind: 'interpretation',
+    certainty: 'moderate',
+    sourceIds: ['source.farming.larsen-2019-bioarch', 'source.farming.milner-2019-commentary'],
+    reviewStatus: 'editorial-review-required',
+  },
+  {
+    id: 'claim.farming.no-palace-equality',
+    statement: 'Similar house sizes and lack of palaces do not prove perfect equality; private storage and social mechanisms already manage tension.',
+    kind: 'interpretation',
+    certainty: 'moderate',
+    sourceIds: ['source.farming.bogaard-2009-pantries', 'source.farming.unesco-catalhoyuk'],
+    reviewStatus: 'editorial-review-required',
+  },
+  {
+    id: 'claim.farming.not-a-city',
+    statement: 'Çatalhöyük’s household-centered dense settlement is not the same social scale as later cities such as Uruk.',
+    kind: 'interpretation',
+    certainty: 'high',
+    sourceIds: ['source.farming.unesco-catalhoyuk', 'source.farming.catalhoyuk-architecture', 'source.farming.bogaard-2009-pantries'],
+    reviewStatus: 'editorial-review-required',
+  },
+];
+
+export const farmingSettlementsMedia: MediaAsset[] = [
+  {
+    id: 'media.farming.catalhoyuk-house-diagram',
+    locator: mediaLocator('media.farming.catalhoyuk-house-diagram'),
+    alt: 'Top-down diagram of a mudbrick house with a main room, roof ladder, hearth, platforms, side-room storage bins, and geometric horn forms near an entrance wall',
+    depictionMode: 'diagram',
+    depictionLabel: 'Chronos-original house diagram · interpretive layout based on published plans',
+    rightsLabel: 'Chronos original diagram',
+    sourceIds: ['source.farming.catalhoyuk-architecture', 'source.farming.bogaard-2009-pantries'],
+    visualBriefRef: 'docs/research/farming-settlements.md#media-and-knowledge-card-plan',
+    reviewStatus: 'approved',
+  },
+];
+
+export const farmingSettlementsPrompts: UnderstandingPrompt[] = [
+  {
+    id: 'prompt.farming.best-supported-model',
+    lessonId: 'lesson.farming.settlements',
+    kind: 'supported-selection',
+    question: 'Which statement best fits the Southwest Asian evidence in this lesson?',
+    explanation: 'The lesson supports gradual cultivation and denser settlement with real tradeoffs. It does not support a sudden all-benefit upgrade, surplus that automatically creates kings and writing, or the claim that farming began only in Anatolia for all humans.',
+    required: true,
+    options: [
+      {
+        id: 'option.farming.gradual-tradeoffs',
+        label: 'Cultivation and denser settlement developed gradually; stored food could support larger communities, but crowding, labor, and social tension show real tradeoffs—and these settlements were not yet cities like Uruk.',
+      },
+      {
+        id: 'option.farming.sudden-upgrade',
+        label: 'Farming appeared in one sudden upgrade that brought only benefits.',
+      },
+      {
+        id: 'option.farming.surplus-kings',
+        label: 'Once households stored surplus food, kings and writing appeared automatically.',
+      },
+      {
+        id: 'option.farming.anatolia-only',
+        label: 'Çatalhöyük proves farming began only in Anatolia for all humans.',
+      },
+    ],
+  },
+  {
+    id: 'prompt.farming.opportunity-and-cost',
+    lessonId: 'lesson.farming.settlements',
+    kind: 'concise-explanation',
+    question: 'Using one piece of settlement or storage evidence, name one opportunity denser farming life created and one cost or limit it brought.',
+    explanation: 'A sincere answer might name an opportunity such as stored food, staying put, or supporting a larger community, then a cost or limit such as hard labor, crowding and disease exposure, tension around private stores, or uncertainty about equality. Perfection is not required.',
+    required: true,
+    minimumResponseLength: 30,
+  },
+];
+
+export const farmingSettlementsLesson: Lesson = {
+  id: 'lesson.farming.settlements',
+  legacyAliases: [],
+  status: 'published',
+  title: 'Farming and Settlements',
+  masthead: 'Before 3500 BCE',
+  place: 'Southwest Asia',
+  chronology: {
+    startYear: -9000,
+    endYear: -3500,
+    display: 'Before 3500 BCE',
+    approximate: true,
+  },
+  significance: 'See what denser farming settlements changed—and what they cost—before city-scale coordination at Uruk.',
+  heroMediaId: 'media.farming.catalhoyuk-house-diagram',
+  heroLabel: 'Interpretive house diagram',
+  heroCaption: 'A teaching diagram of house layout and storage. It is not a surviving photograph of a Çatalhöyük home.',
+  sectionIdsRequired: [
+    'section.farming.opening-question',
+    'section.farming.gradual-change',
+    'section.farming.dense-settlement',
+    'section.farming.storage-evidence',
+    'section.farming.tradeoffs',
+    'section.farming.not-yet-city',
+    'section.farming.check-and-complete',
+  ],
+  sections: [
+    {
+      id: 'section.farming.opening-question',
+      heading: 'What happens when a community stays put?',
+      purpose: 'Enter through food, work, and permanence while stating Southwest Asia case scope',
+      modules: [
+        {
+          id: 'module.farming.opening',
+          type: 'prose',
+          body: 'Imagine a neighborhood that does not pack up and move with the seasons. People still need food every day, but now the same houses, paths, and work places stay in use year after year. How do you feed a community that stays put—and what new problems appear when food, storage, and neighbors become permanent neighbors?\n\nThis lesson follows one Southwest Asian pathway. Farming began in more than one region of the world; here we zoom into Central Anatolia and the dense settlement of Çatalhöyük, not the whole planet’s story of domestication.',
+          claimIds: ['claim.farming.case-not-global'],
+          sourceIds: ['source.farming.baird-2018-anatolia', 'source.farming.unesco-catalhoyuk'],
+        },
+      ],
+    },
+    {
+      id: 'section.farming.gradual-change',
+      heading: 'Farming was a process, not a switch',
+      purpose: 'Show uneven uptake of cultivation in Central Anatolia',
+      modules: [
+        {
+          id: 'module.farming.gradual-uptake',
+          type: 'knowledge',
+          eyebrow: 'Central Anatolia',
+          title: 'Low-level cultivation could last for centuries',
+          body: 'Communities did not flip overnight from foraging to full farming. In Central Anatolia, people could grow some crops at low intensity while still foraging, and neighboring places could choose different paths.',
+          items: [
+            { label: 'Boncuklu', detail: 'Evidence shows indigenous foragers adopting cultivation at low intensity beside foraging for a long time.' },
+            { label: 'Pınarbaşı', detail: 'A nearby community shows little or no cultivation evidence—an uneven pattern, not one destiny for every valley.' },
+            { label: 'Later commitment', detail: 'A much stronger farming commitment appears later at Çatalhöyük East, beginning around 7100 BCE.' },
+            { label: 'Not a revolution day', detail: 'Call this a gradual process with local choices—not a single “Neolithic Revolution” moment for all humans.' },
+          ],
+          claimIds: ['claim.farming.gradual-uptake', 'claim.farming.case-not-global'],
+          sourceIds: ['source.farming.baird-2018-anatolia'],
+        },
+      ],
+    },
+    {
+      id: 'section.farming.dense-settlement',
+      heading: 'A neighborhood without streets',
+      purpose: 'Make Çatalhöyük settlement form and mixed farming concrete',
+      modules: [
+        {
+          id: 'module.farming.dense-settlement',
+          type: 'knowledge',
+          eyebrow: 'Çatalhöyük East',
+          title: 'Houses packed wall to wall',
+          body: 'On the Konya plain in central Anatolia, Çatalhöyük East grew into a long-lived, densely packed settlement. Rectangular mudbrick houses stood back to back. People moved across rooftops and entered through openings in the ceiling rather than through street-facing doors.',
+          items: [
+            { label: 'Roof access', detail: 'Ladders and roof openings linked households in a settlement without ordinary streets between houses.' },
+            { label: 'Mixed farming', detail: 'By this period, communities practiced substantial farming of domesticated plants and animals that could sustain a large sedentary neighborhood.' },
+            { label: 'Long occupation', detail: 'The East Mound’s Neolithic sequence spans many centuries of rebuilding in the same place.' },
+            { label: 'Language care', detail: 'Call it a dense settlement or town-scale neighborhood—not “the first city.”' },
+          ],
+          claimIds: ['claim.farming.settlement-density', 'claim.farming.mixed-farming'],
+          sourceIds: [
+            'source.farming.unesco-catalhoyuk',
+            'source.farming.catalhoyuk-architecture',
+            'source.farming.baird-2018-anatolia',
+            'source.farming.bogaard-2017-resilience',
+          ],
+        },
+      ],
+    },
+    {
+      id: 'section.farming.storage-evidence',
+      heading: 'Private pantries, shared feasts',
+      purpose: 'Evidence encounter on surplus, storage, and social tension',
+      modules: [
+        {
+          id: 'module.farming.storage-evidence',
+          type: 'evidence',
+          title: 'Where the stores sat',
+          artifactLabel: 'Interpretive diagram from published house plans',
+          body: 'Archaeologists studying plant remains and house layouts found storage bins deep inside houses—private pantries for grain and other foods. Near entrances, displays of aurochs heads or horns and related evidence point to shared feasting. Surplus here means stored food that can be kept and used later. It is not automatic wealth, and it does not by itself create palaces or cities.',
+          mediaId: 'media.farming.catalhoyuk-house-diagram',
+          claimIds: ['claim.farming.private-storage', 'claim.farming.shared-feasting'],
+          sourceIds: ['source.farming.bogaard-2009-pantries', 'source.farming.catalhoyuk-architecture'],
+        },
+        {
+          id: 'module.farming.house-scene',
+          type: 'scene',
+          title: 'Read the house layout',
+          body: 'Use this diagram as a question-making tool. Furnishings and exact placements are interpretive; the teaching contrast is private storage versus entrance-area display and sharing.',
+          mediaId: 'media.farming.catalhoyuk-house-diagram',
+          hotspots: [
+            { label: 'Side-room bins', detail: 'Interior storage sat deep in the house, functioning as a private pantry.' },
+            { label: 'Hearth and platforms', detail: 'Everyday living space filled the main room around cooking and platform areas.' },
+            { label: 'Roof ladder', detail: 'Entry from the roof connected households in a streetless neighborhood.' },
+            { label: 'Entrance display', detail: 'Horn and animal-head displays near entrances are linked to shared feasting and social life.' },
+          ],
+          claimIds: ['claim.farming.private-storage', 'claim.farming.shared-feasting', 'claim.farming.settlement-density'],
+          sourceIds: ['source.farming.bogaard-2009-pantries', 'source.farming.catalhoyuk-architecture'],
+        },
+      ],
+    },
+    {
+      id: 'section.farming.tradeoffs',
+      heading: 'Opportunities and costs',
+      purpose: 'Hold progress and harm together without a one-way decline story',
+      modules: [
+        {
+          id: 'module.farming.tradeoffs',
+          type: 'knowledge',
+          eyebrow: 'Tradeoffs',
+          title: 'Stored food was not a free upgrade',
+          body: 'Denser farming life could feed more people who stayed put. It also brought harder routine labor, crowding, and health stresses that changed across the long occupation. Evidence of costs is real; it does not prove that farming was a mistake or that foragers were healthier in every way.',
+          items: [
+            { label: 'Opportunity', detail: 'Stored plant foods and mixed farming could support longer residence and larger communities.' },
+            { label: 'Labor, diet, crowding', detail: 'Harder routine work, carbohydrate-heavy diets, and wall-to-wall living raised disease exposure—costs that varied across the long occupation.' },
+            { label: 'Social tension', detail: 'Private pantries could create security and jealousy; shared feasts may have helped manage that tension.' },
+            { label: 'Equality caution', detail: 'Similar house sizes and no palaces do not prove perfect equality. Absence of kings is not proof that every household lived the same.' },
+          ],
+          claimIds: ['claim.farming.tradeoffs', 'claim.farming.no-palace-equality', 'claim.farming.private-storage'],
+          sourceIds: [
+            'source.farming.larsen-2019-bioarch',
+            'source.farming.milner-2019-commentary',
+            'source.farming.bogaard-2009-pantries',
+            'source.farming.unesco-catalhoyuk',
+          ],
+        },
+      ],
+    },
+    {
+      id: 'section.farming.not-yet-city',
+      heading: 'Settled is not the same as city',
+      purpose: 'Prepare Uruk without collapsing settlement scales',
+      modules: [
+        {
+          id: 'module.farming.not-yet-city',
+          type: 'prose',
+          body: 'Çatalhöyük shows how cultivation, storage, and dense household life could grow together. It does not show the same institutional scale as later cities such as Uruk. There is no Uruk-style palace complex or administrative tablet system here. Household-centered organization still coordinated a large neighborhood—and that already created coordination problems cities would later organize at a bigger scale.\n\nWhen you meet Uruk next, ask what changes when coordination moves beyond the household settlement into city-scale institutions.',
+          claimIds: ['claim.farming.not-a-city', 'claim.farming.settlement-density'],
+          sourceIds: ['source.farming.unesco-catalhoyuk', 'source.farming.catalhoyuk-architecture', 'source.farming.bogaard-2009-pantries'],
+        },
+      ],
+    },
+    {
+      id: 'section.farming.check-and-complete',
+      heading: 'World Check',
+      purpose: 'Sincere attempt on the supported model and opportunity/cost reasoning',
+      modules: [
+        {
+          id: 'module.farming.prompt-model',
+          type: 'prompt',
+          promptId: 'prompt.farming.best-supported-model',
+          claimIds: [],
+          sourceIds: [],
+        },
+        {
+          id: 'module.farming.prompt-tradeoff',
+          type: 'prompt',
+          promptId: 'prompt.farming.opportunity-and-cost',
+          claimIds: [],
+          sourceIds: [],
+        },
+      ],
+    },
+  ],
+  claimIds: farmingSettlementsClaims.map((claim) => claim.id),
+  sourceIds: farmingSettlementsSources.map((source) => source.id),
+  mediaIds: ['media.farming.catalhoyuk-house-diagram'],
+  promptIds: [
+    'prompt.farming.best-supported-model',
+    'prompt.farming.opportunity-and-cost',
+  ],
+};
+
+export const farmingSettlementsCards: KnowledgeCard[] = [
+  {
+    id: 'card.place.catalhoyuk',
+    title: 'Çatalhöyük',
+    category: 'place',
+    cardClass: 'foundation',
+    date: {
+      startYear: -7100,
+      endYear: -6000,
+      display: 'c. 7100–6000 BCE',
+      approximate: true,
+    },
+    place: 'Central Anatolia, Konya plain',
+    significance: 'A dense farming settlement where private household storage and shared feasting show that surplus was a social tradeoff—not yet a city like Uruk.',
+    revealTitle: 'A settlement worth remembering',
+    revealBody: 'You earned this Foundation Place card by using Çatalhöyük’s house and storage evidence to explain what denser farming life changed—and what it cost.',
+    depictionLabel: 'Interpretive house diagram',
+    facts: [
+      'Long-lived Neolithic settlement on the Konya plain in central Anatolia',
+      'Dense mudbrick houses entered from rooftops, without ordinary streets',
+      'Households kept private pantry stores while also sharing through feasts and displays',
+      'A large farming settlement, not the same social scale as later cities such as Uruk',
+    ],
+    lessonIds: ['lesson.farming.settlements'],
+    sourceIds: [
+      'source.farming.unesco-catalhoyuk',
+      'source.farming.bogaard-2009-pantries',
+      'source.farming.catalhoyuk-architecture',
+    ],
+    mediaId: 'media.farming.catalhoyuk-house-diagram',
+    unlockLessonId: 'lesson.farming.settlements',
+  },
+];
 
 export const farmingSettlementsContent: AuthoredContentModule = {
+  sources: farmingSettlementsSources,
+  claims: farmingSettlementsClaims,
+  media: farmingSettlementsMedia,
+  prompts: farmingSettlementsPrompts,
   lessons: [farmingSettlementsLesson],
+  cards: farmingSettlementsCards,
 };

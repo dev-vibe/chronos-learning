@@ -2,6 +2,18 @@
   "schemaVersion": 1,
   "assets": [
     {
+      "id": "media.farming.catalhoyuk-house-diagram",
+      "collection": "farming",
+      "sourcePath": "public/images/places/catalhoyuk-house-diagram.webp",
+      "fallbackPath": "/images/optimized/farming/catalhoyuk-house-diagram.optimized.webp",
+      "preset": "drawing",
+      "widths": [
+        480,
+        960,
+        1600
+      ]
+    },
+    {
       "id": "media.uruk.clay-envelope",
       "collection": "uruk",
       "sourcePath": "public/images/inventions/clay_envelope.jpg",

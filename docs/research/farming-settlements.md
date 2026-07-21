@@ -247,6 +247,6 @@ Recommended decisions for product-owner approval:
 - [x] Journey framing
 - [ ] Human historical/editorial review
 - [ ] Bioarchaeology wording review (health tradeoffs)
-- [ ] Product-owner approval of checkpoint
-- [ ] Production content, final media, migrations, tests, and preview
+- [x] Product-owner approval of checkpoint
+- [x] Production content, final media, migrations, tests, and preview
 - [ ] Structured learner walkthrough or documented reason deferred
