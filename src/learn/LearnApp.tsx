@@ -2,6 +2,7 @@
 import { Archive, BookOpen, Check, ChevronLeft, ChevronRight, Compass, Home, Landmark, Library, Lock, Menu, Moon, RotateCcw, Search, Sun, X } from 'lucide-react';
 import { chronosContent } from '../../content/chronos';
 import type { Journey, KnowledgeCard, Lesson, LessonModule, LessonSection } from '../domains/contracts';
+import { isLessonOpenable } from '../config/runtimeFlags';
 import { resolveMediaAsset } from '../media/resolve';
 import { HistoricalMapModule } from './HistoricalMapModule';
 import { ResponsiveMedia } from './ResponsiveMedia';
@@ -19,10 +20,13 @@ const mediaById = new Map(chronosContent.media.map((item) => [item.id, item]));
 const cardById = new Map(chronosContent.cards.map((item) => [item.id, item]));
 const cardByLessonId = new Map(chronosContent.cards.map((item) => [item.unlockLessonId, item]));
 const sourceById = new Map(chronosContent.sources.map((item) => [item.id, item]));
-const firstPublishedLessonId = chronosContent.journeys.filter((journey) => journey.status === 'published').flatMap((item) => item.chapters).sort((a, b) => a.position - b.position).flatMap((chapter) => [...chapter.entries].sort((a, b) => a.position - b.position)).map((entry) => entry.lessonId).find((id) => lessonById.get(id)?.status === 'published') ?? chronosContent.lessons.find((item) => item.status === 'published')?.id ?? '';
+const firstPublishedLessonId = chronosContent.journeys.filter((journey) => journey.status === 'published').flatMap((item) => item.chapters).sort((a, b) => a.position - b.position).flatMap((chapter) => [...chapter.entries].sort((a, b) => a.position - b.position)).map((entry) => entry.lessonId).find((id) => {
+  const lesson = lessonById.get(id);
+  return lesson ? isLessonOpenable(lesson) : false;
+}) ?? chronosContent.lessons.find((item) => isLessonOpenable(item))?.id ?? '';
 
 const findJourney = (lessonId: string) => chronosContent.journeys.find((item) => item.status === 'published' && item.chapters.some((chapter) => chapter.entries.some((entry) => entry.lessonId === lessonId)));
-const orderedEntries = (journey: Journey) => [...journey.chapters].sort((a, b) => a.position - b.position).flatMap((chapter) => [...chapter.entries].sort((a, b) => a.position - b.position).map((entry) => ({ chapter, entry, lesson: lessonById.get(entry.lessonId) })).filter((item): item is { chapter: Journey['chapters'][number]; entry: Journey['chapters'][number]['entries'][number]; lesson: Lesson } => item.lesson?.status === 'published'));
+const orderedEntries = (journey: Journey) => [...journey.chapters].sort((a, b) => a.position - b.position).flatMap((chapter) => [...chapter.entries].sort((a, b) => a.position - b.position).map((entry) => ({ chapter, entry, lesson: lessonById.get(entry.lessonId) })).filter((item): item is { chapter: Journey['chapters'][number]; entry: Journey['chapters'][number]['entries'][number]; lesson: Lesson } => Boolean(item.lesson && isLessonOpenable(item.lesson))));
 
 type JourneyRailProps = {
   open: boolean; onClose(): void; onNavigate(id: string): void; lesson: Lesson; journey: Journey;
@@ -91,7 +95,7 @@ function Module({ module, state, onAttempt }: ModuleProps) {
   if (module.type === 'evidence') {
     const media = mediaById.get(module.mediaId)!;
     const source = media.sourceIds.map((id) => sourceById.get(id)).find(Boolean);
-    return <figure className="evidence-module"><div className="evidence-image"><ResponsiveMedia media={media} alt={media.alt} sizes="(max-width: 800px) 100vw, 50vw" loading="lazy" /><span>{module.artifactLabel}</span></div><figcaption><div className="evidence-type"><Archive /><span>From the evidence room</span></div><h3>{module.title}</h3><p>{module.body}</p><dl><div><dt>Depiction</dt><dd>{media.depictionLabel}</dd></div><div><dt>Source</dt><dd>{source ? <a href={source.url} target='_blank' rel='noreferrer'>{source.publisher}</a> : 'Institutional source'}</dd></div><div><dt>Rights</dt><dd>{media.rightsLabel}</dd></div></dl></figcaption></figure>;
+    return <figure className="evidence-module"><div className="evidence-image"><ResponsiveMedia media={media} alt={media.alt} sizes="(max-width: 800px) 100vw, 50vw" loading="lazy" /><span>{module.artifactLabel}</span></div><figcaption><div className="evidence-type"><Archive /><span>From the evidence room</span></div><h3>{module.title}</h3><p>{module.body}</p><dl><div><dt>Depiction</dt><dd>{media.depictionLabel}</dd></div><div><dt>Source</dt><dd>{source ? <a href={source.url} target='_blank' rel='noreferrer'>{source.publisher}</a> : 'Institutional source'}</dd></div>{media.reviewStatus === 'approved' ? <div><dt>Rights</dt><dd>{media.rightsLabel}</dd></div> : null}</dl></figcaption></figure>;
   }
   if (module.type === 'historical-map') {
     const media = mediaById.get(module.mediaId)!;
@@ -118,8 +122,8 @@ export function LearnApp({ lessonId, gatewayFactory = createProgressGateway }: {
   const journey = lesson ? findJourney(lesson.id) : undefined;
   const entries = journey ? orderedEntries(journey) : [];
   const currentIndex = entries.findIndex((item) => item.lesson.id === lessonId);
-  const previous = entries.slice(0, currentIndex).reverse().find((item) => item.lesson.status === 'published');
-  const next = entries.slice(currentIndex + 1).find((item) => item.lesson.status === 'published');
+  const previous = entries.slice(0, currentIndex).reverse().find((item) => isLessonOpenable(item.lesson));
+  const next = entries.slice(currentIndex + 1).find((item) => isLessonOpenable(item.lesson));
   const [currentProgress, setCurrentProgress] = useState<LearnState | null>(null);
   const [journeySummaries, setJourneySummaries] = useState<Record<string, JourneyProgressSummary>>({});
   const state = currentProgress?.lessonId === lessonId ? currentProgress : null;
@@ -139,17 +143,17 @@ export function LearnApp({ lessonId, gatewayFactory = createProgressGateway }: {
   }, [lessonId]);
 
   useEffect(() => {
-    if (!lesson || lesson.status !== 'published' || !journey) return;
+    if (!lesson || !isLessonOpenable(lesson) || !journey) return;
     document.title = `${lesson.title} · Chronos`;
     document.querySelector('meta[name="description"]')?.setAttribute('content', lesson.significance);
   }, [lesson, journey]);
 
   useEffect(() => {
-    if (!lesson || lesson.status !== 'published' || !journey) return;
+    if (!lesson || !isLessonOpenable(lesson) || !journey) return;
     let active = true;
     gatewayFactory().then(async (selected) => {
       gatewayRef.current = selected;
-      const publishedIds = orderedEntries(journey).map((item) => item.lesson).filter((item) => item.status === 'published').map((item) => item.id);
+      const publishedIds = orderedEntries(journey).map((item) => item.lesson).filter((item) => isLessonOpenable(item)).map((item) => item.id);
       const [detailed, summaries] = await Promise.all([
         selected.load(lessonId),
         selected.loadJourneySummaries(publishedIds),
@@ -191,7 +195,7 @@ export function LearnApp({ lessonId, gatewayFactory = createProgressGateway }: {
   const worldSpineChapter = worldSpineRoadmap.find((chapter) => chapter.nodes.some((node) => node.id === lessonId));
   const breadcrumbChapter = journey?.kind === 'world-history' ? worldSpineChapter?.title : entries[currentIndex]?.chapter.title;
   if (!lesson) return <main className="not-found"><BookOpen /><p className="eyebrow">Lesson not found</p><h1>This archive entry isn’t available.</h1><p>Check the lesson address or return to the first published World History lesson.</p><a className="primary" href={`/learn/${firstPublishedLessonId}`}>Open World History</a><a href="/">Return to Chronos</a></main>;
-  if (lesson.status !== 'published' || !journey) return <main className="not-found"><BookOpen /><p className="eyebrow">Lesson unavailable</p><h1>This archive entry is not available.</h1><p>The address may refer to material that has not been published for learners.</p><a className="primary" href={'/learn/' + firstPublishedLessonId}>Open World History</a><a href="/home">Return Home</a></main>;
+  if (!isLessonOpenable(lesson) || !journey) return <main className="not-found"><BookOpen /><p className="eyebrow">Lesson unavailable</p><h1>This archive entry is not available.</h1><p>The address may refer to material that has not been published for learners.</p><a className="primary" href={'/learn/' + firstPublishedLessonId}>Open World History</a><a href="/home">Return Home</a></main>;
   if (!state) return error ? <main className="loading-error" role="alert"><BookOpen /><h1>We couldn’t open your progress.</h1><p>{error}</p><button className="primary" onClick={retryLoad}>Retry loading progress</button></main> : <main className="loading" aria-busy="true">Opening {lesson.title}…</main>;
   if (!worldSpineAccess.accessible) return <main className="not-found"><Lock /><p className="eyebrow">World Spine</p><h1>This lesson is still locked.</h1><p>{worldSpineBlocker ? 'Complete ' + worldSpineBlocker.title + ' before continuing along the chronology.' : 'Complete the earlier available lessons before continuing.'}</p><a className="primary" href={'/learn/' + (worldSpineBlocker?.id ?? firstPublishedLessonId)}>Continue {worldSpineBlocker?.title ?? 'World History'}</a><a href="/home">Return Home</a></main>;
 

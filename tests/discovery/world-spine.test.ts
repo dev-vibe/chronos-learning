@@ -1,4 +1,4 @@
-import { describe, expect, it } from 'vitest';
+import { describe, expect, it, vi } from 'vitest';
 import { chronosContent } from '../../content/chronos';
 import { WORLD_SPINE_DEVELOPMENT_OPEN_THROUGH_LESSON_ID } from '../../content/world-spine/access-policy';
 import { worldSpineNodeCount, worldSpineRoadmap } from '../../content/world-spine/roadmap';
@@ -23,6 +23,18 @@ describe('canonical World Spine roadmap', () => {
     const farming = view.flatMap((chapter) => chapter.nodes).find((node) => node.id === 'lesson.farming.settlements');
     expect(farming).toMatchObject({ title: 'Farming and Settlements', status: 'preparing' });
     expect(farming?.href).toBeUndefined();
+  });
+
+  it('makes authored draft lessons navigable when preview unlock is enabled', async () => {
+    vi.stubEnv('VITE_UNLOCK_PREVIEW_LESSONS', 'true');
+    vi.resetModules();
+    const { createWorldSpineRoadmapView: unlockedView, resolveWorldSpineAccess: unlockedAccess } = await import('../../src/domains/journeys/worldSpine');
+    const { chronosContent: content } = await import('../../content/chronos');
+    const { worldSpineRoadmap: roadmap } = await import('../../content/world-spine/roadmap');
+    const view = unlockedView(roadmap, content.lessons, {}, 'lesson.farming.settlements');
+    const farming = view.flatMap((chapter) => chapter.nodes).find((node) => node.id === 'lesson.farming.settlements');
+    expect(farming).toMatchObject({ status: 'current', href: '/learn/lesson.farming.settlements' });
+    expect(unlockedAccess(roadmap, content.lessons, {}, 'lesson.writing.early-systems')).toEqual({ accessible: true });
   });
 
   it('uses the named Uruk development cutoff without publication-timing regressions', () => {

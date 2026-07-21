@@ -38,6 +38,36 @@ describe('Learn route and interactions', () => {
   it('navigates to a semantic section and moves focus with the journey control', async () => { const gateway = new TestGateway(); render(<LearnApp lessonId="lesson.uruk.first-city" gatewayFactory={async () => gateway} />); await screen.findByRole('heading', { name: 'Uruk: Life in an Early City' }); await userEvent.click(screen.getByRole('button', { name: 'The built city' })); const section = document.getElementById('section.uruk.the-built-city'); expect(section?.scrollIntoView).toHaveBeenCalledWith({ behavior: 'smooth', block: 'start' }); expect(section).toBe(document.activeElement); });
   it('does not interrupt the lesson with a resume banner', async () => { const gateway = new TestGateway(); gateway.state = { ...gateway.state, resumeSectionId: 'section.uruk.the-built-city', exploredSectionIds: ['section.uruk.the-built-city'] }; render(<LearnApp lessonId="lesson.uruk.first-city" gatewayFactory={async () => gateway} />); await screen.findByRole('heading', { name: 'Uruk: Life in an Early City' }); expect(screen.queryByText('Welcome back')).toBeNull(); expect(screen.queryByRole('button', { name: 'Resume' })).toBeNull(); expect(window.scrollTo).toHaveBeenCalledWith({ top: 0, left: 0, behavior: 'auto' }); });
   it('fails closed for an unpublished lesson without leaking its title', () => { render(<LearnApp lessonId="lesson.farming.settlements" />); expect(screen.getByRole('heading', { name: 'This archive entry is not available.' })).toBeTruthy(); expect(screen.queryByText('Farming and Settlements')).toBeNull(); });
+  it('opens draft lessons when VITE_UNLOCK_PREVIEW_LESSONS is enabled', async () => {
+    vi.stubEnv('VITE_UNLOCK_PREVIEW_LESSONS', 'true');
+    vi.resetModules();
+    const { LearnApp: UnlockedLearnApp } = await import('../../src/learn/LearnApp');
+    const gateway = new TestGateway();
+    gateway.state = { ...gateway.state, lessonId: 'lesson.farming.settlements' };
+    gateway.loadJourneySummaries = vi.fn(async (lessonIds: readonly string[]) => Object.fromEntries(lessonIds.map((lessonId) => [lessonId, { lessonId, status: 'in-progress' as const }])));
+    render(<UnlockedLearnApp lessonId="lesson.farming.settlements" gatewayFactory={async () => gateway} />);
+    expect(await screen.findByRole('heading', { name: 'Farming and Settlements' })).toBeTruthy();
+    expect(screen.queryByText('This archive entry is not available.')).toBeNull();
+  });
+  it('hides Rights metadata until media review is approved', async () => {
+    const gateway = new TestGateway();
+    render(<LearnApp lessonId="lesson.uruk.first-city" gatewayFactory={async () => gateway} />);
+    await screen.findByRole('heading', { name: 'Uruk: Life in an Early City' });
+    expect(screen.queryByText('Rights and redistribution review required')).toBeNull();
+    expect(screen.queryAllByText('Rights')).toHaveLength(0);
+  });
+  it('shows Rights metadata for approved media', async () => {
+    const gateway = new TestGateway();
+    gateway.state = { learnerId: 'test', lessonId: 'lesson.writing.early-systems', status: 'in-progress', attemptedPromptIds: [], exploredSectionIds: [], responses: {}, version: 1 };
+    gateway.loadJourneySummaries = vi.fn(async (lessonIds: readonly string[]) => Object.fromEntries(lessonIds.map((lessonId) => [lessonId, {
+      lessonId,
+      status: lessonId === 'lesson.uruk.first-city' ? 'completed' as const : 'in-progress' as const,
+    }])));
+    render(<LearnApp lessonId="lesson.writing.early-systems" gatewayFactory={async () => gateway} />);
+    await screen.findByRole('heading', { name: 'From Marks to Proto-Cuneiform' });
+    expect(screen.getByText('Rights')).toBeTruthy();
+    expect(screen.getByText('Public Domain · The Met Open Access')).toBeTruthy();
+  });
   it('applies the selected theme through a working labeled control', async () => { const gateway = new TestGateway(); render(<LearnApp lessonId="lesson.uruk.first-city" gatewayFactory={async () => gateway} />); await screen.findByRole('heading', { name: 'Uruk: Life in an Early City' }); expect(document.querySelector('.learn-app')?.getAttribute('data-theme')).toBe('light'); await userEvent.click(screen.getAllByRole('button', { name: 'Use dark theme' })[0]); expect(document.querySelector('.learn-app')?.getAttribute('data-theme')).toBe('dark'); expect(screen.getAllByRole('button', { name: 'Use light theme' }).length).toBeGreaterThan(0); });
   it('persists prompt feedback, completes, reveals one card, and gives a truthful next action', async () => { const gateway = new TestGateway(); render(<LearnApp lessonId="lesson.uruk.first-city" gatewayFactory={async () => gateway} />); await screen.findByRole('heading', { name: 'Uruk: Life in an Early City' }); await userEvent.click(screen.getByLabelText('Administrative tablets and cylinder seals')); expect(await screen.findByText(/Compare the evidence/)).toBeTruthy(); const text = screen.getByRole('textbox'); await userEvent.type(text, 'Specialized work created opportunity, while unequal labor was a serious cost.'); fireEvent.blur(text); await waitFor(() => expect(screen.getByRole('button', { name: 'Complete lesson' }).hasAttribute('disabled')).toBe(false)); await userEvent.click(screen.getByRole('button', { name: 'Complete lesson' })); expect(await screen.findByText('Knowledge Card · place')).toBeTruthy(); expect(screen.getAllByRole('heading', { name: 'Uruk' })).toHaveLength(1); const next = screen.getByRole('link', { name: /Continue World History/ }); expect(next.getAttribute('href')).toBe('/learn/lesson.writing.early-systems'); });
   it('shows the complete chronological World Spine without making unfinished lessons accessible', async () => { const gateway = new TestGateway(); render(<LearnApp lessonId="lesson.uruk.first-city" gatewayFactory={async () => gateway} />); await screen.findByRole('heading', { name: 'Uruk: Life in an Early City' }); const timeline = screen.getByLabelText('World History timeline'); expect(timeline.querySelectorAll('.spine-node')).toHaveLength(185); expect(within(timeline).getByText('Farming and Settlements')).toBeTruthy(); expect(within(timeline).getByText('Decolonization and an Interdependent World')).toBeTruthy(); expect(within(timeline).getAllByText('Lesson in preparation').length).toBeGreaterThan(0); })
