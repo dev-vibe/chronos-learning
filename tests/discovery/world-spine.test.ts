@@ -1,8 +1,9 @@
-import { describe, expect, it, vi } from 'vitest';
+import { describe, expect, it } from 'vitest';
 import { chronosContent } from '../../content/chronos';
 import { WORLD_SPINE_DEVELOPMENT_OPEN_THROUGH_LESSON_ID } from '../../content/world-spine/access-policy';
 import { worldSpineNodeCount, worldSpineRoadmap } from '../../content/world-spine/roadmap';
 import type { Lesson } from '../../src/domains/contracts';
+import { setUnlockPreviewLessonsForTests } from '../../src/config/runtimeFlags';
 import { createWorldSpineRoadmapView, resolveWorldSpineAccess } from '../../src/domains/journeys/worldSpine';
 
 const publishedLesson = (id: string): Lesson => ({ ...chronosContent.lessons[0], id, status: 'published' });
@@ -25,16 +26,12 @@ describe('canonical World Spine roadmap', () => {
     expect(farming?.href).toBeUndefined();
   });
 
-  it('makes authored draft lessons navigable when preview unlock is enabled', async () => {
-    vi.stubEnv('VITE_UNLOCK_PREVIEW_LESSONS', 'true');
-    vi.resetModules();
-    const { createWorldSpineRoadmapView: unlockedView, resolveWorldSpineAccess: unlockedAccess } = await import('../../src/domains/journeys/worldSpine');
-    const { chronosContent: content } = await import('../../content/chronos');
-    const { worldSpineRoadmap: roadmap } = await import('../../content/world-spine/roadmap');
-    const view = unlockedView(roadmap, content.lessons, {}, 'lesson.farming.settlements');
+  it('makes authored draft lessons navigable when preview unlock is enabled', () => {
+    setUnlockPreviewLessonsForTests(true);
+    const view = createWorldSpineRoadmapView(worldSpineRoadmap, chronosContent.lessons, {}, 'lesson.farming.settlements');
     const farming = view.flatMap((chapter) => chapter.nodes).find((node) => node.id === 'lesson.farming.settlements');
     expect(farming).toMatchObject({ status: 'current', href: '/learn/lesson.farming.settlements' });
-    expect(unlockedAccess(roadmap, content.lessons, {}, 'lesson.writing.early-systems')).toEqual({ accessible: true });
+    expect(resolveWorldSpineAccess(worldSpineRoadmap, chronosContent.lessons, {}, 'lesson.writing.early-systems')).toEqual({ accessible: true });
   });
 
   it('uses the named Uruk development cutoff without publication-timing regressions', () => {

@@ -1,6 +1,6 @@
 import type { WorldSpineChapter, WorldSpineNode } from '../../../content/world-spine/roadmap';
 import { worldSpineAccessPolicy, type WorldSpineAccessPolicy } from '../../../content/world-spine/access-policy';
-import { isLessonOpenable, unlockPreviewLessons } from '../../config/runtimeFlags';
+import { isLessonOpenable, unlockPreviewLessonsEnabled } from '../../config/runtimeFlags';
 import type { Lesson } from '../contracts';
 import type { JourneyProgressSummary } from '../../learn/progress';
 
@@ -41,7 +41,7 @@ export function resolveWorldSpineAccess(
   if (index < 0) return { accessible: false };
 
   // Dev audit unlock: open every authored lesson without curriculum gating.
-  if (unlockPreviewLessons) return { accessible: true };
+  if (unlockPreviewLessonsEnabled()) return { accessible: true };
 
   const target = sequence[index];
   if (summaries[targetId]?.status === 'completed') return { accessible: true };

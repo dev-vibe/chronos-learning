@@ -111,6 +111,31 @@ describe('Home, Library, preview, and search composition', () => {
     expect(harness.journeyGateway.save).toHaveBeenCalledTimes(1);
   });
 
+  it('continues into draft lessons when VITE_UNLOCK_PREVIEW_LESSONS is enabled', async () => {
+    const { setUnlockPreviewLessonsForTests } = await import('../../src/config/runtimeFlags');
+    const { createDefaultJourneyState: unlockedDefault } = await import('../../src/domains/journeys/state');
+    setUnlockPreviewLessonsForTests(true);
+    const initial = unlockedDefault(chronosContent.journeys, chronosContent.lessons, '2026-01-01T00:00:00.000Z');
+    let snapshot: JourneyStateLoad = { state: initial, staleJourneyIds: [], ownedCards: [] };
+    const journeyGateway: JourneyStateGateway = {
+      load: vi.fn(async () => snapshot),
+      save: vi.fn(async (next) => {
+        snapshot = { ...snapshot, state: next };
+        return snapshot;
+      }),
+    };
+    const progressGateway = { loadJourneySummaries: vi.fn(async () => ({})) } as unknown as LearnProgressGateway;
+    render(<DiscoveryApp
+      route={{ name: 'home' }}
+      journeyGatewayFactory={async () => journeyGateway}
+      progressGatewayFactory={async () => progressGateway}
+    />);
+    const continueLink = await screen.findByRole('link', { name: /Continue lesson/i });
+    expect(continueLink.getAttribute('href')).toBe('/learn/lesson.farming.settlements');
+    expect(screen.getByRole('heading', { name: 'Farming and Settlements' })).toBeTruthy();
+    expect(screen.queryByText(/next required lesson is not available yet/i)).toBeNull();
+  });
+
   it('derives Home and journey-detail Continue from completion and access state', async () => {
     const harness = makeHarness();
     vi.mocked(harness.progressGateway.loadJourneySummaries).mockResolvedValue({

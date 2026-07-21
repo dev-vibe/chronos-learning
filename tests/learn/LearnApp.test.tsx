@@ -39,13 +39,12 @@ describe('Learn route and interactions', () => {
   it('does not interrupt the lesson with a resume banner', async () => { const gateway = new TestGateway(); gateway.state = { ...gateway.state, resumeSectionId: 'section.uruk.the-built-city', exploredSectionIds: ['section.uruk.the-built-city'] }; render(<LearnApp lessonId="lesson.uruk.first-city" gatewayFactory={async () => gateway} />); await screen.findByRole('heading', { name: 'Uruk: Life in an Early City' }); expect(screen.queryByText('Welcome back')).toBeNull(); expect(screen.queryByRole('button', { name: 'Resume' })).toBeNull(); expect(window.scrollTo).toHaveBeenCalledWith({ top: 0, left: 0, behavior: 'auto' }); });
   it('fails closed for an unpublished lesson without leaking its title', () => { render(<LearnApp lessonId="lesson.farming.settlements" />); expect(screen.getByRole('heading', { name: 'This archive entry is not available.' })).toBeTruthy(); expect(screen.queryByText('Farming and Settlements')).toBeNull(); });
   it('opens draft lessons when VITE_UNLOCK_PREVIEW_LESSONS is enabled', async () => {
-    vi.stubEnv('VITE_UNLOCK_PREVIEW_LESSONS', 'true');
-    vi.resetModules();
-    const { LearnApp: UnlockedLearnApp } = await import('../../src/learn/LearnApp');
+    const { setUnlockPreviewLessonsForTests } = await import('../../src/config/runtimeFlags');
+    setUnlockPreviewLessonsForTests(true);
     const gateway = new TestGateway();
     gateway.state = { ...gateway.state, lessonId: 'lesson.farming.settlements' };
     gateway.loadJourneySummaries = vi.fn(async (lessonIds: readonly string[]) => Object.fromEntries(lessonIds.map((lessonId) => [lessonId, { lessonId, status: 'in-progress' as const }])));
-    render(<UnlockedLearnApp lessonId="lesson.farming.settlements" gatewayFactory={async () => gateway} />);
+    render(<LearnApp lessonId="lesson.farming.settlements" gatewayFactory={async () => gateway} />);
     expect(await screen.findByRole('heading', { name: 'Farming and Settlements' })).toBeTruthy();
     expect(screen.queryByText('This archive entry is not available.')).toBeNull();
   });
