@@ -17,13 +17,22 @@ class TestGateway implements LearnProgressGateway {
 }
 
 beforeEach(() => {
+  const storage = new Map<string, string>();
+  const localStorageStub = {
+    getItem: (key: string) => storage.get(key) ?? null,
+    setItem: (key: string, value: string) => { storage.set(key, value); },
+    removeItem: (key: string) => { storage.delete(key); },
+    clear: () => { storage.clear(); },
+  };
   vi.stubEnv('VITE_MEDIA_PROVIDER', 'repository');
+  vi.stubGlobal('localStorage', localStorageStub);
+  Object.defineProperty(window, 'localStorage', { configurable: true, value: localStorageStub });
   vi.stubGlobal('matchMedia', vi.fn(() => ({ matches: false, addEventListener: vi.fn(), removeEventListener: vi.fn() })));
   vi.stubGlobal('IntersectionObserver', class { observe() {} disconnect() {} });
   Element.prototype.scrollIntoView = vi.fn();
   vi.stubGlobal('scrollTo', vi.fn());
 });
-afterEach(() => { cleanup(); vi.unstubAllEnvs(); });
+afterEach(() => { cleanup(); vi.unstubAllEnvs(); vi.unstubAllGlobals(); });
 
 describe('Learn route and interactions', () => {
   it('parses the stable route and rejects unrelated paths', () => { expect(lessonIdFromPath('/learn/lesson.uruk.first-city')).toBe('lesson.uruk.first-city'); expect(lessonIdFromPath('/legacy')).toBeNull(); expect(lessonIdFromPath('/learn/%E0%A4%A')).toBeNull(); });
@@ -82,7 +91,27 @@ describe('Learn route and interactions', () => {
     expect(screen.getByText('Rights')).toBeTruthy();
     expect(screen.getByText('Public Domain · The Met Open Access')).toBeTruthy();
   });
-  it('applies the selected theme through a working labeled control', async () => { const gateway = new TestGateway(); render(<LearnApp lessonId="lesson.uruk.first-city" gatewayFactory={async () => gateway} />); await screen.findByRole('heading', { name: 'Uruk: Life in an Early City' }); expect(document.querySelector('.learn-app')?.getAttribute('data-theme')).toBe('light'); await userEvent.click(screen.getAllByRole('button', { name: 'Use dark theme' })[0]); expect(document.querySelector('.learn-app')?.getAttribute('data-theme')).toBe('dark'); expect(screen.getAllByRole('button', { name: 'Use light theme' }).length).toBeGreaterThan(0); });
+  it('applies the selected theme through a working labeled control', async () => {
+    const gateway = new TestGateway();
+    render(<LearnApp lessonId="lesson.uruk.first-city" gatewayFactory={async () => gateway} />);
+    await screen.findByRole('heading', { name: 'Uruk: Life in an Early City' });
+    expect(document.querySelector('.learn-app')?.getAttribute('data-theme')).toBe('light');
+    await userEvent.click(screen.getAllByRole('button', { name: 'Use dark theme' })[0]);
+    expect(document.querySelector('.learn-app')?.getAttribute('data-theme')).toBe('dark');
+    expect(window.localStorage.getItem('chronos.theme.v1')).toBe('dark');
+    expect(screen.getAllByRole('button', { name: 'Use light theme' }).length).toBeGreaterThan(0);
+  });
+  it('restores the shared theme preference when a lesson remounts', async () => {
+    window.localStorage.setItem('chronos.theme.v1', 'dark');
+    const gateway = new TestGateway();
+    const { unmount } = render(<LearnApp lessonId="lesson.uruk.first-city" gatewayFactory={async () => gateway} />);
+    await screen.findByRole('heading', { name: 'Uruk: Life in an Early City' });
+    expect(document.querySelector('.learn-app')?.getAttribute('data-theme')).toBe('dark');
+    unmount();
+    render(<LearnApp lessonId="lesson.uruk.first-city" gatewayFactory={async () => gateway} />);
+    await screen.findByRole('heading', { name: 'Uruk: Life in an Early City' });
+    expect(document.querySelector('.learn-app')?.getAttribute('data-theme')).toBe('dark');
+  });
   it('persists prompt feedback, completes, reveals one card, and gives a truthful next action', async () => { const gateway = new TestGateway(); render(<LearnApp lessonId="lesson.uruk.first-city" gatewayFactory={async () => gateway} />); await screen.findByRole('heading', { name: 'Uruk: Life in an Early City' }); await userEvent.click(screen.getByLabelText('Administrative tablets and cylinder seals')); expect(await screen.findByText(/Compare the evidence/)).toBeTruthy(); const text = screen.getByRole('textbox'); await userEvent.type(text, 'Specialized work created opportunity, while unequal labor was a serious cost.'); fireEvent.blur(text); await waitFor(() => expect(screen.getByRole('button', { name: 'Complete lesson' }).hasAttribute('disabled')).toBe(false)); await userEvent.click(screen.getByRole('button', { name: 'Complete lesson' })); expect(await screen.findByText('Knowledge Card · place')).toBeTruthy(); expect(screen.getAllByRole('heading', { name: 'Uruk' })).toHaveLength(1); const next = screen.getByRole('link', { name: /Continue World History/ }); expect(next.getAttribute('href')).toBe('/learn/lesson.writing.early-systems'); });
   it('shows the complete chronological World Spine without making unfinished lessons accessible', async () => { const gateway = new TestGateway(); render(<LearnApp lessonId="lesson.uruk.first-city" gatewayFactory={async () => gateway} />); await screen.findByRole('heading', { name: 'Uruk: Life in an Early City' }); const timeline = screen.getByLabelText('World History timeline'); expect(timeline.querySelectorAll('.spine-node')).toHaveLength(185); expect(within(timeline).getByText('Farming and Settlements')).toBeTruthy(); expect(within(timeline).getByText('Decolonization and an Interdependent World')).toBeTruthy(); expect(within(timeline).getAllByText('Lesson in preparation').length).toBeGreaterThan(0); })
 });
