@@ -4,6 +4,8 @@ Created 2026-07-21 for [ASH-70](https://linear.app/ashs-workshop/issue/ASH-70/re
 
 Repository-authored content will remain canonical. This note records Stages 0–14 and is the research/editorial checkpoint; production lesson code, final media, migrations, hosted changes, and publication remain behind product-owner approval.
 
+Revision 2 opened 2026-07-21 after the first production preview failed product-owner content and visual review. The source research remains useful, but the prior implementation approval is withdrawn. The current published lesson, reused diagram, and locator-map treatment are not approved for release. This revision supersedes the earlier storyboard, media plan, prompt plan, and decision packet while preserving the stable lesson identity and evidence base.
+
 Parallel production note: product-owner direction on 2026-07-21 authorized this lesson while [ASH-69](https://linear.app/ashs-workshop/issue/ASH-69/research-and-publish-our-species-begins-in-africa) Human Origins remains open for image/review on a separate branch/PR. Shared-runtime or migration conflicts must be avoided until Human Origins merges.
 
 ## Work boundary
@@ -27,21 +29,21 @@ This increment designs one bounded Southwest Asian settlement case and its media
 
 ## Node proposal
 
-**Recommended learner-facing title:** **Farming and Settlements**. The canonical title matches the roster and correctly names the transformation: cultivation plus denser, longer-lived settlement—not “the invention of civilization.”
+**Recommended learner-facing title:** **Farming and Settlements**. Retain the canonical roster title, but let the page itself open with the more concrete hook “Enter from the roof.” The title names the transformation without claiming a single invention or a march toward “civilization.”
 
-**Essential question:** What changed when communities in Southwest Asia began depending more on cultivated plants and more permanent settlements—and what tradeoffs came with that change?
+**Essential question:** How did storing food change life inside a community that stayed in one place?
 
-**Durable understanding:** Cultivation and denser settlement in Southwest Asia grew together gradually; stored food could support larger communities and new kinds of shared work, but private stores, crowding, labor, and health risks show that settled farming was a tradeoff—not a simple upgrade—and these communities were not yet cities like Uruk.
+**Durable understanding:** At Çatalhöyük, farming and stored food helped people sustain a dense, long-lived neighborhood; house evidence also shows that staying brought more labor, crowding, and choices about what households kept private or shared.
 
 **Supporting understandings:**
 
-1. People did not switch from “pure foraging” to “full farming” overnight. Low-level cultivation could sit beside foraging for centuries, and neighboring communities could accept or refuse cultivation differently.
-2. More reliable plant foods and storage made longer-term residence and denser neighborhoods possible, but denser living created new coordination problems.
-3. Surplus is not automatic wealth. At Çatalhöyük, families kept private pantry stores inside houses while also sharing through feasts and displays; storage created both security and social tension.
-4. Settled farming carried costs visible in labor, crowding, and some health indicators; those costs varied over time and do not prove that farming was a mistake or that foragers were always healthier in every way.
-5. A large farming settlement is still not a city. Çatalhöyük’s dense houses, roof streets, and household-scale organization prepare learners for Uruk’s later city-scale coordination without collapsing the two.
+1. In Central Anatolia, cultivation grew gradually beside foraging; nearby communities did not all make the same choices at the same time.
+2. At Çatalhöyük, rebuilding mudbrick houses in the same place created a dense neighborhood where roofs became routes and houses organized daily work.
+3. Excavated bins and plant remains support private household storage. Entrance-area animal displays and feasting evidence support—but do not prove every detail of—shared celebration.
+4. Staying offered food security and durable homes while increasing repetitive labor, crowding, disease exposure, and social questions around stored food.
+5. Çatalhöyük was a large household-centered settlement, not a smaller version of an inevitable future city.
 
-**Evidence encounter:** Household storage and house layout at Çatalhöyük. Learners reason from published archaeobotanical and spatial analysis: bins for grain and other foods sit deep inside houses (private pantries), while animal-head displays and feasting evidence near entrances point to shared celebration. The supported conclusion is that stored food was managed socially inside a dense settlement; surplus did not by itself create palaces or cities.
+**Evidence encounter:** Read one Çatalhöyük house as evidence. A Chronos cutaway/plan will translate excavated architecture and archaeobotanical spatial analysis into a legible diagram: storage bins and plant remains lie in interior side rooms, while entrance-area animal displays and feasting evidence suggest more public moments. The diagram is explicitly an interpretive model; the evidence is the excavated placement of architecture, bins, remains, and displays. Learners decide which conclusions that pattern supports and which claims—perfect equality, exact family relationships, automatic kingship—it cannot establish.
 
 **Prerequisite ideas (curriculum):** farming began in more than one region (Many Beginnings); a reconstruction is not a photograph of the past; denser settlement changes daily life. Until Many Beginnings is published, this lesson must state the Southwest Asia case-bound explicitly and never imply a single worldwide “Agricultural Revolution.”
 
@@ -129,40 +131,41 @@ Research stopped when the gradual-adoption claim, Çatalhöyük storage/settleme
 
 ## Learning blueprint
 
-- **Essential question:** What changed when communities in Southwest Asia began depending more on cultivated plants and more permanent settlements—and what tradeoffs came with that change?
-- **Durable understanding:** Settled farming could feed denser communities and create stored food, but storage, crowding, and labor brought tradeoffs—and these places were not yet cities.
-- **Supporting understandings:** gradual uptake; dense settlement form; private storage + sharing; health/labor tradeoffs with caution; not-yet-city.
+- **Essential question:** How did storing food change life inside a community that stayed in one place?
+- **Durable understanding:** At Çatalhöyük, farming and stored food helped people sustain a dense, long-lived neighborhood; house evidence also shows that staying brought more labor, crowding, and choices about what households kept private or shared.
+- **Supporting understandings:** gradual regional uptake; roof-connected dense settlement; house layout as evidence; private storage and shared celebration; opportunity/cost without a progress-or-decline fable.
 - **Prerequisites:** regional case vs global story; evidence vs reconstruction; farming involves plants, animals, and work over time.
-- **Misconceptions:** sudden revolution; pure progress; surplus = kings; Çatalhöyük = Uruk; perfect equality; fortress-first Jericho.
-- **Indispensable vocabulary:** cultivation, domestication (light touch), settlement, surplus/storage, household, tradeoff, reconstruction.
-- **Evidence encounter:** Çatalhöyük private pantry bins vs shared feast/display evidence.
-- **Historical-thinking move:** opportunity/cost + evidence/limit (what storage shows; what skeletons and popular “egalitarian” labels cannot prove alone).
-- **Required sincere-attempt evidence:** one supported-selection on the best model; one concise explanation naming an opportunity and a cost/limit from lesson evidence.
-- **Bridge to Uruk:** denser farming settlements create coordination problems that cities later organize at a larger institutional scale.
+- **Misconceptions:** a sudden global revolution; farming as pure progress or pure decline; surplus automatically creates rulers; roof access was merely picturesque; similar houses prove perfect equality.
+- **Indispensable vocabulary:** cultivation, settlement, household, storage, surplus, tradeoff, reconstruction.
+- **Evidence encounter:** spatial comparison of interior storage bins/plant remains with entrance-area displays and feasting evidence.
+- **Historical-thinking move:** move from observation to a proportionate interpretation, then name what the same evidence cannot prove.
+- **Required sincere-attempt evidence:** one supported selection about the house pattern; one concise explanation connecting a concrete advantage to a cost or social choice.
+- **Bridge forward:** later lessons can ask how other communities chose mobility and how city-scale institutions coordinated beyond households; neither outcome is presented as inevitable.
 
 ## Ages 11–14 design pass
 
-- Start with a concrete human problem: how do you feed a neighborhood that stays put?
+- Start with a concrete sensory-spatial puzzle: a child reaches a neighbor by crossing roofs, then climbs down into a house where food is stored out of public view.
 - Give time/place early: Southwest Asia before 3500 BCE; Çatalhöyük in central Anatolia around 7000 BCE.
 - Define *surplus* as stored food that can be kept and used later, not as “extra money.”
 - Keep health content proportionate: crowding and disease exposure, harder routine labor, dental/dietary stress—no gore, no burial imagery, no “people were miserable and dumb for farming.”
-- Avoid exoticizing “strange roof cities”; compare to apartment living only with an explicit limit (different materials, beliefs, and technologies).
+- Explain roof movement as a practical consequence of wall-to-wall building, not an exotic “roof city” gimmick.
 - Use “some historians say / the evidence shows / we still debate” for tower purpose and equality claims.
-- Read-aloud target: short paragraphs; one job per section; roughly six to seven semantic sections.
+- Keep the evidence distinction visible in ordinary language: “The bin survives; the exact household conversation does not.”
+- Read-aloud target: short paragraphs; one job per section; seven semantic sections with varied prose, map, evidence, and prompt rhythms rather than repeated fact grids.
 
 ## Section/component storyboard
 
 | Order | Section ID / heading | Learner purpose | Claims/sources | Module | Media/action | Transition |
 | --- | --- | --- | --- | --- | --- | --- |
-| 1 | `section.farming.opening-question` / What happens when a community stays put? | Enter through food, work, and permanence | case-not-global | Prose + masthead | Optional landscape/settlement hero reconstruction | Meet gradual change |
-| 2 | `section.farming.gradual-change` / Farming was a process, not a switch | See uneven uptake | gradual-uptake / Baird | Knowledge | Compare Boncuklu low-level cultivation vs Pınarbaşı without crops | Ask what denser living looked like |
-| 3 | `section.farming.dense-settlement` / A neighborhood without streets | Understand Çatalhöyük settlement form | settlement-density, mixed-farming / UNESCO, CRP | Knowledge + historical-map or diagram | Locate central Anatolia; no origin-of-farming arrows | Ask where food went |
-| 4 | `section.farming.storage-evidence` / Private pantries, shared feasts | Evidence encounter on surplus | private-storage, shared-feasting / Bogaard | Evidence (+ optional scene hotspots on house diagram) | Observe bin location vs entrance displays | Ask what denser life cost |
-| 5 | `section.farming.tradeoffs` / Opportunities and costs | Hold progress and harm together | tradeoffs, no-palace-equality / Larsen, Milner, Bogaard | Knowledge | Opportunity/cost pairs; no burial images | Distinguish from cities |
-| 6 | `section.farming.not-yet-city` / Settled is not the same as city | Prepare Uruk without collapsing scales | not-a-city | Prose/knowledge | Contrast household settlement vs city-scale coordination | World Check |
-| 7 | `section.farming.check-and-complete` / World Check | Sincere attempt + explicit completion | all core claims | Prompt ×2 | No new media | Journey continue |
+| 1 | `section.farming.enter-from-roof` / Enter from the roof | Begin inside one plausible movement through the settlement, then label it as reconstruction | settlement-density / UNESCO, CRP | Prose beneath masthead | New wide rooftop hero; learner locates roof openings, adjoining homes, and the surrounding plain | Ask why people stayed |
+| 2 | `section.farming.slow-change` / No single day changed everything | Establish gradual, uneven cultivation without turning the lesson into a regional survey | gradual-uptake, case-not-global / Baird | Prose + compact comparison knowledge block | Boncuklu / Pınarbaşı / later Çatalhöyük comparison | Move from choices over food to a new settlement form |
+| 3 | `section.farming.wall-to-wall` / A neighborhood built wall to wall | Understand place, density, rebuilding, and roof movement | location, settlement-density, mixed-farming / UNESCO, CRP, Baird | Historical map + prose | Redesigned locator map; no migration or origin arrows | Enter one house |
+| 4 | `section.farming.read-the-house` / Read the house | Close-read excavated spatial evidence before receiving the interpretation | private-storage, shared-feasting / Bogaard, CRP | Evidence + scene hotspots | New cutaway/plan with native hotspots for roof opening, main room, side-room bins, entrance-area display | Compare private and shared spaces |
+| 5 | `section.farming.private-and-shared` / What stayed private? What was shared? | Build the bounded interpretation and name its limits | private-storage, shared-feasting, no-palace-equality / Bogaard | Prose + small evidence/limit knowledge block | No duplicate image; refer back to observed pattern | Ask what permanence demanded |
+| 6 | `section.farming.bargain-of-staying` / The bargain of staying | Hold food security, durable homes, labor, crowding, health, and household-scale coordination together | tradeoffs, not-a-city / Larsen, Milner, Bogaard | Prose + concise two-sided knowledge block | No remains imagery; close with non-inevitable bridge to mobility and cities | Use evidence in World Check |
+| 7 | `section.farming.check-and-complete` / World Check | Sincere attempt + explicit completion | core claims | Prompt ×2 | Evidence interpretation, then advantage/cost explanation | Continue World History |
 
-Flow exception: seven sections (within the normal five-to-eight band) because the village-vs-city bridge is a distinct instructional job before Uruk.
+Seven sections remain within the normal band. The earlier standalone “not yet a city” section is removed because it made Uruk the destination of the lesson. The distinction now appears briefly inside the final synthesis, where it prevents conflation without making settled farming feel like a waiting room for cities.
 
 ## Media and Knowledge Card plan
 
@@ -170,11 +173,39 @@ Flow exception: seven sections (within the normal five-to-eight band) because th
 
 | Asset | Teaching purpose | Form | Depiction | Placement | Rights/provenance | Decision |
 | --- | --- | --- | --- | --- | --- | --- |
-| Hero settlement atmosphere | Orient place/time without faces | Chronos-original evidence-based reconstruction of dense rooftop neighborhood OR Konya-plain landscape with distant mound | Reconstruction | Masthead | Must be Chronos-original or redistribution-cleared; CRP John Swogger/Killackey art is interpretive and often NC-licensed → do not scrape | Preferred after approval; no close faces; no burial scenes |
-| Southwest Asia locator map | Place Çatalhöyük without “sole cradle” arrows | Historical map | Map | Dense-settlement section | Follow historical-map runbook; Natural Earth base; site coordinates from UNESCO | **Implemented** (`media.farming.catalhoyuk-locator-map`) |
-| House-plan / storage diagram | Make private pantry vs entrance display readable | Diagram or evidence-based reconstruction with 2–4 hotspots | Diagram / reconstruction | Storage evidence | Chronos-original from published plans; label inferred furnishings | Recommended core visual for evidence encounter |
+| Rooftop settlement hero | Make wall-to-wall density and roof movement immediately intelligible | Chronos-original wide evidence-based reconstruction, viewed from roof height across adjoining mudbrick homes toward the Konya plain | Evidence-based reconstruction | Masthead + opening observation | New visual brief from UNESCO/CRP architecture and excavation synthesis; no copying protected excavation art | **Recommended core**; replaces the current diagram hero |
+| Çatalhöyük locator map | Place the inland Konya-plain case without “sole cradle” arrows | Chronos-original editorial historical map | Map | Wall-to-wall section | Revise under historical-map runbook; UNESCO coordinates + CRP cross-check + Natural Earth orientation | **Recommended supporting**; replace the current schematic map |
+| House and storage evidence view | Make the spatial evidence—interior bins versus entrance-area display—readable | Chronos-original axonometric cutaway/plan with 3–4 native hotspots | Evidence-led diagram / reconstruction | Read-the-house section only | Based on published plans and spatial analysis; supported, inferred, and omitted details listed in brief | **Required core evidence visual**; replace the current block SVG |
+| Çatalhöyük card artwork | Give the Place card a durable image distinct from a lesson diagram | Vertical evidence-based reconstruction emphasizing the roof-connected settlement as a place | Evidence-based reconstruction | Completion reveal and Collection | Same reviewed architecture basis; separate 4:5 composition and lineage | **Recommended card deliverable**; no diagram reuse |
 | Excavation photographs | Tempting but often NC-licensed; burial photos inappropriate | Evidence photo | Evidence | Only if redistribution-cleared non-burial image exists | Default: defer/reject for MVP | Reject for checkpoint unless rights clear |
 | Video | Not required | — | — | — | — | Rejected |
+
+### Revision 2 visual briefs
+
+**Hero — roof-connected neighborhood**
+
+- Required: densely adjoining rectilinear mudbrick houses; varied roof levels; roof openings and ladders; restrained household activity; dry Konya-plain setting; plausible plaster, reed, timber, basket, and clay materials.
+- Avoid: a giant temple or palace, paved streets between houses, domes, crenellated fantasy walls, wheeled carts, metal tools on display, modern crops, a dramatic crowd spectacle, close identifiable faces, burials, text, labels, borders, or UI.
+- Uncertainty: exact people, roof furnishings, colors, weather, and any one captured moment are reconstructed and must remain generalized.
+- Composition: wide 2.85:1-safe master with a strong roof-path foreground and enough edge safety for responsive 16:9 mobile cropping.
+
+**House evidence view — one house, legible relationships**
+
+- Required: main room, roof opening/ladder, hearth/oven and platforms, side room with storage bins, entrance-area animal-display treatment, adjoining wall/roof context.
+- Distinguish: excavated spatial relationship and bins (supported); exact perishables, colors, and moment of use (reconstructed); exact household identity and ritual meaning (unknown).
+- Native UI—not raster text—carries hotspot labels, explanation, certainty, caption, and provenance.
+- Composition: landscape axonometric/cutaway with uncluttered shapes and museum-diagram material detail, not a floor-plan made from plain rectangles.
+
+**Locator map — central Anatolia in Southwest Asian context**
+
+- Keep exact learner labels limited to `Çatalhöyük`, `Konya Plain`, `Anatolian Plateau`, `Mediterranean Sea`, and `Black Sea`.
+- Preserve UNESCO site coordinates and independent cross-checks; show modern coasts only as orientation, never as a Neolithic shoreline reconstruction.
+- Improve landform silhouette, geographic hierarchy, label placement, and phone-size legibility; no modern borders, origin arrows, invented rivers, decorative compass, or generated legend.
+
+**Card — Çatalhöyük as a remembered place**
+
+- Vertical 4:5 view across roof-connected homes with one clear roof opening and the plain beyond; the settlement, not an invented hero person, is the subject.
+- No baked-in title, class, date, frame, or educational text. Application UI supplies all card typography and depiction labeling.
 
 ### Knowledge Card
 
@@ -188,16 +219,16 @@ Flow exception: seven sections (within the normal five-to-eight band) because th
 
 ## Understanding-check plan
 
-1. **Supported selection — `prompt.farming.best-supported-model`**
-   - Question: Which statement best fits the Southwest Asian evidence in this lesson?
-   - Supported option: Cultivation and denser settlement developed gradually; stored food could support larger communities, but crowding, labor, and social tension show real tradeoffs—and these settlements were not yet cities like Uruk.
-   - Distractors: farming appeared in one sudden upgrade with only benefits; surplus automatically created kings and writing; Çatalhöyük proves farming began only in Anatolia for all humans.
-   - Feedback separates case scope, gradual change, and village-vs-city.
+1. **Evidence interpretation — `prompt.farming.house-pattern`**
+   - Question: Storage bins and plant remains were concentrated inside side rooms, while entrance areas held animal displays and evidence linked to feasting. Which conclusion is best supported?
+   - Supported option: Households kept some food in private interior stores while some activities brought people together near more visible spaces.
+   - Distractors overclaim that every household was equal, that a king controlled all grain, or that the diagram records one exact feast.
+   - Feedback names what is observed, what is interpreted, and what the pattern cannot prove.
 
 2. **Concise explanation — `prompt.farming.opportunity-and-cost`**
-   - Question: Using one piece of settlement or storage evidence, name one opportunity denser farming life created and one cost or limit it brought.
+   - Question: How could staying in one dense settlement create both an advantage and a problem? Use one detail from the houses, stored food, work, or health evidence.
    - Sincere attempt required; perfection not required.
-   - Feedback accepts opportunities such as stored food, staying put, larger community support; costs/limits such as hard labor, crowding/disease exposure, social tension around private stores, or uncertainty about equality.
+   - Feedback accepts advantages such as food kept for later, durable homes, or supporting more neighbors; problems such as repetitive labor, crowding/disease exposure, tension around private stores, or the difficulty of coordinating wall-to-wall households.
 
 ## Journey framing
 
@@ -220,16 +251,18 @@ Flow exception: seven sections (within the normal five-to-eight band) because th
 
 ## Research/editorial checkpoint (decision packet)
 
-Recommended decisions for product-owner approval:
+### Revision 2 decision packet — awaiting product-owner approval
 
-1. Retain **Farming and Settlements** as the learner title; lead with Southwest Asia case scope so Many Beginnings is not silently skipped.
-2. Approve the durable understanding: gradual cultivation + denser settlement + storage tradeoffs + not-yet-city.
-3. Approve **Çatalhöyük household storage/house layout** as the central evidence encounter (Bogaard private pantries / celebrated surplus).
-4. Approve Boncuklu/Pınarbaşı as the short gradual-uptake comparison; keep Jericho as optional brief communal-labor comparison only.
-5. Approve media plan: Chronos-original house/storage diagram (required), source-verified locator map (recommended → **implemented**), optional cinematic settlement reconstruction hero with no faces; reject burial imagery and default excavation-photo scrape because of NC/rights risk.
-6. Approve one Foundation Place card: **Çatalhöyük**.
-7. Approve two required sincere-attempt prompts: supported model selection; opportunity-and-cost explanation.
-8. Keep production content, final media, migrations, and publication paused until this packet is approved; coordinate merge timing with ASH-69 to avoid journey/migration conflicts.
+1. **Title and focus:** retain **Farming and Settlements**, but organize the learner experience around the question **“How did storing food change life inside a community that stayed in one place?”**
+2. **Durable understanding:** approve the revised one-sentence memory target: farming and storage sustained a dense neighborhood while permanence brought labor, crowding, and choices over private/shared resources.
+3. **Narrative flow:** approve the seven-section sequence from rooftop entry → gradual change → wall-to-wall place → house evidence → bounded interpretation → bargain of staying → World Check. The lesson no longer culminates in “not yet a city.”
+4. **Evidence encounter:** retain the Bogaard private-pantry/shared-feasting research, but require the learner to distinguish excavated spatial observations, the diagram’s reconstruction, and bounded social interpretation.
+5. **Visual package:** approve four replacement deliverables after this gate: wide rooftop hero, redesigned locator map, evidence-led house cutaway/plan, and distinct vertical card artwork. Reject the current block SVGs and do not reuse one asset across all roles.
+6. **Knowledge Card:** retain one Foundation Place card, **Çatalhöyük**, with dedicated vertical settlement artwork and deterministic unlock on explicit completion.
+7. **Understanding checks:** replace the broad summary multiple choice with a house-pattern evidence interpretation; retain a rewritten opportunity-and-cost explanation. Both require sincere attempt, not perfection.
+8. **Deferred/rejected:** global farming origins, Jericho tower, pastoral mobility, goddess claims, human-remains imagery, excavation-photo scraping, and video remain outside this lesson.
+
+Production prose, final generation/acquisition, media ingestion, corrective publication migration, and hosted changes remain paused until this revision is approved.
 
 ## Sign-off status
 
@@ -247,6 +280,6 @@ Recommended decisions for product-owner approval:
 - [x] Journey framing
 - [ ] Human historical/editorial review
 - [ ] Bioarchaeology wording review (health tradeoffs)
-- [x] Product-owner approval of checkpoint
-- [x] Production content, final media, migrations, tests, and preview
+- [ ] Product-owner approval of Revision 2 checkpoint
+- [ ] Revision 2 production content, final media, corrective migration, tests, and preview
 - [ ] Structured learner walkthrough or documented reason deferred
