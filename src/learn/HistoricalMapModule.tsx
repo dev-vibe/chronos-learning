@@ -66,7 +66,12 @@ export function HistoricalMapModule({ module, media, sources }: HistoricalMapMod
         </dl>
         <section><h4>Coordinate-verified city locations</h4><p>{module.coordinateNote}</p></section>
         <section><h4>Approximate ancient landscape</h4><p>{module.uncertaintyNote}</p></section>
-        <section className="historical-map__sources"><h4>Geographic references</h4><ul>{sources.map((source) => <li key={source.id}><a href={source.url} target="_blank" rel="noreferrer">{source.title}</a><span>{source.publisher}</span></li>)}</ul></section>
+        <section className="historical-map__sources"><h4>Geographic references</h4><ul>{sources.map((source) => {
+          const label = source.title === source.publisher || source.title.includes(source.publisher)
+            ? source.title
+            : `${source.publisher} — ${source.title}`;
+          return <li key={source.id}><a href={source.url} target="_blank" rel="noreferrer">{label}</a></li>;
+        })}</ul></section>
       </div>
     </dialog>
   </figure>;
