@@ -79,15 +79,21 @@ Coordinates guide relative inland placement. They do not make mountain ranges, r
 
 ## Generated artwork lineage
 
-- Generation tool: Chronos-authored SVG locator (vector), rasterized with sharp for runtime delivery.
-- Model or version: n/a (hand-authored SVG, not generative fill-in of geography).
-- Generation date: 2026-07-21.
-- Geographic reference inputs: UNESCO coordinates; Natural Earth-informed Anatolia outline simplified for teaching clarity.
-- Style references: Chronos historical-map palette (warm parchment, restrained ochre/mineral blue) matching Uruk map character without copying its composition.
-- Final master path: `tmp/catalhoyuk-locator-map.svg` → `public/images/maps/catalhoyuk-locator-map.webp`
+- Generation tool: reproducible Chronos-authored vector script, `scripts/media/generate-catalhoyuk-map.mjs`, rasterized with Sharp 0.35.3 for runtime delivery.
+- Model or version: n/a (deterministic vector composition, not generated geography).
+- Generation date: 2026-07-21; Revision 2 visual correction on the same date.
+- Geographic reference inputs: UNESCO coordinates; Natural Earth 1:50m public-domain land GeoJSON fetched by the script; Çatalhöyük Research Project regional cross-check.
+- Style references: Chronos historical-map palette (warm parchment, restrained ochre/mineral blue) matching the design system without copying a protected map composition.
+- Reproducible vector output: `tmp/catalhoyuk-locator-map-v2.svg` (ignored build artifact generated from the committed script).
+- Accepted media source: `public/images/maps/catalhoyuk-locator-map.webp`.
 - Optimized runtime path: `/images/optimized/farming/catalhoyuk-locator-map.optimized.webp` via media pipeline.
 - Required labels and exact spelling: Çatalhöyük; Konya Plain; Anatolian Plateau; Mediterranean Sea; Black Sea.
-- Rejected drafts and reasons: generative image attempts for other farming assets previously timed out (504); SVG chosen for geographic control and label accuracy.
+- Accepted source dimensions/checksum: 1732×980; 67,976 bytes; SHA-256 `a1ae0b2e4bd6aee114ae6a14ed537a67c80d8d201095066edfd11e94d9c24a79` before the ql-v1 media build.
+- Rejected first-preview map: generic blob geometry and weak label hierarchy did not meet the authoritative-reference or phone-legibility standard.
+
+### Revision 2 visual correction
+
+Revision 2 replaces the hand-shaped Anatolia blob with land geometry projected from Natural Earth 1:50m data. The script places Çatalhöyük from UNESCO coordinates, uses restrained schematic plateau/plain washes only as orientation, and draws no modern political borders, origin arrows, invented rivers, roads, or settlements. Manual review confirmed the five allowed labels, inland site placement, sea relationships, and complete-frame visibility. The map remains a locator, not a Neolithic shoreline or river-channel reconstruction.
 
 ## Learner-facing wording
 

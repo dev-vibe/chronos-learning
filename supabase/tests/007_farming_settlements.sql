@@ -24,7 +24,7 @@ select throws_ok(
 );
 
 insert into public.understanding_prompt_attempts(learner_id,lesson_id,prompt_id,response) values
- (auth.uid(),'lesson.farming.settlements','prompt.farming.best-supported-model','{}'),
+ (auth.uid(),'lesson.farming.settlements','prompt.farming.house-pattern','{}'),
  (auth.uid(),'lesson.farming.settlements','prompt.farming.opportunity-and-cost','{}');
 
 select is((public.complete_lesson_and_acquire_card('lesson.farming.settlements','farming-complete-once')->>'completion'), 'newly-completed', 'farming completes explicitly');

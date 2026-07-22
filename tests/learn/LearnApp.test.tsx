@@ -48,6 +48,9 @@ describe('Learn route and interactions', () => {
     gateway.loadJourneySummaries = vi.fn(async (lessonIds: readonly string[]) => Object.fromEntries(lessonIds.map((lessonId) => [lessonId, { lessonId, status: 'in-progress' as const }])));
     render(<LearnApp lessonId="lesson.farming.settlements" gatewayFactory={async () => gateway} />);
     expect(await screen.findByRole('heading', { name: 'Farming and Settlements' })).toBeTruthy();
+    expect(screen.getByRole('heading', { name: 'Enter from the roof' })).toBeTruthy();
+    expect(screen.getByRole('img', { name: /reconstruction looking across adjoining mudbrick rooftops/i })).toBeTruthy();
+    expect(screen.getByText('Follow the evidence from roof to pantry')).toBeTruthy();
     expect(screen.queryByText('This archive entry is not available.')).toBeNull();
   });
   it('opens draft lessons when VITE_UNLOCK_PREVIEW_LESSONS is enabled', async () => {

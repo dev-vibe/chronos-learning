@@ -2,15 +2,23 @@
   "schemaVersion": 1,
   "assets": [
     {
+      "id": "media.farming.catalhoyuk-rooftops",
+      "collection": "farming",
+      "sourcePath": "public/images/places/catalhoyuk-rooftops.webp",
+      "fallbackPath": "/images/optimized/farming/catalhoyuk-rooftops.optimized.webp",
+      "preset": "picture",
+      "widths": [
+        480
+      ]
+    },
+    {
       "id": "media.farming.catalhoyuk-house-diagram",
       "collection": "farming",
       "sourcePath": "public/images/places/catalhoyuk-house-diagram.webp",
       "fallbackPath": "/images/optimized/farming/catalhoyuk-house-diagram.optimized.webp",
       "preset": "drawing",
       "widths": [
-        480,
-        960,
-        1600
+        480
       ]
     },
     {
@@ -20,9 +28,17 @@
       "fallbackPath": "/images/optimized/farming/catalhoyuk-locator-map.optimized.webp",
       "preset": "drawing",
       "widths": [
-        480,
-        960,
-        1600
+        480
+      ]
+    },
+    {
+      "id": "media.farming.catalhoyuk-card",
+      "collection": "farming",
+      "sourcePath": "public/images/places/catalhoyuk-card.webp",
+      "fallbackPath": "/images/optimized/farming/catalhoyuk-card.optimized.webp",
+      "preset": "picture",
+      "widths": [
+        480
       ]
     },
     {

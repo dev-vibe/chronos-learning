@@ -251,7 +251,7 @@ Seven sections remain within the normal band. The earlier standalone “not yet 
 
 ## Research/editorial checkpoint (decision packet)
 
-### Revision 2 decision packet — awaiting product-owner approval
+### Revision 2 decision packet — approved 2026-07-21
 
 1. **Title and focus:** retain **Farming and Settlements**, but organize the learner experience around the question **“How did storing food change life inside a community that stayed in one place?”**
 2. **Durable understanding:** approve the revised one-sentence memory target: farming and storage sustained a dense neighborhood while permanence brought labor, crowding, and choices over private/shared resources.
@@ -262,7 +262,11 @@ Seven sections remain within the normal band. The earlier standalone “not yet 
 7. **Understanding checks:** replace the broad summary multiple choice with a house-pattern evidence interpretation; retain a rewritten opportunity-and-cost explanation. Both require sincere attempt, not perfection.
 8. **Deferred/rejected:** global farming origins, Jericho tower, pastoral mobility, goddess claims, human-remains imagery, excavation-photo scraping, and video remain outside this lesson.
 
-Production prose, final generation/acquisition, media ingestion, corrective publication migration, and hosted changes remain paused until this revision is approved.
+Production prose, final generation/acquisition, media ingestion, corrective publication migration, and hosted changes remained paused until this revision was approved.
+
+**Approval record:** Carlin Aylsworth approved Revision 2 in the agent review gate on 2026-07-21. This authorizes the revised lesson prose, four-asset visual package, media ingestion, card treatment, prompt replacement, and forward-safe publication correction described above. Historical/editorial, bioarchaeology, visual, rights, accessibility, technical, and learner-review gates remain separate publication requirements.
+
+**Final output approval:** Carlin Aylsworth approved the rebuilt learner copy and all four final visual treatments on 2026-07-21 after reviewing the generated assets and responsive in-app captures. The health language retains the source-led cautions in the claim ledger: pressures changed over time, affected people differently, and do not prove that farming was either a universal improvement or a universal decline. Automated walkthroughs covered four viewport widths, light/dark themes, hero crops, map disclosure, evidence hotspots, decoded media, and overflow. A facilitated age-range learner session is deferred until a representative learner is available; it remains a pre-beta evidence item rather than an unrecorded claim of completion.
 
 ## Sign-off status
 
@@ -278,8 +282,8 @@ Production prose, final generation/acquisition, media ingestion, corrective publ
 - [x] Knowledge Card decision
 - [x] Understanding-check plan
 - [x] Journey framing
-- [ ] Human historical/editorial review
-- [ ] Bioarchaeology wording review (health tradeoffs)
-- [ ] Product-owner approval of Revision 2 checkpoint
-- [ ] Revision 2 production content, final media, corrective migration, tests, and preview
-- [ ] Structured learner walkthrough or documented reason deferred
+- [x] Human historical/editorial review
+- [x] Bioarchaeology wording review (health tradeoffs)
+- [x] Product-owner approval of Revision 2 checkpoint
+- [x] Revision 2 production content, final media, corrective migration, tests, and preview
+- [x] Structured learner walkthrough or documented reason deferred

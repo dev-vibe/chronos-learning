@@ -18,7 +18,7 @@ it('validates the typed Farming locator map and generated raster asset', () => {
   if (module.type !== 'historical-map') throw new Error('farming historical map missing');
   expect(module.id).toBe('module.farming.catalhoyuk-locator-map');
   expect(module.mediaId).toBe('media.farming.catalhoyuk-locator-map');
-  expect(module.compactLabel).toMatch(/illustrative map/i);
+  expect(module.compactLabel).toMatch(/site coordinate verified/i);
   expect(module.coordinateNote).toMatch(/UNESCO World Heritage coordinates/i);
   expect(module.uncertaintyNote).toMatch(/Neolithic shorelines|coastlines/i);
 });
@@ -44,7 +44,17 @@ it('publishes the three reviewed World History lessons in journey order', () => 
   ]);
   expect(chronosContent.lessons.find((lesson) => lesson.id === 'lesson.farming.settlements')).toMatchObject({
     status: 'published',
-    promptIds: ['prompt.farming.best-supported-model', 'prompt.farming.opportunity-and-cost'],
+    heroMediaId: 'media.farming.catalhoyuk-rooftops',
+    promptIds: ['prompt.farming.house-pattern', 'prompt.farming.opportunity-and-cost'],
+    sectionIdsRequired: [
+      'section.farming.enter-from-roof',
+      'section.farming.slow-change',
+      'section.farming.wall-to-wall',
+      'section.farming.read-the-house',
+      'section.farming.private-and-shared',
+      'section.farming.bargain-of-staying',
+      'section.farming.check-and-complete',
+    ],
   });
 });
 
