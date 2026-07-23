@@ -1,11 +1,73 @@
 import { chromium } from 'playwright';
-import { mkdir } from 'node:fs/promises';
+import { mkdir, readFile, writeFile } from 'node:fs/promises';
+import { extname, join, resolve } from 'node:path';
 
+const bundleDirectory = process.env.VISUAL_BUNDLE_DIR;
 const base = process.env.VISUAL_BASE_URL ?? 'http://127.0.0.1:3001';
 const output = 'docs/pr/design-audit-refinements';
 await mkdir(output, { recursive: true });
-const browser = await chromium.launch({ headless: true });
+const browser = await chromium.launch({
+  headless: true,
+  executablePath: process.env.PLAYWRIGHT_EXECUTABLE_PATH,
+});
 const errors = [];
+const capture = async (page, path) => writeFile(path, await page.screenshot({ fullPage: false }));
+let bundledApp;
+if (bundleDirectory) {
+  const bundleRoot = resolve(bundleDirectory);
+  const index = await readFile(join(bundleRoot, 'index.html'), 'utf8');
+  const scriptPath = index.match(/src="\/(assets\/[^"]+\.js)"/)?.[1];
+  const stylePath = index.match(/href="\/(assets\/[^"]+\.css)"/)?.[1];
+  if (!scriptPath || !stylePath) throw new Error('Could not resolve the built app assets.');
+  const [rawScript, rawStyle] = await Promise.all([
+    readFile(join(bundleRoot, scriptPath), 'utf8'),
+    readFile(join(bundleRoot, stylePath), 'utf8'),
+  ]);
+  bundledApp = {
+    root: bundleRoot,
+    script: rawScript,
+    style: rawStyle,
+  };
+}
+
+const contentTypes = {
+  '.css': 'text/css',
+  '.html': 'text/html',
+  '.js': 'text/javascript',
+  '.png': 'image/png',
+  '.svg': 'image/svg+xml',
+  '.webp': 'image/webp',
+  '.woff': 'font/woff',
+  '.woff2': 'font/woff2',
+};
+
+async function serveBundle(context) {
+  if (!bundledApp) return;
+  const appHtml = `<!doctype html><html><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1"><style>${bundledApp.style}</style></head><body><div id="root"></div><script type="module">${bundledApp.script}</script></body></html>`;
+  await context.route('http://chronos.local/**', async (route) => {
+    const url = new URL(route.request().url());
+    if (!url.pathname.startsWith('/assets/') && !url.pathname.startsWith('/images/')) {
+      await route.fulfill({ body: appHtml, contentType: 'text/html', status: 200 });
+      return;
+    }
+    const requestedPath = join(bundledApp.root, decodeURIComponent(url.pathname).replace(/^\/+/, ''));
+    try {
+      await route.fulfill({
+        body: await readFile(requestedPath),
+        contentType: contentTypes[extname(requestedPath)] ?? 'application/octet-stream',
+        status: 200,
+      });
+    } catch {
+      await route.fulfill({ body: 'Not found', contentType: 'text/plain', status: 404 });
+    }
+  });
+}
+
+async function openPage(page, destination) {
+  await page.goto(`${bundledApp ? 'http://chronos.local' : base}${destination}`, {
+    waitUntil: bundledApp ? 'load' : 'networkidle',
+  });
+}
 
 function monitor(page, label) {
   page.on('pageerror', (error) => errors.push(`${label} page error: ${error.message}`));
@@ -48,7 +110,7 @@ async function assertDocumentScroll(page, label) {
 }
 
 async function verifyHome(page, width, height) {
-  await page.goto(`${base}/home`, { waitUntil: 'networkidle' });
+  await openPage(page, '/home');
   await page.getByRole('heading', { name: 'Welcome back.' }).waitFor();
   await page.getByText(/Continue.*World Spine/).waitFor();
   if (await page.getByRole('link', { name: 'Learn', exact: true }).count()) throw new Error('Home still exposes Learn as a global destination.');
@@ -59,7 +121,7 @@ async function verifyHome(page, width, height) {
 }
 
 async function verifyLibrary(page, width, height) {
-  await page.goto(`${base}/library`, { waitUntil: 'networkidle' });
+  await openPage(page, '/library');
   await page.getByRole('heading', { name: 'Explore history.' }).waitFor();
   await page.getByText('185 lesson roadmap').waitFor();
   await page.getByText('12 chapters').waitFor();
@@ -68,7 +130,7 @@ async function verifyLibrary(page, width, height) {
 }
 
 async function verifyWorldSpine(page, width, height) {
-  await page.goto(`${base}/library/journey.world-history`, { waitUntil: 'networkidle' });
+  await openPage(page, '/library/journey.world-history');
   await page.getByRole('heading', { name: 'The World Spine' }).waitFor();
   if (await page.locator('.world-spine-chapters li').count() !== 185) throw new Error('World History detail did not render all 185 roadmap nodes.');
   if (await page.locator('.world-spine-chapters .preparing').count() < 1) throw new Error('World History detail lost in-preparation states.');
@@ -81,7 +143,7 @@ async function verifyWorldSpine(page, width, height) {
 }
 
 async function verifySearch(page, width, height) {
-  await page.goto(`${base}/search?q=uruk`, { waitUntil: 'networkidle' });
+  await openPage(page, '/search?q=uruk');
   const input = page.getByRole('searchbox', { name: 'Search published Chronos content' });
   await input.waitFor();
   await page.locator('#search-result-0').waitFor();
@@ -95,7 +157,7 @@ async function verifySearch(page, width, height) {
   await assertLayout(page, `Search ${width}x${height} light`);
 }
 async function verifyLearn(page, width, height) {
-  await page.goto(`${base}/learn/lesson.uruk.first-city`, { waitUntil: 'networkidle' });
+  await openPage(page, '/learn/lesson.uruk.first-city');
   await page.getByRole('heading', { name: 'Uruk: Life in an Early City', exact: true }).waitFor();
   const visibleNodes = await page.locator('.spine-node').count();
   if (visibleNodes < 4 || visibleNodes >= 185) throw new Error(`Learn rail was not condensed: rendered ${visibleNodes} World Spine nodes.`);
@@ -112,7 +174,7 @@ async function verifyLearn(page, width, height) {
 }
 
 async function verifyLockedLesson(page, width, height) {
-  await page.goto(`${base}/learn/lesson.writing.early-systems`, { waitUntil: 'networkidle' });
+  await openPage(page, '/learn/lesson.writing.early-systems');
   await page.getByRole('heading', { name: 'This lesson is still locked.' }).waitFor();
   await page.getByText(/Complete Uruk: Life in an Early City before continuing/).waitFor();
   const navSelector = width <= 900 ? '.mobile-nav a' : '.global-rail nav a';
@@ -121,21 +183,33 @@ async function verifyLockedLesson(page, width, height) {
   await assertLayout(page, `Locked lesson ${width}x${height}`);
 }
 
-for (const [width, height] of [[1440, 900], [1024, 768], [390, 844], [360, 800]]) {
+const requestedViewport = process.env.VISUAL_VIEWPORT?.split('x').map(Number);
+const viewports = requestedViewport?.length === 2 && requestedViewport.every(Number.isFinite)
+  ? [requestedViewport]
+  : [[1440, 900], [1024, 768], [390, 844], [360, 800]];
+
+for (const [width, height] of viewports) {
+  console.log(`Verifying Chronos at ${width}x${height}…`);
   const context = await browser.newContext({ viewport: { width, height }, colorScheme: 'light' });
+  await serveBundle(context);
   const page = await context.newPage();
   monitor(page, `${width}x${height}`);
 
   await verifyHome(page, width, height);
-  if (width === 1440 || width === 390) await page.screenshot({ path: `${output}/home-${width}x${height}-light.png`, fullPage: false });
+  console.log(`  Home passed at ${width}x${height}.`);
+  if (width === 1440 || width === 390) await capture(page, `${output}/home-${width}x${height}-light.png`);
   await verifyLibrary(page, width, height);
-  if (width === 1440 || width === 390) await page.screenshot({ path: `${output}/library-${width}x${height}-light.png`, fullPage: false });
+  console.log(`  Library passed at ${width}x${height}.`);
+  if (width === 1440 || width === 390) await capture(page, `${output}/library-${width}x${height}-light.png`);
   await verifyWorldSpine(page, width, height);
-  if (width === 1440 || width === 390) await page.screenshot({ path: `${output}/world-spine-${width}x${height}-light.png`, fullPage: false });
+  console.log(`  World Spine passed at ${width}x${height}.`);
+  if (width === 1440 || width === 390) await capture(page, `${output}/world-spine-${width}x${height}-light.png`);
   await verifySearch(page, width, height);
-  if (width === 1440 || width === 390) await page.screenshot({ path: `${output}/search-${width}x${height}-light.png`, fullPage: false });
+  console.log(`  Search passed at ${width}x${height}.`);
+  if (width === 1440 || width === 390) await capture(page, `${output}/search-${width}x${height}-light.png`);
   await verifyLearn(page, width, height);
-  if (width === 1440 || width === 390) await page.screenshot({ path: `${output}/learn-spine-${width}x${height}-light.png`, fullPage: false });
+  console.log(`  Learn passed at ${width}x${height}.`);
+  if (width === 1440 || width === 390) await capture(page, `${output}/learn-spine-${width}x${height}-light.png`);
 
   const themeButton = page.getByRole('button', { name: 'Use dark theme' }).first();
   if (await themeButton.isVisible()) await themeButton.click();
@@ -148,12 +222,14 @@ for (const [width, height] of [[1440, 900], [1024, 768], [390, 844], [360, 800]]
   }
   await page.waitForTimeout(150);
   await assertLayout(page, `Learn ${width}x${height} dark`);
-  if (width === 1440 || width === 390) await page.screenshot({ path: `${output}/learn-spine-${width}x${height}-dark.png`, fullPage: false });
+  if (width === 1440 || width === 390) await capture(page, `${output}/learn-spine-${width}x${height}-dark.png`);
 
   await verifyLockedLesson(page, width, height);
-  if (width === 1440 || width === 390) await page.screenshot({ path: `${output}/locked-${width}x${height}-dark.png`, fullPage: false });
+  console.log(`  Locked lesson passed at ${width}x${height}.`);
+  if (width === 1440 || width === 390) await capture(page, `${output}/locked-${width}x${height}-dark.png`);
 
   await context.close();
+  console.log(`Verified Chronos at ${width}x${height}.`);
 }
 
 const gate = await browser.newContext({ viewport: { width: 1024, height: 768 }, colorScheme: 'light' });
