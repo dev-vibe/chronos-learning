@@ -2,7 +2,7 @@ import { chromium } from 'playwright';
 import { mkdir } from 'node:fs/promises';
 
 const base = process.env.VISUAL_BASE_URL ?? 'http://127.0.0.1:3001';
-const output = 'docs/pr/ash-55';
+const output = 'docs/pr/design-audit-refinements';
 await mkdir(output, { recursive: true });
 const browser = await chromium.launch({ headless: true });
 const errors = [];
@@ -97,15 +97,28 @@ async function verifySearch(page, width, height) {
 async function verifyLearn(page, width, height) {
   await page.goto(`${base}/learn/lesson.uruk.first-city`, { waitUntil: 'networkidle' });
   await page.getByRole('heading', { name: 'Uruk: Life in an Early City', exact: true }).waitFor();
-  if (await page.locator('.spine-node').count() !== 185) throw new Error('Learn drawer did not render the full World Spine.');
-  if (width <= 900) {
+  const visibleNodes = await page.locator('.spine-node').count();
+  if (visibleNodes < 4 || visibleNodes >= 185) throw new Error(`Learn rail was not condensed: rendered ${visibleNodes} World Spine nodes.`);
+  if (width <= 1100) {
     await page.getByRole('button', { name: 'Open World Spine' }).click();
     await page.getByRole('dialog', { name: 'World History World Spine' }).waitFor();
-    if (await page.locator('.learn-mobile-nav a').count() !== 3) throw new Error('Learn mobile navigation did not use three global destinations.');
   } else {
     await page.getByLabel('World History World Spine').waitFor();
   }
+  await page.getByRole('link', { name: 'View complete 185-lesson roadmap' }).waitFor();
+  const navSelector = width <= 900 ? '.mobile-nav a' : '.global-rail nav a';
+  if (await page.locator(navSelector).count() !== 3) throw new Error('Learn did not retain the three shared global destinations.');
   await assertLayout(page, `Learn ${width}x${height} light`);
+}
+
+async function verifyLockedLesson(page, width, height) {
+  await page.goto(`${base}/learn/lesson.writing.early-systems`, { waitUntil: 'networkidle' });
+  await page.getByRole('heading', { name: 'This lesson is still locked.' }).waitFor();
+  await page.getByText(/Complete Uruk: Life in an Early City before continuing/).waitFor();
+  const navSelector = width <= 900 ? '.mobile-nav a' : '.global-rail nav a';
+  if (await page.locator(navSelector).count() !== 3) throw new Error('Locked lesson lost the shared global navigation.');
+  if (await page.getByRole('navigation', { name: 'Lesson sections' }).count()) throw new Error('Locked lesson exposed its section controls.');
+  await assertLayout(page, `Locked lesson ${width}x${height}`);
 }
 
 for (const [width, height] of [[1440, 900], [1024, 768], [390, 844], [360, 800]]) {
@@ -116,11 +129,13 @@ for (const [width, height] of [[1440, 900], [1024, 768], [390, 844], [360, 800]]
   await verifyHome(page, width, height);
   if (width === 1440 || width === 390) await page.screenshot({ path: `${output}/home-${width}x${height}-light.png`, fullPage: false });
   await verifyLibrary(page, width, height);
+  if (width === 1440 || width === 390) await page.screenshot({ path: `${output}/library-${width}x${height}-light.png`, fullPage: false });
   await verifyWorldSpine(page, width, height);
   if (width === 1440 || width === 390) await page.screenshot({ path: `${output}/world-spine-${width}x${height}-light.png`, fullPage: false });
   await verifySearch(page, width, height);
+  if (width === 1440 || width === 390) await page.screenshot({ path: `${output}/search-${width}x${height}-light.png`, fullPage: false });
   await verifyLearn(page, width, height);
-  if (width === 360) await page.screenshot({ path: `${output}/learn-spine-${width}x${height}-light.png`, fullPage: false });
+  if (width === 1440 || width === 390) await page.screenshot({ path: `${output}/learn-spine-${width}x${height}-light.png`, fullPage: false });
 
   const themeButton = page.getByRole('button', { name: 'Use dark theme' }).first();
   if (await themeButton.isVisible()) await themeButton.click();
@@ -134,6 +149,9 @@ for (const [width, height] of [[1440, 900], [1024, 768], [390, 844], [360, 800]]
   await page.waitForTimeout(150);
   await assertLayout(page, `Learn ${width}x${height} dark`);
   if (width === 1440 || width === 390) await page.screenshot({ path: `${output}/learn-spine-${width}x${height}-dark.png`, fullPage: false });
+
+  await verifyLockedLesson(page, width, height);
+  if (width === 1440 || width === 390) await page.screenshot({ path: `${output}/locked-${width}x${height}-dark.png`, fullPage: false });
 
   await context.close();
 }

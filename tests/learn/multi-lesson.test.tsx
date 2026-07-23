@@ -65,7 +65,7 @@ describe('multi-lesson Learn runtime', () => {
     expect(screen.queryByText(/^approved$/i)).toBeNull();
     expect(screen.getByRole('link', { name: /Previous: Uruk/ }).getAttribute('href')).toBe('/learn/lesson.uruk.first-city');
     const journey = screen.getByLabelText('World History World Spine');
-    const publishedLinks = within(journey).getAllByRole('link').map((link) => link.getAttribute('href'));
+    const publishedLinks = within(journey).getAllByRole('link').map((link) => link.getAttribute('href')).filter((href) => href?.startsWith('/learn/'));
     expect(publishedLinks).toEqual([
       '/learn/lesson.farming.settlements',
       '/learn/lesson.uruk.first-city',

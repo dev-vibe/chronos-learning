@@ -229,7 +229,7 @@ describe('Home, Library, preview, and search composition', () => {
     />);
     expect(await screen.findByRole('heading', { name: 'Explore history.' })).toBeTruthy();
     expect(screen.getByRole('heading', { name: 'Civilizations and Regions' })).toBeTruthy();
-    expect(screen.getAllByText(/Curated journeys are being prepared/i)).toHaveLength(3);
+    expect(screen.getByText(/More authored journeys are being prepared/i)).toBeTruthy();
     expect(screen.queryByText('Farming and Settlements')).toBeNull();
   });
 

@@ -1,0 +1,18 @@
+.global-rail{position:fixed;z-index:30;inset:0 auto 0 0;width:88px;display:flex;flex-direction:column;align-items:center;padding:22px 10px 18px;background:linear-gradient(165deg,var(--archive),var(--archive-2));color:#fff}
+.app-brand{display:grid;justify-items:center;gap:7px;color:#fff;text-decoration:none}
+.app-brand>span{width:43px;height:43px;display:grid;place-items:center;border:1px solid var(--gold);border-radius:50%;font:600 1.45rem Newsreader,serif;box-shadow:0 0 0 4px #d19a3114}
+.app-brand strong{font:500 .78rem Newsreader,serif}
+.global-rail nav{width:100%;display:grid;gap:8px;margin:auto 0}
+.global-rail nav a,.theme-button{min-height:58px;display:grid;place-items:center;gap:4px;border:0;border-radius:10px;background:transparent;color:#c4d3d8;text-decoration:none;font-size:.63rem}
+.global-rail nav a svg,.theme-button svg{width:20px}
+.global-rail nav a.active{background:#ffffff12;color:#fff;box-shadow:inset 3px 0 var(--gold)}
+.theme-button{width:54px;cursor:pointer}
+.mobile-nav{display:none}
+
+@media(max-width:900px){
+  .global-rail{display:none}
+  .mobile-nav{position:fixed;z-index:40;inset:auto 0 0;min-height:66px;padding:max(6px,env(safe-area-inset-bottom)) 5px 6px;display:grid;grid-template-columns:repeat(3,1fr);border-top:1px solid var(--line);background:color-mix(in srgb,var(--surface) 94%,transparent);backdrop-filter:blur(16px)}
+  .mobile-nav a{min-height:50px;display:grid;place-items:center;gap:2px;border-radius:9px;color:var(--muted);text-decoration:none;font-size:.59rem}
+  .mobile-nav a svg{width:20px}
+  .mobile-nav a.active{background:color-mix(in srgb,var(--teal) 10%,transparent);color:var(--teal)}
+}

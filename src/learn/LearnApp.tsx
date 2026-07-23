@@ -1,5 +1,5 @@
 ﻿import React, { useCallback, useEffect, useLayoutEffect, useMemo, useRef, useState } from 'react';
-import { Archive, BookOpen, Check, ChevronLeft, ChevronRight, Compass, Home, Landmark, Library, Lock, Menu, Moon, RotateCcw, Search, Sun, X } from 'lucide-react';
+import { Archive, BookOpen, Check, ChevronLeft, ChevronRight, Compass, Landmark, Lock, Menu, Moon, RotateCcw, Sun, X } from 'lucide-react';
 import { chronosContent } from '../../content/chronos';
 import type { Journey, KnowledgeCard, Lesson, LessonModule, LessonSection } from '../domains/contracts';
 import { isLessonOpenable } from '../config/runtimeFlags';
@@ -12,6 +12,7 @@ import { JourneySwitcher } from '../app/JourneySwitcher';
 import { worldSpineRoadmap } from '../../content/world-spine/roadmap';
 import { resolveWorldSpineAccess } from '../domains/journeys/worldSpine';
 import { WorldSpineTimeline } from './WorldSpineTimeline';
+import { GlobalNavigation } from '../app/GlobalNavigation';
 import './learn.css';
 
 const lessonById = new Map(chronosContent.lessons.map((item) => [item.id, item]));
@@ -30,10 +31,10 @@ const orderedEntries = (journey: Journey) => [...journey.chapters].sort((a, b) =
 
 type JourneyRailProps = {
   open: boolean; onClose(): void; onNavigate(id: string): void; lesson: Lesson; journey: Journey;
-  summaries: Record<string, JourneyProgressSummary>; currentState: LearnState; currentSectionId?: string; returnFocus: React.RefObject<HTMLButtonElement | null>;
+  summaries: Record<string, JourneyProgressSummary>; currentState: LearnState; currentSectionId?: string; showCurrentSections?: boolean; returnFocus: React.RefObject<HTMLButtonElement | null>;
 };
 
-function JourneyRail({ open, onClose, onNavigate, lesson, journey, summaries, currentState, currentSectionId, returnFocus }: JourneyRailProps) {
+function JourneyRail({ open, onClose, onNavigate, lesson, journey, summaries, currentState, currentSectionId, showCurrentSections = true, returnFocus }: JourneyRailProps) {
   const railRef = useRef<HTMLElement>(null);
   const closeRef = useRef<HTMLButtonElement>(null);
   useEffect(() => {
@@ -58,13 +59,13 @@ function JourneyRail({ open, onClose, onNavigate, lesson, journey, summaries, cu
     <div className={`learn-scrim ${open ? 'is-open' : ''}`} onClick={close} />
     <aside ref={railRef} className={`journey-rail ${open ? 'is-open' : ''}`} aria-label={journey.kind === 'world-history' ? 'World History World Spine' : journey.title + ' journey'} aria-modal={open || undefined} role={open ? 'dialog' : undefined}>
       <button ref={closeRef} className="icon-button rail-close" onClick={close} aria-label="Close journey"><X /></button>
-      <div className="chronos-brand" aria-label="Chronos"><span className="brand-compass" aria-hidden="true"><b>C</b></span><span>Chronos</span></div>
       {journey.kind === 'world-history' ? <WorldSpineTimeline
         lesson={lesson}
         lessons={chronosContent.lessons}
         summaries={summaries}
         currentState={currentState}
         currentSectionId={currentSectionId}
+        showCurrentSections={showCurrentSections}
         onNavigate={onNavigate}
         onClose={onClose}
       /> : <>
@@ -115,9 +116,78 @@ function Section({ section, state, onAttempt }: { section: LessonSection; state:
   return <section id={section.id} className={`lesson-section section-${section.modules[0].type}${hasHistoricalMap ? ' section-has-historical-map' : ''}`} data-section-id={section.id} tabIndex={-1}><header className="section-heading"><span>{section.purpose}</span><h2>{section.heading}</h2></header><div className="section-modules">{section.modules.map((module) => <React.Fragment key={module.id}><Module module={module} state={state} onAttempt={onAttempt} /></React.Fragment>)}</div></section>;
 }
 
-function KnowledgeCardReveal({ card }: { card: KnowledgeCard }) {
+function KnowledgeCardReveal({ card, revealRef }: { card: KnowledgeCard; revealRef: React.RefObject<HTMLDivElement | null> }) {
   const media = mediaById.get(card.mediaId)!;
-  return <div className="card-reveal" tabIndex={-1}><div className="knowledge-card"><div className="card-frame"><div className={`card-image card-image-${card.category}`}><ResponsiveMedia media={media} alt={media.alt} sizes="320px" loading="lazy" /><span>{card.depictionLabel}</span></div><div className="card-body"><span className="card-class">{card.category === 'place' ? <Landmark /> : <Archive />} {card.category} · {card.cardClass}</span><span className="card-kind">Knowledge Card · {card.category}</span><h3>{card.title}</h3><p className="card-date">{card.date.display} · {card.place}</p><p>{card.significance}</p><div className="card-ornament" aria-hidden="true"><i /><Compass /><i /></div></div></div></div><div className="card-copy"><p className="eyebrow">Knowledge Card acquired</p><h3>{card.revealTitle}</h3><p>{card.revealBody}</p><ul>{card.facts.map((fact) => <li key={fact}>{fact}</li>)}</ul></div></div>;
+  return <div ref={revealRef} className="card-reveal" tabIndex={-1} aria-live="polite"><div className="knowledge-card"><div className="card-frame"><div className={`card-image card-image-${card.category}`}><ResponsiveMedia media={media} alt={media.alt} sizes="320px" loading="lazy" /><span>{card.depictionLabel}</span></div><div className="card-body"><span className="card-class">{card.category === 'place' ? <Landmark /> : <Archive />} {card.category} · {card.cardClass}</span><span className="card-kind">Knowledge Card · {card.category}</span><h3>{card.title}</h3><p className="card-date">{card.date.display} · {card.place}</p><p>{card.significance}</p><div className="card-ornament" aria-hidden="true"><i /><Compass /><i /></div></div></div></div><div className="card-copy"><p className="eyebrow">Knowledge Card acquired</p><h3>{card.revealTitle}</h3><p>{card.revealBody}</p><ul>{card.facts.map((fact) => <li key={fact}>{fact}</li>)}</ul></div></div>;
+}
+
+type LearnStatusShellProps = {
+  theme: 'light' | 'dark';
+  onTheme(): void;
+  icon: React.ReactNode;
+  eyebrow: string;
+  title: string;
+  body: string;
+  actions?: React.ReactNode;
+  busy?: boolean;
+  lesson?: Lesson;
+  journey?: Journey;
+  state?: LearnState;
+  summaries?: Record<string, JourneyProgressSummary>;
+};
+
+function LearnStatusShell({
+  theme,
+  onTheme,
+  icon,
+  eyebrow,
+  title,
+  body,
+  actions,
+  busy,
+  lesson,
+  journey,
+  state,
+  summaries = {},
+}: LearnStatusShellProps) {
+  const [drawer, setDrawer] = useState(false);
+  const menuRef = useRef<HTMLButtonElement>(null);
+  const hasJourneyContext = Boolean(lesson && journey && state);
+  return <div className="learn-app learn-status-shell" data-theme={theme}>
+    <GlobalNavigation theme={theme} onTheme={onTheme} />
+    {hasJourneyContext && <JourneyRail
+      open={drawer}
+      onClose={() => setDrawer(false)}
+      onNavigate={() => undefined}
+      lesson={lesson!}
+      journey={journey!}
+      summaries={summaries}
+      currentState={state!}
+      currentSectionId={lesson!.sections[0]?.id}
+      showCurrentSections={false}
+      returnFocus={menuRef}
+    />}
+    {hasJourneyContext && <header className="mobile-progress">
+      <button ref={menuRef} className="icon-button" onClick={() => setDrawer(true)} aria-label="Open World Spine"><Menu /></button>
+      <div><strong>{lesson!.title}</strong><span>Locked lesson</span></div>
+      <button className="icon-button" onClick={onTheme} aria-label={`Use ${theme === 'light' ? 'dark' : 'light'} theme`}>{theme === 'light' ? <Moon /> : <Sun />}</button>
+    </header>}
+    <main className={`lesson learn-status-lesson ${hasJourneyContext ? '' : 'without-journey'}`}>
+      {hasJourneyContext && <div className="lesson-toolbar">
+        <button className="quiet drawer-button" onClick={() => setDrawer(true)}><Menu /> World Spine</button>
+        <span className="lesson-breadcrumb">{journey!.title} <ChevronRight /> {lesson!.title}</span>
+      </div>}
+      <div className="learn-status-frame" aria-busy={busy || undefined}>
+        <section className="learn-status-card">
+          <span className="learn-status-icon" aria-hidden="true">{icon}</span>
+          <p className="eyebrow">{eyebrow}</p>
+          <h1>{title}</h1>
+          <p>{body}</p>
+          {actions && <div className="learn-status-actions">{actions}</div>}
+        </section>
+      </div>
+    </main>
+  </div>;
 }
 
 export function LearnApp({ lessonId, gatewayFactory = createProgressGateway }: { lessonId: string; gatewayFactory?: () => Promise<LearnProgressGateway> }) {
@@ -139,6 +209,7 @@ export function LearnApp({ lessonId, gatewayFactory = createProgressGateway }: {
   const observed = useRef(new Set<string>());
   const gatewayRef = useRef<LearnProgressGateway>(new LocalPreviewGateway());
   const menuRef = useRef<HTMLButtonElement>(null);
+  const revealRef = useRef<HTMLDivElement>(null);
   const retryLoad = useCallback(() => { setCurrentProgress(null); setJourneySummaries({}); setError(''); setLoadAttempt((value) => value + 1); }, []);
 
   useLayoutEffect(() => {
@@ -187,6 +258,15 @@ export function LearnApp({ lessonId, gatewayFactory = createProgressGateway }: {
     return () => { active = false; observer.disconnect(); timers.forEach(window.clearTimeout); };
   }, [lessonId, Boolean(state)]);
 
+  useEffect(() => {
+    if (!revealedCardId || !revealRef.current) return;
+    revealRef.current.focus({ preventScroll: true });
+    revealRef.current.scrollIntoView({
+      behavior: matchMedia('(prefers-reduced-motion: reduce)').matches ? 'auto' : 'smooth',
+      block: 'center',
+    });
+  }, [revealedCardId]);
+
   const navigate = (id: string) => { const target = document.getElementById(id); if (!target) return; target.scrollIntoView({ behavior: matchMedia('(prefers-reduced-motion: reduce)').matches ? 'auto' : 'smooth', block: 'start' }); target.focus({ preventScroll: true }); };
   const requirement = useMemo(() => derivePromptRequirementState(lesson?.promptIds ?? [], promptById, state?.attemptedPromptIds ?? []), [lesson, state?.attemptedPromptIds]);
   const worldSpineAccess = useMemo(() => journey?.kind === 'world-history'
@@ -197,10 +277,24 @@ export function LearnApp({ lessonId, gatewayFactory = createProgressGateway }: {
     : undefined;
   const worldSpineChapter = worldSpineRoadmap.find((chapter) => chapter.nodes.some((node) => node.id === lessonId));
   const breadcrumbChapter = journey?.kind === 'world-history' ? worldSpineChapter?.title : entries[currentIndex]?.chapter.title;
-  if (!lesson) return <main className="not-found"><BookOpen /><p className="eyebrow">Lesson not found</p><h1>This archive entry isn’t available.</h1><p>Check the lesson address or return to the first published World History lesson.</p><a className="primary" href={`/learn/${firstPublishedLessonId}`}>Open World History</a><a href="/">Return to Chronos</a></main>;
-  if (!isLessonOpenable(lesson) || !journey) return <main className="not-found"><BookOpen /><p className="eyebrow">Lesson unavailable</p><h1>This archive entry is not available.</h1><p>The address may refer to material that has not been published for learners.</p><a className="primary" href={'/learn/' + firstPublishedLessonId}>Open World History</a><a href="/home">Return Home</a></main>;
-  if (!state) return error ? <main className="loading-error" role="alert"><BookOpen /><h1>We couldn’t open your progress.</h1><p>{error}</p><button className="primary" onClick={retryLoad}>Retry loading progress</button></main> : <main className="loading" aria-busy="true">Opening {lesson.title}…</main>;
-  if (!worldSpineAccess.accessible) return <main className="not-found"><Lock /><p className="eyebrow">World Spine</p><h1>This lesson is still locked.</h1><p>{worldSpineBlocker ? 'Complete ' + worldSpineBlocker.title + ' before continuing along the chronology.' : 'Complete the earlier available lessons before continuing.'}</p><a className="primary" href={'/learn/' + (worldSpineBlocker?.id ?? firstPublishedLessonId)}>Continue {worldSpineBlocker?.title ?? 'World History'}</a><a href="/home">Return Home</a></main>;
+  if (!lesson) return <LearnStatusShell theme={theme} onTheme={toggleTheme} icon={<BookOpen />} eyebrow="Lesson not found" title="This archive entry isn’t available." body="Check the lesson address or return to the first published World History lesson." actions={<><a className="primary" href={`/learn/${firstPublishedLessonId}`}>Open World History</a><a className="secondary" href="/home">Return Home</a></>} />;
+  if (!isLessonOpenable(lesson) || !journey) return <LearnStatusShell theme={theme} onTheme={toggleTheme} icon={<BookOpen />} eyebrow="Lesson unavailable" title="This archive entry is not available." body="The address may refer to material that has not been published for learners." actions={<><a className="primary" href={'/learn/' + firstPublishedLessonId}>Open World History</a><a className="secondary" href="/home">Return Home</a></>} />;
+  if (!state) return error
+    ? <LearnStatusShell theme={theme} onTheme={toggleTheme} icon={<BookOpen />} eyebrow="Progress unavailable" title="We couldn’t open your progress." body={error} actions={<button className="primary" onClick={retryLoad}>Retry loading progress</button>} />
+    : <LearnStatusShell theme={theme} onTheme={toggleTheme} icon={<Compass />} eyebrow="Opening lesson" title={`Opening ${lesson.title}…`} body="Gathering your journey and saved progress." busy />;
+  if (!worldSpineAccess.accessible) return <LearnStatusShell
+    theme={theme}
+    onTheme={toggleTheme}
+    icon={<Lock />}
+    eyebrow="World Spine"
+    title="This lesson is still locked."
+    body={worldSpineBlocker ? 'Complete ' + worldSpineBlocker.title + ' before continuing along the chronology.' : 'Complete the earlier available lessons before continuing.'}
+    lesson={lesson}
+    journey={journey}
+    state={state}
+    summaries={journeySummaries}
+    actions={<><a className="primary" href={'/learn/' + (worldSpineBlocker?.id ?? firstPublishedLessonId)}>Continue {worldSpineBlocker?.title ?? 'World History'}</a><a className="secondary" href="/home">Return Home</a></>}
+  />;
 
   const attempt = async (id: string, response: string) => {
     const nextState = await gatewayRef.current.saveAttempt(lessonId, id, response);
@@ -222,14 +316,14 @@ export function LearnApp({ lessonId, gatewayFactory = createProgressGateway }: {
   const configuredCard = cardByLessonId.get(lesson.id);
   const revealedCard = revealedCardId ? cardById.get(revealedCardId) : undefined;
   return <div className="learn-app" data-theme={theme}>
+    <GlobalNavigation theme={theme} onTheme={toggleTheme} />
     <JourneyRail open={drawer} onClose={() => setDrawer(false)} onNavigate={navigate} lesson={lesson} journey={journey} summaries={journeySummaries} currentState={state} currentSectionId={state.resumeSectionId ?? lesson.sections[0].id} returnFocus={menuRef} />
-    <header className="mobile-progress"><button ref={menuRef} className="icon-button" onClick={() => setDrawer(true)} aria-label="Open World Spine"><Menu /></button><div><strong>{lesson.title}</strong><span>{state.exploredSectionIds.length} of {lesson.sections.length} sections explored</span></div><a className="icon-button" href="/search" aria-label="Search Chronos"><Search /></a></header>
-    <main className="lesson"><div className="lesson-toolbar"><button className="quiet drawer-button" onClick={() => setDrawer(true)}><Menu /> World Spine</button><JourneySwitcher currentJourneyId={journey.id} currentLessonId={lesson.id} /><span className="lesson-breadcrumb">{breadcrumbChapter} <ChevronRight /> {lesson.title}</span><nav className="learn-global-links" aria-label="Chronos"><a href="/home"><Home /> Home</a><a href="/library"><Library /> Library</a><a href="/search"><Search /> Search</a></nav><button className="quiet theme-toggle" onClick={toggleTheme} aria-label={'Use ' + (theme === 'light' ? 'dark' : 'light') + ' theme'}>{theme === 'light' ? <Moon /> : <Sun />}<span>{theme === 'light' ? 'Dark' : 'Light'} mode</span></button></div>
+    <header className="mobile-progress"><button ref={menuRef} className="icon-button" onClick={() => setDrawer(true)} aria-label="Open World Spine"><Menu /></button><div><strong>{lesson.title}</strong><span>{state.exploredSectionIds.length} of {lesson.sections.length} sections explored</span></div><button className="icon-button" onClick={toggleTheme} aria-label={'Use ' + (theme === 'light' ? 'dark' : 'light') + ' theme'}>{theme === 'light' ? <Moon /> : <Sun />}</button></header>
+    <main className="lesson"><div className="lesson-toolbar"><button className="quiet drawer-button" onClick={() => setDrawer(true)}><Menu /> World Spine</button><JourneySwitcher currentJourneyId={journey.id} currentLessonId={lesson.id} /><span className="lesson-breadcrumb">{breadcrumbChapter} <ChevronRight /> {lesson.title}</span></div>
       <article><header className="masthead"><div className="masthead-copy"><p className="eyebrow">{lesson.masthead} <span>·</span> {lesson.place}</p><h1>{lesson.title}</h1><p className="dek">{lesson.significance}</p></div>{hero && <figure className="hero"><div className="hero-image"><ResponsiveMedia className={`hero-media hero-${hero.depictionMode}`} media={hero} alt={hero.alt} sizes="(max-width: 800px) 100vw, 60vw" loading="eager" decoding="async" /><span className="depiction-label">{lesson.heroLabel}</span></div><figcaption><span>{hero.depictionLabel}</span><span>{lesson.heroCaption}</span></figcaption></figure>}</header>
         {lesson.sections.map((section) => <React.Fragment key={section.id}><Section section={section} state={state} onAttempt={attempt} /></React.Fragment>)}
-        <section className="completion-panel" aria-labelledby="completion-title"><p className="eyebrow">Your next step</p><h2 id="completion-title">{state.status === 'completed' ? 'Lesson explored' : `Complete ${lesson.title}`}</h2>{state.status === 'completed' ? <>{revealedCard && <KnowledgeCardReveal card={revealedCard} />}{!revealedCard && state.cardId && configuredCard && <p className="known-card" role="status"><Check size={16} /> {configuredCard.title} is already in your Knowledge Cards.</p>}<div className="actions">{next ? <a className="primary" href={`/learn/${next.lesson.id}`}>Continue World History <ChevronRight /></a> : <span className="journey-end">World History continues with the next reviewed lesson.</span>}{previous && <a className="secondary" href={`/learn/${previous.lesson.id}`}><ChevronLeft /> Previous: {previous.lesson.title}</a>}<button className="secondary" onClick={() => navigate(lesson.sections[0].id)}><RotateCcw /> Revisit lesson</button></div></> : <><p>{requirement.requiredIds.length === 1 ? 'The required understanding prompt needs' : `All ${requirement.requiredIds.length} required understanding prompts need`} a sincere attempt. Scrolling alone never completes a lesson.</p><button className="primary" disabled={!requirement.ready || busy} onClick={complete}>{busy ? 'Completing…' : requirement.ready ? 'Complete lesson' : `${requirement.attemptedCount} of ${requirement.requiredIds.length} required prompts attempted`}</button>{previous && <a className="quiet previous-link" href={`/learn/${previous.lesson.id}`}><ChevronLeft /> Previous: {previous.lesson.title}</a>}</>}{error && <p className="error" role="alert">{error} <button onClick={complete}>Retry</button></p>}</section>
+        <section className="completion-panel" aria-labelledby="completion-title"><p className="eyebrow">Your next step</p><h2 id="completion-title">{state.status === 'completed' ? 'Lesson explored' : `Complete ${lesson.title}`}</h2>{state.status === 'completed' ? <>{revealedCard && <KnowledgeCardReveal card={revealedCard} revealRef={revealRef} />}{!revealedCard && state.cardId && configuredCard && <p className="known-card" role="status"><Check size={16} /> {configuredCard.title} is already in your Knowledge Cards.</p>}<div className="actions">{next ? <a className="primary" href={`/learn/${next.lesson.id}`}>Continue World History <ChevronRight /></a> : <span className="journey-end">World History continues with the next reviewed lesson.</span>}{previous && <a className="secondary" href={`/learn/${previous.lesson.id}`}><ChevronLeft /> Previous: {previous.lesson.title}</a>}<button className="secondary" onClick={() => navigate(lesson.sections[0].id)}><RotateCcw /> Revisit lesson</button></div></> : <><p>{requirement.requiredIds.length === 1 ? 'The required understanding prompt needs' : `All ${requirement.requiredIds.length} required understanding prompts need`} a sincere attempt. Scrolling alone never completes a lesson.</p><button className="primary" disabled={!requirement.ready || busy} onClick={complete}>{busy ? 'Completing…' : requirement.ready ? 'Complete lesson' : `${requirement.attemptedCount} of ${requirement.requiredIds.length} required prompts attempted`}</button>{previous && <a className="quiet previous-link" href={`/learn/${previous.lesson.id}`}><ChevronLeft /> Previous: {previous.lesson.title}</a>}</>}{error && <p className="error" role="alert">{error} <button onClick={complete}>Retry</button></p>}</section>
       </article>
     </main>
-    <nav className="learn-mobile-nav" aria-label="Chronos"><a href="/home"><Home /> Home</a><a href="/library"><Library /> Library</a><a href="/search"><Search /> Search</a></nav>
   </div>;
 }
