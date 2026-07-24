@@ -136,8 +136,9 @@ async function verifyWorldSpine(page, width, height) {
   if (await page.locator('.world-spine-chapters .preparing').count() < 1) throw new Error('World History detail lost in-preparation states.');
   const firstChapter = page.locator('.world-spine-chapters details').first();
   if (!(await firstChapter.getAttribute('open'))) await firstChapter.locator('summary').click();
-  await page.getByText('Farming and Settlements', { exact: true }).waitFor();
-  if (await page.getByText('Farming and Settlements', { exact: true }).getAttribute('href')) throw new Error('An unfinished World Spine node became navigable.');
+  const farming = page.locator('.world-spine-chapters').getByText('Farming and Settlements', { exact: true });
+  await farming.waitFor({ state: 'attached' });
+  if (await farming.getAttribute('href') !== '/learn/lesson.farming.settlements') throw new Error('The published Farming and Settlements node is not navigable.');
   await assertLayout(page, `World Spine detail ${width}x${height} light`);
   await assertDocumentScroll(page, `World Spine detail ${width}x${height}`);
 }
@@ -159,15 +160,19 @@ async function verifySearch(page, width, height) {
 async function verifyLearn(page, width, height) {
   await openPage(page, '/learn/lesson.uruk.first-city');
   await page.getByRole('heading', { name: 'Uruk: Life in an Early City', exact: true }).waitFor();
+  const rail = page.getByLabel('World History World Spine');
+  if (await rail.getAttribute('aria-hidden') !== 'true') throw new Error('World Spine was permanently visible instead of closed in its drawer.');
   const visibleNodes = await page.locator('.spine-node').count();
   if (visibleNodes < 4 || visibleNodes >= 185) throw new Error(`Learn rail was not condensed: rendered ${visibleNodes} World Spine nodes.`);
-  if (width <= 1100) {
-    await page.getByRole('button', { name: 'Open World Spine' }).click();
-    await page.getByRole('dialog', { name: 'World History World Spine' }).waitFor();
-  } else {
-    await page.getByLabel('World History World Spine').waitFor();
-  }
+  const drawerTrigger = width <= 900
+    ? page.getByRole('button', { name: 'Open World Spine' })
+    : page.getByRole('button', { name: 'World Spine', exact: true });
+  await drawerTrigger.click();
+  await page.getByRole('dialog', { name: 'World History World Spine' }).waitFor();
   await page.getByRole('link', { name: 'View complete 185-lesson roadmap' }).waitFor();
+  await page.getByRole('button', { name: 'Close journey' }).click();
+  if (await rail.getAttribute('aria-hidden') !== 'true') throw new Error('World Spine drawer did not close.');
+  await rail.waitFor({ state: 'hidden' });
   const navSelector = width <= 900 ? '.mobile-nav a' : '.global-rail nav a';
   if (await page.locator(navSelector).count() !== 3) throw new Error('Learn did not retain the three shared global destinations.');
   await assertLayout(page, `Learn ${width}x${height} light`);
@@ -233,9 +238,10 @@ for (const [width, height] of viewports) {
 }
 
 const gate = await browser.newContext({ viewport: { width: 1024, height: 768 }, colorScheme: 'light' });
+await serveBundle(gate);
 const gatePage = await gate.newPage();
 monitor(gatePage, 'gating');
-await gatePage.goto(`${base}/learn/lesson.writing.early-systems`, { waitUntil: 'networkidle' });
+await openPage(gatePage, '/learn/lesson.writing.early-systems');
 await gatePage.getByRole('heading', { name: 'This lesson is still locked.' }).waitFor();
 await gatePage.getByText(/Complete Uruk: Life in an Early City/).waitFor();
 await gate.close();

@@ -57,7 +57,15 @@ function JourneyRail({ open, onClose, onNavigate, lesson, journey, summaries, cu
   const close = () => { onClose(); returnFocus.current?.focus(); };
   return <>
     <div className={`learn-scrim ${open ? 'is-open' : ''}`} onClick={close} />
-    <aside ref={railRef} className={`journey-rail ${open ? 'is-open' : ''}`} aria-label={journey.kind === 'world-history' ? 'World History World Spine' : journey.title + ' journey'} aria-modal={open || undefined} role={open ? 'dialog' : undefined}>
+    <aside
+      ref={railRef}
+      className={`journey-rail ${open ? 'is-open' : ''}`}
+      aria-label={journey.kind === 'world-history' ? 'World History World Spine' : journey.title + ' journey'}
+      aria-hidden={!open}
+      aria-modal={open || undefined}
+      inert={!open}
+      role={open ? 'dialog' : undefined}
+    >
       <button ref={closeRef} className="icon-button rail-close" onClick={close} aria-label="Close journey"><X /></button>
       {journey.kind === 'world-history' ? <WorldSpineTimeline
         lesson={lesson}
@@ -153,6 +161,10 @@ function LearnStatusShell({
   const [drawer, setDrawer] = useState(false);
   const menuRef = useRef<HTMLButtonElement>(null);
   const hasJourneyContext = Boolean(lesson && journey && state);
+  const openDrawer = (event: React.MouseEvent<HTMLButtonElement>) => {
+    menuRef.current = event.currentTarget;
+    setDrawer(true);
+  };
   return <div className="learn-app learn-status-shell" data-theme={theme}>
     <GlobalNavigation theme={theme} onTheme={onTheme} />
     {hasJourneyContext && <JourneyRail
@@ -168,13 +180,13 @@ function LearnStatusShell({
       returnFocus={menuRef}
     />}
     {hasJourneyContext && <header className="mobile-progress">
-      <button ref={menuRef} className="icon-button" onClick={() => setDrawer(true)} aria-label="Open World Spine"><Menu /></button>
+      <button className="icon-button" onClick={openDrawer} aria-label="Open World Spine"><Menu /></button>
       <div><strong>{lesson!.title}</strong><span>Locked lesson</span></div>
       <button className="icon-button" onClick={onTheme} aria-label={`Use ${theme === 'light' ? 'dark' : 'light'} theme`}>{theme === 'light' ? <Moon /> : <Sun />}</button>
     </header>}
     <main className={`lesson learn-status-lesson ${hasJourneyContext ? '' : 'without-journey'}`}>
       {hasJourneyContext && <div className="lesson-toolbar">
-        <button className="quiet drawer-button" onClick={() => setDrawer(true)}><Menu /> World Spine</button>
+        <button className="quiet drawer-button" onClick={openDrawer}><Menu /> World Spine</button>
         <span className="lesson-breadcrumb">{journey!.title} <ChevronRight /> {lesson!.title}</span>
       </div>}
       <div className="learn-status-frame" aria-busy={busy || undefined}>
@@ -211,6 +223,10 @@ export function LearnApp({ lessonId, gatewayFactory = createProgressGateway }: {
   const menuRef = useRef<HTMLButtonElement>(null);
   const revealRef = useRef<HTMLDivElement>(null);
   const retryLoad = useCallback(() => { setCurrentProgress(null); setJourneySummaries({}); setError(''); setLoadAttempt((value) => value + 1); }, []);
+  const openDrawer = (event: React.MouseEvent<HTMLButtonElement>) => {
+    menuRef.current = event.currentTarget;
+    setDrawer(true);
+  };
 
   useLayoutEffect(() => {
     window.scrollTo({ top: 0, left: 0, behavior: 'auto' });
@@ -318,8 +334,8 @@ export function LearnApp({ lessonId, gatewayFactory = createProgressGateway }: {
   return <div className="learn-app" data-theme={theme}>
     <GlobalNavigation theme={theme} onTheme={toggleTheme} />
     <JourneyRail open={drawer} onClose={() => setDrawer(false)} onNavigate={navigate} lesson={lesson} journey={journey} summaries={journeySummaries} currentState={state} currentSectionId={state.resumeSectionId ?? lesson.sections[0].id} returnFocus={menuRef} />
-    <header className="mobile-progress"><button ref={menuRef} className="icon-button" onClick={() => setDrawer(true)} aria-label="Open World Spine"><Menu /></button><div><strong>{lesson.title}</strong><span>{state.exploredSectionIds.length} of {lesson.sections.length} sections explored</span></div><button className="icon-button" onClick={toggleTheme} aria-label={'Use ' + (theme === 'light' ? 'dark' : 'light') + ' theme'}>{theme === 'light' ? <Moon /> : <Sun />}</button></header>
-    <main className="lesson"><div className="lesson-toolbar"><button className="quiet drawer-button" onClick={() => setDrawer(true)}><Menu /> World Spine</button><JourneySwitcher currentJourneyId={journey.id} currentLessonId={lesson.id} /><span className="lesson-breadcrumb">{breadcrumbChapter} <ChevronRight /> {lesson.title}</span></div>
+    <header className="mobile-progress"><button className="icon-button" onClick={openDrawer} aria-label="Open World Spine"><Menu /></button><div><strong>{lesson.title}</strong><span>{state.exploredSectionIds.length} of {lesson.sections.length} sections explored</span></div><button className="icon-button" onClick={toggleTheme} aria-label={'Use ' + (theme === 'light' ? 'dark' : 'light') + ' theme'}>{theme === 'light' ? <Moon /> : <Sun />}</button></header>
+    <main className="lesson"><div className="lesson-toolbar"><button className="quiet drawer-button" onClick={openDrawer}><Menu /> World Spine</button><JourneySwitcher currentJourneyId={journey.id} currentLessonId={lesson.id} /><span className="lesson-breadcrumb">{breadcrumbChapter} <ChevronRight /> {lesson.title}</span></div>
       <article><header className="masthead"><div className="masthead-copy"><p className="eyebrow">{lesson.masthead} <span>·</span> {lesson.place}</p><h1>{lesson.title}</h1><p className="dek">{lesson.significance}</p></div>{hero && <figure className="hero"><div className="hero-image"><ResponsiveMedia className={`hero-media hero-${hero.depictionMode}`} media={hero} alt={hero.alt} sizes="(max-width: 800px) 100vw, 60vw" loading="eager" decoding="async" /><span className="depiction-label">{lesson.heroLabel}</span></div><figcaption><span>{hero.depictionLabel}</span><span>{lesson.heroCaption}</span></figcaption></figure>}</header>
         {lesson.sections.map((section) => <React.Fragment key={section.id}><Section section={section} state={state} onAttempt={attempt} /></React.Fragment>)}
         <section className="completion-panel" aria-labelledby="completion-title"><p className="eyebrow">Your next step</p><h2 id="completion-title">{state.status === 'completed' ? 'Lesson explored' : `Complete ${lesson.title}`}</h2>{state.status === 'completed' ? <>{revealedCard && <KnowledgeCardReveal card={revealedCard} revealRef={revealRef} />}{!revealedCard && state.cardId && configuredCard && <p className="known-card" role="status"><Check size={16} /> {configuredCard.title} is already in your Knowledge Cards.</p>}<div className="actions">{next ? <a className="primary" href={`/learn/${next.lesson.id}`}>Continue World History <ChevronRight /></a> : <span className="journey-end">World History continues with the next reviewed lesson.</span>}{previous && <a className="secondary" href={`/learn/${previous.lesson.id}`}><ChevronLeft /> Previous: {previous.lesson.title}</a>}<button className="secondary" onClick={() => navigate(lesson.sections[0].id)}><RotateCcw /> Revisit lesson</button></div></> : <><p>{requirement.requiredIds.length === 1 ? 'The required understanding prompt needs' : `All ${requirement.requiredIds.length} required understanding prompts need`} a sincere attempt. Scrolling alone never completes a lesson.</p><button className="primary" disabled={!requirement.ready || busy} onClick={complete}>{busy ? 'Completing…' : requirement.ready ? 'Complete lesson' : `${requirement.attemptedCount} of ${requirement.requiredIds.length} required prompts attempted`}</button>{previous && <a className="quiet previous-link" href={`/learn/${previous.lesson.id}`}><ChevronLeft /> Previous: {previous.lesson.title}</a>}</>}{error && <p className="error" role="alert">{error} <button onClick={complete}>Retry</button></p>}</section>
