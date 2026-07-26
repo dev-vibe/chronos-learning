@@ -42,7 +42,7 @@ describe('Uruk Learn progress boundary', () => {
     await gateway.saveAttempt(lessonId, 'prompt.uruk.administration-evidence', 'Administrative tablets and cylinder seals');
     await gateway.saveAttempt(lessonId, 'prompt.uruk.opportunity-and-cost', 'Specialized work was possible, but coordinated labor placed unequal burdens on people.');
     const state = await gateway.load(lessonId);
-    expect(canExplicitlyComplete(chronosContent.lessons[1].promptIds, { lessonId, idempotencyKey: 'stable-key', explicitCompletion: true, attemptedPromptIds: state.attemptedPromptIds })).toBe(true);
+    expect(canExplicitlyComplete(chronosContent.lessons.find((lesson) => lesson.id === lessonId)!.promptIds, { lessonId, idempotencyKey: 'stable-key', explicitCompletion: true, attemptedPromptIds: state.attemptedPromptIds })).toBe(true);
     expect(await gateway.complete(lessonId, 'stable-key')).toMatchObject({ completion: 'newly-completed', cardOwnership: 'newly-acquired', cardId: 'card.place.uruk' });
     expect(await gateway.complete(lessonId, 'retry-key')).toMatchObject({ completion: 'already-completed', cardOwnership: 'already-owned' });
   });

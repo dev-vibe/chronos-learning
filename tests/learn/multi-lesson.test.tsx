@@ -68,6 +68,7 @@ describe('multi-lesson Learn runtime', () => {
     const journey = screen.getByRole('dialog', { name: 'World History' });
     const publishedLinks = within(journey).getAllByRole('link').map((link) => link.getAttribute('href')).filter((href) => href?.startsWith('/learn/'));
     expect(publishedLinks).toEqual([
+      '/learn/lesson.humans.homo-sapiens-origins',
       '/learn/lesson.farming.settlements',
       '/learn/lesson.uruk.first-city',
       '/learn/lesson.writing.early-systems',
@@ -77,6 +78,7 @@ describe('multi-lesson Learn runtime', () => {
     expect(gateway.load).toHaveBeenCalledWith('lesson.writing.early-systems');
     expect(gateway.loadJourneySummaries).toHaveBeenCalledTimes(1);
     expect(gateway.loadJourneySummaries).toHaveBeenCalledWith([
+      'lesson.humans.homo-sapiens-origins',
       'lesson.farming.settlements',
       'lesson.uruk.first-city',
       'lesson.writing.early-systems',

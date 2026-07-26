@@ -43,11 +43,11 @@ const fixtureJourney: Journey = {
 };
 const fixtureInvitation: JourneyInvitation = {
   id: 'invitation.fixture.rivers',
-  sourceLessonId: 'lesson.farming.settlements',
+  sourceLessonId: 'lesson.humans.homo-sapiens-origins',
   destinationJourneyId: fixtureJourney.id,
   entryLessonId: 'lesson.uruk.first-city',
   placements: ['home'],
-  reason: 'You saw how denser farming settlements changed daily life. Compare a city and its river setting in another authored path.',
+  reason: 'You saw how our species began across Africa. Compare a city and its river setting in another authored path.',
   optional: true,
   status: 'published',
   priority: 10,
@@ -105,11 +105,11 @@ describe('Home, Library, preview, and search composition', () => {
       navigate={navigate}
     />);
     const continueLink = await screen.findByRole('link', { name: /Continue lesson/i });
-    expect(continueLink.getAttribute('href')).toBe('/learn/lesson.farming.settlements');
+    expect(continueLink.getAttribute('href')).toBe('/learn/lesson.humans.homo-sapiens-origins');
     expect(screen.getByText(/only published journey right now/i)).toBeTruthy();
     expect(screen.queryByText(/recommended for you/i)).toBeNull();
     await userEvent.click(continueLink);
-    await waitFor(() => expect(navigate).toHaveBeenCalledWith('/learn/lesson.farming.settlements'));
+    await waitFor(() => expect(navigate).toHaveBeenCalledWith('/learn/lesson.humans.homo-sapiens-origins'));
     expect(harness.journeyGateway.save).toHaveBeenCalledTimes(1);
   });
 
@@ -133,14 +133,15 @@ describe('Home, Library, preview, and search composition', () => {
       progressGatewayFactory={async () => progressGateway}
     />);
     const continueLink = await screen.findByRole('link', { name: /Continue lesson/i });
-    expect(continueLink.getAttribute('href')).toBe('/learn/lesson.farming.settlements');
-    expect(screen.getByRole('heading', { name: 'Farming and Settlements' })).toBeTruthy();
+    expect(continueLink.getAttribute('href')).toBe('/learn/lesson.humans.homo-sapiens-origins');
+    expect(screen.getByRole('heading', { name: 'Our Species Begins in Africa' })).toBeTruthy();
     expect(screen.queryByText(/next required lesson is not available yet/i)).toBeNull();
   });
 
   it('derives Home and journey-detail Continue from completion and access state', async () => {
     const harness = makeHarness();
     vi.mocked(harness.progressGateway.loadJourneySummaries).mockResolvedValue({
+      'lesson.humans.homo-sapiens-origins': { lessonId: 'lesson.humans.homo-sapiens-origins', status: 'completed' },
       'lesson.farming.settlements': { lessonId: 'lesson.farming.settlements', status: 'completed' },
       'lesson.uruk.first-city': { lessonId: 'lesson.uruk.first-city', status: 'completed' },
     });
@@ -163,6 +164,7 @@ describe('Home, Library, preview, and search composition', () => {
   it('renders an honest completed state when no published required lesson remains', async () => {
     const harness = makeHarness();
     vi.mocked(harness.progressGateway.loadJourneySummaries).mockResolvedValue({
+      'lesson.humans.homo-sapiens-origins': { lessonId: 'lesson.humans.homo-sapiens-origins', status: 'completed' },
       'lesson.farming.settlements': { lessonId: 'lesson.farming.settlements', status: 'completed' },
       'lesson.uruk.first-city': { lessonId: 'lesson.uruk.first-city', status: 'completed' },
       'lesson.writing.early-systems': { lessonId: 'lesson.writing.early-systems', status: 'completed' },
@@ -331,6 +333,7 @@ describe('Home, Library, preview, and search composition', () => {
   it('reports failed discovery actions without losing lesson completion', async () => {
     const harness = makeHarness();
     const summaries = {
+      'lesson.humans.homo-sapiens-origins': { lessonId: 'lesson.humans.homo-sapiens-origins', status: 'completed' as const },
       'lesson.farming.settlements': { lessonId: 'lesson.farming.settlements', status: 'completed' as const },
       'lesson.uruk.first-city': { lessonId: 'lesson.uruk.first-city', status: 'completed' as const },
     };

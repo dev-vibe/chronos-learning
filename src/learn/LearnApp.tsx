@@ -59,8 +59,25 @@ function Module({ module, state, onAttempt }: ModuleProps) {
 }
 
 function Section({ section, state, onAttempt }: { section: LessonSection; state: LearnState; onAttempt(id: string, response: string): void }) {
-  const hasHistoricalMap = section.modules.some((module) => module.type === 'historical-map');
-  return <section id={section.id} className={`lesson-section section-${section.modules[0].type}${hasHistoricalMap ? ' section-has-historical-map' : ''}`} data-section-id={section.id} tabIndex={-1}><header className="section-heading"><span>{section.purpose}</span><h2>{section.heading}</h2></header><div className="section-modules">{section.modules.map((module) => <React.Fragment key={module.id}><Module module={module} state={state} onAttempt={onAttempt} /></React.Fragment>)}</div></section>;
+  return <section id={section.id} className={`lesson-section section-${section.modules[0].type}`} data-section-id={section.id} tabIndex={-1}><header className="section-heading"><span>{section.purpose}</span><h2>{section.heading}</h2></header><div className="section-modules">{section.modules.map((module, index) => {
+    const nextModule = section.modules[index + 1];
+    const previousModule = section.modules[index - 1];
+
+    if (module.type === 'knowledge' && nextModule?.type === 'historical-map') return null;
+
+    if (module.type === 'historical-map') {
+      return <div className="historical-map-pair" key={module.id}>
+        {previousModule?.type === 'knowledge'
+          ? <Module module={previousModule} state={state} onAttempt={onAttempt} />
+          : <aside className="historical-map-intro">
+              <div className="module-heading"><span>{module.eyebrow}</span><h3>{module.title}</h3><p>{module.body}</p></div>
+            </aside>}
+        <Module module={module} state={state} onAttempt={onAttempt} />
+      </div>;
+    }
+
+    return <React.Fragment key={module.id}><Module module={module} state={state} onAttempt={onAttempt} /></React.Fragment>;
+  })}</div></section>;
 }
 
 function KnowledgeCardReveal({ card, revealRef }: { card: KnowledgeCard; revealRef: React.RefObject<HTMLDivElement | null> }) {

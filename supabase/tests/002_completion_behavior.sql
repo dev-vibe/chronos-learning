@@ -8,6 +8,10 @@ values
  ('11111111-1111-1111-1111-111111111111','00000000-0000-0000-0000-000000000000','authenticated','authenticated','ash53-a@example.invalid','',now(),now(),now()),
  ('22222222-2222-2222-2222-222222222222','00000000-0000-0000-0000-000000000000','authenticated','authenticated','ash53-b@example.invalid','',now(),now(),now());
 
+-- Content catalog writes are service-role only; authenticated has SELECT.
+insert into public.content_lessons(id,snapshot_version,published_at)
+values ('lesson.test.unpublished-neighbor','test-unpublished-v1',null);
+
 set local role authenticated;
 select set_config('request.jwt.claim.sub','',true);
 select throws_ok(
@@ -17,8 +21,6 @@ select throws_ok(
 
 select set_config('request.jwt.claim.sub','11111111-1111-1111-1111-111111111111',true);
 insert into public.learners(id) values(auth.uid());
-insert into public.content_lessons(id,snapshot_version,published_at)
-values ('lesson.test.unpublished-neighbor','test-unpublished-v1',null);
 insert into public.lesson_progress(learner_id,lesson_id) values
  (auth.uid(),'lesson.uruk.first-city'),
  (auth.uid(),'lesson.writing.early-systems'),

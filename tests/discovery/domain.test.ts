@@ -125,8 +125,8 @@ describe('learner journey state', () => {
     };
     expect(deriveJourneyProgress(world, chronosContent.lessons, summaries)).toEqual({
       completed: 2,
-      total: 3,
-      percent: 67,
+      total: 4,
+      percent: 50,
       isCompleted: false,
     });
     const state = createDefaultJourneyState(fixtureContent.journeys, fixtureContent.lessons);
@@ -145,9 +145,10 @@ describe('learner journey state', () => {
       kind: 'lesson', lessonId: 'lesson.writing.early-systems', source: 'next',
     });
     expect(selectJourneyNextAction(world, chronosContent.lessons, {}, 'lesson.writing.early-systems')).toEqual({
-      kind: 'lesson', lessonId: 'lesson.farming.settlements', source: 'backfill',
+      kind: 'lesson', lessonId: 'lesson.humans.homo-sapiens-origins', source: 'backfill',
     });
     expect(selectJourneyNextAction(world, chronosContent.lessons, {
+      'lesson.humans.homo-sapiens-origins': { lessonId: 'lesson.humans.homo-sapiens-origins', status: 'completed' as const },
       'lesson.farming.settlements': { lessonId: 'lesson.farming.settlements', status: 'completed' as const },
       ...urukCompleted,
       'lesson.writing.early-systems': { lessonId: 'lesson.writing.early-systems', status: 'completed' as const },
@@ -180,8 +181,8 @@ describe('published catalog and authored invitations', () => {
     expect(catalog.groups['civilizations-regions'].map((item) => item.id)).toEqual([optionalJourney.id]);
     expect(catalog.groups['ideas-across-time'].map((item) => item.id)).toEqual([optionalIdea.id]);
     expect(catalog.groups.investigations).toEqual([]);
-    expect(catalog.worldHistory?.lessonCount).toBe(3);
-    expect(catalog.worldHistory?.requiredLessonCount).toBe(3);
+    expect(catalog.worldHistory?.lessonCount).toBe(4);
+    expect(catalog.worldHistory?.requiredLessonCount).toBe(4);
     expect(JSON.stringify(catalog)).not.toContain('lesson.farming.multiple-origins');
   });
 
