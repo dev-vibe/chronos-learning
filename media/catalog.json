@@ -2,10 +2,10 @@
   "schemaVersion": 1,
   "assets": [
     {
-      "id": "media.farming.catalhoyuk-rooftops",
+      "id": "media.farming.catalhoyuk-card",
       "collection": "farming",
-      "sourcePath": "public/images/places/catalhoyuk-rooftops.webp",
-      "fallbackPath": "/images/optimized/farming/catalhoyuk-rooftops.optimized.webp",
+      "sourcePath": "public/images/places/catalhoyuk-card.webp",
+      "fallbackPath": "/images/optimized/farming/catalhoyuk-card.optimized.webp",
       "preset": "picture",
       "widths": [
         480
@@ -32,11 +32,68 @@
       ]
     },
     {
-      "id": "media.farming.catalhoyuk-card",
+      "id": "media.farming.catalhoyuk-rooftops",
       "collection": "farming",
-      "sourcePath": "public/images/places/catalhoyuk-card.webp",
-      "fallbackPath": "/images/optimized/farming/catalhoyuk-card.optimized.webp",
+      "sourcePath": "public/images/places/catalhoyuk-rooftops.webp",
+      "fallbackPath": "/images/optimized/farming/catalhoyuk-rooftops.optimized.webp",
       "preset": "picture",
+      "widths": [
+        480
+      ]
+    },
+    {
+      "id": "media.origins.africa-evidence-map",
+      "collection": "human-origins",
+      "sourcePath": "public/images/maps/africa-origins-evidence-map.webp",
+      "fallbackPath": "/images/optimized/human-origins/africa-evidence-map.optimized.webp",
+      "preset": "drawing",
+      "widths": [
+        480,
+        960,
+        1600
+      ]
+    },
+    {
+      "id": "media.origins.africa-origins-card",
+      "collection": "human-origins",
+      "sourcePath": "public/images/human-origins/africa-origins-card.webp",
+      "fallbackPath": "/images/optimized/human-origins/africa-origins-card.optimized.webp",
+      "preset": "drawing",
+      "widths": [
+        480,
+        960,
+        1600
+      ]
+    },
+    {
+      "id": "media.origins.jebel-irhoud-cranium",
+      "collection": "human-origins",
+      "sourcePath": "public/images/human-origins/jebel-irhoud-cranium.jpg",
+      "fallbackPath": "/images/optimized/human-origins/jebel-irhoud-cranium.optimized.webp",
+      "preset": "photo",
+      "widths": [
+        480,
+        960,
+        1600
+      ]
+    },
+    {
+      "id": "media.origins.jebel-irhoud-excavation",
+      "collection": "human-origins",
+      "sourcePath": "public/images/human-origins/jebel-irhoud-excavation.jpg",
+      "fallbackPath": "/images/optimized/human-origins/jebel-irhoud-excavation.optimized.jpg",
+      "preset": "photo",
+      "widths": [
+        480,
+        960
+      ]
+    },
+    {
+      "id": "media.origins.jebel-irhoud-tools",
+      "collection": "human-origins",
+      "sourcePath": "public/images/human-origins/jebel-irhoud-tools.jpg",
+      "fallbackPath": "/images/optimized/human-origins/jebel-irhoud-tools.optimized.webp",
+      "preset": "photo",
       "widths": [
         480
       ]
