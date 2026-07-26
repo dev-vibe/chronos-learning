@@ -99,6 +99,9 @@ The specialist runbooks own their details. This document decides when they are n
 - A reconstruction is never presented as direct evidence. Uncertainty is never hidden merely to make prose cleaner.
 - Knowledge Cards are deterministic memory anchors, not loot. A lesson may have no card if no honest, useful memory object exists.
 - Media is selected because it teaches. A lesson has no image, map, audio, or video quota.
+- Each section has one learner-facing title (`heading`). Do not stack a second attention-grabbing title, slogan, or paraphrase immediately under it.
+- `purpose` is authoring metadata for storyboards, agents, and review. It is not learner-facing copy and must not read like a second headline.
+- Module `title` / `eyebrow` appear only when they add a distinct teaching job (for example, an evidence close-read cue or a place label). If a module is the section’s sole content block, prefer the section heading alone and keep the module title short, literal, or empty of slogan energy.
 
 ## The authoring record
 
@@ -343,7 +346,8 @@ These are review signals, not mechanical publication gates:
 
 - one central question;
 - five to eight semantic sections;
-- one primary purpose per section;
+- one primary instructional job per section, stated in authoring `purpose` and expressed to the learner by a single clear `heading`;
+- no duplicate title stack (purpose + heading + module title all competing for attention);
 - usually one or two modules per section;
 - short paragraphs, with the key relationship stated before qualifications pile up;
 - roughly five to nine indispensable new terms, not a glossary dump;
@@ -363,6 +367,7 @@ For each section ask:
 4. What concrete evidence or example makes it real?
 5. What can be cut without harming the mental model?
 6. Does the section leave a false impression even if every sentence is technically true?
+7. Can the learner know the section’s job from the heading alone, without reading an eyebrow or a second title?
 
 ### Inclusion and accessibility
 
@@ -374,8 +379,15 @@ Do this before writing final prose or sourcing decorative images.
 
 Create a table:
 
-| Order | Stable section ID | Heading | Learner purpose | Key claim(s) | Module(s) | Evidence/media | Transition |
+| Order | Stable section ID | Learner-facing heading | Authoring purpose (not shown) | Key claim(s) | Module(s) | Evidence/media | Transition |
 | --- | --- | --- | --- | --- | --- | --- | --- |
+
+Heading rules:
+
+- Prefer concrete, direct titles a learner can skim (“Read the skull,” “Evidence across a continent”).
+- Avoid clever paraphrases that require decoding before content (“What counts as one of us?” when the job is naming *Homo sapiens* and the sparse record).
+- Authoring `purpose` stays imperative and internal (“Supply the species category…”). Never publish that voice as on-page chrome.
+- If the section is a single `knowledge` or `prose` module, do not invent a second grabber title for the module.
 
 Each section must perform a distinct job. A common pattern is:
 
@@ -411,6 +423,8 @@ Use the smallest current module that expresses the teaching job:
 | `evidence` | sustained attention to a surviving object/source and what it supports | generic illustration or claims the object cannot establish |
 | `historical-map` | a spatial relationship necessary to the lesson claim | “the topic has a place,” modern basemaps without historical work, or decorative geography |
 | `prompt` | a canonical understanding prompt placed where requirements are satisfied | navigation, surveys, trivia, or fake participation |
+
+Titles: section `heading` owns orientation. For `knowledge` modules, the learner sees eyebrow + `body` as the lead into the item grid — do not invent a second grabber title for display. Module `title` on `evidence`, `scene`, and `historical-map` is a local cue only when needed (observe X; compare Y). Module `eyebrow` is a type/place label, not a slogan.
 
 If the lesson genuinely needs a timeline, comparison table, audio source, diagram, or another unsupported teaching primitive, stop and decide whether to add a bounded reusable module. Do not fake it with arbitrary HTML, an image containing educational text, or overloaded `knowledge` cards. A new module is an architecture/design change and requires its own validation and accessibility coverage.
 
@@ -615,6 +629,8 @@ The lesson is not publishable until every gate is passed or explicitly marked no
 
 - Time, place, problem, and stakes are understandable without assumed specialist knowledge.
 - Each section has one clear purpose and follows logically.
+- Heading hierarchy is lean: one section title; no competing purpose-line or duplicate module grabber.
+- Section titles are direct; cleverness never costs a second parse.
 - Essential vocabulary is introduced and reused.
 - Concrete evidence precedes abstract inference.
 - The learner is asked to think, not just scroll.
@@ -624,6 +640,7 @@ The lesson is not publishable until every gate is passed or explicitly marked no
 ### D. Page composition and visual quality
 
 - Component choice follows teaching purpose.
+- Section `purpose` is not rendered as learner chrome.
 - The page has a coherent visual/narrative rhythm rather than a repeated template feel.
 - Media earns its placement and has an accessible equivalent.
 - Evidence, reconstruction, interpretation, uncertainty, and later tradition are distinguishable without overwhelming the design.
@@ -788,8 +805,8 @@ Required sincere-attempt evidence:
 ## Section/component storyboard
 
 ```markdown
-| Order | Section ID/heading | Learner purpose | Claims/sources | Module | Media/action | Transition |
-| --- | --- | --- | --- | --- | --- | --- |
+| Order | Section ID | Learner-facing heading | Authoring purpose (not shown) | Claims/sources | Module | Media/action | Transition |
+| --- | --- | --- | --- | --- | --- | --- | --- |
 ```
 
 ## Media decision

@@ -12,23 +12,23 @@
   },
   "assets": [
     {
-      "id": "media.farming.catalhoyuk-rooftops",
+      "id": "media.farming.catalhoyuk-card",
       "locator": {
         "provider": "object-storage",
         "bucket": "media-public",
         "fallback": {
-          "path": "/images/optimized/farming/catalhoyuk-rooftops.optimized.webp",
-          "width": 1536,
-          "height": 1024
+          "path": "/images/optimized/farming/catalhoyuk-card.optimized.webp",
+          "width": 1024,
+          "height": 1536
         },
         "variants": [
           {
-            "objectKey": "farming/media.farming.catalhoyuk-rooftops/c52eaad1eb2b56f5/optimized/ql-v1/480w-webp-lossless-11680c200c5d0eda.webp",
+            "objectKey": "farming/media.farming.catalhoyuk-card/d4cb2755344d8da4/optimized/ql-v1/480w-webp-lossless-e17d2fbd5e818147.webp",
             "mimeType": "image/webp",
-            "bytes": 219562,
-            "sha256": "11680c200c5d0eda924de369bf425931bafa6e057a8cc320d16dade70d6d36eb",
+            "bytes": 410610,
+            "sha256": "e17d2fbd5e818147f3ed4c51016ee4ad33c908a24e7d26142712c6e9b855202a",
             "width": 480,
-            "height": 320,
+            "height": 720,
             "compression": {
               "profile": "ql-v1",
               "codec": "webp",
@@ -42,34 +42,35 @@
             }
           },
           {
-            "objectKey": "farming/media.farming.catalhoyuk-rooftops/c52eaad1eb2b56f5/optimized/ql-v1/1536w-source-webp-c52eaad1eb2b56f5.webp",
+            "objectKey": "farming/media.farming.catalhoyuk-card/d4cb2755344d8da4/optimized/ql-v1/1024w-webp-q94-6f1312bca78b5f67.webp",
             "mimeType": "image/webp",
-            "bytes": 620850,
-            "sha256": "c52eaad1eb2b56f529be69d0e2886f44c256ffb8703ed4ddd6ec307722704a41",
-            "width": 1536,
-            "height": 1024,
+            "bytes": 445306,
+            "sha256": "6f1312bca78b5f67a25b20359810f2c1c1be831d3c5b147bea50ac52ff772504",
+            "width": 1024,
+            "height": 1536,
             "compression": {
               "profile": "ql-v1",
               "codec": "webp",
-              "encoder": "source-passthrough"
+              "encoder": "webp-lossy",
+              "quality": 94
             },
             "fidelity": {
-              "mode": "pixel-exact",
-              "psnrDb": null,
-              "meanAbsoluteError": 0,
-              "maximumChannelDelta": 0
+              "mode": "measured-quasi-lossless",
+              "psnrDb": 47.15,
+              "meanAbsoluteError": 0.621,
+              "maximumChannelDelta": 11
             }
           }
         ]
       },
       "source": {
         "bucket": "media-source",
-        "objectKey": "farming/media.farming.catalhoyuk-rooftops/c52eaad1eb2b56f529be69d0e2886f44c256ffb8703ed4ddd6ec307722704a41/original.webp",
+        "objectKey": "farming/media.farming.catalhoyuk-card/d4cb2755344d8da4dac40b0726298b798c4e5eaf8f4cb7158c88f892fcf6c9d1/original.webp",
         "mimeType": "image/webp",
-        "bytes": 620850,
-        "sha256": "c52eaad1eb2b56f529be69d0e2886f44c256ffb8703ed4ddd6ec307722704a41",
-        "width": 1536,
-        "height": 1024
+        "bytes": 473708,
+        "sha256": "d4cb2755344d8da4dac40b0726298b798c4e5eaf8f4cb7158c88f892fcf6c9d1",
+        "width": 1024,
+        "height": 1536
       }
     },
     {
@@ -196,23 +197,23 @@
       }
     },
     {
-      "id": "media.farming.catalhoyuk-card",
+      "id": "media.farming.catalhoyuk-rooftops",
       "locator": {
         "provider": "object-storage",
         "bucket": "media-public",
         "fallback": {
-          "path": "/images/optimized/farming/catalhoyuk-card.optimized.webp",
-          "width": 1024,
-          "height": 1536
+          "path": "/images/optimized/farming/catalhoyuk-rooftops.optimized.webp",
+          "width": 1536,
+          "height": 1024
         },
         "variants": [
           {
-            "objectKey": "farming/media.farming.catalhoyuk-card/d4cb2755344d8da4/optimized/ql-v1/480w-webp-lossless-e17d2fbd5e818147.webp",
+            "objectKey": "farming/media.farming.catalhoyuk-rooftops/c52eaad1eb2b56f5/optimized/ql-v1/480w-webp-lossless-11680c200c5d0eda.webp",
             "mimeType": "image/webp",
-            "bytes": 410610,
-            "sha256": "e17d2fbd5e818147f3ed4c51016ee4ad33c908a24e7d26142712c6e9b855202a",
+            "bytes": 219562,
+            "sha256": "11680c200c5d0eda924de369bf425931bafa6e057a8cc320d16dade70d6d36eb",
             "width": 480,
-            "height": 720,
+            "height": 320,
             "compression": {
               "profile": "ql-v1",
               "codec": "webp",
@@ -226,35 +227,363 @@
             }
           },
           {
-            "objectKey": "farming/media.farming.catalhoyuk-card/d4cb2755344d8da4/optimized/ql-v1/1024w-webp-q94-6f1312bca78b5f67.webp",
+            "objectKey": "farming/media.farming.catalhoyuk-rooftops/c52eaad1eb2b56f5/optimized/ql-v1/1536w-source-webp-c52eaad1eb2b56f5.webp",
             "mimeType": "image/webp",
-            "bytes": 445306,
-            "sha256": "6f1312bca78b5f67a25b20359810f2c1c1be831d3c5b147bea50ac52ff772504",
-            "width": 1024,
-            "height": 1536,
+            "bytes": 620850,
+            "sha256": "c52eaad1eb2b56f529be69d0e2886f44c256ffb8703ed4ddd6ec307722704a41",
+            "width": 1536,
+            "height": 1024,
             "compression": {
               "profile": "ql-v1",
               "codec": "webp",
-              "encoder": "webp-lossy",
-              "quality": 94
+              "encoder": "source-passthrough"
             },
             "fidelity": {
-              "mode": "measured-quasi-lossless",
-              "psnrDb": 47.15,
-              "meanAbsoluteError": 0.621,
-              "maximumChannelDelta": 11
+              "mode": "pixel-exact",
+              "psnrDb": null,
+              "meanAbsoluteError": 0,
+              "maximumChannelDelta": 0
             }
           }
         ]
       },
       "source": {
         "bucket": "media-source",
-        "objectKey": "farming/media.farming.catalhoyuk-card/d4cb2755344d8da4dac40b0726298b798c4e5eaf8f4cb7158c88f892fcf6c9d1/original.webp",
+        "objectKey": "farming/media.farming.catalhoyuk-rooftops/c52eaad1eb2b56f529be69d0e2886f44c256ffb8703ed4ddd6ec307722704a41/original.webp",
         "mimeType": "image/webp",
-        "bytes": 473708,
-        "sha256": "d4cb2755344d8da4dac40b0726298b798c4e5eaf8f4cb7158c88f892fcf6c9d1",
-        "width": 1024,
-        "height": 1536
+        "bytes": 620850,
+        "sha256": "c52eaad1eb2b56f529be69d0e2886f44c256ffb8703ed4ddd6ec307722704a41",
+        "width": 1536,
+        "height": 1024
+      }
+    },
+    {
+      "id": "media.humans.africa-evidence-map",
+      "locator": {
+        "provider": "object-storage",
+        "bucket": "media-public",
+        "fallback": {
+          "path": "/images/optimized/human-origins/africa-evidence-map.optimized.webp",
+          "width": 1600,
+          "height": 1644
+        },
+        "variants": [
+          {
+            "objectKey": "human-origins/media.humans.africa-evidence-map/40406c8075ca8846/optimized/ql-v1/480w-webp-lossless-4df647cf3cc88b90.webp",
+            "mimeType": "image/webp",
+            "bytes": 79142,
+            "sha256": "4df647cf3cc88b909b2c124ca9a5112caa09f85dd90ee3c2e22011aba6f28ee9",
+            "width": 480,
+            "height": 493,
+            "compression": {
+              "profile": "ql-v1",
+              "codec": "webp",
+              "encoder": "webp-lossless"
+            },
+            "fidelity": {
+              "mode": "pixel-exact",
+              "psnrDb": null,
+              "meanAbsoluteError": 0,
+              "maximumChannelDelta": 0
+            }
+          },
+          {
+            "objectKey": "human-origins/media.humans.africa-evidence-map/40406c8075ca8846/optimized/ql-v1/1600w-webp-q92-1e7a3181d7d86f17.webp",
+            "mimeType": "image/webp",
+            "bytes": 92048,
+            "sha256": "1e7a3181d7d86f1765398bf297078c62fb1edf6199907cd325654c4a2affae6d",
+            "width": 1600,
+            "height": 1644,
+            "compression": {
+              "profile": "ql-v1",
+              "codec": "webp",
+              "encoder": "webp-lossy",
+              "quality": 92
+            },
+            "fidelity": {
+              "mode": "measured-quasi-lossless",
+              "psnrDb": 52.93,
+              "meanAbsoluteError": 0.149,
+              "maximumChannelDelta": 13
+            }
+          }
+        ]
+      },
+      "source": {
+        "bucket": "media-source",
+        "objectKey": "human-origins/media.humans.africa-evidence-map/40406c8075ca8846909100e920c72e39d1b52f771ad7905e6b6852dd5d8a2776/original.webp",
+        "mimeType": "image/webp",
+        "bytes": 104074,
+        "sha256": "40406c8075ca8846909100e920c72e39d1b52f771ad7905e6b6852dd5d8a2776",
+        "width": 1600,
+        "height": 1644
+      }
+    },
+    {
+      "id": "media.humans.africa-origins-card",
+      "locator": {
+        "provider": "object-storage",
+        "bucket": "media-public",
+        "fallback": {
+          "path": "/images/optimized/human-origins/africa-origins-card.optimized.webp",
+          "width": 1600,
+          "height": 1000
+        },
+        "variants": [
+          {
+            "objectKey": "human-origins/media.humans.africa-origins-card/03ed157fb7ead3fd/optimized/ql-v1/1600w-webp-q90-e69881d5aa01bc07.webp",
+            "mimeType": "image/webp",
+            "bytes": 32032,
+            "sha256": "e69881d5aa01bc0778d6420b2e0668ac8afb28dbfcfbffb423651c2a3867034c",
+            "width": 1600,
+            "height": 1000,
+            "compression": {
+              "profile": "ql-v1",
+              "codec": "webp",
+              "encoder": "webp-lossy",
+              "quality": 90
+            },
+            "fidelity": {
+              "mode": "measured-quasi-lossless",
+              "psnrDb": 51.66,
+              "meanAbsoluteError": 0.183,
+              "maximumChannelDelta": 16
+            }
+          }
+        ]
+      },
+      "source": {
+        "bucket": "media-source",
+        "objectKey": "human-origins/media.humans.africa-origins-card/03ed157fb7ead3fd49ff08dca88c6742297b6e0ef1d984e82cfdb92d8d15df72/original.webp",
+        "mimeType": "image/webp",
+        "bytes": 42160,
+        "sha256": "03ed157fb7ead3fd49ff08dca88c6742297b6e0ef1d984e82cfdb92d8d15df72",
+        "width": 1600,
+        "height": 1000
+      }
+    },
+    {
+      "id": "media.humans.jebel-irhoud-cranium",
+      "locator": {
+        "provider": "object-storage",
+        "bucket": "media-public",
+        "fallback": {
+          "path": "/images/optimized/human-origins/jebel-irhoud-cranium.optimized.webp",
+          "width": 2048,
+          "height": 982
+        },
+        "variants": [
+          {
+            "objectKey": "human-origins/media.humans.jebel-irhoud-cranium/ad6942456ab03364/optimized/ql-v1/480w-webp-lossless-4127696282759f64.webp",
+            "mimeType": "image/webp",
+            "bytes": 95216,
+            "sha256": "4127696282759f64b360196012cf3e42939d90728b64158a36e51e8e7118d8c2",
+            "width": 480,
+            "height": 230,
+            "compression": {
+              "profile": "ql-v1",
+              "codec": "webp",
+              "encoder": "webp-lossless"
+            },
+            "fidelity": {
+              "mode": "pixel-exact",
+              "psnrDb": null,
+              "meanAbsoluteError": 0,
+              "maximumChannelDelta": 0
+            }
+          },
+          {
+            "objectKey": "human-origins/media.humans.jebel-irhoud-cranium/ad6942456ab03364/optimized/ql-v1/960w-webp-lossless-1a8a6173873066e8.webp",
+            "mimeType": "image/webp",
+            "bytes": 326154,
+            "sha256": "1a8a6173873066e868f0db6451957b2929faeed4f60eed8def795adcea8480a5",
+            "width": 960,
+            "height": 460,
+            "compression": {
+              "profile": "ql-v1",
+              "codec": "webp",
+              "encoder": "webp-lossless"
+            },
+            "fidelity": {
+              "mode": "pixel-exact",
+              "psnrDb": null,
+              "meanAbsoluteError": 0,
+              "maximumChannelDelta": 0
+            }
+          },
+          {
+            "objectKey": "human-origins/media.humans.jebel-irhoud-cranium/ad6942456ab03364/optimized/ql-v1/1600w-webp-q96-958b4b01c06618d3.webp",
+            "mimeType": "image/webp",
+            "bytes": 331238,
+            "sha256": "958b4b01c06618d3a27010362fea875f4f4b5d08993868f90ae7ff6ced109a4b",
+            "width": 1600,
+            "height": 767,
+            "compression": {
+              "profile": "ql-v1",
+              "codec": "webp",
+              "encoder": "webp-lossy",
+              "quality": 96
+            },
+            "fidelity": {
+              "mode": "measured-quasi-lossless",
+              "psnrDb": 47.72,
+              "meanAbsoluteError": 0.496,
+              "maximumChannelDelta": 16
+            }
+          },
+          {
+            "objectKey": "human-origins/media.humans.jebel-irhoud-cranium/ad6942456ab03364/optimized/ql-v1/2048w-webp-q92-a581911f598aa58d.webp",
+            "mimeType": "image/webp",
+            "bytes": 364608,
+            "sha256": "a581911f598aa58d97cc520d4630961f0bffd90b2927df16fe8c2c6b9c4bef95",
+            "width": 2048,
+            "height": 982,
+            "compression": {
+              "profile": "ql-v1",
+              "codec": "webp",
+              "encoder": "webp-lossy",
+              "quality": 92
+            },
+            "fidelity": {
+              "mode": "measured-quasi-lossless",
+              "psnrDb": 45.16,
+              "meanAbsoluteError": 0.662,
+              "maximumChannelDelta": 14
+            }
+          }
+        ]
+      },
+      "source": {
+        "bucket": "media-source",
+        "objectKey": "human-origins/media.humans.jebel-irhoud-cranium/ad6942456ab03364adc478718496c3be7ee71d96138e0eb7a66409c6bb009e1d/original.jpg",
+        "mimeType": "image/jpeg",
+        "bytes": 429162,
+        "sha256": "ad6942456ab03364adc478718496c3be7ee71d96138e0eb7a66409c6bb009e1d",
+        "width": 2048,
+        "height": 982
+      }
+    },
+    {
+      "id": "media.humans.jebel-irhoud-excavation",
+      "locator": {
+        "provider": "object-storage",
+        "bucket": "media-public",
+        "fallback": {
+          "path": "/images/optimized/human-origins/jebel-irhoud-excavation.optimized.jpg",
+          "width": 1600,
+          "height": 557
+        },
+        "variants": [
+          {
+            "objectKey": "human-origins/media.humans.jebel-irhoud-excavation/da0e6bbbdfe9b5da/optimized/ql-v1/480w-webp-lossless-4c9dc6efd21a7a82.webp",
+            "mimeType": "image/webp",
+            "bytes": 117792,
+            "sha256": "4c9dc6efd21a7a827d65cd06f1b8a53365e8a3d1971a07f604d0a0282e25df42",
+            "width": 480,
+            "height": 167,
+            "compression": {
+              "profile": "ql-v1",
+              "codec": "webp",
+              "encoder": "webp-lossless"
+            },
+            "fidelity": {
+              "mode": "pixel-exact",
+              "psnrDb": null,
+              "meanAbsoluteError": 0,
+              "maximumChannelDelta": 0
+            }
+          },
+          {
+            "objectKey": "human-origins/media.humans.jebel-irhoud-excavation/da0e6bbbdfe9b5da/optimized/ql-v1/1600w-source-jpeg-da0e6bbbdfe9b5da.jpg",
+            "mimeType": "image/jpeg",
+            "bytes": 419248,
+            "sha256": "da0e6bbbdfe9b5daee13dc93d8b2fd49388e977c0017f7d04571e0df0a66c1aa",
+            "width": 1600,
+            "height": 557,
+            "compression": {
+              "profile": "ql-v1",
+              "codec": "jpeg",
+              "encoder": "source-passthrough"
+            },
+            "fidelity": {
+              "mode": "pixel-exact",
+              "psnrDb": null,
+              "meanAbsoluteError": 0,
+              "maximumChannelDelta": 0
+            }
+          }
+        ]
+      },
+      "source": {
+        "bucket": "media-source",
+        "objectKey": "human-origins/media.humans.jebel-irhoud-excavation/da0e6bbbdfe9b5daee13dc93d8b2fd49388e977c0017f7d04571e0df0a66c1aa/original.jpg",
+        "mimeType": "image/jpeg",
+        "bytes": 419248,
+        "sha256": "da0e6bbbdfe9b5daee13dc93d8b2fd49388e977c0017f7d04571e0df0a66c1aa",
+        "width": 1600,
+        "height": 557
+      }
+    },
+    {
+      "id": "media.humans.jebel-irhoud-tools",
+      "locator": {
+        "provider": "object-storage",
+        "bucket": "media-public",
+        "fallback": {
+          "path": "/images/optimized/human-origins/jebel-irhoud-tools.optimized.webp",
+          "width": 1600,
+          "height": 2035
+        },
+        "variants": [
+          {
+            "objectKey": "human-origins/media.humans.jebel-irhoud-tools/0e99e87c7c2d15f0/optimized/ql-v1/480w-webp-lossless-5521fea4a6c8dabb.webp",
+            "mimeType": "image/webp",
+            "bytes": 253854,
+            "sha256": "5521fea4a6c8dabba46e07b207204a5fec26ad621129fb9f971d17af9dfca218",
+            "width": 480,
+            "height": 610,
+            "compression": {
+              "profile": "ql-v1",
+              "codec": "webp",
+              "encoder": "webp-lossless"
+            },
+            "fidelity": {
+              "mode": "pixel-exact",
+              "psnrDb": null,
+              "meanAbsoluteError": 0,
+              "maximumChannelDelta": 0
+            }
+          },
+          {
+            "objectKey": "human-origins/media.humans.jebel-irhoud-tools/0e99e87c7c2d15f0/optimized/ql-v1/1600w-webp-q92-57b13152dbe169fb.webp",
+            "mimeType": "image/webp",
+            "bytes": 455556,
+            "sha256": "57b13152dbe169fbb802d96b9cff0fedb3f7a15a9037aea5269171fa0eaba4b6",
+            "width": 1600,
+            "height": 2035,
+            "compression": {
+              "profile": "ql-v1",
+              "codec": "webp",
+              "encoder": "webp-lossy",
+              "quality": 92
+            },
+            "fidelity": {
+              "mode": "measured-quasi-lossless",
+              "psnrDb": 45.13,
+              "meanAbsoluteError": 0.694,
+              "maximumChannelDelta": 15
+            }
+          }
+        ]
+      },
+      "source": {
+        "bucket": "media-source",
+        "objectKey": "human-origins/media.humans.jebel-irhoud-tools/0e99e87c7c2d15f03b0f636bb5ae03348e0f63cff1d8b13f6c1b0e7d2e739160/original.jpg",
+        "mimeType": "image/jpeg",
+        "bytes": 650231,
+        "sha256": "0e99e87c7c2d15f03b0f636bb5ae03348e0f63cff1d8b13f6c1b0e7d2e739160",
+        "width": 1600,
+        "height": 2035
       }
     },
     {

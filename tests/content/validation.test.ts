@@ -27,21 +27,39 @@ it('detects a missing local map fallback',()=>{const fixture=structuredClone(chr
 
 it('rejects duplicate, oversized, or non-content-addressed media variants',()=>{const fixture=structuredClone(chronosContent);const map=fixture.media.find((item)=>item.id==='media.uruk.southern-mesopotamia-map')!;if(map.locator.provider!=='object-storage')throw new Error('object storage locator missing');map.locator.variants[1].width=map.locator.variants[0].width;map.locator.variants[1].objectKey='uruk/unversioned-map.webp';map.locator.variants[1].bytes=800000;const errors=validateContent(fixture).errors.join(' ');expect(errors).toMatch(/duplicate media variant width/);expect(errors).toMatch(/not content-addressed/);expect(errors).toMatch(/exceeds 786432 byte budget/)});
 
-it('publishes the three reviewed World History lessons in journey order', () => {
+it('publishes the four reviewed World History lessons in journey order', () => {
   const published = chronosContent.lessons.filter((lesson) => lesson.status === 'published');
   expect(published.map((lesson) => lesson.id)).toEqual([
+    'lesson.humans.homo-sapiens-origins',
     'lesson.farming.settlements',
     'lesson.uruk.first-city',
     'lesson.writing.early-systems',
   ]);
-  const entries = chronosContent.journeys[0].chapters[0].entries
-    .filter((entry) => published.some((lesson) => lesson.id === entry.lessonId))
-    .sort((left, right) => left.position - right.position);
+  const entries = chronosContent.journeys[0].chapters
+    .slice()
+    .sort((left, right) => left.position - right.position)
+    .flatMap((chapter) => chapter.entries.slice().sort((left, right) => left.position - right.position))
+    .filter((entry) => published.some((lesson) => lesson.id === entry.lessonId));
   expect(entries.map((entry) => entry.lessonId)).toEqual([
+    'lesson.humans.homo-sapiens-origins',
     'lesson.farming.settlements',
     'lesson.uruk.first-city',
     'lesson.writing.early-systems',
   ]);
+  expect(chronosContent.lessons.find((lesson) => lesson.id === 'lesson.humans.homo-sapiens-origins')).toMatchObject({
+    status: 'published',
+    heroMediaId: 'media.humans.jebel-irhoud-excavation',
+    promptIds: ['prompt.humans.best-supported-conclusion', 'prompt.humans.evidence-and-limit'],
+    sectionIdsRequired: [
+      'section.humans.skull-in-the-wrong-place',
+      'section.humans.what-counts-as-us',
+      'section.humans.read-the-skull',
+      'section.humans.across-a-continent',
+      'section.humans.connected-not-sealed-off',
+      'section.humans.what-dna-adds',
+      'section.humans.check-and-complete',
+    ],
+  });
   expect(chronosContent.lessons.find((lesson) => lesson.id === 'lesson.farming.settlements')).toMatchObject({
     status: 'published',
     heroMediaId: 'media.farming.catalhoyuk-rooftops',

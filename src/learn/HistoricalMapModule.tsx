@@ -38,12 +38,15 @@ export function HistoricalMapModule({ module, media, sources }: HistoricalMapMod
 
   return <figure className="historical-map" aria-label={module.title} aria-describedby={summaryId}>
     <ResponsiveMedia media={media} alt={media.alt} sizes="(max-width: 800px) 100vw, 960px" loading="lazy" />
-    <figcaption className="historical-map__meta">
-      <span>{module.compactLabel}</span>
-      <button ref={triggerRef} type="button" onClick={openDialog} aria-label={`About this map: ${module.title}`}>
-        <Info aria-hidden="true" />
-      </button>
-    </figcaption>
+    <button
+      ref={triggerRef}
+      className="historical-map__info"
+      type="button"
+      onClick={openDialog}
+      aria-label={`About this map: ${module.title}`}
+    >
+      <Info aria-hidden="true" />
+    </button>
     <p id={summaryId} className="sr-only">{module.accessibleSummary}</p>
     <dialog
       ref={dialogRef}
