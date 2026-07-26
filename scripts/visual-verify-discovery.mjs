@@ -4,7 +4,7 @@ import { extname, join, resolve } from 'node:path';
 
 const bundleDirectory = process.env.VISUAL_BUNDLE_DIR;
 const base = process.env.VISUAL_BASE_URL ?? 'http://127.0.0.1:3001';
-const output = 'docs/pr/design-audit-refinements';
+const output = process.env.VISUAL_OUTPUT_DIR ?? 'docs/pr/design-audit-refinements';
 await mkdir(output, { recursive: true });
 const browser = await chromium.launch({
   headless: true,
@@ -109,13 +109,39 @@ async function assertDocumentScroll(page, label) {
   await page.evaluate(() => window.scrollTo(0, 0));
 }
 
+const globalNavigation = (page, width) => width <= 900
+  ? page.locator('.mobile-nav')
+  : page.locator('.global-rail nav');
+
+async function verifyGlobalDrawer(page, width, label) {
+  const navigation = globalNavigation(page, width);
+  if (await navigation.locator(':scope > *').count() !== 4) {
+    throw new Error(`${label} did not expose the four shared global destinations.`);
+  }
+  if (width <= 900) {
+    const itemTops = await navigation.locator(':scope > *').evaluateAll((items) => (
+      items.map((item) => item.getBoundingClientRect().top)
+    ));
+    if (Math.max(...itemTops) - Math.min(...itemTops) > 2) {
+      throw new Error(`${label} wrapped the mobile destinations onto multiple rows.`);
+    }
+  }
+  const trigger = navigation.getByRole('button', { name: 'World History' });
+  await trigger.click();
+  const drawer = page.getByRole('dialog', { name: 'World History' });
+  await drawer.waitFor();
+  await drawer.getByRole('heading', { name: 'World History' }).waitFor();
+  await drawer.getByRole('button', { name: 'Close World History' }).click();
+  await drawer.waitFor({ state: 'hidden' });
+  await page.waitForTimeout(260);
+}
+
 async function verifyHome(page, width, height) {
   await openPage(page, '/home');
   await page.getByRole('heading', { name: 'Welcome back.' }).waitFor();
-  await page.getByText(/Continue.*World Spine/).waitFor();
+  await page.getByText(/Continue.*World History/).waitFor();
   if (await page.getByRole('link', { name: 'Learn', exact: true }).count()) throw new Error('Home still exposes Learn as a global destination.');
-  const navSelector = width <= 900 ? '.mobile-nav a' : '.global-rail nav a';
-  if (await page.locator(navSelector).count() !== 3) throw new Error(`${width}x${height}: expected three global destinations.`);
+  await verifyGlobalDrawer(page, width, `Home ${width}x${height}`);
   await assertLayout(page, `Home ${width}x${height} light`);
   await assertDocumentScroll(page, `Home ${width}x${height}`);
 }
@@ -123,23 +149,35 @@ async function verifyHome(page, width, height) {
 async function verifyLibrary(page, width, height) {
   await openPage(page, '/library');
   await page.getByRole('heading', { name: 'Explore history.' }).waitFor();
-  await page.getByText('185 lesson roadmap').waitFor();
-  await page.getByText('12 chapters').waitFor();
+  const main = page.getByRole('main');
+  await main.getByText('185 lesson roadmap').waitFor();
+  await main.getByText('12 chapters').waitFor();
+  const open = page.getByRole('button', { name: 'Open World History' });
+  await open.click();
+  const drawer = page.getByRole('dialog', { name: 'World History' });
+  await drawer.waitFor();
+  await drawer.getByRole('button', { name: 'Close World History' }).click();
+  await drawer.waitFor({ state: 'hidden' });
+  await page.waitForTimeout(260);
+  if (await page.evaluate(() => document.activeElement?.textContent?.includes('Open World History')) !== true) {
+    throw new Error('Library drawer did not return focus to its trigger.');
+  }
   await assertLayout(page, `Library ${width}x${height} light`);
   await assertDocumentScroll(page, `Library ${width}x${height}`);
 }
 
 async function verifyWorldSpine(page, width, height) {
   await openPage(page, '/library/journey.world-history');
-  await page.getByRole('heading', { name: 'The World Spine' }).waitFor();
+  await page.getByRole('heading', { name: 'Complete World History roadmap' }).waitFor();
   if (await page.locator('.world-spine-chapters li').count() !== 185) throw new Error('World History detail did not render all 185 roadmap nodes.');
   if (await page.locator('.world-spine-chapters .preparing').count() < 1) throw new Error('World History detail lost in-preparation states.');
   const firstChapter = page.locator('.world-spine-chapters details').first();
   if (!(await firstChapter.getAttribute('open'))) await firstChapter.locator('summary').click();
-  await page.getByText('Farming and Settlements', { exact: true }).waitFor();
-  if (await page.getByText('Farming and Settlements', { exact: true }).getAttribute('href')) throw new Error('An unfinished World Spine node became navigable.');
-  await assertLayout(page, `World Spine detail ${width}x${height} light`);
-  await assertDocumentScroll(page, `World Spine detail ${width}x${height}`);
+  const farming = page.locator('.world-spine-chapters').getByText('Farming and Settlements', { exact: true });
+  await farming.waitFor({ state: 'attached' });
+  if (await farming.getAttribute('href') !== '/learn/lesson.farming.settlements') throw new Error('The published Farming and Settlements node is not navigable.');
+  await assertLayout(page, `World History detail ${width}x${height} light`);
+  await assertDocumentScroll(page, `World History detail ${width}x${height}`);
 }
 
 async function verifySearch(page, width, height) {
@@ -154,22 +192,24 @@ async function verifySearch(page, width, height) {
   if (await page.evaluate(() => document.activeElement?.id) !== 'search-result-0') throw new Error('Arrow Down did not move focus to the first search result.');
   await page.keyboard.press('Tab');
   if (await page.evaluate(() => document.activeElement?.id) !== 'search-result-1') throw new Error('Tab did not follow normal link focus order through search results.');
+  await verifyGlobalDrawer(page, width, `Search ${width}x${height}`);
   await assertLayout(page, `Search ${width}x${height} light`);
 }
 async function verifyLearn(page, width, height) {
   await openPage(page, '/learn/lesson.uruk.first-city');
   await page.getByRole('heading', { name: 'Uruk: Life in an Early City', exact: true }).waitFor();
+  const rail = page.getByLabel('World History', { exact: true });
+  if (await rail.getAttribute('aria-hidden') !== 'true') throw new Error('World History was permanently visible instead of closed in its drawer.');
   const visibleNodes = await page.locator('.spine-node').count();
-  if (visibleNodes < 4 || visibleNodes >= 185) throw new Error(`Learn rail was not condensed: rendered ${visibleNodes} World Spine nodes.`);
-  if (width <= 1100) {
-    await page.getByRole('button', { name: 'Open World Spine' }).click();
-    await page.getByRole('dialog', { name: 'World History World Spine' }).waitFor();
-  } else {
-    await page.getByLabel('World History World Spine').waitFor();
-  }
+  if (visibleNodes < 4 || visibleNodes >= 185) throw new Error(`Learn rail was not condensed: rendered ${visibleNodes} World History nodes.`);
+  const drawerTrigger = globalNavigation(page, width).getByRole('button', { name: 'World History' });
+  await drawerTrigger.click();
+  await page.getByRole('dialog', { name: 'World History' }).waitFor();
   await page.getByRole('link', { name: 'View complete 185-lesson roadmap' }).waitFor();
-  const navSelector = width <= 900 ? '.mobile-nav a' : '.global-rail nav a';
-  if (await page.locator(navSelector).count() !== 3) throw new Error('Learn did not retain the three shared global destinations.');
+  await page.getByRole('button', { name: 'Close World History' }).click();
+  if (await rail.getAttribute('aria-hidden') !== 'true') throw new Error('World History drawer did not close.');
+  await rail.waitFor({ state: 'hidden' });
+  if (await globalNavigation(page, width).locator(':scope > *').count() !== 4) throw new Error('Learn did not retain the four shared global destinations.');
   await assertLayout(page, `Learn ${width}x${height} light`);
 }
 
@@ -177,8 +217,7 @@ async function verifyLockedLesson(page, width, height) {
   await openPage(page, '/learn/lesson.writing.early-systems');
   await page.getByRole('heading', { name: 'This lesson is still locked.' }).waitFor();
   await page.getByText(/Complete Uruk: Life in an Early City before continuing/).waitFor();
-  const navSelector = width <= 900 ? '.mobile-nav a' : '.global-rail nav a';
-  if (await page.locator(navSelector).count() !== 3) throw new Error('Locked lesson lost the shared global navigation.');
+  await verifyGlobalDrawer(page, width, `Locked lesson ${width}x${height}`);
   if (await page.getByRole('navigation', { name: 'Lesson sections' }).count()) throw new Error('Locked lesson exposed its section controls.');
   await assertLayout(page, `Locked lesson ${width}x${height}`);
 }
@@ -202,7 +241,7 @@ for (const [width, height] of viewports) {
   console.log(`  Library passed at ${width}x${height}.`);
   if (width === 1440 || width === 390) await capture(page, `${output}/library-${width}x${height}-light.png`);
   await verifyWorldSpine(page, width, height);
-  console.log(`  World Spine passed at ${width}x${height}.`);
+  console.log(`  World History passed at ${width}x${height}.`);
   if (width === 1440 || width === 390) await capture(page, `${output}/world-spine-${width}x${height}-light.png`);
   await verifySearch(page, width, height);
   console.log(`  Search passed at ${width}x${height}.`);
@@ -217,8 +256,8 @@ for (const [width, height] of viewports) {
     await page.emulateMedia({ colorScheme: 'dark' });
     await page.reload({ waitUntil: 'networkidle' });
     await page.getByRole('heading', { name: 'Uruk: Life in an Early City', exact: true }).waitFor();
-    await page.getByRole('button', { name: 'Open World Spine' }).click();
-    await page.getByRole('dialog', { name: 'World History World Spine' }).waitFor();
+    await globalNavigation(page, width).getByRole('button', { name: 'World History' }).click();
+    await page.getByRole('dialog', { name: 'World History' }).waitFor();
   }
   await page.waitForTimeout(150);
   await assertLayout(page, `Learn ${width}x${height} dark`);
@@ -233,13 +272,14 @@ for (const [width, height] of viewports) {
 }
 
 const gate = await browser.newContext({ viewport: { width: 1024, height: 768 }, colorScheme: 'light' });
+await serveBundle(gate);
 const gatePage = await gate.newPage();
 monitor(gatePage, 'gating');
-await gatePage.goto(`${base}/learn/lesson.writing.early-systems`, { waitUntil: 'networkidle' });
+await openPage(gatePage, '/learn/lesson.writing.early-systems');
 await gatePage.getByRole('heading', { name: 'This lesson is still locked.' }).waitFor();
 await gatePage.getByText(/Complete Uruk: Life in an Early City/).waitFor();
 await gate.close();
 
 await browser.close();
 if (errors.length) throw new Error(`Browser errors:\n${errors.join('\n')}`);
-console.log('ASH-55 discovery verification passed: four responsive sizes, light/dark, Home, Library, full World Spine detail, Learn drawer, simplified navigation, document scrolling, gating, overflow, and console checks.');
+console.log('ASH-71 discovery verification passed: four responsive sizes, light/dark, Home, Library, full World History detail, shared World History drawer, simplified navigation, document scrolling, gating, overflow, and console checks.');

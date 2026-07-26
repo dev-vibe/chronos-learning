@@ -64,7 +64,8 @@ describe('multi-lesson Learn runtime', () => {
     expect(screen.queryByText('Review state')).toBeNull();
     expect(screen.queryByText(/^approved$/i)).toBeNull();
     expect(screen.getByRole('link', { name: /Previous: Uruk/ }).getAttribute('href')).toBe('/learn/lesson.uruk.first-city');
-    const journey = screen.getByLabelText('World History World Spine');
+    await userEvent.click(within(screen.getByRole('complementary', { name: 'Chronos navigation' })).getByRole('button', { name: 'World History' }));
+    const journey = screen.getByRole('dialog', { name: 'World History' });
     const publishedLinks = within(journey).getAllByRole('link').map((link) => link.getAttribute('href')).filter((href) => href?.startsWith('/learn/'));
     expect(publishedLinks).toEqual([
       '/learn/lesson.farming.settlements',
@@ -107,7 +108,7 @@ describe('multi-lesson Learn runtime', () => {
   it('keeps an unpublished spine neighbor private and non-completable', () => {
     render(<LearnApp lessonId="lesson.farming.multiple-origins" />);
     expect(screen.getByRole('heading', { name: /archive entry isn.t available/i })).toBeTruthy();
-    expect(screen.queryByText('Many Beginnings of Farming')).toBeNull();
+    expect(screen.queryByRole('heading', { name: 'Many Beginnings of Farming' })).toBeNull();
     expect(screen.queryByRole('button', { name: 'Complete lesson' })).toBeNull();
   });
   it('always permits revisiting a completed lesson even when its prerequisite is incomplete', async () => {
@@ -122,5 +123,5 @@ describe('multi-lesson Learn runtime', () => {
     expect(await screen.findByRole('heading', { name: 'From Marks to Proto-Cuneiform' })).toBeTruthy();
     expect(screen.queryByRole('heading', { name: 'This lesson is still locked.' })).toBeNull();
   });
-  it('blocks a later published lesson until the earlier World Spine lesson is complete', async () => { const gateway = new MultiLessonGateway(); gateway.states.set('lesson.uruk.first-city', emptyState('lesson.uruk.first-city')); render(<LearnApp lessonId="lesson.writing.early-systems" gatewayFactory={async () => gateway} />); expect(await screen.findByRole('heading', { name: 'This lesson is still locked.' })).toBeTruthy(); expect(screen.getByText(/Complete Uruk: Life in an Early City/)).toBeTruthy(); expect(document.querySelector('[data-section-id]')).toBeNull(); })
+  it('blocks a later published lesson until the earlier World History lesson is complete', async () => { const gateway = new MultiLessonGateway(); gateway.states.set('lesson.uruk.first-city', emptyState('lesson.uruk.first-city')); render(<LearnApp lessonId="lesson.writing.early-systems" gatewayFactory={async () => gateway} />); expect(await screen.findByRole('heading', { name: 'This lesson is still locked.' })).toBeTruthy(); expect(screen.getByText(/Complete Uruk: Life in an Early City/)).toBeTruthy(); expect(document.querySelector('[data-section-id]')).toBeNull(); })
 });
