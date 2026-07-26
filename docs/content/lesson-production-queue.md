@@ -4,7 +4,7 @@ Linear anchor: [ASH-65 — Maintain the canonical Chronos lesson production queu
 
 Curriculum source: [Canonical World Spine roster](world-spine-canonical-roster.md) and [World Spine audit](world-spine-audit.md)
 
-Status: **Roster positions 7–14 approved on July 19, 2026.** Farming and Settlements merged on July 26, 2026. Human Origins (Spine position 1) was directed by the product owner and is being rebuilt from scratch under ASH-72 after the ASH-69 preview was rejected. No other World Spine node is approved for automatic production by this update.
+Status: **Roster positions 7–14 approved on July 19, 2026.** Farming and Settlements and the clean-slate Human Origins rebuild merged on July 26, 2026. The product owner then explicitly directed production of World Spine position 2, Migrations, Encounters, and Ancient DNA, under ASH-73. No other World Spine node is approved for automatic production by this update.
 
 This is the version-controlled source of truth for which canonical lesson is produced next. It is an editorially curated production queue, not the complete knowledge graph, legacy-data order, or a promise that every canonical node is ready for lesson production.
 
@@ -48,30 +48,31 @@ The production order below is operational and may differ from canonical learner 
 
 | Production order | Lesson | Spine position | Why it is queued | Production dependencies | Status | Linear / PR |
 | ---: | --- | ---: | --- | --- | --- | --- |
-| 5 | `lesson.humans.homo-sapiens-origins` — Our Species Begins in Africa | 1 | Product-owner direction: the journey must open at its actual beginning. Rebuilt from scratch after the first preview was rejected. | Reusable multi-lesson pipeline accepted; `historical-map` module pattern available from Uruk and Farming | `Review` | [ASH-72](https://linear.app/ashs-workshop/issue/ASH-72/rebuild-and-publish-our-species-begins-in-africa) · branch `codex/ash-72-human-origins` |
+| 10 | `lesson.humans.migrations-and-interbreeding` — Migrations, Encounters, and Ancient DNA | 2 | Product-owner direction: continue the World History opening sequence immediately after Human Origins. | Human Origins merged and verified; source and claim brief is the first research gate | `Awaiting approval` | [ASH-73](https://linear.app/ashs-workshop/issue/ASH-73/research-and-publish-migrations-encounters-and-ancient-dna) · branch `codex/ash-73-migrations-ancient-dna` |
 | 20 | `lesson.farming.multiple-origins` — Many Beginnings of Farming | 7 | Establish the global frame that prevents a single “Neolithic Revolution” story. | No prior lesson implementation; source and claim brief is the first research gate | `Ready` | Per-lesson issue created when selected |
 | 30 | `lesson.animals.domestication-and-pastoralism` — Animals, Herding, and Mobility | 9 | Explain mobile pastoral lifeways as a durable complement and alternative to settled farming. | Many Beginnings of Farming implementation available | `Planned` | None |
 | 40 | `lesson.technology.wheels-metals-and-work` — Wheels, Metals, and Specialized Work | 10 | Provide the material and labor-system bridge into early cities and states. | Farming and Settlements implementation available; dedicated source brief | `Planned` | None |
 | 50 | `lesson.egypt.nile-state` — The Nile and an Early Egyptian State | 13 | Add a contrasting, evidence-rich pathway to early state formation. | Uruk reference implementation available | `Ready` | Per-lesson issue created when selected |
 | 60 | `lesson.caral.andean-urbanism` — Caral and Early Andean Urbanism | 14 | Add an independently developed urban case that challenges one-path models of cities. | Many Beginnings of Farming implementation available | `Ready` | Per-lesson issue created when selected |
 
-`lesson.humans.homo-sapiens-origins` is the single active row. The product owner directed production of Spine position 1 so the World History journey opens at its actual beginning, which supersedes the queue's ordinary lowest-`Ready` selection rule for this increment. The earlier attempt under [ASH-69](https://linear.app/ashs-workshop/issue/ASH-69/research-and-publish-our-species-begins-in-africa) was rejected on content and visual review and its PR #14 was closed; ASH-72 is a clean-slate rebuild that does not reuse that branch's research, media, or lesson module. Its research and editorial note is `docs/research/homo-sapiens-origins.md`.
+`lesson.humans.migrations-and-interbreeding` is the single active row. After ASH-72 and PR #18 completed the clean-slate Human Origins rebuild, the product owner explicitly directed production of the next canonical lesson, Spine position 2. This supersedes the queue's ordinary lowest-`Ready` selection rule for this increment. Its Stages 0-14 checkpoint is recorded at `docs/research/migrations-and-ancient-dna.md`; implementation waits for product-owner approval.
 
 After this lesson leaves active production, selection returns to the lowest eligible `Ready` row — `lesson.farming.multiple-origins` — unless the product owner approves another queue amendment. The Nile node is also reviewed and ready but follows in production order. Caral remains approved and ready, with its stated production dependency; Planned rows require explicit promotion before selection.
 
-Implementing position 1 after positions 8, 11, and 12 does not change canonical learner order. `lesson.farming.multiple-origins` remains the curriculum prerequisite for `lesson.farming.settlements`, and that prerequisite cannot be skipped.
+Implementing positions 1 and 2 after positions 8, 11, and 12 does not change canonical learner order. `lesson.farming.multiple-origins` remains the curriculum prerequisite for `lesson.farming.settlements`, and that prerequisite cannot be skipped.
 
 ## Completed reference lessons in the approved segment
 
 | Lesson | Spine position | Evidence of completion | Notes |
 | --- | ---: | --- | --- |
+| `lesson.humans.homo-sapiens-origins` — Our Species Begins in Africa | 1 | [ASH-72](https://linear.app/ashs-workshop/issue/ASH-72/rebuild-and-publish-our-species-begins-in-africa) · [PR #18 merged](https://github.com/dev-vibe/chronos-learning/pull/18) | Clean-slate rebuild approved and merged 2026-07-26 after the ASH-69 preview was rejected. Decision packet in `docs/research/homo-sapiens-origins.md`. |
 | `lesson.uruk.first-city` — Uruk: Life in an Early City | 11 | Merged responsive Learn loop and supporting media work | First complete vertical slice and migration reference; not a universal content template. |
 | `lesson.writing.early-systems` — From Marks to Proto-Cuneiform | 12 | [ASH-63](https://linear.app/ashs-workshop/issue/ASH-63/publish-early-writing-systems-and-prove-the-reusable-learn-pipeline) · [PR #8 merged](https://github.com/dev-vibe/chronos-learning/pull/8) | Second approved reference proving the reusable content, media, completion, and recovery pipeline. |
 | `lesson.farming.settlements` — Farming and Settlements | 8 | [ASH-70](https://linear.app/ashs-workshop/issue/ASH-70/research-and-publish-farming-and-settlements) · [PR #15 merged](https://github.com/dev-vibe/chronos-learning/pull/15) | Revision 2 approved 2026-07-21 and merged 2026-07-26 after the first preview failed product-owner review. Decision packet in `docs/research/farming-settlements.md`. |
 
 ## Approved boundary
 
-This queue records World Spine position 1, added by explicit product-owner direction, plus positions 7–14. It does not promote any other roster node, create per-node Linear issues, or authorize full-lesson work without the queue and runbook gates. Spine positions 2–6 remain `Planned` in the canonical roster and are not eligible for automatic selection. The complete roster remains the curriculum source of truth; this file owns operational production state.
+This queue records World Spine positions 1 and 2, each added by explicit product-owner direction, plus positions 7–14. It does not promote any other roster node, create per-node Linear issues, or authorize full-lesson work without the queue and runbook gates. Spine positions 3–6 remain `Planned` in the canonical roster and are not eligible for automatic selection. The complete roster remains the curriculum source of truth; this file owns operational production state.
 
 ## Queue-change checklist
 
