@@ -1,5 +1,5 @@
 import React from 'react';
-import { Home, Library, Moon, Search, Sun } from 'lucide-react';
+import { Compass, Home, Library, Moon, Search, Sun } from 'lucide-react';
 import './global-navigation.css';
 
 export type GlobalDestination = 'home' | 'library' | 'search';
@@ -8,6 +8,8 @@ type GlobalNavigationProps = {
   active?: GlobalDestination;
   theme: 'light' | 'dark';
   onTheme(): void;
+  onWorldHistory?(event: React.MouseEvent<HTMLButtonElement>): void;
+  worldHistoryOpen?: boolean;
 };
 
 const destinations = [
@@ -16,7 +18,13 @@ const destinations = [
   { id: 'search' as const, label: 'Search', href: '/search', icon: Search },
 ];
 
-export function GlobalNavigation({ active, theme, onTheme }: GlobalNavigationProps) {
+export function GlobalNavigation({
+  active,
+  theme,
+  onTheme,
+  onWorldHistory,
+  worldHistoryOpen = false,
+}: GlobalNavigationProps) {
   const links = destinations.map(({ id, label, href, icon: Icon }) => (
     <a
       key={id}
@@ -28,6 +36,15 @@ export function GlobalNavigation({ active, theme, onTheme }: GlobalNavigationPro
       <span>{label}</span>
     </a>
   ));
+  const worldHistory = onWorldHistory ? <button
+    className={`world-history-nav ${worldHistoryOpen ? 'active' : ''}`}
+    onClick={onWorldHistory}
+    aria-haspopup="dialog"
+    aria-expanded={worldHistoryOpen}
+  >
+    <Compass />
+    <span>World History</span>
+  </button> : null;
 
   return <>
     <aside className="global-rail" aria-label="Chronos navigation">
@@ -35,7 +52,7 @@ export function GlobalNavigation({ active, theme, onTheme }: GlobalNavigationPro
         <span aria-hidden="true">C</span>
         <strong>Chronos</strong>
       </a>
-      <nav>{links}</nav>
+      <nav>{links[0]}{worldHistory}{links.slice(1)}</nav>
       <button
         className="theme-button"
         onClick={onTheme}
@@ -44,6 +61,6 @@ export function GlobalNavigation({ active, theme, onTheme }: GlobalNavigationPro
         {theme === 'light' ? <Moon /> : <Sun />}
       </button>
     </aside>
-    <nav className="mobile-nav" aria-label="Chronos navigation">{links}</nav>
+    <nav className="mobile-nav" aria-label="Chronos navigation">{links[0]}{worldHistory}{links.slice(1)}</nav>
   </>;
 }

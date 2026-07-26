@@ -1,7 +1,7 @@
 // @vitest-environment jsdom
 import React from 'react';
 import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest';
-import { cleanup, fireEvent, render, screen, waitFor } from '@testing-library/react';
+import { cleanup, fireEvent, render, screen, waitFor, within } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import { chronosContent } from '../../content/chronos';
 import type { ChronosContentBundle } from '../../content/assemble';
@@ -230,7 +230,13 @@ describe('Home, Library, preview, and search composition', () => {
     expect(await screen.findByRole('heading', { name: 'Explore history.' })).toBeTruthy();
     expect(screen.getByRole('heading', { name: 'Civilizations and Regions' })).toBeTruthy();
     expect(screen.getByText(/More authored journeys are being prepared/i)).toBeTruthy();
-    expect(screen.queryByText('Farming and Settlements')).toBeNull();
+    expect(within(document.querySelector('.library-page')!).queryByText('Farming and Settlements')).toBeNull();
+    const open = screen.getByRole('button', { name: 'Open World History' });
+    await userEvent.click(open);
+    const drawer = screen.getByRole('dialog', { name: 'World History' });
+    expect(within(drawer).getByRole('heading', { name: 'World History' })).toBeTruthy();
+    fireEvent.keyDown(document, { key: 'Escape' });
+    expect(open).toBe(document.activeElement);
   });
 
   it('fails closed for invalid and unpublished journey destinations', async () => {
@@ -254,7 +260,7 @@ describe('Home, Library, preview, and search composition', () => {
     expect(await screen.findByRole('heading', { name: 'World History' })).toBeTruthy();
     expect(screen.getByRole('link', { name: /Continue journey/i })).toBeTruthy();
     expect(screen.queryByRole('button', { name: 'Close' })).toBeNull();
-    expect(screen.getByText('Farming and Settlements')).toBeTruthy(); expect(document.querySelectorAll('.world-spine-chapters .preparing')).not.toHaveLength(0);
+    expect(within(document.querySelector('.world-spine-chapters')!).getByText('Farming and Settlements')).toBeTruthy(); expect(document.querySelectorAll('.world-spine-chapters .preparing')).not.toHaveLength(0);
   });
 
   it('uses a stable query URL, typed results, announcements, and keyboard selection', async () => {
@@ -304,6 +310,8 @@ describe('Home, Library, preview, and search composition', () => {
     expect(screen.getAllByLabelText('Chronos navigation')).toHaveLength(2);
     expect(document.querySelector('.mobile-nav')).toBeTruthy();
     expect(screen.queryByRole('link', { name: 'Learn' })).toBeNull(); expect(document.querySelectorAll('.global-rail nav a')).toHaveLength(3); expect(document.querySelectorAll('.mobile-nav a')).toHaveLength(3);
+    expect(within(screen.getByRole('complementary', { name: 'Chronos navigation' })).getByRole('button', { name: 'World History' })).toBeTruthy();
+    expect(within(document.querySelector('.mobile-nav')!).getByRole('button', { name: 'World History' })).toBeTruthy();
   });
 
   it('offers retry after a transient navigation-state load failure', async () => {

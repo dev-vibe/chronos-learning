@@ -43,8 +43,8 @@ export function WorldSpineTimeline({
 
   return <>
     <div className="rail-heading spine-heading">
-      <p className="eyebrow">World History</p>
-      <h2>World Spine</h2>
+      <p className="eyebrow">Core chronological journey</p>
+      <h2>World History</h2>
       <p>A chronological path from human beginnings to the present.</p>
     </div>
     <div className="spine-stats" aria-label={availableCount + ' of ' + worldSpineNodeCount + ' lessons available'}>
