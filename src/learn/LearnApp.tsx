@@ -1,4 +1,4 @@
-﻿import React, { useCallback, useEffect, useLayoutEffect, useMemo, useRef, useState } from 'react';
+import React, { useCallback, useEffect, useLayoutEffect, useMemo, useRef, useState } from 'react';
 import { Archive, BookOpen, Check, ChevronLeft, ChevronRight, Compass, Landmark, Lock, Moon, RotateCcw, Sun } from 'lucide-react';
 import { chronosContent } from '../../content/chronos';
 import type { Journey, KnowledgeCard, Lesson, LessonModule, LessonSection } from '../domains/contracts';
@@ -34,8 +34,11 @@ const findJourney = (lessonId: string) => chronosContent.journeys.find((item) =>
 type ModuleProps = { module: LessonModule; state: LearnState; onAttempt(id: string, response: string): void };
 
 function Module({ module, state, onAttempt }: ModuleProps) {
-  if (module.type === 'prose') return <p className="prose-module">{module.body}</p>;
-  if (module.type === 'knowledge') return <aside className="knowledge-block"><div className="module-heading"><span>{module.eyebrow}</span><h3>{module.title}</h3><p>{module.body}</p></div><dl data-count={module.items.length}>{module.items.map((item) => <div key={item.label}><dt>{item.label}</dt><dd>{item.detail}</dd></div>)}</dl></aside>;
+  if (module.type === 'prose') {
+    const paragraphs = module.body.split(/\n\n+/).map((part) => part.trim()).filter(Boolean);
+    return <div className="prose-module">{paragraphs.map((paragraph) => <p key={paragraph.slice(0, 48)}>{paragraph}</p>)}</div>;
+  }
+  if (module.type === 'knowledge') return <aside className="knowledge-block"><div className="module-heading"><span>{module.eyebrow}</span><p className="module-lead">{module.body}</p></div><dl data-count={module.items.length}>{module.items.map((item) => <div key={item.label}><dt>{item.label}</dt><dd>{item.detail}</dd></div>)}</dl></aside>;
   if (module.type === 'scene') {
     const media = mediaById.get(module.mediaId)!;
     return <details className="scene-module"><summary><span className="scene-thumb"><ResponsiveMedia media={media} alt="" sizes="96px" loading="lazy" /></span><span><small>Visual field guide</small><strong>{module.title}</strong><em>{module.body}</em></span><ChevronRight /></summary><div className="scene-details"><ResponsiveMedia media={media} alt={media.alt} sizes="(max-width: 800px) 100vw, 50vw" loading="lazy" /><ol>{module.hotspots.map((spot, index) => <li key={spot.label}><span>{index + 1}</span><div><strong>{spot.label}</strong><p>{spot.detail}</p></div></li>)}</ol></div></details>;
@@ -59,7 +62,7 @@ function Module({ module, state, onAttempt }: ModuleProps) {
 }
 
 function Section({ section, state, onAttempt }: { section: LessonSection; state: LearnState; onAttempt(id: string, response: string): void }) {
-  return <section id={section.id} className={`lesson-section section-${section.modules[0].type}`} data-section-id={section.id} tabIndex={-1}><header className="section-heading"><span>{section.purpose}</span><h2>{section.heading}</h2></header><div className="section-modules">{section.modules.map((module, index) => {
+  return <section id={section.id} className={`lesson-section section-${section.modules[0].type}`} data-section-id={section.id} tabIndex={-1}><header className="section-heading"><h2>{section.heading}</h2></header><div className="section-modules">{section.modules.map((module, index) => {
     const nextModule = section.modules[index + 1];
     const previousModule = section.modules[index - 1];
 

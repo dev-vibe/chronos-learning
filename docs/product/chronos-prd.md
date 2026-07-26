@@ -175,7 +175,7 @@ Every journey uses the same shell. The left side shows the current journey as an
 
 1. Lesson masthead: date or date range, title, place, role, and one-sentence significance.
 2. Opening hook: vivid question, dilemma, object, or scene.
-3. Narrative sections: short, scannable segments with clear headings.
+3. Narrative sections: short, scannable segments with one clear heading each. Authoring purpose metadata is not learner-facing UI.
 4. Purpose-selected embedded media: evidence image, map, diagram, reconstruction, audio, short video, artifact viewer, or source excerpt. There is no media quota; video is exceptional and used only when motion, sound, performance, technique, testimony, or change over time is itself necessary to the learning.
 5. Knowledge blocks: person, invention, place, artifact, event, or idea in a simple inline form.
 6. Optional contextual synthesis: what came before, what was happening elsewhere, or where a pattern reappears. Include it only when the comparison itself teaches something; it is lesson content, not a disguised link to another lesson.
