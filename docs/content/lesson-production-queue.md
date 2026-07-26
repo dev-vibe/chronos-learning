@@ -4,7 +4,7 @@ Linear anchor: [ASH-65 — Maintain the canonical Chronos lesson production queu
 
 Curriculum source: [Canonical World Spine roster](world-spine-canonical-roster.md) and [World Spine audit](world-spine-audit.md)
 
-Status: **Roster positions 7–14 approved on July 19, 2026.** No later World Spine node is approved for automatic production by this update.
+Status: **Roster positions 7–14 approved on July 19, 2026.** Parallel production of Farming and Settlements was authorized on July 21, 2026 while Human Origins remains in image/review on a separate branch. No other World Spine node is approved for automatic production by this update.
 
 This is the version-controlled source of truth for which canonical lesson is produced next. It is an editorially curated production queue, not the complete knowledge graph, legacy-data order, or a promise that every canonical node is ready for lesson production.
 
@@ -48,14 +48,14 @@ The production order below is operational and may differ from canonical learner 
 
 | Production order | Lesson | Spine position | Why it is queued | Production dependencies | Status | Linear / PR |
 | ---: | --- | ---: | --- | --- | --- | --- |
-| 10 | `lesson.farming.settlements` — Farming and Settlements | 8 | Finish the existing drafted Southwest Asian settlement case and carry the reusable pipeline forward. | Early Writing Systems merged and verified; reusable multi-lesson pipeline accepted; canonical scope approved | `Ready` | Per-lesson issue created when selected |
+| 10 | `lesson.farming.settlements` — Farming and Settlements | 8 | Finish the existing drafted Southwest Asian settlement case and carry the reusable pipeline forward. | Early Writing Systems merged and verified; reusable multi-lesson pipeline accepted; canonical scope approved; parallel-ownership approval while ASH-69 remains open | `Review` | [ASH-70](https://linear.app/ashs-workshop/issue/ASH-70/research-and-publish-farming-and-settlements) · branch `codex/ash-70-farming-settlements` · [PR #15](https://github.com/dev-vibe/chronos-learning/pull/15) |
 | 20 | `lesson.farming.multiple-origins` — Many Beginnings of Farming | 7 | Establish the global frame that prevents a single “Neolithic Revolution” story. | No prior lesson implementation; source and claim brief is the first research gate | `Ready` | Per-lesson issue created when selected |
 | 30 | `lesson.animals.domestication-and-pastoralism` — Animals, Herding, and Mobility | 9 | Explain mobile pastoral lifeways as a durable complement and alternative to settled farming. | Many Beginnings of Farming implementation available | `Planned` | None |
 | 40 | `lesson.technology.wheels-metals-and-work` — Wheels, Metals, and Specialized Work | 10 | Provide the material and labor-system bridge into early cities and states. | Farming and Settlements implementation available; dedicated source brief | `Planned` | None |
 | 50 | `lesson.egypt.nile-state` — The Nile and an Early Egyptian State | 13 | Add a contrasting, evidence-rich pathway to early state formation. | Uruk reference implementation available | `Ready` | Per-lesson issue created when selected |
 | 60 | `lesson.caral.andean-urbanism` — Caral and Early Andean Urbanism | 14 | Add an independently developed urban case that challenges one-path models of cities. | Many Beginnings of Farming implementation available | `Ready` | Per-lesson issue created when selected |
 
-`lesson.farming.settlements` is the first eligible production task because its actual production dependencies are satisfied and its draft is already available. Producing it before `lesson.farming.multiple-origins` does not change canonical order: learners must still encounter Many Beginnings of Farming first, and that curriculum prerequisite cannot be skipped. Many Beginnings of Farming becomes the next eligible task after Farming and Settlements. The Nile node is also reviewed and ready but follows both in production order. Caral remains approved and ready, with its stated production dependency; Planned rows require explicit promotion before selection.
+`lesson.farming.settlements` is in Review under ASH-70 after Revision 2 received product-owner checkpoint and final-output approval on 2026-07-21. Revision 2 on `codex/ash-70-farming-settlements` / PR #15 replaces the first production preview's storyboard, media, prompts, and learner copy while retaining the useful research base; its approved decision packet and output record are in `docs/research/farming-settlements.md`. Producing it before `lesson.farming.multiple-origins` does not change canonical order: learners must still encounter Many Beginnings of Farming first, and that curriculum prerequisite cannot be skipped. After this lesson leaves active production, selection returns to the lowest eligible `Ready` row unless the product owner approves another queue amendment. The Nile node is also reviewed and ready but follows in production order. Caral remains approved and ready, with its stated production dependency; Planned rows require explicit promotion before selection.
 
 ## Completed reference lessons in the approved segment
 

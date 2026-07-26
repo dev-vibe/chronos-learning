@@ -1,7 +1,7 @@
 // @vitest-environment jsdom
 import React from 'react';
 import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest';
-import { cleanup, fireEvent, render, screen, waitFor } from '@testing-library/react';
+import { cleanup, fireEvent, render, screen, waitFor, within } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import { chronosContent } from '../../content/chronos';
 import type { ChronosContentBundle } from '../../content/assemble';
@@ -43,11 +43,11 @@ const fixtureJourney: Journey = {
 };
 const fixtureInvitation: JourneyInvitation = {
   id: 'invitation.fixture.rivers',
-  sourceLessonId: 'lesson.uruk.first-city',
+  sourceLessonId: 'lesson.farming.settlements',
   destinationJourneyId: fixtureJourney.id,
   entryLessonId: 'lesson.uruk.first-city',
   placements: ['home'],
-  reason: 'You saw how water shaped Uruk. Compare that relationship in another authored path.',
+  reason: 'You saw how denser farming settlements changed daily life. Compare a city and its river setting in another authored path.',
   optional: true,
   status: 'published',
   priority: 10,
@@ -77,12 +77,14 @@ function makeHarness(content: ChronosContentBundle = chronosContent, multiple = 
 
 beforeEach(() => {
   const storage = new Map<string, string>();
-  vi.stubGlobal('localStorage', {
+  const localStorageStub = {
     getItem: vi.fn((key: string) => storage.get(key) ?? null),
     setItem: vi.fn((key: string, value: string) => storage.set(key, value)),
     removeItem: vi.fn((key: string) => storage.delete(key)),
     clear: vi.fn(() => storage.clear()),
-  });
+  };
+  vi.stubGlobal('localStorage', localStorageStub);
+  Object.defineProperty(window, 'localStorage', { configurable: true, value: localStorageStub });
   window.history.replaceState(null, '', '/');
   vi.stubGlobal('matchMedia', vi.fn(() => ({ matches: false, addEventListener: vi.fn(), removeEventListener: vi.fn() })));
 });
@@ -103,17 +105,43 @@ describe('Home, Library, preview, and search composition', () => {
       navigate={navigate}
     />);
     const continueLink = await screen.findByRole('link', { name: /Continue lesson/i });
-    expect(continueLink.getAttribute('href')).toBe('/learn/lesson.uruk.first-city');
+    expect(continueLink.getAttribute('href')).toBe('/learn/lesson.farming.settlements');
     expect(screen.getByText(/only published journey right now/i)).toBeTruthy();
     expect(screen.queryByText(/recommended for you/i)).toBeNull();
     await userEvent.click(continueLink);
-    await waitFor(() => expect(navigate).toHaveBeenCalledWith('/learn/lesson.uruk.first-city'));
+    await waitFor(() => expect(navigate).toHaveBeenCalledWith('/learn/lesson.farming.settlements'));
     expect(harness.journeyGateway.save).toHaveBeenCalledTimes(1);
+  });
+
+  it('continues into draft lessons when VITE_UNLOCK_PREVIEW_LESSONS is enabled', async () => {
+    const { setUnlockPreviewLessonsForTests } = await import('../../src/config/runtimeFlags');
+    const { createDefaultJourneyState: unlockedDefault } = await import('../../src/domains/journeys/state');
+    setUnlockPreviewLessonsForTests(true);
+    const initial = unlockedDefault(chronosContent.journeys, chronosContent.lessons, '2026-01-01T00:00:00.000Z');
+    let snapshot: JourneyStateLoad = { state: initial, staleJourneyIds: [], ownedCards: [] };
+    const journeyGateway: JourneyStateGateway = {
+      load: vi.fn(async () => snapshot),
+      save: vi.fn(async (next) => {
+        snapshot = { ...snapshot, state: next };
+        return snapshot;
+      }),
+    };
+    const progressGateway = { loadJourneySummaries: vi.fn(async () => ({})) } as unknown as LearnProgressGateway;
+    render(<DiscoveryApp
+      route={{ name: 'home' }}
+      journeyGatewayFactory={async () => journeyGateway}
+      progressGatewayFactory={async () => progressGateway}
+    />);
+    const continueLink = await screen.findByRole('link', { name: /Continue lesson/i });
+    expect(continueLink.getAttribute('href')).toBe('/learn/lesson.farming.settlements');
+    expect(screen.getByRole('heading', { name: 'Farming and Settlements' })).toBeTruthy();
+    expect(screen.queryByText(/next required lesson is not available yet/i)).toBeNull();
   });
 
   it('derives Home and journey-detail Continue from completion and access state', async () => {
     const harness = makeHarness();
     vi.mocked(harness.progressGateway.loadJourneySummaries).mockResolvedValue({
+      'lesson.farming.settlements': { lessonId: 'lesson.farming.settlements', status: 'completed' },
       'lesson.uruk.first-city': { lessonId: 'lesson.uruk.first-city', status: 'completed' },
     });
     render(<DiscoveryApp
@@ -135,6 +163,7 @@ describe('Home, Library, preview, and search composition', () => {
   it('renders an honest completed state when no published required lesson remains', async () => {
     const harness = makeHarness();
     vi.mocked(harness.progressGateway.loadJourneySummaries).mockResolvedValue({
+      'lesson.farming.settlements': { lessonId: 'lesson.farming.settlements', status: 'completed' },
       'lesson.uruk.first-city': { lessonId: 'lesson.uruk.first-city', status: 'completed' },
       'lesson.writing.early-systems': { lessonId: 'lesson.writing.early-systems', status: 'completed' },
     });
@@ -200,8 +229,14 @@ describe('Home, Library, preview, and search composition', () => {
     />);
     expect(await screen.findByRole('heading', { name: 'Explore history.' })).toBeTruthy();
     expect(screen.getByRole('heading', { name: 'Civilizations and Regions' })).toBeTruthy();
-    expect(screen.getAllByText(/Curated journeys are being prepared/i)).toHaveLength(3);
-    expect(screen.queryByText('Farming and Settlements')).toBeNull();
+    expect(screen.getByText(/More authored journeys are being prepared/i)).toBeTruthy();
+    expect(within(document.querySelector('.library-page')!).queryByText('Farming and Settlements')).toBeNull();
+    const open = screen.getByRole('button', { name: 'Open World History' });
+    await userEvent.click(open);
+    const drawer = screen.getByRole('dialog', { name: 'World History' });
+    expect(within(drawer).getByRole('heading', { name: 'World History' })).toBeTruthy();
+    fireEvent.keyDown(document, { key: 'Escape' });
+    expect(open).toBe(document.activeElement);
   });
 
   it('fails closed for invalid and unpublished journey destinations', async () => {
@@ -225,7 +260,7 @@ describe('Home, Library, preview, and search composition', () => {
     expect(await screen.findByRole('heading', { name: 'World History' })).toBeTruthy();
     expect(screen.getByRole('link', { name: /Continue journey/i })).toBeTruthy();
     expect(screen.queryByRole('button', { name: 'Close' })).toBeNull();
-    expect(screen.getByText('Farming and Settlements')).toBeTruthy(); expect(document.querySelectorAll('.world-spine-chapters .preparing')).not.toHaveLength(0);
+    expect(within(document.querySelector('.world-spine-chapters')!).getByText('Farming and Settlements')).toBeTruthy(); expect(document.querySelectorAll('.world-spine-chapters .preparing')).not.toHaveLength(0);
   });
 
   it('uses a stable query URL, typed results, announcements, and keyboard selection', async () => {
@@ -275,6 +310,8 @@ describe('Home, Library, preview, and search composition', () => {
     expect(screen.getAllByLabelText('Chronos navigation')).toHaveLength(2);
     expect(document.querySelector('.mobile-nav')).toBeTruthy();
     expect(screen.queryByRole('link', { name: 'Learn' })).toBeNull(); expect(document.querySelectorAll('.global-rail nav a')).toHaveLength(3); expect(document.querySelectorAll('.mobile-nav a')).toHaveLength(3);
+    expect(within(screen.getByRole('complementary', { name: 'Chronos navigation' })).getByRole('button', { name: 'World History' })).toBeTruthy();
+    expect(within(document.querySelector('.mobile-nav')!).getByRole('button', { name: 'World History' })).toBeTruthy();
   });
 
   it('offers retry after a transient navigation-state load failure', async () => {
@@ -293,7 +330,10 @@ describe('Home, Library, preview, and search composition', () => {
 
   it('reports failed discovery actions without losing lesson completion', async () => {
     const harness = makeHarness();
-    const summaries = { 'lesson.uruk.first-city': { lessonId: 'lesson.uruk.first-city', status: 'completed' as const } };
+    const summaries = {
+      'lesson.farming.settlements': { lessonId: 'lesson.farming.settlements', status: 'completed' as const },
+      'lesson.uruk.first-city': { lessonId: 'lesson.uruk.first-city', status: 'completed' as const },
+    };
     vi.mocked(harness.progressGateway.loadJourneySummaries).mockResolvedValue(summaries);
     vi.mocked(harness.journeyGateway.save).mockRejectedValueOnce(new Error('offline'));
     const navigate = vi.fn();

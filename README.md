@@ -118,10 +118,16 @@ If a lesson has no collectible cards, simply omit the `collectibleCards` field o
 
 ### Local Development Unlock
 
-By default, era and lesson locks use the current user's saved progress. For local testing, you can unlock the whole timeline in `.env.local`:
+By default, era and lesson locks use the current user's saved progress. For local testing, you can unlock the whole legacy timeline in `.env.local`:
 
 ```env
 VITE_UNLOCK_ALL_ERAS=true
 ```
 
-Leave it unset for production-like progress behavior.
+To audit Chronos Learn draft lessons (World Spine nodes that exist in authored content but are not yet published), also set:
+
+```env
+VITE_UNLOCK_PREVIEW_LESSONS=true
+```
+
+That flag opens draft lessons in Learn, links them in the World Spine, and skips curriculum prerequisite locks. Leave both unset for production-like progress behavior.

@@ -22,7 +22,7 @@ export function WorldSpineOverview({ lessons, summaries, currentLessonId }: Worl
     <header>
       <div>
         <p className="label">Complete curriculum map</p>
-        <h2 id="world-spine-title">The World Spine</h2>
+        <h2 id="world-spine-title">Complete World History roadmap</h2>
         <p>Every planned stop is visible. Reviewed lessons open in sequence; lessons still being prepared remain locked without hiding where the journey is going.</p>
       </div>
       <dl>

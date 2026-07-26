@@ -1,5 +1,6 @@
 import type { WorldSpineChapter, WorldSpineNode } from '../../../content/world-spine/roadmap';
 import { worldSpineAccessPolicy, type WorldSpineAccessPolicy } from '../../../content/world-spine/access-policy';
+import { isLessonOpenable, unlockPreviewLessonsEnabled } from '../../config/runtimeFlags';
 import type { Lesson } from '../contracts';
 import type { JourneyProgressSummary } from '../../learn/progress';
 
@@ -32,12 +33,15 @@ export function resolveWorldSpineAccess(
   targetId: string,
   policy: WorldSpineAccessPolicy = worldSpineAccessPolicy,
 ): WorldSpineAccess {
-  const publishedIds = new Set(lessons.filter((lesson) => lesson.status === 'published').map((lesson) => lesson.id));
-  if (!publishedIds.has(targetId)) return { accessible: false };
+  const openableIds = new Set(lessons.filter((lesson) => isLessonOpenable(lesson)).map((lesson) => lesson.id));
+  if (!openableIds.has(targetId)) return { accessible: false };
 
   const sequence = orderedNodes(chapters);
   const index = sequence.findIndex((node) => node.id === targetId);
   if (index < 0) return { accessible: false };
+
+  // Dev audit unlock: open every authored lesson without curriculum gating.
+  if (unlockPreviewLessonsEnabled()) return { accessible: true };
 
   const target = sequence[index];
   if (summaries[targetId]?.status === 'completed') return { accessible: true };
@@ -64,7 +68,7 @@ export function createWorldSpineRoadmapView(
     const nodes = chapter.nodes.map((node): WorldSpineNodeView => {
       const lesson = lessonById.get(node.id);
       const completed = summaries[node.id]?.status === 'completed';
-      if (lesson?.status !== 'published') {
+      if (!lesson || !isLessonOpenable(lesson)) {
         return { ...node, status: 'preparing', completed: false, lockReason: 'Lesson in preparation' };
       }
       if (node.id === currentLessonId) {

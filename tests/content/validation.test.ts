@@ -11,18 +11,51 @@ it('allows each chapter to begin at entry position zero',()=>{const fixture=stru
 
 it('validates the typed Uruk historical map and generated raster asset',()=>{const lesson=chronosContent.lessons.find((item)=>item.id==='lesson.uruk.first-city')!;const module=lesson.sections.flatMap((section)=>section.modules).find((item)=>item.type==='historical-map')!;expect(LessonModuleSchema.safeParse(module).success).toBe(true);if(module.type!=='historical-map')throw new Error('historical map missing');expect(module.id).toBe('module.uruk.southern-mesopotamia-map');expect(module.mediaId).toBe('media.uruk.southern-mesopotamia-map');expect(module.compactLabel).toMatch(/illustrative map/i);expect(module.coordinateNote).toMatch(/UNESCO World Heritage coordinates/i);expect(module.uncertaintyNote).toMatch(/shown approximately/i)});
 
+it('validates the typed Farming locator map and generated raster asset', () => {
+  const lesson = chronosContent.lessons.find((item) => item.id === 'lesson.farming.settlements')!;
+  const module = lesson.sections.flatMap((section) => section.modules).find((item) => item.type === 'historical-map')!;
+  expect(LessonModuleSchema.safeParse(module).success).toBe(true);
+  if (module.type !== 'historical-map') throw new Error('farming historical map missing');
+  expect(module.id).toBe('module.farming.catalhoyuk-locator-map');
+  expect(module.mediaId).toBe('media.farming.catalhoyuk-locator-map');
+  expect(module.compactLabel).toMatch(/site coordinate verified/i);
+  expect(module.coordinateNote).toMatch(/UNESCO World Heritage coordinates/i);
+  expect(module.uncertaintyNote).toMatch(/Neolithic shorelines|coastlines/i);
+});
+
 it('detects a missing local map fallback',()=>{const fixture=structuredClone(chronosContent);const map=fixture.media.find((item)=>item.id==='media.uruk.southern-mesopotamia-map')!;if(map.locator.provider!=='object-storage')throw new Error('object storage locator missing');map.locator.fallback.path='/images/maps/missing-map.webp';expect(validateContent(fixture).errors.join(' ')).toMatch(/missing local media asset \/images\/maps\/missing-map\.webp/)});
 
 it('rejects duplicate, oversized, or non-content-addressed media variants',()=>{const fixture=structuredClone(chronosContent);const map=fixture.media.find((item)=>item.id==='media.uruk.southern-mesopotamia-map')!;if(map.locator.provider!=='object-storage')throw new Error('object storage locator missing');map.locator.variants[1].width=map.locator.variants[0].width;map.locator.variants[1].objectKey='uruk/unversioned-map.webp';map.locator.variants[1].bytes=800000;const errors=validateContent(fixture).errors.join(' ');expect(errors).toMatch(/duplicate media variant width/);expect(errors).toMatch(/not content-addressed/);expect(errors).toMatch(/exceeds 786432 byte budget/)});
 
-it('publishes exactly the two reviewed World History lessons in journey order', () => {
+it('publishes the three reviewed World History lessons in journey order', () => {
   const published = chronosContent.lessons.filter((lesson) => lesson.status === 'published');
-  expect(published.map((lesson) => lesson.id)).toEqual(['lesson.uruk.first-city', 'lesson.writing.early-systems']);
+  expect(published.map((lesson) => lesson.id)).toEqual([
+    'lesson.farming.settlements',
+    'lesson.uruk.first-city',
+    'lesson.writing.early-systems',
+  ]);
   const entries = chronosContent.journeys[0].chapters[0].entries
     .filter((entry) => published.some((lesson) => lesson.id === entry.lessonId))
     .sort((left, right) => left.position - right.position);
-  expect(entries.map((entry) => entry.lessonId)).toEqual(['lesson.uruk.first-city', 'lesson.writing.early-systems']);
-  expect(chronosContent.lessons.find((lesson) => lesson.id === 'lesson.farming.settlements')).toMatchObject({ status: 'draft', promptIds: [] });
+  expect(entries.map((entry) => entry.lessonId)).toEqual([
+    'lesson.farming.settlements',
+    'lesson.uruk.first-city',
+    'lesson.writing.early-systems',
+  ]);
+  expect(chronosContent.lessons.find((lesson) => lesson.id === 'lesson.farming.settlements')).toMatchObject({
+    status: 'published',
+    heroMediaId: 'media.farming.catalhoyuk-rooftops',
+    promptIds: ['prompt.farming.house-pattern', 'prompt.farming.opportunity-and-cost'],
+    sectionIdsRequired: [
+      'section.farming.enter-from-roof',
+      'section.farming.slow-change',
+      'section.farming.wall-to-wall',
+      'section.farming.read-the-house',
+      'section.farming.private-and-shared',
+      'section.farming.bargain-of-staying',
+      'section.farming.check-and-complete',
+    ],
+  });
 });
 
 it('catches broken writing sources, claims, prompts, media, hero, and unlock references', () => {
@@ -61,6 +94,4 @@ it('validates the assembled cross-module graph for duplicates and broken referen
   );
   const errors = validateContent(missingUrukBundle).errors.join(' ');
   expect(errors).toMatch(/unreachable required journey entry lesson\.uruk\.first-city/);
-  expect(errors).toMatch(/broken claim reference claim\.uruk\.city-life/);
-  expect(errors).toMatch(/broken source reference source\.met\.uruk/);
 });

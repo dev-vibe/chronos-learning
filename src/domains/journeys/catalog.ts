@@ -1,4 +1,5 @@
 import type { Journey, Lesson } from '../contracts';
+import { isLessonOpenable } from '../../config/runtimeFlags';
 
 export type LibraryCategory = 'civilizations-regions' | 'ideas-across-time' | 'investigations';
 export type CatalogJourney = {
@@ -29,12 +30,12 @@ const categoryFor = (kind: Journey['kind']): LibraryCategory | undefined => ({
 }[kind] as LibraryCategory | undefined);
 
 export const publishedEntries = (journey: Journey, lessons: readonly Lesson[]) => {
-  const publishedIds = new Set(lessons.filter((lesson) => lesson.status === 'published').map((lesson) => lesson.id));
+  const openableIds = new Set(lessons.filter((lesson) => isLessonOpenable(lesson)).map((lesson) => lesson.id));
   return [...journey.chapters]
     .sort((left, right) => left.position - right.position || left.id.localeCompare(right.id))
     .flatMap((chapter) => [...chapter.entries]
       .sort((left, right) => left.position - right.position || left.id.localeCompare(right.id))
-      .filter((entry) => publishedIds.has(entry.lessonId))
+      .filter((entry) => openableIds.has(entry.lessonId))
       .map((entry) => ({ chapter, entry })));
 };
 
