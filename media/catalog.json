@@ -42,7 +42,7 @@
       ]
     },
     {
-      "id": "media.origins.africa-evidence-map",
+      "id": "media.humans.africa-evidence-map",
       "collection": "human-origins",
       "sourcePath": "public/images/maps/africa-origins-evidence-map.webp",
       "fallbackPath": "/images/optimized/human-origins/africa-evidence-map.optimized.webp",
@@ -54,7 +54,7 @@
       ]
     },
     {
-      "id": "media.origins.africa-origins-card",
+      "id": "media.humans.africa-origins-card",
       "collection": "human-origins",
       "sourcePath": "public/images/human-origins/africa-origins-card.webp",
       "fallbackPath": "/images/optimized/human-origins/africa-origins-card.optimized.webp",
@@ -66,7 +66,7 @@
       ]
     },
     {
-      "id": "media.origins.jebel-irhoud-cranium",
+      "id": "media.humans.jebel-irhoud-cranium",
       "collection": "human-origins",
       "sourcePath": "public/images/human-origins/jebel-irhoud-cranium.jpg",
       "fallbackPath": "/images/optimized/human-origins/jebel-irhoud-cranium.optimized.webp",
@@ -78,7 +78,7 @@
       ]
     },
     {
-      "id": "media.origins.jebel-irhoud-excavation",
+      "id": "media.humans.jebel-irhoud-excavation",
       "collection": "human-origins",
       "sourcePath": "public/images/human-origins/jebel-irhoud-excavation.jpg",
       "fallbackPath": "/images/optimized/human-origins/jebel-irhoud-excavation.optimized.jpg",
@@ -89,7 +89,7 @@
       ]
     },
     {
-      "id": "media.origins.jebel-irhoud-tools",
+      "id": "media.humans.jebel-irhoud-tools",
       "collection": "human-origins",
       "sourcePath": "public/images/human-origins/jebel-irhoud-tools.jpg",
       "fallbackPath": "/images/optimized/human-origins/jebel-irhoud-tools.optimized.webp",

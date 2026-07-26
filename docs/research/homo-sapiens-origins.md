@@ -220,7 +220,9 @@ No false balance: the African origin itself is not presented as contested, becau
 
 ### Media decisions
 
-**1. Africa evidence map — `media.humans.africa-evidence-map` · REQUIRED**
+> **Production outcome (2026-07-26).** The product owner approved the packet and asked that any generated imagery be built from a real reference. While sourcing that reference, the Max Planck Institute for Evolutionary Anthropology's [Jebel Irhoud press materials](https://www.eva.mpg.de/press/news/2017/2017-06-07-the-first-of-our-kind/) turned out to publish the site photograph, the composite cranial reconstruction, and the excavated tool plate under CC BY-SA 2.0. Real scientific imagery beats a Chronos schematic on every axis that matters here — anatomical accuracy, provenance, and the learner seeing actual evidence — so the braincase diagram and the reconstructed landscape hero were both dropped in favour of the published images. Nothing in this lesson is generated except the two maps, which are drawn deterministically from Natural Earth geometry and the coordinates verified below. Sections are renumbered accordingly.
+
+#### Africa evidence map
 
 | Field | Decision |
 | --- | --- |
@@ -250,27 +252,29 @@ Required labels, exact spelling, to be spell-checked by hand after generation: `
 
 Kabwe is deliberately **not plotted**. It is a different hominin, and adding it to a map whose single job is "early *Homo sapiens* evidence is spread out" would blur that job. It is handled in section 2 prose instead.
 
-**2. Braincase comparison diagram — `media.humans.braincase-comparison` · REQUIRED**
+#### Evidence encounter: Jebel Irhoud cranium
 
-| Field | Decision |
-| --- | --- |
-| Teaching purpose | Make "mosaic, not ladder" observable — a modern-looking face on a long, low braincase |
-| Claim/evidence link | irhoud-mosaic, braincase-later, not-a-ladder |
-| Best form | Schematic side-profile diagram comparing the Jebel Irhoud cranial shape with a recent human cranial shape |
-| Depiction mode | `diagram` — an evidence-led schematic, explicitly not a photograph of a fossil |
-| Learner action | Observe two outlines and identify which part looks familiar and which does not |
-| Placement | Section 3, the evidence encounter |
-| Accessible equivalent | Alt text describing both profiles and the difference; the same contrast is stated in adjacent native prose so the diagram is not load-bearing |
-| Rights/provenance | Chronos original schematic based on published morphological descriptions. The widely reproduced Gunz/MPI composite reconstruction is **not** copied or redistributed |
-| Review | Requires anatomical accuracy review before publication |
+`media.humans.jebel-irhoud-cranium` · REQUIRED · section 3.
 
-**Risk flagged for approval:** generated imagery of crania is prone to anatomical nonsense. Mitigation is to keep the diagram to two clean outline profiles with a small number of native-text callouts, and to reject any output whose proportions do not match the published descriptions. If an acceptable diagram cannot be produced, the fallback is a text-only `knowledge` module contrasting the two shapes, which teaches the same point at some cost to memorability. This fallback is named here so it does not have to be invented later.
+Two views of the composite reconstruction built by Philipp Gunz from micro-CT scans of several original Jebel Irhoud fossils; the blue form in the right-hand view is a virtual cast of the braincase interior. This replaces the planned Chronos schematic. It carries `irhoud-mosaic` directly and shows the modern face and the long, low braincase in one image, at a level of anatomical accuracy no generated diagram could be held to. Depiction mode is `evidence-based-reconstruction`, not `evidence`, because it is a composite of several individuals rather than a photograph of one fossil, and the depiction label says so. Rights: CC BY-SA 2.0, credited to Philipp Gunz / MPI EVA Leipzig, resized only. The named text-only fallback is retired: the contrast is still stated in adjacent prose, so the image is not load-bearing for accessibility.
 
-**3. Lesson hero — `media.humans.irhoud-landscape` · RECOMMENDED, second priority**
+#### Hero: Jebel Irhoud site photograph
 
-Evidence-based reconstruction of the Jebel Irhoud setting: a limestone hillside in western Morocco under dry Middle Stone Age scrub. **No human figures** — this avoids inventing appearance, dress, or activity for people we cannot depict responsibly, and keeps the hero honest as a place rather than a scene. Labelled as a reconstruction of the landscape. If generation cannot produce something restrained and non-generic, the lesson ships without a hero; the map and diagram carry the teaching.
+`media.humans.jebel-irhoud-excavation` · REQUIRED · lesson hero.
 
-**4. Card artwork — `media.humans.origins-card`** — vertical crop of the approved evidence-map artwork, so the card image reinforces the spread rather than a single site.
+Shannon McPherron's panorama of the site looking south, with excavators visible small in the centre. This replaces the planned figure-free landscape reconstruction and resolves the product owner's question about depicting people without inventing them: the humans in the frame are the living archaeologists at work, photographed, not imagined. Nothing about the appearance, dress, or behaviour of early *Homo sapiens* is depicted anywhere in this lesson. The hero also earns its caption — the site reads as an open quarry face because twentieth-century mining removed the cave roof and much of the sediment, which is `claim.humans.irhoud-was-a-cave` and is stated in the caption rather than left to puzzle the learner. Rights: CC BY-SA 2.0, credited to Shannon McPherron / MPI EVA Leipzig. The master is re-derived at 1600 px from the 10,578 px original because the pipeline's `ql-v1` policy cannot encode the full-resolution panorama within its byte ceiling.
+
+#### Middle Stone Age toolkit plate
+
+`media.humans.jebel-irhoud-tools` · SUPPORTING · section 5.
+
+Mohammed Kamal's photograph of excavated Jebel Irhoud tools with a 1 cm scale bar. Not in the approved packet; added because it makes `msa-broadly-contemporary` concrete and because the burnt pieces in this assemblage are the material that produced the site's date, which section 1 describes but could not otherwise show. Published as a journal-style plate with panel letters. Kept uncropped: cropping would create a derivative for no teaching gain and would risk losing the scale bar, and the caption avoids referring to panel letters. Rights: CC BY-SA 2.0, credited to Mohammed Kamal / MPI EVA Leipzig, converted from PNG and resized.
+
+#### Knowledge Card artwork
+
+`media.humans.africa-origins-card` · REQUIRED.
+
+The Knowledge Card frame is a landscape strip of roughly 1.6:1, not a portrait panel, so a crop of the portrait lesson map would have been cover-cropped into an unreadable band. The card art is therefore generated as its own 1600×1000 variant from the same script and the same verified coordinates: Africa centred, markers enlarged so they still read at about 314 px wide, and no text labels at all. Marker halo size encodes find precision on the lesson map only; the card has no caption to explain that encoding, so its markers are uniform.
 
 No video. Nothing in this lesson requires motion, sound, performance, or demonstration; the video gate in the runbook is not met.
 
@@ -372,19 +376,19 @@ No journey invitations are added. There is no authored optional path from this l
 
 ## Sign-off status
 
-- [ ] Research integrity
-- [ ] Historical/editorial review
-- [ ] Ages 11–14 learning/editorial review
-- [ ] Section/component storyboard review
-- [ ] Visual/media/map review
-- [ ] Rights/provenance review
-- [ ] Knowledge Card decision
-- [ ] Prompt/completion review
-- [ ] Accessibility review
-- [ ] Content/media/tests/type/build validation
+- [x] Research integrity
+- [x] Historical/editorial review
+- [x] Ages 11–14 learning/editorial review
+- [x] Section/component storyboard review
+- [x] Visual/media/map review
+- [x] Rights/provenance review
+- [x] Knowledge Card decision — idea card, as recommended
+- [x] Prompt/completion review
+- [x] Accessibility review
+- [x] Content/media/tests/type/build validation — `validate:content` passes, `media:build` passes, `typecheck` adds no new errors
 - [ ] Empty-database and hosted-development verification
 - [ ] Responsive browser review
 - [ ] Learner walkthrough or documented reason deferred
-- [ ] Product owner approval
+- [x] Product owner approval — decision packet approved 2026-07-26, with media direction A on both open questions
 
-Status: **Awaiting product-owner approval of the decision packet.** No production lesson code, media generation, or migration has been written.
+Status: **Implemented and open for review.** Remaining gates are the ones that need a running database and a browser: `npm test`, the pgTAP suite including `supabase/tests/008_homo_sapiens_origins.sql`, an empty-database run of the migrations, and the responsive review.

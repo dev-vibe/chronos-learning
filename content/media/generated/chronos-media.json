@@ -222,7 +222,7 @@
       }
     },
     {
-      "id": "media.origins.africa-evidence-map",
+      "id": "media.humans.africa-evidence-map",
       "locator": {
         "provider": "object-storage",
         "bucket": "media-public",
@@ -233,7 +233,7 @@
         },
         "variants": [
           {
-            "objectKey": "human-origins/media.origins.africa-evidence-map/40406c8075ca8846/optimized/ql-v1/480w-webp-lossless-4df647cf3cc88b90.webp",
+            "objectKey": "human-origins/media.humans.africa-evidence-map/40406c8075ca8846/optimized/ql-v1/480w-webp-lossless-4df647cf3cc88b90.webp",
             "mimeType": "image/webp",
             "bytes": 79142,
             "sha256": "4df647cf3cc88b909b2c124ca9a5112caa09f85dd90ee3c2e22011aba6f28ee9",
@@ -252,7 +252,7 @@
             }
           },
           {
-            "objectKey": "human-origins/media.origins.africa-evidence-map/40406c8075ca8846/optimized/ql-v1/1600w-webp-q92-1e7a3181d7d86f17.webp",
+            "objectKey": "human-origins/media.humans.africa-evidence-map/40406c8075ca8846/optimized/ql-v1/1600w-webp-q92-1e7a3181d7d86f17.webp",
             "mimeType": "image/webp",
             "bytes": 92048,
             "sha256": "1e7a3181d7d86f1765398bf297078c62fb1edf6199907cd325654c4a2affae6d",
@@ -275,7 +275,7 @@
       }
     },
     {
-      "id": "media.origins.africa-origins-card",
+      "id": "media.humans.africa-origins-card",
       "locator": {
         "provider": "object-storage",
         "bucket": "media-public",
@@ -286,7 +286,7 @@
         },
         "variants": [
           {
-            "objectKey": "human-origins/media.origins.africa-origins-card/03ed157fb7ead3fd/optimized/ql-v1/1600w-webp-q90-e69881d5aa01bc07.webp",
+            "objectKey": "human-origins/media.humans.africa-origins-card/03ed157fb7ead3fd/optimized/ql-v1/1600w-webp-q90-e69881d5aa01bc07.webp",
             "mimeType": "image/webp",
             "bytes": 32032,
             "sha256": "e69881d5aa01bc0778d6420b2e0668ac8afb28dbfcfbffb423651c2a3867034c",
@@ -309,7 +309,7 @@
       }
     },
     {
-      "id": "media.origins.jebel-irhoud-cranium",
+      "id": "media.humans.jebel-irhoud-cranium",
       "locator": {
         "provider": "object-storage",
         "bucket": "media-public",
@@ -320,7 +320,7 @@
         },
         "variants": [
           {
-            "objectKey": "human-origins/media.origins.jebel-irhoud-cranium/ad6942456ab03364/optimized/ql-v1/480w-webp-lossless-4127696282759f64.webp",
+            "objectKey": "human-origins/media.humans.jebel-irhoud-cranium/ad6942456ab03364/optimized/ql-v1/480w-webp-lossless-4127696282759f64.webp",
             "mimeType": "image/webp",
             "bytes": 95216,
             "sha256": "4127696282759f64b360196012cf3e42939d90728b64158a36e51e8e7118d8c2",
@@ -339,7 +339,7 @@
             }
           },
           {
-            "objectKey": "human-origins/media.origins.jebel-irhoud-cranium/ad6942456ab03364/optimized/ql-v1/960w-webp-lossless-1a8a6173873066e8.webp",
+            "objectKey": "human-origins/media.humans.jebel-irhoud-cranium/ad6942456ab03364/optimized/ql-v1/960w-webp-lossless-1a8a6173873066e8.webp",
             "mimeType": "image/webp",
             "bytes": 326154,
             "sha256": "1a8a6173873066e868f0db6451957b2929faeed4f60eed8def795adcea8480a5",
@@ -358,7 +358,7 @@
             }
           },
           {
-            "objectKey": "human-origins/media.origins.jebel-irhoud-cranium/ad6942456ab03364/optimized/ql-v1/1600w-webp-q96-958b4b01c06618d3.webp",
+            "objectKey": "human-origins/media.humans.jebel-irhoud-cranium/ad6942456ab03364/optimized/ql-v1/1600w-webp-q96-958b4b01c06618d3.webp",
             "mimeType": "image/webp",
             "bytes": 331238,
             "sha256": "958b4b01c06618d3a27010362fea875f4f4b5d08993868f90ae7ff6ced109a4b",
@@ -378,7 +378,7 @@
             }
           },
           {
-            "objectKey": "human-origins/media.origins.jebel-irhoud-cranium/ad6942456ab03364/optimized/ql-v1/2048w-webp-q92-a581911f598aa58d.webp",
+            "objectKey": "human-origins/media.humans.jebel-irhoud-cranium/ad6942456ab03364/optimized/ql-v1/2048w-webp-q92-a581911f598aa58d.webp",
             "mimeType": "image/webp",
             "bytes": 364608,
             "sha256": "a581911f598aa58d97cc520d4630961f0bffd90b2927df16fe8c2c6b9c4bef95",
@@ -401,7 +401,7 @@
       }
     },
     {
-      "id": "media.origins.jebel-irhoud-excavation",
+      "id": "media.humans.jebel-irhoud-excavation",
       "locator": {
         "provider": "object-storage",
         "bucket": "media-public",
@@ -412,7 +412,7 @@
         },
         "variants": [
           {
-            "objectKey": "human-origins/media.origins.jebel-irhoud-excavation/da0e6bbbdfe9b5da/optimized/ql-v1/480w-webp-lossless-4c9dc6efd21a7a82.webp",
+            "objectKey": "human-origins/media.humans.jebel-irhoud-excavation/da0e6bbbdfe9b5da/optimized/ql-v1/480w-webp-lossless-4c9dc6efd21a7a82.webp",
             "mimeType": "image/webp",
             "bytes": 117792,
             "sha256": "4c9dc6efd21a7a827d65cd06f1b8a53365e8a3d1971a07f604d0a0282e25df42",
@@ -431,7 +431,7 @@
             }
           },
           {
-            "objectKey": "human-origins/media.origins.jebel-irhoud-excavation/da0e6bbbdfe9b5da/optimized/ql-v1/1600w-source-jpeg-da0e6bbbdfe9b5da.jpg",
+            "objectKey": "human-origins/media.humans.jebel-irhoud-excavation/da0e6bbbdfe9b5da/optimized/ql-v1/1600w-source-jpeg-da0e6bbbdfe9b5da.jpg",
             "mimeType": "image/jpeg",
             "bytes": 419248,
             "sha256": "da0e6bbbdfe9b5daee13dc93d8b2fd49388e977c0017f7d04571e0df0a66c1aa",
@@ -453,7 +453,7 @@
       }
     },
     {
-      "id": "media.origins.jebel-irhoud-tools",
+      "id": "media.humans.jebel-irhoud-tools",
       "locator": {
         "provider": "object-storage",
         "bucket": "media-public",
@@ -464,7 +464,7 @@
         },
         "variants": [
           {
-            "objectKey": "human-origins/media.origins.jebel-irhoud-tools/0e99e87c7c2d15f0/optimized/ql-v1/480w-webp-lossless-5521fea4a6c8dabb.webp",
+            "objectKey": "human-origins/media.humans.jebel-irhoud-tools/0e99e87c7c2d15f0/optimized/ql-v1/480w-webp-lossless-5521fea4a6c8dabb.webp",
             "mimeType": "image/webp",
             "bytes": 253854,
             "sha256": "5521fea4a6c8dabba46e07b207204a5fec26ad621129fb9f971d17af9dfca218",
@@ -483,7 +483,7 @@
             }
           },
           {
-            "objectKey": "human-origins/media.origins.jebel-irhoud-tools/0e99e87c7c2d15f0/optimized/ql-v1/1600w-webp-q92-57b13152dbe169fb.webp",
+            "objectKey": "human-origins/media.humans.jebel-irhoud-tools/0e99e87c7c2d15f0/optimized/ql-v1/1600w-webp-q92-57b13152dbe169fb.webp",
             "mimeType": "image/webp",
             "bytes": 455556,
             "sha256": "57b13152dbe169fbb802d96b9cff0fedb3f7a15a9037aea5269171fa0eaba4b6",
