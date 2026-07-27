@@ -94,13 +94,13 @@ export const JourneyInvitationSchema = z.object({
   status: z.enum(['published','draft']),
   priority: z.number().int(),
 });
-export const KnowledgeCardSchema = z.object({ id: StableId, title: z.string(), category: z.enum(['place','person','artifact','invention','event','idea']), cardClass: z.enum(['foundation','breakthrough','turning-point','masterwork','witness','enigma','legacy']), date: HistoricalDateRangeSchema, place: z.string().min(1), significance: z.string(), revealTitle: z.string().min(1), revealBody: z.string().min(1), depictionLabel: z.string().min(1), facts: z.array(z.string()).min(3).max(5), lessonIds: z.array(StableId).min(1), sourceIds: z.array(StableId).min(1), mediaId: StableId, unlockLessonId: StableId });
+export const KnowledgeCardSchema = z.object({ id: StableId, title: z.string(), category: z.enum(['place','person','people','artifact','invention','event','idea']), cardClass: z.enum(['foundation','breakthrough','turning-point','masterwork','witness','enigma','legacy']), date: HistoricalDateRangeSchema, place: z.string().min(1), significance: z.string(), revealTitle: z.string().min(1), revealBody: z.string().min(1), depictionLabel: z.string().min(1), facts: z.array(z.string()).min(3).max(5), lessonIds: z.array(StableId).min(1), sourceIds: z.array(StableId).min(1), mediaId: StableId, unlockLessonId: StableId });
 export type Lesson = z.infer<typeof LessonSchema>; export type LessonSection = z.infer<typeof LessonSectionSchema>; export type Journey = z.infer<typeof JourneySchema>; export type JourneyChapter = z.infer<typeof JourneyChapterSchema>; export type JourneyEntry = z.infer<typeof JourneyEntrySchema>; export type JourneyInvitation = z.infer<typeof JourneyInvitationSchema>; export type Source = z.infer<typeof SourceSchema>; export type Claim = z.infer<typeof ClaimSchema>; export type MediaAsset = z.infer<typeof MediaAssetSchema>; export type UnderstandingPrompt = z.infer<typeof UnderstandingPromptSchema>; export type KnowledgeCard = z.infer<typeof KnowledgeCardSchema>;
 
 export type LessonProgress = { learnerId:string; lessonId:string; status:'in-progress'|'completed'; resumeSectionId?:string; attemptedPromptIds:string[]; completedAt?:string };
 export type CardOwnership = { learnerId:string; cardId:string; acquiredAt:string };
 export type CompleteLessonCommand = { lessonId:string; idempotencyKey:string; explicitCompletion:true; attemptedPromptIds:string[]; rawScrollPosition?:number };
-export type CompleteLessonResult = { completion:'newly-completed'|'already-completed'; cardOwnership:'newly-acquired'|'already-owned'|'not-configured'; cardId?:string };
+export type CompleteLessonResult = { completion:'newly-completed'|'already-completed'; cardOwnership:'newly-acquired'|'already-owned'|'not-configured'; cardIds?:string[]; cardId?:string };
 
 export const compareHistoricalDates = (a: HistoricalDateRange, b: HistoricalDateRange) => a.startYear - b.startYear || a.endYear - b.endYear;
 export const canExplicitlyComplete = (requiredPromptIds:string[], command:CompleteLessonCommand) => command.explicitCompletion && requiredPromptIds.every((id) => command.attemptedPromptIds.includes(id));

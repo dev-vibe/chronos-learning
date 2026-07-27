@@ -4,13 +4,13 @@ Date: 2026-07-26
 Lesson ID: `lesson.humans.migrations-and-interbreeding`
 World Spine position: 2
 Linear: [ASH-73](https://linear.app/ashs-workshop/issue/ASH-73/research-and-publish-migrations-encounters-and-ancient-dna)
-Status: **Stages 0–14 complete; awaiting product-owner approval before implementation**
+Status: **Implementation candidate complete; final visual review pending**
 
 This note is the durable source, claim, learning, media, and checkpoint record. It is intentionally a decision packet rather than draft runtime copy.
 
 ## Work boundary
 
-This branch may complete research/editorial Stages 0–14 only until the product owner approves the checkpoint. No runtime lesson, generated visual, Knowledge Card, journey entry, or learner-progress behavior may be added before approval. The product owner explicitly directed the second lesson after Origins; that direction promotes position 2 only, not positions 3–6.
+The product owner approved the lesson direction on 2026-07-26, kept the canonical title, and explicitly selected two distinct Knowledge Cards: Neanderthals and Denisovans. Implementation remains limited to World Spine position 2; positions 3-6 are not promoted by this decision.
 
 ## Node proposal
 
@@ -79,6 +79,9 @@ All sources were accessed 2026-07-26. “Research use” supports claims but doe
 | `source.humans.huerta-sanchez-2014-epas1` | Huerta-Sánchez et al., [Altitude adaptation in Tibetans caused by introgression of Denisovan-like DNA](https://pmc.ncbi.nlm.nih.gov/articles/PMC4134395/), *Nature* (2014). Supporting downstream example. | Open manuscript for research; avoid gene-determines-identity framing. |
 | `source.humans.chen-2020-backmigration` | Chen et al., [Apparent Neanderthal Ancestry in African Individuals](https://www.sciencedirect.com/science/article/pii/S0092867420300593), *Cell* (2020). Corrects a pure Africa/non-Africa binary. | Research citation only. |
 | `source.humans.orlando-2021-adna` | Orlando et al., [Ancient DNA analysis](https://www.nature.com/articles/s43586-020-00011-0), *Nature Reviews Methods Primers* (2021). Method source for degradation, contamination, preservation, and destructive sampling. | Research citation only. |
+| `source.humans.zhang-2025-harbin-mtdna` | Zhang et al., [Denisovan mitochondrial DNA from dental calculus of the >146,000-year-old Harbin cranium](https://www.sciencedirect.com/science/article/pii/S0092867425006270), *Cell* (2025). Links the Harbin cranium to a Denisovan population through mitochondrial DNA. | Fact source only; media not redistributed. |
+| `source.humans.welker-2025-harbin-proteome` | Welker et al., [The proteome of the late Middle Pleistocene Harbin individual](https://doi.org/10.1126/science.adu9677), *Science* (2025). Protein evidence independently supports Denisovan affinity. | Fact source only; media not redistributed. |
+| `source.humans.eurekalert-adna-clean-room` | Vanessa Villalba / Max Planck Institute, [aDNA Clean Room](https://www.eurekalert.org/multimedia/895013). Reference photograph for the clean-room graphical edit. | Licensed content; use permitted with appropriate credit; source photo remains research-only. |
 | `source.humans.alpaslan-roodenberg-2021-ethics` | Alpaslan-Roodenberg et al., [Ethics of DNA research on human remains](https://www.nature.com/articles/s41586-021-04008-x), *Nature* (2021). Ethics and identity limits. | Open article text; no runtime media selected. |
 | `source.humans.mylopotamitaki-2024-ranis` | Mylopotamitaki et al., [Homo sapiens reached the higher latitudes of Europe by 45,000 years ago](https://www.nature.com/articles/s41586-023-06923-7), *Nature* (2024). Early Ranis evidence and verified coordinate. | CC BY 4.0 article; separately credited photos are not reused. |
 | `source.humans.natural-earth` | [Natural Earth](https://www.naturalearthdata.com/). Physical base for the proposed evidence map. | Public domain; runtime use allowed with provenance. |
@@ -103,7 +106,7 @@ All sources were accessed 2026-07-26. “Research use” supports claims but doe
 | `claim.humans.oase-recent-ancestor` | Oase 1’s long Neanderthal segments are consistent with an ancestor about 4–6 generations earlier. | Interpretation / high | Fu 2015; genetics cannot reconstruct the people’s relationship or culture. |
 | `claim.humans.early-lineages-faded` | Several early Eurasian Homo sapiens lineages contributed little or no direct ancestry to later sampled populations. | Interpretation / high | Sümer 2024; this says nothing about their cultural worth. |
 | `claim.humans.neanderthal-ancestry-not-pure-binary` | Later movements back into Africa complicate a simple African/non-African ancestry divide. | Interpretation / high | Green 2010; Chen 2020. Percentages depend on models. Explicitly reject “pure populations.” |
-| `claim.humans.denisovans-known-genetically` | Denisovans were first recognized as a distinct ancient population through DNA from a very small fossil sample. | Observation / high | Reich 2010; MPI project. Their appearance and range are poorly known. |
+| `claim.humans.denisovans-known-genetically` | Denisovans were first recognized through DNA from a very small fossil sample; 2025 molecular work later linked the nearly complete Harbin cranium to a Denisovan population. | Observation / high | Reich 2010; MPI project; Zhang 2025; Welker 2025. One skull does not establish a representative portrait or soft-tissue appearance. |
 | `claim.humans.denisovan-contacts-multiple` | Genomes support more than one encounter with genetically distinct Denisovan-related populations. | Interpretation / high | Browning 2018; Jacobs 2019. Labels are models, not complete social identities. |
 | `claim.humans.introgressed-dna-could-help` | Some Denisovan-related variants later contributed to high-altitude adaptation in Tibetan populations. | Interpretation / high | Huerta-Sánchez 2014; supporting detail only, not a one-gene identity story. |
 | `claim.humans.adna-preservation-biased` | Ancient DNA survives unevenly, making the known sample geographically biased. | Observation / high | Orlando 2021; map dots cannot stand for all people. |
@@ -174,7 +177,7 @@ People moved out of Africa in more than one dispersal. The expansion ancestral t
 ## Ages 11–14 design pass
 
 - Open with a replacement-versus-encounter question and complicate it with evidence.
-- Introduce no more than three population names in the main narrative.
+- Introduce no more than three population names in the main narrative, using short sentences and immediate context for unfamiliar terms.
 - Explain recombination with one comparison: long inherited segments versus shorter pieces after many generations.
 - Use Oase 1, Denisova Cave, and Ranis without naming every genome.
 - Define **ancient DNA**, **ancestor**, **population**, and **interbreeding** in context; keep “admixture” in provenance.
@@ -187,7 +190,7 @@ People moved out of Africa in more than one dispersal. The expansion ancestral t
 | Section ID | Heading | Purpose and modules |
 | --- | --- | --- |
 | `section.humans.movement-not-march` | **Leaving was not one journey** | Connect to Origins; establish repeated movements. Prose plus a three-part knowledge module. |
-| `section.humans.other-humans-eurasia` | **A world with other humans** | Introduce Neanderthals and Denisovans as related populations. Prose plus the historical evidence map. |
+| `section.humans.other-humans-eurasia` | **A world with other humans** | Introduce Neanderthals and Denisovans as related populations. Prose; the evidence-site map now establishes geographic scale in the lesson hero. |
 | `section.humans.dna-keeps-traces` | **An encounter written in long pieces** | Use Oase 1 to infer a recent ancestor. Prose, inherited-segment evidence diagram, supported-selection prompt. |
 | `section.humans.shared-and-local-encounters` | **One shared encounter—and others** | Distinguish the shared 45–49 ka interval from additional contacts and reject purity. Knowledge plus prose. |
 | `section.humans.denisovan-clues` | **A people first recognized through DNA** | Show tiny fossil evidence, multiple contacts farther east, and an optional EPAS1 consequence. Prose plus knowledge. |
@@ -197,18 +200,26 @@ All six semantic sections are required. Prompts remain within the teaching flow;
 
 ## Media plan
 
-No generic hero is proposed. `heroMediaId` is optional, and an imagined migration tableau would add spectacle without evidence. The evidence map becomes the first major visual.
+The first visual is an evidence-site hero, not an imagined migration tableau. A second graphical image edit shows the modern clean-room process near the lesson’s methodological conclusion.
 
-### Historical evidence map
+### Hero evidence-site map
 
 - Research note: [`docs/research/migrations-and-ancient-dna-map.md`](migrations-and-ancient-dna-map.md)
-- IDs: `module.humans.ancient-genome-map`; `media.humans.ancient-genome-map`
-- Purpose: show the wide separation between selected remains older than about 40,000 years that yielded genome-wide data, while teaching that points are surviving samples—not a route or census.
-- Labels under review: Ranis, Peștera cu Oase, Ust’-Ishim, Tianyuan Cave, Denisova Cave; Zlatý kůň and Bacho Kiro may remain native-text details if mobile labeling is crowded.
-- Reference: Sümer Figure 1 facts on a Natural Earth public-domain base; do not copy the mixed-rights composite.
-- Fail-safe: no generation until each retained coordinate is independently verified. No route corridors or Denisovan territory.
-- Status: `provenance-review-required`; generation waits for approval.
+- Media ID: `media.humans.migrations-hero-map`; placement: lesson hero.
+- Purpose: show the wide separation between six remains about 50,000–37,000 years old that yielded genome-wide data, while teaching that points are surviving samples—not a route or census.
+- Required labels and dates: Ranis, 42–50 kyr BP; Zlatý kůň, ~45 kyr BP; Oase, 37–42 kyr BP; Bacho Kiro, 42–46 kyr BP; Ust’-Ishim, 42–46 kyr BP; Tianyuan, 38–41 kyr BP.
+- Reference: Sümer Figure 1 supplied directly to the image editor. Its real geography, plotted sites, dates, and scale were retained; mixed-rights fossil photographs were excluded.
+- Production method: built-in raster image edit only. No SVG, manual vector drawing, canvas renderer, route arrows, or territories.
+- Status: generated, provenance-reviewed, and registered; final responsive visual review pending.
 
+### Ancient-DNA clean-room image edit
+
+- Media ID: `media.humans.adna-clean-room`; module ID: `module.humans.adna-clean-room`.
+- Purpose: make contamination control concrete before the final understanding prompt.
+- Reference: Vanessa Villalba / Max Planck clean-room photograph, licensed for use with appropriate credit.
+- Production method: graphical raster style transfer preserving the researcher, protective clothing, posture, clean-bench sash, pipette stand, green and pink racks, containers, equipment, and camera angle.
+- Native text explains why clean-room procedures matter and states that the handled sample is not identified.
+- Status: generated, provenance-reviewed, and registered; final responsive visual review pending.
 ### Inherited-segments evidence diagram
 
 - ID: `media.humans.inherited-segments-diagram`; depiction mode `diagram`.
@@ -216,28 +227,24 @@ No generic hero is proposed. `heroMediaId` is optional, and an imagined migratio
 - Scientific anchors: Fu 2015 and Sümer 2024.
 - Native text supplies all explanation; no baked-in paragraph, title, percentage, or decorative helix.
 - It must not imply segment length alone produces an exact family tree.
-- Status: `provenance-review-required`; create only after approval.
+- Status: generated, provenance-reviewed, and registered; final responsive visual review pending.
 
 ### Explicit exclusions
 
 - Oase and Denisova specimen photographs are not approved on the current rights record.
-- The Sümer Figure 1 composite is not approved for direct reuse because of third-party credits.
+- The Sümer Figure 1 composite is not redistributed. Only its CC BY map data and layout were used as the edit reference; all separately credited fossil photographs were excluded.
 - The Berkeley Ranis press image is CC BY-ND and ineligible.
 - No reconstructed scene of people meeting is proposed.
 
 ## Knowledge Card plan
 
-| Field | Recommendation |
-| --- | --- |
-| ID | `card.idea.encounters-written-in-dna` |
-| Title | **Encounters Written in DNA** |
-| Category / class | `idea` / `witness` |
-| Date / place | c. 50,000–40,000 years ago / Africa and Eurasia |
-| Unlock | Explicit completion after sincere attempts on both prompts |
-| Media | Card crop from the approved segment diagram, not human remains |
-| Significance | Ancient DNA preserves evidence that related human populations met and had children while leaving identities and exact stories unknown. |
+The product owner rejected the abstract lesson-title card in favor of a concrete Neanderthals people card. It unlocks deterministically from the explicit completion event and does not treat human remains as a collectible object. A proposed Denisovans card was later removed because a symbolic evidence image was not a suitable people card and a representative portrait would overstate the evidence.
 
-The card rewards an interpretive idea, not ownership of remains. The valid alternative is no card; no substitute collectible should be invented merely to fill a slot.
+| ID | Title | Category / class | Visual and uncertainty decision |
+| --- | --- | --- | --- |
+| `card.people.neanderthals` | **Neanderthals** | `people` / `witness` | Evidence-based reconstruction of an unnamed adult with supported anatomical traits; labeled as a reconstruction, not a known individual. |
+
+The card unlocks after sincere attempts on both required prompts. Complete prompt and asset lineage are recorded in [`migrations-and-ancient-dna-media.md`](migrations-and-ancient-dna-media.md).
 
 ## Understanding-check plan
 
@@ -245,7 +252,7 @@ The card rewards an interpretive idea, not ownership of remains. The valid alter
 
 - ID: `prompt.humans.long-segments-inference`
 - Question: **Oase 1 carried unusually long stretches of Neanderthal DNA. Which conclusion is best supported?**
-- Supported: `option.humans.recent-neanderthal-ancestor` — One recent ancestor was Neanderthal.
+- Supported: `option.humans.long-segments-recent` - The long pieces point to a recent Neanderthal ancestor.
 - Distractors: Oase 1 was Neanderthal; DNA reveals their language; every group had the same encounter.
 - Feedback: long segments had fewer generations to be broken into shorter pieces. They support a recent ancestor, not a complete identity or universal history.
 - Completion: attempt required; correctness not required.
@@ -254,7 +261,7 @@ The card rewards an interpretive idea, not ownership of remains. The valid alter
 
 - ID: `prompt.humans.adna-evidence-and-limit`
 - Question: **Use one example to explain what ancient DNA reveals about an encounter. Then name one thing the DNA cannot tell us by itself.**
-- Minimum: 45 characters.
+- Minimum: 30 characters.
 - Accepted evidence: shared Neanderthal interval; Oase 1; Denisovan-related ancestry and multiple contacts.
 - Accepted limits: exact route, language, culture, motives, identity, complete range, unsampled people, or certainty about a relationship.
 - Completion: any sincere in-scope attempt counts; specialist vocabulary is unnecessary.
@@ -295,7 +302,7 @@ Approve the six-section lesson centered on an evidence map and the Oase segment-
 
 1. Approve the scope and six-section arc. **Recommendation: approve.**
 2. Approve the evidence map with selected genome sites and no arrows. **Recommendation: approve.**
-3. Approve the deterministic card **Encounters Written in DNA**, or choose no card. **Recommendation: approve the card.**
+3. Approve the deterministic **Neanderthals** people card. **Decision: approved; the proposed Denisovans card was subsequently removed by the product owner.**
 4. Approve the canonical title and chronology unchanged. **Recommendation: approve.**
 
 ### Fail-safes after approval
@@ -315,5 +322,5 @@ Approve the six-section lesson centered on an evidence map and the Oase segment-
 | Learning blueprint and storyboard | Complete for checkpoint |
 | Media/provenance plan | Complete for checkpoint; assets not produced |
 | Map brief | Drafted; remaining coordinates fail closed |
-| Product-owner checkpoint | **Awaiting approval** |
-| Runtime implementation | Not started; held by the approval gate |
+| Product-owner checkpoint | **Approved 2026-07-26: title retained; two people cards selected** |
+| Runtime implementation | Complete candidate; tests and final visual review pending |

@@ -1,129 +1,111 @@
-# Migrations, Encounters, and Ancient DNA — historical evidence map research note
+# Migrations, Encounters, and Ancient DNA — hero evidence-map research note
 
 Date: `2026-07-26`
 Lesson ID: `lesson.humans.migrations-and-interbreeding`
-Module ID: `module.humans.ancient-genome-map`
-Runtime media ID: `media.humans.ancient-genome-map`
-Rights decision: `legal-review-required`
-Depiction status: `evidence-based reconstruction`
+Placement: lesson hero
+Runtime media ID: `media.humans.migrations-hero-map`
+Rights decision: `approved`
+Depiction status: `evidence-site map; graphical raster image edit`
 
-This is a pre-generation checkpoint brief. “Legal review required” means the Chronos-original concept is acceptable in principle, but publication remains closed until every retained coordinate and final asset lineage pass review.
+## Teaching purpose
 
-## Map purpose
+- Period and extent: Europe to East Asia, about 50,000–37,000 years before present.
+- Teaching goal: show the enormous distance between a small number of early Homo sapiens remains that produced genome-wide data.
+- Required spatial lesson: these points are surviving evidence samples, not a migration route, territory, or complete census.
+- Desktop presentation: wide 2.85:1 hero with the full Europe-to-East-Asia spread visible.
+- Mobile presentation: centered 16:9 crop must retain the European cluster plus the eastward separation toward Ust’-Ishim and Tianyuan; the native caption carries the complete non-visual interpretation.
 
-- Period and extent: Africa and Eurasia, c. 70,000–40,000 years ago; plotted genome evidence is mostly older than 40,000 years.
-- Focus: selected sites associated with early Homo sapiens genome-wide data plus Denisova Cave.
-- Spatial understanding: surviving genetic evidence is separated by enormous distances and concentrated in preservation-friendly regions; sites are evidence samples, not a migration route or population range.
-- Required labels: Ranis; Peștera cu Oase; Ust’-Ishim; Tianyuan Cave; Denisova Cave. Zlatý kůň and Bacho Kiro may remain native-text details or be retained if mobile review shows labels remain legible.
+## Primary geographic reference
 
-## Selected geographic reference
+- Figure: Figure 1, “Geographical distribution of modern human specimens older than 40 kyr that produced genome-wide data.”
+- Canonical URL: https://www.nature.com/articles/s41586-024-08420-x/figures/1
+- Publisher: Nature; Arev P. Sümer et al.
+- Publication date: 2024-12-12 online; version of record 2025-01-29.
+- License and use: the article and map data are CC BY 4.0. Several specimen photographs in the composite have separate credits and were excluded from the edit.
+- Base geography credited by the figure: Natural Earth, public domain.
+- Local research copy: `docs/research/references/migrations-ancient-dna/sumer-2024-figure-1.png`.
+- Geographic contribution: map extent, orientation, coastlines, terrain relationships, marker placement, age ranges, and scale relationship.
 
-- Title or figure: Figure 1, “Geographical distribution of modern human specimens older than 40 kyr that produced genome-wide data.”
-- Canonical URL: https://www.nature.com/articles/s41586-024-08420-x
-- Publisher or author: Arev P. Sümer et al., *Nature*
-- Publication date: 2024-12-12 online; version of record 2025-01-29
-- License or permitted reference status: article CC BY 4.0; the composite contains separately credited photographs and will not be redistributed.
-- Geographic contribution: site selection, broad spatial relationships, and a transparent evidence class.
-- Important limitations: it is not a migration map; its sample is preservation- and research-biased; several photographs have third-party credits; it focuses on people older than 40 ka rather than the whole 70–40 ka lesson frame.
-- Local research-copy location: none.
+## Independent checks
 
-This is the primary reference because it is a recent primary genome study and maps the exact evidence class the lesson teaches. Chronos may use its facts and CC BY article data with attribution, but will create a new accessible composition on a public-domain base rather than copy the mixed-rights composite.
+- Natural Earth physical vectors: https://www.naturalearthdata.com/ — public-domain confirmation of continental coastlines and orientation.
+- Ranis coordinate and context: https://www.nature.com/articles/s41586-023-06923-7 — CC BY 4.0 primary archaeological study.
+- Peștera cu Oase coordinate and morphology context: https://pmc.ncbi.nlm.nih.gov/articles/PMC1783092/ — open primary research.
+- Ust’-Ishim and Tianyuan are retained at the broad positions plotted in the primary synthesis rather than presented as surveyed excavation coordinates.
 
-## Independent cross-checks
+## Required plotted details
 
-- Title: *Homo sapiens reached the higher latitudes of Europe by 45,000 years ago*
-- Canonical URL: https://www.nature.com/articles/s41586-023-06923-7
-- Publisher or author: Dorothea Mylopotamitaki et al., *Nature*
-- License or permitted reference status: CC BY 4.0 article; separately credited photographs require item-level review.
-- Geographic contribution: exact Ranis coordinate and location in central Germany.
-- Agreement or disagreement: agrees on the Ranis evidence site and early date; supplies a coordinate rather than a continental synthesis.
+| Site label | Age label | Placement status |
+| --- | --- | --- |
+| Ranis | 42–50 kyr BP | Coordinate-checked; reference position preserved |
+| Zlatý kůň | ~45 kyr BP | Primary-figure position preserved |
+| Oase | 37–42 kyr BP | Coordinate-checked; reference position preserved |
+| Bacho Kiro | 42–46 kyr BP | Primary-figure position preserved |
+| Ust’-Ishim | 42–46 kyr BP | Approximate find-region position from primary synthesis |
+| Tianyuan | 38–41 kyr BP | Approximate cave-area position from primary synthesis |
 
-- Title: Natural Earth physical vectors
-- Canonical URL: https://www.naturalearthdata.com/
-- Publisher or author: Natural Earth contributors
-- License or permitted reference status: public domain.
-- Geographic contribution: coastlines, terrain, water, and modern physical reference geometry.
-- Agreement or disagreement: agrees on continental relationships; supplies no prehistoric route or population claim.
+The scale bar is retained with the exact labels `0`, `1,000 km`, and `2,000 km`.
 
-- Title: Foundational Denisova genome project and study
-- Canonical URL: https://www.eva.mpg.de/genetics/genome-projects/denisova/ and https://www.nature.com/articles/nature09710
-- Publisher or author: Max Planck Institute; David Reich et al.
-- License or permitted reference status: research use for facts; the Nature article’s CC BY-NC-SA license is not runtime-media compatible.
-- Geographic contribution: verifies Denisova Cave as the evidence anchor for the population label.
-- Agreement or disagreement: extends the primary figure’s Homo sapiens sample with the separately explained Denisovan anchor. It does not support a territory.
+## Accuracy and uncertainty boundary
 
-## Coordinate checks
+### Preserved
 
-| Location | Latitude | Longitude | Authority | Result |
-| --- | ---: | ---: | --- | --- |
-| Ranis (Ilsenhöhle) | 50.662605 | 11.565232 | Mylopotamitaki et al. 2024: 50°39.7563′N, 11°33.9139′E | Coordinate-verified |
-| Peștera cu Oase | — | — | Fu et al. 2015; authoritative site coordinate still required | Publication blocked until verified |
-| Ust’-Ishim find location | — | — | Primary publication or museum record still required | Publication blocked until verified |
-| Tianyuan Cave | — | — | Primary excavation publication or institutional record still required | Publication blocked until verified |
-| Denisova Cave | — | — | Primary publication or institutional record still required | Publication blocked until verified |
-| Zlatý kůň, if retained | — | — | Primary publication or museum record still required | Optional; omit if unverified or crowded |
-| Bacho Kiro Cave, if retained | — | — | Primary publication or institutional record still required | Optional; omit if unverified or crowded |
+- The reference’s Europe-to-East-Asia extent and orientation.
+- The relative positions of all six evidence sites.
+- All six site names and age ranges.
+- The reference scale relationship.
 
-Only Ranis is coordinate-verified at the editorial checkpoint. No artwork generation is authorized. After approval, every retained site needs an authoritative coordinate and independent visual cross-check before a prompt is written.
+### Changed only in visual treatment
 
-## Confidence and uncertainty boundary
+- Restricted specimen photographs and their connectors were removed.
+- Sites became consistent app-style circular markers and native map callouts.
+- The grayscale research-figure treatment became a warm Chronos atlas palette with restrained topographic texture.
 
-### Coordinate-verified
+### Omitted and prohibited
 
-- Ranis (Ilsenhöhle), Germany.
+- Migration arrows, departure points, corridors, routes, speeds, and named waves.
+- Political borders and population territories.
+- Neanderthal or Denisovan range polygons.
+- Decorative fossils, skulls, bones, people, DNA helices, compasses, titles, paragraphs, logos, watermarks, or UI chrome.
 
-### Source-supported
+Learner-facing uncertainty language: **These six sites mark where remains survived and produced genome-wide data. They are evidence samples, not a route or a complete map of where people lived.**
 
-- Continent-scale separation of the selected sites.
-- Ranis, Oase, Ust’-Ishim, Tianyuan, Zlatý kůň, and Bacho Kiro as early Homo sapiens genome evidence sites in the primary synthesis.
-- Denisova Cave as the evidence anchor for the population researchers call Denisovans.
+## Raster image-edit lineage
 
-### Approximate
+- Generation mode: built-in OpenAI image edit through Codex; style-transfer edit with the real figure supplied as Image 1.
+- Generation date: `2026-07-26`.
+- Accepted generated master retained in the Codex generated-image archive: `exec-a282a804-a38b-4445-8f1e-2b165a21c43a.png`.
+- Lossless project master: `docs/research/references/migrations-ancient-dna/accepted-masters/migrations-ancient-genomes-hero-master.png`, 1847 × 851 PNG.
+- Runtime publication source: `public/images/maps/migrations-ancient-genomes-hero.webp`, 1847 × 851 quality-96 WebP; optimized fallback: `public/images/optimized/ancient-dna/migrations-ancient-genomes-hero.optimized.webp`.
+- Stable runtime ID: `media.humans.migrations-hero-map`.
+- No SVG, manual vector drawing, canvas renderer, or code-generated diagram was used.
 
-- Pleistocene coastlines unless a dated palaeocoastline source is added after approval.
-- Any visual cue that Africa is the origin region; it must remain broad context, not a departure point.
-- Label displacement needed for mobile legibility.
+### Complete final prompt
 
-### Omitted
-
-- Exact migration arrows, corridors, departure points, speeds, and named waves.
-- Political borders and modern nation-color fills.
-- Neanderthal or Denisovan territorial polygons.
-- A complete census of ancient-genome sites.
-- Sahul and its crossing route, which belong to the next lesson.
-
-Learner-facing uncertainty language: **These points mark a few places where ancient DNA survived and was studied. They do not trace every path people took or every place these populations lived.**
-
-## Generated artwork lineage
-
-- Generation tool: not selected; production waits for product-owner approval.
-- Model or version: not applicable yet.
-- Generation date: not applicable yet.
-- Complete prompt: to be added verbatim after coordinate verification.
-- Geographic reference inputs: Sümer Figure 1 facts; verified site coordinates; Natural Earth public-domain base.
-- Style references and permitted use: `docs/design/references/` for internal visual intent only; no reference image embedded or redistributed.
-- Final master path: not created.
-- Optimized runtime path or object identity: not created.
-- Required labels and exact spelling: Ranis; Peștera cu Oase; Ust’-Ishim; Tianyuan Cave; Denisova Cave.
-- Rejected drafts and reasons: none yet.
-- Historical reviewer and status: editorial checkpoint complete; final review pending.
-- Visual reviewer and status: pending.
+> Use case: style-transfer
+> Asset type: Chronos lesson hero map, wide landscape raster image
+> Input images: Image 1 is the scientific map reference and edit target. Its geography, marker positions, site names, age ranges, and scale relationship are authoritative. Its fossil photographs are NOT style references and must be removed.
+> Primary request: Redraw the same evidence map as a polished, calm app-style historical atlas illustration for ages 10–13. Keep exactly the six plotted evidence locations and their relative positions, replacing every specimen photograph and connector-photo composition with elegant compact app-style marker callouts.
+> Required site labels and ages, verbatim: “Ranis” — “42–50 kyr BP”; “Zlatý kůň” — “~45 kyr BP”; “Oase” — “37–42 kyr BP”; “Bacho Kiro” — “42–46 kyr BP”; “Ust’-Ishim” — “42–46 kyr BP”; “Tianyuan” — “38–41 kyr BP”.
+> Retain one restrained scale bar labeled exactly “0”, “1,000 km”, and “2,000 km”.
+> Style/medium: sophisticated flat graphical raster illustration, editorial learning-app artwork, subtle layered paper and topographic texture, crisp coastlines and terrain, refined circular marker system, warm museum-quality finish.
+> Composition/framing: very wide hero composition close to 2.85:1. Preserve the reference’s Europe-to-East-Asia extent and orientation. Keep every marker and label safely inside the frame with generous edge padding; the central evidence spread must remain understandable in a centered 16:9 mobile crop.
+> Color palette: warm ivory and sand land, muted mineral-blue water, soft ochre relief, restrained teal and terracotta markers, deep navy labels.
+> Constraints: preserve the source map’s real geography and all six evidence relationships. These are evidence sites, not a migration route or territory. No fossil photographs, skulls, bones, teeth, people, migration arrows, political borders, population polygons, invented sites, decorative DNA helix, compass, title, paragraph, logo, watermark, or UI chrome. No text beyond the six exact site names, six exact age ranges, and the three scale-bar labels. Raster image only; never SVG.
 
 ## Publication records
 
-- Source IDs: `source.humans.sumer-2024-admixture`, `source.humans.mylopotamitaki-2024-ranis`, `source.humans.reich-2010-denisova`, `source.humans.denisova-project`, `source.humans.natural-earth`.
-- Media asset: proposed `media.humans.ancient-genome-map`; `provenance-review-required`.
-- Lesson/module: proposed lesson and map-module IDs above.
-- Learner attribution: native provenance panel will credit the studies, Natural Earth, and Chronos adaptation.
-- Draft alt/non-visual summary: “Map of Africa and Eurasia with selected ancient-genome evidence sites in Europe, Siberia, and northern China. The widely separated points show where a small number of remains survived and were studied, not a complete migration route.”
-- Visible uncertainty note: required wording above.
+- Source ID: `source.humans.sumer-2024-admixture`.
+- Media asset: `media.humans.migrations-hero-map`.
+- Lesson hero: `lesson.humans.migrations-and-interbreeding`.
+- Native caption and alt text preserve the lesson if the image is unavailable.
+- The source figure remains in the research-only directory; it is not a public runtime asset.
 
 ## Final review
 
-- [x] The real reference, not generated output, is the geographic source.
-- [ ] Every required place and label was checked against authoritative evidence.
-- [x] Approximate features do not imply exact reconstruction.
-- [x] Reference-map rights and runtime-asset rights are recorded separately.
-- [x] Research inputs are not present in public runtime directories without approval.
-- [ ] The complete map remains visible and legible at supported viewport sizes.
-- [ ] Media, content, accessibility, test, and build checks passed or are reported accurately.
+- [x] Real authoritative map supplied as the edit target.
+- [x] Mixed-rights specimen photographs excluded.
+- [x] Six site names, six age ranges, positions, and scale labels manually reviewed.
+- [x] No SVG or manual diagram construction.
+- [ ] Complete hero visible at desktop and mobile lesson widths.
+- [ ] Light/dark theme, decode, content, tests, media build, and production build verified.

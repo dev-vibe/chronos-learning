@@ -69,6 +69,7 @@ describe('multi-lesson Learn runtime', () => {
     const publishedLinks = within(journey).getAllByRole('link').map((link) => link.getAttribute('href')).filter((href) => href?.startsWith('/learn/'));
     expect(publishedLinks).toEqual([
       '/learn/lesson.humans.homo-sapiens-origins',
+      '/learn/lesson.humans.migrations-and-interbreeding',
       '/learn/lesson.farming.settlements',
       '/learn/lesson.uruk.first-city',
       '/learn/lesson.writing.early-systems',
@@ -79,6 +80,7 @@ describe('multi-lesson Learn runtime', () => {
     expect(gateway.loadJourneySummaries).toHaveBeenCalledTimes(1);
     expect(gateway.loadJourneySummaries).toHaveBeenCalledWith([
       'lesson.humans.homo-sapiens-origins',
+      'lesson.humans.migrations-and-interbreeding',
       'lesson.farming.settlements',
       'lesson.uruk.first-city',
       'lesson.writing.early-systems',

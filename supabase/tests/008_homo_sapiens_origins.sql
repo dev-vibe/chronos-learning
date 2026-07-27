@@ -12,8 +12,8 @@ select is((select count(*) from public.lesson_required_prompts where lesson_id='
 select is((select card_id from public.card_unlocks where lesson_id='lesson.humans.homo-sapiens-origins'), 'card.idea.origins-across-africa', 'origins unlocks the idea card');
 
 select is((select position from public.journey_entries where id='entry.world-history.homo-sapiens-origins'), 0, 'World History opens at canonical Spine position 1');
-select is((select position from public.journey_entries where id='entry.world-history.farming'), 1, 'existing entries shift without changing identity');
-select is((select position from public.journey_entries where id='entry.world-history.writing'), 3, 'the shift preserves the original relative order');
+select is((select position from public.journey_entries where id='entry.world-history.farming'), 2, 'later publication shifts existing entries without changing identity');
+select is((select position from public.journey_entries where id='entry.world-history.writing'), 4, 'later publication preserves the original relative order');
 
 set local role authenticated;
 select set_config('request.jwt.claim.sub','88888888-8888-8888-8888-888888888888',true);

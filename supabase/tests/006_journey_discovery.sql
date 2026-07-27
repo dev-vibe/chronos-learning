@@ -25,7 +25,7 @@ set local role authenticated;
 select set_config('request.jwt.claim.sub','55555555-5555-5555-5555-555555555555',true);
 
 select is((select count(*) from public.journeys), 1::bigint, 'authenticated catalog exposes only the published World History journey');
-select is((select count(*) from public.journey_entries), 4::bigint, 'authenticated catalog includes all published World History entries');
+select is((select count(*) from public.journey_entries), 5::bigint, 'authenticated catalog includes all published World History entries');
 
 insert into public.learner_journeys(learner_id,journey_id,status,active_lesson_id)
 values(auth.uid(),'journey.world-history','open','lesson.uruk.first-city');

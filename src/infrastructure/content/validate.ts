@@ -154,13 +154,14 @@ export function validateContent(input: ContentBundle) {
     }
   }
 
-  const cardUnlocks = new Set<string>();
+  const cardUnlockCounts = new Map<string, number>();
   for (const card of cards) {
     refs(card.id, card.lessonIds, lessonIds, 'lesson');
     refs(card.id, card.sourceIds, sourceIds, 'source');
     if (!lessonIds.has(card.unlockLessonId)) errors.push(`${card.id}: invalid card unlock reference ${card.unlockLessonId}`);
-    if (cardUnlocks.has(card.unlockLessonId)) errors.push(`${card.id}: duplicate deterministic unlock for ${card.unlockLessonId}`);
-    cardUnlocks.add(card.unlockLessonId);
+    const unlockCount = (cardUnlockCounts.get(card.unlockLessonId) ?? 0) + 1;
+    cardUnlockCounts.set(card.unlockLessonId, unlockCount);
+    if (unlockCount > 3) errors.push(`${card.id}: more than three deterministic unlocks for ${card.unlockLessonId}`);
     if (!mediaIds.has(card.mediaId)) errors.push(`${card.id}: broken media reference ${card.mediaId}`);
   }
 
