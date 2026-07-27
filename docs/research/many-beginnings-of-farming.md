@@ -1,0 +1,432 @@
+# Many Beginnings of Farming — research and editorial note
+
+Date: 2026-07-27
+Lesson ID: `lesson.farming.multiple-origins`
+World Spine position: 7
+Linear: [ASH-74](https://linear.app/ashs-workshop/issue/ASH-74/research-and-publish-many-beginnings-of-farming)
+Branch: `codex/ash-74-many-beginnings-farming`
+Status: **Awaiting product-owner approval (Stages 0–14 checkpoint)**
+
+This note is the durable source, claim, learning, media, and checkpoint record. It is a decision packet rather than draft runtime copy. Production lesson code, final media generation, migrations, and hosted changes wait for approval.
+
+## Work boundary
+
+| Field | Decision |
+| --- | --- |
+| Stable lesson ID | `lesson.farming.multiple-origins` |
+| Legacy aliases | `neolithic_revolution` (legacy timeline stub; reframed, not reused as title) |
+| Canonical title | **Many Beginnings of Farming** |
+| Journey / chapter / position | World History · Human Beginnings and Food Systems · Spine 7 |
+| Required | yes |
+| Chronology | c. 10,000–3000 BCE (regional processes begin earlier and finish later; these dates bound the lesson’s focus window) |
+| Curriculum prerequisite | `lesson.climate.holocene-transition` (unpublished; do not assume climate lesson knowledge) |
+| Successor | `lesson.farming.settlements` (already published) |
+| Issue / branch | ASH-74 · `codex/ash-74-many-beginnings-farming` |
+| Accountable reviewer | Carlin Aylsworth |
+
+This increment designs the global multiple-origins frame that Farming and Settlements already assumes. It does not rebuild Çatalhöyük, teach pastoralism, invent Holocene climate content, promote Spine positions 3–6, redesign the Learn shell, generate final assets before approval, or publish database configuration.
+
+**Non-goals:** a complete crop encyclopedia; animal domestication deep dive; single-cause climate explanation; “why farming happened everywhere” philosophy; diffusion routes of every crop; later Green Revolution.
+
+## Node proposal
+
+**Essential question:** Did farming begin once in one place and then spread—or did people in different regions invent food production independently?
+
+**Durable understanding:** Farming began independently in several regions, with different crops, landscapes, and timelines. Domestication was usually a long process of people and plants changing together—not a single “Agricultural Revolution.”
+
+**Supporting understandings:**
+
+1. Popular “Neolithic Revolution / Fertile Crescent invents farming for the world” stories overstate one region and one sudden switch.
+2. Domestication means plants (and later animals) change under human cultivation and selection; cultivation can precede clear morphological domestication for centuries or millennia.
+3. Southwest Asia, China (millet and rice traditions), New Guinea, Africa, and the Americas each developed food production using local plants and local practices.
+4. Evidence packages differ: seed-crop scars and grain size in some regions; wetland mounds, starch, and phytoliths in others.
+5. Farming did not always mean permanent villages first, and it did not automatically create cities, kings, or writing.
+
+**Evidence encounter:** A Chronos world map of the five roster regions as approximate early-domestication zones, paired with a short comparison of contrasting crop packages (for example Southwest Asian cereals/pulses versus New Guinea banana/taro/yam vegeculture versus Mesoamerican maize). Learners decide what “independent beginning” means when crops and evidence types differ.
+
+**Prerequisites (stated in-lesson because Holocene Climate is unpublished):** people already lived by foraging in many environments; a reconstruction or map zone is not a photograph of the past; later settlement lessons zoom into one regional case.
+
+**Common misconceptions to prevent:**
+
+- farming was invented once in the Fertile Crescent and copied everywhere;
+- farming arrived overnight as a sharp “revolution”;
+- every early farming community lived in permanent villages like Çatalhöyük;
+- farming was always an obvious improvement with no tradeoffs;
+- New Guinea / Africa / Americas only farmed after contact with Eurasia;
+- China had one identical crop package everywhere;
+- domestication equals civilization.
+
+**Scope:** Independent plant-focused food-production beginnings in the five roster regions between roughly 10,000 and 3000 BCE. Animals appear only as brief supporting context where inseparable (for example Southwest Asia mixed farming); full pastoral alternatives belong to Spine 9.
+
+**Why one lesson:** The curriculum already has a Southwest Asian settlement case. Learners need the global corrective first so Çatalhöyük cannot be misread as “how farming began for humanity.”
+
+**Bridge from previous published neighbor:** Migrations taught branching movement and encounter. This lesson jumps forward in the food-systems thread: after long forager histories (Spine 3–6 still unpublished), people in several regions began cultivating local plants.
+
+**Bridge to Settlements:** Once learners know farming began in many places, zoom into one Anatolian pathway where cultivation, storage, and dense houses reshaped daily life.
+
+## Research questions
+
+1. How many independent centers does current consensus support, and how should Chronos handle “at least X, maybe more”?
+2. What wording distinguishes cultivation, domestication, agriculture, and sedentism without a jargon dump?
+3. Which five roster regions are securely independent, and which supporting sub-centers stay enrichment-only?
+4. What concrete evidence can ages 11–14 observe without rights-blocked excavation photos?
+5. How gradual were cereal domestication episodes (non-shattering, seed size)?
+6. How should New Guinea and African evidence be taught when preservation and methods differ from Southwest Asian cereals?
+7. How do we keep climate as background condition without claiming one climate cause?
+8. How should journey framing insert this lesson before already-published Settlements?
+
+## Source ledger
+
+All sources accessed 2026-07-27. “Research use” supports claims; it does not authorize republishing figures unless separately rights-cleared.
+
+| Source ID | Citation / link | Type and authority | Claims supported | Limits / bias | Rights / use | Review |
+| --- | --- | --- | --- | --- | --- | --- |
+| `source.farming.larson-2014-pnas` | Larson et al., [Current perspectives and the future of domestication studies](https://doi.org/10.1073/pnas.1323964111), *PNAS* 111 (2014) | Multi-author specialist synthesis (archaeology, genetics, archaeobotany) | ≥11 widely accepted independent centers; Holocene timing bands; domestication as coevolutionary process; protracted cereal change | Synthesis, not primary excavation; Fig. 1 includes diffusion arrows Chronos must not copy as “one origin” | OA article; PNAS licensing often restricts derivatives — treat figures as **research citation / geographic facts only** until item-level license confirms editable reuse | Reviewed 2026-07-27 |
+| `source.farming.fuller-2014-convergent` | Fuller et al., [Convergent evolution and parallelism in plant domestication](https://pmc.ncbi.nlm.nih.gov/articles/PMC4035951/), *PNAS* 111 (2014) | Peer-reviewed archaeobotanical synthesis | Parallel domestication processes; seed-crop vs vegeculture; quantified slow cereal rates; New Guinea mid-Holocene cultivation | Global overview; some regional dates refined since 2014 | PMC full text; figures research-only pending license check | Reviewed 2026-07-27 |
+| `source.farming.fuller-willcox-2011` | Fuller, Willcox & Allaby, [Cultivation and domestication had multiple origins](https://www.tandfonline.com/doi/abs/10.1080/00438243.2011.624747), *World Archaeology* 43 (2011) | Peer-reviewed Near East critique | Against single Near Eastern “core area”; protracted predomestication cultivation; piecemeal crop appearance | Southwest Asia focus; debates continue with core-area defenders | Research citation | Reviewed 2026-07-27 |
+| `source.farming.denham-2003-kuk` | Denham et al., [Origins of agriculture at Kuk Swamp…](https://doi.org/10.1126/science.1085255), *Science* 301 (2003) | Peer-reviewed multidisciplinary excavation synthesis | Independent New Guinea agriculture by ~6950–6440 cal BP; earlier wetland-edge plant use; banana intensification; taro use | Phase interpretation debated historically; starch cannot always separate wild vs cultivated forms | Research citation; figures not redistributed | Reviewed 2026-07-27 |
+| `source.farming.fullagar-2006-kuk-starch` | Fullagar et al., early/mid-Holocene taro and yam processing at Kuk, *J. Archaeological Science* (2006) | Residue/usewear analysis | Taro and yam processing by ~10.2 ka cal BP at Kuk wetland margin | Does not alone prove full agriculture in Phase 1 | Research citation | Reviewed 2026-07-27 |
+| `source.farming.lu-2009-cishan-millet` | Lu et al., [Earliest domestication of common millet…](https://pmc.ncbi.nlm.nih.gov/articles/PMC2678631/), *PNAS* 106 (2009) | Peer-reviewed archaeobotany / phytolith study | Early Holocene broomcorn millet in North China (~10 ka claims at Cishan) | Dating and identification debates exist in later literature; use cautious “early Holocene millet cultivation in North China” | OA text; media research-only | Reviewed 2026-07-27 |
+| `source.farming.deng-2015-baligang` | Deng et al., [From Early Domesticated Rice…](https://pmc.ncbi.nlm.nih.gov/articles/PMC4604147/), *PLOS ONE* (2015) | Peer-reviewed long-sequence archaeobotany | Distinct northern millet and Yangtze rice traditions; later mixing | Regional corridor case, not every Chinese valley | CC BY | Reviewed 2026-07-27 |
+| `source.farming.piperno-2009-maize` | Piperno et al., [Starch grain and phytolith evidence for early ninth millennium B.P. maize…](https://doi.org/10.1073/pnas.0812525106), *PNAS* 106 (2009) | Peer-reviewed microfossil study | Maize in Central Balsas by ~8700 cal BP; early domesticated squash signal | Microfossil inference; highland vs Balsas debates historically settled toward Balsas ancestry | Research citation | Reviewed 2026-07-27 |
+| `source.farming.ranere-2009-balsas` | Ranere et al., [Cultural and chronological context…](https://pmc.ncbi.nlm.nih.gov/articles/PMC2664064/), *PNAS* 106 (2009) | Peer-reviewed excavation context for Piperno 2009 | Early Holocene occupation and plant use in Central Balsas; seasonal mobility with cultivation | One shelter sequence | Research citation | Reviewed 2026-07-27 |
+| `source.farming.smith-2006-ena` | Smith, [Eastern North America as an independent center…](https://doi.org/10.1073/pnas.0604335103), *PNAS* 103 (2006) | Peer-reviewed synthesis | Eastern North America domesticated local plants independently | Enrichment for Americas diversity; not a fifth roster region by itself | Research citation | Reviewed 2026-07-27 |
+| `source.farming.winchell-2018-sorghum` | Winchell et al., [Origins and dissemination of domesticated sorghum and pearl millet…](https://pmc.ncbi.nlm.nih.gov/articles/PMC6394749/), *African Archaeological Review* (2018) | Peer-reviewed Sahel synthesis | Eastern Sahel sorghum domestication pathway; western Sahel pearl millet pathway; Africa not a single secondary adopter | Dates continue to refine; impressions/ceramics dominate some early signals | OA PMC | Reviewed 2026-07-27 |
+| `source.farming.barron-2020-pearl-millet` | Barron et al., [Transition from wild to domesticated pearl millet…](https://link.springer.com/article/10.1007/s10437-021-09428-8), *African Archaeological Review* (2021) | Peer-reviewed ceramic-temper archaeobotany | Wild-to-domestic morphological transition in northern Mali; third-millennium BC domesticated forms | Preservation via temper, not carbonized grain alone | Research citation | Reviewed 2026-07-27 |
+| `source.farming.baird-2018-anatolia` | Baird et al., [Agricultural origins on the Anatolian plateau](https://doi.org/10.1073/pnas.1800163115), *PNAS* 115 (2018) | Peer-reviewed regional multi-proxy study | Gradual/uneven Southwest Asian uptake; bridge to Settlements lesson | Central Anatolia, not all Fertile Crescent | Research citation | Reviewed 2026-07-27 |
+| `source.farming.natural-earth` | [Natural Earth](https://www.naturalearthdata.com/) | Public-domain geographic base | Coastlines/continents for Chronos map generation | Modern coastlines; not Holocene shorelines | Public domain | Reviewed 2026-07-27 |
+
+### Sources deliberately not used as authorities
+
+- Jared Diamond / popular single-cause geographic determinism as a claim authority.
+- Textbook “Neolithic Revolution begins 10,000 BCE in the Fertile Crescent” one-liners.
+- Generic stock “ancient farmer” reconstructions as evidence.
+- AI maps with invented borders or diffusion arrows from one hearth.
+- Wikipedia summaries as sole support for material claims.
+
+Research stopped when independent beginnings, protracted domestication, and the five roster regions were each supported by specialist sources; remaining disagreements are dating precision and exact sub-center counts, not the lesson’s core claim.
+
+## Claim ledger
+
+| Claim ID and wording | Kind | Certainty | Sources | Counterevidence / limits | Learner treatment | Review |
+| --- | --- | --- | --- | --- | --- | --- |
+| `claim.farming.multi.independent-centers` | Independent food-production beginnings occurred in multiple regions of the Old and New Worlds | Interpretation | High | Larson 2014; Fuller 2014 | Exact count varies (≥11 widely accepted; sometimes >20 proposed). Chronos teaches five roster regions, not a complete census | Teach “several independent beginnings,” not a magic number | Editorial review required |
+| `claim.farming.multi.not-one-revolution` | Farming did not begin as a single worldwide Neolithic Revolution invented once in Southwest Asia | Interpretation | High | Fuller–Willcox–Allaby 2011; Larson 2014; regional packages | Southwest Asia remains an early and consequential center; rejecting primacy is not denying its importance | Open by dismantling the single-origin myth while retaining SW Asia as one beginning | Editorial review required |
+| `claim.farming.multi.domestication-process` | Domestication is a process: cultivation and human niches can precede clear morphological domestication traits for long periods | Interpretation | High | Larson 2014; Fuller 2014; Allaby et al. via Larson | Rates differ by crop and region; some traits may fix faster in vegetatively propagated plants | Define cultivation vs domestication in use | Editorial review required |
+| `claim.farming.multi.cereal-protracted` | For major Old World cereals, key morphological changes such as non-shattering often unfolded over ~1,000–4,000 years | Observation / interpretation | High | Fuller 2014 | Not every crop shares cereal rates | One concrete mechanism example, not a universal stopwatch | Editorial review required |
+| `claim.farming.multi.sw-asia` | Southwest Asia was an early center where people cultivated local cereals and pulses; the process was regionally uneven, not a single core-package switch | Interpretation | High | Fuller–Willcox–Allaby 2011; Baird 2018 | Core-area defenders still exist; Chronos follows the multi-origin / protracted consensus | One of five beginnings; defer Çatalhöyük detail to Settlements | Editorial review required |
+| `claim.farming.multi.china` | In China, early Holocene food production included northern millet traditions and Yangtze rice traditions that were not identical packages | Interpretation | High | Lu 2009; Deng 2015; Fuller China overview | Exact earliest dates debated; treat “early Holocene” ranges | Present China as one roster region with internal diversity | Editorial review required |
+| `claim.farming.multi.new-guinea` | New Guinea developed early independent cultivation, including mid-Holocene wetland agriculture at Kuk with banana intensification and use of taro/yam | Interpretation | High | Denham 2003; Fullagar 2006; Fuller 2014 | Phase 1 vs Phase 2 intensity contested; starch wild/cultivated distinction limited | Essential corrective that farming ≠ Fertile Crescent cereals | Editorial review required |
+| `claim.farming.multi.africa` | Africa includes independent cereal domestication pathways, notably pearl millet in the western Sahel and sorghum in the eastern Sahel | Interpretation | High | Winchell 2018; Barron 2020/2021 | Chronology still refining; not every African crop is covered | One African food-production beginning with two named crops; avoid “Africa received farming late” | Editorial review required |
+| `claim.farming.multi.americas` | In the Americas, people domesticated local plants independently; maize in the Central Balsas region of Mexico is attested by ~8700 cal BP | Observation / interpretation | High | Piperno 2009; Ranere 2009 | Americas contain multiple centers (Andes, eastern North America, etc.) | Lead with Mesoamerican maize; briefly note more than one American beginning | Editorial review required |
+| `claim.farming.multi.not-always-villages` | Early cultivation often occurred among mobile or seasonally mobile communities; permanent dense villages were not a universal first step | Interpretation | High | Ranere 2009; Fuller 2014; Denham 2003 | SW Asia has early sedentism debates of its own | Explicitly block “farming = Çatalhöyük houses everywhere” | Editorial review required |
+| `claim.farming.multi.no-automatic-cities` | Independent farming beginnings do not by themselves create cities, states, writing, or kings | Interpretation | High | Curriculum design; contrast with Uruk | Surpluses can enable later complexity; they do not guarantee it | Closing beat before Settlements / cities | Editorial review required |
+| `claim.farming.multi.climate-not-single-cause` | Holocene environmental change is relevant context, but no single climate event explains all farming beginnings | Interpretation | Moderate–High | Larson 2014 discussion; unpublished Holocene lesson deferred | Avoid filling the missing climate lesson with a one-cause story | One cautious context sentence only | Editorial review required |
+
+## Content triage
+
+| Candidate idea | Decision | Why | Destination |
+| --- | --- | --- | --- |
+| Single-origin myth dismantling | Essential | Core purpose of the node | Opening |
+| Domestication as process / protracted cereals | Essential | Mechanism, not map trivia | Early sections |
+| Five roster regions with distinct crops | Essential | Canonical scope | Map + knowledge |
+| New Guinea vegeculture contrast | Essential | Breaks cereal-only mental model | Evidence / comparison |
+| Africa sorghum + pearl millet | Essential | Prevents Africa-as-secondary story | Regional panel |
+| Americas maize (Balsas) | Essential | Independent New World beginning | Regional panel |
+| China millet + rice internal diversity | Supporting | Prevents one-China-package myth | Regional panel |
+| Eastern North America / Andes extras | Enrichment | Shows Americas plurality without encyclopedia | One sentence or card fact |
+| Animal domestication pathways | Deferred | Spine 9 | Animals lesson |
+| Younger Dryas / Holocene climate deep dive | Deferred | Spine 6 | Climate lesson |
+| Çatalhöyük houses / storage | Deferred | Already published | Settlements |
+| Exact domestication gene stories | Rejected | Too technical for this lesson | — |
+| Diffusion arrows from SW Asia as main visual | Rejected | Reinforces the misconception | — |
+| Diamond geographic ranking of continents | Rejected | Distorts agency and evidence | — |
+
+## Learning blueprint
+
+**Essential question:** Did farming begin once in one place and then spread—or did people in different regions invent food production independently?
+
+**Durable understanding:** Farming began independently in several regions with different crops and timelines. Domestication was usually gradual, and farming did not mean one worldwide lifestyle.
+
+**Supporting understandings:** see Node proposal.
+
+**Prerequisites:** foraging lifeways existed first; maps show models; Settlements will zoom into one case.
+
+**Misconceptions:** see Node proposal.
+
+**Indispensable vocabulary (define in use):** farming / food production; cultivation; domestication; crop; independent beginning; Fertile Crescent / Southwest Asia (as one region, not the inventor of farming).
+
+**Evidence encounter:** world regional map + contrasting crop packages / evidence types.
+
+**Historical-thinking move:** compare independent cases and reject a single-origin story using geographic and botanical evidence.
+
+**Sincere-attempt evidence:** (1) select which conclusion the multi-region evidence best supports; (2) explain, with one region example, why “one invention then copied everywhere” fails, and name one limit of the evidence.
+
+## Ages 11–14 design pass
+
+- Open with the single-origin myth as a concrete wrong story, not abstract theory.
+- Give time and place early: roughly after 10,000 BCE, in several regions, not everywhere at once.
+- Cap new place names; prefer region labels over long site lists. Site names (Kuk, Balsas, Cishan) appear only when they carry evidence.
+- Explain cultivation → domestication with one cereal example (seeds that stay on the plant when ripe) before introducing vegeculture.
+- Keep climate to one cautious sentence; do not simulate the missing Holocene lesson.
+- Avoid exoticizing any region; every panel gets a real crop and a real evidence type.
+- No human remains, no invented “first farmer” portraits, no civilizational ranking.
+- Section headings stay direct (“Farming did not begin once,” “Different plants, different evidence”).
+
+## Section / component storyboard
+
+| Order | Section ID | Learner-facing heading | Authoring purpose (not shown) | Claims | Module(s) | Media / action | Transition |
+| ---: | --- | --- | --- | --- | --- | --- | --- |
+| 1 | `section.farming.multi.not-once` | **Farming did not begin once** | Break the single-revolution myth and state the essential question | not-one-revolution; independent-centers | prose + 3-item knowledge | Optional hero map peek | Into mechanism |
+| 2 | `section.farming.multi.what-domestication` | **Plants changed with people** | Define cultivation vs domestication; show gradual cereal change | domestication-process; cereal-protracted | prose | Recommended non-shattering diagram | Into geography |
+| 3 | `section.farming.multi.five-beginnings` | **Five beginnings, five food stories** | Present the five roster regions with distinct crops | sw-asia; china; new-guinea; africa; americas | knowledge (5 items) + historical-map | **Required** world zones map | Into evidence contrast |
+| 4 | `section.farming.multi.different-evidence` | **Different plants leave different clues** | Contrast seed-crop scars/size with starch/phytoliths/wetland fields | new-guinea; cereal-protracted | prose + evidence or knowledge | Map callouts or crop-package comparison | Into lifestyle diversity |
+| 5 | `section.farming.multi.not-one-lifestyle` | **Farming was not one lifestyle** | Block village-first universalism and automatic cities | not-always-villages; no-automatic-cities; climate-not-single-cause | prose + knowledge (3) | none required | Into checks |
+| 6 | `section.farming.multi.world-check` | **World Check** | Require sincere use of multi-origin evidence | all core claims | prompt ×2 + completion | none | Bridge to Settlements after completion |
+
+Six semantic sections. Related navigation stays outside required progress.
+
+## Media plan
+
+### 1. World beginnings map — **Required**
+
+| Field | Decision |
+| --- | --- |
+| Teaching purpose | Make independent geographic beginnings visible; prevent Fertile Crescent-only mental map |
+| Claims | independent-centers; five regional claims |
+| Form | `historical-map` (Chronos-original raster) |
+| Depiction mode | Approximate early-domestication **zones**, not invention pinpoints |
+| Placement | Section 3 (also usable as restrained lesson hero if composition stays label-light) |
+| Learner action | Locate / compare regions |
+| Accessibility | Accessible summary naming the five regions and stating zones are approximate models |
+| Geographic method | Natural Earth public-domain base + scholarly zone placement from Larson/Fuller consensus; **do not** image-edit PNAS Fig. 1 until license confirms derivatives; **no diffusion arrows** |
+| Labels (exact short raster text only if needed) | Southwest Asia · China · New Guinea · Africa · Americas — or rely on native UI callouts |
+| Review | Full map brief in follow-up note after approval |
+
+### 2. Non-shattering cereal diagram — **Recommended**
+
+| Field | Decision |
+| --- | --- |
+| Teaching purpose | Make “domestication as process” concrete |
+| Claims | domestication-process; cereal-protracted |
+| Form | diagram via raster image-edit from a rights-cleared botanical / textbook-style reference of wild vs domestic cereal ears |
+| Depiction mode | diagram; no educational paragraphs in art |
+| Placement | Section 2 |
+| Fail-safe | If no rights-cleared reference is found, teach with prose + simple comparison knowledge items only |
+
+### 3. Crop-package comparison panel — **Preferred / optional**
+
+Five small still-life crop groupings (one per region) as Chronos-original illustration. Useful if the map feels abstract; deferrable if map + knowledge items already teach.
+
+### Explicit exclusions
+
+- Diffusion arrows from Southwest Asia across the world.
+- “First farmer” character portraits.
+- Human remains or burial agriculture scenes.
+- Exact Holocene coastlines unless separately researched.
+- Video (fails the exceptional-video gate).
+
+### Generation prompts for product-owner image creation
+
+Use these after approval. Provide Natural Earth (or a clean public-domain world physical map) as the geographic reference for Prompt A. For Prompt B, attach a rights-cleared wild-vs-domestic cereal reference photograph/diagram if available.
+
+**Prompt A — world beginnings map (required)**
+
+```text
+Create a single historical map illustration for a Chronos lesson.
+
+LESSON AND PURPOSE:
+- Subject: early independent beginnings of farming
+- Period: roughly 10,000–3000 BCE
+- Teaching goal: show five separate regions where people began domesticating local plants, without implying one invention spread everywhere
+
+GEOGRAPHIC REFERENCE:
+- Treat the attached Natural Earth / public-domain world physical map as the geographic source
+- Preserve continent shapes, orientation, and broad land/water relationships
+- Do not copy styling, arrows, borders, or labels from any scholarly journal figure
+
+VERIFIED / SOURCE-SUPPORTED FEATURES:
+- Soft approximate zones (not sharp political borders) over:
+  1) Southwest Asia / Fertile Crescent arc
+  2) China (broad north-to-Yangtze band; one zone, not two competing empires)
+  3) New Guinea highlands–island emphasis
+  4) African Sahel belt (east–west band, not the whole continent)
+  5) Mesoamerica to northern South America emphasis for Americas (one Americas zone; do not invent precise borders)
+- Modern coastlines acceptable; do not invent ancient shorelines
+
+OMIT:
+- Diffusion arrows
+- Exact site pins
+- Dates, paragraphs, titles, logos, UI chrome
+- National borders, armies, temples, cities
+
+STYLE:
+- Calm educational atlas; muted terrain; clear ocean/land separation
+- Soft translucent zone fills in one restrained accent family
+- Optional tiny region labels only if short: Southwest Asia, China, New Guinea, Africa, Americas
+- No decorative collage, no people, no crops drawn on the map
+```
+
+**Prompt B — non-shattering diagram (recommended)**
+
+```text
+Edit the attached botanical reference into a Chronos lesson diagram.
+
+PURPOSE:
+- Compare a wild cereal ear that shatters and drops grain with a domesticated ear that holds grain for harvest
+
+PRESERVE FROM REFERENCE:
+- Side-by-side ear / spikelet comparison structure
+- Clear difference in whether ripe grain stays attached
+
+REMOVE / DO NOT ADD:
+- Paragraphs, titles, captions, logos, watermarks, UI
+- DNA helices, clocks, cartoon farmers
+- Claims about exact years or genes
+
+STYLE:
+- Clean scientific illustration on a quiet background
+- Two labeled clusters only if short native-looking tags are unavoidable; prefer unlabeled forms so the app can caption them as “wild” and “domesticated”
+```
+
+**Prompt C — optional crop still-life strip**
+
+```text
+Create a quiet horizontal still-life strip of five small crop groupings for a Chronos lesson:
+1) wheat/barley + lentils
+2) foxtail/broomcorn millet + rice panicle
+3) banana + taro corm + yam
+4) sorghum head + pearl millet
+5) maize ear + squash
+No text, no people, no decorative frames, no “firsts” badges. Naturalistic food objects on a simple neutral surface. Do not invent impossible hybrid plants.
+```
+
+## Knowledge Card plan
+
+**Recommendation: no Knowledge Card for this lesson.**
+
+Rationale: the durable memory object is the multi-region pattern itself. Settlements already unlocks Çatalhöyük. A people/place card would either over-privilege one region (undermining the lesson) or become an abstract “idea card” without a honest visual. A Kuk place card is attractive as a Fertile Crescent corrective, but risks turning a global frame lesson into a New Guinea biography.
+
+**Alternate if product owner wants a card:** Place / Witness card **Kuk Early Agriculture** — highland New Guinea wetland farming as proof that farming is not only cereal agriculture from Southwest Asia. Requires a reconstruction labeled as interpretive, not a photograph of the past.
+
+## Understanding-check plan
+
+### Prompt 1 — supported selection
+
+- ID: `prompt.farming.multi.what-evidence-supports`
+- Question: **Looking at farming beginnings in Southwest Asia, China, New Guinea, Africa, and the Americas, which conclusion is best supported?**
+- Supported: Farming began independently in several regions with different crops.
+- Distractors: Farming was invented once in the Fertile Crescent and copied everywhere; Farming always started with dense villages first; Historians still have evidence from only one continent.
+- Feedback: Different regions domesticated different local plants on different timelines. That pattern supports multiple beginnings, not one worldwide invention.
+
+### Prompt 2 — concise explanation
+
+- ID: `prompt.farming.multi.explain-independent`
+- Question: **Choose one region from the lesson. Explain how its crops or evidence show an independent beginning of farming. Then name one thing this evidence cannot prove by itself.**
+- Accepted examples: SW Asia cereals/pulses; China millet/rice; New Guinea banana/taro/yam and wetland fields; Africa pearl millet/sorghum; Americas maize.
+- Accepted limits: exact first inventor, exact start day, motives, complete crop list, that farming was “better,” that cities automatically followed, climate as sole cause.
+- Completion: sincere in-scope attempt; specialist vocabulary unnecessary.
+
+## Journey framing
+
+- New entry ID: `entry.world-history.multiple-origins`
+- Insert in `chapter.world-history.human-beginnings` **before** Settlements (positions shift; IDs stay stable).
+- Framing: **Before zooming into one settlement, see that farming began in more than one part of the world.**
+- Legacy alias configuration: map `neolithic_revolution` → this lesson when publishing.
+- After completion, primary next action: Farming and Settlements.
+- Optional exploration: none required.
+- Note: curriculum prerequisite Holocene Climate remains unpublished; fail closed for Spine 6; do not unlock Settlements by skipping this node once this lesson is published.
+
+## Disagreement, uncertainty, and missing voices
+
+- Center counts differ by definition (crop genetic origin vs cultural tradition vs “pristine” primary center). Chronos teaches five roster regions and admits more existed.
+- Earliest absolute dates for millet, rice, sorghum, and banana remain actively refined; use ranges and “by about,” not anniversary years.
+- Women’s labor, children’s work, and enslaved/captive labor are poorly visible in early domestication evidence; do not invent characters to fill the silence.
+- Indigenous and descendant communities remain living peoples; avoid treating them as museum relics of “first farmers.”
+- Vegecultural and African evidence was historically marginalized by cereal-focused scholarship; the lesson must not reproduce that erasure.
+- Survival bias: dryland carbonized cereals preserve differently than tropical tubers.
+
+## Research / editorial checkpoint — decision packet
+
+### Recommended learner-facing title and scope
+
+Keep **Many Beginnings of Farming** (c. 10,000–3000 BCE). Teach independent plant food-production beginnings in Southwest Asia, China, New Guinea, Africa, and the Americas. Defer animals, Holocene climate depth, and Çatalhöyük mechanics.
+
+### Essential question and durable understanding
+
+See Learning blueprint above.
+
+### Major claims, sources, disagreement, uncertainty
+
+Independent multi-regional beginnings are high-confidence consensus (Larson/Fuller and regional specialists). Disagreement concentrates on exact counts, earliest dates, and how to define a “center.” Teach five regions + “and more” rather than a fake complete list.
+
+### Deliberately deferred / rejected
+
+Holocene climate lesson; pastoralism; Çatalhöyük deep dive; Diamond ranking; diffusion-arrow visuals; gene-level domestication stories.
+
+### Ages 11–14 learning decisions
+
+Myth-first opening; five region panels; one cereal mechanism; one vegeculture contrast; no site-name blizzard; two sincere-attempt prompts.
+
+### Proposed section / component flow
+
+Six sections in the storyboard table above.
+
+### Media / map / video / no-media decisions
+
+- Required: world zones map (Natural Earth–anchored; no PNAS figure republication; no arrows).
+- Recommended: non-shattering diagram if a rights-cleared reference exists.
+- Optional: crop still-life strip.
+- Video: no.
+
+### Knowledge Card decision
+
+**Recommend none.** Alternate: Kuk Early Agriculture place card if a card is desired.
+
+### Understanding-check plan
+
+One supported-selection + one concise explanation, as above.
+
+### Decisions that need product-owner judgment
+
+1. Approve scope, title, and six-section arc? **Recommendation: approve.**
+2. Approve required world zones map with no diffusion arrows? **Recommendation: approve.**
+3. Approve **no Knowledge Card**, or choose the Kuk alternate? **Recommendation: no card.**
+4. Approve inserting this journey entry immediately before Settlements once published? **Recommendation: approve.**
+5. Any objection to naming Africa via pearl millet + sorghum (rather than a single vague “African farming”) and Americas via maize-first with a one-line plurality note? **Recommendation: approve.**
+
+### Fail-safes after approval
+
+- If map license/reference work fails, ship label-driven knowledge geography first only with explicit PO deferral of the required map (otherwise do not mark Review-ready).
+- Keep educational prose in native UI.
+- Do not let Settlements completion language imply this prerequisite is optional after publication.
+- Keep unpublished Spine 3–6 fail closed.
+
+## Sign-off status
+
+| Gate | Status |
+| --- | --- |
+| Research / source review | Complete for checkpoint |
+| Claim and uncertainty review | Complete for checkpoint |
+| Learning blueprint and storyboard | Complete for checkpoint |
+| Media / provenance plan | Complete for checkpoint; assets not produced |
+| Map brief | Outline only; full map note after approval |
+| Product-owner checkpoint | **Awaiting approval** |
+| Runtime implementation | Not started |
+
+### Final sign-off checklist
+
+- [ ] Research integrity
+- [ ] Historical / editorial review
+- [ ] Ages 11–14 learning / editorial review
+- [ ] Section / component storyboard review
+- [ ] Visual / media / map review as applicable
+- [ ] Rights / provenance review
+- [x] Knowledge Card review or explicit no-card decision (proposed: no card)
+- [ ] Prompt / completion review
+- [ ] Accessibility review
+- [ ] Content / media / tests / type / build validation
+- [ ] Empty-database and hosted-development verification
+- [ ] Responsive browser review
+- [ ] Learner walkthrough or documented reason deferred
+- [ ] Product owner approval
