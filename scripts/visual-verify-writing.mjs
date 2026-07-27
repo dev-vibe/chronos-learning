@@ -18,8 +18,7 @@ async function openWriting(page) {
   await page.goto(`${base}/learn/lesson.writing.early-systems`, { waitUntil: 'networkidle' });
   await page.getByRole('heading', { name: 'From Marks to Proto-Cuneiform', exact: true }).waitFor();
   if (await page.locator('[data-section-id]').count() !== 8) throw new Error('Writing lesson did not render eight semantic sections.');
-  const previous = page.getByRole('link', { name: /Previous: Uruk/ }).first();
-  if (await previous.getAttribute('href') !== '/learn/lesson.uruk.first-city') throw new Error('Writing previous action does not resolve to Uruk.');
+  if (await page.getByRole('link', { name: /Previous:/ }).count() !== 0) throw new Error('Lesson footer still exposes a previous-lesson link.');
   const evidence = page.locator('.evidence-module').first();
   const provenance = await evidence.locator('dl').innerText();
   const normalizedProvenance = provenance.toLowerCase();
@@ -103,8 +102,9 @@ await page.screenshot({ path: `${output}/writing-1440x900-completion-card.png`, 
 await page.setViewportSize({ width: 390, height: 844 });
 await page.screenshot({ path: `${output}/writing-390x844-completion-card.png`, fullPage: false });
 await page.reload({ waitUntil: 'networkidle' });
-await page.getByText(/already in your Knowledge Cards/).waitFor();
-if (await page.getByText('Knowledge Card acquired').count()) throw new Error('Completed revisit revealed the writing card again.');
+await page.getByText('In your Knowledge Cards').waitFor();
+await page.getByRole('heading', { name: 'Proto-Cuneiform Tablet' }).waitFor();
+if (await page.getByText('Knowledge Card acquired').count()) throw new Error('Completed revisit treated the writing card as newly acquired.');
 
 await page.goto(`${base}/learn/lesson.farming.settlements`, { waitUntil: 'networkidle' });
 await page.getByRole('heading', { name: /completable yet/i }).waitFor();

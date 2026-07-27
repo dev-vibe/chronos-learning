@@ -51,7 +51,7 @@ beforeEach(() => {
 afterEach(() => { cleanup(); vi.unstubAllEnvs(); });
 
 describe('multi-lesson Learn runtime', () => {
-  it('resolves the published writing lesson with ordered journey and prior navigation', async () => {
+  it('resolves the published writing lesson with ordered journey navigation', async () => {
     const gateway = new MultiLessonGateway();
     render(<LearnApp lessonId="lesson.writing.early-systems" gatewayFactory={async () => gateway} />);
     expect(await screen.findByRole('heading', { name: 'From Marks to Proto-Cuneiform' })).toBeTruthy();
@@ -63,7 +63,7 @@ describe('multi-lesson Learn runtime', () => {
     expect(sourceLink.getAttribute('href')).toBe('https://www.metmuseum.org/art/collection/search/329081');
     expect(screen.queryByText('Review state')).toBeNull();
     expect(screen.queryByText(/^approved$/i)).toBeNull();
-    expect(screen.getByRole('link', { name: /Previous: Uruk/ }).getAttribute('href')).toBe('/learn/lesson.uruk.first-city');
+    expect(screen.queryByRole('link', { name: /Previous:/ })).toBeNull();
     await userEvent.click(within(screen.getByRole('complementary', { name: 'Chronos navigation' })).getByRole('button', { name: 'World History' }));
     const journey = screen.getByRole('dialog', { name: 'World History' });
     const publishedLinks = within(journey).getAllByRole('link').map((link) => link.getAttribute('href')).filter((href) => href?.startsWith('/learn/'));
@@ -97,7 +97,8 @@ describe('multi-lesson Learn runtime', () => {
     fireEvent.blur(explanation);
     await waitFor(() => expect(screen.getByRole('button', { name: 'Complete lesson' }).hasAttribute('disabled')).toBe(false));
     await userEvent.click(screen.getByRole('button', { name: 'Complete lesson' }));
-    expect(await screen.findByText(/Knowledge Card.*artifact/)).toBeTruthy();
+    expect(await screen.findByText('Knowledge Card acquired')).toBeTruthy();
+    expect(document.querySelector('.card-class')?.textContent).toContain('Artifact');
     expect(screen.getByRole('heading', { name: 'Proto-Cuneiform Tablet' })).toBeTruthy();
     expect(gateway.states.get('lesson.uruk.first-city')?.status).toBe('completed');
     expect(gateway.complete).toHaveBeenCalledTimes(1);
@@ -106,7 +107,8 @@ describe('multi-lesson Learn runtime', () => {
     render(<LearnApp lessonId="lesson.writing.early-systems" gatewayFactory={async () => gateway} />);
     await screen.findByRole('heading', { name: 'From Marks to Proto-Cuneiform' });
     expect(screen.queryByText('Knowledge Card acquired')).toBeNull();
-    expect(screen.getByText(/already in your Knowledge Cards/)).toBeTruthy();
+    expect(screen.getByText('In your Knowledge Cards')).toBeTruthy();
+    expect(screen.getByRole('heading', { name: 'Proto-Cuneiform Tablet' })).toBeTruthy();
   });
 
   it('keeps an unpublished spine neighbor private and non-completable', () => {

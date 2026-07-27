@@ -272,7 +272,7 @@ describe('Home, Library, preview, and search composition', () => {
     const provider: SearchProvider = {
       search: vi.fn(async (): Promise<SearchResult[]> => [
         { id: 'lesson.uruk.first-city', kind: 'lesson', title: 'Uruk: Life in an Early City', context: 'Lesson · Uruk period', destination: '/learn/lesson.uruk.first-city', score: 800 },
-        { id: 'card.place.uruk', kind: 'knowledge-card', title: 'Uruk', context: 'Knowledge Card · place', destination: '/learn/lesson.uruk.first-city', score: 700 },
+        { id: 'card.place.uruk', kind: 'knowledge-card', title: 'Uruk', context: 'Knowledge Card · Place', destination: '/learn/lesson.uruk.first-city', score: 700 },
       ]),
     };
     render(<DiscoveryApp
