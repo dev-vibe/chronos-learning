@@ -91,8 +91,8 @@ describe('Uruk Learn progress boundary', () => {
   });
 
   it('maps the exact camelCase, hyphenated RPC payload contract', () => {
-    expect(mapCompletionRpcResult({ completion: 'already-completed', cardOwnership: 'already-owned', cardId: 'card.place.uruk' })).toEqual({ completion: 'already-completed', cardOwnership: 'already-owned', cardId: 'card.place.uruk' });
-    expect(mapCompletionRpcResult({ completion: 'newly-completed', cardOwnership: 'newly-acquired', cardId: 'card.place.uruk' })).toEqual({ completion: 'newly-completed', cardOwnership: 'newly-acquired', cardId: 'card.place.uruk' });
+    expect(mapCompletionRpcResult({ completion: 'already-completed', cardOwnership: 'already-owned', cardId: 'card.place.uruk' })).toEqual({ completion: 'already-completed', cardOwnership: 'already-owned', cardIds: ['card.place.uruk'], cardId: 'card.place.uruk' });
+    expect(mapCompletionRpcResult({ completion: 'newly-completed', cardOwnership: 'newly-acquired', cardId: 'card.place.uruk' })).toEqual({ completion: 'newly-completed', cardOwnership: 'newly-acquired', cardIds: ['card.place.uruk'], cardId: 'card.place.uruk' });
   });
 
   it('renders all canonical semantic sections and evidence metadata from the fixture', () => {

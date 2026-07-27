@@ -409,7 +409,7 @@ export const earlyWritingCards: KnowledgeCard[] = [
     place: 'Southern Mesopotamia, probably Uruk',
     significance: 'A surviving administrative object that preserves numbers, signs, and sealing while reminding us that an object and its probable reading are not the same thing.',
     revealTitle: 'A record that outlived its makers',
-    revealBody: 'You earned this Witness card by using a surviving tablet as evidence while keeping its probable reading separate from what is visible.',
+    revealBody: 'You earned this Artifact card by using a surviving tablet as evidence while keeping its probable reading separate from what is visible.',
     depictionLabel: 'Artifact-focused · surviving evidence',
     facts: [
       'A small clay tablet dated about 3100–2900 BCE',

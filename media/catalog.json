@@ -66,6 +66,28 @@
       ]
     },
     {
+      "id": "media.humans.adna-clean-room",
+      "collection": "ancient-dna",
+      "sourcePath": "public/images/evidence/ancient-dna-clean-room-illustration.webp",
+      "fallbackPath": "/images/optimized/ancient-dna/ancient-dna-clean-room.optimized.webp",
+      "preset": "picture",
+      "widths": [
+        480,
+        768
+      ]
+    },
+    {
+      "id": "media.humans.inherited-segments-diagram",
+      "collection": "ancient-dna",
+      "sourcePath": "public/images/evidence/inherited-segments-diagram.png",
+      "fallbackPath": "/images/optimized/ancient-dna/inherited-segments-diagram.optimized.webp",
+      "preset": "picture",
+      "widths": [
+        480,
+        960
+      ]
+    },
+    {
       "id": "media.humans.jebel-irhoud-cranium",
       "collection": "human-origins",
       "sourcePath": "public/images/human-origins/jebel-irhoud-cranium.jpg",
@@ -96,6 +118,29 @@
       "preset": "photo",
       "widths": [
         480
+      ]
+    },
+    {
+      "id": "media.humans.migrations-hero-map",
+      "collection": "ancient-dna",
+      "sourcePath": "public/images/maps/migrations-ancient-genomes-hero.webp",
+      "fallbackPath": "/images/optimized/ancient-dna/migrations-ancient-genomes-hero.optimized.webp",
+      "preset": "drawing",
+      "widths": [
+        480,
+        960,
+        1120
+      ]
+    },
+    {
+      "id": "media.humans.neanderthals-card",
+      "collection": "ancient-dna",
+      "sourcePath": "public/images/ancient-dna/neanderthals-card-publication-640.png",
+      "fallbackPath": "/images/optimized/ancient-dna/neanderthals-card.optimized.webp",
+      "preset": "photo",
+      "widths": [
+        480,
+        640
       ]
     },
     {

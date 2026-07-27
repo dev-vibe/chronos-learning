@@ -3,7 +3,7 @@ import { isSupabaseConfigured, supabase } from '../../lib/supabase';
 import { chronosContent } from '../../content/chronos';
 
 export type PromptResponses = Record<string, string>;
-export type LearnState = LessonProgress & { exploredSectionIds: string[]; responses: PromptResponses; cardId?: string; version: 1 };
+export type LearnState = LessonProgress & { exploredSectionIds: string[]; responses: PromptResponses; cardIds?: string[]; cardId?: string; version: 1 };
 export type JourneyProgressSummary = Pick<LessonProgress, 'lessonId' | 'status' | 'completedAt'>;
 export interface LearnProgressGateway {
   load(lessonId: string): Promise<LearnState>;
@@ -17,13 +17,14 @@ const key = (lessonId: string) => `chronos.learn.preview.v1:${lessonId}`;
 const empty = (lessonId: string): LearnState => ({ learnerId: 'anonymous-preview', lessonId, status: 'in-progress', attemptedPromptIds: [], exploredSectionIds: [], responses: {}, version: 1 });
 const requiredPrompts = (lessonId: string) => chronosContent.lessons.find((item) => item.id === lessonId)?.promptIds.filter((id) => chronosContent.prompts.find((prompt) => prompt.id === id)?.required) ?? [];
 const currentSectionIds = (lessonId: string) => new Set(chronosContent.lessons.find((item) => item.id === lessonId)?.sections.map((section) => section.id) ?? []);
-const cardForLesson = (lessonId: string) => chronosContent.cards.find((card) => card.unlockLessonId === lessonId)?.id;
+const cardsForLesson = (lessonId: string) => chronosContent.cards.filter((card) => card.unlockLessonId === lessonId).map((card) => card.id);
 
 export function normalizeLearnState(state: LearnState): LearnState {
   const validSections = currentSectionIds(state.lessonId);
   const resumeSectionId = state.resumeSectionId && validSections.has(state.resumeSectionId) ? state.resumeSectionId : undefined;
   const exploredSectionIds = [...new Set(state.exploredSectionIds.filter((sectionId) => validSections.has(sectionId)))];
-  return { ...state, resumeSectionId, exploredSectionIds };
+  const cardIds = [...new Set([...(state.cardIds ?? []), ...(state.cardId ? [state.cardId] : [])])];
+  return { ...state, resumeSectionId, exploredSectionIds, cardIds, cardId: cardIds[0] };
 }
 
 export class LocalPreviewGateway implements LearnProgressGateway {
@@ -59,10 +60,14 @@ export class LocalPreviewGateway implements LearnProgressGateway {
   }
   async complete(lessonId: string, _idempotencyKey: string) {
     const state = this.read(lessonId);
-    if (state.status === 'completed') return { completion: 'already-completed', cardOwnership: 'already-owned', cardId: state.cardId } as const;
+    if (state.status === 'completed') {
+      const cardIds = state.cardIds ?? (state.cardId ? [state.cardId] : []);
+      return { completion: 'already-completed', cardOwnership: cardIds.length ? 'already-owned' : 'not-configured', cardIds, ...(cardIds[0] ? { cardId: cardIds[0] } : {}) } as const;
+    }
     if (!requiredPrompts(lessonId).every((id) => state.attemptedPromptIds.includes(id))) throw new Error('required prompt attempts missing');
-    state.status = 'completed'; state.completedAt = new Date().toISOString(); state.cardId = cardForLesson(lessonId); this.write(state);
-    return { completion: 'newly-completed', cardOwnership: state.cardId ? 'newly-acquired' : 'not-configured', ...(state.cardId ? { cardId: state.cardId } : {}) } as const;
+    const cardIds = cardsForLesson(lessonId);
+    state.status = 'completed'; state.completedAt = new Date().toISOString(); state.cardIds = cardIds; state.cardId = cardIds[0]; this.write(state);
+    return { completion: 'newly-completed', cardOwnership: cardIds.length ? 'newly-acquired' : 'not-configured', cardIds, ...(cardIds[0] ? { cardId: cardIds[0] } : {}) } as const;
   }
 }
 
@@ -70,7 +75,8 @@ type SupabaseClient = typeof supabase;
 export const mapCompletionRpcResult = (data: unknown): CompleteLessonResult => {
   const result = data as Partial<CompleteLessonResult> | null;
   if (!result || !['newly-completed', 'already-completed'].includes(String(result.completion)) || !['newly-acquired', 'already-owned', 'not-configured'].includes(String(result.cardOwnership))) throw new Error('invalid completion result');
-  return { completion: result.completion!, cardOwnership: result.cardOwnership!, ...(result.cardId ? { cardId: result.cardId } : {}) };
+  const cardIds = Array.isArray(result.cardIds) ? result.cardIds.filter((id): id is string => typeof id === 'string') : result.cardId ? [result.cardId] : [];
+  return { completion: result.completion!, cardOwnership: result.cardOwnership!, cardIds, ...(cardIds[0] ? { cardId: cardIds[0] } : {}) };
 };
 
 export class SupabaseLearnGateway implements LearnProgressGateway {
@@ -95,7 +101,7 @@ export class SupabaseLearnGateway implements LearnProgressGateway {
       this.client.from('section_resume_state').select('section_id').eq('learner_id', this.learnerId).eq('lesson_id', lessonId).maybeSingle(),
       this.client.from('lesson_section_exploration').select('section_id').eq('learner_id', this.learnerId).eq('lesson_id', lessonId),
       this.client.from('understanding_prompt_attempts').select('prompt_id,response').eq('learner_id', this.learnerId).eq('lesson_id', lessonId),
-      this.client.from('card_ownership').select('card_id').eq('learner_id', this.learnerId).eq('source_lesson_id', lessonId).maybeSingle(),
+      this.client.from('card_ownership').select('card_id').eq('learner_id', this.learnerId).eq('source_lesson_id', lessonId),
     ]);
     const failed = [progressResult, resumeResult, exploredResult, attemptsResult, ownershipResult].find((result) => result.error);
     if (failed?.error) throw failed.error;
@@ -105,7 +111,8 @@ export class SupabaseLearnGateway implements LearnProgressGateway {
     const { data: attempts } = attemptsResult;
     const { data: ownership } = ownershipResult;
     const responses = Object.fromEntries((attempts ?? []).map((item: any) => [item.prompt_id, String(item.response?.answer ?? item.response?.value ?? '')]));
-    return normalizeLearnState({ learnerId: this.learnerId, lessonId, status: progress.status === 'completed' ? 'completed' : 'in-progress', completedAt: progress.completed_at ?? undefined, resumeSectionId: resume?.section_id, attemptedPromptIds: Object.keys(responses), exploredSectionIds: (explored ?? []).map((item: any) => item.section_id), responses, cardId: ownership?.card_id, version: 1 });
+    const cardIds = (ownership ?? []).map((item: any) => String(item.card_id));
+    return normalizeLearnState({ learnerId: this.learnerId, lessonId, status: progress.status === 'completed' ? 'completed' : 'in-progress', completedAt: progress.completed_at ?? undefined, resumeSectionId: resume?.section_id, attemptedPromptIds: Object.keys(responses), exploredSectionIds: (explored ?? []).map((item: any) => item.section_id), responses, cardIds, cardId: cardIds[0], version: 1 });
   }
   async loadJourneySummaries(lessonIds: readonly string[]): Promise<Record<string, JourneyProgressSummary>> {
     const uniqueIds = [...new Set(lessonIds)];

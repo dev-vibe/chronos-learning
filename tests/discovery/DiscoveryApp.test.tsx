@@ -142,6 +142,7 @@ describe('Home, Library, preview, and search composition', () => {
     const harness = makeHarness();
     vi.mocked(harness.progressGateway.loadJourneySummaries).mockResolvedValue({
       'lesson.humans.homo-sapiens-origins': { lessonId: 'lesson.humans.homo-sapiens-origins', status: 'completed' },
+      'lesson.humans.migrations-and-interbreeding': { lessonId: 'lesson.humans.migrations-and-interbreeding', status: 'completed' },
       'lesson.farming.settlements': { lessonId: 'lesson.farming.settlements', status: 'completed' },
       'lesson.uruk.first-city': { lessonId: 'lesson.uruk.first-city', status: 'completed' },
     });
@@ -165,6 +166,7 @@ describe('Home, Library, preview, and search composition', () => {
     const harness = makeHarness();
     vi.mocked(harness.progressGateway.loadJourneySummaries).mockResolvedValue({
       'lesson.humans.homo-sapiens-origins': { lessonId: 'lesson.humans.homo-sapiens-origins', status: 'completed' },
+      'lesson.humans.migrations-and-interbreeding': { lessonId: 'lesson.humans.migrations-and-interbreeding', status: 'completed' },
       'lesson.farming.settlements': { lessonId: 'lesson.farming.settlements', status: 'completed' },
       'lesson.uruk.first-city': { lessonId: 'lesson.uruk.first-city', status: 'completed' },
       'lesson.writing.early-systems': { lessonId: 'lesson.writing.early-systems', status: 'completed' },
@@ -270,7 +272,7 @@ describe('Home, Library, preview, and search composition', () => {
     const provider: SearchProvider = {
       search: vi.fn(async (): Promise<SearchResult[]> => [
         { id: 'lesson.uruk.first-city', kind: 'lesson', title: 'Uruk: Life in an Early City', context: 'Lesson · Uruk period', destination: '/learn/lesson.uruk.first-city', score: 800 },
-        { id: 'card.place.uruk', kind: 'knowledge-card', title: 'Uruk', context: 'Knowledge Card · place', destination: '/learn/lesson.uruk.first-city', score: 700 },
+        { id: 'card.place.uruk', kind: 'knowledge-card', title: 'Uruk', context: 'Knowledge Card · Place', destination: '/learn/lesson.uruk.first-city', score: 700 },
       ]),
     };
     render(<DiscoveryApp
@@ -334,6 +336,7 @@ describe('Home, Library, preview, and search composition', () => {
     const harness = makeHarness();
     const summaries = {
       'lesson.humans.homo-sapiens-origins': { lessonId: 'lesson.humans.homo-sapiens-origins', status: 'completed' as const },
+      'lesson.humans.migrations-and-interbreeding': { lessonId: 'lesson.humans.migrations-and-interbreeding', status: 'completed' as const },
       'lesson.farming.settlements': { lessonId: 'lesson.farming.settlements', status: 'completed' as const },
       'lesson.uruk.first-city': { lessonId: 'lesson.uruk.first-city', status: 'completed' as const },
     };

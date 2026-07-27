@@ -1,5 +1,6 @@
 import type { ChronosContentBundle } from '../../../content/assemble';
 import { isLessonOpenable } from '../../config/runtimeFlags';
+import { knowledgeCardTypeLabel } from '../knowledgeCards';
 
 export type SearchResultKind = 'journey' | 'lesson' | 'knowledge-card';
 export type SearchResult = { id: string; kind: SearchResultKind; title: string; context: string; destination: string; score: number };
@@ -27,7 +28,10 @@ export function createLocalSearchProvider(content: ChronosContentBundle, aliases
   const documents: SearchDocument[] = [
     ...publishedJourneys.map((journey) => ({ id: journey.id, kind: 'journey' as const, title: journey.title, context: `${journey.kind === 'world-history' ? 'World History' : journey.kind.replace('-', ' ')} · ${journey.period}`, destination: `/library/${journey.id}`, score: 0, aliases: aliases[journey.id] ?? [], text: normalizeSearchText([journey.title, journey.learnerPromise, journey.openingQuestion, journey.description, journey.period, journey.region, ...(aliases[journey.id] ?? [])].filter(Boolean).join(' ')) })),
     ...openableLessons.map((lesson) => ({ id: lesson.id, kind: 'lesson' as const, title: lesson.title, context: `Lesson · ${lesson.masthead} · ${lesson.place}`, destination: `/learn/${lesson.id}`, score: 0, aliases: aliases[lesson.id] ?? [], text: normalizeSearchText([lesson.title, lesson.masthead, lesson.place, lesson.significance, ...(aliases[lesson.id] ?? [])].join(' ')) })),
-    ...content.cards.filter((card) => openableLessonIds.has(card.unlockLessonId)).map((card) => ({ id: card.id, kind: 'knowledge-card' as const, title: card.title, context: `Knowledge Card · ${card.category} · ${card.date.display}`, destination: `/learn/${card.unlockLessonId}`, score: 0, aliases: aliases[card.id] ?? [], text: normalizeSearchText([card.title, card.place, card.significance, card.category, card.cardClass, ...(aliases[card.id] ?? [])].join(' ')) })),
+    ...content.cards.filter((card) => openableLessonIds.has(card.unlockLessonId)).map((card) => {
+      const typeLabel = knowledgeCardTypeLabel(card.category);
+      return { id: card.id, kind: 'knowledge-card' as const, title: card.title, context: `Knowledge Card · ${typeLabel} · ${card.date.display}`, destination: `/learn/${card.unlockLessonId}`, score: 0, aliases: aliases[card.id] ?? [], text: normalizeSearchText([card.title, card.place, card.significance, typeLabel, card.category, ...(aliases[card.id] ?? [])].join(' ')) };
+    }),
   ];
   return { async search(query) { const normalizedQuery = normalizeSearchText(query); if (!normalizedQuery) return []; return documents.map((document) => ({ ...document, score: rank(document, normalizedQuery) })).filter((document) => document.score > 0).sort((left, right) => right.score - left.score || kindOrder[left.kind] - kindOrder[right.kind] || left.title.localeCompare(right.title) || left.id.localeCompare(right.id)).map(({ aliases: _aliases, text: _text, ...result }) => result); } };
 }

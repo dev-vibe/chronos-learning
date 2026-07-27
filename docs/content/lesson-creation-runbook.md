@@ -99,6 +99,8 @@ The specialist runbooks own their details. This document decides when they are n
 - A reconstruction is never presented as direct evidence. Uncertainty is never hidden merely to make prose cleaner.
 - Knowledge Cards are deterministic memory anchors, not loot. A lesson may have no card if no honest, useful memory object exists.
 - Media is selected because it teaches. A lesson has no image, map, audio, or video quota.
+- Never use SVG for lesson media. No lesson-media source, reference copy, intermediate, master, generated asset, map, diagram, card image, reconstruction, or runtime derivative may be an SVG.
+- Never hand-author or procedurally draw an instructional diagram, infographic, or diagram-like lesson image with vector geometry, canvas commands, plotting code, or shape primitives. Every such visual must be produced as a raster image edit from a reviewed, rights-cleared pre-existing image of the same or closely similar visual type. If no suitable reference image exists, stop visual production and use no image or request a product-owner decision.
 - Each section has one learner-facing title (`heading`). Do not stack a second attention-grabbing title, slogan, or paraphrase immediately under it.
 - `purpose` is authoring metadata for storyboards, agents, and review. It is not learner-facing copy and must not read like a second headline.
 - Module `title` / `eyebrow` appear only when they add a distinct teaching job (for example, an evidence close-read cue or a place label). If a module is the section’s sole content block, prefer the section heading alone and keep the module title short, literal, or empty of slogan energy.
@@ -426,7 +428,7 @@ Use the smallest current module that expresses the teaching job:
 
 Titles: section `heading` owns orientation. For `knowledge` modules, the learner sees eyebrow + `body` as the lead into the item grid — do not invent a second grabber title for display. Module `title` on `evidence`, `scene`, and `historical-map` is a local cue only when needed (observe X; compare Y). Module `eyebrow` is a type/place label, not a slogan.
 
-If the lesson genuinely needs a timeline, comparison table, audio source, diagram, or another unsupported teaching primitive, stop and decide whether to add a bounded reusable module. Do not fake it with arbitrary HTML, an image containing educational text, or overloaded `knowledge` cards. A new module is an architecture/design change and requires its own validation and accessibility coverage.
+If the lesson genuinely needs a timeline, comparison table, audio source, diagram, or another unsupported teaching primitive, stop and decide whether to add a bounded reusable module. Do not fake it with arbitrary HTML, an image containing educational text, overloaded `knowledge` cards, hand-authored SVG, canvas drawing, or procedurally arranged shape primitives. A new module is an architecture/design change and requires its own validation and accessibility coverage.
 
 Native application text carries titles, explanations, labels, and captions. Do not bake educational prose into artwork.
 
@@ -452,7 +454,7 @@ Media must either provide evidence, explain a relationship, orient the learner, 
 
 - Use a **surviving object or primary visual source** when the learner should observe evidence.
 - Use a **map** when location, distance, environment, movement, boundaries, or spatial uncertainty is part of the explanation. Then follow the [historical map production runbook](historical-map-production.md).
-- Use a **diagram** when a process or relationship matters more than literal appearance.
+- Use a **diagram** when a process or relationship matters more than literal appearance. Start from a reviewed, rights-cleared pre-existing diagram or closely similar visual, provide that raster reference to the image-generation tool, and create the Chronos version as an image edit. Do not draw it manually or generate it from an empty canvas.
 - Use an **evidence-based reconstruction** when a scene materially helps learners imagine a poorly preserved environment and the brief can distinguish supported, inferred, generalized, and unknown details.
 - Use a **symbolic treatment** sparingly when the subject is an abstract idea or evidence is too thin for a literal scene.
 - Use **no media** when text is clearer and an asset would only create noise.
@@ -466,6 +468,20 @@ Do not invent an “MVP skip” for an approved recommended historical map, diag
 Rows marked **Preferred / optional** (for example an atmospheric hero when a diagram already carries the evidence encounter) may ship after the required and recommended assets, or wait for a bounded follow-up on the same issue when generation or rights block them.
 
 For every image or generated asset, follow the [media provenance research and generation prompt](../prompts/media-provenance-research-and-generation.md); after approval, follow the [media ingestion and publishing runbook](../architecture/media-publishing.md).
+
+### Mandatory raster image-edit workflow
+
+This workflow applies to diagrams, infographics, timelines, maps, explanatory composites, card art, and reconstructions:
+
+1. Find and review a rights-cleared pre-existing image of the same or closely similar type. It must be visually inspected, not inferred from surrounding text or alt text.
+2. Record its canonical URL, creator, license/use status, local research-copy path, and the exact visual relationships it contributes.
+3. Provide that raster reference image to the image-generation tool and use image editing, not blank-canvas generation, manual drawing, vector markup, canvas commands, plotting libraries, or procedural shape composition.
+4. In the edit prompt, preserve the teaching relationship while removing copied labels, decorative clutter, unsupported certainty, and source-specific branding. Native application text carries educational explanation.
+5. Export and retain only raster files through the entire lesson-media pipeline. Allowed publication formats are PNG, JPEG, WebP, or AVIF as supported by the pipeline. SVG is prohibited even as an intermediate file.
+6. Compare the edited result against both the reference image and the governing historical/scientific sources. Reject it if the relationship changed, the edit added a false claim, or the result merely traces or copies protected expression.
+7. Record the reference image, complete edit prompt, model/tool, accepted raster master, rejected drafts, and review decision in the research note.
+
+The reference image governs visual structure, not historical truth. Claims, geography, chronology, and uncertainty still come from the reviewed authoritative sources. A text-only description of a reference image is not sufficient; the actual image must be supplied to the image-edit operation.
 
 ### Video decision gate
 
@@ -600,6 +616,7 @@ Follow the existing bounded-module architecture:
 12. Add a committed Supabase migration for publication, required prompts, deterministic unlock configuration, and any reviewed legacy alias.
 13. Keep unpublished or incomplete neighbors fail-closed and non-completable.
 14. Do not mark the lesson Review-ready while an approved Recommended map or core evidence visual remains unimplemented without explicit deferral.
+15. Reject any lesson-media SVG or hand/procedurally drawn diagram. Verify that every diagram-like asset has a recorded raster reference and image-edit lineage before registering it.
 
 Use stable IDs everywhere. Array position is not identity. Do not duplicate lesson copy inside React components, migrations, or test fixtures when the repository module can be used.
 
@@ -652,6 +669,8 @@ The lesson is not publishable until every gate is passed or explicitly marked no
 - Rights status supports runtime redistribution.
 - Source files, checksums, derivatives, manifests, and lineage are reproducible.
 - Generated assets have reviewed briefs, prompts/model details where available, and anachronism checks.
+- Every diagram-like generated asset records the actual reviewed raster reference and image-edit lineage; blank-canvas, hand-drawn, procedural, canvas, plotting, and SVG production are prohibited.
+- No lesson-media source, intermediate, master, or derivative is SVG.
 - Maps pass geographic and uncertainty review.
 - Video/audio pass caption, transcript, control, fallback, hosting, and privacy review.
 
@@ -819,6 +838,8 @@ Depiction mode/label:
 Placement and learner action:
 Accessibility equivalent:
 Rights/provenance:
+Reviewed raster reference image URL/path and permitted use:
+Exact image-edit prompt and tool/model:
 Specialist runbook outputs:
 Review status:
 ```

@@ -363,6 +363,129 @@
       }
     },
     {
+      "id": "media.humans.adna-clean-room",
+      "locator": {
+        "provider": "object-storage",
+        "bucket": "media-public",
+        "fallback": {
+          "path": "/images/optimized/ancient-dna/ancient-dna-clean-room.optimized.webp",
+          "width": 1376,
+          "height": 1143
+        },
+        "variants": [
+          {
+            "objectKey": "ancient-dna/media.humans.adna-clean-room/d310d8d739f9316f/optimized/ql-v1/480w-webp-lossless-d9d303b22da5fb38.webp",
+            "mimeType": "image/webp",
+            "bytes": 224316,
+            "sha256": "d9d303b22da5fb38ddf2840627c29dfbc188b0ad76fb114e9e0743151762141b",
+            "width": 480,
+            "height": 399,
+            "compression": {
+              "profile": "ql-v1",
+              "codec": "webp",
+              "encoder": "webp-lossless"
+            },
+            "fidelity": {
+              "mode": "pixel-exact",
+              "psnrDb": null,
+              "meanAbsoluteError": 0,
+              "maximumChannelDelta": 0
+            }
+          },
+          {
+            "objectKey": "ancient-dna/media.humans.adna-clean-room/d310d8d739f9316f/optimized/ql-v1/1376w-webp-q94-7aee21f7642d8e4f.webp",
+            "mimeType": "image/webp",
+            "bytes": 336740,
+            "sha256": "7aee21f7642d8e4fc155b1c44340d65a074261fe2426540c2ff10fd6dfcbc79b",
+            "width": 1376,
+            "height": 1143,
+            "compression": {
+              "profile": "ql-v1",
+              "codec": "webp",
+              "encoder": "webp-lossy",
+              "quality": 94
+            },
+            "fidelity": {
+              "mode": "measured-quasi-lossless",
+              "psnrDb": 46.51,
+              "meanAbsoluteError": 0.675,
+              "maximumChannelDelta": 13
+            }
+          }
+        ]
+      },
+      "source": {
+        "bucket": "media-source",
+        "objectKey": "ancient-dna/media.humans.adna-clean-room/d310d8d739f9316fe8ec80ac14c93590871a9ab29483111a0809c189ec10babe/original.webp",
+        "mimeType": "image/webp",
+        "bytes": 405598,
+        "sha256": "d310d8d739f9316fe8ec80ac14c93590871a9ab29483111a0809c189ec10babe",
+        "width": 1376,
+        "height": 1143
+      }
+    },
+    {
+      "id": "media.humans.inherited-segments-diagram",
+      "locator": {
+        "provider": "object-storage",
+        "bucket": "media-public",
+        "fallback": {
+          "path": "/images/optimized/ancient-dna/inherited-segments-diagram.optimized.webp",
+          "width": 960,
+          "height": 549
+        },
+        "variants": [
+          {
+            "objectKey": "ancient-dna/media.humans.inherited-segments-diagram/7acf7bf794274d93/optimized/ql-v1/480w-webp-lossless-c7cf87e3510bcc48.webp",
+            "mimeType": "image/webp",
+            "bytes": 134018,
+            "sha256": "c7cf87e3510bcc483638a71ec66fe9ca865fbe68de816319fb47f17e7f912012",
+            "width": 480,
+            "height": 275,
+            "compression": {
+              "profile": "ql-v1",
+              "codec": "webp",
+              "encoder": "webp-lossless"
+            },
+            "fidelity": {
+              "mode": "pixel-exact",
+              "psnrDb": null,
+              "meanAbsoluteError": 0,
+              "maximumChannelDelta": 0
+            }
+          },
+          {
+            "objectKey": "ancient-dna/media.humans.inherited-segments-diagram/7acf7bf794274d93/optimized/ql-v1/960w-webp-lossless-255f944c4c3a99ab.webp",
+            "mimeType": "image/webp",
+            "bytes": 591822,
+            "sha256": "255f944c4c3a99abb0d0509e3ec74e5b6c36fdae3e2ff5008d608e1e9994c455",
+            "width": 960,
+            "height": 549,
+            "compression": {
+              "profile": "ql-v1",
+              "codec": "webp",
+              "encoder": "webp-lossless"
+            },
+            "fidelity": {
+              "mode": "pixel-exact",
+              "psnrDb": null,
+              "meanAbsoluteError": 0,
+              "maximumChannelDelta": 0
+            }
+          }
+        ]
+      },
+      "source": {
+        "bucket": "media-source",
+        "objectKey": "ancient-dna/media.humans.inherited-segments-diagram/7acf7bf794274d936c200fe3966b92ab0920ab6a26e70fd592bf222710544a9f/original.png",
+        "mimeType": "image/png",
+        "bytes": 781724,
+        "sha256": "7acf7bf794274d936c200fe3966b92ab0920ab6a26e70fd592bf222710544a9f",
+        "width": 960,
+        "height": 549
+      }
+    },
+    {
       "id": "media.humans.jebel-irhoud-cranium",
       "locator": {
         "provider": "object-storage",
@@ -584,6 +707,148 @@
         "sha256": "0e99e87c7c2d15f03b0f636bb5ae03348e0f63cff1d8b13f6c1b0e7d2e739160",
         "width": 1600,
         "height": 2035
+      }
+    },
+    {
+      "id": "media.humans.migrations-hero-map",
+      "locator": {
+        "provider": "object-storage",
+        "bucket": "media-public",
+        "fallback": {
+          "path": "/images/optimized/ancient-dna/migrations-ancient-genomes-hero.optimized.webp",
+          "width": 1847,
+          "height": 851
+        },
+        "variants": [
+          {
+            "objectKey": "ancient-dna/media.humans.migrations-hero-map/6265c5536a1ebf02/optimized/ql-v1/480w-webp-lossless-5a979b54013fd22f.webp",
+            "mimeType": "image/webp",
+            "bytes": 146774,
+            "sha256": "5a979b54013fd22fa33cf5e00aa7f023134e4c6f6f9a3649d8dd7756179aa95b",
+            "width": 480,
+            "height": 221,
+            "compression": {
+              "profile": "ql-v1",
+              "codec": "webp",
+              "encoder": "webp-lossless"
+            },
+            "fidelity": {
+              "mode": "pixel-exact",
+              "psnrDb": null,
+              "meanAbsoluteError": 0,
+              "maximumChannelDelta": 0
+            }
+          },
+          {
+            "objectKey": "ancient-dna/media.humans.migrations-hero-map/6265c5536a1ebf02/optimized/ql-v1/960w-webp-lossless-4b9a1da3ae8e57a4.webp",
+            "mimeType": "image/webp",
+            "bytes": 589994,
+            "sha256": "4b9a1da3ae8e57a409432cd35ae1a015798c4d3da9f0d8ae59607df35dc6c73f",
+            "width": 960,
+            "height": 442,
+            "compression": {
+              "profile": "ql-v1",
+              "codec": "webp",
+              "encoder": "webp-lossless"
+            },
+            "fidelity": {
+              "mode": "pixel-exact",
+              "psnrDb": null,
+              "meanAbsoluteError": 0,
+              "maximumChannelDelta": 0
+            }
+          },
+          {
+            "objectKey": "ancient-dna/media.humans.migrations-hero-map/6265c5536a1ebf02/optimized/ql-v1/1847w-webp-q94-04e47c076a1d4236.webp",
+            "mimeType": "image/webp",
+            "bytes": 624836,
+            "sha256": "04e47c076a1d4236169353a062effc2ba0131dadbf38bbaddb95553e26a0524c",
+            "width": 1847,
+            "height": 851,
+            "compression": {
+              "profile": "ql-v1",
+              "codec": "webp",
+              "encoder": "webp-lossy",
+              "quality": 94
+            },
+            "fidelity": {
+              "mode": "measured-quasi-lossless",
+              "psnrDb": 45.36,
+              "meanAbsoluteError": 0.837,
+              "maximumChannelDelta": 13
+            }
+          }
+        ]
+      },
+      "source": {
+        "bucket": "media-source",
+        "objectKey": "ancient-dna/media.humans.migrations-hero-map/6265c5536a1ebf029d7111762142293e4ce1e2206c8ec42ea8602a4ba3b59547/original.webp",
+        "mimeType": "image/webp",
+        "bytes": 690604,
+        "sha256": "6265c5536a1ebf029d7111762142293e4ce1e2206c8ec42ea8602a4ba3b59547",
+        "width": 1847,
+        "height": 851
+      }
+    },
+    {
+      "id": "media.humans.neanderthals-card",
+      "locator": {
+        "provider": "object-storage",
+        "bucket": "media-public",
+        "fallback": {
+          "path": "/images/optimized/ancient-dna/neanderthals-card.optimized.webp",
+          "width": 640,
+          "height": 960
+        },
+        "variants": [
+          {
+            "objectKey": "ancient-dna/media.humans.neanderthals-card/9f8c8cede2483a3c/optimized/ql-v1/480w-webp-lossless-68fe2514622a1318.webp",
+            "mimeType": "image/webp",
+            "bytes": 388934,
+            "sha256": "68fe2514622a13187707a80b7a855ef3b012c6ef2ded9e84c607577e7898e42d",
+            "width": 480,
+            "height": 720,
+            "compression": {
+              "profile": "ql-v1",
+              "codec": "webp",
+              "encoder": "webp-lossless"
+            },
+            "fidelity": {
+              "mode": "pixel-exact",
+              "psnrDb": null,
+              "meanAbsoluteError": 0,
+              "maximumChannelDelta": 0
+            }
+          },
+          {
+            "objectKey": "ancient-dna/media.humans.neanderthals-card/9f8c8cede2483a3c/optimized/ql-v1/640w-webp-lossless-6e99d07e785906af.webp",
+            "mimeType": "image/webp",
+            "bytes": 674844,
+            "sha256": "6e99d07e785906af5697b952057b74aea0a5b7c211e0139dc48ad4985cd3b42b",
+            "width": 640,
+            "height": 960,
+            "compression": {
+              "profile": "ql-v1",
+              "codec": "webp",
+              "encoder": "webp-lossless"
+            },
+            "fidelity": {
+              "mode": "pixel-exact",
+              "psnrDb": null,
+              "meanAbsoluteError": 0,
+              "maximumChannelDelta": 0
+            }
+          }
+        ]
+      },
+      "source": {
+        "bucket": "media-source",
+        "objectKey": "ancient-dna/media.humans.neanderthals-card/9f8c8cede2483a3c5416f0cc94ea52369aa930c557b90a27bbed9c88fa9dfd48/original.png",
+        "mimeType": "image/png",
+        "bytes": 980591,
+        "sha256": "9f8c8cede2483a3c5416f0cc94ea52369aa930c557b90a27bbed9c88fa9dfd48",
+        "width": 640,
+        "height": 960
       }
     },
     {
