@@ -17,7 +17,11 @@ if (!result.success) {
 
 console.log(`Opening unpublished lesson prototype at ${result.route}`);
 const npmCommand = process.platform === 'win32' ? 'npm.cmd' : 'npm';
-const vite = spawn(npmCommand, ['run', 'dev', '--', '--open', result.route], {
+const viteCommand = process.platform === 'win32' ? (process.env.ComSpec ?? 'cmd.exe') : npmCommand;
+const viteArguments = process.platform === 'win32'
+  ? ['/d', '/s', '/c', npmCommand, 'run', 'dev', '--', '--open', result.route]
+  : ['run', 'dev', '--', '--open', result.route];
+const vite = spawn(viteCommand, viteArguments, {
   cwd: process.cwd(),
   env: { ...process.env, VITE_UNLOCK_PREVIEW_LESSONS: 'true' },
   stdio: 'inherit',
