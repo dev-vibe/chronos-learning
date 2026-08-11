@@ -28,3 +28,6 @@ dist-ssr
 tmp/chronos-media/
 tmpclaude-*
 nul
+
+# Local Git worktrees
+/.worktrees/
