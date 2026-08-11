@@ -1,0 +1,4 @@
+interface:
+  display_name: "Chronos Lesson Production"
+  short_description: "Produce evidence-led Chronos lessons"
+  default_prompt: "Use $chronos-lesson-production to create the next Chronos lesson."

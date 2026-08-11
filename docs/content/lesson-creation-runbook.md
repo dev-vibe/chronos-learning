@@ -23,16 +23,16 @@ On that request, the agent must perform this boot sequence without asking the us
 7. If no entry is eligible, summarize the queue and ask for the smallest necessary curriculum decision. Do not invent, reorder, or promote a lesson silently.
 8. Create or reuse one per-lesson Linear issue under the curriculum epic. Do not pre-create the rest of the queue as granular issues.
 9. Create or reuse the prescribed lesson branch from latest `main`, and change the selected queue row to `Researching` in that branch.
-10. Execute Stages 0–14 below and produce the durable research/editorial note and decision packet.
-11. Commit and push the research checkpoint, update Linear, set the queue row to `Awaiting approval`, and ask the user to approve only the material decisions identified by the runbook. Do not make the user repeat operational instructions.
+10. Execute Stages 0–14B through the product-review request. Produce the durable research/editorial note, a complete unpublished typed lesson in the real Learn shell, and the decision packet.
+11. Commit and push the research and learner-prototype checkpoint, update Linear, set the queue row to `Awaiting approval`, and ask the user to approve only the material decisions identified by the runbook. Do not make the user repeat operational instructions.
 12. After approval, continue on the same issue, branch, and PR through Stages 15–18. Set the queue row to `Implementing`, then `Review`, and finally `Complete` only when the corresponding gates pass.
 13. When the lesson becomes `Complete`, ensure the queue still has reviewed future candidates. If fewer than three candidates remain, flag curriculum-queue replenishment without inventing entries.
 
 The agent may ask an early question only when a missing decision materially changes lesson identity, curriculum order, audience, or scope and cannot be resolved from the queue, repository, PRD, or existing issue. Ordinary research and implementation choices belong to this runbook.
 
-### Mandatory research/editorial checkpoint
+### Mandatory research and learner-prototype checkpoint
 
-Stages 0–14 are one coherent discovery and design phase. Production lesson code, final asset acquisition/generation, publication migrations, and hosted changes wait until its decision packet is approved.
+Stages 0–14B are one coherent discovery, design, and cheap-prototype phase. Stage 14A deliberately permits only the typed draft content needed to render the actual learner experience. Final asset acquisition or generation, publication migrations, unlocks, hosted changes, and production approval states wait until the checkpoint is approved.
 
 The packet must concisely show:
 
@@ -41,13 +41,26 @@ The packet must concisely show:
 3. major claims, sources, disagreement, and uncertainty;
 4. content deliberately deferred or rejected;
 5. ages 11–14 learning decisions;
-6. proposed section/component flow;
-7. media/map/video/no-media decisions;
-8. Knowledge Card or explicit no-card decision;
-9. understanding-check plan;
-10. only the decisions that genuinely require product-owner judgment.
+6. a link to the unpublished Learn-shell prototype with real prose and prompts;
+7. findings against the non-numeric lesson quality contract;
+8. media/map/video/no-media intentions at their proposed section locations;
+9. Knowledge Card or explicit no-card decision;
+10. understanding-check plan;
+11. only the decisions that genuinely require product-owner judgment.
 
-The user should be able to respond with “approved” or a few substantive changes. After approval, the agent continues without requiring a second implementation prompt.
+The accountable reviewer must inspect the prototype, not only the packet. An agent or proxy may not approve on that person's behalf. Any blocking finding returns the lesson to Stage 14A. The user should be able to respond with “approved” or a few substantive changes. After explicit approval, the agent records the decision and continues without requiring a second implementation prompt.
+
+## Five operational phases
+
+Use the stages through these five production phases. Stage numbers remain stable so existing research notes and issue history continue to resolve.
+
+| Phase | Stages | Exit condition |
+| --- | --- | --- |
+| Select and bound | 0–1 | The lesson identity, curriculum role, learner outcome, owner, and non-goals are explicit. |
+| Research and model | 2–7 | Sources, claims, scope, learning model, and ages 11–14 transformations are reviewable. |
+| Prototype and review | 8–14B | A complete draft is rendered in the real Learn shell and passes proxy/product review. |
+| Implement | 15 | Approved content, media, provenance, card, and publication configuration are production-ready. |
+| Validate and publish | 16–18 | Quality, technical, learner, publication, and correction gates are satisfied. |
 
 ## What this runbook protects
 
@@ -78,6 +91,7 @@ Read these before authoring:
 5. the active Linear issue and journey/curriculum context
 6. [`docs/content/lesson-production-queue.md`](lesson-production-queue.md)
 7. [`docs/content/world-spine-canonical-roster.md`](world-spine-canonical-roster.md) and its audit when authoring a World Spine lesson
+8. the [lesson quality contract](lesson-production/lesson-quality-contract.md) and [authoring templates](lesson-production/authoring-templates.md)
 
 Use these specialist runbooks when triggered:
 
@@ -124,6 +138,8 @@ Do not rely on chat history, browser tabs, or an agent’s memory as the editori
 
 # End-to-end workflow
 
+# Phase 1 — Select and bound
+
 ## Stage 0 — Establish the work boundary
 
 Before research:
@@ -161,6 +177,8 @@ Write:
 - **Non-goals:** interesting material that belongs elsewhere.
 
 Reject or split the proposal when it is merely “everything about Ancient Egypt,” depends on a list of unrelated facts, repeats another node, or cannot name a coherent learner outcome.
+
+# Phase 2 — Research and model
 
 ## Stage 2 — Plan the research
 
@@ -374,6 +392,8 @@ For each section ask:
 ### Inclusion and accessibility
 
 Represent relevant identities, perspectives, and forms of knowledge authentically. Offer meaning through clear text plus appropriate visual/evidence forms without lowering the learning goal. Apply the learner-centered principles in [CAST’s UDL Guidelines 3.0](https://udlguidelines.cast.org/more/about-guidelines-3-0/), while avoiding a cluttered “everything in every format” interface.
+
+# Phase 3 — Prototype and review
 
 ## Stage 8 — Storyboard the lesson flow
 
@@ -596,13 +616,46 @@ Before production implementation, make the note readable by someone who did not 
 - reviewer names/statuses or explicit pending gates;
 - unresolved questions and the safe publication behavior they require.
 
-The note is not learner-facing prose. It is the durable reasoning behind the lesson.
+The note is not learner-facing prose. It is the durable reasoning behind the lesson. Use the canonical structures in the [authoring templates](lesson-production/authoring-templates.md).
+
+## Stage 14A — Build the unpublished Learn-shell prototype
+
+Turn the storyboard into a complete typed `Lesson` with real learner-facing prose, stable sections, and working understanding prompts. Render it through the same Learn shell used by published lessons; do not create a parallel prototype renderer.
+
+The prototype must:
+
+- remain `status: "draft"`, unpublished, and non-completable outside development preview mode;
+- be reachable through its intended journey position in preview mode so the rail, transition, and next action can be judged;
+- use the real section and module types, not a slide deck, wireframe, or prose outline;
+- contain the full intended reading experience and sincere-attempt prompts rather than lorem ipsum or synopsis copy;
+- show section-linked media intentions as development-only review annotations when final media does not yet exist;
+- include usable placeholder alternatives or accessible descriptions without implying that unreviewed media is final;
+- avoid final asset generation/acquisition, publication migrations, unlocks, approval-state changes, and hosted production changes.
+
+Run `npm run lesson:gate -- --lesson <lesson-id> --note <path> --gate prototype` when the command is available. Open the exact lesson with `npm run lesson:preview -- --lesson <lesson-id>` and review desktop/mobile and light/dark presentation. A missing command is an implementation blocker for this production-system version; do not silently replace the real-shell review with screenshots of another renderer.
+
+## Stage 14B — Perform proxy review and request product review
+
+Review the raw prototype against the [lesson quality contract](lesson-production/lesson-quality-contract.md). Record evidence and findings in the research note without assigning a numeric pedagogy score.
+
+Require all of the following before requesting product-owner approval:
+
+1. a proxy review by an adult who approaches the raw lesson as a learner and receives the quality contract, not the author's intended diagnosis;
+2. a product-review record linked to the actual Learn-shell prototype with state `pending`;
+3. deterministic prototype-gate validation;
+4. a disposition for every finding: resolved, explicitly deferred with safe behavior, or blocking.
+
+Test mental-model coherence, narrative momentum, cognitive load, evidence reasoning, historical proportionality, visual teaching value, and next-action clarity. Any blocking proxy finding returns the work to Stage 14A and the review repeats before involving the product owner.
+
+When the packet is ready, set the queue row to `Awaiting approval`, leave product review `pending`, present the exact prototype route and material decisions, and stop. Only Carlin's explicit response can set product review to `approved`. Record changes requested and return to Stage 14A when necessary; enter Stage 15 only after explicit approval.
+
+# Phase 4 — Implement
 
 ## Stage 15 — Implement the repository content
 
 Follow the existing bounded-module architecture:
 
-1. Create or update `content/lessons/<lesson-slug>.ts`.
+1. Refine the Stage 14A draft in `content/lessons/<lesson-slug>.ts`; do not replace it with a second implementation.
 2. Define reviewed `Source[]` entries.
 3. Define atomic `Claim[]` entries with kind, certainty, sources, and review status.
 4. Define approved `MediaAsset[]` entries only after the specialist media process. Implement every approved Required/Recommended media row from the checkpoint (maps via the historical-map runbook and `historical-map` module when that is the teaching form).
@@ -613,77 +666,18 @@ Follow the existing bounded-module architecture:
 9. Add the module to the small `content/chronos.ts` aggregation boundary. Do not move authored content into the aggregator.
 10. Add or update the relevant journey entry in `content/journeys/`.
 11. Update the media catalog/manifests through the pipeline, never by hand-editing generated outputs.
-12. Add a committed Supabase migration for publication, required prompts, deterministic unlock configuration, and any reviewed legacy alias.
+12. Add a committed Supabase migration for publication, required prompts, deterministic unlock configuration, and any reviewed legacy alias only after checkpoint approval.
 13. Keep unpublished or incomplete neighbors fail-closed and non-completable.
 14. Do not mark the lesson Review-ready while an approved Recommended map or core evidence visual remains unimplemented without explicit deferral.
 15. Reject any lesson-media SVG or hand/procedurally drawn diagram. Verify that every diagram-like asset has a recorded raster reference and image-edit lineage before registering it.
 
 Use stable IDs everywhere. Array position is not identity. Do not duplicate lesson copy inside React components, migrations, or test fixtures when the repository module can be used.
 
+# Phase 5 — Validate and publish
+
 ## Stage 16 — Run the review gates
 
-The lesson is not publishable until every gate is passed or explicitly marked not applicable by the accountable reviewer.
-
-### A. Research integrity
-
-- Every material claim is source-backed.
-- Citations support the exact wording, not merely the broad topic.
-- Independent sources are used where material interpretation requires corroboration.
-- Chronology and geography are checked.
-- Consensus, disagreement, uncertainty, survival bias, and later tradition are proportionate.
-- Primary evidence is not made to prove more than it can.
-
-### B. Historical/editorial quality
-
-- Scope answers the essential question without becoming an encyclopedia entry.
-- The causal story is not deterministic or monocausal.
-- People and societies have specificity, diversity, and agency.
-- Language avoids anachronism, present-day moral shortcuts, exoticism, and civilizational rankings.
-- Difficult material is truthful, proportionate, and purposeful.
-- Title, masthead, significance, claims, modules, prompts, and card do not contradict one another.
-
-### C. Ages 11–14 learning quality
-
-- Time, place, problem, and stakes are understandable without assumed specialist knowledge.
-- Each section has one clear purpose and follows logically.
-- Heading hierarchy is lean: one section title; no competing purpose-line or duplicate module grabber.
-- Section titles are direct; cleverness never costs a second parse.
-- Essential vocabulary is introduced and reused.
-- Concrete evidence precedes abstract inference.
-- The learner is asked to think, not just scroll.
-- Prompts assess the promised understanding and provide useful feedback.
-- Simplification has not created false certainty or erased important people/perspectives.
-
-### D. Page composition and visual quality
-
-- Component choice follows teaching purpose.
-- Section `purpose` is not rendered as learner chrome.
-- The page has a coherent visual/narrative rhythm rather than a repeated template feel.
-- Media earns its placement and has an accessible equivalent.
-- Evidence, reconstruction, interpretation, uncertainty, and later tradition are distinguishable without overwhelming the design.
-- Detailed attribution/provenance may live in a restrained disclosure or source treatment, but the essential depiction label cannot be hidden.
-- Light/dark, desktop/mobile, long text, drawer, prompt, completion, card reveal, and revisit states are reviewed.
-
-### E. Rights and media integrity
-
-- Rights status supports runtime redistribution.
-- Source files, checksums, derivatives, manifests, and lineage are reproducible.
-- Generated assets have reviewed briefs, prompts/model details where available, and anachronism checks.
-- Every diagram-like generated asset records the actual reviewed raster reference and image-edit lineage; blank-canvas, hand-drawn, procedural, canvas, plotting, and SVG production are prohibited.
-- No lesson-media source, intermediate, master, or derivative is SVG.
-- Maps pass geographic and uncertainty review.
-- Video/audio pass caption, transcript, control, fallback, hosting, and privacy review.
-
-### F. Accessibility
-
-- Semantic heading order and landmarks are correct.
-- Keyboard and focus behavior are complete.
-- Alt text describes the teaching-relevant content, not decorative appearance alone.
-- Captions, transcripts, accessible map summaries, and evidence descriptions are present where required.
-- Color is not the only carrier of meaning; contrast meets WCAG 2.2 AA.
-- Touch targets, zoom/reflow, reduced motion, and screen-reader states are verified.
-
-### G. Technical and data integrity
+The lesson is not publishable until every applicable item in the [lesson quality contract](lesson-production/lesson-quality-contract.md) passes or the accountable reviewer records an explicit safe deferral. Stage 16 repeats the full contract against production content and final media; Stage 14B's prototype pass is not a substitute.
 
 Run at minimum:
 
@@ -696,24 +690,15 @@ npm run typecheck
 npm run build
 ```
 
-If legacy code has documented type failures, report the exact baseline and prove there are no new failures in changed paths. Do not normalize a new error as “legacy.”
-
-Also verify:
-
-- duplicate/broken cross-module references fail validation;
-- direct, invalid, and unpublished routes behave correctly;
-- required versus optional prompts gate correctly;
-- raw scrolling cannot complete a lesson;
-- explicit completion and card acquisition are idempotent;
-- other lessons and unpublished neighbors do not regress;
-- empty-database migrations and database behavioral tests pass;
-- committed migrations are applied only to the intended Chronos development project;
-- post-apply security/performance advisors are reviewed;
-- no secrets or service-role credentials enter client code or Git.
+Run `npm run lesson:gate -- --lesson <lesson-id> --note <path> --gate implementation` before moving the queue row to `Review`, then run the `release` gate before publication. If legacy code has documented failures, report the exact baseline and prove there are no new failures in changed paths. Do not normalize a new error as “legacy.”
 
 ## Stage 17 — Preview with learners and adults
 
-Before declaring the lesson a reference-quality pattern, perform a small structured walkthrough. For the initial audience, include learners around ages 11–14 when practical.
+Use the structured walkthrough in the [lesson quality contract](lesson-production/lesson-quality-contract.md). A proxy or adult/historian review cannot substitute for a child comprehension review.
+
+Require an ages 11–14 walkthrough for every reference or high-risk lesson and at least one of every four ordinary lessons. Proxy disagreement, observed confusion, a misleading evidence inference, or uncertainty about age fit escalates any lesson to mandatory learner review.
+
+When a required learner is temporarily unavailable, the production-system change may merge as provisionally validated, but the lesson issue and any process-validation tracking remain open, the lesson stays unpublished, and nobody may describe the workflow or lesson as proven.
 
 Do not ask only “Did you like it?” Observe and ask:
 
@@ -727,7 +712,7 @@ Do not ask only “Did you like it?” Observe and ask:
 
 Record where learners hesitate, misread a causal link, skip a label, misunderstand reconstruction as evidence, or pass a prompt without the intended understanding. Fix the lesson, not the learner.
 
-An adult/historian review and a child comprehension review answer different questions; one cannot substitute for the other.
+Record observed behavior and the resulting revision in the research note. Fix the lesson, not the learner. Repeat the walkthrough after a material change to the mental model, evidence encounter, prompts, or action hierarchy.
 
 ## Stage 18 — Publish, monitor, and correct
 
@@ -761,107 +746,7 @@ For a correction:
 
 # Reusable templates
 
-## Node proposal
-
-```markdown
-# <Lesson title> research and editorial note
-
-Issue:
-Lesson ID:
-Journey/chapter/position:
-Required or optional:
-Accountable reviewer:
-
-## Node proposal
-Essential question:
-Durable understanding:
-Supporting understandings:
-Evidence encounter:
-Prerequisites:
-Common misconceptions:
-Scope — dates/places/actors:
-Why this is one lesson:
-Non-goals/deferred material:
-Bridge from previous lesson:
-Bridge to next lesson:
-```
-
-## Source ledger
-
-```markdown
-| Source ID | Citation/link | Type/authority | Claims supported | Limits/bias | Corroboration | Rights | Review |
-| --- | --- | --- | --- | --- | --- | --- | --- |
-```
-
-## Claim ledger
-
-```markdown
-| Claim ID and wording | Kind | Certainty | Sources | Counterevidence/limits | Missing perspective | Learner treatment | Review |
-| --- | --- | --- | --- | --- | --- | --- | --- |
-```
-
-## Content triage
-
-```markdown
-| Candidate idea | Essential/supporting/enrichment/deferred/rejected | Why | Destination |
-| --- | --- | --- | --- |
-```
-
-## Learning blueprint
-
-```markdown
-Essential question:
-Durable understanding:
-Supporting understandings:
-Prerequisites:
-Misconceptions:
-Indispensable vocabulary:
-Evidence encounter:
-Historical-thinking move:
-Required sincere-attempt evidence:
-```
-
-## Section/component storyboard
-
-```markdown
-| Order | Section ID | Learner-facing heading | Authoring purpose (not shown) | Claims/sources | Module | Media/action | Transition |
-| --- | --- | --- | --- | --- | --- | --- | --- |
-```
-
-## Media decision
-
-```markdown
-Teaching purpose:
-Claim/source basis:
-Selected form and alternatives considered:
-Depiction mode/label:
-Placement and learner action:
-Accessibility equivalent:
-Rights/provenance:
-Reviewed raster reference image URL/path and permitted use:
-Exact image-edit prompt and tool/model:
-Specialist runbook outputs:
-Review status:
-```
-
-## Final sign-off
-
-```markdown
-- [ ] Research integrity
-- [ ] Historical/editorial review
-- [ ] Ages 11–14 learning/editorial review
-- [ ] Section/component storyboard review
-- [ ] Visual/media/map/video review as applicable
-- [ ] Rights/provenance review
-- [ ] Knowledge Card review or explicit no-card decision
-- [ ] Prompt/completion review
-- [ ] Accessibility review
-- [ ] Content/media/tests/type/build validation
-- [ ] Empty-database and hosted-development verification
-- [ ] Responsive browser review
-- [ ] Learner walkthrough or documented reason deferred
-- [ ] Product owner approval
-```
+Copy the canonical structures from [lesson production authoring templates](lesson-production/authoring-templates.md). Keep filled templates in the lesson's single research/editorial note; do not create parallel decision records.
 
 # Definition of done
 

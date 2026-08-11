@@ -10,6 +10,7 @@ import {
   SourceSchema,
   UnderstandingPromptSchema,
 } from '../../domains/contracts';
+import { LessonPrototypeReviewSchema } from './prototypeReview';
 
 export type ContentBundle = {
   sources: unknown[];
@@ -20,6 +21,7 @@ export type ContentBundle = {
   journeys: unknown[];
   invitations: unknown[];
   cards: unknown[];
+  prototypeReviews?: unknown[];
 };
 
 const MAX_PUBLISHED_VARIANT_BYTES = 768 * 1024;
@@ -46,6 +48,7 @@ export function validateContent(input: ContentBundle) {
   const journeys = parse<any>(input.journeys, JourneySchema, 'journey');
   const invitations = parse<any>(input.invitations ?? [], JourneyInvitationSchema, 'invitation');
   const cards = parse<any>(input.cards, KnowledgeCardSchema, 'card');
+  const prototypeReviews = parse<any>(input.prototypeReviews ?? [], LessonPrototypeReviewSchema, 'prototypeReview');
   const all = [...sources, ...claims, ...media, ...prompts, ...lessons, ...journeys, ...invitations, ...cards];
   const ids = new Set<string>();
   for (const item of all) {
@@ -98,6 +101,25 @@ export function validateContent(input: ContentBundle) {
     }
     const requiredPromptCount = lesson.promptIds.filter((id: string) => promptById.get(id)?.required).length;
     if (lesson.status === 'published' && (requiredPromptCount < 1 || requiredPromptCount > 3)) errors.push(`${lesson.id}: published lessons require one to three required prompts`);
+  }
+
+  const reviewedLessonIds = new Set<string>();
+  for (const review of prototypeReviews) {
+    if (reviewedLessonIds.has(review.lessonId)) errors.push(`duplicate prototype review for ${review.lessonId}`);
+    reviewedLessonIds.add(review.lessonId);
+    const lesson = lessonById.get(review.lessonId);
+    if (!lesson) {
+      errors.push(`prototype review: broken lesson reference ${review.lessonId}`);
+      continue;
+    }
+    if (lesson.status !== 'draft') errors.push(`${review.lessonId}: published lessons must not retain prototype review metadata`);
+    const sectionIds = new Set(lesson.sections.map((section: any) => section.id));
+    for (const intention of review.mediaIntentions) {
+      if (!sectionIds.has(intention.sectionId)) errors.push(`${review.lessonId}: prototype media intention references unknown section ${intention.sectionId}`);
+      if (intention.mediaId && !lesson.mediaIds.includes(intention.mediaId) && lesson.heroMediaId !== intention.mediaId) {
+        errors.push(`${review.lessonId}: prototype media intention references unregistered media ${intention.mediaId}`);
+      }
+    }
   }
 
   for (const claim of claims) refs(claim.id, claim.sourceIds, sourceIds, 'source');

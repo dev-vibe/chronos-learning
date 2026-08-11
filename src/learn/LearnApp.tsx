@@ -14,6 +14,7 @@ import { resolveWorldSpineAccess } from '../domains/journeys/worldSpine';
 import { knowledgeCardTypeLabel } from '../domains/knowledgeCards';
 import { createJourneyDrawerState, JourneyDrawer, orderedJourneyEntries } from './JourneyDrawer';
 import { GlobalNavigation } from '../app/GlobalNavigation';
+import { PrototypeMediaIntentions } from './PrototypeMediaIntentions';
 import './learn.css';
 
 const lessonById = new Map(chronosContent.lessons.map((item) => [item.id, item]));
@@ -23,6 +24,7 @@ const cardById = new Map(chronosContent.cards.map((item) => [item.id, item]));
 const cardsByLessonId = new Map<string, KnowledgeCard[]>();
 for (const card of chronosContent.cards) cardsByLessonId.set(card.unlockLessonId, [...(cardsByLessonId.get(card.unlockLessonId) ?? []), card]);
 const sourceById = new Map(chronosContent.sources.map((item) => [item.id, item]));
+const prototypeReviewByLessonId = new Map(chronosContent.prototypeReviews.map((item) => [item.lessonId, item]));
 const firstPublishedLessonId = chronosContent.journeys.filter((journey) => journey.status === 'published').flatMap((item) => item.chapters).sort((a, b) => a.position - b.position).flatMap((chapter) => [...chapter.entries].sort((a, b) => a.position - b.position)).map((entry) => entry.lessonId).find((id) => {
   const lesson = lessonById.get(id);
   return lesson ? isLessonOpenable(lesson) : false;
@@ -321,7 +323,7 @@ export function LearnApp({ lessonId, gatewayFactory = createProgressGateway }: {
     <header className="mobile-progress"><span className="mobile-progress-spacer" aria-hidden="true" /><div><strong>{lesson.title}</strong><span>{state.exploredSectionIds.length} of {lesson.sections.length} sections explored</span></div><button className="icon-button" onClick={toggleTheme} aria-label={'Use ' + (theme === 'light' ? 'dark' : 'light') + ' theme'}>{theme === 'light' ? <Moon /> : <Sun />}</button></header>
     <main className="lesson"><div className="lesson-toolbar"><JourneySwitcher currentJourneyId={journey.id} currentLessonId={lesson.id} /><span className="lesson-breadcrumb">{breadcrumbChapter} <ChevronRight /> {lesson.title}</span></div>
       <article><header className="masthead"><div className="masthead-copy"><p className="eyebrow">{lesson.masthead} <span>·</span> {lesson.place}</p><h1>{lesson.title}</h1><p className="dek">{lesson.significance}</p></div>{hero && <figure className="hero"><div className={'hero-image hero-image-' + hero.depictionMode}><ResponsiveMedia className={`hero-media hero-${hero.depictionMode}`} media={hero} alt={hero.alt} sizes="(max-width: 800px) 100vw, 60vw" loading="eager" decoding="async" /><span className="depiction-label">{lesson.heroLabel}</span></div><figcaption><span>{hero.depictionLabel}</span><span>{lesson.heroCaption}</span></figcaption></figure>}</header>
-        {lesson.sections.map((section) => <React.Fragment key={section.id}><Section section={section} state={state} onAttempt={attempt} /></React.Fragment>)}
+        {lesson.sections.map((section) => <React.Fragment key={section.id}><Section section={section} state={state} onAttempt={attempt} /><PrototypeMediaIntentions lesson={lesson} review={prototypeReviewByLessonId.get(lesson.id)} sectionId={section.id} /></React.Fragment>)}
         <section className="completion-panel" aria-labelledby="completion-title"><p className="eyebrow">Your next step</p><h2 id="completion-title">{state.status === 'completed' ? 'Lesson explored' : `Complete ${lesson.title}`}</h2>{state.status === 'completed' ? <>{displayCards.length > 0 && <div className="card-reveal-list">{displayCards.map((card, index) => <React.Fragment key={card.id}><KnowledgeCardReveal card={card} acquired={newlyAcquired} revealRef={newlyAcquired && index === 0 ? revealRef : undefined} /></React.Fragment>)}</div>}<div className="actions">{next ? <a className="primary" href={`/learn/${next.lesson.id}`}>Continue World History <ChevronRight /></a> : <span className="journey-end">World History continues with the next reviewed lesson.</span>}</div></> : <><p>{requirement.requiredIds.length === 1 ? 'The required understanding prompt needs' : `All ${requirement.requiredIds.length} required understanding prompts need`} a sincere attempt. Scrolling alone never completes a lesson.</p><button className="primary" disabled={!requirement.ready || busy} onClick={complete}>{busy ? 'Completing…' : requirement.ready ? 'Complete lesson' : `${requirement.attemptedCount} of ${requirement.requiredIds.length} required prompts attempted`}</button></>}{error && <p className="error" role="alert">{error} <button onClick={complete}>Retry</button></p>}</section>
       </article>
     </main>

@@ -9,6 +9,8 @@
     "preview": "vite preview",
     "typecheck": "tsc --noEmit",
     "validate:content": "tsx scripts/content/validate.ts",
+    "lesson:preview": "tsx scripts/lesson/preview.ts",
+    "lesson:gate": "tsx scripts/lesson/gate.ts",
     "media:add": "tsx scripts/media/add.ts",
     "media:build": "tsx scripts/media/build.ts",
     "media:verify": "tsx scripts/media/build.ts --check",

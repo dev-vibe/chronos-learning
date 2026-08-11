@@ -1,4 +1,5 @@
 import type { Claim, Journey, JourneyInvitation, KnowledgeCard, Lesson, MediaAsset, Source, UnderstandingPrompt } from '../src/domains/contracts';
+import type { LessonPrototypeReview } from '../src/infrastructure/content/prototypeReview';
 
 export type AuthoredContentModule = {
   readonly sources?: readonly Source[];
@@ -7,6 +8,7 @@ export type AuthoredContentModule = {
   readonly prompts?: readonly UnderstandingPrompt[];
   readonly lessons?: readonly Lesson[];
   readonly cards?: readonly KnowledgeCard[];
+  readonly prototypeReviews?: readonly LessonPrototypeReview[];
 };
 
 export type ChronosContentBundle = {
@@ -18,6 +20,7 @@ export type ChronosContentBundle = {
   journeys: Journey[];
   invitations: JourneyInvitation[];
   cards: KnowledgeCard[];
+  prototypeReviews: LessonPrototypeReview[];
 };
 
 export function assembleContent(modules: readonly AuthoredContentModule[], journeys: readonly Journey[], invitations: readonly JourneyInvitation[] = []): ChronosContentBundle {
@@ -30,5 +33,6 @@ export function assembleContent(modules: readonly AuthoredContentModule[], journ
     journeys: [...journeys],
     invitations: [...invitations],
     cards: modules.flatMap((module) => [...(module.cards ?? [])]),
+    prototypeReviews: modules.flatMap((module) => [...(module.prototypeReviews ?? [])]),
   };
 }
