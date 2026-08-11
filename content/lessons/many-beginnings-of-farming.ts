@@ -432,7 +432,7 @@ export const manyBeginningsOfFarmingLesson: Lesson = {
 export const manyBeginningsOfFarmingPrototypeReview: LessonPrototypeReview = {
   lessonId: 'lesson.farming.multiple-origins',
   researchNotePath: 'docs/research/many-beginnings-of-farming.md',
-  validationTier: 'ordinary',
+  validationTier: 'reference',
   mediaIntentions: [
     {
       sectionId: 'section.farming.multi.what-domestication',
@@ -454,7 +454,11 @@ export const manyBeginningsOfFarmingPrototypeReview: LessonPrototypeReview = {
     },
   ],
   productReview: { state: 'pending' },
-  learnerReview: { required: false, state: 'not-required' },
+  learnerReview: {
+    required: true,
+    state: 'not-scheduled',
+    notes: 'Required because this lesson establishes the reference process; an adult proxy review does not replace an ages 11-14 walkthrough.',
+  },
 };
 
 export const manyBeginningsOfFarmingContent: AuthoredContentModule = {

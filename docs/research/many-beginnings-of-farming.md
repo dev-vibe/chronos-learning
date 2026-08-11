@@ -10,8 +10,8 @@ Checkpoint continuation branch: `codex/ash-74-v2-forward-test`
 Required or optional: required
 Queue status: **Awaiting approval**
 Accountable reviewer: Carlin Aylsworth
-Validation tier: ordinary
-Status: **Awaiting product-owner approval (Stages 0–14B learner-prototype checkpoint)**
+Validation tier: reference
+Status: **Provisionally validated; awaiting product-owner approval and the required ages 11–14 walkthrough**
 
 This note is the durable source, claim, learning, media, prototype, and checkpoint record. The complete learner-facing draft renders in the real Learn shell; final media generation, publication migrations, unlocks, approval-state changes, and hosted production changes wait for approval.
 
@@ -417,6 +417,7 @@ One supported-selection + one concise explanation, as above.
 - The complete six-section lesson is authored as typed Chronos content with 12 claim records, 10 lesson-local source records plus one shared Anatolia source, two required sincere-attempt prompts, and three explicit planned-media intentions.
 - The World History journey draft inserts `entry.world-history.multiple-origins` immediately before `lesson.farming.settlements`; this draft does not publish migrations, unlock rules, or hosted state.
 - The lesson remains `draft`. Claims remain `editorial-review-required`. Product review remains `pending`.
+- Because this lesson establishes the reference process, its ages 11–14 learner walkthrough is required and remains `not-scheduled`; the independent adult proxy review does not satisfy that gate.
 - No Knowledge Card is included, following the recommendation above. Final map, diagram, and evidence-comparison art are deliberately unproduced until the product-owner checkpoint.
 
 ### Media-intention rendering
@@ -460,6 +461,8 @@ Stage 14A dispositions implemented before re-review:
 
 Repeat proxy disposition: **PASS — ready for Carlin's product review; `productReview` remains `pending`.** The second independent reviewer found no remaining blocking proxy findings. Mental-model coherence, narrative momentum, age-appropriate cognitive load, evidence reasoning, historical proportionality, prototype-stage visual teaching value, and next-action clarity all passed. The reviewer confirmed all four viewport/theme states, no console/page/request failures or horizontal overflow, five full-width 322 px regional cards at 390 px, explanatory prompt feedback, sincere-attempt completion, continuation to Settlements, and revisit at `scrollY = 0`. Final visual execution, rights, provenance, and accessibility remain safe later-gate deferrals because native prose/knowledge carries every teaching dependency and the lesson remains unpublished.
 
+Required learner disposition: **PENDING.** No ages 11–14 walkthrough has been recorded. Until one is completed, the lesson-production system and this lesson are provisional and must not be described as proven.
+
 ### Deterministic validation record
 
 - `npm.cmd run lesson:gate -- --lesson lesson.farming.multiple-origins --note docs/research/many-beginnings-of-farming.md --gate prototype` — pass.
@@ -475,7 +478,7 @@ The prototype confirms the evidence/uncertainty model and sincere-attempt comple
 
 ### Human checkpoint
 
-Accountable reviewer: **Carlin Aylsworth**. Product-owner state: **pending**. The requested judgment remains the five decisions in the research/editorial packet above, now informed by the working prototype and learner-proxy findings. Do not produce final media, change approval state, publish migrations, or advance the queue until this human review is recorded.
+Accountable reviewer: **Carlin Aylsworth**. Product-owner state: **pending**. Required ages 11–14 walkthrough: **not scheduled**. The requested judgment remains the five decisions in the research/editorial packet above, now informed by the working prototype and adult learner-proxy findings. Do not produce final media, change approval state, publish migrations, or advance the queue until this human review is recorded.
 
 ## Sign-off status
 
@@ -487,6 +490,7 @@ Accountable reviewer: **Carlin Aylsworth**. Product-owner state: **pending**. Th
 | Media / provenance plan | Complete for checkpoint; assets not produced |
 | Map brief | Outline only; full map note after approval |
 | Learner prototype in real Learn shell | Complete; independent adult learner-proxy re-review passed |
+| Ages 11–14 learner walkthrough | **Required; not scheduled — validation remains provisional** |
 | Product-owner checkpoint | **Awaiting approval** |
 | Final lesson implementation / publication | Not started; draft prototype only |
 
@@ -504,5 +508,6 @@ Accountable reviewer: **Carlin Aylsworth**. Product-owner state: **pending**. Th
 - [ ] Content / media / tests / type / build validation
 - [ ] Empty-database and hosted-development verification
 - [x] Responsive browser review (raw prototype, desktop/mobile, light/dark)
-- [x] Learner walkthrough (independent adult proxy at prototype checkpoint)
+- [x] Independent adult learner-proxy review at prototype checkpoint
+- [ ] Required ages 11–14 learner walkthrough
 - [ ] Product owner approval
