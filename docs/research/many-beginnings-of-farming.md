@@ -1,13 +1,19 @@
 # Many Beginnings of Farming — research and editorial note
 
-Date: 2026-07-27
+Date: 2026-07-27; learner-prototype checkpoint updated 2026-08-11
 Lesson ID: `lesson.farming.multiple-origins`
+Research-note identity/version: ASH-74 learner-prototype checkpoint v2
 World Spine position: 7
 Linear: [ASH-74](https://linear.app/ashs-workshop/issue/ASH-74/research-and-publish-many-beginnings-of-farming)
-Branch: `codex/ash-74-many-beginnings-farming`
-Status: **Awaiting product-owner approval (Stages 0–14 checkpoint)**
+Original research branch: `codex/ash-74-many-beginnings-farming`
+Checkpoint continuation branch: `codex/ash-74-v2-forward-test`
+Required or optional: required
+Queue status: **Awaiting approval**
+Accountable reviewer: Carlin Aylsworth
+Validation tier: ordinary
+Status: **Awaiting product-owner approval (Stages 0–14B learner-prototype checkpoint)**
 
-This note is the durable source, claim, learning, media, and checkpoint record. It is a decision packet rather than draft runtime copy. Production lesson code, final media generation, migrations, and hosted changes wait for approval.
+This note is the durable source, claim, learning, media, prototype, and checkpoint record. The complete learner-facing draft renders in the real Learn shell; final media generation, publication migrations, unlocks, approval-state changes, and hosted production changes wait for approval.
 
 ## Work boundary
 
@@ -21,7 +27,7 @@ This note is the durable source, claim, learning, media, and checkpoint record. 
 | Chronology | c. 10,000–3000 BCE (regional processes begin earlier and finish later; these dates bound the lesson’s focus window) |
 | Curriculum prerequisite | `lesson.climate.holocene-transition` (unpublished; do not assume climate lesson knowledge) |
 | Successor | `lesson.farming.settlements` (already published) |
-| Issue / branch | ASH-74 · `codex/ash-74-many-beginnings-farming` |
+| Issue / branch | ASH-74 · original research on `codex/ash-74-many-beginnings-farming`; learner-prototype continuation on `codex/ash-74-v2-forward-test` |
 | Accountable reviewer | Carlin Aylsworth |
 
 This increment designs the global multiple-origins frame that Farming and Settlements already assumes. It does not rebuild Çatalhöyük, teach pastoralism, invent Holocene climate content, promote Spine positions 3–6, redesign the Learn shell, generate final assets before approval, or publish database configuration.
@@ -179,7 +185,7 @@ Research stopped when independent beginnings, protracted domestication, and the 
 | ---: | --- | --- | --- | --- | --- | --- | --- |
 | 1 | `section.farming.multi.not-once` | **Farming did not begin once** | Break the single-revolution myth and state the essential question | not-one-revolution; independent-centers | prose + 3-item knowledge | Optional hero map peek | Into mechanism |
 | 2 | `section.farming.multi.what-domestication` | **Plants changed with people** | Define cultivation vs domestication; show gradual cereal change | domestication-process; cereal-protracted | prose | Recommended non-shattering diagram | Into geography |
-| 3 | `section.farming.multi.five-beginnings` | **Five beginnings, five food stories** | Present the five roster regions with distinct crops | sw-asia; china; new-guinea; africa; americas | knowledge (5 items) + historical-map | **Required** world zones map | Into evidence contrast |
+| 3 | `section.farming.multi.five-beginnings` | **Several regions, different pathways** | Present illustrative roster regions with distinct crops without implying a complete or equal-scale count | sw-asia; china; new-guinea; africa; americas | knowledge (5 items) + historical-map | **Required** world zones map | Into evidence contrast |
 | 4 | `section.farming.multi.different-evidence` | **Different plants leave different clues** | Contrast seed-crop scars/size with starch/phytoliths/wetland fields | new-guinea; cereal-protracted | prose + evidence or knowledge | Map callouts or crop-package comparison | Into lifestyle diversity |
 | 5 | `section.farming.multi.not-one-lifestyle` | **Farming was not one lifestyle** | Block village-first universalism and automatic cities | not-always-villages; no-automatic-cities; climate-not-single-cause | prose + knowledge (3) | none required | Into checks |
 | 6 | `section.farming.multi.world-check` | **World Check** | Require sincere use of multi-origin evidence | all core claims | prompt ×2 + completion | none | Bridge to Settlements after completion |
@@ -216,7 +222,7 @@ Six semantic sections. Related navigation stays outside required progress.
 
 ### 3. Crop-package comparison panel — **Preferred / optional**
 
-Five small still-life crop groupings (one per region) as Chronos-original illustration. Useful if the map feels abstract; deferrable if map + knowledge items already teach.
+A focused evidence comparison asking: **Which clues survive from cereal farming versus tropical root-crop and wetland cultivation, and what does each evidence set leave uncertain?** A Chronos-original crop grouping can support that question, but an eight-crop inventory is not the teaching goal. This is deferrable if the map + native knowledge items already teach the comparison.
 
 ### Explicit exclusions
 
@@ -402,6 +408,75 @@ One supported-selection + one concise explanation, as above.
 - Do not let Settlements completion language imply this prerequisite is optional after publication.
 - Keep unpublished Spine 3–6 fail closed.
 
+## Learner-prototype checkpoint — 2026-08-11
+
+### Draft implementation
+
+- Exact preview route: `/learn/lesson.farming.multiple-origins`
+- Local preview URL: `http://localhost:3000/learn/lesson.farming.multiple-origins`
+- The complete six-section lesson is authored as typed Chronos content with 12 claim records, 10 lesson-local source records plus one shared Anatolia source, two required sincere-attempt prompts, and three explicit planned-media intentions.
+- The World History journey draft inserts `entry.world-history.multiple-origins` immediately before `lesson.farming.settlements`; this draft does not publish migrations, unlock rules, or hosted state.
+- The lesson remains `draft`. Claims remain `editorial-review-required`. Product review remains `pending`.
+- No Knowledge Card is included, following the recommendation above. Final map, diagram, and evidence-comparison art are deliberately unproduced until the product-owner checkpoint.
+
+### Media-intention rendering
+
+The real Learn-shell prototype renders explicit learner-visible alternatives for every absent visual:
+
+1. **Cereal diagram:** prose plus the “A two-way change” knowledge comparison explains non-shattering and co-development while the diagram remains planned.
+2. **World map:** the “Several regions, different pathways” section and five-region knowledge comparison provide the geographic model while the Natural Earth-anchored map remains planned.
+3. **Evidence comparison:** native evidence items and the Kuk close read ask which clues survive in cereal versus tropical root-crop/wetland settings and what each can and cannot prove while final art remains planned.
+
+No generated media, baked-in educational text, map pinpoints, political borders, or diffusion arrows were added at this checkpoint.
+
+### Browser states inspected
+
+The raw prototype was inspected in the actual Learn shell at 1440×900 and 390×844, light and dark, including direct open, prompt feedback, explicit completion, completed state, and revisit. The revised four-state check found:
+
+- HTTP 200; correct lesson heading; six semantic sections and two prompt modules;
+- no console errors, page errors, or failed requests;
+- no learner-visible mojibake after the encoding revision;
+- the three-item comparison remains three columns on desktop and stacks to one 322 px column at 390 px; the five-item comparison stacks under the same mobile rule;
+- required completion is disabled before attempts; sincere radio + written attempts unlock explicit completion; completion continues to `/learn/lesson.farming.settlements`; direct reopen starts at the top.
+
+### Independent adult learner-proxy review
+
+Reviewer identity: **Codex adult learner proxy**. This was an independent raw-prototype review; the reviewer was not given the author’s diagnosis or research conclusions.
+
+The first Stage 14B pass returned the prototype to Stage 14A:
+
+- **Blocking — age-appropriate cognitive load:** learner-visible UTF-8 corruption interrupted dates, claims, and feedback.
+- **Revise — mobile cognitive load / visual teaching:** three- and five-item comparisons retained narrow multi-column layouts at 390 px.
+- **Revise — historical proportionality:** “Five beginnings, five food stories” turned illustrative, mixed-scale comparison units into a memorable but false count.
+- **Revise — visual teaching value:** the broad crop-panel intention needed a sharper learner question; final visual value remains provisional until media exists.
+- **Pass:** mental-model coherence, narrative momentum, evidence reasoning, and next-action clarity.
+
+Stage 14A dispositions implemented before re-review:
+
+- replaced corrupt learner-visible punctuation with encoding-safe copy;
+- stacked three- and five-item knowledge comparisons at 620 px and below;
+- renamed the section **Several regions, different pathways** and explicitly framed its examples as illustrative rather than complete;
+- narrowed the third media intention to a cereal-versus-tropical evidence-survival question.
+
+Repeat proxy disposition: **PASS — ready for Carlin's product review; `productReview` remains `pending`.** The second independent reviewer found no remaining blocking proxy findings. Mental-model coherence, narrative momentum, age-appropriate cognitive load, evidence reasoning, historical proportionality, prototype-stage visual teaching value, and next-action clarity all passed. The reviewer confirmed all four viewport/theme states, no console/page/request failures or horizontal overflow, five full-width 322 px regional cards at 390 px, explanatory prompt feedback, sincere-attempt completion, continuation to Settlements, and revisit at `scrollY = 0`. Final visual execution, rights, provenance, and accessibility remain safe later-gate deferrals because native prose/knowledge carries every teaching dependency and the lesson remains unpublished.
+
+### Deterministic validation record
+
+- `npm.cmd run lesson:gate -- --lesson lesson.farming.multiple-origins --note docs/research/many-beginnings-of-farming.md --gate prototype` — pass.
+- `npm.cmd run validate:content` — pass.
+- `npm.cmd test -- tests/lesson/gate-validation.test.ts tests/lesson/prototype-media-intentions.test.tsx` — pass, 2 files / 12 tests.
+- `npm.cmd run build` — pass (existing chunk-size warning only).
+- `npm.cmd run typecheck` — repository baseline fails in existing legacy `NodeContentDisplay.tsx`, legacy `Resource.url` / `"Religious"` data typing, and existing v2 lesson-status inference; no diagnostic names the new Many Beginnings content module.
+- `git diff --check` — pass.
+
+### Earlier-stage risk comparison
+
+The prototype confirms the evidence/uncertainty model and sincere-attempt completion can be carried through the real shell without hiding necessary causal explanation in media metadata. It also exposed issues the prose-only checkpoint did not: encoding corruption, mobile comparison fragmentation, an overly neat “five beginnings” label, and an unfocused optional visual. Those findings were resolved in the draft before the repeat proxy review. Final media teaching value, rights/provenance, map accuracy, accessibility, database migration, unlock behavior, and hosted empty-state/recovery remain later-gate work.
+
+### Human checkpoint
+
+Accountable reviewer: **Carlin Aylsworth**. Product-owner state: **pending**. The requested judgment remains the five decisions in the research/editorial packet above, now informed by the working prototype and learner-proxy findings. Do not produce final media, change approval state, publish migrations, or advance the queue until this human review is recorded.
+
 ## Sign-off status
 
 | Gate | Status |
@@ -411,8 +486,9 @@ One supported-selection + one concise explanation, as above.
 | Learning blueprint and storyboard | Complete for checkpoint |
 | Media / provenance plan | Complete for checkpoint; assets not produced |
 | Map brief | Outline only; full map note after approval |
+| Learner prototype in real Learn shell | Complete; independent adult learner-proxy re-review passed |
 | Product-owner checkpoint | **Awaiting approval** |
-| Runtime implementation | Not started |
+| Final lesson implementation / publication | Not started; draft prototype only |
 
 ### Final sign-off checklist
 
@@ -427,6 +503,6 @@ One supported-selection + one concise explanation, as above.
 - [ ] Accessibility review
 - [ ] Content / media / tests / type / build validation
 - [ ] Empty-database and hosted-development verification
-- [ ] Responsive browser review
-- [ ] Learner walkthrough or documented reason deferred
+- [x] Responsive browser review (raw prototype, desktop/mobile, light/dark)
+- [x] Learner walkthrough (independent adult proxy at prototype checkpoint)
 - [ ] Product owner approval

@@ -10,7 +10,7 @@ export const worldHistoryJourney: Journey = {
   description: 'The primary chronological journey through reviewed turning points in world history.',
   period: 'Deep history to the present',
   region: 'Global',
-  approximateMinutes: 69,
+  approximateMinutes: 81,
   featured: true,
   prerequisiteJourneyIds: [],
   relatedJourneyIds: [],
@@ -26,7 +26,8 @@ export const worldHistoryJourney: Journey = {
       entries: [
         { id: 'entry.world-history.homo-sapiens-origins', lessonId: 'lesson.humans.homo-sapiens-origins', position: 0, required: true, framing: 'Start where the evidence starts, and find out why there is no single birthplace to point to' },
         { id: 'entry.world-history.migrations-and-interbreeding', lessonId: 'lesson.humans.migrations-and-interbreeding', position: 1, required: true, framing: 'Follow some connected African populations beyond the continent and ask what happened when they met other humans' },
-        { id: 'entry.world-history.farming', lessonId: 'lesson.farming.settlements', position: 2, required: true, framing: 'Read one settlement to see how stored food changed the work and choices of staying' },
+        { id: 'entry.world-history.multiple-origins', lessonId: 'lesson.farming.multiple-origins', position: 2, required: true, framing: 'Before zooming into one settlement, see how farming began independently in more than one part of the world' },
+        { id: 'entry.world-history.farming', lessonId: 'lesson.farming.settlements', position: 3, required: true, framing: 'Read one settlement to see how stored food changed the work and choices of staying' },
       ],
     },
     {
