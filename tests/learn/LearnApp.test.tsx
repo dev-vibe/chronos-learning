@@ -48,7 +48,7 @@ describe('Learn route and interactions', () => {
   it('does not interrupt the lesson with a resume banner', async () => { const gateway = new TestGateway(); gateway.state = { ...gateway.state, resumeSectionId: 'section.uruk.the-built-city', exploredSectionIds: ['section.uruk.the-built-city'] }; render(<LearnApp lessonId="lesson.uruk.first-city" gatewayFactory={async () => gateway} />); await screen.findByRole('heading', { name: 'Uruk: Life in an Early City' }); expect(screen.queryByText('Welcome back')).toBeNull(); expect(screen.queryByRole('button', { name: 'Resume' })).toBeNull(); expect(window.scrollTo).toHaveBeenCalledWith({ top: 0, left: 0, behavior: 'auto' }); });
   it('fails closed for a missing lesson without leaking a spine title', () => {
     render(<LearnApp lessonId="lesson.farming.multiple-origins" />);
-    expect(screen.getByRole('heading', { name: /This archive entry isn.t available\./i })).toBeTruthy();
+    expect(screen.getByRole('heading', { name: /This archive entry is not available\./i })).toBeTruthy();
     expect(screen.queryByRole('heading', { name: 'Many Beginnings of Farming' })).toBeNull();
     expect(document.querySelectorAll('.global-rail nav a')).toHaveLength(3);
   });

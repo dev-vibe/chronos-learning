@@ -113,7 +113,7 @@ describe('multi-lesson Learn runtime', () => {
 
   it('keeps an unpublished spine neighbor private and non-completable', () => {
     render(<LearnApp lessonId="lesson.farming.multiple-origins" />);
-    expect(screen.getByRole('heading', { name: /archive entry isn.t available/i })).toBeTruthy();
+    expect(screen.getByRole('heading', { name: /archive entry is not available/i })).toBeTruthy();
     expect(screen.queryByRole('heading', { name: 'Many Beginnings of Farming' })).toBeNull();
     expect(screen.queryByRole('button', { name: 'Complete lesson' })).toBeNull();
   });

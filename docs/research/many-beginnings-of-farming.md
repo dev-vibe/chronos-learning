@@ -8,10 +8,10 @@ Linear: [ASH-74](https://linear.app/ashs-workshop/issue/ASH-74/research-and-publ
 Original research branch: `codex/ash-74-many-beginnings-farming`
 Checkpoint continuation branch: `codex/ash-74-v2-forward-test`
 Required or optional: required
-Queue status: **Awaiting approval**
+Queue status: **Implementing**
 Accountable reviewer: Carlin Aylsworth
 Validation tier: reference
-Status: **Provisionally validated; awaiting product-owner approval and the required ages 11–14 walkthrough**
+Status: **Product prototype approved; Stage 15 implementing; required ages 11–14 walkthrough remains pending**
 
 This note is the durable source, claim, learning, media, prototype, and checkpoint record. The complete learner-facing draft renders in the real Learn shell; final media generation, publication migrations, unlocks, approval-state changes, and hosted production changes wait for approval.
 
@@ -459,7 +459,7 @@ Stage 14A dispositions implemented before re-review:
 - renamed the section **Several regions, different pathways** and explicitly framed its examples as illustrative rather than complete;
 - narrowed the third media intention to a cereal-versus-tropical evidence-survival question.
 
-Repeat proxy disposition: **PASS — ready for Carlin's product review; `productReview` remains `pending`.** The second independent reviewer found no remaining blocking proxy findings. Mental-model coherence, narrative momentum, age-appropriate cognitive load, evidence reasoning, historical proportionality, prototype-stage visual teaching value, and next-action clarity all passed. The reviewer confirmed all four viewport/theme states, no console/page/request failures or horizontal overflow, five full-width 322 px regional cards at 390 px, explanatory prompt feedback, sincere-attempt completion, continuation to Settlements, and revisit at `scrollY = 0`. Final visual execution, rights, provenance, and accessibility remain safe later-gate deferrals because native prose/knowledge carries every teaching dependency and the lesson remains unpublished.
+Repeat proxy disposition: **PASS.** The second independent reviewer found no remaining blocking proxy findings. Mental-model coherence, narrative momentum, age-appropriate cognitive load, evidence reasoning, historical proportionality, prototype-stage visual teaching value, and next-action clarity all passed. The reviewer confirmed all four viewport/theme states, no console/page/request failures or horizontal overflow, five full-width 322 px regional cards at 390 px, explanatory prompt feedback, sincere-attempt completion, continuation to Settlements, and revisit at `scrollY = 0`. Final visual execution, rights, provenance, and accessibility remain later-gate duties because native prose/knowledge carries every teaching dependency and the lesson remains unpublished.
 
 Required learner disposition: **PENDING.** No ages 11–14 walkthrough has been recorded. Until one is completed, the lesson-production system and this lesson are provisional and must not be described as proven.
 
@@ -478,7 +478,45 @@ The prototype confirms the evidence/uncertainty model and sincere-attempt comple
 
 ### Human checkpoint
 
-Accountable reviewer: **Carlin Aylsworth**. Product-owner state: **pending**. Required ages 11–14 walkthrough: **not scheduled**. The requested judgment remains the five decisions in the research/editorial packet above, now informed by the working prototype and adult learner-proxy findings. Do not produce final media, change approval state, publish migrations, or advance the queue until this human review is recorded.
+Accountable reviewer: **Carlin Aylsworth**. Product-owner state: **approved on 2026-08-11** from the direct response “love the prototype.” The approval adopts all five recommended decisions: title/scope/arc, required no-arrow world map, no Knowledge Card, placement before Settlements, and the specific Africa/Americas regional framing. Stage 15 final media, provenance, content hardening, and publication configuration may proceed. Required ages 11–14 walkthrough: **not scheduled**; the lesson remains unpublished and provisionally validated until that release gate passes.
+
+## Final media and provenance — Stage 15
+
+### World origins map
+
+- Runtime media ID: `media.farming.multiple-origins-map`.
+- Final master: `public/images/maps/many-beginnings-farming-zones.png`, 960×480 PNG, SHA-256 `dc374e51d31d1b4e28da83c17d980f52f8b6726871616478f9198c4e3369e0a1`.
+- Runtime fallback: `/images/optimized/farming/multiple-origins-map.optimized.webp`, 960×480 pixel-exact lossless WebP, SHA-256 `ac553e99a841a5e22c7fe34559307a8c597badfc3f9b0ebc0f384e15bec78369`.
+- Reference: Natural Earth II 1:50m raster, Public Domain. Local generation input: `docs/research/references/many-beginnings-farming/natural-earth-ii-shaded-relief-water.jpg`, SHA-256 `2BF3F7CBEFC9BCEB338A78060D541D03BDA2F4AF4596C0C5A4680D87739538E0`.
+- Full brief, uncertainty boundary, complete prompt, lineage, and rights: `docs/research/many-beginnings-of-farming-map.md`.
+- Review result: pass. Real coastlines anchor the geography; the raster has no labels, arrows, routes, borders, pins, complete-count claim, or baked-in teaching copy. Soft zones remain explicitly approximate in native UI.
+
+### Wild and domesticated wheat comparison
+
+- Runtime media ID: `media.farming.wild-domesticated-wheat`.
+- Final master: `public/images/evidence/wild-domesticated-wheat-diagram.png`, 960×640 PNG, SHA-256 `2fd6eb72f6618b45c3bf2065c998b53ff74f9f19d3c2b5545901c81df7bdcf90`.
+- Runtime fallback: `/images/optimized/farming/wild-domesticated-wheat.optimized.webp`, 960×640 pixel-exact lossless WebP, SHA-256 `be0b7a376a919c614b925f87841e37f7e093d256edcdd4beef7c9015a8defbfd`.
+- Scientific visual reference: Fuks and Marom, “Sheep and wheat domestication in southwest Asia,” Figure 2, *Animal Frontiers* 11.3 (2021), CC BY 4.0. Local research copy: `docs/research/references/many-beginnings-farming/wild-domesticated-wheat-figure-2.jpg`, SHA-256 `ACC5C7C76101C53BA414936930DE193A4408DD073C555AE23FCBC73EBD8AF7BF`.
+- Generation tool: OpenAI ImageGen built into Codex, image-edit mode; model version was not exposed; generation date `2026-08-11`.
+- Full-resolution output: `C:\Users\carli\.codex\generated_images\019fef2e-3efb-7313-979b-6528d4f7d93d\exec-82affdfc-2914-4c1d-9c5a-b817f5cb6a4a.png`, 1536×1024.
+- Complete prompt:
+
+```text
+Edit the provided CC BY scientific comparison figure into a calm, accurate, label-free raster teaching diagram for an ages 11–14 history lesson. Preserve its central factual comparison and orientation: domesticated wheat on the LEFT with a strong, non-shattering ear that remains intact until people thresh it; wild wheat on the RIGHT with a brittle rachis whose mature spikelets disarticulate and fall for natural dispersal. Create a simple side-by-side botanical plate on a warm off-white parchment background.
+
+LEFT panel: one intact domesticated wheat ear upright, dense golden spikelets held to the central stalk; beside or below it, a small close-up botanical inset showing the rough broken scar of a rachis segment after threshing. Do not show grains falling naturally from this ear.
+
+RIGHT panel: one wild wheat ear upright but visibly coming apart at maturity, with several individual spikelets detaching and falling in a clear downward scatter; beside or below it, a small close-up botanical inset showing the smooth natural disarticulation scar. Make the falling spikelets unmistakable without using arrows.
+
+Use restrained museum-scientific illustration styling: fine ink contours, ochre and olive watercolor, precise plant morphology, strong visual hierarchy, generous whitespace, and the same scale for both main ears. No humans, farmer, field, hands, tools, DNA, clocks, decorative botanicals, cartoons, UI chrome, title, labels, letters, captions, paragraphs, arrows, or any baked-in text. Do not add claims beyond the reference. The learner should be able to infer the question: which kind is easier for people to gather and replant? High-resolution landscape raster, approximately 3:2.
+```
+
+- Review result: pass. The left ear remains intact; the right ear visibly disarticulates without arrows; rough/smooth scar insets reflect the scientific reference. Native copy explicitly limits this cereal mechanism so it cannot stand in for every crop or region.
+- Delivery decision: the visually accepted 1536 px output did not satisfy the unchanged `ql-v1` byte ceiling at 1200 px. The production master was sized to the Learn shell’s 960 px teaching surface; both 480 and 960 variants are pixel-exact.
+
+### Deliberate no-media decision
+
+The evidence-comparison intention is resolved as `not-needed`. The section’s four native evidence items and Kuk close read already teach the survival-bias comparison. A separate illustration would repeat the prose and compete with the two visuals that each add a distinct mental model.
 
 ## Sign-off status
 
@@ -487,27 +525,47 @@ Accountable reviewer: **Carlin Aylsworth**. Product-owner state: **pending**. Re
 | Research / source review | Complete for checkpoint |
 | Claim and uncertainty review | Complete for checkpoint |
 | Learning blueprint and storyboard | Complete for checkpoint |
-| Media / provenance plan | Complete for checkpoint; assets not produced |
-| Map brief | Outline only; full map note after approval |
+| Media / provenance plan | Complete; two final assets built and rights/provenance recorded |
+| Map brief | Complete in `docs/research/many-beginnings-of-farming-map.md` |
 | Learner prototype in real Learn shell | Complete; independent adult learner-proxy re-review passed |
 | Ages 11–14 learner walkthrough | **Required; not scheduled — validation remains provisional** |
-| Product-owner checkpoint | **Awaiting approval** |
-| Final lesson implementation / publication | Not started; draft prototype only |
+| Product-owner checkpoint | **Approved by Carlin Aylsworth on 2026-08-11** |
+| Final lesson implementation / publication | Stage 15 implementation and Stage 16 production-preview gate complete; publication remains blocked |
 
 ### Final sign-off checklist
 
 - [ ] Research integrity
-- [ ] Historical / editorial review
+- [x] Historical / editorial review
 - [ ] Ages 11–14 learning / editorial review
 - [ ] Section / component storyboard review
-- [ ] Visual / media / map review as applicable
-- [ ] Rights / provenance review
+- [x] Visual / media / map review as applicable
+- [x] Rights / provenance review
 - [x] Knowledge Card review or explicit no-card decision (proposed: no card)
-- [ ] Prompt / completion review
-- [ ] Accessibility review
+- [x] Prompt / completion review
+- [x] Accessibility review
 - [ ] Content / media / tests / type / build validation
 - [ ] Empty-database and hosted-development verification
 - [x] Responsive browser review (raw prototype, desktop/mobile, light/dark)
 - [x] Independent adult learner-proxy review at prototype checkpoint
 - [ ] Required ages 11–14 learner walkthrough
-- [ ] Product owner approval
+
+## Production-preview validation — Stage 16
+
+Stage 15 implementation is complete and the lesson is in `Review`. The approved draft now uses two final evidence-led visuals, remains before Farming and Settlements in the preview World Spine, and keeps all learner meaning in native prose, semantic modules, prompts, and disclosures. No publication migration, hosted change, production unlock, or card unlock was created.
+
+Responsive product review passed at 1440×900 and 390×844 in both light and dark themes. The first desktop pass exposed a blocking composition defect: the five-region comparison squeezed the map and cropped its world extent. The dense comparison now receives its own desktop teaching row, the full 2:1 map uses `object-fit: contain`, and the existing stacked mobile reading order is preserved. Final captures are stored in `docs/pr/ash-74/`.
+
+Final deterministic record:
+
+- `npm.cmd run lesson:gate -- --lesson lesson.farming.multiple-origins --note docs/research/many-beginnings-of-farming.md --gate implementation` — pass.
+- `npm.cmd run lesson:gate -- --lesson lesson.farming.multiple-origins --note docs/research/many-beginnings-of-farming.md --gate release` — expected fail only because required learner review is not complete.
+- `npm.cmd test -- --run` — pass, 21 files / 123 tests.
+- `npm.cmd run test:domain` — pass, 4 files / 20 tests.
+- `npm.cmd run validate:content` — pass.
+- `npm.cmd run media:build` and the post-build `npm.cmd run media:verify` — pass, 20 assets / 44 derivatives. A later whole-catalog repeat exceeded the local five-minute command allowance; catalog and media files were unchanged after the recorded pass.
+- `npm.cmd run build` — pass; existing large-chunk warning only.
+- `npm.cmd run typecheck` — unchanged repository baseline failures in legacy `NodeContentDisplay`, legacy resource/category data, and existing v2 lesson-status inference. No diagnostic names the Many Beginnings content module.
+- Production-flag reachability and preview-only annotation semantics remain covered by the passing Learn/discovery and prototype-media tests; annotations do not add headings, sections, prompts, or completion state.
+
+Release disposition: **BLOCKED AS DESIGNED.** Schedule and record one ages 11–14 walkthrough, resolve any observed confusion, then rerun the release gate. Until it passes, keep the lesson `draft`, keep ASH-74 and the Wayfinder map open, and do not create a publication migration or describe the workflow as proven.
+- [x] Product owner approval

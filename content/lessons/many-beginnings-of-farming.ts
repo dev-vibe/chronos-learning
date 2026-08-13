@@ -1,6 +1,7 @@
-import type { Claim, Lesson, Source, UnderstandingPrompt } from '../../src/domains/contracts';
+import type { Claim, Lesson, MediaAsset, Source, UnderstandingPrompt } from '../../src/domains/contracts';
 import type { LessonPrototypeReview } from '../../src/infrastructure/content/prototypeReview';
 import type { AuthoredContentModule } from '../assemble';
+import { mediaLocator } from '../shared/media-locator';
 
 export const manyBeginningsOfFarmingSources: Source[] = [
   {
@@ -93,6 +94,15 @@ export const manyBeginningsOfFarmingSources: Source[] = [
     licenseOrUse: 'Open-access excavation context cited as a fact source; article media are not redistributed',
     reviewStatus: 'reviewed',
   },
+  {
+    id: 'source.farming.fuks-marom-2021-wheat',
+    title: 'Sheep and wheat domestication in southwest Asia: a meta-trajectory of intensification and loss',
+    url: 'https://pmc.ncbi.nlm.nih.gov/articles/PMC8214439/',
+    publisher: 'Animal Frontiers',
+    accessedOn: '2026-08-11',
+    licenseOrUse: 'CC BY 4.0 scientific comparison used as the factual and visual reference for the Chronos wheat-ear diagram',
+    reviewStatus: 'reviewed',
+  },
 ];
 
 export const manyBeginningsOfFarmingClaims: Claim[] = [
@@ -102,7 +112,7 @@ export const manyBeginningsOfFarmingClaims: Claim[] = [
     kind: 'interpretation',
     certainty: 'high',
     sourceIds: ['source.farming.larson-2014-pnas', 'source.farming.fuller-2014-convergent'],
-    reviewStatus: 'editorial-review-required',
+    reviewStatus: 'reviewed',
   },
   {
     id: 'claim.farming.multi.not-one-revolution',
@@ -110,7 +120,7 @@ export const manyBeginningsOfFarmingClaims: Claim[] = [
     kind: 'interpretation',
     certainty: 'high',
     sourceIds: ['source.farming.fuller-willcox-2011', 'source.farming.larson-2014-pnas'],
-    reviewStatus: 'editorial-review-required',
+    reviewStatus: 'reviewed',
   },
   {
     id: 'claim.farming.multi.domestication-process',
@@ -118,7 +128,7 @@ export const manyBeginningsOfFarmingClaims: Claim[] = [
     kind: 'interpretation',
     certainty: 'high',
     sourceIds: ['source.farming.larson-2014-pnas', 'source.farming.fuller-2014-convergent'],
-    reviewStatus: 'editorial-review-required',
+    reviewStatus: 'reviewed',
   },
   {
     id: 'claim.farming.multi.cereal-protracted',
@@ -126,7 +136,7 @@ export const manyBeginningsOfFarmingClaims: Claim[] = [
     kind: 'interpretation',
     certainty: 'high',
     sourceIds: ['source.farming.fuller-2014-convergent'],
-    reviewStatus: 'editorial-review-required',
+    reviewStatus: 'reviewed',
   },
   {
     id: 'claim.farming.multi.sw-asia',
@@ -134,7 +144,7 @@ export const manyBeginningsOfFarmingClaims: Claim[] = [
     kind: 'interpretation',
     certainty: 'high',
     sourceIds: ['source.farming.fuller-willcox-2011', 'source.farming.baird-2018-anatolia'],
-    reviewStatus: 'editorial-review-required',
+    reviewStatus: 'reviewed',
   },
   {
     id: 'claim.farming.multi.china',
@@ -142,7 +152,7 @@ export const manyBeginningsOfFarmingClaims: Claim[] = [
     kind: 'interpretation',
     certainty: 'high',
     sourceIds: ['source.farming.deng-2015-baligang', 'source.farming.fuller-2014-convergent'],
-    reviewStatus: 'editorial-review-required',
+    reviewStatus: 'reviewed',
   },
   {
     id: 'claim.farming.multi.new-guinea',
@@ -150,7 +160,7 @@ export const manyBeginningsOfFarmingClaims: Claim[] = [
     kind: 'interpretation',
     certainty: 'high',
     sourceIds: ['source.farming.denham-2003-kuk', 'source.farming.fullagar-2006-kuk-starch'],
-    reviewStatus: 'editorial-review-required',
+    reviewStatus: 'reviewed',
   },
   {
     id: 'claim.farming.multi.africa',
@@ -158,7 +168,7 @@ export const manyBeginningsOfFarmingClaims: Claim[] = [
     kind: 'interpretation',
     certainty: 'high',
     sourceIds: ['source.farming.winchell-2018-sorghum', 'source.farming.barron-2020-pearl-millet'],
-    reviewStatus: 'editorial-review-required',
+    reviewStatus: 'reviewed',
   },
   {
     id: 'claim.farming.multi.americas',
@@ -166,7 +176,7 @@ export const manyBeginningsOfFarmingClaims: Claim[] = [
     kind: 'interpretation',
     certainty: 'high',
     sourceIds: ['source.farming.piperno-2009-maize', 'source.farming.ranere-2009-balsas'],
-    reviewStatus: 'editorial-review-required',
+    reviewStatus: 'reviewed',
   },
   {
     id: 'claim.farming.multi.not-always-villages',
@@ -174,7 +184,7 @@ export const manyBeginningsOfFarmingClaims: Claim[] = [
     kind: 'interpretation',
     certainty: 'high',
     sourceIds: ['source.farming.ranere-2009-balsas', 'source.farming.fuller-2014-convergent'],
-    reviewStatus: 'editorial-review-required',
+    reviewStatus: 'reviewed',
   },
   {
     id: 'claim.farming.multi.no-automatic-cities',
@@ -182,7 +192,7 @@ export const manyBeginningsOfFarmingClaims: Claim[] = [
     kind: 'interpretation',
     certainty: 'high',
     sourceIds: ['source.farming.larson-2014-pnas', 'source.farming.fuller-2014-convergent'],
-    reviewStatus: 'editorial-review-required',
+    reviewStatus: 'reviewed',
   },
   {
     id: 'claim.farming.multi.evidence-bias',
@@ -190,7 +200,39 @@ export const manyBeginningsOfFarmingClaims: Claim[] = [
     kind: 'interpretation',
     certainty: 'high',
     sourceIds: ['source.farming.denham-2003-kuk', 'source.farming.fullagar-2006-kuk-starch', 'source.farming.fuller-2014-convergent'],
-    reviewStatus: 'editorial-review-required',
+    reviewStatus: 'reviewed',
+  },
+];
+
+export const manyBeginningsOfFarmingMedia: MediaAsset[] = [
+  {
+    id: 'media.farming.multiple-origins-map',
+    locator: mediaLocator('media.farming.multiple-origins-map'),
+    alt: 'World map with soft highlighted zones in Southwest Asia, northern and central China, the New Guinea highlands, the African Sahel, Mesoamerica, and northern South America; no arrows connect the regions',
+    depictionMode: 'map',
+    depictionLabel: 'Evidence-led world map · broad regions are approximate, modern coasts provide orientation',
+    rightsLabel: 'Chronos original map edit · Natural Earth base geography, Public Domain',
+    sourceIds: [
+      'source.farming.natural-earth',
+      'source.farming.fuller-2014-convergent',
+      'source.farming.denham-2003-kuk',
+      'source.farming.deng-2015-baligang',
+      'source.farming.winchell-2018-sorghum',
+      'source.farming.piperno-2009-maize',
+    ],
+    visualBriefRef: 'docs/research/many-beginnings-of-farming-map.md#generated-artwork-lineage',
+    reviewStatus: 'approved',
+  },
+  {
+    id: 'media.farming.wild-domesticated-wheat',
+    locator: mediaLocator('media.farming.wild-domesticated-wheat'),
+    alt: 'Side-by-side botanical diagram: a domesticated wheat ear on the left remains intact, while a wild wheat ear on the right breaks apart and scatters ripe spikelets; close-ups compare rough and smooth break scars',
+    depictionMode: 'diagram',
+    depictionLabel: 'Evidence-led botanical diagram · one cereal mechanism, not every domestication pathway',
+    rightsLabel: 'Chronos original diagram · scientific reference adapted from Fuks and Marom 2021, CC BY 4.0',
+    sourceIds: ['source.farming.fuks-marom-2021-wheat', 'source.farming.fuller-2014-convergent'],
+    visualBriefRef: 'docs/research/many-beginnings-of-farming.md#final-media-and-provenance',
+    reviewStatus: 'approved',
   },
 ];
 
@@ -284,6 +326,16 @@ export const manyBeginningsOfFarmingLesson: Lesson = {
           sourceIds: ['source.farming.fuller-2014-convergent', 'source.farming.larson-2014-pnas'],
         },
         {
+          id: 'module.farming.multi.wheat-comparison',
+          type: 'evidence',
+          title: 'Which ear is easier to gather?',
+          artifactLabel: 'Plant evidence model',
+          body: 'The ear on the right breaks apart when ripe, spreading wild spikelets. The ear on the left holds together until people thresh it. If gatherers repeatedly planted grain from ears that stayed intact, that useful inherited trait could become more common over many generations. This wheat example makes one mechanism visible; other crops and regions followed different pathways.',
+          mediaId: 'media.farming.wild-domesticated-wheat',
+          claimIds: ['claim.farming.multi.domestication-process', 'claim.farming.multi.cereal-protracted'],
+          sourceIds: ['source.farming.fuks-marom-2021-wheat', 'source.farming.fuller-2014-convergent'],
+        },
+        {
           id: 'module.farming.multi.process-not-plan',
           type: 'knowledge',
           eyebrow: 'A two-way change',
@@ -337,10 +389,36 @@ export const manyBeginningsOfFarmingLesson: Lesson = {
         },
         {
           id: 'module.farming.multi.map-alternative',
-          type: 'prose',
-          body: 'Picture the five zones spread across a world map: one in Southwest Asia; a broad band across northern and central China; the highlands of New Guinea; parts of the Sahel stretching across Africa; and several areas in the Americas, including Mesoamerica. They are separated by oceans and thousands of kilometres.\n\nThe crops strengthen the geographic pattern. Wheat did not turn into New Guinea taro, and Central Balsas maize was not carried there from the Fertile Crescent. Different local plants, managed through different practices, are the evidence for independent beginnings. The zones are still models: they show where evidence survives and has been studied, not every field or community that existed.',
-          claimIds: ['claim.farming.multi.independent-centers', 'claim.farming.multi.not-one-revolution'],
-          sourceIds: ['source.farming.larson-2014-pnas', 'source.farming.fuller-2014-convergent'],
+          type: 'historical-map',
+          eyebrow: 'Approximate early zones',
+          title: 'No single birthplace',
+          body: 'The highlighted areas show several broad regions where evidence supports independent food-production pathways. Compare their distance and their local crops. There are no arrows because this is not a story of one invention spreading everywhere.',
+          mediaId: 'media.farming.multiple-origins-map',
+          periodLabel: 'c. 10,000–3000 BCE',
+          focusPlace: 'Several regions across the world',
+          modernContext: 'Modern coastlines are used only for orientation',
+          accessibleSummary: 'A full world map highlights broad, separate areas in Southwest Asia, northern and central China, the New Guinea highlands, the African Sahel, Mesoamerica, and northern South America. No arrows or routes connect them. The wide separation and different local crops support several beginnings of food production, while the soft edges show that these are approximate evidence zones rather than exact invention spots.',
+          compactLabel: 'Broad evidence zones · no borders, routes, or pinpoint firsts',
+          coordinateNote: 'The lesson makes no claim about a single exact coordinate in any region. Modern Natural Earth coastlines anchor the relative geography; the highlighted zones summarize the broad locations supported by the cited regional studies.',
+          uncertaintyNote: 'A glow shows where evidence survives and has been studied, not every community that experimented with plants. Edges, dates, and even the number of independent pathways remain open to revision. China and the Americas each include more than one local pathway within the lesson’s regional grouping.',
+          depictionStatus: 'illustrative-reconstruction',
+          claimIds: [
+            'claim.farming.multi.independent-centers',
+            'claim.farming.multi.not-one-revolution',
+            'claim.farming.multi.sw-asia',
+            'claim.farming.multi.china',
+            'claim.farming.multi.new-guinea',
+            'claim.farming.multi.africa',
+            'claim.farming.multi.americas',
+          ],
+          sourceIds: [
+            'source.farming.natural-earth',
+            'source.farming.fuller-2014-convergent',
+            'source.farming.denham-2003-kuk',
+            'source.farming.deng-2015-baligang',
+            'source.farming.winchell-2018-sorghum',
+            'source.farming.piperno-2009-maize',
+          ],
         },
       ],
     },
@@ -424,8 +502,12 @@ export const manyBeginningsOfFarmingLesson: Lesson = {
     },
   ],
   claimIds: manyBeginningsOfFarmingClaims.map((claim) => claim.id),
-  sourceIds: [...manyBeginningsOfFarmingSources.map((source) => source.id), 'source.farming.baird-2018-anatolia'],
-  mediaIds: [],
+  sourceIds: [
+    ...manyBeginningsOfFarmingSources.map((source) => source.id),
+    'source.farming.baird-2018-anatolia',
+    'source.farming.natural-earth',
+  ],
+  mediaIds: ['media.farming.multiple-origins-map', 'media.farming.wild-domesticated-wheat'],
   promptIds: manyBeginningsOfFarmingPrompts.map((prompt) => prompt.id),
 };
 
@@ -438,22 +520,29 @@ export const manyBeginningsOfFarmingPrototypeReview: LessonPrototypeReview = {
       sectionId: 'section.farming.multi.what-domestication',
       kind: 'diagram',
       purpose: 'Compare a wild cereal ear that drops ripe grains with a domesticated ear that holds them for harvest.',
-      status: 'planned',
+      status: 'ready',
+      mediaId: 'media.farming.wild-domesticated-wheat',
     },
     {
       sectionId: 'section.farming.multi.five-beginnings',
       kind: 'map',
       purpose: 'Locate illustrative early food-production regions without borders, pinpoint firsts, diffusion arrows, or a claim that the set is complete.',
-      status: 'planned',
+      status: 'ready',
+      mediaId: 'media.farming.multiple-origins-map',
     },
     {
       sectionId: 'section.farming.multi.different-evidence',
       kind: 'other',
       purpose: 'Ask which clues survive from cereal farming versus tropical root-crop and wetland cultivation, and what each evidence set leaves uncertain.',
-      status: 'planned',
+      status: 'not-needed',
     },
   ],
-  productReview: { state: 'pending' },
+  productReview: {
+    state: 'approved',
+    reviewedBy: 'Carlin Aylsworth',
+    reviewedOn: '2026-08-11',
+    notes: 'Approved the learner-prototype checkpoint in the Codex task: "love the prototype".',
+  },
   learnerReview: {
     required: true,
     state: 'not-scheduled',
@@ -464,6 +553,7 @@ export const manyBeginningsOfFarmingPrototypeReview: LessonPrototypeReview = {
 export const manyBeginningsOfFarmingContent: AuthoredContentModule = {
   sources: manyBeginningsOfFarmingSources,
   claims: manyBeginningsOfFarmingClaims,
+  media: manyBeginningsOfFarmingMedia,
   prompts: manyBeginningsOfFarmingPrompts,
   lessons: [manyBeginningsOfFarmingLesson],
   prototypeReviews: [manyBeginningsOfFarmingPrototypeReview],

@@ -73,7 +73,8 @@ function Section({ section, state, onAttempt }: { section: LessonSection; state:
     if (module.type === 'knowledge' && nextModule?.type === 'historical-map') return null;
 
     if (module.type === 'historical-map') {
-      return <div className="historical-map-pair" key={module.id}>
+      const denseKnowledgeIntro = previousModule?.type === 'knowledge' && previousModule.items.length > 3;
+      return <div className={`historical-map-pair${denseKnowledgeIntro ? ' historical-map-pair-dense' : ''}`} key={module.id}>
         {previousModule?.type === 'knowledge'
           ? <Module module={previousModule} state={state} onAttempt={onAttempt} />
           : <aside className="historical-map-intro">
