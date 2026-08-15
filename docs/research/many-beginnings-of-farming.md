@@ -480,6 +480,122 @@ The prototype confirms the evidence/uncertainty model and sincere-attempt comple
 
 Accountable reviewer: **Carlin Aylsworth**. Product-owner state: **approved on 2026-08-11** from the direct response “love the prototype.” The approval adopts all five recommended decisions: title/scope/arc, required no-arrow world map, no Knowledge Card, placement before Settlements, and the specific Africa/Americas regional framing. Stage 15 final media, provenance, content hardening, and publication configuration may proceed. Required ages 11–14 walkthrough: **not scheduled**; the lesson remains unpublished and provisionally validated until that release gate passes.
 
+## Image lifecycle
+
+This section is the visual sanity-check surface for the lesson's accepted images. It keeps the reasoning, actual generation input, exact prompt, and accepted final together so reviewers can judge fidelity without reconstructing the process from scattered paths.
+
+### `media.farming.multiple-origins-map` — show several separated, approximate food-production regions
+
+#### 1. Reasoning and source basis
+
+- Teaching job: let learners locate and compare widely separated early food-production regions without implying one birthplace or one spreading invention.
+- Governing claims: `claim.farming.multi.independent-centers`, `claim.farming.multi.not-one-revolution`, and the regional claims for Southwest Asia, China, New Guinea, Africa, and the Americas.
+- Factual/historical sources: Natural Earth for real geography, plus Fuller et al. 2014, Denham et al. 2003, Deng et al. 2015, Winchell et al. 2018, and Piperno et al. 2009 for the broad evidence zones.
+- Why image instead of no media: the distance and separation among regions is a spatial relationship; prose alone makes that relationship harder to hold in one mental model.
+- Depiction and uncertainty boundary: modern coastlines orient the learner; every amber zone is deliberately broad and approximate. No exact sites, borders, routes, chronological ranking, or complete count are claimed.
+
+#### 2. Reference image actually used
+
+| Reference preview | Origin and permitted use |
+| --- | --- |
+| ![Natural Earth II world raster used as the map generation input](references/many-beginnings-farming/natural-earth-ii-shaded-relief-water.jpg) | Creator: Natural Earth contributors.<br>Canonical origin: [Natural Earth II 1:50m raster](https://www.naturalearthdata.com/downloads/50m-raster-data/50m-natural-earth-2/).<br>License/use: Public Domain.<br>Accessed: 2026-08-11. |
+
+- Repository research copy: `docs/research/references/many-beginnings-farming/natural-earth-ii-shaded-relief-water.jpg`, SHA-256 `2BF3F7CBEFC9BCEB338A78060D541D03BDA2F4AF4596C0C5A4680D87739538E0`.
+- Visual relationship to preserve: full-world 2:1 geography, coastline shapes, continent proportions, island positions, and relative distance among regions.
+- Details not to copy or infer: the reference contributes geography only. It does not establish ancient coastlines, food-production zones, dates, routes, borders, or historical claims.
+
+#### 3. Generation or transformation
+
+- Operation: raster image edit using the displayed Natural Earth reference as the only image input.
+- Actual input: the repository research copy and hash above.
+- Tool/model/date: OpenAI ImageGen in Codex; model version not exposed (`gpt-imagegen` in generated C2PA metadata); 2026-08-11.
+- Complete prompt:
+
+<details>
+<summary>Show exact map-edit prompt</summary>
+
+```text
+Edit the provided Natural Earth world raster into a historically disciplined educational map for an ages 11–14 lesson about the many beginnings of farming. Preserve the source coastline shapes, continent proportions, island positions, and geographic relationships exactly; this is a map edit, not invented geography. Keep an equirectangular full-world composition at 2:1 landscape aspect ratio. Restyle the base into a calm Chronos palette: deep desaturated blue ocean, warm parchment-to-olive land, subtle terrain shading, legible land-water contrast, no modern political borders.
+
+Overlay exactly five soft, semi-transparent, approximate origin zones using restrained amber/gold glow or textured wash, not point markers: (1) Southwest Asia / Fertile Crescent, a curved zone from the southern Levant through northern Mesopotamia toward the Zagros; (2) China, two broad related areas across northern China and the Yangtze basin; visually one regional grouping, not a migration route; (3) New Guinea highlands, a compact zone centered on the island’s central highlands; (4) the African Sahel, an elongated east-west band immediately south of the Sahara; (5) the Americas, two separate soft areas within one broad regional story—Mesoamerica and northern South America / Andean foothills. Zones should communicate approximate regions and uncertainty, not exact sites.
+
+Absolutely no arrows, travel lines, chronological sequence, pins, icons, crop illustrations, people, national borders, labels, dates, title, legend, captions, paragraphs, educational UI, frames, buttons, baked-in text, or invented coastlines. No single zone should look dominant. The visual thesis is simultaneous plurality: several communities in different regions changed how they lived with plants over long periods. Polished editorial museum-atlas quality, calm and uncluttered, with generous edge breathing room. Output a high-resolution raster suitable for responsive web use.
+```
+
+</details>
+
+- Candidate/rejection record: no visual candidate was rejected. The accepted 1774×887 output was resized for the 960-pixel Learn surface because its 1600-pixel derivative exceeded the unchanged media byte ceiling.
+
+#### 4. Accepted final image
+
+| Reference used | Accepted final |
+| --- | --- |
+| ![Natural Earth reference used for the farming regions map](references/many-beginnings-farming/natural-earth-ii-shaded-relief-water.jpg) | ![Accepted Chronos map with approximate early food-production zones](../../public/images/maps/many-beginnings-farming-zones.png) |
+
+- Final master: `public/images/maps/many-beginnings-farming-zones.png`, 960×480, SHA-256 `dc374e51d31d1b4e28da83c17d980f52f8b6726871616478f9198c4e3369e0a1`.
+- Runtime fallback: `/images/optimized/farming/multiple-origins-map.optimized.webp`, SHA-256 `ac553e99a841a5e22c7fe34559307a8c597badfc3f9b0ebc0f384e15bec78369`.
+- Reviewer/date/status: Chronos historical, visual, provenance, and responsive review; 2026-08-11; approved for the draft production preview.
+- Preserved relationship: the complete world geography, continent proportions, coastlines, and spatial separation remain recognizable and useful.
+- Intentional changes: the palette is calmer and six soft amber areas express five learner-facing regional groupings.
+- Unsupported details checked: no invented coastline, border, arrow, route, site pin, label, date, or complete-count claim appears. The regions remain approximate and are explained by native lesson text.
+
+### `media.farming.wild-domesticated-wheat` — make one domestication mechanism visible
+
+#### 1. Reasoning and source basis
+
+- Teaching job: let learners infer why a wheat ear that stays intact is easier for people to gather and replant than a wild ear that naturally breaks apart.
+- Governing claims: `claim.farming.multi.domestication-process` and `claim.farming.multi.cereal-protracted`.
+- Factual/scientific sources: Fuks and Marom 2021 Figure 2 for the rough-versus-smooth rachis scar and non-shattering-versus-brittle-ear comparison; Fuller et al. 2014 for the slow, repeated selection process.
+- Why image instead of no media: the physical relationship between intact ears, falling spikelets, and break scars is easier to reason from visually than from botanical terminology alone.
+- Depiction and uncertainty boundary: this is an evidence-led botanical model of one cereal mechanism, not a universal picture of every crop, region, or domestication pathway.
+
+#### 2. Reference image actually used
+
+| Reference preview | Origin and permitted use |
+| --- | --- |
+| ![Scientific wild and domesticated wheat comparison used as the generation reference](references/many-beginnings-farming/wild-domesticated-wheat-figure-2.jpg) | Creators: Fuks and Marom.<br>Canonical origin: [Figure 2, Animal Frontiers 11.3](https://pmc.ncbi.nlm.nih.gov/articles/PMC8214439/figure/F2/).<br>License/use: CC BY 4.0.<br>Accessed: 2026-08-11. |
+
+- Repository research copy: `docs/research/references/many-beginnings-farming/wild-domesticated-wheat-figure-2.jpg`, SHA-256 `ACC5C7C76101C53BA414936930DE193A4408DD073C555AE23FCBC73EBD8AF7BF`.
+- Visual relationship to preserve: domesticated wheat on the left stays intact; wild wheat on the right disarticulates; rough and smooth rachis scars remain distinguishable.
+- Details not to copy or infer: source labels, layout styling, typography, and branding are not copied. The reference does not show every domestication pathway or prove conscious planning by farmers.
+
+#### 3. Generation or transformation
+
+- Operation: raster image edit using the displayed CC BY scientific figure as the image input.
+- Actual input: the repository research copy and hash above.
+- Tool/model/date: OpenAI ImageGen in Codex; model version not exposed; 2026-08-11.
+- Complete prompt:
+
+<details>
+<summary>Show exact wheat-diagram edit prompt</summary>
+
+```text
+Edit the provided CC BY scientific comparison figure into a calm, accurate, label-free raster teaching diagram for an ages 11–14 history lesson. Preserve its central factual comparison and orientation: domesticated wheat on the LEFT with a strong, non-shattering ear that remains intact until people thresh it; wild wheat on the RIGHT with a brittle rachis whose mature spikelets disarticulate and fall for natural dispersal. Create a simple side-by-side botanical plate on a warm off-white parchment background.
+
+LEFT panel: one intact domesticated wheat ear upright, dense golden spikelets held to the central stalk; beside or below it, a small close-up botanical inset showing the rough broken scar of a rachis segment after threshing. Do not show grains falling naturally from this ear.
+
+RIGHT panel: one wild wheat ear upright but visibly coming apart at maturity, with several individual spikelets detaching and falling in a clear downward scatter; beside or below it, a small close-up botanical inset showing the smooth natural disarticulation scar. Make the falling spikelets unmistakable without using arrows.
+
+Use restrained museum-scientific illustration styling: fine ink contours, ochre and olive watercolor, precise plant morphology, strong visual hierarchy, generous whitespace, and the same scale for both main ears. No humans, farmer, field, hands, tools, DNA, clocks, decorative botanicals, cartoons, UI chrome, title, labels, letters, captions, paragraphs, arrows, or any baked-in text. Do not add claims beyond the reference. The learner should be able to infer the question: which kind is easier for people to gather and replant? High-resolution landscape raster, approximately 3:2.
+```
+
+</details>
+
+- Candidate/rejection record: no visual candidate was rejected. The accepted 1536×1024 output was resized to the 960-pixel Learn surface because a larger derivative could not meet the unchanged media byte ceiling without losing fidelity.
+
+#### 4. Accepted final image
+
+| Reference used | Accepted final |
+| --- | --- |
+| ![Scientific wheat comparison used as the image-edit reference](references/many-beginnings-farming/wild-domesticated-wheat-figure-2.jpg) | ![Accepted Chronos wild and domesticated wheat teaching diagram](../../public/images/evidence/wild-domesticated-wheat-diagram.png) |
+
+- Final master: `public/images/evidence/wild-domesticated-wheat-diagram.png`, 960×640, SHA-256 `2fd6eb72f6618b45c3bf2065c998b53ff74f9f19d3c2b5545901c81df7bdcf90`.
+- Runtime fallback: `/images/optimized/farming/wild-domesticated-wheat.optimized.webp`, SHA-256 `be0b7a376a919c614b925f87841e37f7e093d256edcdd4beef7c9015a8defbfd`.
+- Reviewer/date/status: Chronos scientific, visual, provenance, and responsive review; 2026-08-11; approved for the draft production preview.
+- Preserved relationship: intact domesticated ear versus brittle wild ear, with rough-versus-smooth scar comparison.
+- Intentional changes: source labels and photographic/scientific-figure styling were replaced by a calm, label-free botanical plate; native lesson copy now carries the explanation.
+- Unsupported details checked: no arrows, planning claim, human scene, extra crop, or universal-domestication claim was added. The wild ear visibly sheds spikelets while the domesticated ear remains intact.
+
 ## Final media and provenance — Stage 15
 
 ### World origins map
