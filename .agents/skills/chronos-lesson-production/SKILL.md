@@ -68,6 +68,8 @@ After explicit checkpoint approval, move the queue row to `Implementing` and ref
 
 For every accepted image, complete the runbook's top-level `## Image lifecycle` block before registering the final media. Show the actual reference and accepted final together, and record reasoning/source basis, reference origin/rights/path/hash, the complete generation prompt or direct-use transformation, tool/model/date, rejected candidates, final paths/hashes, and the comparison verdict. Do not treat scattered provenance fields or filenames as an adequate product-owner review surface.
 
+When a reviewed reference already has the approved scientific or explanatory layout, require a style-only image edit: preserve its exact composition, positions, proportions, labels, callouts, and evidence-bearing details and change only rendering style. Inspect comparative morphology at actual desktop and mobile lesson sizes; reject output when the subjects become visually indistinguishable even if labels remain correct. Reject structural drift; do not reinterpret, simplify, or rearrange the source unless the research note documents an adapted composition and Carlin explicitly approves it.
+
 Run:
 
 ```text

@@ -36,6 +36,8 @@ Find or create an image that is historically suitable, publicly redistributable,
    - prohibit baked-in educational prose, titles, logos, watermarks, and UI chrome;
    - label reconstruction, uncertainty, and approximate geography explicitly;
    - visually inspect the final image for anachronisms and unsupported details.
+   - when the reference already supplies the approved scientific or explanatory composition, use a **style-only transformation**: lock its canvas ratio, panel order, object positions/orientations/proportions, actions, callouts, short source-verified labels, and evidence-bearing details; change only the rendering style. Reject any candidate that omits, adds, moves, mirrors, rescales, relabels, or reinterprets a locked element, or makes comparison subjects visually indistinguishable at their actual desktop or mobile lesson size.
+   - use an adapted composition only when its changed relationship is documented and explicitly approved by the product owner; visual polish is never grounds for silently redesigning a reference.
    - complete the lesson research note's top-level `## Image lifecycle` block: visibly embed the actual reference and accepted final together, preserve the complete prompt verbatim, and record a comparison verdict. Do not make a reviewer infer this chain from paths or prose alone.
 
 ### Additional requirements for historical maps

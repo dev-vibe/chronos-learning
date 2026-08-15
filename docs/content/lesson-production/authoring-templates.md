@@ -92,7 +92,9 @@ Use one block below for every accepted image. Keep the actual reference and fina
 | ![Reference for <media-id>](<repository-relative-reference-path>) | Creator/institution:<br>Canonical origin:<br>License/use:<br>Accessed: |
 
 - Repository research copy and SHA-256:
+- Edit mode: style-only transformation | adapted composition | direct use
 - Visual relationship to preserve:
+- Locked layout/detail invariants (required for style-only transformation):
 - Details not to copy or infer:
 
 #### 3. Generation or transformation
@@ -117,6 +119,8 @@ Use one block below for every accepted image. Keep the actual reference and fina
 - Final master path, dimensions, and SHA-256:
 - Runtime/fallback path and SHA-256:
 - Reviewer/date/status:
+- Fidelity verdict — every locked invariant retained: yes | no (a `no` cannot be accepted)
+- Lesson-size verdict — evidence-bearing differences remain visually distinct on desktop and mobile: yes | no (a `no` cannot be accepted)
 - Comparison verdict — preserved relationship:
 - Comparison verdict — intentional changes:
 - Comparison verdict — unsupported details checked:
