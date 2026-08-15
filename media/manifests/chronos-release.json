@@ -325,17 +325,17 @@
         "bucket": "media-public",
         "fallback": {
           "path": "/images/optimized/farming/wild-domesticated-wheat.optimized.webp",
-          "width": 960,
-          "height": 640
+          "width": 1600,
+          "height": 590
         },
         "variants": [
           {
-            "objectKey": "farming/media.farming.wild-domesticated-wheat/2fd6eb72f6618b45/optimized/ql-v1/480w-webp-lossless-76863651abaa2387.webp",
+            "objectKey": "farming/media.farming.wild-domesticated-wheat/a34509bd7cbb3bcd/optimized/ql-v1/480w-webp-lossless-5a783b9757e600e5.webp",
             "mimeType": "image/webp",
-            "bytes": 161672,
-            "sha256": "76863651abaa2387b6985425bc849114590fb6e636c24eab13d3094ee383f76e",
+            "bytes": 79166,
+            "sha256": "5a783b9757e600e57e8cfa4c07a28c113d24529c7768c229c7c899419f4118b1",
             "width": 480,
-            "height": 320,
+            "height": 177,
             "compression": {
               "profile": "ql-v1",
               "codec": "webp",
@@ -349,12 +349,31 @@
             }
           },
           {
-            "objectKey": "farming/media.farming.wild-domesticated-wheat/2fd6eb72f6618b45/optimized/ql-v1/960w-webp-lossless-be0b7a376a919c61.webp",
+            "objectKey": "farming/media.farming.wild-domesticated-wheat/a34509bd7cbb3bcd/optimized/ql-v1/960w-webp-lossless-6ecfe1a5c200d5b6.webp",
             "mimeType": "image/webp",
-            "bytes": 633596,
-            "sha256": "be0b7a376a919c614b925f87841e37f7e093d256edcdd4beef7c9015a8defbfd",
+            "bytes": 284780,
+            "sha256": "6ecfe1a5c200d5b6c90effa78ee448917d5c29741d7002d0822668a66101f641",
             "width": 960,
-            "height": 640,
+            "height": 354,
+            "compression": {
+              "profile": "ql-v1",
+              "codec": "webp",
+              "encoder": "webp-lossless"
+            },
+            "fidelity": {
+              "mode": "pixel-exact",
+              "psnrDb": null,
+              "meanAbsoluteError": 0,
+              "maximumChannelDelta": 0
+            }
+          },
+          {
+            "objectKey": "farming/media.farming.wild-domesticated-wheat/a34509bd7cbb3bcd/optimized/ql-v1/1600w-webp-lossless-e6fd3f0746f4bb6f.webp",
+            "mimeType": "image/webp",
+            "bytes": 667052,
+            "sha256": "e6fd3f0746f4bb6f1dd6d9333d4903cb77e8bd2c323a0450ee6dcc286e0ba404",
+            "width": 1600,
+            "height": 590,
             "compression": {
               "profile": "ql-v1",
               "codec": "webp",
@@ -371,12 +390,12 @@
       },
       "source": {
         "bucket": "media-source",
-        "objectKey": "farming/media.farming.wild-domesticated-wheat/2fd6eb72f6618b45c3bf2065c998b53ff74f9f19d3c2b5545901c81df7bdcf90/original.png",
+        "objectKey": "farming/media.farming.wild-domesticated-wheat/a34509bd7cbb3bcd1245337f6fd7fee3c459e230bde279d394d19b93e8594de4/original.png",
         "mimeType": "image/png",
-        "bytes": 1022418,
-        "sha256": "2fd6eb72f6618b45c3bf2065c998b53ff74f9f19d3c2b5545901c81df7bdcf90",
-        "width": 960,
-        "height": 640
+        "bytes": 992389,
+        "sha256": "a34509bd7cbb3bcd1245337f6fd7fee3c459e230bde279d394d19b93e8594de4",
+        "width": 1600,
+        "height": 590
       }
     },
     {

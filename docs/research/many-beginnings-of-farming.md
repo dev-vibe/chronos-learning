@@ -556,32 +556,68 @@ Absolutely no arrows, travel lines, chronological sequence, pins, icons, crop il
 | ![Scientific wild and domesticated wheat comparison used as the generation reference](references/many-beginnings-farming/wild-domesticated-wheat-figure-2.jpg) | Creators: Fuks and Marom.<br>Canonical origin: [Figure 2, Animal Frontiers 11.3](https://pmc.ncbi.nlm.nih.gov/articles/PMC8214439/figure/F2/).<br>License/use: CC BY 4.0.<br>Accessed: 2026-08-11. |
 
 - Repository research copy: `docs/research/references/many-beginnings-farming/wild-domesticated-wheat-figure-2.jpg`, SHA-256 `ACC5C7C76101C53BA414936930DE193A4408DD073C555AE23FCBC73EBD8AF7BF`.
-- Visual relationship to preserve: domesticated wheat on the left stays intact; wild wheat on the right disarticulates; rough and smooth rachis scars remain distinguishable.
-- Details not to copy or infer: source labels, layout styling, typography, and branding are not copied. The reference does not show every domestication pathway or prove conscious planning by farmers.
+- Edit mode: style-only transformation with a targeted morphology correction requested by the accountable reviewer.
+- Visual relationship to preserve: the full left-to-right scientific sequence; compact domesticated wheat stays intact until threshing; visibly looser wild wheat disarticulates for dispersal; rough and smooth rachis scars remain distinguishable.
+- Locked layout/detail invariants: wide canvas; farmer and left dispersal sequence; threshing action; rough-scar inset; central domesticated and wild ears; spikelet-disarticulation sequence; smooth-scar inset; right dispersal sequence; all seven short labels, leader lines, and evidence-bearing morphology.
+- Details not to copy or infer: the reference does not show every domestication pathway or prove conscious planning by farmers. No new crop, process, chronology, or universal claim may be introduced.
 
 #### 3. Generation or transformation
 
-- Operation: raster image edit using the displayed CC BY scientific figure as the image input.
-- Actual input: the repository research copy and hash above.
+- Operation: strict raster image edit using the displayed CC BY scientific figure as the composition input, followed by one targeted edit to restore a visibly distinct wild-wheat morphology.
+- Actual inputs: the repository research copy and hash above; first structure-preserving edit candidate `exec-fbc20cc7-b83e-42d7-94ec-bb44aced64ae.png`, SHA-256 `1547D369091FB29B6EC4AA05776861FB6C0D6B25949EA87608A683E0F8F6449F`.
 - Tool/model/date: OpenAI ImageGen in Codex; model version not exposed; 2026-08-11.
-- Complete prompt:
+- Complete prompts:
 
 <details>
-<summary>Show exact wheat-diagram edit prompt</summary>
+<summary>Show exact wheat-diagram edit prompts</summary>
 
 ```text
-Edit the provided CC BY scientific comparison figure into a calm, accurate, label-free raster teaching diagram for an ages 11–14 history lesson. Preserve its central factual comparison and orientation: domesticated wheat on the LEFT with a strong, non-shattering ear that remains intact until people thresh it; wild wheat on the RIGHT with a brittle rachis whose mature spikelets disarticulate and fall for natural dispersal. Create a simple side-by-side botanical plate on a warm off-white parchment background.
+Use case: scientific-educational
+Asset type: Chronos lesson evidence figure, strict style-only edit
+Input image: Image 1 is the edit target and the locked scientific composition.
+Primary request: Apply only a polished animated editorial illustration style to Image 1. This is a faithful restyling, not a redesign.
 
-LEFT panel: one intact domesticated wheat ear upright, dense golden spikelets held to the central stalk; beside or below it, a small close-up botanical inset showing the rough broken scar of a rachis segment after threshing. Do not show grains falling naturally from this ear.
+ABSOLUTE COMPOSITION LOCK:
+- Preserve the exact wide canvas aspect ratio and white background.
+- Preserve every object, action, label, callout, leader line, inset, and spatial relationship from Image 1.
+- Keep the complete left-to-right sequence: left dispersal and seeding; threshing; rough-scar inset; domesticated ear; wild ear; spikelet disarticulation; smooth-scar inset; right dispersal and seeding.
+- Preserve all scientific morphology, human actions, labels, ground lines, leader lines, and inset borders.
+- Preserve every text label verbatim with the same hierarchy and placement.
+- Do not crop, zoom, recompose, simplify, add, remove, replace, mirror, relabel, or reinterpret anything.
 
-RIGHT panel: one wild wheat ear upright but visibly coming apart at maturity, with several individual spikelets detaching and falling in a clear downward scatter; beside or below it, a small close-up botanical inset showing the smooth natural disarticulation scar. Make the falling spikelets unmistakable without using arrows.
+STYLE CHANGE ONLY:
+- Convert the black linework and flat fills into a clean, friendly animated/cel-illustration treatment.
+- Use crisp dark outlines, restrained wheat greens and warm golds, subtle flat shading, and a clean off-white background.
+- Keep labels highly legible in a simple bold sans-serif typeface.
+- No decorative texture, parchment, border, title, watermark, extra annotation, or new educational text.
 
-Use restrained museum-scientific illustration styling: fine ink contours, ochre and olive watercolor, precise plant morphology, strong visual hierarchy, generous whitespace, and the same scale for both main ears. No humans, farmer, field, hands, tools, DNA, clocks, decorative botanicals, cartoons, UI chrome, title, labels, letters, captions, paragraphs, arrows, or any baked-in text. Do not add claims beyond the reference. The learner should be able to infer the question: which kind is easier for people to gather and replant? High-resolution landscape raster, approximately 3:2.
+Acceptance criterion: an overlay comparison must show the same layout and all original teaching details; only line/color/rendering style may differ.
+```
+
+Targeted correction after reviewer found that the generated central wild ear looked too similar to the domesticated ear:
+
+```text
+Use case: precise-object-edit
+Asset type: Chronos scientific evidence diagram
+Input images: Image 1 is the edit target. Image 2 is the authoritative morphology and layout reference.
+
+Primary request: Correct ONLY the central wheat head labeled "Wild Wheat" in Image 1. It currently looks too much like the compact domesticated head. Make the wild head visibly slimmer, looser, more irregular, and less densely packed, with more separated spikelets and the brittle/shattering character suggested by Image 2. The learner must immediately see that the domesticated head stays compact while the wild head is looser and readily disarticulates.
+
+LOCK EVERYTHING ELSE:
+- Keep the entire canvas, aspect ratio, white background, crop, positions, scale, spacing, and animated/cel illustration style of Image 1 unchanged.
+- Keep the central "Domesticated Wheat" head completely unchanged.
+- Keep the farmer, seeding sequences, threshing hand, rough-scar inset, spikelet-disarticulation sequence, smooth-scar inset, ground lines, leader lines, labels, typography, and colors unchanged.
+- Preserve all text verbatim and in the same position.
+- Do not add or remove any panel, callout, inset, action, label, or decorative element.
+- Do not modify the wild head's label or stem position.
+- No new text, title, border, texture, or watermark.
+
+Acceptance criterion: outside the pixels belonging to the central wild-wheat ear and its awns, the result should appear unchanged. The corrected wild ear must be visibly distinct from the compact domesticated ear at lesson display size.
 ```
 
 </details>
 
-- Candidate/rejection record: no visual candidate was rejected. The accepted 1536×1024 output was resized to the 960-pixel Learn surface because a larger derivative could not meet the unchanged media byte ceiling without losing fidelity.
+- Candidate/rejection record: the former 960×640 plate (`2FD6EB72…`) was rejected because it deleted the source's farmer, dispersal, threshing, labels, and exact sequence. The first strict edit (`1547D369…`) restored the sequence but was rejected after accountable-reviewer inspection because its central wild ear remained too similar to the domesticated ear. The accepted corrected output (`3C4F2724…`) changes that morphology only and was resized from 2066×761 to 1600×590 for the media pipeline.
 
 #### 4. Accepted final image
 
@@ -589,12 +625,13 @@ Use restrained museum-scientific illustration styling: fine ink contours, ochre 
 | --- | --- |
 | ![Scientific wheat comparison used as the image-edit reference](references/many-beginnings-farming/wild-domesticated-wheat-figure-2.jpg) | ![Accepted Chronos wild and domesticated wheat teaching diagram](../../public/images/evidence/wild-domesticated-wheat-diagram.png) |
 
-- Final master: `public/images/evidence/wild-domesticated-wheat-diagram.png`, 960×640, SHA-256 `2fd6eb72f6618b45c3bf2065c998b53ff74f9f19d3c2b5545901c81df7bdcf90`.
-- Runtime fallback: `/images/optimized/farming/wild-domesticated-wheat.optimized.webp`, SHA-256 `be0b7a376a919c614b925f87841e37f7e093d256edcdd4beef7c9015a8defbfd`.
-- Reviewer/date/status: Chronos scientific, visual, provenance, and responsive review; 2026-08-11; approved for the draft production preview.
-- Preserved relationship: intact domesticated ear versus brittle wild ear, with rough-versus-smooth scar comparison.
-- Intentional changes: source labels and photographic/scientific-figure styling were replaced by a calm, label-free botanical plate; native lesson copy now carries the explanation.
-- Unsupported details checked: no arrows, planning claim, human scene, extra crop, or universal-domestication claim was added. The wild ear visibly sheds spikelets while the domesticated ear remains intact.
+- Final master: `public/images/evidence/wild-domesticated-wheat-diagram.png`, 1600×590, SHA-256 `A34509BD7CBB3BCD1245337F6FD7FEE3C459E230BDE279D394D19B93E8594DE4`.
+- Runtime fallback: `/images/optimized/farming/wild-domesticated-wheat.optimized.webp`, 1600×590, SHA-256 `E6FD3F0746F4BB6F1DD6D9333D4903CB77E8BD2C323A0450EE6DCC286E0BA404`.
+- Reviewer/date/status: accountable-reviewer morphology correction received 2026-08-15; corrected asset awaiting final in-shell confirmation.
+- Fidelity verdict — every locked invariant retained: yes, with the explicitly requested targeted wild-ear morphology correction.
+- Preserved relationship: the complete scientific sequence remains visible; the domesticated ear is compact and intact, the wild ear is loose and irregular, the right sequence disarticulates, and the rough/smooth scars remain distinguishable.
+- Intentional changes: animated/cel rendering and the reviewer-requested stronger visual separation between the two central ears.
+- Unsupported details checked: no crop, chronology, planning claim, additional process, extra crop species, or universal-domestication claim was added.
 
 ## Final media and provenance — Stage 15
 
@@ -610,25 +647,14 @@ Use restrained museum-scientific illustration styling: fine ink contours, ochre 
 ### Wild and domesticated wheat comparison
 
 - Runtime media ID: `media.farming.wild-domesticated-wheat`.
-- Final master: `public/images/evidence/wild-domesticated-wheat-diagram.png`, 960×640 PNG, SHA-256 `2fd6eb72f6618b45c3bf2065c998b53ff74f9f19d3c2b5545901c81df7bdcf90`.
-- Runtime fallback: `/images/optimized/farming/wild-domesticated-wheat.optimized.webp`, 960×640 pixel-exact lossless WebP, SHA-256 `be0b7a376a919c614b925f87841e37f7e093d256edcdd4beef7c9015a8defbfd`.
+- Final master: `public/images/evidence/wild-domesticated-wheat-diagram.png`, 1600×590 PNG, SHA-256 `A34509BD7CBB3BCD1245337F6FD7FEE3C459E230BDE279D394D19B93E8594DE4`.
+- Runtime fallback: `/images/optimized/farming/wild-domesticated-wheat.optimized.webp`, 1600×590 pixel-exact lossless WebP, SHA-256 `E6FD3F0746F4BB6F1DD6D9333D4903CB77E8BD2C323A0450EE6DCC286E0BA404`.
 - Scientific visual reference: Fuks and Marom, “Sheep and wheat domestication in southwest Asia,” Figure 2, *Animal Frontiers* 11.3 (2021), CC BY 4.0. Local research copy: `docs/research/references/many-beginnings-farming/wild-domesticated-wheat-figure-2.jpg`, SHA-256 `ACC5C7C76101C53BA414936930DE193A4408DD073C555AE23FCBC73EBD8AF7BF`.
-- Generation tool: OpenAI ImageGen built into Codex, image-edit mode; model version was not exposed; generation date `2026-08-11`.
-- Full-resolution output: `C:\Users\carli\.codex\generated_images\019fef2e-3efb-7313-979b-6528d4f7d93d\exec-82affdfc-2914-4c1d-9c5a-b817f5cb6a4a.png`, 1536×1024.
-- Complete prompt:
-
-```text
-Edit the provided CC BY scientific comparison figure into a calm, accurate, label-free raster teaching diagram for an ages 11–14 history lesson. Preserve its central factual comparison and orientation: domesticated wheat on the LEFT with a strong, non-shattering ear that remains intact until people thresh it; wild wheat on the RIGHT with a brittle rachis whose mature spikelets disarticulate and fall for natural dispersal. Create a simple side-by-side botanical plate on a warm off-white parchment background.
-
-LEFT panel: one intact domesticated wheat ear upright, dense golden spikelets held to the central stalk; beside or below it, a small close-up botanical inset showing the rough broken scar of a rachis segment after threshing. Do not show grains falling naturally from this ear.
-
-RIGHT panel: one wild wheat ear upright but visibly coming apart at maturity, with several individual spikelets detaching and falling in a clear downward scatter; beside or below it, a small close-up botanical inset showing the smooth natural disarticulation scar. Make the falling spikelets unmistakable without using arrows.
-
-Use restrained museum-scientific illustration styling: fine ink contours, ochre and olive watercolor, precise plant morphology, strong visual hierarchy, generous whitespace, and the same scale for both main ears. No humans, farmer, field, hands, tools, DNA, clocks, decorative botanicals, cartoons, UI chrome, title, labels, letters, captions, paragraphs, arrows, or any baked-in text. Do not add claims beyond the reference. The learner should be able to infer the question: which kind is easier for people to gather and replant? High-resolution landscape raster, approximately 3:2.
-```
-
-- Review result: pass. The left ear remains intact; the right ear visibly disarticulates without arrows; rough/smooth scar insets reflect the scientific reference. Native copy explicitly limits this cereal mechanism so it cannot stand in for every crop or region.
-- Delivery decision: the visually accepted 1536 px output did not satisfy the unchanged `ql-v1` byte ceiling at 1200 px. The production master was sized to the Learn shell’s 960 px teaching surface; both 480 and 960 variants are pixel-exact.
+- Generation tool: OpenAI ImageGen built into Codex, image-edit mode; model version was not exposed; final correction date `2026-08-15`.
+- Full-resolution accepted generation: `C:\Users\carli\.codex\generated_images\019fef2e-3efb-7313-979b-6528d4f7d93d\exec-3589fe16-e378-417e-8a7a-0f631883cce9.png`, 2066×761, SHA-256 `3C4F2724152067ABC50DD05F2DA28FACA0589FAB5CF2B08CBFE20E7628C98425`.
+- Complete prompt chain, visible source/final comparison, and rejected candidates: [`Image lifecycle`](#mediafarmingwild-domesticated-wheat--make-one-domestication-mechanism-visible).
+- Review result: corrected after accountable-reviewer inspection. The left ear remains compact and intact; the central wild ear is now visibly looser and irregular; the right-hand spikelets disarticulate; rough/smooth scar insets remain distinct. Native copy explicitly limits this cereal mechanism so it cannot stand in for every crop or region.
+- Delivery decision: the accepted generation was resized to 1600×590; the 480, 960, and 1600 variants all satisfy `ql-v1` as pixel-exact lossless WebP.
 
 ### Deliberate no-media decision
 

@@ -226,12 +226,12 @@ export const manyBeginningsOfFarmingMedia: MediaAsset[] = [
   {
     id: 'media.farming.wild-domesticated-wheat',
     locator: mediaLocator('media.farming.wild-domesticated-wheat'),
-    alt: 'Side-by-side botanical diagram: a domesticated wheat ear on the left remains intact, while a wild wheat ear on the right breaks apart and scatters ripe spikelets; close-ups compare rough and smooth break scars',
+    alt: 'Illustrated sequence comparing wheat dispersal: a farmer gathers and threshes a compact domesticated ear with a rough break scar, while a looser wild ear disarticulates into falling spikelets with smooth scars',
     depictionMode: 'diagram',
     depictionLabel: 'Evidence-led botanical diagram · one cereal mechanism, not every domestication pathway',
     rightsLabel: 'Chronos original diagram · scientific reference adapted from Fuks and Marom 2021, CC BY 4.0',
     sourceIds: ['source.farming.fuks-marom-2021-wheat', 'source.farming.fuller-2014-convergent'],
-    visualBriefRef: 'docs/research/many-beginnings-of-farming.md#final-media-and-provenance',
+    visualBriefRef: 'docs/research/many-beginnings-of-farming.md#image-lifecycle',
     reviewStatus: 'approved',
   },
 ];
