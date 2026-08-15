@@ -121,6 +121,23 @@ describe('lesson production gates', () => {
     expect(run(approved, 'implementation').success).toBe(true);
   });
 
+  it('requires an obvious image lifecycle record for every ready media intention', () => {
+    const bundle = fixture();
+    bundle.prototypeReviews[0].productReview = { state: 'approved', reviewedBy: 'Product owner', reviewedOn: '2026-08-11' };
+    const mediaId = bundle.lessons.find((lesson) => lesson.id === LESSON_ID)!.mediaIds[0];
+    bundle.prototypeReviews[0].mediaIntentions[0] = {
+      ...bundle.prototypeReviews[0].mediaIntentions[0],
+      status: 'ready',
+      mediaId,
+    };
+
+    expect(run(bundle, 'implementation').errors.join(' ')).toMatch(/requires an "Image lifecycle" section/);
+
+    const withLifecycle = `${note()}\n## Image lifecycle\n\n### \`${mediaId}\` — City plan\nReference and final comparison.\n`;
+    expect(run(bundle, 'implementation', withLifecycle).success).toBe(true);
+    expect(run(bundle, 'implementation', withLifecycle.replace(mediaId, 'media.other.fixture')).errors.join(' ')).toMatch(/does not identify ready media/);
+  });
+
   it('blocks release on planned media, pending provenance, or incomplete required learner review', () => {
     const bundle = fixture();
     bundle.prototypeReviews[0] = {

@@ -503,6 +503,21 @@ This workflow applies to diagrams, infographics, timelines, maps, explanatory co
 
 The reference image governs visual structure, not historical truth. Claims, geography, chronology, and uncertainty still come from the reviewed authoritative sources. A text-only description of a reference image is not sufficient; the actual image must be supplied to the image-edit operation.
 
+### Required image lifecycle record
+
+Every accepted lesson image must have one plainly visible lifecycle block under a top-level `## Image lifecycle` heading in the lesson research note. This is the product owner's visual sanity-check surface, not a list of filenames hidden inside general provenance notes.
+
+Use one `### <media-id> — <teaching role>` block per image and present the sequence in this order:
+
+1. **Reasoning and source basis** — the teaching job, governing claim IDs and factual sources, why an image is better than no media, and the depiction/uncertainty boundary.
+2. **Reference image actually used** — embed the reviewed raster reference itself, then record its canonical origin, creator, license, repository research-copy path and hash, the visual relationship to preserve, and what must not be copied or inferred. A URL or prose description without the visible reference image is insufficient.
+3. **Generation or transformation** — record the actual input file/hash, edit versus direct-use decision, tool/model/date, and the complete prompt verbatim. For a directly licensed image that is only cropped or compressed, say `No generation` and record those transformations instead.
+4. **Accepted final image** — embed the accepted master beside the reference image, then record master/runtime paths and hashes, rejected candidates with reasons, reviewer/status, and a comparison verdict: what relationship stayed faithful, what intentionally changed, and what unsupported details were checked.
+
+The reference and accepted final must be visible together in the rendered Markdown when repository redistribution is permitted. Because the mandatory edit workflow already requires a rights-cleared reference, inability to retain and show that reference is a blocking rights/provenance finding: choose another reference, use the licensed original directly, use no image, or request a product-owner decision. Do not make reviewers reconstruct lineage from browser tabs, temporary generation storage, chat, or scattered note sections.
+
+Copy the exact lifecycle block from the [authoring templates](lesson-production/authoring-templates.md). Historical maps keep their specialist brief, but still receive this concise reference-versus-final lifecycle block in the lesson's main research note.
+
 ### Video decision gate
 
 Video is exceptional, not standard. Use it only when motion, change over time, sound/performance, physical technique, oral testimony, or an expert demonstration is itself necessary to the learning.
@@ -611,6 +626,7 @@ Before production implementation, make the note readable by someone who did not 
 - essential question, durable understanding, misconceptions, and vocabulary;
 - section/component storyboard;
 - media and card rationale, rights, provenance, and visual briefs;
+- a top-level image lifecycle section with visible reference-versus-final comparisons and exact prompts for every accepted image;
 - prompt rationale;
 - age 11–14 transformations;
 - reviewer names/statuses or explicit pending gates;
@@ -670,6 +686,7 @@ Follow the existing bounded-module architecture:
 13. Keep unpublished or incomplete neighbors fail-closed and non-completable.
 14. Do not mark the lesson Review-ready while an approved Recommended map or core evidence visual remains unimplemented without explicit deferral.
 15. Reject any lesson-media SVG or hand/procedurally drawn diagram. Verify that every diagram-like asset has a recorded raster reference and image-edit lineage before registering it.
+16. Before registering any final image, complete its visible `## Image lifecycle` block in the lesson research note. The implementation gate must be able to match every ready media intention to its media ID in that section.
 
 Use stable IDs everywhere. Array position is not identity. Do not duplicate lesson copy inside React components, migrations, or test fixtures when the repository module can be used.
 
@@ -691,6 +708,8 @@ npm run build
 ```
 
 Run `npm run lesson:gate -- --lesson <lesson-id> --note <path> --gate implementation` before moving the queue row to `Review`, then run the `release` gate before publication. If legacy code has documented failures, report the exact baseline and prove there are no new failures in changed paths. Do not normalize a new error as “legacy.”
+
+For every final image, open the rendered research note and inspect the reference and accepted final together. Confirm that the intended teaching relationship survived, protected or irrelevant expression was not copied, uncertainty did not become false precision, and no unsupported element was introduced. Paths, hashes, and an approved `MediaAsset` are necessary but do not replace this visual comparison.
 
 ## Stage 17 — Preview with learners and adults
 
@@ -758,6 +777,7 @@ A lesson is done only when:
 - content triage produced a coherent, bounded learning sequence;
 - the ages 11–14 pass improved comprehension without distorting history;
 - every section, component, medium, prompt, and card has a teaching purpose;
+- every accepted image has an obvious, rendered reasoning → reference → exact prompt/transformation → final lifecycle record;
 - evidence and uncertainty are honest and understandable;
 - repository modules, journey framing, media, migrations, and stable IDs are coherent;
 - validation, tests, build, database behavior, accessibility, and responsive preview pass;

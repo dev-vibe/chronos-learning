@@ -38,12 +38,27 @@ function repositoryRelativePath(root: string, candidate: string): { absolute: st
   return { absolute, relative: repoRelative };
 }
 
-function hasHeading(note: string, heading: string): boolean {
+function headingExpression(heading: string): RegExp {
   const escaped = heading
     .split('/')
     .map((part) => part.trim().replace(/[.*+?^${}()|[\]\\]/g, '\\$&'))
     .join('\\s*\\/\\s*');
-  return new RegExp(`^##\\s+${escaped}\\s*$`, 'im').test(note);
+  return new RegExp(`^##\\s+${escaped}\\s*$`, 'i');
+}
+
+function hasHeading(note: string, heading: string): boolean {
+  const expression = headingExpression(heading);
+  return note.split(/\r?\n/).some((line) => expression.test(line));
+}
+
+function sectionBody(note: string, heading: string): string {
+  const lines = note.split(/\r?\n/);
+  const expression = headingExpression(heading);
+  const start = lines.findIndex((line) => expression.test(line));
+  if (start < 0) return '';
+  const endOffset = lines.slice(start + 1).findIndex((line) => /^##\s+/.test(line));
+  const end = endOffset < 0 ? lines.length : start + 1 + endOffset;
+  return lines.slice(start + 1, end).join('\n');
 }
 
 function hasSectionCountException(note: string): boolean {
@@ -130,6 +145,22 @@ export function validateLessonGate({
     }
     if (gate !== 'prototype' && review.productReview.state !== 'approved') {
       errors.push(`${lessonId}: ${gate} gate requires recorded product approval`);
+    }
+
+    if (gate !== 'prototype') {
+      const readyMediaIds = review.mediaIntentions
+        .filter((intention) => intention.status === 'ready')
+        .flatMap((intention) => intention.mediaId ? [intention.mediaId] : []);
+      if (readyMediaIds.length > 0) {
+        const lifecycle = sectionBody(note, 'Image lifecycle');
+        if (!lifecycle) {
+          errors.push(`${lessonId}: ${gate} gate requires an "Image lifecycle" section for ready lesson media`);
+        } else {
+          for (const mediaId of readyMediaIds) {
+            if (!lifecycle.includes(mediaId)) errors.push(`${lessonId}: image lifecycle does not identify ready media ${mediaId}`);
+          }
+        }
+      }
     }
 
     if (gate === 'release') {

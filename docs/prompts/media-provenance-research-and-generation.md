@@ -36,6 +36,7 @@ Find or create an image that is historically suitable, publicly redistributable,
    - prohibit baked-in educational prose, titles, logos, watermarks, and UI chrome;
    - label reconstruction, uncertainty, and approximate geography explicitly;
    - visually inspect the final image for anachronisms and unsupported details.
+   - complete the lesson research note's top-level `## Image lifecycle` block: visibly embed the actual reference and accepted final together, preserve the complete prompt verbatim, and record a comparison verdict. Do not make a reviewer infer this chain from paths or prose alone.
 
 ### Additional requirements for historical maps
 
@@ -55,6 +56,7 @@ Find or create an image that is historically suitable, publicly redistributable,
    - historical suitability and uncertainty notes;
    - generation lineage when applicable;
    - canonical source and final runtime paths.
+   - the required rendered image lifecycle comparison for every accepted image, using the canonical lesson-production authoring template.
 9. Only after an approved decision:
    - add or update the Source and MediaAsset records, including a concise learner-facing `rightsLabel`;
    - change the internal `MediaAsset.reviewStatus` publication gate to approved; never render that workflow value as learner-facing historical/editorial approval;
@@ -65,4 +67,4 @@ Find or create an image that is historically suitable, publicly redistributable,
 
 ## Required response
 
-Return a compact table with asset, origin, creator, license, attribution, historical suitability, rights decision, and evidence links. State exactly which repository records were changed and which assets remain blocked.
+Return a compact table with asset, origin, creator, license, attribution, historical suitability, rights decision, and evidence links. Link directly to the research note's `## Image lifecycle` section, state the reference-versus-final comparison verdict, and state exactly which repository records were changed and which assets remain blocked.

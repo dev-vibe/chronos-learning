@@ -71,6 +71,56 @@ Required sincere-attempt evidence:
 | Intention ID | Section ID | Teaching question | Form | Evidence/claim basis | Depiction label | Accessible equivalent | Stage 14A treatment | Final review |
 | --- | --- | --- | --- | --- | --- | --- | --- | --- |
 
+## Image lifecycle
+
+Use one block below for every accepted image. Keep the actual reference and final image visible in rendered Markdown so reviewers can compare them without locating files manually.
+
+### `<media-id>` — <teaching role>
+
+#### 1. Reasoning and source basis
+
+- Teaching job:
+- Governing claim IDs:
+- Factual/historical sources:
+- Why image instead of no media:
+- Depiction and uncertainty boundary:
+
+#### 2. Reference image actually used
+
+| Reference preview | Origin and permitted use |
+| --- | --- |
+| ![Reference for <media-id>](<repository-relative-reference-path>) | Creator/institution:<br>Canonical origin:<br>License/use:<br>Accessed: |
+
+- Repository research copy and SHA-256:
+- Visual relationship to preserve:
+- Details not to copy or infer:
+
+#### 3. Generation or transformation
+
+- Operation: image edit | direct licensed use | crop/compression only
+- Actual input path and SHA-256:
+- Tool/model/date:
+- Complete prompt (`No generation` when applicable):
+
+```text
+<exact prompt, unchanged>
+```
+
+- Candidate/rejection record:
+
+#### 4. Accepted final image
+
+| Reference used | Accepted final |
+| --- | --- |
+| ![Reference comparison for <media-id>](<repository-relative-reference-path>) | ![Accepted final for <media-id>](<repository-relative-final-master-path>) |
+
+- Final master path, dimensions, and SHA-256:
+- Runtime/fallback path and SHA-256:
+- Reviewer/date/status:
+- Comparison verdict — preserved relationship:
+- Comparison verdict — intentional changes:
+- Comparison verdict — unsupported details checked:
+
 ## Knowledge Card decision
 
 Decision: card | no card
@@ -101,8 +151,6 @@ Depiction mode/label:
 Placement and learner action:
 Accessibility equivalent:
 Rights/provenance:
-Reviewed raster reference image URL/path and permitted use:
-Exact image-edit prompt and tool/model:
 Specialist runbook outputs:
 Review status:
 ```
