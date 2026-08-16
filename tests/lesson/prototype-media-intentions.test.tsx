@@ -41,4 +41,13 @@ describe('prototype media intentions', () => {
     rerender(<PrototypeMediaIntentions lesson={{ status: 'published' }} review={review} sectionId="section.fixture.evidence" />);
     expect(screen.queryByRole('complementary')).toBeNull();
   });
+
+  it('does not render after product approval', () => {
+    render(<PrototypeMediaIntentions
+      lesson={{ status: 'draft' }}
+      review={{ ...review, productReview: { state: 'approved', reviewedBy: 'Product owner', reviewedOn: '2026-08-16' } }}
+      sectionId="section.fixture.evidence"
+    />);
+    expect(screen.queryByRole('complementary')).toBeNull();
+  });
 });

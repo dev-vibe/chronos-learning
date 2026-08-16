@@ -19,7 +19,7 @@ export function PrototypeMediaIntentions({
   review?: LessonPrototypeReview;
   sectionId: string;
 }) {
-  if (lesson.status !== 'draft' || !unlockPreviewLessonsEnabled() || !review) return null;
+  if (lesson.status !== 'draft' || !unlockPreviewLessonsEnabled() || !review || review.productReview.state === 'approved') return null;
   const intentions = review.mediaIntentions.filter((intention) => intention.sectionId === sectionId);
   if (intentions.length === 0) return null;
 
