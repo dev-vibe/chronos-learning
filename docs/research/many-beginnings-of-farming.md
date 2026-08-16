@@ -702,14 +702,14 @@ Final deterministic record:
 
 - `npm.cmd run lesson:gate -- --lesson lesson.farming.multiple-origins --note docs/research/many-beginnings-of-farming.md --gate implementation` — pass.
 - `npm.cmd run lesson:gate -- --lesson lesson.farming.multiple-origins --note docs/research/many-beginnings-of-farming.md --gate release` — pass; this deterministic gate does not itself publish the draft.
-- `npm.cmd test -- --run` — pass, 21 files / 125 tests.
+- `npm.cmd test -- --run` — pass, 21 files / 126 tests after the approved-annotation visibility regression was added.
 - `npm.cmd run test:domain` — pass, 4 files / 20 tests.
 - `npm.cmd run validate:content` — pass.
 - `npm.cmd run media:build` and the post-build `npm.cmd run media:verify` — pass, 20 assets / 44 derivatives. A later whole-catalog repeat exceeded the local five-minute command allowance; catalog and media files were unchanged after the recorded pass.
 - `npm.cmd run build` — pass; existing large-chunk warning only.
 - `node scripts/visual-verify-many-beginnings.mjs` — pass at 1440×900 and 390×844, light/dark; responsive image dimensions match the generated-media manifest.
 - `npm.cmd run typecheck` — unchanged repository baseline failures in legacy `NodeContentDisplay`, legacy resource/category data, and existing v2 lesson-status inference. No diagnostic names the Many Beginnings content module.
-- Production-flag reachability and preview-only annotation semantics remain covered by the passing Learn/discovery and prototype-media tests; annotations do not add headings, sections, prompts, or completion state.
+- Production-flag reachability and prototype-annotation semantics remain covered by passing Learn/discovery and prototype-media tests; pending review annotations do not add headings, sections, prompts, or completion state, and approved annotations are absent from the learner-facing preview.
 
 Release disposition: **READY FOR THE NEXT EXPLICIT PRODUCT DECISION; STILL UNPUBLISHED.** Learner UAT is not a check in this lesson workflow. Keep the lesson `draft` and do not create a publication migration, hosted production change, or unlock until Carlin explicitly chooses that next product step. The future family/beta UAT program remains a separate prerequisite for sharing Chronos with the larger public.
 

@@ -36,9 +36,8 @@ async function openLesson(page) {
   if (await page.locator('[data-section-id]').count() !== 6) throw new Error('Many Beginnings did not render six semantic lesson sections.');
   if (await page.locator('.evidence-module').count() !== 1) throw new Error('The wheat evidence module did not render exactly once.');
   if (await page.locator('.historical-map').count() !== 1) throw new Error('The world origins map did not render exactly once.');
-  await page.locator('.prototype-media-intentions').first().waitFor();
-  if (await page.locator('.prototype-media-intentions').count() !== 3) throw new Error('The draft review metadata did not render three non-semantic media annotations.');
-  if (await page.locator('.prototype-media-intentions h1,.prototype-media-intentions h2,.prototype-media-intentions h3').count()) throw new Error('A prototype annotation became a semantic heading.');
+  await page.waitForTimeout(250);
+  if (await page.locator('.prototype-media-intentions').count() !== 0) throw new Error('Approved prototype annotations leaked into the learner-facing preview.');
 
   const imageChecks = [
     ['.evidence-module img', 'media.farming.wild-domesticated-wheat'],
@@ -107,5 +106,5 @@ for (const [width, height] of viewports) {
   console.log(`Passed ${width}x${height}.`);
 }
 if (errors.length) throw new Error(`Browser errors:\n${errors.join('\n')}`);
-console.log('ASH-74 final-media visual verification passed: 1440x900 and 390x844, light/dark, manifest-declared responsive media, six semantic sections, review annotations outside heading semantics, and no overflow or browser errors.');
+console.log('ASH-74 final-media visual verification passed: 1440x900 and 390x844, light/dark, manifest-declared responsive media, six semantic sections, no approved prototype annotations, and no overflow or browser errors.');
 process.exit(0);
