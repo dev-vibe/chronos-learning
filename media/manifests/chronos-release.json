@@ -258,6 +258,209 @@
       }
     },
     {
+      "id": "media.farming.multiple-origins-map",
+      "locator": {
+        "provider": "object-storage",
+        "bucket": "media-public",
+        "fallback": {
+          "path": "/images/optimized/farming/multiple-origins-map.optimized.webp",
+          "width": 960,
+          "height": 480
+        },
+        "variants": [
+          {
+            "objectKey": "farming/media.farming.multiple-origins-map/dc374e51d31d1b4e/optimized/ql-v1/480w-webp-lossless-54e9014f8789858f.webp",
+            "mimeType": "image/webp",
+            "bytes": 134182,
+            "sha256": "54e9014f8789858f209ba344a9e753dc6dcbeb07d708f24cdeb92c3da30154f1",
+            "width": 480,
+            "height": 240,
+            "compression": {
+              "profile": "ql-v1",
+              "codec": "webp",
+              "encoder": "webp-lossless"
+            },
+            "fidelity": {
+              "mode": "pixel-exact",
+              "psnrDb": null,
+              "meanAbsoluteError": 0,
+              "maximumChannelDelta": 0
+            }
+          },
+          {
+            "objectKey": "farming/media.farming.multiple-origins-map/dc374e51d31d1b4e/optimized/ql-v1/960w-webp-lossless-ac553e99a841a5e2.webp",
+            "mimeType": "image/webp",
+            "bytes": 533162,
+            "sha256": "ac553e99a841a5e22c7fe34559307a8c597badfc3f9b0ebc0f384e15bec78369",
+            "width": 960,
+            "height": 480,
+            "compression": {
+              "profile": "ql-v1",
+              "codec": "webp",
+              "encoder": "webp-lossless"
+            },
+            "fidelity": {
+              "mode": "pixel-exact",
+              "psnrDb": null,
+              "meanAbsoluteError": 0,
+              "maximumChannelDelta": 0
+            }
+          }
+        ]
+      },
+      "source": {
+        "bucket": "media-source",
+        "objectKey": "farming/media.farming.multiple-origins-map/dc374e51d31d1b4e28da83c17d980f52f8b6726871616478f9198c4e3369e0a1/original.png",
+        "mimeType": "image/png",
+        "bytes": 925938,
+        "sha256": "dc374e51d31d1b4e28da83c17d980f52f8b6726871616478f9198c4e3369e0a1",
+        "width": 960,
+        "height": 480
+      }
+    },
+    {
+      "id": "media.farming.wild-domesticated-wheat",
+      "locator": {
+        "provider": "object-storage",
+        "bucket": "media-public",
+        "fallback": {
+          "path": "/images/optimized/farming/wild-domesticated-wheat.optimized.webp",
+          "width": 1600,
+          "height": 590
+        },
+        "variants": [
+          {
+            "objectKey": "farming/media.farming.wild-domesticated-wheat/a34509bd7cbb3bcd/optimized/ql-v1/480w-webp-lossless-5a783b9757e600e5.webp",
+            "mimeType": "image/webp",
+            "bytes": 79166,
+            "sha256": "5a783b9757e600e57e8cfa4c07a28c113d24529c7768c229c7c899419f4118b1",
+            "width": 480,
+            "height": 177,
+            "compression": {
+              "profile": "ql-v1",
+              "codec": "webp",
+              "encoder": "webp-lossless"
+            },
+            "fidelity": {
+              "mode": "pixel-exact",
+              "psnrDb": null,
+              "meanAbsoluteError": 0,
+              "maximumChannelDelta": 0
+            }
+          },
+          {
+            "objectKey": "farming/media.farming.wild-domesticated-wheat/a34509bd7cbb3bcd/optimized/ql-v1/960w-webp-lossless-6ecfe1a5c200d5b6.webp",
+            "mimeType": "image/webp",
+            "bytes": 284780,
+            "sha256": "6ecfe1a5c200d5b6c90effa78ee448917d5c29741d7002d0822668a66101f641",
+            "width": 960,
+            "height": 354,
+            "compression": {
+              "profile": "ql-v1",
+              "codec": "webp",
+              "encoder": "webp-lossless"
+            },
+            "fidelity": {
+              "mode": "pixel-exact",
+              "psnrDb": null,
+              "meanAbsoluteError": 0,
+              "maximumChannelDelta": 0
+            }
+          },
+          {
+            "objectKey": "farming/media.farming.wild-domesticated-wheat/a34509bd7cbb3bcd/optimized/ql-v1/1600w-webp-lossless-e6fd3f0746f4bb6f.webp",
+            "mimeType": "image/webp",
+            "bytes": 667052,
+            "sha256": "e6fd3f0746f4bb6f1dd6d9333d4903cb77e8bd2c323a0450ee6dcc286e0ba404",
+            "width": 1600,
+            "height": 590,
+            "compression": {
+              "profile": "ql-v1",
+              "codec": "webp",
+              "encoder": "webp-lossless"
+            },
+            "fidelity": {
+              "mode": "pixel-exact",
+              "psnrDb": null,
+              "meanAbsoluteError": 0,
+              "maximumChannelDelta": 0
+            }
+          }
+        ]
+      },
+      "source": {
+        "bucket": "media-source",
+        "objectKey": "farming/media.farming.wild-domesticated-wheat/a34509bd7cbb3bcd1245337f6fd7fee3c459e230bde279d394d19b93e8594de4/original.png",
+        "mimeType": "image/png",
+        "bytes": 992389,
+        "sha256": "a34509bd7cbb3bcd1245337f6fd7fee3c459e230bde279d394d19b93e8594de4",
+        "width": 1600,
+        "height": 590
+      }
+    },
+    {
+      "id": "media.humans.adna-clean-room",
+      "locator": {
+        "provider": "object-storage",
+        "bucket": "media-public",
+        "fallback": {
+          "path": "/images/optimized/ancient-dna/ancient-dna-clean-room.optimized.webp",
+          "width": 1376,
+          "height": 1143
+        },
+        "variants": [
+          {
+            "objectKey": "ancient-dna/media.humans.adna-clean-room/d310d8d739f9316f/optimized/ql-v1/480w-webp-lossless-d9d303b22da5fb38.webp",
+            "mimeType": "image/webp",
+            "bytes": 224316,
+            "sha256": "d9d303b22da5fb38ddf2840627c29dfbc188b0ad76fb114e9e0743151762141b",
+            "width": 480,
+            "height": 399,
+            "compression": {
+              "profile": "ql-v1",
+              "codec": "webp",
+              "encoder": "webp-lossless"
+            },
+            "fidelity": {
+              "mode": "pixel-exact",
+              "psnrDb": null,
+              "meanAbsoluteError": 0,
+              "maximumChannelDelta": 0
+            }
+          },
+          {
+            "objectKey": "ancient-dna/media.humans.adna-clean-room/d310d8d739f9316f/optimized/ql-v1/1376w-webp-q94-7aee21f7642d8e4f.webp",
+            "mimeType": "image/webp",
+            "bytes": 336740,
+            "sha256": "7aee21f7642d8e4fc155b1c44340d65a074261fe2426540c2ff10fd6dfcbc79b",
+            "width": 1376,
+            "height": 1143,
+            "compression": {
+              "profile": "ql-v1",
+              "codec": "webp",
+              "encoder": "webp-lossy",
+              "quality": 94
+            },
+            "fidelity": {
+              "mode": "measured-quasi-lossless",
+              "psnrDb": 46.51,
+              "meanAbsoluteError": 0.675,
+              "maximumChannelDelta": 13
+            }
+          }
+        ]
+      },
+      "source": {
+        "bucket": "media-source",
+        "objectKey": "ancient-dna/media.humans.adna-clean-room/d310d8d739f9316fe8ec80ac14c93590871a9ab29483111a0809c189ec10babe/original.webp",
+        "mimeType": "image/webp",
+        "bytes": 405598,
+        "sha256": "d310d8d739f9316fe8ec80ac14c93590871a9ab29483111a0809c189ec10babe",
+        "width": 1376,
+        "height": 1143
+      }
+    },
+    {
       "id": "media.humans.africa-evidence-map",
       "locator": {
         "provider": "object-storage",
@@ -360,68 +563,6 @@
         "sha256": "03ed157fb7ead3fd49ff08dca88c6742297b6e0ef1d984e82cfdb92d8d15df72",
         "width": 1600,
         "height": 1000
-      }
-    },
-    {
-      "id": "media.humans.adna-clean-room",
-      "locator": {
-        "provider": "object-storage",
-        "bucket": "media-public",
-        "fallback": {
-          "path": "/images/optimized/ancient-dna/ancient-dna-clean-room.optimized.webp",
-          "width": 1376,
-          "height": 1143
-        },
-        "variants": [
-          {
-            "objectKey": "ancient-dna/media.humans.adna-clean-room/d310d8d739f9316f/optimized/ql-v1/480w-webp-lossless-d9d303b22da5fb38.webp",
-            "mimeType": "image/webp",
-            "bytes": 224316,
-            "sha256": "d9d303b22da5fb38ddf2840627c29dfbc188b0ad76fb114e9e0743151762141b",
-            "width": 480,
-            "height": 399,
-            "compression": {
-              "profile": "ql-v1",
-              "codec": "webp",
-              "encoder": "webp-lossless"
-            },
-            "fidelity": {
-              "mode": "pixel-exact",
-              "psnrDb": null,
-              "meanAbsoluteError": 0,
-              "maximumChannelDelta": 0
-            }
-          },
-          {
-            "objectKey": "ancient-dna/media.humans.adna-clean-room/d310d8d739f9316f/optimized/ql-v1/1376w-webp-q94-7aee21f7642d8e4f.webp",
-            "mimeType": "image/webp",
-            "bytes": 336740,
-            "sha256": "7aee21f7642d8e4fc155b1c44340d65a074261fe2426540c2ff10fd6dfcbc79b",
-            "width": 1376,
-            "height": 1143,
-            "compression": {
-              "profile": "ql-v1",
-              "codec": "webp",
-              "encoder": "webp-lossy",
-              "quality": 94
-            },
-            "fidelity": {
-              "mode": "measured-quasi-lossless",
-              "psnrDb": 46.51,
-              "meanAbsoluteError": 0.675,
-              "maximumChannelDelta": 13
-            }
-          }
-        ]
-      },
-      "source": {
-        "bucket": "media-source",
-        "objectKey": "ancient-dna/media.humans.adna-clean-room/d310d8d739f9316fe8ec80ac14c93590871a9ab29483111a0809c189ec10babe/original.webp",
-        "mimeType": "image/webp",
-        "bytes": 405598,
-        "sha256": "d310d8d739f9316fe8ec80ac14c93590871a9ab29483111a0809c189ec10babe",
-        "width": 1376,
-        "height": 1143
       }
     },
     {

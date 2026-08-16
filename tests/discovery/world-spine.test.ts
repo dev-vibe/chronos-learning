@@ -30,8 +30,7 @@ describe('canonical World Spine roadmap', () => {
     setUnlockPreviewLessonsForTests(true);
     const view = createWorldSpineRoadmapView(worldSpineRoadmap, chronosContent.lessons, {}, 'lesson.farming.multiple-origins');
     const multipleOrigins = view.flatMap((chapter) => chapter.nodes).find((node) => node.id === 'lesson.farming.multiple-origins');
-    // Preview unlock cannot invent missing lesson modules; unpublished spine nodes stay preparing.
-    expect(multipleOrigins).toMatchObject({ status: 'preparing' });
+    expect(multipleOrigins).toMatchObject({ status: 'current', href: '/learn/lesson.farming.multiple-origins' });
     expect(resolveWorldSpineAccess(worldSpineRoadmap, chronosContent.lessons, {}, 'lesson.writing.early-systems')).toEqual({ accessible: true });
   });
 
