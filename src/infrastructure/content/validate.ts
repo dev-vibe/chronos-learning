@@ -10,6 +10,7 @@ import {
   SourceSchema,
   UnderstandingPromptSchema,
 } from '../../domains/contracts';
+import { LessonPrototypeReviewSchema } from './prototypeReview';
 
 export type ContentBundle = {
   sources: unknown[];
@@ -20,6 +21,7 @@ export type ContentBundle = {
   journeys: unknown[];
   invitations: unknown[];
   cards: unknown[];
+  prototypeReviews?: unknown[];
 };
 
 const MAX_PUBLISHED_VARIANT_BYTES = 768 * 1024;
@@ -46,6 +48,7 @@ export function validateContent(input: ContentBundle) {
   const journeys = parse<any>(input.journeys, JourneySchema, 'journey');
   const invitations = parse<any>(input.invitations ?? [], JourneyInvitationSchema, 'invitation');
   const cards = parse<any>(input.cards, KnowledgeCardSchema, 'card');
+  const prototypeReviews = parse<any>(input.prototypeReviews ?? [], LessonPrototypeReviewSchema, 'prototypeReview');
   const all = [...sources, ...claims, ...media, ...prompts, ...lessons, ...journeys, ...invitations, ...cards];
   const ids = new Set<string>();
   for (const item of all) {
@@ -67,6 +70,7 @@ export function validateContent(input: ContentBundle) {
 
   for (const lesson of lessons) {
     const sectionIds = new Set<string>();
+    const renderedPromptIds = new Set<string>();
     for (const section of lesson.sections) {
       if (sectionIds.has(section.id)) errors.push(`${lesson.id}: duplicate section ID ${section.id}`);
       sectionIds.add(section.id);
@@ -79,6 +83,7 @@ export function validateContent(input: ContentBundle) {
           if (asset && asset.depictionMode !== 'map') errors.push(`${module.id}: historical map media must use map depiction mode`);
         }
         if (module.type === 'prompt') {
+          renderedPromptIds.add(module.promptId);
           const prompt = promptById.get(module.promptId);
           if (!prompt) errors.push(`${module.id}: broken prompt reference ${module.promptId}`);
           else if (prompt.lessonId !== lesson.id) errors.push(`${module.id}: prompt ${module.promptId} belongs to ${prompt.lessonId}`);
@@ -95,9 +100,29 @@ export function validateContent(input: ContentBundle) {
     for (const promptId of lesson.promptIds) {
       const prompt = promptById.get(promptId);
       if (prompt && prompt.lessonId !== lesson.id) errors.push(`${lesson.id}: prompt ${promptId} belongs to ${prompt.lessonId}`);
+      if (prompt?.required && !renderedPromptIds.has(promptId)) errors.push(`${lesson.id}: required prompt ${promptId} is not rendered by a lesson module`);
     }
     const requiredPromptCount = lesson.promptIds.filter((id: string) => promptById.get(id)?.required).length;
     if (lesson.status === 'published' && (requiredPromptCount < 1 || requiredPromptCount > 3)) errors.push(`${lesson.id}: published lessons require one to three required prompts`);
+  }
+
+  const reviewedLessonIds = new Set<string>();
+  for (const review of prototypeReviews) {
+    if (reviewedLessonIds.has(review.lessonId)) errors.push(`duplicate prototype review for ${review.lessonId}`);
+    reviewedLessonIds.add(review.lessonId);
+    const lesson = lessonById.get(review.lessonId);
+    if (!lesson) {
+      errors.push(`prototype review: broken lesson reference ${review.lessonId}`);
+      continue;
+    }
+    if (lesson.status !== 'draft') errors.push(`${review.lessonId}: published lessons must not retain prototype review metadata`);
+    const sectionIds = new Set(lesson.sections.map((section: any) => section.id));
+    for (const intention of review.mediaIntentions) {
+      if (!sectionIds.has(intention.sectionId)) errors.push(`${review.lessonId}: prototype media intention references unknown section ${intention.sectionId}`);
+      if (intention.mediaId && !lesson.mediaIds.includes(intention.mediaId) && lesson.heroMediaId !== intention.mediaId) {
+        errors.push(`${review.lessonId}: prototype media intention references unregistered media ${intention.mediaId}`);
+      }
+    }
   }
 
   for (const claim of claims) refs(claim.id, claim.sourceIds, sourceIds, 'source');

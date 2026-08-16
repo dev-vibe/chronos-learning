@@ -36,6 +36,9 @@ Find or create an image that is historically suitable, publicly redistributable,
    - prohibit baked-in educational prose, titles, logos, watermarks, and UI chrome;
    - label reconstruction, uncertainty, and approximate geography explicitly;
    - visually inspect the final image for anachronisms and unsupported details.
+   - when the reference already supplies the approved scientific or explanatory composition, use a **style-only transformation**: lock its canvas ratio, panel order, object positions/orientations/proportions, actions, callouts, short source-verified labels, and evidence-bearing details; change only the rendering style. Reject any candidate that omits, adds, moves, mirrors, rescales, relabels, or reinterprets a locked element, or makes comparison subjects visually indistinguishable at their actual desktop or mobile lesson size.
+   - use an adapted composition only when its changed relationship is documented and explicitly approved by the product owner; visual polish is never grounds for silently redesigning a reference.
+   - complete the lesson research note's top-level `## Image lifecycle` block: visibly embed the actual reference and accepted final together, preserve the complete prompt verbatim, and record a comparison verdict. Do not make a reviewer infer this chain from paths or prose alone.
 
 ### Additional requirements for historical maps
 
@@ -55,6 +58,7 @@ Find or create an image that is historically suitable, publicly redistributable,
    - historical suitability and uncertainty notes;
    - generation lineage when applicable;
    - canonical source and final runtime paths.
+   - the required rendered image lifecycle comparison for every accepted image, using the canonical lesson-production authoring template.
 9. Only after an approved decision:
    - add or update the Source and MediaAsset records, including a concise learner-facing `rightsLabel`;
    - change the internal `MediaAsset.reviewStatus` publication gate to approved; never render that workflow value as learner-facing historical/editorial approval;
@@ -65,4 +69,4 @@ Find or create an image that is historically suitable, publicly redistributable,
 
 ## Required response
 
-Return a compact table with asset, origin, creator, license, attribution, historical suitability, rights decision, and evidence links. State exactly which repository records were changed and which assets remain blocked.
+Return a compact table with asset, origin, creator, license, attribution, historical suitability, rights decision, and evidence links. Link directly to the research note's `## Image lifecycle` section, state the reference-versus-final comparison verdict, and state exactly which repository records were changed and which assets remain blocked.

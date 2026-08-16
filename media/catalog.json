@@ -42,6 +42,39 @@
       ]
     },
     {
+      "id": "media.farming.multiple-origins-map",
+      "collection": "farming",
+      "sourcePath": "public/images/maps/many-beginnings-farming-zones.png",
+      "fallbackPath": "/images/optimized/farming/multiple-origins-map.optimized.webp",
+      "preset": "drawing",
+      "widths": [
+        480,
+        960
+      ]
+    },
+    {
+      "id": "media.farming.wild-domesticated-wheat",
+      "collection": "farming",
+      "sourcePath": "public/images/evidence/wild-domesticated-wheat-diagram.png",
+      "fallbackPath": "/images/optimized/farming/wild-domesticated-wheat.optimized.webp",
+      "preset": "drawing",
+      "widths": [
+        480,
+        960
+      ]
+    },
+    {
+      "id": "media.humans.adna-clean-room",
+      "collection": "ancient-dna",
+      "sourcePath": "public/images/evidence/ancient-dna-clean-room-illustration.webp",
+      "fallbackPath": "/images/optimized/ancient-dna/ancient-dna-clean-room.optimized.webp",
+      "preset": "picture",
+      "widths": [
+        480,
+        768
+      ]
+    },
+    {
       "id": "media.humans.africa-evidence-map",
       "collection": "human-origins",
       "sourcePath": "public/images/maps/africa-origins-evidence-map.webp",
@@ -63,17 +96,6 @@
         480,
         960,
         1600
-      ]
-    },
-    {
-      "id": "media.humans.adna-clean-room",
-      "collection": "ancient-dna",
-      "sourcePath": "public/images/evidence/ancient-dna-clean-room-illustration.webp",
-      "fallbackPath": "/images/optimized/ancient-dna/ancient-dna-clean-room.optimized.webp",
-      "preset": "picture",
-      "widths": [
-        480,
-        768
       ]
     },
     {

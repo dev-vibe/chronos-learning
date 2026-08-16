@@ -1,6 +1,10 @@
+import { createRequire } from 'node:module';
 import path from 'path';
 import { defineConfig, loadEnv } from 'vite';
 import react from '@vitejs/plugin-react';
+
+const require = createRequire(import.meta.url);
+const dependencyRoot = path.resolve(path.dirname(require.resolve('vite')), '../../..');
 
 export default defineConfig(({ mode }) => {
     const env = loadEnv(mode, '.', '');
@@ -8,6 +12,9 @@ export default defineConfig(({ mode }) => {
       server: {
         port: 3000,
         host: '0.0.0.0',
+        fs: {
+          allow: [path.resolve(__dirname), dependencyRoot],
+        },
       },
       plugins: [react()],
       define: {

@@ -1,5 +1,4 @@
 import type { Claim, Journey, JourneyInvitation, KnowledgeCard, Lesson, MediaAsset, Source, UnderstandingPrompt } from '../src/domains/contracts';
-
 export type AuthoredContentModule = {
   readonly sources?: readonly Source[];
   readonly claims?: readonly Claim[];

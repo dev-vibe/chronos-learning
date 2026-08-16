@@ -4,7 +4,7 @@ Linear anchor: [ASH-65 — Maintain the canonical Chronos lesson production queu
 
 Curriculum source: [Canonical World Spine roster](world-spine-canonical-roster.md) and [World Spine audit](world-spine-audit.md)
 
-Status: **Roster positions 7–14 approved on July 19, 2026.** Farming and Settlements and the clean-slate Human Origins rebuild merged on July 26, 2026. The product owner then explicitly directed production of World Spine position 2, Migrations, Encounters, and Ancient DNA, under ASH-73. No other World Spine node is approved for automatic production by this update.
+Status: **Roster positions 7–14 approved on July 19, 2026.** Farming and Settlements, Human Origins, and Migrations merged by July 27, 2026. Selection returned to the lowest eligible `Ready` row: Many Beginnings of Farming under ASH-74. No other World Spine node is approved for automatic production by this update.
 
 This is the version-controlled source of truth for which canonical lesson is produced next. It is an editorially curated production queue, not the complete knowledge graph, legacy-data order, or a promise that every canonical node is ready for lesson production.
 
@@ -14,7 +14,7 @@ The canonical workflow is [`docs/content/lesson-creation-runbook.md`](lesson-cre
 
 Canonical-roster prerequisites govern learner and curriculum sequencing: they state what a learner should understand before a node. The **Production dependencies** column below governs whether an agent may begin creating a lesson. Implementation may therefore occur outside learner-facing chronological order when its production dependencies are satisfied.
 
-Implementation order never overrides canonical Journey order. Completing a later lesson early does not remove, fulfill, or permit learners to skip its curriculum prerequisite. In particular, `lesson.farming.multiple-origins` remains the curriculum prerequisite for `lesson.farming.settlements`, even though the drafted Farming and Settlements lesson is the first eligible production task.
+Implementation order never overrides canonical Journey order. Completing a later lesson early does not remove, fulfill, or permit learners to skip its curriculum prerequisite. In particular, `lesson.farming.multiple-origins` remains the curriculum prerequisite for `lesson.farming.settlements`, even though Farming and Settlements published first.
 
 ## Selection rules
 
@@ -48,24 +48,25 @@ The production order below is operational and may differ from canonical learner 
 
 | Production order | Lesson | Spine position | Why it is queued | Production dependencies | Status | Linear / PR |
 | ---: | --- | ---: | --- | --- | --- | --- |
-| 10 | `lesson.humans.migrations-and-interbreeding` — Migrations, Encounters, and Ancient DNA | 2 | Product-owner direction: continue the World History opening sequence immediately after Human Origins. | Human Origins merged and verified; source and claim brief approved with a Neanderthal card | `Implementing` | [ASH-73](https://linear.app/ashs-workshop/issue/ASH-73/research-and-publish-migrations-encounters-and-ancient-dna) · branch `codex/ash-73-migrations-ancient-dna` |
-| 20 | `lesson.farming.multiple-origins` — Many Beginnings of Farming | 7 | Establish the global frame that prevents a single “Neolithic Revolution” story. | No prior lesson implementation; source and claim brief is the first research gate | `Ready` | Per-lesson issue created when selected |
+| 10 | `lesson.humans.migrations-and-interbreeding` — Migrations, Encounters, and Ancient DNA | 2 | Product-owner direction: continue the World History opening sequence immediately after Human Origins. | Human Origins merged and verified; source and claim brief approved with a Neanderthal card | `Complete` | [ASH-73](https://linear.app/ashs-workshop/issue/ASH-73/research-and-publish-migrations-encounters-and-ancient-dna) · [PR #19 merged](https://github.com/dev-vibe/chronos-learning/pull/19) |
+| 20 | `lesson.farming.multiple-origins` — Many Beginnings of Farming | 7 | Establish the global frame that prevents a single “Neolithic Revolution” story. | No prior lesson implementation; source and claim brief is the first research gate | `Review` | [ASH-74](https://linear.app/ashs-workshop/issue/ASH-74/research-and-publish-many-beginnings-of-farming) · [draft PR #22](https://github.com/dev-vibe/chronos-learning/pull/22) · branch `codex/ash-74-v2-forward-test` |
 | 30 | `lesson.animals.domestication-and-pastoralism` — Animals, Herding, and Mobility | 9 | Explain mobile pastoral lifeways as a durable complement and alternative to settled farming. | Many Beginnings of Farming implementation available | `Planned` | None |
 | 40 | `lesson.technology.wheels-metals-and-work` — Wheels, Metals, and Specialized Work | 10 | Provide the material and labor-system bridge into early cities and states. | Farming and Settlements implementation available; dedicated source brief | `Planned` | None |
 | 50 | `lesson.egypt.nile-state` — The Nile and an Early Egyptian State | 13 | Add a contrasting, evidence-rich pathway to early state formation. | Uruk reference implementation available | `Ready` | Per-lesson issue created when selected |
 | 60 | `lesson.caral.andean-urbanism` — Caral and Early Andean Urbanism | 14 | Add an independently developed urban case that challenges one-path models of cities. | Many Beginnings of Farming implementation available | `Ready` | Per-lesson issue created when selected |
 
-`lesson.humans.migrations-and-interbreeding` is the single active row. After ASH-72 and PR #18 completed the clean-slate Human Origins rebuild, the product owner explicitly directed production of the next canonical lesson, Spine position 2. This supersedes the queue's ordinary lowest-`Ready` selection rule for this increment. Its Stages 0-14 checkpoint is recorded at `docs/research/migrations-and-ancient-dna.md`; the product owner approved implementation on July 26, 2026; the proposed Denisovan card was subsequently removed, leaving the Neanderthal card.
+`lesson.farming.multiple-origins` is the single active row. Carlin approved its Stages 0–14B learner prototype on August 11, 2026. Stage 15 implementation and the Stage 16 production-preview gate are complete on draft PR #22. On August 16, Carlin provisionally deferred the unavailable reference-tier ages 11–14 walkthrough until the deep pre-wide-release UAT pass. The lesson remains in `Review`, draft, unpublished, and explicitly not learner-proven; the deferral does not authorize publication work to begin early.
 
-After this lesson leaves active production, selection returns to the lowest eligible `Ready` row — `lesson.farming.multiple-origins` — unless the product owner approves another queue amendment. The Nile node is also reviewed and ready but follows in production order. Caral remains approved and ready, with its stated production dependency; Planned rows require explicit promotion before selection.
+After this lesson leaves active production, selection returns to the lowest eligible `Ready` row — currently `lesson.egypt.nile-state` — unless the product owner approves another queue amendment. Caral remains approved and ready, with its stated production dependency; Planned rows require explicit promotion before selection.
 
-Implementing positions 1 and 2 after positions 8, 11, and 12 does not change canonical learner order. `lesson.farming.multiple-origins` remains the curriculum prerequisite for `lesson.farming.settlements`, and that prerequisite cannot be skipped.
+Publishing position 7 after position 8 does not change canonical learner order. `lesson.farming.multiple-origins` remains the curriculum prerequisite for `lesson.farming.settlements`, and that prerequisite cannot be skipped.
 
 ## Completed reference lessons in the approved segment
 
 | Lesson | Spine position | Evidence of completion | Notes |
 | --- | ---: | --- | --- |
 | `lesson.humans.homo-sapiens-origins` — Our Species Begins in Africa | 1 | [ASH-72](https://linear.app/ashs-workshop/issue/ASH-72/rebuild-and-publish-our-species-begins-in-africa) · [PR #18 merged](https://github.com/dev-vibe/chronos-learning/pull/18) | Clean-slate rebuild approved and merged 2026-07-26 after the ASH-69 preview was rejected. Decision packet in `docs/research/homo-sapiens-origins.md`. |
+| `lesson.humans.migrations-and-interbreeding` — Migrations, Encounters, and Ancient DNA | 2 | [ASH-73](https://linear.app/ashs-workshop/issue/ASH-73/research-and-publish-migrations-encounters-and-ancient-dna) · [PR #19 merged](https://github.com/dev-vibe/chronos-learning/pull/19) | Spine position 2 published 2026-07-27. Decision packet in `docs/research/migrations-and-ancient-dna.md`. |
 | `lesson.uruk.first-city` — Uruk: Life in an Early City | 11 | Merged responsive Learn loop and supporting media work | First complete vertical slice and migration reference; not a universal content template. |
 | `lesson.writing.early-systems` — From Marks to Proto-Cuneiform | 12 | [ASH-63](https://linear.app/ashs-workshop/issue/ASH-63/publish-early-writing-systems-and-prove-the-reusable-learn-pipeline) · [PR #8 merged](https://github.com/dev-vibe/chronos-learning/pull/8) | Second approved reference proving the reusable content, media, completion, and recovery pipeline. |
 | `lesson.farming.settlements` — Farming and Settlements | 8 | [ASH-70](https://linear.app/ashs-workshop/issue/ASH-70/research-and-publish-farming-and-settlements) · [PR #15 merged](https://github.com/dev-vibe/chronos-learning/pull/15) | Revision 2 approved 2026-07-21 and merged 2026-07-26 after the first preview failed product-owner review. Decision packet in `docs/research/farming-settlements.md`. |
