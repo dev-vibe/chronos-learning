@@ -672,20 +672,21 @@ The evidence-comparison intention is resolved as `not-needed`. The section’s f
 | Learner prototype in real Learn shell | Complete; independent adult learner-proxy re-review passed |
 | Ages 11–14 learner walkthrough | **Required; provisionally deferred by Carlin on 2026-08-16 until deep pre-wide-release UAT** |
 | Product-owner checkpoint | **Approved by Carlin Aylsworth on 2026-08-11** |
-| Final lesson implementation / publication | Stage 15 implementation and Stage 16 production-preview gate complete; publication remains blocked |
+| Final lesson implementation / publication | Stage 15 implementation and the provisional unpublished portion of Stage 16 are complete; publication remains blocked |
 
 ### Final sign-off checklist
 
-- [ ] Research integrity
+- [x] Research integrity
 - [x] Historical / editorial review
 - [ ] Ages 11–14 learning / editorial review
-- [ ] Section / component storyboard review
+- [x] Section / component storyboard review
 - [x] Visual / media / map review as applicable
 - [x] Rights / provenance review
 - [x] Knowledge Card review or explicit no-card decision (proposed: no card)
 - [x] Prompt / completion review
 - [x] Accessibility review
-- [ ] Content / media / tests / type / build validation
+- [x] Content / media / tests / build validation
+- [ ] Full repository typecheck — unchanged documented baseline accepted only for provisional unpublished integration
 - [ ] Empty-database and hosted-development verification
 - [x] Responsive browser review (raw prototype, desktop/mobile, light/dark)
 - [x] Independent adult learner-proxy review at prototype checkpoint
@@ -694,7 +695,7 @@ The evidence-comparison intention is resolved as `not-needed`. The section’s f
 
 ## Production-preview validation — Stage 16
 
-Stage 15 implementation is complete and the lesson is in `Review`. The approved draft now uses two final evidence-led visuals, remains before Farming and Settlements in the preview World Spine, and keeps all learner meaning in native prose, semantic modules, prompts, and disclosures. No publication migration, hosted change, production unlock, or card unlock was created.
+Stage 15 implementation is complete and the lesson is in `Review`. The provisional unpublished portion of Stage 16 is complete; the release portion is not. The approved draft now uses two final evidence-led visuals, remains before Farming and Settlements in the preview World Spine, and keeps all learner meaning in native prose, semantic modules, prompts, and disclosures. No publication migration, hosted change, production unlock, or card unlock was created.
 
 Responsive product review passed at 1440×900 and 390×844 in both light and dark themes. The first desktop pass exposed a blocking composition defect: the five-region comparison squeezed the map and cropped its world extent. The dense comparison now receives its own desktop teaching row, the full 2:1 map uses `object-fit: contain`, and the existing stacked mobile reading order is preserved. Final captures are stored in `docs/pr/ash-74/`.
 
@@ -702,15 +703,18 @@ Final deterministic record:
 
 - `npm.cmd run lesson:gate -- --lesson lesson.farming.multiple-origins --note docs/research/many-beginnings-of-farming.md --gate implementation` — pass.
 - `npm.cmd run lesson:gate -- --lesson lesson.farming.multiple-origins --note docs/research/many-beginnings-of-farming.md --gate release` — expected fail only because required learner review is not complete.
-- `npm.cmd test -- --run` — pass, 21 files / 123 tests.
+- `npm.cmd test -- --run` — pass, 21 files / 126 tests.
 - `npm.cmd run test:domain` — pass, 4 files / 20 tests.
 - `npm.cmd run validate:content` — pass.
 - `npm.cmd run media:build` and the post-build `npm.cmd run media:verify` — pass, 20 assets / 44 derivatives. A later whole-catalog repeat exceeded the local five-minute command allowance; catalog and media files were unchanged after the recorded pass.
 - `npm.cmd run build` — pass; existing large-chunk warning only.
+- `node scripts/visual-verify-many-beginnings.mjs` — pass at 1440×900 and 390×844, light/dark; responsive image dimensions match the generated-media manifest.
 - `npm.cmd run typecheck` — unchanged repository baseline failures in legacy `NodeContentDisplay`, legacy resource/category data, and existing v2 lesson-status inference. No diagnostic names the Many Beginnings content module.
 - Production-flag reachability and preview-only annotation semantics remain covered by the passing Learn/discovery and prototype-media tests; annotations do not add headings, sections, prompts, or completion state.
 
 Release disposition: **PROVISIONALLY DEFERRED; STILL BLOCKED AS DESIGNED.** Carlin accepted the current process and sanity review as enough for ballpark confidence on 2026-08-16 because a learner is not currently available. Schedule and record a deep ages 11–14 UAT pass before broad release, resolve any observed confusion, then rerun the release gate. Until it passes, keep the lesson `draft`, keep ASH-74 and the Wayfinder map open, and do not create a publication migration or describe the workflow as learner-proven.
+
+Safe typecheck deferral: Carlin accepts the unchanged repository-wide typecheck baseline only for this provisional unpublished integration. It is not a release pass. The baseline must be resolved, or explicitly dispositioned by the accountable release reviewer with current diagnostics, before broad release.
 
 ## Ages 11–14 learner walkthrough — Stage 17
 

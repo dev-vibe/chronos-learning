@@ -10,7 +10,7 @@ export const worldHistoryJourney: Journey = {
   description: 'The primary chronological journey through reviewed turning points in world history.',
   period: 'Deep history to the present',
   region: 'Global',
-  approximateMinutes: 81,
+  approximateMinutes: 69,
   featured: true,
   prerequisiteJourneyIds: [],
   relatedJourneyIds: [],

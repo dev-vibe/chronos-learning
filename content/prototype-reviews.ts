@@ -1,4 +1,5 @@
 import type { LessonPrototypeReview } from '../src/infrastructure/content/prototypeReview';
+import { manyBeginningsOfFarmingPrototypeReview } from './prototype-reviews/many-beginnings-of-farming';
 
 /**
  * Development and authoring-only review metadata.
@@ -7,4 +8,4 @@ import type { LessonPrototypeReview } from '../src/infrastructure/content/protot
  * imports it only in Vite development preview mode, while lesson gate scripts
  * import it directly for deterministic validation.
  */
-export const chronosPrototypeReviews: readonly LessonPrototypeReview[] = [];
+export const chronosPrototypeReviews: readonly LessonPrototypeReview[] = [manyBeginningsOfFarmingPrototypeReview];

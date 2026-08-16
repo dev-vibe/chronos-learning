@@ -1,5 +1,4 @@
 import type { Claim, Lesson, MediaAsset, Source, UnderstandingPrompt } from '../../src/domains/contracts';
-import type { LessonPrototypeReview } from '../../src/infrastructure/content/prototypeReview';
 import type { AuthoredContentModule } from '../assemble';
 import { mediaLocator } from '../shared/media-locator';
 
@@ -390,6 +389,7 @@ export const manyBeginningsOfFarmingLesson: Lesson = {
         {
           id: 'module.farming.multi.map-alternative',
           type: 'historical-map',
+          introLayout: 'dense',
           eyebrow: 'Approximate early zones',
           title: 'No single birthplace',
           body: 'The highlighted areas show several broad regions where evidence supports independent food-production pathways. Compare their distance and their local crops. There are no arrows because this is not a story of one invention spreading everywhere.',
@@ -511,50 +511,10 @@ export const manyBeginningsOfFarmingLesson: Lesson = {
   promptIds: manyBeginningsOfFarmingPrompts.map((prompt) => prompt.id),
 };
 
-export const manyBeginningsOfFarmingPrototypeReview: LessonPrototypeReview = {
-  lessonId: 'lesson.farming.multiple-origins',
-  researchNotePath: 'docs/research/many-beginnings-of-farming.md',
-  validationTier: 'reference',
-  mediaIntentions: [
-    {
-      sectionId: 'section.farming.multi.what-domestication',
-      kind: 'diagram',
-      purpose: 'Compare a wild cereal ear that drops ripe grains with a domesticated ear that holds them for harvest.',
-      status: 'ready',
-      mediaId: 'media.farming.wild-domesticated-wheat',
-    },
-    {
-      sectionId: 'section.farming.multi.five-beginnings',
-      kind: 'map',
-      purpose: 'Locate illustrative early food-production regions without borders, pinpoint firsts, diffusion arrows, or a claim that the set is complete.',
-      status: 'ready',
-      mediaId: 'media.farming.multiple-origins-map',
-    },
-    {
-      sectionId: 'section.farming.multi.different-evidence',
-      kind: 'other',
-      purpose: 'Ask which clues survive from cereal farming versus tropical root-crop and wetland cultivation, and what each evidence set leaves uncertain.',
-      status: 'not-needed',
-    },
-  ],
-  productReview: {
-    state: 'approved',
-    reviewedBy: 'Carlin Aylsworth',
-    reviewedOn: '2026-08-11',
-    notes: 'Approved the learner-prototype checkpoint in the Codex task: "love the prototype".',
-  },
-  learnerReview: {
-    required: true,
-    state: 'not-scheduled',
-    notes: 'Provisionally deferred by Carlin Aylsworth on 2026-08-16 because a learner is not currently available. Product-owner sanity review supports ballpark confidence, but this is not a learner pass; complete deep ages 11-14 UAT before broad release.',
-  },
-};
-
 export const manyBeginningsOfFarmingContent: AuthoredContentModule = {
   sources: manyBeginningsOfFarmingSources,
   claims: manyBeginningsOfFarmingClaims,
   media: manyBeginningsOfFarmingMedia,
   prompts: manyBeginningsOfFarmingPrompts,
   lessons: [manyBeginningsOfFarmingLesson],
-  prototypeReviews: [manyBeginningsOfFarmingPrototypeReview],
 };
