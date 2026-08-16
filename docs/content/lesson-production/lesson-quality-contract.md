@@ -94,9 +94,9 @@ Record concrete evidence from the rendered lesson for every finding. Mark each f
 5. Have the owner inspect desktop/mobile and light/dark states and disposition every finding. Never let an agent or proxy approve on the owner's behalf.
 6. Record explicit approval or return to Stage 14A for requested changes; repeat the affected review on the revised experience.
 
-### Learner walkthrough
+### Optional learner observation and future public-release UAT
 
-Require an ages 11–14 walkthrough for every reference or high-risk lesson and at least one of every four ordinary lessons. Escalate any lesson when proxy reviewers disagree, confusion is observed, or age fit is uncertain.
+Learner UAT is not a per-lesson gate. A deeper family/beta pass belongs to the later broad-public-release program. Optional learner observation can still inform product judgment; proxy disagreement, observed confusion, or uncertain age fit returns the lesson to prototype/product review rather than creating a separate UAT blocker.
 
 Observe before explaining, then ask:
 
@@ -110,7 +110,7 @@ Observe before explaining, then ask:
 
 Record behavior, not only preference. Note skipped labels, mistaken causal links, reconstruction treated as evidence, prompts passed without intended understanding, and unclear actions. Revise the lesson, then repeat the affected part of the walkthrough.
 
-If a required learner is unavailable, mark validation `provisional`, keep the lesson unpublished and its tracking open, and do not describe the lesson or workflow as proven.
+Record optional observations when available, but do not mark the lesson provisional merely because no learner walkthrough occurred.
 
 ## Production-preview states
 

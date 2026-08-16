@@ -18,7 +18,6 @@ const review = (): LessonPrototypeReview => ({
     status: 'planned',
   }],
   productReview: { state: 'pending' },
-  learnerReview: { required: false, state: 'not-required' },
 });
 
 const note = (signoff = false) => `
@@ -165,22 +164,11 @@ describe('lesson production gates', () => {
     expect(run(bundle, [approved], 'implementation', `${note()}\n${lifecycle(mediaId).replace('#### 3. Generation or transformation', '#### Generation')}`).errors.join(' ')).toMatch(/missing generation or transformation/);
   });
 
-  it('requires accountable fields for a provisional learner-review deferral', () => {
-    const deferred = review();
-    deferred.validationTier = 'reference';
-    deferred.learnerReview = { required: true, state: 'provisionally-deferred' };
-    expect(run(fixture(), [deferred]).errors.join(' ')).toMatch(/deferredOn and deferredBy/);
-    deferred.learnerReview = { required: true, state: 'provisionally-deferred', deferredOn: '2026-08-16', deferredBy: 'Product owner' };
-    expect(run(fixture(), [deferred]).success).toBe(true);
-  });
-
-  it('blocks release on planned media, pending provenance, or incomplete required learner review', () => {
-    const deferred = review();
-    deferred.validationTier = 'reference';
-    deferred.productReview = { state: 'approved', reviewedBy: 'Product owner', reviewedOn: '2026-08-11' };
-    deferred.learnerReview = { required: true, state: 'provisionally-deferred', deferredOn: '2026-08-16', deferredBy: 'Product owner' };
-    const errors = run(fixture(), [deferred], 'release', note(true)).errors.join(' ');
-    expect(errors).toMatch(/required learner review is not complete/);
+  it('blocks release on planned media or pending provenance', () => {
+    const approved = review();
+    approved.validationTier = 'reference';
+    approved.productReview = { state: 'approved', reviewedBy: 'Product owner', reviewedOn: '2026-08-11' };
+    const errors = run(fixture(), [approved], 'release', note(true)).errors.join(' ');
     expect(errors).toMatch(/is still planned/);
     expect(errors).toMatch(/lacks approved provenance/);
   });

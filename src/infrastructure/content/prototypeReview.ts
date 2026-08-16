@@ -26,39 +26,12 @@ export const ProductPrototypeReviewSchema = z.object({
   }
 });
 
-export const LearnerPrototypeReviewSchema = z.object({
-  required: z.boolean(),
-  state: z.enum(['not-scheduled', 'scheduled', 'provisionally-deferred', 'completed', 'not-required']),
-  completedOn: IsoDate.optional(),
-  deferredOn: IsoDate.optional(),
-  deferredBy: z.string().min(1).optional(),
-  notes: z.string().min(1).optional(),
-}).superRefine((review, context) => {
-  if (review.required && review.state === 'not-required') {
-    context.addIssue({ code: z.ZodIssueCode.custom, path: ['state'], message: 'required learner review cannot be not-required' });
-  }
-  if (!review.required && review.state !== 'not-required') {
-    context.addIssue({ code: z.ZodIssueCode.custom, path: ['state'], message: 'optional learner review must use not-required' });
-  }
-  if (review.state === 'completed' && !review.completedOn) {
-    context.addIssue({ code: z.ZodIssueCode.custom, path: ['completedOn'], message: 'completed learner review requires completedOn' });
-  }
-  if (review.state === 'provisionally-deferred' && (!review.deferredOn || !review.deferredBy)) {
-    context.addIssue({ code: z.ZodIssueCode.custom, path: ['deferredOn'], message: 'provisionally deferred learner review requires deferredOn and deferredBy' });
-  }
-});
-
 export const LessonPrototypeReviewSchema = z.object({
   lessonId: StableId,
   researchNotePath: z.string().regex(/^docs\/research\/[a-z0-9][a-z0-9-]*\.md$/, 'expected a repository-relative docs/research Markdown path'),
   validationTier: z.enum(['ordinary', 'reference', 'high-risk']),
   mediaIntentions: z.array(PrototypeMediaIntentionSchema).min(1),
   productReview: ProductPrototypeReviewSchema,
-  learnerReview: LearnerPrototypeReviewSchema,
-}).superRefine((review, context) => {
-  if ((review.validationTier === 'reference' || review.validationTier === 'high-risk') && !review.learnerReview.required) {
-    context.addIssue({ code: z.ZodIssueCode.custom, path: ['learnerReview', 'required'], message: `${review.validationTier} lessons require learner review` });
-  }
 });
 
 export type PrototypeMediaIntention = z.infer<typeof PrototypeMediaIntentionSchema>;

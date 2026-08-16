@@ -713,15 +713,11 @@ Run `npm run lesson:gate -- --lesson <lesson-id> --note <path> --gate implementa
 
 For every final image, open the rendered research note and inspect the reference and accepted final together. Confirm that the intended teaching relationship survived, protected or irrelevant expression was not copied, uncertainty did not become false precision, and no unsupported element was introduced. Paths, hashes, and an approved `MediaAsset` are necessary but do not replace this visual comparison.
 
-## Stage 17 — Preview with learners and adults
+## Stage 17 — Reserve future family and public-release UAT
 
-Use the structured walkthrough in the [lesson quality contract](lesson-production/lesson-quality-contract.md). A proxy or adult/historian review cannot substitute for a child comprehension review.
+Learner UAT is not a per-lesson implementation, merge, or release gate in this production workflow. Chronos will run a deeper family/beta UAT program before sharing the product with the larger public. A lesson may record optional learner observations before then, but absence of that evidence does not block its current gates and does not require a provisional state.
 
-Require an ages 11–14 walkthrough for every reference or high-risk lesson and at least one of every four ordinary lessons. Proxy disagreement, observed confusion, a misleading evidence inference, or uncertainty about age fit escalates any lesson to mandatory learner review.
-
-When a required learner is temporarily unavailable, the production-system change may merge as provisionally validated, but the lesson issue and any process-validation tracking remain open, the lesson stays unpublished, and nobody may describe the workflow or lesson as proven.
-
-Do not ask only “Did you like it?” Observe and ask:
+If an optional walkthrough is run, do not ask only “Did you like it?” Observe and ask:
 
 - What do you think this lesson was mainly about?
 - What evidence do you remember?
@@ -733,7 +729,7 @@ Do not ask only “Did you like it?” Observe and ask:
 
 Record where learners hesitate, misread a causal link, skip a label, misunderstand reconstruction as evidence, or pass a prompt without the intended understanding. Fix the lesson, not the learner.
 
-Record observed behavior and the resulting revision in the research note. Fix the lesson, not the learner. Repeat the walkthrough after a material change to the mental model, evidence encounter, prompts, or action hierarchy.
+Record observed behavior and any resulting revision in the research note. Fix the lesson, not the learner. Keep the future broad-public-release UAT decision separate from the lesson-production gate.
 
 ## Stage 18 — Publish, monitor, and correct
 
