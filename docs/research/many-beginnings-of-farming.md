@@ -1,6 +1,6 @@
 # Many Beginnings of Farming — research and editorial note
 
-Date: 2026-07-27; learner-prototype checkpoint updated 2026-08-11
+Date: 2026-07-27; production-preview and final visual review updated 2026-08-15
 Lesson ID: `lesson.farming.multiple-origins`
 Research-note identity/version: ASH-74 learner-prototype checkpoint v2
 World Spine position: 7
@@ -8,12 +8,12 @@ Linear: [ASH-74](https://linear.app/ashs-workshop/issue/ASH-74/research-and-publ
 Original research branch: `codex/ash-74-many-beginnings-farming`
 Checkpoint continuation branch: `codex/ash-74-v2-forward-test`
 Required or optional: required
-Queue status: **Implementing**
+Queue status: **Review**
 Accountable reviewer: Carlin Aylsworth
 Validation tier: reference
-Status: **Product prototype approved; Stage 15 implementing; required ages 11–14 walkthrough remains pending**
+Status: **Stage 16 production preview complete; Stage 17 ages 11–14 walkthrough ready and required before release**
 
-This note is the durable source, claim, learning, media, prototype, and checkpoint record. The complete learner-facing draft renders in the real Learn shell; final media generation, publication migrations, unlocks, approval-state changes, and hosted production changes wait for approval.
+This note is the durable source, claim, learning, media, prototype, and checkpoint record. The complete learner-facing draft and final reviewed media render in the real Learn shell; publication migrations, production unlocks, release approval, and hosted production changes remain blocked.
 
 ## Work boundary
 
@@ -627,7 +627,7 @@ Acceptance criterion: outside the pixels belonging to the central wild-wheat ear
 
 - Final master: `public/images/evidence/wild-domesticated-wheat-diagram.png`, 1600×590, SHA-256 `A34509BD7CBB3BCD1245337F6FD7FEE3C459E230BDE279D394D19B93E8594DE4`.
 - Runtime fallback: `/images/optimized/farming/wild-domesticated-wheat.optimized.webp`, 1600×590, SHA-256 `E6FD3F0746F4BB6F1DD6D9333D4903CB77E8BD2C323A0450EE6DCC286E0BA404`.
-- Reviewer/date/status: accountable-reviewer morphology correction received 2026-08-15; corrected asset awaiting final in-shell confirmation.
+- Reviewer/date/status: Carlin Aylsworth; 2026-08-15; approved after final in-shell comparison with the response “Excellent, much better.”
 - Fidelity verdict — every locked invariant retained: yes, with the explicitly requested targeted wild-ear morphology correction.
 - Preserved relationship: the complete scientific sequence remains visible; the domesticated ear is compact and intact, the wild ear is loose and irregular, the right sequence disarticulates, and the rough/smooth scars remain distinguishable.
 - Intentional changes: animated/cel rendering and the reviewer-requested stronger visual separation between the two central ears.
@@ -690,6 +690,7 @@ The evidence-comparison intention is resolved as `not-needed`. The section’s f
 - [x] Responsive browser review (raw prototype, desktop/mobile, light/dark)
 - [x] Independent adult learner-proxy review at prototype checkpoint
 - [ ] Required ages 11–14 learner walkthrough
+- [x] Product owner approval
 
 ## Production-preview validation — Stage 16
 
@@ -710,4 +711,61 @@ Final deterministic record:
 - Production-flag reachability and preview-only annotation semantics remain covered by the passing Learn/discovery and prototype-media tests; annotations do not add headings, sections, prompts, or completion state.
 
 Release disposition: **BLOCKED AS DESIGNED.** Schedule and record one ages 11–14 walkthrough, resolve any observed confusion, then rerun the release gate. Until it passes, keep the lesson `draft`, keep ASH-74 and the Wayfinder map open, and do not create a publication migration or describe the workflow as proven.
-- [x] Product owner approval
+
+## Ages 11–14 learner walkthrough — Stage 17
+
+State: **Ready; not yet conducted.** This is a required reference-tier walkthrough. An adult proxy, product-owner approval, or deterministic gate cannot substitute for it.
+
+### Build under review
+
+- Lesson: `lesson.farming.multiple-origins`
+- Preview route: `/learn/lesson.farming.multiple-origins`
+- Branch: `codex/ash-74-v2-forward-test`
+- Minimum content commit: `ecabdc4` (includes the approved wild-wheat morphology correction)
+- Local launch, from this branch worktree: `npm run lesson:preview -- --lesson lesson.farming.multiple-origins`
+- Required learner path: begin at the lesson opening, inspect both evidence visuals, attempt both required prompts, and reach the explicit completion action.
+
+### Neutral facilitator protocol
+
+1. Use one learner aged 11–14. Record age, date, device, viewport orientation, and theme.
+2. Say only: “Please work through this history lesson as you normally would. You can think aloud if that feels natural. I’ll save questions until the end.”
+3. Do not explain vocabulary, point out labels, rescue a prompt, identify the lesson’s main idea, or describe what either visual is supposed to prove.
+4. Observe before asking for opinions. Record where the learner pauses, rereads, skips, misreads, zooms, guesses, changes an answer, or looks for the next action.
+5. If the learner asks for help, record the exact question and lesson location before giving the smallest response needed to continue.
+6. After the learner reaches the ending, ask the seven questions below in order without suggesting answers.
+
+### Post-lesson questions
+
+1. What was this lesson mainly about?
+2. What evidence do you remember, and what did it help you work out?
+3. What is one thing historians know and one thing they are less sure about?
+4. Where did you feel lost, bored, rushed, talked down to, or overloaded?
+5. Which visual taught you something, and which—if either—felt decorative?
+6. What did you think you were supposed to do next?
+7. How would you answer the essential question, “How can historians tell that farming began in more than one place?”
+
+### Walkthrough record
+
+- Learner age / date: **Pending**
+- Device / viewport / theme: **Pending**
+- Build commit: **Pending**
+- Reached explicit completion: **Pending**
+- Prompt attempts completed without coaching: **Pending**
+
+| Lesson location | Observed behavior or exact learner words | What this may reveal | `pass` / `revise` / `blocking` | Required change and retest scope |
+| --- | --- | --- | --- | --- |
+| Pending | Pending | Pending | Pending | Pending |
+
+| Review question | Learner response / observable evidence | Disposition |
+| --- | --- | --- |
+| Main idea | Pending | Pending |
+| Remembered evidence and inference | Pending | Pending |
+| Known versus less certain | Pending | Pending |
+| Lost / bored / rushed / talked down to / overloaded | Pending | Pending |
+| Teaching visual versus decorative visual | Pending | Pending |
+| Next action | Pending | Pending |
+| Essential-question explanation | Pending | Pending |
+
+### Stage 17 disposition
+
+Result: **Pending.** Any observed confusion that blocks the quality contract returns the lesson to implementation work. After a material revision, repeat the affected walkthrough path and record the new build commit. Only set `learnerReview.state` to `completed` after the walkthrough passes and its evidence is recorded here; then rerun the release gate. Passing Stage 17 still does not itself authorize a publication migration, hosted production change, or unlock.
