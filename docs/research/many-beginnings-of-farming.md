@@ -11,7 +11,7 @@ Required or optional: required
 Queue status: **Review**
 Accountable reviewer: Carlin Aylsworth
 Validation tier: reference
-Status: **Stage 16 production preview complete; Stage 17 ages 11–14 walkthrough ready and required before release**
+Status: **Provisionally validated after Stage 16 and product-owner sanity review; Stage 17 learner UAT deferred until before broad release**
 
 This note is the durable source, claim, learning, media, prototype, and checkpoint record. The complete learner-facing draft and final reviewed media render in the real Learn shell; publication migrations, production unlocks, release approval, and hosted production changes remain blocked.
 
@@ -417,7 +417,7 @@ One supported-selection + one concise explanation, as above.
 - The complete six-section lesson is authored as typed Chronos content with 12 claim records, 10 lesson-local source records plus one shared Anatolia source, two required sincere-attempt prompts, and three explicit planned-media intentions.
 - The World History journey draft inserts `entry.world-history.multiple-origins` immediately before `lesson.farming.settlements`; this draft does not publish migrations, unlock rules, or hosted state.
 - The lesson remains `draft`. Claims remain `editorial-review-required`. Product review remains `pending`.
-- Because this lesson establishes the reference process, its ages 11–14 learner walkthrough is required and remains `not-scheduled`; the independent adult proxy review does not satisfy that gate.
+- Because this lesson establishes the reference process, its ages 11–14 learner walkthrough remains required. Carlin provisionally deferred it on 2026-08-16 because a learner is not currently available; the independent adult proxy and product-owner sanity reviews provide ballpark confidence but do not satisfy that gate.
 - No Knowledge Card is included, following the recommendation above. Final map, diagram, and evidence-comparison art are deliberately unproduced until the product-owner checkpoint.
 
 ### Media-intention rendering
@@ -461,7 +461,7 @@ Stage 14A dispositions implemented before re-review:
 
 Repeat proxy disposition: **PASS.** The second independent reviewer found no remaining blocking proxy findings. Mental-model coherence, narrative momentum, age-appropriate cognitive load, evidence reasoning, historical proportionality, prototype-stage visual teaching value, and next-action clarity all passed. The reviewer confirmed all four viewport/theme states, no console/page/request failures or horizontal overflow, five full-width 322 px regional cards at 390 px, explanatory prompt feedback, sincere-attempt completion, continuation to Settlements, and revisit at `scrollY = 0`. Final visual execution, rights, provenance, and accessibility remain later-gate duties because native prose/knowledge carries every teaching dependency and the lesson remains unpublished.
 
-Required learner disposition: **PENDING.** No ages 11–14 walkthrough has been recorded. Until one is completed, the lesson-production system and this lesson are provisional and must not be described as proven.
+Required learner disposition: **PROVISIONALLY DEFERRED by Carlin Aylsworth on 2026-08-16.** No ages 11–14 walkthrough has been recorded. The current process plus accountable product-owner sanity checks are accepted as sufficient to keep developing in the ballpark, but neither the system nor this lesson may be described as learner-proven. Deep learner UAT remains required before broad release.
 
 ### Deterministic validation record
 
@@ -478,7 +478,7 @@ The prototype confirms the evidence/uncertainty model and sincere-attempt comple
 
 ### Human checkpoint
 
-Accountable reviewer: **Carlin Aylsworth**. Product-owner state: **approved on 2026-08-11** from the direct response “love the prototype.” The approval adopts all five recommended decisions: title/scope/arc, required no-arrow world map, no Knowledge Card, placement before Settlements, and the specific Africa/Americas regional framing. Stage 15 final media, provenance, content hardening, and publication configuration may proceed. Required ages 11–14 walkthrough: **not scheduled**; the lesson remains unpublished and provisionally validated until that release gate passes.
+Accountable reviewer: **Carlin Aylsworth**. Product-owner state: **approved on 2026-08-11** from the direct response “love the prototype.” The approval adopts all five recommended decisions: title/scope/arc, required no-arrow world map, no Knowledge Card, placement before Settlements, and the specific Africa/Americas regional framing. On 2026-08-16, Carlin explicitly accepted the process and product-owner sanity check as sufficient for provisional, ballpark confidence while deferring the unavailable ages 11–14 walkthrough to a deep pre-wide-release UAT pass. The lesson remains unpublished and not learner-proven until that gate passes.
 
 ## Image lifecycle
 
@@ -670,7 +670,7 @@ The evidence-comparison intention is resolved as `not-needed`. The section’s f
 | Media / provenance plan | Complete; two final assets built and rights/provenance recorded |
 | Map brief | Complete in `docs/research/many-beginnings-of-farming-map.md` |
 | Learner prototype in real Learn shell | Complete; independent adult learner-proxy re-review passed |
-| Ages 11–14 learner walkthrough | **Required; not scheduled — validation remains provisional** |
+| Ages 11–14 learner walkthrough | **Required; provisionally deferred by Carlin on 2026-08-16 until deep pre-wide-release UAT** |
 | Product-owner checkpoint | **Approved by Carlin Aylsworth on 2026-08-11** |
 | Final lesson implementation / publication | Stage 15 implementation and Stage 16 production-preview gate complete; publication remains blocked |
 
@@ -710,11 +710,11 @@ Final deterministic record:
 - `npm.cmd run typecheck` — unchanged repository baseline failures in legacy `NodeContentDisplay`, legacy resource/category data, and existing v2 lesson-status inference. No diagnostic names the Many Beginnings content module.
 - Production-flag reachability and preview-only annotation semantics remain covered by the passing Learn/discovery and prototype-media tests; annotations do not add headings, sections, prompts, or completion state.
 
-Release disposition: **BLOCKED AS DESIGNED.** Schedule and record one ages 11–14 walkthrough, resolve any observed confusion, then rerun the release gate. Until it passes, keep the lesson `draft`, keep ASH-74 and the Wayfinder map open, and do not create a publication migration or describe the workflow as proven.
+Release disposition: **PROVISIONALLY DEFERRED; STILL BLOCKED AS DESIGNED.** Carlin accepted the current process and sanity review as enough for ballpark confidence on 2026-08-16 because a learner is not currently available. Schedule and record a deep ages 11–14 UAT pass before broad release, resolve any observed confusion, then rerun the release gate. Until it passes, keep the lesson `draft`, keep ASH-74 and the Wayfinder map open, and do not create a publication migration or describe the workflow as learner-proven.
 
 ## Ages 11–14 learner walkthrough — Stage 17
 
-State: **Ready; not yet conducted.** This is a required reference-tier walkthrough. An adult proxy, product-owner approval, or deterministic gate cannot substitute for it.
+State: **Provisionally deferred by Carlin Aylsworth on 2026-08-16; not yet conducted.** A learner is not currently available, so the prepared protocol remains here for the deep pre-wide-release UAT pass. This is still a required reference-tier walkthrough. Adult proxy review, product-owner sanity review, and deterministic gates support provisional ballpark confidence but cannot substitute for learner evidence.
 
 ### Build under review
 
@@ -768,4 +768,4 @@ State: **Ready; not yet conducted.** This is a required reference-tier walkthrou
 
 ### Stage 17 disposition
 
-Result: **Pending.** Any observed confusion that blocks the quality contract returns the lesson to implementation work. After a material revision, repeat the affected walkthrough path and record the new build commit. Only set `learnerReview.state` to `completed` after the walkthrough passes and its evidence is recorded here; then rerun the release gate. Passing Stage 17 still does not itself authorize a publication migration, hosted production change, or unlock.
+Result: **Provisionally deferred; learner evidence pending.** This deferral is explicit, temporary, and not a pass. Any confusion observed during the later UAT that blocks the quality contract returns the lesson to implementation work. After a material revision, repeat the affected walkthrough path and record the new build commit. Only set `learnerReview.state` to `completed` after the walkthrough passes and its evidence is recorded here; then rerun the release gate. Passing Stage 17 still does not itself authorize a publication migration, hosted production change, or unlock.

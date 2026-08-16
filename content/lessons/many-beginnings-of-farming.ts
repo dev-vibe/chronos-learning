@@ -546,7 +546,7 @@ export const manyBeginningsOfFarmingPrototypeReview: LessonPrototypeReview = {
   learnerReview: {
     required: true,
     state: 'not-scheduled',
-    notes: 'Required because this lesson establishes the reference process; an adult proxy review does not replace an ages 11-14 walkthrough.',
+    notes: 'Provisionally deferred by Carlin Aylsworth on 2026-08-16 because a learner is not currently available. Product-owner sanity review supports ballpark confidence, but this is not a learner pass; complete deep ages 11-14 UAT before broad release.',
   },
 };
 
