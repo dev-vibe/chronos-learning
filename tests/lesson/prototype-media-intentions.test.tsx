@@ -17,7 +17,6 @@ const review: LessonPrototypeReview = {
     status: 'planned',
   }],
   productReview: { state: 'pending' },
-  learnerReview: { required: false, state: 'not-required' },
 };
 
 beforeEach(() => setUnlockPreviewLessonsForTests(true));
