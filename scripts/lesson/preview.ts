@@ -1,5 +1,6 @@
 import { spawn } from 'node:child_process';
 import { chronosContent } from '../../content/chronos';
+import { chronosPrototypeReviews } from '../../content/prototype-reviews';
 import { argumentValue } from './arguments';
 import { prepareLessonPreview } from './gate-validation';
 
@@ -9,7 +10,7 @@ if (!lessonId) {
   process.exit(2);
 }
 
-const result = prepareLessonPreview(chronosContent, lessonId);
+const result = prepareLessonPreview(chronosContent, chronosPrototypeReviews, lessonId);
 if (!result.success) {
   console.error(`Preview validation failed for ${lessonId}:\n${result.errors.map((error) => `- ${error}`).join('\n')}`);
   process.exit(1);

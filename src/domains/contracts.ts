@@ -46,6 +46,7 @@ export const HistoricalMapModuleSchema = BaseModule.extend({
   periodLabel: z.string().min(1), focusPlace: z.string().min(1), modernContext: z.string().min(1), accessibleSummary: z.string().min(1),
   compactLabel: z.string().min(1), coordinateNote: z.string().min(1), uncertaintyNote: z.string().min(1),
   depictionStatus: z.enum(['evidence-based-reconstruction', 'illustrative-reconstruction']),
+  introLayout: z.enum(['standard', 'dense']).optional(),
 });
 export const LessonModuleSchema = z.discriminatedUnion('type', [
   BaseModule.extend({ type: z.literal('prose'), body: z.string().min(1) }),

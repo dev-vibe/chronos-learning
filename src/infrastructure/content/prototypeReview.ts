@@ -28,8 +28,10 @@ export const ProductPrototypeReviewSchema = z.object({
 
 export const LearnerPrototypeReviewSchema = z.object({
   required: z.boolean(),
-  state: z.enum(['not-scheduled', 'scheduled', 'completed', 'not-required']),
+  state: z.enum(['not-scheduled', 'scheduled', 'provisionally-deferred', 'completed', 'not-required']),
   completedOn: IsoDate.optional(),
+  deferredOn: IsoDate.optional(),
+  deferredBy: z.string().min(1).optional(),
   notes: z.string().min(1).optional(),
 }).superRefine((review, context) => {
   if (review.required && review.state === 'not-required') {
@@ -40,6 +42,9 @@ export const LearnerPrototypeReviewSchema = z.object({
   }
   if (review.state === 'completed' && !review.completedOn) {
     context.addIssue({ code: z.ZodIssueCode.custom, path: ['completedOn'], message: 'completed learner review requires completedOn' });
+  }
+  if (review.state === 'provisionally-deferred' && (!review.deferredOn || !review.deferredBy)) {
+    context.addIssue({ code: z.ZodIssueCode.custom, path: ['deferredOn'], message: 'provisionally deferred learner review requires deferredOn and deferredBy' });
   }
 });
 

@@ -66,6 +66,10 @@ Commit and push the research and learner-prototype checkpoint, update Linear and
 
 After explicit checkpoint approval, move the queue row to `Implementing` and refine the approved draft rather than rewriting it in a second system. Complete reviewed sources/claims, final media and provenance, prompts, card/no-card decision, journey framing, aggregation, tests, and committed publication migration. Keep incomplete neighbors unpublished and fail-closed.
 
+For every accepted image, complete the runbook's top-level `## Image lifecycle` block before registering the final media. Show the actual reference and accepted final together, and record reasoning/source basis, reference origin/rights/path/hash, the complete generation prompt or direct-use transformation, tool/model/date, rejected candidates, final paths/hashes, and the comparison verdict. Do not treat scattered provenance fields or filenames as an adequate product-owner review surface.
+
+When a reviewed reference already has the approved scientific or explanatory layout, require a style-only image edit: preserve its exact composition, positions, proportions, labels, callouts, and evidence-bearing details and change only rendering style. Inspect comparative morphology at actual desktop and mobile lesson sizes; reject output when the subjects become visually indistinguishable even if labels remain correct. Reject structural drift; do not reinterpret, simplify, or rearrange the source unless the research note documents an adapted composition and Carlin explicitly approves it.
+
 Run:
 
 ```text
@@ -93,8 +97,9 @@ Publish only after accountable approval, committed migration review, hosted deve
 - Keep final assets, publication configuration, and unlocks behind the learner-prototype checkpoint.
 - Keep the production-preview and release gates distinct from prototype approval.
 - Record reviewer identity, state, findings, deferrals, and safe behavior in the research note and Linear.
+- Make each accepted image's reasoning → visible reference → exact prompt/transformation → visible final chain directly reviewable from the research note.
 - Stop at any human approval, learner review, rights decision, or unresolved curriculum choice that the repository assigns to an accountable person.
 
 ## Finish the handoff
 
-Summarize the learner outcome, source/research basis, prototype or production preview, material review findings, validation run, publication state, and remaining human gates. Link the research note, lesson issue, PR, and preview. Never call an unpublished or provisionally validated lesson complete or proven.
+Summarize the learner outcome, source/research basis, prototype or production preview, material review findings, validation run, publication state, and remaining human gates. Link directly to the research note's image lifecycle section when images exist, plus the lesson issue, PR, and preview. Never call an unpublished or provisionally validated lesson complete or proven.

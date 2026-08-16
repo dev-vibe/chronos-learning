@@ -8,6 +8,7 @@ export type LessonGate = 'prototype' | 'implementation' | 'release';
 
 export type LessonGateInput = {
   bundle: ChronosContentBundle;
+  prototypeReviews: readonly LessonPrototypeReview[];
   lessonId: string;
   notePath: string;
   gate: LessonGate;
@@ -38,12 +39,27 @@ function repositoryRelativePath(root: string, candidate: string): { absolute: st
   return { absolute, relative: repoRelative };
 }
 
-function hasHeading(note: string, heading: string): boolean {
+function headingExpression(heading: string): RegExp {
   const escaped = heading
     .split('/')
     .map((part) => part.trim().replace(/[.*+?^${}()|[\]\\]/g, '\\$&'))
     .join('\\s*\\/\\s*');
-  return new RegExp(`^##\\s+${escaped}\\s*$`, 'im').test(note);
+  return new RegExp(`^##\\s+${escaped}\\s*$`, 'i');
+}
+
+function hasHeading(note: string, heading: string): boolean {
+  const expression = headingExpression(heading);
+  return note.split(/\r?\n/).some((line) => expression.test(line));
+}
+
+function sectionBody(note: string, heading: string): string {
+  const lines = note.split(/\r?\n/);
+  const expression = headingExpression(heading);
+  const start = lines.findIndex((line) => expression.test(line));
+  if (start < 0) return '';
+  const endOffset = lines.slice(start + 1).findIndex((line) => /^##\s+/.test(line));
+  const end = endOffset < 0 ? lines.length : start + 1 + endOffset;
+  return lines.slice(start + 1, end).join('\n');
 }
 
 function hasSectionCountException(note: string): boolean {
@@ -53,12 +69,43 @@ function hasSectionCountException(note: string): boolean {
   return value.length > 4 && !['none', 'n/a', 'not applicable'].includes(value);
 }
 
-function findReview(bundle: ChronosContentBundle, lessonId: string): LessonPrototypeReview | undefined {
-  return bundle.prototypeReviews.find((review) => review.lessonId === lessonId);
+function findReview(prototypeReviews: readonly LessonPrototypeReview[], lessonId: string): LessonPrototypeReview | undefined {
+  return prototypeReviews.find((review) => review.lessonId === lessonId);
+}
+
+function mediaLifecycleBody(lifecycle: string, mediaId: string): string {
+  const lines = lifecycle.split(/\r?\n/);
+  const start = lines.findIndex((line) => /^###\s+/.test(line) && line.includes(mediaId));
+  if (start < 0) return '';
+  const endOffset = lines.slice(start + 1).findIndex((line) => /^###\s+/.test(line));
+  const end = endOffset < 0 ? lines.length : start + 1 + endOffset;
+  return lines.slice(start, end).join('\n');
+}
+
+function validateMediaLifecycle(mediaId: string, body: string): string[] {
+  if (!body) return [`image lifecycle does not identify ready media ${mediaId}`];
+  const requirements: Array<[RegExp, string]> = [
+    [/^####\s+1\.\s+Reasoning and source basis\s*$/im, 'reasoning and source basis'],
+    [/^####\s+2\.\s+Reference image actually used\s*$/im, 'reference image'],
+    [/^####\s+3\.\s+Generation or transformation\s*$/im, 'generation or transformation'],
+    [/^####\s+4\.\s+Accepted final image\s*$/im, 'accepted final image'],
+    [/https:\/\//i, 'source link'],
+    [/```text[\s\S]+?```/i, 'exact prompt or transformation'],
+    [/SHA-256/i, 'SHA-256 provenance'],
+    [/Reviewer\/date\/status/i, 'reviewer/date/status'],
+    [/(?:Fidelity verdict|Preserved relationship)/i, 'comparison verdict'],
+  ];
+  const errors = requirements
+    .filter(([expression]) => !expression.test(body))
+    .map(([, label]) => `image lifecycle for ${mediaId} is missing ${label}`);
+  const visibleImages = body.match(/!\[[^\]]*\]\([^\)]+\)/g) ?? [];
+  if (visibleImages.length < 2) errors.push(`image lifecycle for ${mediaId} must show the reference and accepted final`);
+  return errors;
 }
 
 export function validateLessonGate({
   bundle,
+  prototypeReviews,
   lessonId,
   notePath,
   gate,
@@ -66,13 +113,13 @@ export function validateLessonGate({
   readNote = (path) => readFileSync(path, 'utf8'),
 }: LessonGateInput): LessonGateResult {
   const errors: string[] = [];
-  const contentResult = validateContent(bundle);
+  const contentResult = validateContent({ ...bundle, prototypeReviews: [...prototypeReviews] });
   errors.push(...contentResult.errors.map((error) => `content: ${error}`));
 
   const lesson = bundle.lessons.find((candidate) => candidate.id === lessonId);
   if (!lesson) return { success: false, errors: [...errors, `lesson not found: ${lessonId}`], lessonId, gate };
 
-  const review = findReview(bundle, lessonId);
+  const review = findReview(prototypeReviews, lessonId);
   if (!review) errors.push(`${lessonId}: missing LessonPrototypeReview metadata`);
   if (lesson.status !== 'draft') errors.push(`${lessonId}: ${gate} gate requires an unpublished draft lesson`);
 
@@ -132,6 +179,22 @@ export function validateLessonGate({
       errors.push(`${lessonId}: ${gate} gate requires recorded product approval`);
     }
 
+    if (gate !== 'prototype') {
+      const readyMediaIds = review.mediaIntentions
+        .filter((intention) => intention.status === 'ready')
+        .flatMap((intention) => intention.mediaId ? [intention.mediaId] : []);
+      if (readyMediaIds.length > 0) {
+        const lifecycle = sectionBody(note, 'Image lifecycle');
+        if (!lifecycle) {
+          errors.push(`${lessonId}: ${gate} gate requires an "Image lifecycle" section for ready lesson media`);
+        } else {
+          for (const mediaId of readyMediaIds) {
+            errors.push(...validateMediaLifecycle(mediaId, mediaLifecycleBody(lifecycle, mediaId)).map((error) => `${lessonId}: ${error}`));
+          }
+        }
+      }
+    }
+
     if (gate === 'release') {
       if (review.learnerReview.required && review.learnerReview.state !== 'completed') {
         errors.push(`${lessonId}: required learner review is not complete`);
@@ -163,12 +226,14 @@ export function validateLessonGate({
 
 export function prepareLessonPreview(
   bundle: ChronosContentBundle,
+  prototypeReviews: readonly LessonPrototypeReview[],
   lessonId: string,
   options: Pick<LessonGateInput, 'cwd' | 'readNote'> = {},
 ): LessonGateResult & { route: string } {
-  const review = findReview(bundle, lessonId);
+  const review = findReview(prototypeReviews, lessonId);
   const result = validateLessonGate({
     bundle,
+    prototypeReviews,
     lessonId,
     notePath: review?.researchNotePath ?? '',
     gate: 'prototype',

@@ -41,16 +41,40 @@ Typed sections.
 ${signoff ? '## Sign-off status\nReviewed.' : ''}
 `;
 
+const lifecycle = (mediaId: string) => `
+## Image lifecycle
+
+### \`${mediaId}\` — City plan
+
+#### 1. Reasoning and source basis
+[Source context](https://example.org/source)
+
+![Reference](https://example.org/reference.png)
+
+#### 2. Reference image actually used
+The source image above was the composition reference.
+
+#### 3. Generation or transformation
+\`\`\`text
+Preserve the exact layout while changing only the illustration style.
+\`\`\`
+
+#### 4. Accepted final image
+![Accepted final](/images/generated/final.png)
+
+- SHA-256: fixture
+- Reviewer/date/status: Product owner / 2026-08-11 / accepted
+- Fidelity verdict: Preserved relationship and layout.
+`;
+
 function fixture(): ChronosContentBundle {
   const bundle = structuredClone(chronosContent);
-  const lesson = bundle.lessons.find((candidate) => candidate.id === LESSON_ID)!;
-  lesson.status = 'draft';
-  bundle.prototypeReviews = [review()];
+  bundle.lessons.find((candidate) => candidate.id === LESSON_ID)!.status = 'draft';
   return bundle;
 }
 
-function run(bundle: ChronosContentBundle, gate: LessonGate = 'prototype', noteText = note()) {
-  return validateLessonGate({ bundle, lessonId: LESSON_ID, notePath: NOTE_PATH, gate, readNote: () => noteText });
+function run(bundle: ChronosContentBundle, prototypeReviews = [review()], gate: LessonGate = 'prototype', noteText = note()) {
+  return validateLessonGate({ bundle, prototypeReviews, lessonId: LESSON_ID, notePath: NOTE_PATH, gate, readNote: () => noteText });
 }
 
 describe('lesson production gates', () => {
@@ -59,20 +83,19 @@ describe('lesson production gates', () => {
   });
 
   it('accepts the existing spaced storyboard heading without requiring a cosmetic note rewrite', () => {
-    const existingHeading = note().replace('## Section/component storyboard', '## Section / component storyboard');
-    expect(run(fixture(), 'prototype', existingHeading).success).toBe(true);
+    expect(run(fixture(), [review()], 'prototype', note().replace('## Section/component storyboard', '## Section / component storyboard')).success).toBe(true);
   });
 
   it('prepares the exact Learn route by running the prototype gate', () => {
-    const result = prepareLessonPreview(fixture(), LESSON_ID, { readNote: () => note() });
+    const result = prepareLessonPreview(fixture(), [review()], LESSON_ID, { readNote: () => note() });
     expect(result.success).toBe(true);
     expect(result.route).toBe(`/learn/${LESSON_ID}`);
   });
 
   it('fails for a missing note or a note that identifies a different lesson', () => {
-    const missing = validateLessonGate({ bundle: fixture(), lessonId: LESSON_ID, notePath: NOTE_PATH, gate: 'prototype', readNote: () => { throw new Error('missing'); } });
+    const missing = validateLessonGate({ bundle: fixture(), prototypeReviews: [review()], lessonId: LESSON_ID, notePath: NOTE_PATH, gate: 'prototype', readNote: () => { throw new Error('missing'); } });
     expect(missing.errors.join(' ')).toMatch(/missing or unreadable/);
-    expect(run(fixture(), 'prototype', note().replace(LESSON_ID, 'lesson.other.fixture')).errors.join(' ')).toMatch(/does not identify this lesson ID/);
+    expect(run(fixture(), [review()], 'prototype', note().replace(LESSON_ID, 'lesson.other.fixture')).errors.join(' ')).toMatch(/does not identify this lesson ID/);
   });
 
   it('rejects metadata on a published lesson and mismatched note identity', () => {
@@ -80,31 +103,40 @@ describe('lesson production gates', () => {
     published.lessons.find((lesson) => lesson.id === LESSON_ID)!.status = 'published';
     expect(run(published).errors.join(' ')).toMatch(/published lessons must not retain prototype review metadata/);
 
-    const mismatched = fixture();
-    mismatched.prototypeReviews[0].researchNotePath = 'docs/research/a-different-note.md';
-    expect(run(mismatched).errors.join(' ')).toMatch(/does not match prototype metadata/);
+    const mismatched = review();
+    mismatched.researchNotePath = 'docs/research/a-different-note.md';
+    expect(run(fixture(), [mismatched]).errors.join(' ')).toMatch(/does not match prototype metadata/);
   });
 
   it('rejects invalid section and required-prompt counts', () => {
     const sections = fixture();
-    const lesson = sections.lessons.find((candidate) => candidate.id === LESSON_ID)!;
-    lesson.sections = lesson.sections.slice(0, 4);
+    sections.lessons.find((candidate) => candidate.id === LESSON_ID)!.sections = sections.lessons.find((candidate) => candidate.id === LESSON_ID)!.sections.slice(0, 4);
     expect(run(sections).errors.join(' ')).toMatch(/five to eight sections/);
 
     const prompts = fixture();
-    const promptLesson = prompts.lessons.find((candidate) => candidate.id === LESSON_ID)!;
-    for (const promptId of promptLesson.promptIds) prompts.prompts.find((prompt) => prompt.id === promptId)!.required = false;
+    const lesson = prompts.lessons.find((candidate) => candidate.id === LESSON_ID)!;
+    for (const promptId of lesson.promptIds) prompts.prompts.find((prompt) => prompt.id === promptId)!.required = false;
     expect(run(prompts).errors.join(' ')).toMatch(/one to three required prompts, found 0/);
   });
 
-  it('requires coherent section-linked prototype annotations', () => {
-    const missing = fixture();
-    missing.prototypeReviews = [];
-    expect(run(missing).errors.join(' ')).toMatch(/missing LessonPrototypeReview metadata/);
+  it('rejects a required prompt that is registered but never rendered', () => {
+    const bundle = fixture();
+    const lesson = bundle.lessons.find((candidate) => candidate.id === LESSON_ID)!;
+    const [missingPromptId, replacementPromptId] = lesson.promptIds;
+    lesson.sections = lesson.sections.map((section) => ({
+      ...section,
+      modules: section.modules.map((module) => module.type === 'prompt' && module.promptId === missingPromptId
+        ? { ...module, promptId: replacementPromptId }
+        : module),
+    }));
+    expect(run(bundle).errors.join(' ')).toMatch(/required prompt .* is not rendered/);
+  });
 
-    const broken = fixture();
-    broken.prototypeReviews[0].mediaIntentions[0].sectionId = 'section.fixture.missing';
-    expect(run(broken).errors.join(' ')).toMatch(/prototype media intention references unknown section/);
+  it('requires coherent section-linked prototype annotations', () => {
+    expect(run(fixture(), []).errors.join(' ')).toMatch(/missing LessonPrototypeReview metadata/);
+    const broken = review();
+    broken.mediaIntentions[0].sectionId = 'section.fixture.missing';
+    expect(run(fixture(), [broken]).errors.join(' ')).toMatch(/prototype media intention references unknown section/);
   });
 
   it('surfaces broken claim/source links through the canonical content validator', () => {
@@ -115,21 +147,39 @@ describe('lesson production gates', () => {
   });
 
   it('requires recorded product approval before implementation', () => {
-    expect(run(fixture(), 'implementation').errors.join(' ')).toMatch(/requires recorded product approval/);
-    const approved = fixture();
-    approved.prototypeReviews[0].productReview = { state: 'approved', reviewedBy: 'Product owner', reviewedOn: '2026-08-11' };
-    expect(run(approved, 'implementation').success).toBe(true);
+    expect(run(fixture(), [review()], 'implementation').errors.join(' ')).toMatch(/requires recorded product approval/);
+    const approved = review();
+    approved.productReview = { state: 'approved', reviewedBy: 'Product owner', reviewedOn: '2026-08-11' };
+    expect(run(fixture(), [approved], 'implementation').success).toBe(true);
+  });
+
+  it('requires a complete, inspectable image lifecycle for every ready media intention', () => {
+    const bundle = fixture();
+    const approved = review();
+    approved.productReview = { state: 'approved', reviewedBy: 'Product owner', reviewedOn: '2026-08-11' };
+    const mediaId = bundle.lessons.find((lesson) => lesson.id === LESSON_ID)!.mediaIds[0];
+    approved.mediaIntentions[0] = { ...approved.mediaIntentions[0], status: 'ready', mediaId };
+
+    expect(run(bundle, [approved], 'implementation').errors.join(' ')).toMatch(/requires an "Image lifecycle" section/);
+    expect(run(bundle, [approved], 'implementation', `${note()}\n${lifecycle(mediaId)}`).success).toBe(true);
+    expect(run(bundle, [approved], 'implementation', `${note()}\n${lifecycle(mediaId).replace('#### 3. Generation or transformation', '#### Generation')}`).errors.join(' ')).toMatch(/missing generation or transformation/);
+  });
+
+  it('requires accountable fields for a provisional learner-review deferral', () => {
+    const deferred = review();
+    deferred.validationTier = 'reference';
+    deferred.learnerReview = { required: true, state: 'provisionally-deferred' };
+    expect(run(fixture(), [deferred]).errors.join(' ')).toMatch(/deferredOn and deferredBy/);
+    deferred.learnerReview = { required: true, state: 'provisionally-deferred', deferredOn: '2026-08-16', deferredBy: 'Product owner' };
+    expect(run(fixture(), [deferred]).success).toBe(true);
   });
 
   it('blocks release on planned media, pending provenance, or incomplete required learner review', () => {
-    const bundle = fixture();
-    bundle.prototypeReviews[0] = {
-      ...bundle.prototypeReviews[0],
-      validationTier: 'reference',
-      productReview: { state: 'approved', reviewedBy: 'Product owner', reviewedOn: '2026-08-11' },
-      learnerReview: { required: true, state: 'not-scheduled' },
-    };
-    const errors = run(bundle, 'release', note(true)).errors.join(' ');
+    const deferred = review();
+    deferred.validationTier = 'reference';
+    deferred.productReview = { state: 'approved', reviewedBy: 'Product owner', reviewedOn: '2026-08-11' };
+    deferred.learnerReview = { required: true, state: 'provisionally-deferred', deferredOn: '2026-08-16', deferredBy: 'Product owner' };
+    const errors = run(fixture(), [deferred], 'release', note(true)).errors.join(' ');
     expect(errors).toMatch(/required learner review is not complete/);
     expect(errors).toMatch(/is still planned/);
     expect(errors).toMatch(/lacks approved provenance/);

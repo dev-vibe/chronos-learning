@@ -1,4 +1,5 @@
 import { chronosContent } from '../../content/chronos';
+import { chronosPrototypeReviews } from '../../content/prototype-reviews';
 import { argumentValue } from './arguments';
 import { validateLessonGate, type LessonGate } from './gate-validation';
 
@@ -11,7 +12,7 @@ if (!lessonId || !notePath || !gate || !['prototype', 'implementation', 'release
   process.exit(2);
 }
 
-const result = validateLessonGate({ bundle: chronosContent, lessonId, notePath, gate });
+const result = validateLessonGate({ bundle: chronosContent, prototypeReviews: chronosPrototypeReviews, lessonId, notePath, gate });
 if (!result.success) {
   console.error(`${gate} gate failed for ${lessonId}:\n${result.errors.map((error) => `- ${error}`).join('\n')}`);
   process.exit(1);
