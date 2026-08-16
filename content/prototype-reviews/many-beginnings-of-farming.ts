@@ -32,11 +32,4 @@ export const manyBeginningsOfFarmingPrototypeReview: LessonPrototypeReview = {
     reviewedOn: '2026-08-11',
     notes: 'Approved the learner-prototype checkpoint in the Codex task: "love the prototype".',
   },
-  learnerReview: {
-    required: true,
-    state: 'provisionally-deferred',
-    deferredOn: '2026-08-16',
-    deferredBy: 'Carlin Aylsworth',
-    notes: 'A learner is not currently available. Product-owner sanity review supports ballpark confidence, but this is not a learner pass; complete deep ages 11–14 UAT before broad release.',
-  },
 };

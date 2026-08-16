@@ -11,7 +11,7 @@ Required or optional: required
 Queue status: **Review**
 Accountable reviewer: Carlin Aylsworth
 Validation tier: reference
-Status: **Provisionally validated after Stage 16 and product-owner sanity review; Stage 17 learner UAT deferred until before broad release**
+Status: **Validated for unpublished integration after Stage 16 and product-owner sanity review; family/public-release UAT is reserved for the later broad-release program, not this lesson gate**
 
 This note is the durable source, claim, learning, media, prototype, and checkpoint record. The complete learner-facing draft and final reviewed media render in the real Learn shell; publication migrations, production unlocks, release approval, and hosted production changes remain blocked.
 
@@ -417,7 +417,7 @@ One supported-selection + one concise explanation, as above.
 - The complete six-section lesson is authored as typed Chronos content with 12 claim records, 10 lesson-local source records plus one shared Anatolia source, two required sincere-attempt prompts, and three explicit planned-media intentions.
 - The World History journey draft inserts `entry.world-history.multiple-origins` immediately before `lesson.farming.settlements`; this draft does not publish migrations, unlock rules, or hosted state.
 - The lesson remains `draft`. Claims remain `editorial-review-required`. Product review remains `pending`.
-- Because this lesson establishes the reference process, its ages 11–14 learner walkthrough remains required. Carlin provisionally deferred it on 2026-08-16 because a learner is not currently available; the independent adult proxy and product-owner sanity reviews provide ballpark confidence but do not satisfy that gate.
+- Learner UAT is not part of this lesson-production gate. Carlin plans a deeper family/beta pass before sharing Chronos with the larger public; that future program is recorded below without blocking this lesson's current workflow.
 - No Knowledge Card is included, following the recommendation above. Final map, diagram, and evidence-comparison art are deliberately unproduced until the product-owner checkpoint.
 
 ### Media-intention rendering
@@ -461,7 +461,7 @@ Stage 14A dispositions implemented before re-review:
 
 Repeat proxy disposition: **PASS.** The second independent reviewer found no remaining blocking proxy findings. Mental-model coherence, narrative momentum, age-appropriate cognitive load, evidence reasoning, historical proportionality, prototype-stage visual teaching value, and next-action clarity all passed. The reviewer confirmed all four viewport/theme states, no console/page/request failures or horizontal overflow, five full-width 322 px regional cards at 390 px, explanatory prompt feedback, sincere-attempt completion, continuation to Settlements, and revisit at `scrollY = 0`. Final visual execution, rights, provenance, and accessibility remain later-gate duties because native prose/knowledge carries every teaching dependency and the lesson remains unpublished.
 
-Required learner disposition: **PROVISIONALLY DEFERRED by Carlin Aylsworth on 2026-08-16.** No ages 11–14 walkthrough has been recorded. The current process plus accountable product-owner sanity checks are accepted as sufficient to keep developing in the ballpark, but neither the system nor this lesson may be described as learner-proven. Deep learner UAT remains required before broad release.
+Learner-UAT disposition: **OUTSIDE THIS LESSON GATE.** No ages 11–14 walkthrough is required for implementation, integration, or lesson release. Carlin plans a deeper family/beta UAT program before sharing Chronos with the larger public.
 
 ### Deterministic validation record
 
@@ -478,7 +478,7 @@ The prototype confirms the evidence/uncertainty model and sincere-attempt comple
 
 ### Human checkpoint
 
-Accountable reviewer: **Carlin Aylsworth**. Product-owner state: **approved on 2026-08-11** from the direct response “love the prototype.” The approval adopts all five recommended decisions: title/scope/arc, required no-arrow world map, no Knowledge Card, placement before Settlements, and the specific Africa/Americas regional framing. On 2026-08-16, Carlin explicitly accepted the process and product-owner sanity check as sufficient for provisional, ballpark confidence while deferring the unavailable ages 11–14 walkthrough to a deep pre-wide-release UAT pass. The lesson remains unpublished and not learner-proven until that gate passes.
+Accountable reviewer: **Carlin Aylsworth**. Product-owner state: **approved on 2026-08-11** from the direct response “love the prototype.” The approval adopts all five recommended decisions: title/scope/arc, required no-arrow world map, no Knowledge Card, placement before Settlements, and the specific Africa/Americas regional framing. On 2026-08-16, Carlin confirmed that learner UAT is not a lesson-production check; a deeper family/beta pass will happen later as part of broad-public-release readiness.
 
 ## Image lifecycle
 
@@ -670,7 +670,7 @@ The evidence-comparison intention is resolved as `not-needed`. The section’s f
 | Media / provenance plan | Complete; two final assets built and rights/provenance recorded |
 | Map brief | Complete in `docs/research/many-beginnings-of-farming-map.md` |
 | Learner prototype in real Learn shell | Complete; independent adult learner-proxy re-review passed |
-| Ages 11–14 learner walkthrough | **Required; provisionally deferred by Carlin on 2026-08-16 until deep pre-wide-release UAT** |
+| Family/public-release UAT | **Reserved for the later broad-release program; not a lesson gate** |
 | Product-owner checkpoint | **Approved by Carlin Aylsworth on 2026-08-11** |
 | Final lesson implementation / publication | Stage 15 implementation and the provisional unpublished portion of Stage 16 are complete; publication remains blocked |
 
@@ -690,20 +690,19 @@ The evidence-comparison intention is resolved as `not-needed`. The section’s f
 - [ ] Empty-database and hosted-development verification
 - [x] Responsive browser review (raw prototype, desktop/mobile, light/dark)
 - [x] Independent adult learner-proxy review at prototype checkpoint
-- [ ] Required ages 11–14 learner walkthrough
 - [x] Product owner approval
 
 ## Production-preview validation — Stage 16
 
-Stage 15 implementation is complete and the lesson is in `Review`. The provisional unpublished portion of Stage 16 is complete; the release portion is not. The approved draft now uses two final evidence-led visuals, remains before Farming and Settlements in the preview World Spine, and keeps all learner meaning in native prose, semantic modules, prompts, and disclosures. No publication migration, hosted change, production unlock, or card unlock was created.
+Stage 15 implementation is complete and the lesson is in `Review`. Stage 16 is complete for this unpublished integration. The approved draft now uses two final evidence-led visuals, remains before Farming and Settlements in the preview World Spine, and keeps all learner meaning in native prose, semantic modules, prompts, and disclosures. No publication migration, hosted change, production unlock, or card unlock was created.
 
 Responsive product review passed at 1440×900 and 390×844 in both light and dark themes. The first desktop pass exposed a blocking composition defect: the five-region comparison squeezed the map and cropped its world extent. The dense comparison now receives its own desktop teaching row, the full 2:1 map uses `object-fit: contain`, and the existing stacked mobile reading order is preserved. Final captures are stored in `docs/pr/ash-74/`.
 
 Final deterministic record:
 
 - `npm.cmd run lesson:gate -- --lesson lesson.farming.multiple-origins --note docs/research/many-beginnings-of-farming.md --gate implementation` — pass.
-- `npm.cmd run lesson:gate -- --lesson lesson.farming.multiple-origins --note docs/research/many-beginnings-of-farming.md --gate release` — expected fail only because required learner review is not complete.
-- `npm.cmd test -- --run` — pass, 21 files / 126 tests.
+- `npm.cmd run lesson:gate -- --lesson lesson.farming.multiple-origins --note docs/research/many-beginnings-of-farming.md --gate release` — pass; this deterministic gate does not itself publish the draft.
+- `npm.cmd test -- --run` — pass, 21 files / 125 tests.
 - `npm.cmd run test:domain` — pass, 4 files / 20 tests.
 - `npm.cmd run validate:content` — pass.
 - `npm.cmd run media:build` and the post-build `npm.cmd run media:verify` — pass, 20 assets / 44 derivatives. A later whole-catalog repeat exceeded the local five-minute command allowance; catalog and media files were unchanged after the recorded pass.
@@ -712,13 +711,13 @@ Final deterministic record:
 - `npm.cmd run typecheck` — unchanged repository baseline failures in legacy `NodeContentDisplay`, legacy resource/category data, and existing v2 lesson-status inference. No diagnostic names the Many Beginnings content module.
 - Production-flag reachability and preview-only annotation semantics remain covered by the passing Learn/discovery and prototype-media tests; annotations do not add headings, sections, prompts, or completion state.
 
-Release disposition: **PROVISIONALLY DEFERRED; STILL BLOCKED AS DESIGNED.** Carlin accepted the current process and sanity review as enough for ballpark confidence on 2026-08-16 because a learner is not currently available. Schedule and record a deep ages 11–14 UAT pass before broad release, resolve any observed confusion, then rerun the release gate. Until it passes, keep the lesson `draft`, keep ASH-74 and the Wayfinder map open, and do not create a publication migration or describe the workflow as learner-proven.
+Release disposition: **READY FOR THE NEXT EXPLICIT PRODUCT DECISION; STILL UNPUBLISHED.** Learner UAT is not a check in this lesson workflow. Keep the lesson `draft` and do not create a publication migration, hosted production change, or unlock until Carlin explicitly chooses that next product step. The future family/beta UAT program remains a separate prerequisite for sharing Chronos with the larger public.
 
-Safe typecheck deferral: Carlin accepts the unchanged repository-wide typecheck baseline only for this provisional unpublished integration. It is not a release pass. The baseline must be resolved, or explicitly dispositioned by the accountable release reviewer with current diagnostics, before broad release.
+Safe typecheck deferral: Carlin accepts the unchanged repository-wide typecheck baseline only for this unpublished integration. The baseline must be resolved, or explicitly dispositioned by the accountable release reviewer with current diagnostics, before broad release.
 
-## Ages 11–14 learner walkthrough — Stage 17
+## Future family/public-release UAT — Stage 17
 
-State: **Provisionally deferred by Carlin Aylsworth on 2026-08-16; not yet conducted.** A learner is not currently available, so the prepared protocol remains here for the deep pre-wide-release UAT pass. This is still a required reference-tier walkthrough. Adult proxy review, product-owner sanity review, and deterministic gates support provisional ballpark confidence but cannot substitute for learner evidence.
+State: **Reserved for the later broad-public-release program; not a lesson-production gate.** The prepared protocol remains here for the future family/beta pass. It does not block implementation, integration, or release of this individual lesson.
 
 ### Build under review
 
@@ -727,7 +726,7 @@ State: **Provisionally deferred by Carlin Aylsworth on 2026-08-16; not yet condu
 - Branch: `codex/ash-74-v2-forward-test`
 - Minimum content commit: `ecabdc4` (includes the approved wild-wheat morphology correction)
 - Local launch, from this branch worktree: `npm run lesson:preview -- --lesson lesson.farming.multiple-origins`
-- Required learner path: begin at the lesson opening, inspect both evidence visuals, attempt both required prompts, and reach the explicit completion action.
+- Suggested future participant path: begin at the lesson opening, inspect both evidence visuals, attempt both required prompts, and reach the explicit completion action.
 
 ### Neutral facilitator protocol
 
@@ -772,4 +771,4 @@ State: **Provisionally deferred by Carlin Aylsworth on 2026-08-16; not yet condu
 
 ### Stage 17 disposition
 
-Result: **Provisionally deferred; learner evidence pending.** This deferral is explicit, temporary, and not a pass. Any confusion observed during the later UAT that blocks the quality contract returns the lesson to implementation work. After a material revision, repeat the affected walkthrough path and record the new build commit. Only set `learnerReview.state` to `completed` after the walkthrough passes and its evidence is recorded here; then rerun the release gate. Passing Stage 17 still does not itself authorize a publication migration, hosted production change, or unlock.
+Result: **Not yet conducted; no current gate is pending.** When the later family/beta UAT program runs, record observed confusion and resulting revisions here. That program governs readiness to share Chronos with the larger public; it does not retroactively block this lesson-production workflow.
