@@ -199,14 +199,13 @@ Material decisions:
 Blocking findings:
 Explicit safe deferrals:
 
-### Learner review
+### Optional learner observation
 
-Required: yes | sampled | escalated | no
-State: not scheduled | scheduled | changes requested | provisionally deferred | passed
-Learner age band/date:
+Observed: yes | no
+Learner age band/date, if applicable:
 Observed behavior:
 Changes made:
-Reason for deferral and unpublished behavior, if any:
+Future family/public-release UAT note:
 
 ### Earlier-risk comparison
 
@@ -225,7 +224,7 @@ Unclear action hierarchy found earlier:
 
 - [ ] Research integrity
 - [ ] Historical/editorial review
-- [ ] Ages 11–14 learning/editorial review
+- [ ] Ages 11–14 learning/editorial design review
 - [ ] Learner-prototype checkpoint approved
 - [ ] Section/component storyboard review
 - [ ] Visual/media/map/video review as applicable
@@ -237,6 +236,5 @@ Unclear action hierarchy found earlier:
 - [ ] Content/media/tests/type/build validation
 - [ ] Empty-database and hosted-development verification
 - [ ] Responsive browser review
-- [ ] Learner walkthrough passed or provisional unpublished state recorded
 - [ ] Product owner approval
 ```

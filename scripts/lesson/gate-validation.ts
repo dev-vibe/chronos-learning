@@ -196,12 +196,6 @@ export function validateLessonGate({
     }
 
     if (gate === 'release') {
-      if (review.learnerReview.required && review.learnerReview.state !== 'completed') {
-        errors.push(`${lessonId}: required learner review is not complete`);
-      }
-      if (!review.learnerReview.required && review.learnerReview.state !== 'not-required') {
-        errors.push(`${lessonId}: learner review state is inconsistent with its requirement`);
-      }
       for (const intention of review.mediaIntentions) {
         if (intention.status === 'planned') errors.push(`${lessonId}: media intention for ${intention.sectionId} is still planned`);
       }

@@ -86,7 +86,7 @@ Repeat the complete quality contract against final content and media. Run the ru
 npm run lesson:gate -- --lesson <lesson-id> --note <path> --gate release
 ```
 
-Require ages 11–14 review for reference/high-risk lessons and the specified ordinary-lesson sample. Escalate any lesson when proxy reviewers disagree or confusion is observed. If required learner review is unavailable, keep the lesson unpublished and tracking open; describe it only as provisionally validated.
+Do not make learner UAT a per-lesson implementation or release gate. Record any future family/beta walkthrough as optional product evidence in the research note; it belongs to the later broad-public-release program. Proxy disagreement or observed confusion still returns the current lesson to prototype work for product review.
 
 Publish only after accountable approval, committed migration review, hosted development verification, and every blocking finding is resolved. Set `Complete` only after approval, merge, publication verification, and current queue/research records.
 
@@ -98,8 +98,8 @@ Publish only after accountable approval, committed migration review, hosted deve
 - Keep the production-preview and release gates distinct from prototype approval.
 - Record reviewer identity, state, findings, deferrals, and safe behavior in the research note and Linear.
 - Make each accepted image's reasoning → visible reference → exact prompt/transformation → visible final chain directly reviewable from the research note.
-- Stop at any human approval, learner review, rights decision, or unresolved curriculum choice that the repository assigns to an accountable person.
+- Stop at any human approval, rights decision, or unresolved curriculum choice that the repository assigns to an accountable person.
 
 ## Finish the handoff
 
-Summarize the learner outcome, source/research basis, prototype or production preview, material review findings, validation run, publication state, and remaining human gates. Link directly to the research note's image lifecycle section when images exist, plus the lesson issue, PR, and preview. Never call an unpublished or provisionally validated lesson complete or proven.
+Summarize the learner outcome, source/research basis, prototype or production preview, material review findings, validation run, publication state, and remaining human gates. Link directly to the research note's image lifecycle section when images exist, plus the lesson issue, PR, and preview. Never call an unpublished lesson published or broadly released.
