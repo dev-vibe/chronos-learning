@@ -70,6 +70,7 @@ export function validateContent(input: ContentBundle) {
 
   for (const lesson of lessons) {
     const sectionIds = new Set<string>();
+    const renderedPromptIds = new Set<string>();
     for (const section of lesson.sections) {
       if (sectionIds.has(section.id)) errors.push(`${lesson.id}: duplicate section ID ${section.id}`);
       sectionIds.add(section.id);
@@ -82,6 +83,7 @@ export function validateContent(input: ContentBundle) {
           if (asset && asset.depictionMode !== 'map') errors.push(`${module.id}: historical map media must use map depiction mode`);
         }
         if (module.type === 'prompt') {
+          renderedPromptIds.add(module.promptId);
           const prompt = promptById.get(module.promptId);
           if (!prompt) errors.push(`${module.id}: broken prompt reference ${module.promptId}`);
           else if (prompt.lessonId !== lesson.id) errors.push(`${module.id}: prompt ${module.promptId} belongs to ${prompt.lessonId}`);
@@ -98,6 +100,7 @@ export function validateContent(input: ContentBundle) {
     for (const promptId of lesson.promptIds) {
       const prompt = promptById.get(promptId);
       if (prompt && prompt.lessonId !== lesson.id) errors.push(`${lesson.id}: prompt ${promptId} belongs to ${prompt.lessonId}`);
+      if (prompt?.required && !renderedPromptIds.has(promptId)) errors.push(`${lesson.id}: required prompt ${promptId} is not rendered by a lesson module`);
     }
     const requiredPromptCount = lesson.promptIds.filter((id: string) => promptById.get(id)?.required).length;
     if (lesson.status === 'published' && (requiredPromptCount < 1 || requiredPromptCount > 3)) errors.push(`${lesson.id}: published lessons require one to three required prompts`);
