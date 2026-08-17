@@ -37,6 +37,7 @@ export const worldHistoryJourney: Journey = {
       entries: [
         { id: 'entry.world-history.uruk', lessonId: 'lesson.uruk.first-city', position: 0, required: true, framing: 'How city life changed human coordination' },
         { id: 'entry.world-history.writing', lessonId: 'lesson.writing.early-systems', position: 1, required: true, framing: 'How durable records changed coordination' },
+        { id: 'entry.world-history.egypt-nile-state', lessonId: 'lesson.egypt.nile-state', position: 2, required: true, framing: 'How a river corridor, administration, and royal claims became part of an early territorial state' },
       ],
     },
   ],
