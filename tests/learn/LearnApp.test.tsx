@@ -47,9 +47,9 @@ describe('Learn route and interactions', () => {
   it('navigates to a semantic section and moves focus with the journey control', async () => { const gateway = new TestGateway(); render(<LearnApp lessonId="lesson.uruk.first-city" gatewayFactory={async () => gateway} />); await screen.findByRole('heading', { name: 'Uruk: Life in an Early City' }); await userEvent.click(within(screen.getByRole('complementary', { name: 'Chronos navigation' })).getByRole('button', { name: 'World History' })); await userEvent.click(screen.getByRole('button', { name: 'The built city' })); const section = document.getElementById('section.uruk.the-built-city'); expect(section?.scrollIntoView).toHaveBeenCalledWith({ behavior: 'smooth', block: 'start' }); expect(section).toBe(document.activeElement); });
   it('does not interrupt the lesson with a resume banner', async () => { const gateway = new TestGateway(); gateway.state = { ...gateway.state, resumeSectionId: 'section.uruk.the-built-city', exploredSectionIds: ['section.uruk.the-built-city'] }; render(<LearnApp lessonId="lesson.uruk.first-city" gatewayFactory={async () => gateway} />); await screen.findByRole('heading', { name: 'Uruk: Life in an Early City' }); expect(screen.queryByText('Welcome back')).toBeNull(); expect(screen.queryByRole('button', { name: 'Resume' })).toBeNull(); expect(window.scrollTo).toHaveBeenCalledWith({ top: 0, left: 0, behavior: 'auto' }); });
   it('fails closed for a missing lesson without leaking a spine title', () => {
-    render(<LearnApp lessonId="lesson.farming.multiple-origins" />);
-    expect(screen.getByRole('heading', { name: /This archive entry is not available\./i })).toBeTruthy();
-    expect(screen.queryByRole('heading', { name: 'Many Beginnings of Farming' })).toBeNull();
+    render(<LearnApp lessonId="lesson.egypt.nile-state" />);
+    expect(screen.getByRole('heading', { name: /This archive entry.*available\./i })).toBeTruthy();
+    expect(screen.queryByRole('heading', { name: 'The Nile and an Early Egyptian State' })).toBeNull();
     expect(document.querySelectorAll('.global-rail nav a')).toHaveLength(3);
   });
   it('keeps the Chronos shell and prerequisite visible for a locked lesson', async () => {

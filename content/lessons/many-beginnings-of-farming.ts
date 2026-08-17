@@ -264,7 +264,7 @@ export const manyBeginningsOfFarmingPrompts: UnderstandingPrompt[] = [
 export const manyBeginningsOfFarmingLesson: Lesson = {
   id: 'lesson.farming.multiple-origins',
   legacyAliases: ['neolithic_revolution'],
-  status: 'draft',
+  status: 'published',
   title: 'Many Beginnings of Farming',
   masthead: 'c. 10,000-3000 BCE',
   place: 'Several regions across the world',

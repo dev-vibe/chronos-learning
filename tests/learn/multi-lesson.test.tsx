@@ -70,6 +70,7 @@ describe('multi-lesson Learn runtime', () => {
     expect(publishedLinks).toEqual([
       '/learn/lesson.humans.homo-sapiens-origins',
       '/learn/lesson.humans.migrations-and-interbreeding',
+      '/learn/lesson.farming.multiple-origins',
       '/learn/lesson.farming.settlements',
       '/learn/lesson.uruk.first-city',
       '/learn/lesson.writing.early-systems',
@@ -81,6 +82,7 @@ describe('multi-lesson Learn runtime', () => {
     expect(gateway.loadJourneySummaries).toHaveBeenCalledWith([
       'lesson.humans.homo-sapiens-origins',
       'lesson.humans.migrations-and-interbreeding',
+      'lesson.farming.multiple-origins',
       'lesson.farming.settlements',
       'lesson.uruk.first-city',
       'lesson.writing.early-systems',
@@ -112,9 +114,9 @@ describe('multi-lesson Learn runtime', () => {
   });
 
   it('keeps an unpublished spine neighbor private and non-completable', () => {
-    render(<LearnApp lessonId="lesson.farming.multiple-origins" />);
-    expect(screen.getByRole('heading', { name: /archive entry is not available/i })).toBeTruthy();
-    expect(screen.queryByRole('heading', { name: 'Many Beginnings of Farming' })).toBeNull();
+    render(<LearnApp lessonId="lesson.egypt.nile-state" />);
+    expect(screen.getByRole('heading', { name: /archive entry.*available/i })).toBeTruthy();
+    expect(screen.queryByRole('heading', { name: 'The Nile and an Early Egyptian State' })).toBeNull();
     expect(screen.queryByRole('button', { name: 'Complete lesson' })).toBeNull();
   });
   it('always permits revisiting a completed lesson even when its prerequisite is incomplete', async () => {
