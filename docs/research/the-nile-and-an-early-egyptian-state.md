@@ -8,12 +8,12 @@ Branch: `codex/ash-97-nile-early-state`
 
 Required or optional: required
 
-Queue status: **Researching**
+Queue status: **Awaiting approval**
 
 Accountable reviewer: Carlin Aylsworth
 
 Validation tier: reference
-Current stage: **Stages 0–14A complete; independent learner-proxy review pending before the product-review request**
+Current stage: **Stages 0–14B complete; product-owner review pending**
 
 This note is the durable source, claim, learning, visual, prototype, and checkpoint record. It replaces the two legacy `hieroglyphs` and `narmer` nodes; those older nodes are audit inputs, not trusted factual sources.
 
@@ -246,7 +246,7 @@ Status: **proposed; not implemented or unlockable before product review.**
 | Reconstruction invents certainty | Medium | Evidence-led reconstruction label and native uncertainty disclosure | Pending post-prototype |
 | Artifact-photo rights ambiguity | Medium | Use reviewed PD-Art file; do not reuse ministry photo | Candidate reviewed |
 
-Editorial disposition: **raw learner prototype complete.** The source and claim base is strong enough for product review after the required independent learner-proxy pass. Publication is not authorized. Final media and the proposed card remain behind the product-owner prototype gate.
+Editorial disposition: **ready for product-owner review.** The raw learner prototype and independent learner-proxy pass have no blocking findings. Publication is not authorized. Final media and the proposed card remain behind the product-owner prototype gate.
 
 ## Stage 14A — raw learner prototype checkpoint
 
@@ -275,4 +275,43 @@ Validation and shell-review evidence (August 16, 2026):
 
 ## Stage 14B — proxy and product review
 
-State: **Independent learner-proxy review pending.** The product-review record exists with state `pending`, but the product-review request has not been made because the runbook requires an independent adult learner-proxy pass first. Every proxy finding must be resolved, safely deferred, or marked blocking before the queue can move to `Awaiting approval`.
+State: **Independent learner-proxy review passed; product-owner review pending.**
+
+Reviewer identity: **Codex adult learner proxy.** The reviewer approached the complete raw lesson as a learner, received the lesson quality contract, inspected the real Learn shell, completed both prompts and the explicit completion action, and made no repository or issue changes.
+
+Learner retelling:
+
+> The Nile connected many communities, but the river did not automatically create Egypt. An early state developed gradually through competition, labor, administration, writing, and royal claims. The Narmer Palette shows how a ruler’s court presented power; it cannot prove that one battle created the state or that everyone accepted Narmer’s rule.
+
+Strongest learning moment: **“A ruler’s claim is not a camera,” especially the can-show/cannot-prove evidence-boundary panel.** The proxy found that this turned the Palette from a famous object into a memorable historical-reasoning lesson, and that both prompts reinforced the distinction.
+
+Findings and dispositions:
+
+| Classification | Finding | Disposition |
+| --- | --- | --- |
+| Non-blocking revision | “Before deciding what it means, look” currently precedes the planned object visual. | During Stage 15, place the final both-faces Palette image immediately after the object-introduction paragraph and before the supplied observation prose/card. |
+| Non-blocking implementation condition | Nekhen/Hierakonpolis, Abydos, and Memphis arrive quickly. | The required early map must retain all three locations clearly and carry the fast geography load. |
+| Non-blocking implementation condition | The landing/storehouse visual could be mistaken for direct evidence. | Its native caption and depiction disclosure must explicitly identify it as an evidence-led reconstruction. |
+| Safe deferral | No clickable successor appears after completion because no next reviewed lesson exists. | Keep the truthful journey-end message and persistent World History navigation until a reviewed successor exists. |
+
+Contract disposition: **PASS.** Mental-model coherence, narrative momentum, age-appropriate cognitive load, evidence reasoning, historical proportionality, visual teaching value at intention stage, prompt quality, explicit completion, direct-open-at-top behavior, and next-action clarity passed. Desktop/mobile and dark/light presentation passed without horizontal overflow or console warnings. No finding returns the lesson to Stage 14A.
+
+### Product-owner decision packet
+
+Build under review:
+
+- Lesson: `lesson.egypt.nile-state`
+- Title: **The Nile and an Early Egyptian State**
+- Preview route: `/learn/lesson.egypt.nile-state`
+- Preview flag: `VITE_UNLOCK_PREVIEW_LESSONS=true`
+- Branch: `codex/ash-97-nile-early-state`
+- Minimum content commit: `e742dc0`
+
+Recommended decisions:
+
+1. **Approve the title, scope, and learning arc:** river corridor → long political experimentation → close reading of the Narmer Palette → administration as repeated human work.
+2. **Approve all three exceptional-quality visual jobs:** required Nile corridor map; required, uncropped both-faces Narmer Palette evidence encounter placed before supplied observations; evidence-led Nile landing/storehouse reconstruction with an explicit reconstruction label.
+3. **Approve one deterministic Knowledge Card:** category Artifact, class Witness, stable ID `card.artifact.narmer-palette`; no Narmer person card.
+4. **Approve the safe journey-end behavior:** truthful static completion copy until a reviewed successor exists.
+
+Product-owner state: **pending**. Approval authorizes Stage 15 implementation, including the specialist map and image lifecycle workflows; it does not publish the lesson.

@@ -26,6 +26,6 @@ export const egyptNileStatePrototypeReview: LessonPrototypeReview = {
   ],
   productReview: {
     state: 'pending',
-    notes: 'Product-review record prepared. The independent learner-proxy pass is still required before requesting product-owner review of the lesson flow, three visual teaching jobs, and proposed Narmer Palette Artifact / Witness card.',
+    notes: 'Independent learner-proxy review passed with no blockers. Product-owner review requested for the lesson arc, three visual teaching jobs and their placement/label conditions, Narmer Palette Artifact / Witness card, and truthful journey-end behavior.',
   },
 };
