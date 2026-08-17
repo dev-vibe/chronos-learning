@@ -21,12 +21,12 @@ describe('canonical World Spine roadmap', () => {
 
   it('keeps unfinished roadmap nodes visible but non-navigable', () => {
     const view = createWorldSpineRoadmapView(worldSpineRoadmap, chronosContent.lessons, {}, 'lesson.uruk.first-city');
-    const multipleOrigins = view.flatMap((chapter) => chapter.nodes).find((node) => node.id === 'lesson.farming.multiple-origins');
-    expect(multipleOrigins).toMatchObject({ title: 'Many Beginnings of Farming', status: 'preparing' });
-    expect(multipleOrigins?.href).toBeUndefined();
+    const nileState = view.flatMap((chapter) => chapter.nodes).find((node) => node.id === 'lesson.egypt.nile-state');
+    expect(nileState).toMatchObject({ title: 'The Nile and an Early Egyptian State', status: 'preparing' });
+    expect(nileState?.href).toBeUndefined();
   });
 
-  it('makes authored draft lessons navigable when preview unlock is enabled', () => {
+  it('publishes Many Beginnings as a navigable World Spine node', () => {
     setUnlockPreviewLessonsForTests(true);
     const view = createWorldSpineRoadmapView(worldSpineRoadmap, chronosContent.lessons, {}, 'lesson.farming.multiple-origins');
     const multipleOrigins = view.flatMap((chapter) => chapter.nodes).find((node) => node.id === 'lesson.farming.multiple-origins');

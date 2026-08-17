@@ -8,12 +8,12 @@ Linear: [ASH-74](https://linear.app/ashs-workshop/issue/ASH-74/research-and-publ
 Original research branch: `codex/ash-74-many-beginnings-farming`
 Checkpoint continuation branch: `codex/ash-74-v2-forward-test`
 Required or optional: required
-Queue status: **Review**
+Queue status: **Complete**
 Accountable reviewer: Carlin Aylsworth
 Validation tier: reference
-Status: **Validated for unpublished integration after Stage 16 and product-owner sanity review; family/public-release UAT is reserved for the later broad-release program, not this lesson gate**
+Status: **Complete and published after product-owner release approval on 2026-08-16; family/public-release UAT remains reserved for the later broad-release program**
 
-This note is the durable source, claim, learning, media, prototype, and checkpoint record. The complete learner-facing draft and final reviewed media render in the real Learn shell; publication migrations, production unlocks, release approval, and hosted production changes remain blocked.
+This note is the durable source, claim, learning, media, prototype, publication, and review record. The complete learner-facing lesson and final reviewed media render in the real Learn shell; its committed publication configuration contains no Knowledge Card unlock because the approved decision was no card.
 
 ## Work boundary
 
@@ -672,13 +672,13 @@ The evidence-comparison intention is resolved as `not-needed`. The section’s f
 | Learner prototype in real Learn shell | Complete; independent adult learner-proxy re-review passed |
 | Family/public-release UAT | **Reserved for the later broad-release program; not a lesson gate** |
 | Product-owner checkpoint | **Approved by Carlin Aylsworth on 2026-08-11** |
-| Final lesson implementation / publication | Stage 15 implementation and the provisional unpublished portion of Stage 16 are complete; publication remains blocked |
+| Final lesson implementation / publication | **Complete; Carlin explicitly confirmed the lesson was done and no longer draft on 2026-08-16** |
 
 ### Final sign-off checklist
 
 - [x] Research integrity
 - [x] Historical / editorial review
-- [ ] Ages 11–14 learning / editorial review
+- [x] Ages 11–14 learning / editorial review
 - [x] Section / component storyboard review
 - [x] Visual / media / map review as applicable
 - [x] Rights / provenance review
@@ -686,15 +686,16 @@ The evidence-comparison intention is resolved as `not-needed`. The section’s f
 - [x] Prompt / completion review
 - [x] Accessibility review
 - [x] Content / media / tests / build validation
-- [ ] Full repository typecheck — unchanged documented baseline accepted only for provisional unpublished integration
-- [ ] Empty-database and hosted-development verification
+- [x] Full repository typecheck — unchanged documented baseline explicitly dispositioned for this release; no Many Beginnings diagnostic
+- [x] Hosted-development migration and data verification
+- [ ] Empty-database replay — deferred; the committed migration is additive and the hosted migration history was reconciled in order
 - [x] Responsive browser review (raw prototype, desktop/mobile, light/dark)
 - [x] Independent adult learner-proxy review at prototype checkpoint
 - [x] Product owner approval
 
 ## Production-preview validation — Stage 16
 
-Stage 15 implementation is complete and the lesson is in `Review`. Stage 16 is complete for this unpublished integration. The approved draft now uses two final evidence-led visuals, remains before Farming and Settlements in the preview World Spine, and keeps all learner meaning in native prose, semantic modules, prompts, and disclosures. No publication migration, hosted change, production unlock, or card unlock was created.
+Stage 15 implementation and Stage 16 production validation are complete. The published lesson uses two final evidence-led visuals, remains before Farming and Settlements in the World Spine, and keeps all learner meaning in native prose, semantic modules, prompts, and disclosures. The publication migration enables the two required prompts, preserves the approved no-card decision, and adds the reviewed legacy alias.
 
 Responsive product review passed at 1440×900 and 390×844 in both light and dark themes. The first desktop pass exposed a blocking composition defect: the five-region comparison squeezed the map and cropped its world extent. The dense comparison now receives its own desktop teaching row, the full 2:1 map uses `object-fit: contain`, and the existing stacked mobile reading order is preserved. Final captures are stored in `docs/pr/ash-74/`.
 
@@ -707,13 +708,15 @@ Final deterministic record:
 - `npm.cmd run validate:content` — pass.
 - `npm.cmd run media:build` and the post-build `npm.cmd run media:verify` — pass, 20 assets / 44 derivatives. A later whole-catalog repeat exceeded the local five-minute command allowance; catalog and media files were unchanged after the recorded pass.
 - `npm.cmd run build` — pass; existing large-chunk warning only.
+- Hosted development migration replay — pass on Supabase project `fghjnypxhnnutgsaqvvz`; the final journey order is Human Origins, Migrations and Ancient DNA, Many Beginnings of Farming, Farming and Settlements, Uruk, and Early Writing. Completion is enabled with both required prompt IDs, `neolithic_revolution` resolves to the canonical lesson, and card unlock count is zero.
+- Supabase advisors — no migration-specific regression. The existing intentional authenticated `SECURITY DEFINER` completion RPC remains a security warning; low-traffic development indexes remain reported as unused.
 - `node scripts/visual-verify-many-beginnings.mjs` — pass at 1440×900 and 390×844, light/dark; responsive image dimensions match the generated-media manifest.
 - `npm.cmd run typecheck` — unchanged repository baseline failures in legacy `NodeContentDisplay`, legacy resource/category data, and existing v2 lesson-status inference. No diagnostic names the Many Beginnings content module.
 - Production-flag reachability and prototype-annotation semantics remain covered by passing Learn/discovery and prototype-media tests; pending review annotations do not add headings, sections, prompts, or completion state, and approved annotations are absent from the learner-facing preview.
 
-Release disposition: **READY FOR THE NEXT EXPLICIT PRODUCT DECISION; STILL UNPUBLISHED.** Learner UAT is not a check in this lesson workflow. Keep the lesson `draft` and do not create a publication migration, hosted production change, or unlock until Carlin explicitly chooses that next product step. The future family/beta UAT program remains a separate prerequisite for sharing Chronos with the larger public.
+Release disposition: **PUBLISHED AND COMPLETE.** Carlin explicitly confirmed on 2026-08-16 that the lesson was done and no longer draft. Learner UAT is not a check in this lesson workflow; the future family/beta UAT program remains a separate prerequisite for sharing Chronos with the larger public.
 
-Safe typecheck deferral: Carlin accepts the unchanged repository-wide typecheck baseline only for this unpublished integration. The baseline must be resolved, or explicitly dispositioned by the accountable release reviewer with current diagnostics, before broad release.
+Safe typecheck deferral: Carlin accepts the unchanged repository-wide typecheck baseline for this lesson release. The baseline must be resolved, or explicitly dispositioned by the accountable release reviewer with current diagnostics, before broad release.
 
 ## Future family/public-release UAT — Stage 17
 
