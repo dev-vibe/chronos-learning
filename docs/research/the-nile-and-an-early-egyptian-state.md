@@ -533,7 +533,7 @@ Constraints: change only the size, shape, material, and cord attachment of the t
 - [x] Hosted development migration and configuration verification
 - [x] Immutable media publication and remote byte verification
 - [x] Post-publication discovery, progression, Learn-shell, content, and build regression pass
-- [ ] PR review and merge
+- [x] PR review and merge
 
 ## Production-preview validation — Stage 16
 
@@ -559,4 +559,4 @@ Hosted development publication passed on Supabase project `fghjnypxhnnutgsaqvvz`
 
 All three Egypt media assets and their selected delivery variants were uploaded to immutable `media-source` / `media-public` object keys and byte-for-byte verified against the manifest. The canonical Node publisher passed its media verifier but hit a reproducible Windows `@supabase/storage-js` transport error before upload under Node 25 and bundled Node 24. A bounded authenticated Storage REST fallback preserved the same no-upsert, local-hash, immutable-key, and post-upload remote-hash safeguards; all nine selected objects passed.
 
-Release disposition: **PUBLISHED IN THE CHRONOS DEVELOPMENT PROJECT; DRAFT PR #24 AWAITS FINAL REVIEW AND MERGE.** Carlin explicitly approved the updated lesson on 2026-08-19. The authored lesson, hosted configuration, remote media, roster, tests, and durable research/provenance record agree; operational queue status remains Review until the branch is merged through the normal release path.
+Release disposition: **COMPLETE.** Carlin explicitly approved the final lesson on 2026-08-19, including the eager Narmer Palette delivery correction and compact, uncropped portrait-map frame. PR #24 merged to `main` as `fca00f4` on 2026-08-19. Vercel production deployment `dpl_FPW4fN1CN7zGccndoXFbYYSJA5q4`, built from that exact commit, reached `READY`; the hosted Chronos development migration and immutable media objects remained verified. The authored lesson, hosted configuration, remote media, roster, tests, and durable research/provenance record agree, and the operational queue is now Complete.
