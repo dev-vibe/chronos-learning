@@ -64,6 +64,7 @@ Typical required lesson:
 ### Lesson section headings
 
 Learner-facing hierarchy is: masthead → section `h2` → optional module `h3` only when the module needs its own local cue.
+The `h2` names the subject or teaching job in ordinary words. It is not a metaphor, riddle, or punchline.
 Do not render section `purpose` above the `h2`. Teal uppercase eyebrows are reserved for true labels (depiction mode, card class, artifact type), not authoring stage directions.
 
 A thin sticky treatment and compact text such as “4 of 7 sections explored” show current-lesson progress. Do not add large section checklists. Persist stable section IDs only to record which sections were explored. Reopening a lesson always starts at the top; do not add within-lesson resume controls, automatic scrolling, or scroll-position restoration.

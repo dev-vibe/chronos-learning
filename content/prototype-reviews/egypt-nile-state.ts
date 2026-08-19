@@ -18,7 +18,7 @@ export const egyptNileStatePrototypeReview: LessonPrototypeReview = {
       status: 'planned',
     },
     {
-      sectionId: 'section.egypt.making-rule-travel',
+      sectionId: 'section.egypt.administration',
       kind: 'reconstruction',
       purpose: 'Make administration human through an evidence-led Nile landing and storehouse scene with boats, containers, seals, labels, and varied workers—without pyramids or later-period visual clichés.',
       status: 'planned',

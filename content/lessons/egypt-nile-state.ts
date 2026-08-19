@@ -169,7 +169,7 @@ export const egyptNileStateClaims: Claim[] = [
     reviewStatus: 'reviewed',
   },
   {
-    id: 'claim.egypt.palette-not-camera',
+    id: 'claim.egypt.palette-cannot-prove-unification',
     statement: 'The Narmer Palette cannot by itself prove that one pictured battle unified all Egypt exactly as shown.',
     kind: 'interpretation',
     certainty: 'high',
@@ -262,14 +262,14 @@ export const egyptNileStateLesson: Lesson = {
     'section.egypt.river-corridor',
     'section.egypt.before-one-king',
     'section.egypt.read-palette',
-    'section.egypt.claim-not-camera',
-    'section.egypt.making-rule-travel',
+    'section.egypt.palette-limits',
+    'section.egypt.administration',
     'section.egypt.world-check',
   ],
   sections: [
     {
       id: 'section.egypt.river-corridor',
-      heading: 'A kingdom shaped like a river?',
+      heading: 'The Nile corridor',
       purpose: 'Establish the Nile’s spatial opportunities while rejecting geographic inevitability',
       modules: [
         {
@@ -354,15 +354,15 @@ export const egyptNileStateLesson: Lesson = {
       ],
     },
     {
-      id: 'section.egypt.claim-not-camera',
-      heading: 'A ruler’s claim is not a camera',
+      id: 'section.egypt.palette-limits',
+      heading: 'What the Palette can prove',
       purpose: 'Use the Palette for a bounded interpretation and make its limits explicit',
       modules: [
         {
           id: 'module.egypt.palette-interpretation',
           type: 'prose',
           body: 'The Palette is real evidence from Narmer’s time. It is also an argument. It presents a ruler who controls force, ritual, attendants, regions, and defeated enemies. The crowns make rule over different parts of Egypt part of that message. The careful order of the carving turns violence into a claim about legitimate kingship.\n\nFor a long time, scholars often read the scenes as a direct record of one battle in which Narmer conquered Lower Egypt and unified the country. Today, literal readings are treated more cautiously. Similar royal images can compress repeated conflicts, rituals, ideals, and imagined enemies into one powerful scene. The Palette may refer to events. It does not tell us which parts are a specific event, which are symbols, or how people outside the court experienced the change.\n\nNarmer is attested in contemporary inscriptions at several sites. A much later tradition names Menes as Egypt’s founder. Whether those names refer to the same person remains uncertain. Evidence gets stronger when we preserve that boundary instead of filling it with a heroic biography.',
-          claimIds: ['claim.egypt.palette-royal-claim', 'claim.egypt.palette-not-camera', 'claim.egypt.narmer-attested', 'claim.egypt.menes-uncertain'],
+          claimIds: ['claim.egypt.palette-royal-claim', 'claim.egypt.palette-cannot-prove-unification', 'claim.egypt.narmer-attested', 'claim.egypt.menes-uncertain'],
           sourceIds: ['source.egypt.stevenson-palettes', 'source.egypt.wengrow-state-formation', 'source.egypt.ucl-narmer'],
         },
         {
@@ -377,14 +377,14 @@ export const egyptNileStateLesson: Lesson = {
             { label: 'It cannot prove alone', detail: 'That one battle created the state exactly as pictured, or that every community accepted one ruler in the same way.' },
             { label: 'It cannot recover', detail: 'The thoughts of captives, farmers, craft workers, boat crews, or most people who appear faintly—or not at all—in elite art.' },
           ],
-          claimIds: ['claim.egypt.palette-royal-claim', 'claim.egypt.palette-not-camera', 'claim.egypt.evidence-bias'],
+          claimIds: ['claim.egypt.palette-royal-claim', 'claim.egypt.palette-cannot-prove-unification', 'claim.egypt.evidence-bias'],
           sourceIds: ['source.egypt.stevenson-palettes', 'source.egypt.regulski-writing', 'source.egypt.wengrow-state-formation'],
         },
       ],
     },
     {
-      id: 'section.egypt.making-rule-travel',
-      heading: 'Making rule travel',
+      id: 'section.egypt.administration',
+      heading: 'How administration worked',
       purpose: 'Connect movement, goods, writing, workers, and repeated procedures to durable administration',
       modules: [
         {

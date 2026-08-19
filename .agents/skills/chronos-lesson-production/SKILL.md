@@ -47,7 +47,7 @@ Build the research questions, source ledger, atomic claim ledger, content triage
 
 ### 3. Prototype and review — Stages 8–14B
 
-Storyboard the complete lesson, map it to existing typed modules, plan media by teaching job, decide the card honestly, author required sincere-attempt prompts, and finish the research note.
+Storyboard the complete lesson, map it to existing typed modules, plan media by teaching job, decide the card honestly, author required sincere-attempt prompts, and finish the research note. Apply the runbook heading-voice test before drafting learner-facing headings: name the subject or job in ordinary words; do not use metaphors, riddles, or punchlines.
 
 Then build a complete unpublished `Lesson` with real prose and prompts in the actual Learn shell:
 

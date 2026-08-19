@@ -102,7 +102,7 @@ The set combines peer-reviewed archaeology, specialist writing and artifact stud
 | `claim.egypt.menes-uncertain` | Whether Narmer was the later remembered founder Menes is uncertain. | Interpretation | High | UCL Narmer | The certainty is about the uncertainty | Reviewed |
 | `claim.egypt.palette-observations` | The Narmer Palette shows the ruler’s name, different crowns, ordered attendants, defeated people, animal imagery, and scenes of royal violence. | Observation | High | Ministry; Stevenson; Commons image | Describe visible features before assigning meaning | Reviewed |
 | `claim.egypt.palette-royal-claim` | The palette presents force, divine or cosmic order, and elite ceremony as parts of legitimate kingship. | Interpretation | Medium | Stevenson; Ministry | One supported reading among debated motifs | Reviewed |
-| `claim.egypt.palette-not-camera` | The palette cannot by itself prove that one pictured battle unified all Egypt exactly as shown. | Interpretation | High | Stevenson; Wengrow | Central evidence-limit statement | Reviewed |
+| `claim.egypt.palette-cannot-prove-unification` | The palette cannot by itself prove that one pictured battle unified all Egypt exactly as shown. | Interpretation | High | Stevenson; Wengrow | Central evidence-limit statement | Reviewed |
 | `claim.egypt.ceremonial-elite-medium` | Late ceremonial palettes were rare, elaborate media tied to emerging kingship and restricted elite contexts. | Interpretation | High | Stevenson | Avoid calling the palette an everyday cosmetics board | Reviewed |
 | `claim.egypt.early-writing` | By about 3250 BCE, short Egyptian inscriptions on labels and containers recorded names, places, quantities, or goods. | Observation | High | Regulski; British Museum | Exact readings of some earliest signs remain open | Reviewed |
 | `claim.egypt.writing-and-rule` | Early writing helped direct goods and administration while also displaying elite ownership and authority. | Interpretation | High | Regulski | Practical and ideological uses are not opposites | Reviewed |
@@ -143,7 +143,7 @@ The central surviving object is violent elite propaganda or ritual display. The 
 
 ### Durable insight
 
-The Nile connected communities and resources, but an Egyptian state emerged through generations of political competition, administration, labor, writing, and royal claims. The Narmer Palette is powerful evidence for how kingship was presented; it is not a camera recording the whole process.
+The Nile connected communities and resources, but an Egyptian state emerged through generations of political competition, administration, labor, writing, and royal claims. The Narmer Palette is powerful evidence for how kingship was presented; it cannot by itself prove that one battle created the whole state.
 
 ### Target reasoning moves
 
@@ -175,12 +175,14 @@ Required prompt 2 is a concise explanation. Learners choose the river corridor, 
 
 | Order | Section | Learning job | Modules | Evidence / uncertainty move |
 | ---: | --- | --- | --- | --- |
-| 1 | A kingdom shaped like a river? | Establish valley, delta, flow, movement, and the danger of geographic determinism | opening prose; geography knowledge block | planned source-anchored map; no borders |
+| 1 | The Nile corridor | Establish valley, delta, flow, movement, and the danger of geographic determinism | opening prose; geography knowledge block | planned source-anchored map; no borders |
 | 2 | Before one king | Replace a two-box conquest story with long political experimentation and unequal change | prose; process knowledge block | distinguish reconstruction from settled fact |
 | 3 | Read the Narmer Palette | Slow down on both faces of the artifact and separate observations from interpretations | evidence-reading prose; “what you can see” knowledge block | planned high-resolution public-domain artifact encounter |
-| 4 | A ruler’s claim is not a camera | Interpret kingship while bounding what the Palette cannot prove | prose; evidence-limit knowledge block | literal event reading rejected; Menes uncertainty explicit |
-| 5 | Making rule travel | Connect boats, goods, labels, sealings, Memphis, and workers to durable administration | prose; administration knowledge block | planned evidence-led reconstruction; missing voices named |
+| 4 | What the Palette can prove | Interpret kingship while bounding what the Palette cannot prove | prose; evidence-limit knowledge block | literal event reading rejected; Menes uncertainty explicit |
+| 5 | How administration worked | Connect boats, goods, labels, sealings, Memphis, and workers to durable administration | prose; administration knowledge block | planned evidence-led reconstruction; missing voices named |
 | 6 | World Check | Require one supported claim and one evidence limit | evidence-choice prompt; concise-explanation prompt | completion requires sincere attempts |
+
+Heading-voice revision (2026-08-16): three learner-facing headings were rewritten from metaphor/riddle/punchline titles to ordinary-language job names. Claim ID `claim.egypt.palette-not-camera` became `claim.egypt.palette-cannot-prove-unification`. Section IDs `section.egypt.claim-not-camera` and `section.egypt.making-rule-travel` became `section.egypt.palette-limits` and `section.egypt.administration`. Teaching jobs are unchanged.
 
 ## Stage 11 — visual and media plan
 
@@ -283,12 +285,13 @@ Learner retelling:
 
 > The Nile connected many communities, but the river did not automatically create Egypt. An early state developed gradually through competition, labor, administration, writing, and royal claims. The Narmer Palette shows how a ruler’s court presented power; it cannot prove that one battle created the state or that everyone accepted Narmer’s rule.
 
-Strongest learning moment: **“A ruler’s claim is not a camera,” especially the can-show/cannot-prove evidence-boundary panel.** The proxy found that this turned the Palette from a famous object into a memorable historical-reasoning lesson, and that both prompts reinforced the distinction.
+Strongest learning moment: **the can-show/cannot-prove evidence-boundary panel after the Palette close read.** The proxy found that this turned the Palette from a famous object into a memorable historical-reasoning lesson, and that both prompts reinforced the distinction. Later heading-voice revision renamed the section “What the Palette can prove”; the teaching job is unchanged.
 
 Findings and dispositions:
 
 | Classification | Finding | Disposition |
 | --- | --- | --- |
+| Product-owner heading-voice correction | Metaphor and punchline section titles (“A ruler’s claim is not a camera,” “A kingdom shaped like a river?,” “Making rule travel”). | Applied before approval: headings are now “What the Palette can prove,” “The Nile corridor,” and “How administration worked.” |
 | Non-blocking revision | “Before deciding what it means, look” currently precedes the planned object visual. | During Stage 15, place the final both-faces Palette image immediately after the object-introduction paragraph and before the supplied observation prose/card. |
 | Non-blocking implementation condition | Nekhen/Hierakonpolis, Abydos, and Memphis arrive quickly. | The required early map must retain all three locations clearly and carry the fast geography load. |
 | Non-blocking implementation condition | The landing/storehouse visual could be mistaken for direct evidence. | Its native caption and depiction disclosure must explicitly identify it as an evidence-led reconstruction. |
