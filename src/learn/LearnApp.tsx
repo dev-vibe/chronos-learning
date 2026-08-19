@@ -16,6 +16,7 @@ import { knowledgeCardTypeLabel } from '../domains/knowledgeCards';
 import { createJourneyDrawerState, JourneyDrawer, orderedJourneyEntries } from './JourneyDrawer';
 import { GlobalNavigation } from '../app/GlobalNavigation';
 import { PrototypeMediaIntentions } from './PrototypeMediaIntentions';
+import { resolveMediaAsset } from '../media/resolve';
 import './learn.css';
 
 const lessonById = new Map(chronosContent.lessons.map((item) => [item.id, item]));
@@ -73,7 +74,10 @@ function Section({ section, state, onAttempt }: { section: LessonSection; state:
     if (module.type === 'knowledge' && nextModule?.type === 'historical-map') return null;
 
     if (module.type === 'historical-map') {
-      return <div className={`historical-map-pair${module.introLayout === 'dense' ? ' historical-map-pair-dense' : ''}`} key={module.id}>
+      const mapMedia = mediaById.get(module.mediaId);
+      const resolvedMap = mapMedia ? resolveMediaAsset(mapMedia) : undefined;
+      const portraitMap = resolvedMap ? resolvedMap.height > resolvedMap.width * 1.2 : false;
+      return <div className={`historical-map-pair${module.introLayout === 'dense' ? ' historical-map-pair-dense' : ''}${portraitMap ? ' historical-map-pair-portrait' : ''}`} key={module.id}>
         {previousModule?.type === 'knowledge'
           ? <Module module={previousModule} state={state} onAttempt={onAttempt} />
           : <aside className="historical-map-intro">

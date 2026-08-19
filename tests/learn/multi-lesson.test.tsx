@@ -130,6 +130,7 @@ describe('multi-lesson Learn runtime', () => {
     render(<LearnApp lessonId="lesson.egypt.nile-state" gatewayFactory={async () => gateway} />);
     expect(await screen.findByRole('heading', { name: 'The Nile and an Early Egyptian State' })).toBeTruthy();
     expect(document.querySelectorAll('[data-section-id]')).toHaveLength(6);
+    expect(screen.getByRole('figure', { name: 'Three places along one river' }).parentElement?.classList.contains('historical-map-pair-portrait')).toBe(true);
     expect(screen.getByRole('button', { name: '0 of 2 required prompts attempted' }).hasAttribute('disabled')).toBe(true);
   });
   it('always permits revisiting a completed lesson even when its prerequisite is incomplete', async () => {
