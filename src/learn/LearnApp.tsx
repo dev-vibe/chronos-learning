@@ -50,7 +50,7 @@ function Module({ module, state, onAttempt }: ModuleProps) {
   if (module.type === 'evidence') {
     const media = mediaById.get(module.mediaId)!;
     const source = media.sourceIds.map((id) => sourceById.get(id)).find(Boolean);
-    return <figure className="evidence-module"><div className="evidence-image"><ResponsiveMedia media={media} alt={media.alt} sizes="(max-width: 800px) 100vw, 50vw" loading="lazy" /><span>{module.artifactLabel}</span></div><figcaption><div className="evidence-type"><Archive /><span>From the evidence room</span></div><h3>{module.title}</h3><p>{module.body}</p><dl><div><dt>Depiction</dt><dd>{media.depictionLabel}</dd></div><div><dt>Source</dt><dd>{source ? <a href={source.url} target='_blank' rel='noreferrer'>{source.publisher}</a> : 'Institutional source'}</dd></div>{media.reviewStatus === 'approved' ? <div><dt>Rights</dt><dd>{media.rightsLabel}</dd></div> : null}</dl></figcaption></figure>;
+    return <figure className="evidence-module"><div className="evidence-image"><ResponsiveMedia media={media} alt={media.alt} sizes="(max-width: 800px) 100vw, 50vw" loading="eager" /><span>{module.artifactLabel}</span></div><figcaption><div className="evidence-type"><Archive /><span>From the evidence room</span></div><h3>{module.title}</h3><p>{module.body}</p><dl><div><dt>Depiction</dt><dd>{media.depictionLabel}</dd></div><div><dt>Source</dt><dd>{source ? <a href={source.url} target='_blank' rel='noreferrer'>{source.publisher}</a> : 'Institutional source'}</dd></div>{media.reviewStatus === 'approved' ? <div><dt>Rights</dt><dd>{media.rightsLabel}</dd></div> : null}</dl></figcaption></figure>;
   }
   if (module.type === 'historical-map') {
     const media = mediaById.get(module.mediaId)!;
