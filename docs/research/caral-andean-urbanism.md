@@ -292,7 +292,7 @@ Research-note identity/version: Stages 0–14B prototype checkpoint
 
 Preview route: `/learn/lesson.caral.andean-urbanism`
 
-Prototype commit: recorded on branch `codex/ash-98-caral-andean-urbanism` at this checkpoint
+Prototype commit: `50db93c` on branch `codex/ash-98-caral-andean-urbanism`
 
 Validation tier: reference
 
