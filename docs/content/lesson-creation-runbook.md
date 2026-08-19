@@ -115,9 +115,11 @@ The specialist runbooks own their details. This document decides when they are n
 - Media is selected because it teaches. A lesson has no image, map, audio, or video quota.
 - Never use SVG for lesson media. No lesson-media source, reference copy, intermediate, master, generated asset, map, diagram, card image, reconstruction, or runtime derivative may be an SVG.
 - Never hand-author or procedurally draw an instructional diagram, infographic, or diagram-like lesson image with vector geometry, canvas commands, plotting code, or shape primitives. Every such visual must be produced as a raster image edit from a reviewed, rights-cleared pre-existing image of the same or closely similar visual type. If no suitable reference image exists, stop visual production and use no image or request a product-owner decision.
-- Each section has one learner-facing title (`heading`). Do not stack a second attention-grabbing title, slogan, or paraphrase immediately under it.
+- Each section has one learner-facing title (`heading`). The heading names the subject or teaching job in ordinary words. It orients; it is not a joke, metaphor, riddle, or magazine punchline. Interest comes from the history, not from the title.
+- Do not stack a second attention-grabbing title, slogan, or paraphrase immediately under the heading.
 - `purpose` is authoring metadata for storyboards, agents, and review. It is not learner-facing copy and must not read like a second headline.
 - Module `title` / `eyebrow` appear only when they add a distinct teaching job (for example, an evidence close-read cue or a place label). If a module is the section’s sole content block, prefer the section heading alone and keep the module title short, literal, or empty of slogan energy.
+- Claim IDs, section IDs, and durable-understanding sentences follow the same voice. Do not encode a heading metaphor into the knowledge model.
 
 ## The authoring record
 
@@ -353,7 +355,7 @@ Age adaptation changes explanation, pacing, assumptions, and support. It does no
 - Introduce specialized vocabulary only when it earns precision; define it near first use and then reuse it consistently.
 - Break dense reasoning into visible steps without fragmenting it into disconnected fact cards.
 - Prefer specific actors and actions over vague passive voice.
-- Use analogies only when their limits are stated and they do not modernize the past.
+- Use analogies only when their limits are stated and they do not modernize the past. Never put the analogy in a section heading.
 - Explain uncertainty in direct language: “The marks survive; the exact transaction does not.”
 - Preserve tradeoffs, power differences, missing voices, and unintended consequences.
 - Never make a culture exotic, childish, faceless, or a mere stepping stone toward the present.
@@ -387,7 +389,7 @@ For each section ask:
 4. What concrete evidence or example makes it real?
 5. What can be cut without harming the mental model?
 6. Does the section leave a false impression even if every sentence is technically true?
-7. Can the learner know the section’s job from the heading alone, without reading an eyebrow or a second title?
+7. Can a 12-year-old, or a parent skimming the page, tell what this section is about from the heading alone—without decoding a metaphor, riddle, or punchline, and without reading an eyebrow or a second title?
 
 ### Inclusion and accessibility
 
@@ -406,10 +408,28 @@ Create a table:
 
 Heading rules:
 
-- Prefer concrete, direct titles a learner can skim (“Read the skull,” “Evidence across a continent”).
-- Avoid clever paraphrases that require decoding before content (“What counts as one of us?” when the job is naming *Homo sapiens* and the sparse record).
-- Authoring `purpose` stays imperative and internal (“Supply the species category…”). Never publish that voice as on-page chrome.
-- If the section is a single `knowledge` or `prose` module, do not invent a second grabber title for the module.
+A section heading names the subject or the teaching job in ordinary words. It orients. It is not a joke, metaphor, riddle, or magazine punchline. Interest comes from the history, not from the title.
+
+Rewrite test: if a 12-year-old, or a parent skimming the page, cannot tell what the section is about without reading the body, rewrite the heading. If the heading needs explaining, it has already failed.
+
+| Fail | Pass |
+| --- | --- |
+| A ruler’s claim is not a camera | What the Palette can prove |
+| A kingdom shaped like a river? | The Nile corridor |
+| Making rule travel | How administration worked |
+| Can a mark remember? | Why people started keeping records |
+| What counts as one of us? | What counts as *Homo sapiens*? |
+
+A plain-language thesis is allowed when it uses the actual historical claim in ordinary words (“Farming did not begin once”). A metaphor standing in for that claim is not.
+
+Do not:
+
+- use a modern object as a metaphor for evidence (“camera,” “photograph,” “movie,” “news report”) in a heading;
+- pose a riddle or rhetorical question whose answer is the section;
+- compress a thesis into a clever verb phrase;
+- put an analogy in the heading.
+
+Authoring `purpose` stays imperative and internal (“Supply the species category…”). Never publish that voice as on-page chrome. If the section is a single `knowledge` or `prose` module, do not invent a second grabber title for the module. Claim IDs, section IDs, and durable-understanding sentences follow the same voice.
 
 Each section must perform a distinct job. A common pattern is:
 

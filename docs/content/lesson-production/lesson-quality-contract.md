@@ -31,6 +31,13 @@ Record concrete evidence from the rendered lesson for every finding. Mark each f
 - Check long sentences, nested causation, unexplained names, rapid place changes, and excessive date loads in the actual responsive layout.
 - Preserve complexity that matters; simplify presentation rather than manufacturing certainty.
 
+### Heading voice
+
+- Every required section heading names the subject or teaching job in ordinary words.
+- Fail metaphors, riddles, punchlines, and “X is not a [modern object]” titles. A slogan heading is `revise` or `blocking`, never a highlight.
+- Confirm that a skimming 12-year-old could tell what each section is about before reading the body.
+- Analogies, if used at all, belong in prose with their limits stated—not in the heading, claim ID, or durable-understanding sentence.
+
 ### Evidence reasoning
 
 - Give the learner a concrete source, object, map, pattern, or comparison from which to reason.
@@ -90,9 +97,10 @@ Record concrete evidence from the rendered lesson for every finding. Mark each f
 1. Give a reviewer the raw Learn-shell prototype and this contract. Do not give them the author's intended diagnosis.
 2. Ask the reviewer to read and act naturally before discussing intent.
 3. Capture the point in the lesson and observable evidence for each hesitation, misreading, overload, decorative visual, prompt mismatch, or action ambiguity.
-4. Prepare the product-review record as `pending`, link the exact prototype, set the queue row to `Awaiting approval`, and stop for the accountable owner.
-5. Have the owner inspect desktop/mobile and light/dark states and disposition every finding. Never let an agent or proxy approve on the owner's behalf.
-6. Record explicit approval or return to Stage 14A for requested changes; repeat the affected review on the revised experience.
+4. Treat slogan, metaphor, riddle, or punchline headings as `revise` or `blocking`. Do not praise a clever title as a learning moment. If a heading needs explaining, it fails.
+5. Prepare the product-review record as `pending`, link the exact prototype, set the queue row to `Awaiting approval`, and stop for the accountable owner.
+6. Have the owner inspect desktop/mobile and light/dark states and disposition every finding. Never let an agent or proxy approve on the owner's behalf.
+7. Record explicit approval or return to Stage 14A for requested changes; repeat the affected review on the revised experience.
 
 ### Optional learner observation and future public-release UAT
 

@@ -66,6 +66,8 @@ Required sincere-attempt evidence:
 | Order | Section ID | Learner-facing heading | Authoring purpose (not shown) | Claims/sources | Module | Media/action | Transition |
 | --- | --- | --- | --- | --- | --- | --- | --- |
 
+Heading voice: each learner-facing heading names the subject or job in ordinary words. Fail metaphors, riddles, and punchlines. If the heading needs explaining, rewrite it.
+
 ## Media decisions
 
 | Intention ID | Section ID | Teaching question | Form | Evidence/claim basis | Depiction label | Accessible equivalent | Stage 14A treatment | Final review |
@@ -186,6 +188,7 @@ Raw prototype supplied without intended diagnosis: yes | no
 | Mental-model coherence | | | |
 | Narrative momentum | | | |
 | Age-appropriate cognitive load | | | |
+| Heading voice | | | |
 | Evidence reasoning | | | |
 | Historical proportionality | | | |
 | Visual teaching value | | | |

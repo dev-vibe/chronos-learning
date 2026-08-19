@@ -16,6 +16,7 @@ import { knowledgeCardTypeLabel } from '../domains/knowledgeCards';
 import { createJourneyDrawerState, JourneyDrawer, orderedJourneyEntries } from './JourneyDrawer';
 import { GlobalNavigation } from '../app/GlobalNavigation';
 import { PrototypeMediaIntentions } from './PrototypeMediaIntentions';
+import { resolveMediaAsset } from '../media/resolve';
 import './learn.css';
 
 const lessonById = new Map(chronosContent.lessons.map((item) => [item.id, item]));
@@ -50,7 +51,7 @@ function Module({ module, state, onAttempt }: ModuleProps) {
   if (module.type === 'evidence') {
     const media = mediaById.get(module.mediaId)!;
     const source = media.sourceIds.map((id) => sourceById.get(id)).find(Boolean);
-    return <figure className="evidence-module"><div className="evidence-image"><ResponsiveMedia media={media} alt={media.alt} sizes="(max-width: 800px) 100vw, 50vw" loading="lazy" /><span>{module.artifactLabel}</span></div><figcaption><div className="evidence-type"><Archive /><span>From the evidence room</span></div><h3>{module.title}</h3><p>{module.body}</p><dl><div><dt>Depiction</dt><dd>{media.depictionLabel}</dd></div><div><dt>Source</dt><dd>{source ? <a href={source.url} target='_blank' rel='noreferrer'>{source.publisher}</a> : 'Institutional source'}</dd></div>{media.reviewStatus === 'approved' ? <div><dt>Rights</dt><dd>{media.rightsLabel}</dd></div> : null}</dl></figcaption></figure>;
+    return <figure className="evidence-module"><div className="evidence-image"><ResponsiveMedia media={media} alt={media.alt} sizes="(max-width: 800px) 100vw, 50vw" loading="eager" /><span>{module.artifactLabel}</span></div><figcaption><div className="evidence-type"><Archive /><span>From the evidence room</span></div><h3>{module.title}</h3><p>{module.body}</p><dl><div><dt>Depiction</dt><dd>{media.depictionLabel}</dd></div><div><dt>Source</dt><dd>{source ? <a href={source.url} target='_blank' rel='noreferrer'>{source.publisher}</a> : 'Institutional source'}</dd></div>{media.reviewStatus === 'approved' ? <div><dt>Rights</dt><dd>{media.rightsLabel}</dd></div> : null}</dl></figcaption></figure>;
   }
   if (module.type === 'historical-map') {
     const media = mediaById.get(module.mediaId)!;
@@ -73,7 +74,10 @@ function Section({ section, state, onAttempt }: { section: LessonSection; state:
     if (module.type === 'knowledge' && nextModule?.type === 'historical-map') return null;
 
     if (module.type === 'historical-map') {
-      return <div className={`historical-map-pair${module.introLayout === 'dense' ? ' historical-map-pair-dense' : ''}`} key={module.id}>
+      const mapMedia = mediaById.get(module.mediaId);
+      const resolvedMap = mapMedia ? resolveMediaAsset(mapMedia) : undefined;
+      const portraitMap = resolvedMap ? resolvedMap.height > resolvedMap.width * 1.2 : false;
+      return <div className={`historical-map-pair${module.introLayout === 'dense' ? ' historical-map-pair-dense' : ''}${portraitMap ? ' historical-map-pair-portrait' : ''}`} key={module.id}>
         {previousModule?.type === 'knowledge'
           ? <Module module={previousModule} state={state} onAttempt={onAttempt} />
           : <aside className="historical-map-intro">
