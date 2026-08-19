@@ -21,9 +21,9 @@ describe('canonical World Spine roadmap', () => {
 
   it('keeps unfinished roadmap nodes visible but non-navigable', () => {
     const view = createWorldSpineRoadmapView(worldSpineRoadmap, chronosContent.lessons, {}, 'lesson.uruk.first-city');
-    const nileState = view.flatMap((chapter) => chapter.nodes).find((node) => node.id === 'lesson.egypt.nile-state');
-    expect(nileState).toMatchObject({ title: 'The Nile and an Early Egyptian State', status: 'preparing' });
-    expect(nileState?.href).toBeUndefined();
+    const caral = view.flatMap((chapter) => chapter.nodes).find((node) => node.id === 'lesson.caral.andean-urbanism');
+    expect(caral).toMatchObject({ title: 'Caral and Early Andean Urbanism', status: 'preparing' });
+    expect(caral?.href).toBeUndefined();
   });
 
   it('publishes Many Beginnings as a navigable World Spine node', () => {

@@ -2,6 +2,41 @@
   "schemaVersion": 1,
   "assets": [
     {
+      "id": "media.egypt.narmer-palette",
+      "collection": "egypt",
+      "sourcePath": "public/images/evidence/egypt-narmer-palette-both-faces.jpg",
+      "fallbackPath": "/images/optimized/egypt/narmer-palette.optimized.jpg",
+      "preset": "photo",
+      "widths": [
+        480,
+        960
+      ]
+    },
+    {
+      "id": "media.egypt.nile-corridor-map",
+      "collection": "egypt",
+      "sourcePath": "public/images/places/egypt-nile-corridor-map.jpg",
+      "fallbackPath": "/images/optimized/egypt/nile-corridor-map.optimized.jpg",
+      "preset": "drawing",
+      "widths": [
+        480,
+        960,
+        1024
+      ]
+    },
+    {
+      "id": "media.egypt.nile-landing-reconstruction",
+      "collection": "egypt",
+      "sourcePath": "public/images/reconstructions/egypt-nile-landing-storehouse.jpg",
+      "fallbackPath": "/images/optimized/egypt/nile-landing-reconstruction.optimized.jpg",
+      "preset": "picture",
+      "widths": [
+        480,
+        960,
+        1600
+      ]
+    },
+    {
       "id": "media.farming.catalhoyuk-card",
       "collection": "farming",
       "sourcePath": "public/images/places/catalhoyuk-card.webp",

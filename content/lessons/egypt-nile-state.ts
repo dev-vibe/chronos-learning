@@ -1,5 +1,6 @@
-import type { Claim, Lesson, Source, UnderstandingPrompt } from '../../src/domains/contracts';
+import type { Claim, KnowledgeCard, Lesson, MediaAsset, Source, UnderstandingPrompt } from '../../src/domains/contracts';
 import type { AuthoredContentModule } from '../assemble';
+import { mediaLocator } from '../shared/media-locator';
 
 export const egyptNileStateSources: Source[] = [
   {
@@ -99,6 +100,51 @@ export const egyptNileStateSources: Source[] = [
     publisher: 'UNESCO World Heritage Centre',
     accessedOn: '2026-08-16',
     licenseOrUse: 'Official heritage and geographic reference; description is CC BY-SA IGO 3.0, maps are reference-only',
+    reviewStatus: 'reviewed',
+  },
+  {
+    id: 'source.egypt.commons-ancient-map',
+    title: 'Ancient Egypt main map',
+    url: 'https://commons.wikimedia.org/wiki/File:Ancient_Egypt_main_map.png',
+    publisher: 'Wikimedia Commons / Jeff Dahl',
+    accessedOn: '2026-08-19',
+    licenseOrUse: 'CC BY-SA 3.0 raster map used as the geographic composition reference; attribution and share-alike preserved',
+    reviewStatus: 'reviewed',
+  },
+  {
+    id: 'source.egypt.pleiades-abydos',
+    title: 'Abydos/Ebot',
+    url: 'https://pleiades.stoa.org/places/756512',
+    publisher: 'Pleiades, Ancient World Mapping Center / ISAW',
+    accessedOn: '2026-08-19',
+    licenseOrUse: 'CC BY 3.0 scholarly place record and representative coordinate used for geographic cross-checking',
+    reviewStatus: 'reviewed',
+  },
+  {
+    id: 'source.egypt.ucl-tour-nile',
+    title: 'Tour of the Nile',
+    url: 'https://www.ucl.ac.uk/3dpetriemuseum/stories/excavation-and-rediscovery/tour-of-the-nile/Tour_of_the_Nile.html',
+    publisher: 'UCL Petrie Museum',
+    accessedOn: '2026-08-19',
+    licenseOrUse: 'University museum reference used to cross-check north-to-south site order; image is not redistributed',
+    reviewStatus: 'reviewed',
+  },
+  {
+    id: 'source.egypt.met-predynastic-boats',
+    title: 'Decorated ware jar depicting two boats',
+    url: 'https://www.metmuseum.org/art/collection/search/558187',
+    publisher: 'The Metropolitan Museum of Art',
+    accessedOn: '2026-08-19',
+    licenseOrUse: 'CC0 Open Access image, accession 99.3.2; used as a Predynastic boat and pottery reference for the reconstruction',
+    reviewStatus: 'reviewed',
+  },
+  {
+    id: 'source.egypt.hierakonpolis-tomb-boat',
+    title: 'Hierakonpolis Tomb 100 boat',
+    url: 'https://commons.wikimedia.org/wiki/File:Hierakonpolis_Tomb_100_Boat.jpg',
+    publisher: 'Wikimedia Commons / Frederick William Green and James Edward Quibell',
+    accessedOn: '2026-08-19',
+    licenseOrUse: 'Public Domain Mark and PD-US-expired; c. 3500–3200 BCE boat image used as a period reference for the reconstruction',
     reviewStatus: 'reviewed',
   },
 ];
@@ -218,6 +264,42 @@ export const egyptNileStateClaims: Claim[] = [
   },
 ];
 
+export const egyptNileStateMedia: MediaAsset[] = [
+  {
+    id: 'media.egypt.nile-corridor-map',
+    locator: mediaLocator('media.egypt.nile-corridor-map'),
+    alt: 'North-up illustrated map of the Nile corridor with the Mediterranean and Nile Delta at top, Memphis near the Delta entrance, Abydos farther south, and Nekhen or Hierakonpolis farthest south; Upper Egypt is south and Lower Egypt north',
+    depictionMode: 'map',
+    depictionLabel: 'Evidence-based historical map · river branches, wetlands, and settlement extents are approximate',
+    rightsLabel: 'Chronos original raster map edit · geographic reference by Jeff Dahl, CC BY-SA 3.0',
+    sourceIds: ['source.egypt.commons-ancient-map', 'source.egypt.unesco-memphis', 'source.egypt.pleiades-abydos', 'source.egypt.hierakonpolis-expedition', 'source.egypt.ucl-tour-nile'],
+    visualBriefRef: 'docs/research/the-nile-and-an-early-egyptian-state-map.md#generated-artwork-lineage',
+    reviewStatus: 'approved',
+  },
+  {
+    id: 'media.egypt.narmer-palette',
+    locator: mediaLocator('media.egypt.narmer-palette'),
+    alt: 'Both faces of the gray-green Narmer Palette shown side by side, including Narmer in the White Crown raising a mace on one face and Narmer in the Red Crown leading a procession on the other',
+    depictionMode: 'evidence',
+    depictionLabel: 'Surviving evidence · both faces shown together without cropping',
+    rightsLabel: 'Public Domain Mark · faithful reproduction of a public-domain two-dimensional work',
+    sourceIds: ['source.egypt.commons-narmer-palette', 'source.egypt.ministry-narmer-palette', 'source.egypt.stevenson-palettes'],
+    visualBriefRef: 'docs/research/the-nile-and-an-early-egyptian-state.md#image-lifecycle',
+    reviewStatus: 'approved',
+  },
+  {
+    id: 'media.egypt.nile-landing-reconstruction',
+    locator: mediaLocator('media.egypt.nile-landing-reconstruction'),
+    alt: 'Evidence-led reconstruction of workers unloading jars, baskets, and bundles from a Nile boat while others check closures and cords and carry goods into low mudbrick storehouses',
+    depictionMode: 'evidence-based-reconstruction',
+    depictionLabel: 'Evidence-led reconstruction · the exact people, landing, and moment are illustrative',
+    rightsLabel: 'Chronos original reconstruction · boat references from The Met, CC0, and Green and Quibell, Public Domain',
+    sourceIds: ['source.egypt.regulski-writing', 'source.egypt.wengrow-state-formation', 'source.egypt.cambridge-nile', 'source.egypt.hierakonpolis-expedition', 'source.egypt.met-predynastic-boats', 'source.egypt.hierakonpolis-tomb-boat'],
+    visualBriefRef: 'docs/research/the-nile-and-an-early-egyptian-state.md#image-lifecycle',
+    reviewStatus: 'approved',
+  },
+];
+
 export const egyptNileStatePrompts: UnderstandingPrompt[] = [
   {
     id: 'prompt.egypt.palette-supported-claim',
@@ -247,7 +329,7 @@ export const egyptNileStatePrompts: UnderstandingPrompt[] = [
 export const egyptNileStateLesson: Lesson = {
   id: 'lesson.egypt.nile-state',
   legacyAliases: ['hieroglyphs', 'narmer'],
-  status: 'draft',
+  status: 'published',
   title: 'The Nile and an Early Egyptian State',
   masthead: 'c. 3200–2700 BCE',
   place: 'Nile Valley and Delta, northeastern Africa',
@@ -258,6 +340,9 @@ export const egyptNileStateLesson: Lesson = {
     approximate: true,
   },
   significance: 'The Nile connected communities, but generations of political competition, labor, administration, writing, and royal claims made an early territorial state.',
+  heroMediaId: 'media.egypt.nile-landing-reconstruction',
+  heroLabel: 'Evidence-led reconstruction',
+  heroCaption: 'A reconstructed Nile landing and storehouse workflow based on archaeological evidence — not a photograph of one known place or moment.',
   sectionIdsRequired: [
     'section.egypt.river-corridor',
     'section.egypt.before-one-king',
@@ -292,6 +377,25 @@ export const egyptNileStateLesson: Lesson = {
           ],
           claimIds: ['claim.egypt.nile-corridor', 'claim.egypt.no-river-determinism'],
           sourceIds: ['source.egypt.cambridge-nile', 'source.egypt.met-educator'],
+        },
+        {
+          id: 'module.egypt.nile-map',
+          type: 'historical-map',
+          eyebrow: 'Follow the corridor',
+          title: 'Three places along one river',
+          body: 'Use the map to hold the north–south relationship in view: Nekhen in the southern valley, Abydos farther north, and the Memphis region near the meeting of valley and delta. These positions help explain movement and administration; they do not draw a timeless political border.',
+          mediaId: 'media.egypt.nile-corridor-map',
+          periodLabel: 'c. 3200–2700 BCE',
+          focusPlace: 'Nile Valley and Delta',
+          modernContext: 'Northeastern Africa; ancient channels and wetlands changed',
+          accessibleSummary: 'A north-oriented map follows the Nile from Upper Egypt in the south through Nekhen and Abydos to the Memphis region and the Nile Delta in Lower Egypt. The river reaches the Mediterranean Sea in the north. No political borders or conquest arrows are shown.',
+          compactLabel: 'Broad river relationships · no political borders',
+          coordinateNote: 'Memphis is anchored by UNESCO World Heritage coordinates, Abydos by Pleiades, and Nekhen by a broad site position cross-checked against archaeological reference maps.',
+          uncertaintyNote: 'River branches, wetlands, shorelines, and settlement extents changed over time; the map preserves broad relative locations rather than reconstructing one exact ancient year.',
+          depictionStatus: 'evidence-based-reconstruction',
+          introLayout: 'dense',
+          claimIds: ['claim.egypt.nile-corridor', 'claim.egypt.no-river-determinism', 'claim.egypt.memphis-region'],
+          sourceIds: ['source.egypt.commons-ancient-map', 'source.egypt.pleiades-abydos', 'source.egypt.ucl-tour-nile', 'source.egypt.unesco-memphis', 'source.egypt.hierakonpolis-expedition'],
         },
       ],
     },
@@ -332,9 +436,26 @@ export const egyptNileStateLesson: Lesson = {
         {
           id: 'module.egypt.palette-first-look',
           type: 'prose',
-          body: 'A green-gray stone object about 64 centimeters tall survives from around 3100 BCE. It was found in a temple deposit at Nekhen and is now held by the Egyptian Museum in Cairo. Its shape recalls smaller palettes used for grinding pigment, but this one is unusually large, deeply carved, and ceremonial.\n\nBefore deciding what it means, look. Near the top of both faces, a catfish and chisel write the ruler’s name: Narmer. On one face, the ruler wears the tall White Crown associated with Upper Egypt and raises a mace over a kneeling person. A falcon, captives, attendants, and signs fill the ordered scene.\n\nOn the other face, the ruler wears the Red Crown associated with Lower Egypt and walks in a procession toward defeated bodies. Two long-necked fantastic animals curve around a central hollow. At the bottom, a bull breaks into a fortified enclosure. The ruler is much larger than most other people. These are observations. What they prove comes next.',
+          body: 'A green-gray stone object about 64 centimeters tall survives from around 3100 BCE. It was found in a temple deposit at Nekhen and is now held by the Egyptian Museum in Cairo. Its shape recalls smaller palettes used for grinding pigment, but this one is unusually large, deeply carved, and ceremonial.',
           claimIds: ['claim.egypt.palette-observations', 'claim.egypt.ceremonial-elite-medium', 'claim.egypt.narmer-attested'],
           sourceIds: ['source.egypt.ministry-narmer-palette', 'source.egypt.stevenson-palettes', 'source.egypt.ucl-narmer'],
+        },
+        {
+          id: 'module.egypt.palette-evidence',
+          type: 'evidence',
+          title: 'Both faces, held together',
+          artifactLabel: 'Surviving evidence · both faces',
+          body: 'Both faces are shown together and uncropped. Before reading the court’s claim, trace the crowns, attendants, captives, animals, signs, and changes in scale. The carved lines, surface damage, and overall arrangement survive; an exact sequence of events does not.',
+          mediaId: 'media.egypt.narmer-palette',
+          claimIds: ['claim.egypt.palette-observations', 'claim.egypt.ceremonial-elite-medium'],
+          sourceIds: ['source.egypt.commons-narmer-palette', 'source.egypt.ministry-narmer-palette', 'source.egypt.stevenson-palettes'],
+        },
+        {
+          id: 'module.egypt.palette-observations',
+          type: 'prose',
+          body: 'Before deciding what it means, look. Near the top of both faces, a catfish and chisel write the ruler’s name: Narmer. On one face, the ruler wears the tall White Crown associated with Upper Egypt and raises a mace over a kneeling person. A falcon, captives, attendants, and signs fill the ordered scene.\n\nOn the other face, the ruler wears the Red Crown associated with Lower Egypt and walks in a procession toward defeated bodies. Two long-necked fantastic animals curve around a central hollow. At the bottom, a bull breaks into a fortified enclosure. The ruler is much larger than most other people. These are observations. What they prove comes next.',
+          claimIds: ['claim.egypt.palette-observations', 'claim.egypt.narmer-attested', 'claim.egypt.early-writing'],
+          sourceIds: ['source.egypt.ministry-narmer-palette', 'source.egypt.stevenson-palettes', 'source.egypt.ucl-narmer', 'source.egypt.regulski-writing'],
         },
         {
           id: 'module.egypt.palette-observe',
@@ -409,6 +530,20 @@ export const egyptNileStateLesson: Lesson = {
           claimIds: ['claim.egypt.writing-and-rule', 'claim.egypt.evidence-bias', 'claim.egypt.nile-corridor'],
           sourceIds: ['source.egypt.regulski-writing', 'source.egypt.wengrow-state-formation', 'source.egypt.cambridge-nile', 'source.egypt.hierakonpolis-expedition'],
         },
+        {
+          id: 'module.egypt.nile-landing-field-guide',
+          type: 'scene',
+          title: 'Follow the goods from boat to storehouse',
+          body: 'Evidence-led reconstruction: the exact people, landing, and moment are illustrative. Open the field guide to trace the repeated work that could turn river movement into institutional control.',
+          mediaId: 'media.egypt.nile-landing-reconstruction',
+          hotspots: [
+            { label: 'River transport', detail: 'Boat crews and carriers moved containers, food, materials, people, and messages along the Nile corridor.' },
+            { label: 'Checks, seals, and cords', detail: 'Workers could inspect closures, seals, tags, and containers. The scene shows the physical workflow without claiming exact marks or one documented landing.' },
+            { label: 'Storage and redistribution', detail: 'Mudbrick storehouses made collection visible, but keeping goods useful required repeated decisions about access, protection, rations, and destinations.' },
+          ],
+          claimIds: ['claim.egypt.writing-and-rule', 'claim.egypt.evidence-bias', 'claim.egypt.nile-corridor'],
+          sourceIds: ['source.egypt.regulski-writing', 'source.egypt.met-predynastic-boats', 'source.egypt.hierakonpolis-tomb-boat', 'source.egypt.hierakonpolis-expedition'],
+        },
       ],
     },
     {
@@ -435,13 +570,45 @@ export const egyptNileStateLesson: Lesson = {
   ],
   claimIds: egyptNileStateClaims.map((claim) => claim.id),
   sourceIds: egyptNileStateSources.map((source) => source.id),
-  mediaIds: [],
+  mediaIds: egyptNileStateMedia.map((media) => media.id),
   promptIds: egyptNileStatePrompts.map((prompt) => prompt.id),
 };
+
+export const egyptNileStateCards: KnowledgeCard[] = [
+  {
+    id: 'card.artifact.narmer-palette',
+    title: 'Narmer Palette',
+    category: 'artifact',
+    cardClass: 'witness',
+    date: {
+      startYear: -3100,
+      endYear: -3000,
+      display: 'c. 3100 BCE',
+      approximate: true,
+    },
+    place: 'Nekhen (Hierakonpolis), Upper Egypt',
+    significance: 'A carved royal claim that reveals how early kingship wanted to be seen without recording the whole path to power.',
+    revealTitle: 'A royal claim, read with limits',
+    revealBody: 'You earned this Artifact card by using both faces of the Palette as evidence while refusing to treat one court image as a complete conquest record.',
+    depictionLabel: 'Artifact-focused · surviving evidence',
+    facts: [
+      'A ceremonial gray-green stone palette about 64 centimeters tall',
+      'Found in a temple deposit at Nekhen and now held by the Egyptian Museum in Cairo',
+      'Shows Narmer with different regional crowns, attendants, captives, fantastic animals, and royal violence',
+      'Can support claims about royal ideology but cannot prove one battle unified all Egypt exactly as shown',
+    ],
+    lessonIds: ['lesson.egypt.nile-state'],
+    sourceIds: ['source.egypt.commons-narmer-palette', 'source.egypt.ministry-narmer-palette', 'source.egypt.stevenson-palettes'],
+    mediaId: 'media.egypt.narmer-palette',
+    unlockLessonId: 'lesson.egypt.nile-state',
+  },
+];
 
 export const egyptNileStateContent: AuthoredContentModule = {
   sources: egyptNileStateSources,
   claims: egyptNileStateClaims,
+  media: egyptNileStateMedia,
   prompts: egyptNileStatePrompts,
   lessons: [egyptNileStateLesson],
+  cards: egyptNileStateCards,
 };

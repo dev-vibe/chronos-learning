@@ -14,6 +14,7 @@ class MultiLessonGateway implements LearnProgressGateway {
   states = new Map([
     ['lesson.uruk.first-city', { ...emptyState('lesson.uruk.first-city'), status: 'completed', completedAt: '2026-01-01T00:00:00.000Z' }],
     ['lesson.writing.early-systems', emptyState('lesson.writing.early-systems')],
+    ['lesson.egypt.nile-state', emptyState('lesson.egypt.nile-state')],
   ]);
   load = vi.fn(async (lessonId: string) => this.states.get(lessonId)!);
   loadJourneySummaries = vi.fn(async (lessonIds: readonly string[]) => Object.fromEntries(lessonIds.map((lessonId) => {
@@ -35,7 +36,11 @@ class MultiLessonGateway implements LearnProgressGateway {
   complete = vi.fn(async (lessonId: string) => {
     const state = this.states.get(lessonId)!;
     if (state.status === 'completed') return { completion: 'already-completed', cardOwnership: 'already-owned', cardId: state.cardId } as const;
-    const cardId = lessonId === 'lesson.writing.early-systems' ? 'card.artifact.proto-cuneiform-tablet' : 'card.place.uruk';
+    const cardId = lessonId === 'lesson.writing.early-systems'
+      ? 'card.artifact.proto-cuneiform-tablet'
+      : lessonId === 'lesson.egypt.nile-state'
+        ? 'card.artifact.narmer-palette'
+        : 'card.place.uruk';
     this.states.set(lessonId, { ...state, status: 'completed', completedAt: new Date().toISOString(), cardId });
     return { completion: 'newly-completed', cardOwnership: 'newly-acquired', cardId } as const;
   });
@@ -74,6 +79,7 @@ describe('multi-lesson Learn runtime', () => {
       '/learn/lesson.farming.settlements',
       '/learn/lesson.uruk.first-city',
       '/learn/lesson.writing.early-systems',
+      '/learn/lesson.egypt.nile-state',
     ]);
     expect(within(journey).getByText('Farming and Settlements').closest('.spine-node')?.classList.contains('preparing')).toBe(false);
     expect(gateway.load).toHaveBeenCalledTimes(1);
@@ -86,6 +92,7 @@ describe('multi-lesson Learn runtime', () => {
       'lesson.farming.settlements',
       'lesson.uruk.first-city',
       'lesson.writing.early-systems',
+      'lesson.egypt.nile-state',
     ]);
   });
 
@@ -113,11 +120,17 @@ describe('multi-lesson Learn runtime', () => {
     expect(screen.getByRole('heading', { name: 'Proto-Cuneiform Tablet' })).toBeTruthy();
   });
 
-  it('keeps an unpublished spine neighbor private and non-completable', () => {
-    render(<LearnApp lessonId="lesson.egypt.nile-state" />);
-    expect(screen.getByRole('heading', { name: /archive entry.*available/i })).toBeTruthy();
-    expect(screen.queryByRole('heading', { name: 'The Nile and an Early Egyptian State' })).toBeNull();
-    expect(screen.queryByRole('button', { name: 'Complete lesson' })).toBeNull();
+  it('opens the published Egypt lesson once Early Writing is complete', async () => {
+    const gateway = new MultiLessonGateway();
+    gateway.states.set('lesson.writing.early-systems', {
+      ...emptyState('lesson.writing.early-systems'),
+      status: 'completed',
+      completedAt: '2026-01-02T00:00:00.000Z',
+    });
+    render(<LearnApp lessonId="lesson.egypt.nile-state" gatewayFactory={async () => gateway} />);
+    expect(await screen.findByRole('heading', { name: 'The Nile and an Early Egyptian State' })).toBeTruthy();
+    expect(document.querySelectorAll('[data-section-id]')).toHaveLength(6);
+    expect(screen.getByRole('button', { name: '0 of 2 required prompts attempted' }).hasAttribute('disabled')).toBe(true);
   });
   it('always permits revisiting a completed lesson even when its prerequisite is incomplete', async () => {
     const gateway = new MultiLessonGateway();
@@ -131,5 +144,5 @@ describe('multi-lesson Learn runtime', () => {
     expect(await screen.findByRole('heading', { name: 'From Marks to Proto-Cuneiform' })).toBeTruthy();
     expect(screen.queryByRole('heading', { name: 'This lesson is still locked.' })).toBeNull();
   });
-  it('blocks a later published lesson until the earlier World History lesson is complete', async () => { const gateway = new MultiLessonGateway(); gateway.states.set('lesson.uruk.first-city', emptyState('lesson.uruk.first-city')); render(<LearnApp lessonId="lesson.writing.early-systems" gatewayFactory={async () => gateway} />); expect(await screen.findByRole('heading', { name: 'This lesson is still locked.' })).toBeTruthy(); expect(screen.getByText(/Complete Uruk: Life in an Early City/)).toBeTruthy(); expect(document.querySelector('[data-section-id]')).toBeNull(); })
+  it('blocks a later published lesson until its canonical prerequisite is complete', async () => { const gateway = new MultiLessonGateway(); gateway.states.set('lesson.uruk.first-city', emptyState('lesson.uruk.first-city')); render(<LearnApp lessonId="lesson.writing.early-systems" gatewayFactory={async () => gateway} />); expect(await screen.findByRole('heading', { name: 'This lesson is still locked.' })).toBeTruthy(); expect(screen.getAllByText(/Complete Uruk: Life in an Early City/).length).toBeGreaterThan(0); expect(document.querySelector('[data-section-id]')).toBeNull(); })
 });

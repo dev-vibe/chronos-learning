@@ -125,8 +125,8 @@ describe('learner journey state', () => {
     };
     expect(deriveJourneyProgress(world, chronosContent.lessons, summaries)).toEqual({
       completed: 2,
-      total: 6,
-      percent: 33,
+      total: 7,
+      percent: 29,
       isCompleted: false,
     });
     const state = createDefaultJourneyState(fixtureContent.journeys, fixtureContent.lessons);
@@ -144,6 +144,13 @@ describe('learner journey state', () => {
     expect(selectJourneyNextAction(world, chronosContent.lessons, urukCompleted, 'lesson.uruk.first-city')).toEqual({
       kind: 'lesson', lessonId: 'lesson.writing.early-systems', source: 'next',
     });
+    const writingCompleted = {
+      ...urukCompleted,
+      'lesson.writing.early-systems': { lessonId: 'lesson.writing.early-systems', status: 'completed' as const },
+    };
+    expect(selectJourneyNextAction(world, chronosContent.lessons, writingCompleted, 'lesson.writing.early-systems')).toEqual({
+      kind: 'lesson', lessonId: 'lesson.egypt.nile-state', source: 'next',
+    });
     expect(selectJourneyNextAction(world, chronosContent.lessons, {}, 'lesson.writing.early-systems')).toEqual({
       kind: 'lesson', lessonId: 'lesson.humans.homo-sapiens-origins', source: 'backfill',
     });
@@ -152,9 +159,9 @@ describe('learner journey state', () => {
       'lesson.humans.migrations-and-interbreeding': { lessonId: 'lesson.humans.migrations-and-interbreeding', status: 'completed' as const },
       'lesson.farming.multiple-origins': { lessonId: 'lesson.farming.multiple-origins', status: 'completed' as const },
       'lesson.farming.settlements': { lessonId: 'lesson.farming.settlements', status: 'completed' as const },
-      ...urukCompleted,
-      'lesson.writing.early-systems': { lessonId: 'lesson.writing.early-systems', status: 'completed' as const },
-    }, 'lesson.writing.early-systems')).toEqual({ kind: 'complete' });
+      ...writingCompleted,
+      'lesson.egypt.nile-state': { lessonId: 'lesson.egypt.nile-state', status: 'completed' as const },
+    }, 'lesson.egypt.nile-state')).toEqual({ kind: 'complete' });
   });
 
   it('preserves an accessible incomplete optional active lesson without counting it as required progress', () => {
@@ -183,8 +190,8 @@ describe('published catalog and authored invitations', () => {
     expect(catalog.groups['civilizations-regions'].map((item) => item.id)).toEqual([optionalJourney.id]);
     expect(catalog.groups['ideas-across-time'].map((item) => item.id)).toEqual([optionalIdea.id]);
     expect(catalog.groups.investigations).toEqual([]);
-    expect(catalog.worldHistory?.lessonCount).toBe(6);
-    expect(catalog.worldHistory?.requiredLessonCount).toBe(6);
+    expect(catalog.worldHistory?.lessonCount).toBe(7);
+    expect(catalog.worldHistory?.requiredLessonCount).toBe(7);
   });
 
   it('selects at most one eligible invitation by priority and stable ID', () => {

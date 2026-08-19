@@ -13,7 +13,7 @@ Queue status: **Awaiting approval**
 Accountable reviewer: Carlin Aylsworth
 
 Validation tier: reference
-Current stage: **Stages 0–14B complete; product-owner review pending**
+Current stage: **Stage 18 — published and complete**
 
 This note is the durable source, claim, learning, visual, prototype, and checkpoint record. It replaces the two legacy `hieroglyphs` and `narmer` nodes; those older nodes are audit inputs, not trusted factual sources.
 
@@ -261,7 +261,7 @@ The prototype must render in the real Learn shell with preview unlocking, the si
 3. Are the three image jobs worth producing at an exceptional quality bar?
 4. Should the lesson award the Narmer Palette Artifact / Witness card, or explicitly award no card?
 
-Product review: **pending**.
+Product review: **approved August 19, 2026**.
 
 Validation and shell-review evidence (August 16, 2026):
 
@@ -277,7 +277,7 @@ Validation and shell-review evidence (August 16, 2026):
 
 ## Stage 14B — proxy and product review
 
-State: **Independent learner-proxy review passed; product-owner review pending.**
+State: **Independent learner-proxy review passed; product-owner review approved August 19, 2026.**
 
 Reviewer identity: **Codex adult learner proxy.** The reviewer approached the complete raw lesson as a learner, received the lesson quality contract, inspected the real Learn shell, completed both prompts and the explicit completion action, and made no repository or issue changes.
 
@@ -317,4 +317,245 @@ Recommended decisions:
 3. **Approve one deterministic Knowledge Card:** category Artifact, class Witness, stable ID `card.artifact.narmer-palette`; no Narmer person card.
 4. **Approve the safe journey-end behavior:** truthful static completion copy until a reviewed successor exists.
 
-Product-owner state: **pending**. Approval authorizes Stage 15 implementation, including the specialist map and image lifecycle workflows; it does not publish the lesson.
+Product-owner state: **approved August 19, 2026**. Carlin approved the revised learner headings and all four recommended decisions: the title/scope/learning arc; the required Nile map, uncropped both-faces Palette encounter, and explicitly labeled evidence-led reconstruction; the deterministic Artifact / Witness Knowledge Card `card.artifact.narmer-palette`; and the truthful static journey-end behavior until a reviewed successor exists. Approval authorizes Stage 15 implementation, including the specialist map and image lifecycle workflows; it does not publish the lesson.
+
+## Image lifecycle
+
+### media.egypt.nile-corridor-map — required historical map
+
+#### 1. Reasoning and source basis
+
+- Teaching job: establish Upper Egypt south/upriver, Lower Egypt north/downriver, and the relative order of Nekhen, Abydos, and the Memphis region before those places carry narrative weight.
+- Governing claim IDs: `claim.egypt.nile-corridor`, `claim.egypt.no-river-determinism`, `claim.egypt.memphis-region`.
+- Factual/historical sources: Jeff Dahl's CC BY-SA raster map, UNESCO Memphis coordinates, Pleiades Abydos coordinates, the Hierakonpolis Expedition, and UCL's Tour of the Nile.
+- Why image instead of no media: the lesson asks learners to reverse the familiar modern intuition that “upper” means north and to hold three distant places along one corridor; prose alone makes that spatial load unnecessarily difficult.
+- Depiction and uncertainty boundary: evidence-based reconstruction. Site order and broad placement are source-supported; river branches, wetlands, floodplain widths, shorelines, and settlement extents are approximate. No political border, conquest route, or territorial fill is claimed.
+
+#### 2. Reference image actually used
+
+| Reference preview | Origin and permitted use |
+| --- | --- |
+| ![Reference map used for the Egypt Nile corridor map](references/egypt/ancient-egypt-main-map-reference.png) | Creator: Jeff Dahl.<br>Canonical origin: https://commons.wikimedia.org/wiki/File:Ancient_Egypt_main_map.png<br>License: CC BY-SA 3.0; derivative and redistribution permitted with attribution/share-alike.<br>Accessed: 2026-08-19. |
+
+- Repository research copy and SHA-256: `docs/research/references/egypt/ancient-egypt-main-map-reference.png`; `246fc36cf2eac8d2f9cc428e6daa04d713d94a1f8355d24c1b515feaa825b832`.
+- Edit mode: adapted composition.
+- Visual relationship to preserve: north-up Mediterranean/Delta/long-valley composition and the north-to-south order Memphis region → Abydos → Nekhen.
+- Locked layout/detail invariants: complete corridor visible; exactly eight reviewed labels; three subtle site dots; no border, route, arrow, legend, title, date, pyramids, landmarks, or extra settlement.
+- Details not to copy or infer: later sites and period-mixed emphasis, compass and scale bar, exact ancient channels, modern boundaries, the reference's colors/type treatment, and any political extent.
+
+#### 3. Generation or transformation
+
+- Operation: reference-led image edit followed by full-frame JPEG runtime compression.
+- Actual input path and SHA-256: `docs/research/references/egypt/ancient-egypt-main-map-reference.png`; `246fc36cf2eac8d2f9cc428e6daa04d713d94a1f8355d24c1b515feaa825b832`.
+- Tool/model/date: OpenAI built-in image generation service (model identifier not exposed), 2026-08-19; Sharp/MozJPEG quality 95 for the uncropped runtime source.
+- Complete prompt:
+
+```text
+Use case: scientific-educational
+Asset type: Chronos historical lesson map
+Primary request: Transform the attached real raster map into a calm, premium historical-atlas illustration of the Nile corridor for c. 3200–2700 BCE.
+Input images: Image 1 is the geographic composition reference and edit target. Preserve north-up orientation, the Mediterranean coast, the Nile Delta, the single long Nile valley, and the relative north-to-south order and broad placement of Memphis, Abydos, and Hierakonpolis. Crop the geographic extent to the Mediterranean coast through a little south of Hierakonpolis; remove the Red Sea, Sinai detail, cataracts, Kush, later cities, modern cities, scale bar, compass, political borders, and every existing label.
+Scene/backdrop: warm ivory parchment ground with restrained mineral-blue water, muted blue-green floodplain, pale sand and ochre desert, subtle paper grain and hand-painted topographic texture.
+Style/medium: polished editorial historical-atlas raster illustration for ages 10–14; elegant, calm, museum-quality, accurate before decorative.
+Composition/framing: portrait map, north at top, complete geography visible with generous margins; Delta broad at top, valley narrow and continuous below; no cropping of the three required site markers.
+Text (verbatim): "Mediterranean Sea", "Nile Delta", "Memphis region", "Abydos", "Nekhen (Hierakonpolis)", "Nile", "Upper Egypt", "Lower Egypt".
+Constraints: include exactly these eight labels and no other words; spell them exactly; place site labels at their referenced positions; use subtle dots for the three sites; make labels legible at mobile size; render river branches and floodplain edges softly to signal approximation; no political border or territorial fill; no arrows; no route line; no legend; no title; no date; no paragraph; no decorative compass; no iconography; no pyramids; no landmarks; no logo; no watermark; no UI chrome.
+Avoid: copying the reference's graphic style, exact color scheme, typography, decorative compass, later-period emphasis, or expressive details; tactical-game styling; fantasy; satellite imagery; generic GIS styling; invented settlements, waterways, roads, ruins, symbols, or annotations.
+```
+
+- Candidate/rejection record: the first generated candidate, `exec-60edeed1-22fc-4ed3-9f40-17fc6a2eaa37.png` (SHA-256 `d4ee27010f6a9465e9819bf2ea6db389b978171a989877101614b59680936a33`), passed geographic, label, and visual review. No generated candidate was rejected. A lossless runtime encoding exceeded the repository's delivery ceiling, so the full frame was encoded as a 501,061-byte quality-95 JPEG without resizing or cropping.
+
+#### 4. Accepted final image
+
+| Reference used | Accepted final |
+| --- | --- |
+| ![Reference comparison for the Egypt Nile corridor map](references/egypt/ancient-egypt-main-map-reference.png) | ![Accepted Egypt Nile corridor map](generated/egypt/nile-corridor-map-master.png) |
+
+- Final master path, dimensions, and SHA-256: `docs/research/generated/egypt/nile-corridor-map-master.png`; 874 × 1800; `d4ee27010f6a9465e9819bf2ea6db389b978171a989877101614b59680936a33`.
+- Runtime/fallback path and SHA-256: `public/images/places/egypt-nile-corridor-map.jpg`; 874 × 1800; `3cf6202cd83caebb7cce0d3a88e26feaf33aea984561307f7e57d757b1ee6618`. Generated fallback: `/images/optimized/egypt/nile-corridor-map.optimized.jpg`.
+- Reviewer/date/status: Codex historical, cartographic, accessibility, and visual review / 2026-08-19 / accepted.
+- Fidelity verdict — every locked invariant retained: yes.
+- Lesson-size verdict — evidence-bearing differences remain visually distinct on desktop and mobile: yes; final shell verification remains part of Stage 16.
+- Comparison verdict — preserved relationship: Mediterranean and Delta at top; Memphis region, Abydos, and Nekhen in the reviewed order; Upper/Lower labels correctly reversed from modern north-up intuition.
+- Comparison verdict — intentional changes: removed unrelated later sites and reference styling; softened channel/floodplain edges; used a calm Chronos atlas treatment.
+- Comparison verdict — unsupported details checked: exactly eight labels, no added settlements, borders, arrows, conquest route, landmarks, pyramids, legend, title, date, logo, or watermark.
+
+### media.egypt.narmer-palette — surviving evidence
+
+#### 1. Reasoning and source basis
+
+- Teaching job: let learners inspect both faces of the surviving Palette before the lesson supplies observations or an interpretation.
+- Governing claim IDs: `claim.egypt.palette-observations`, `claim.egypt.ceremonial-elite-medium`, `claim.egypt.palette-royal-claim`, `claim.egypt.palette-cannot-prove-unification`.
+- Factual/historical sources: Egyptian Ministry of Tourism and Antiquities object record, Alice Stevenson on Predynastic palettes, UCL's Narmer record, and the reviewed Wikimedia Commons faithful reproduction.
+- Why image instead of no media: the core historical-reasoning move depends on seeing crowns, scale, attendants, captives, signs, animals, registers, damage, and the object as a whole before deciding what the court's image can prove.
+- Depiction and uncertainty boundary: surviving evidence, not reconstruction. The object and carving survive; the exact sequence of events, participants' thoughts, and one-battle unification narrative do not.
+
+#### 2. Reference image actually used
+
+| Reference preview | Origin and permitted use |
+| --- | --- |
+| ![Reviewed both-faces Narmer Palette reference](references/egypt/narmer-palette-both-faces-reference.jpg) | Faithful two-face reproduction.<br>Canonical origin: https://commons.wikimedia.org/wiki/File:Narmer_Palette.jpg<br>License: Public Domain Mark / faithful reproduction of a public-domain work.<br>Accessed: 2026-08-19. |
+
+- Repository research copy and SHA-256: `docs/research/references/egypt/narmer-palette-both-faces-reference.jpg`; `bdf68bd9c2a1ada9f52ec29e471f5e2522983a933e5e2268ecbbcf6086cb8902`.
+- Edit mode: direct use with full-frame resize/compression only.
+- Visual relationship to preserve: both faces together, complete canvas, orientation, scale relationship, color, damage, carved detail, accession marking, and black background.
+- Locked layout/detail invariants: neither face cropped or retouched; no colorization, invented carving, repaired damage, selective erasure, label, annotation, or replacement background.
+- Details not to copy or infer: no ministry photograph is reused; no modern illustration or speculative reconstruction is blended into the artifact.
+
+#### 3. Generation or transformation
+
+- Operation: direct licensed use; full-frame resize from 2566 × 1808 to 1600 × 1127 and high-quality JPEG compression for runtime delivery.
+- Actual input path and SHA-256: `docs/research/references/egypt/narmer-palette-both-faces-reference.jpg`; `bdf68bd9c2a1ada9f52ec29e471f5e2522983a933e5e2268ecbbcf6086cb8902`.
+- Tool/model/date: Sharp/MozJPEG quality 92, 2026-08-19; no generative model.
+- Complete transformation:
+
+```text
+Direct-use transformation only: resize the reviewed 2566×1808 Public Domain faithful reproduction proportionally to 1600 pixels wide and encode it as a high-quality progressive JPEG. Preserve both faces, full canvas, orientation, color, damage, accession marking, and black background. Do not crop, retouch, colorize, sharpen selectively, invent detail, remove damage, or add text.
+```
+
+- Candidate/rejection record: no interpretive or generated candidates. The first proportional runtime conversion was accepted after full-frame visual inspection and media-fidelity measurement.
+
+#### 4. Accepted final image
+
+| Reference used | Accepted final |
+| --- | --- |
+| ![Reference comparison for the Narmer Palette](references/egypt/narmer-palette-both-faces-reference.jpg) | ![Accepted runtime Narmer Palette image](../../public/images/evidence/egypt-narmer-palette-both-faces.jpg) |
+
+- Final master path, dimensions, and SHA-256: `docs/research/references/egypt/narmer-palette-both-faces-reference.jpg`; 2566 × 1808; `bdf68bd9c2a1ada9f52ec29e471f5e2522983a933e5e2268ecbbcf6086cb8902`.
+- Runtime/fallback path and SHA-256: `public/images/evidence/egypt-narmer-palette-both-faces.jpg`; 1600 × 1127; `f9e81cf2edaa353122c4ee6391027838e901f6e0ea23499e9920a11f16205f42`. Generated fallback: `/images/optimized/egypt/narmer-palette.optimized.jpg`.
+- Reviewer/date/status: Codex artifact-fidelity, rights, accessibility, and visual review / 2026-08-19 / accepted.
+- Fidelity verdict — every locked invariant retained: yes.
+- Lesson-size verdict — evidence-bearing differences remain visually distinct on desktop and mobile: yes; both faces remain legible together and the runtime manifest includes 480, 960, and 1600-pixel variants.
+- Comparison verdict — preserved relationship: full two-face composition, colors, damage, carved registers, and object/background boundary.
+- Comparison verdict — intentional changes: proportional downscale and delivery compression only.
+- Comparison verdict — unsupported details checked: no crop, repair, recoloring, annotation, invented carving, generated texture, or ministry-photo reuse.
+
+### media.egypt.nile-landing-reconstruction — administration in practice
+
+#### 1. Reasoning and source basis
+
+- Teaching job: make administration visible as repeated human work moving from boat to checking point to storehouse, rather than as an abstract invention or a ruler's solitary act.
+- Governing claim IDs: `claim.egypt.writing-and-rule`, `claim.egypt.evidence-bias`, `claim.egypt.nile-corridor`, `claim.egypt.early-writing`.
+- Factual/historical sources: the Hierakonpolis Tomb 100 boat image, the Met's Predynastic decorated jar with boats, Ilona Regulski on early writing and administration, and the Hierakonpolis Expedition.
+- Why image instead of no media: learners need to see a workflow—river transport, containers, closures, cords, checking, carrying, and storage—to understand how institutions become durable through many people's repeated actions.
+- Depiction and uncertainty boundary: evidence-led reconstruction. The boat character, jars, cords, baskets, mudbrick storage, and kinds of work are evidence-led; the exact people, landing, architecture, clothing combinations, weather, and moment are illustrative.
+
+#### 2. Reference image actually used
+
+| Reference preview | Origin and permitted use |
+| --- | --- |
+| ![Hierakonpolis Tomb 100 boat reference](references/egypt/hierakonpolis-tomb-100-boat-reference.jpg) | Green/Quibell drawing of a c. 3500–3200 BCE Tomb 100 boat image.<br>Canonical origin: https://commons.wikimedia.org/wiki/File:Hierakonpolis_Tomb_100_Boat.jpg<br>License: Public Domain Mark / PD-US-expired.<br>Accessed: 2026-08-19. |
+| ![Met Predynastic painted boat jar reference](references/egypt/predynastic-boats-met-reference.jpg) | The Metropolitan Museum of Art, accession 99.3.2, c. 3850–2960 BCE.<br>Canonical origin: https://www.metmuseum.org/art/collection/search/546304<br>License: CC0.<br>Accessed: 2026-08-19. |
+
+- Repository research copies and SHA-256: `docs/research/references/egypt/hierakonpolis-tomb-100-boat-reference.jpg`, `f0b01ed1857b2b8cb5600ae15c19be0a141076b4bd3477d38abc6c43ffe4318f`; `docs/research/references/egypt/predynastic-boats-met-reference.jpg`, `c73eea451b9c2f07bbaf4e90eb171a30891557444c448acdf646d0230cb6b4d4`.
+- Edit mode: adapted composition into an original scene.
+- Visual relationship to preserve: broad crescent/raised-ended Predynastic boat character, ceramic vessel forms, earth pigments, and a human-scale material workflow.
+- Locked layout/detail invariants: wide left-to-right boat → checking → storehouse sequence; ordinary workers rather than ruler spectacle; subtle thumb-length blank tags; no readable writing; low mudbrick structures; no later monumental Egypt.
+- Details not to copy or infer: neither artifact's painted composition or museum background; no named person or exact documented landing; no specific mark meaning; no pyramids, sphinxes, obelisks, pylons, stone columns, scrolls, books, horses, camels, chariots, armies, slave chains, or New Kingdom dress.
+
+#### 3. Generation or transformation
+
+- Operation: multi-reference original image generation, two precise-object correction edits, then full-frame JPEG runtime compression.
+- Actual input paths and SHA-256: `docs/research/references/egypt/hierakonpolis-tomb-100-boat-reference.jpg`, `f0b01ed1857b2b8cb5600ae15c19be0a141076b4bd3477d38abc6c43ffe4318f`; `docs/research/references/egypt/predynastic-boats-met-reference.jpg`, `c73eea451b9c2f07bbaf4e90eb171a30891557444c448acdf646d0230cb6b4d4`.
+- Tool/model/date: OpenAI built-in image generation service (model identifier not exposed), 2026-08-19; Sharp/MozJPEG quality 94 for runtime delivery.
+- Complete base prompt:
+
+```text
+Use case: historical-scene
+Asset type: Chronos lesson reconstruction, c. 3200–3000 BCE Nile Valley
+Primary request: Create a vivid, evidence-led reconstruction of a working Nile landing beside low mudbrick storehouses, showing how administration became repeated human work. This is an original scene, not a copy of either reference object.
+Input images: Image 1 is a public-domain reconstruction of a c. 3500–3200 BCE Hierakonpolis boat image; use only its broad crescent hull, raised ends, compact cabin, and non-modern vessel character as a period anchor. Image 2 is a CC0 Predynastic pottery vessel whose painted boats and ceramic surface anchor boat silhouette, jar forms, and earth pigments. Do not reproduce either artifact, their painted composition, or museum background in the final scene.
+Scene/backdrop: sunlit Nile bank in Upper Egypt around 3100 BCE; calm mineral-blue water at left; narrow green river edge with reeds and date palms; dry ochre desert beyond; a cluster of low flat-roofed mudbrick storehouses and shaded reed awnings at right.
+Subject: one long wooden/reed riverboat has just reached the earthen landing. A diverse group of ordinary workers unloads sealed pottery jars, woven grain baskets, linen bundles, and wooden crates. One worker checks an intact clay seal on a jar; another ties a tiny plain rectangular bone or ivory tag to a container with cord; carriers move goods toward open mudbrick storage rooms; a record-keeper calmly compares containers and tokens without using a scroll or book.
+Style/medium: painterly cinematic historical reconstruction with archaeological realism, tactile materials, believable human anatomy and motion, premium museum-illustration quality, not photoreal cosplay and not game concept art.
+Composition/framing: wide landscape establishing shot with a clear left-to-right work sequence from boat to checking point to storehouse; about eight to ten people, each action readable without labels; human-scale viewpoint slightly above eye level; generous breathing room; no hero ruler and no central throne.
+Lighting/mood: warm early-morning light, long soft shadows, lively cooperative labor, calm rather than theatrical.
+Color palette: warm mudbrick, limestone dust, muted linen, terracotta jars, reed gold, Nile blue-green, small accents of mineral red and charcoal.
+Materials/textures: rough mudbrick, woven reed mats and baskets, weathered wood, coiled rope, unglazed pottery, simple linen wraps, dusty earth, river reeds.
+Constraints: historically plausible for c. 3200–3000 BCE; workers wear simple plain linen kilts, wrap skirts, or short dresses with bare heads and practical sandals or bare feet; include seals, tags, containers, and storehouse thresholds as small physical actions, not symbolic icons; no readable or invented writing; no royal spectacle; no baked-in caption, title, educational prose, UI chrome, logo, or watermark.
+Avoid: pyramids; sphinxes; obelisks; grand pylons; stone columns; monumental statues; palaces; dressed-stone quays; papyrus scrolls; bound books; desks; ink pots; modern cranes; wheels; chariots; horses; camels; armor; fantasy crowns; New Kingdom wigs or collars; white-robed stereotype crowds; armies; slave-chain imagery; whipping; weapons; royal smiting; dramatic fire; generic desert ruins; copied artifact paintings.
+```
+
+- Complete correction prompt 1:
+
+```text
+Use case: precise-object-edit
+Asset type: Chronos historical reconstruction correction
+Primary request: Remove only the visible dark marks, pseudo-writing, symbols, and characters from every small tag or label in the scene. Replace them with plain, undecorated bone or ivory rectangles with a single pierced cord hole. Keep the people holding and tying the tags exactly where they are so the administrative action remains readable.
+Constraints: change only the surfaces of the small tags; preserve every person, face, hand, pose, clothing item, jar, basket, seal, boat, building, plant, landscape feature, camera angle, lighting, color, texture, and composition exactly; do not add or remove people or objects; no text, symbols, marks, logo, or watermark anywhere.
+```
+
+- Complete correction prompt 2:
+
+```text
+Use case: precise-object-edit
+Asset type: Chronos historical reconstruction correction
+Primary request: Change only the three visible blank tags held by the foreground workers. Make each one a tiny thumb-length sliver of bone or ivory, narrow and slightly irregular, with one small pierced hole and a thin cord. They should be much smaller than a person's palm and should never resemble paper, a modern card, or a luggage tag. Keep them completely plain with no marks, symbols, writing, or decoration.
+Constraints: change only the size, shape, material, and cord attachment of the three tags; keep the workers' hands and actions natural; preserve every person, face, pose, clothing item, jar, basket, seal, boat, building, plant, landscape feature, camera angle, lighting, color, texture, and composition exactly; do not add or remove people or objects; no text, symbols, logo, or watermark.
+```
+
+- Candidate/rejection record: base candidate `exec-09d8571f-c467-4d43-9fd0-dcca070a169a.png` (SHA-256 `bf63f41387ce2ca3fe2152a3a9c9cb9dc6aff3e6435c97fa89a633651981d6dc`) rejected for pseudo-writing on tags. First correction `exec-591d6a08-2cf1-4da3-b1e3-31e72295a6bb.png` (SHA-256 `80b56fa9a559af6fa450fe23848a0dec1dcb22d8ba130cf92b9714c8d0d0491d`) rejected because blank tags became too large and modern. Second correction `exec-02b2c407-537b-48a5-8eca-b92027b9d9d4.png` (SHA-256 `95585fd956c684ad38dc66ad59c834a3789cea762522dfd3ed388ed79f07aecf`) accepted after confirming small mark-free tags and all locked scene relationships.
+
+#### 4. Accepted final image
+
+| Reference used | Accepted final |
+| --- | --- |
+| ![Hierakonpolis boat comparison reference](references/egypt/hierakonpolis-tomb-100-boat-reference.jpg) | ![Accepted Nile landing and storehouse reconstruction](generated/egypt/nile-landing-storehouse-master.png) |
+| ![Predynastic pottery and boat comparison reference](references/egypt/predynastic-boats-met-reference.jpg) | ![Accepted runtime Nile landing and storehouse reconstruction](../../public/images/reconstructions/egypt-nile-landing-storehouse.jpg) |
+
+- Final master path, dimensions, and SHA-256: `docs/research/generated/egypt/nile-landing-storehouse-master.png`; 1659 × 948; `95585fd956c684ad38dc66ad59c834a3789cea762522dfd3ed388ed79f07aecf`.
+- Runtime/fallback path and SHA-256: `public/images/reconstructions/egypt-nile-landing-storehouse.jpg`; 1659 × 948; `8b2577af9ca39d73ef179c131687c86a43ab90b6bb94c16041e276e5a3a436fb`. Generated fallback: `/images/optimized/egypt/nile-landing-reconstruction.optimized.jpg`.
+- Reviewer/date/status: Codex historical, reconstruction, rights, accessibility, and visual review / 2026-08-19 / accepted.
+- Fidelity verdict — every locked invariant retained: yes.
+- Lesson-size verdict — evidence-bearing differences remain visually distinct on desktop and mobile: yes; the left-to-right workflow and foreground checking actions remain readable.
+- Comparison verdict — preserved relationship: raised-ended river craft, earth-toned containers, cordage, storage materials, ordinary workers, and human-scale administrative sequence.
+- Comparison verdict — intentional changes: the two artifact references are transformed into an original, plausible working scene rather than copied; the exact people, architecture, vegetation, light, and moment are illustrative.
+- Comparison verdict — unsupported details checked: no text or pseudo-writing, oversized paper-like tags, ruler, throne, royal spectacle, pyramids, sphinxes, obelisks, monumental stone architecture, scrolls, books, chariots, horses, camels, armies, weapons, slave-chain imagery, later-period dress, logo, or watermark.
+
+## Sign-off status
+
+- [x] Work boundary, queue selection, and node proposal
+- [x] Research questions, source ledger, and claim ledger
+- [x] Content triage and learning blueprint
+- [x] Ages 11–14 editorial pass and ordinary-language heading review
+- [x] Section/component storyboard
+- [x] Media decision, authoritative-map anchor, and image lifecycle records
+- [x] Knowledge Card decision
+- [x] Understanding-check plan
+- [x] Journey framing and truthful no-successor end state
+- [x] Independent adult learner-proxy review
+- [x] Product-owner approval
+- [x] Stage 15 implementation, migration, and test coverage
+- [x] Responsive desktop/mobile browser review in light and dark themes
+- [x] Explicit completion and deterministic card-unlock review
+- [x] Final media verification
+- [x] Deterministic release gate
+- [x] Hosted development migration and configuration verification
+- [x] Immutable media publication and remote byte verification
+- [x] Post-publication discovery, progression, Learn-shell, content, and build regression pass
+
+## Production-preview validation — Stage 16
+
+The approved lesson implementation is complete. It uses three distinct, evidence-led visuals: an authoritative-reference-anchored Nile corridor map carrying the Nekhen–Abydos–Memphis geography; an uncropped, both-faces encounter with the surviving Narmer Palette; and an explicitly labeled reconstruction of administration at a river landing. The Palette visual now appears immediately after the object introduction and before supplied observations, applying the independent learner-proxy revision.
+
+Responsive product review passed at 1440×900 and 390×844 in dark and light themes. The hero, map, Palette, administration field guide, both required prompts, explicit completion action, and deterministic Artifact / Witness card reveal were exercised in the real Learn shell. The mobile document had no horizontal overflow (`390px` viewport; `375px` document width), reopening began at the lesson top before the walkthrough, and the completed state truthfully says that World History continues with the next reviewed lesson rather than inventing a clickable successor. The browser console recorded no errors or warnings.
+
+Validation record:
+
+- `npm.cmd run lesson:gate -- --lesson lesson.egypt.nile-state --note docs/research/the-nile-and-an-early-egyptian-state.md --gate implementation` — pass.
+- `npm.cmd run validate:content` — pass.
+- `npx.cmd vitest run --exclude ".worktrees/**"` — pass, 21 files / 126 tests.
+- `npm.cmd run build` — pass; existing large-chunk warning only.
+- Egypt publication migration and assertions — pass inside a transaction against the hosted Chronos Supabase schema, followed by an explicit rollback. Post-rollback checks confirmed that neither the lesson publication row nor Knowledge Card remained. Docker was unavailable locally, so the committed pgTAP test was not replayed in a local container.
+- `npm.cmd run typecheck` — unchanged repository baseline failures in legacy `NodeContentDisplay`, legacy resource/category data, and existing v2 lesson-status inference. No diagnostic names the Egypt lesson module or migration.
+- Unscoped `npm.cmd test` discovers stale tests inside sibling `.worktrees`; the repository-scoped Vitest command above isolates the current checkout and passes all 126 tests.
+- Browser verification — pass at 1440×900 and 390×844, light/dark; no console warnings/errors or horizontal overflow; both prompts, explicit completion, six-of-six section state, card reveal, and no-reviewed-successor message passed.
+- `npm.cmd run media:build` and `npm.cmd run media:verify` — pass, 23 assets / 51 derivatives. The Egypt source-size deliveries are pixel-exact; the lossy 960/1600-pixel derivatives measure 45.68–46.12 dB PSNR.
+
+The deterministic release gate passed while the lesson remained an unpublished draft, as required. Publication then removed the development-only prototype-review registry entry, changed the authored lesson to `published`, and updated the seven-lesson discovery/progression expectations. The post-publication suite passes 21 files / 126 tests, including Early Writing → Egypt next action, direct published-shell access under the canonical Uruk prerequisite, and the truthful terminal state after Egypt.
+
+Hosted development publication passed on Supabase project `fghjnypxhnnutgsaqvvz`. Migration `20260819210004_publish_egypt_nile_state.sql` publishes snapshot `egypt-nile-state-v1`, adds required World History position 6, enables completion with the two reviewed prompt IDs, configures the deterministic Narmer Palette card unlock, and maps `hieroglyphs` and `narmer` to the canonical lesson. Read-back verification confirmed all rows and the complete seven-lesson order. The migration introduced no new advisor finding: the existing intentional authenticated `SECURITY DEFINER` completion RPC warning and low-traffic unused-index notices remain the documented project baseline.
+
+All three Egypt media assets and their selected delivery variants were uploaded to immutable `media-source` / `media-public` object keys and byte-for-byte verified against the manifest. The canonical Node publisher passed its media verifier but hit a reproducible Windows `@supabase/storage-js` transport error before upload under Node 25 and bundled Node 24. A bounded authenticated Storage REST fallback preserved the same no-upsert, local-hash, immutable-key, and post-upload remote-hash safeguards; all nine selected objects passed.
+
+Release disposition: **PUBLISHED AND COMPLETE.** Carlin explicitly approved the updated lesson on 2026-08-19. The authored lesson, hosted configuration, remote media, queue, roster, tests, and durable research/provenance record now agree.

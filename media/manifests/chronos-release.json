@@ -12,6 +12,190 @@
   },
   "assets": [
     {
+      "id": "media.egypt.narmer-palette",
+      "locator": {
+        "provider": "object-storage",
+        "bucket": "media-public",
+        "fallback": {
+          "path": "/images/optimized/egypt/narmer-palette.optimized.jpg",
+          "width": 1600,
+          "height": 1127
+        },
+        "variants": [
+          {
+            "objectKey": "egypt/media.egypt.narmer-palette/f9e81cf2edaa3531/optimized/ql-v1/480w-webp-lossless-dd148c31fd29d54e.webp",
+            "mimeType": "image/webp",
+            "bytes": 171772,
+            "sha256": "dd148c31fd29d54ebe3cd698f572916107d183830cac050382a654799c5b116b",
+            "width": 480,
+            "height": 338,
+            "compression": {
+              "profile": "ql-v1",
+              "codec": "webp",
+              "encoder": "webp-lossless"
+            },
+            "fidelity": {
+              "mode": "pixel-exact",
+              "psnrDb": null,
+              "meanAbsoluteError": 0,
+              "maximumChannelDelta": 0
+            }
+          },
+          {
+            "objectKey": "egypt/media.egypt.narmer-palette/f9e81cf2edaa3531/optimized/ql-v1/960w-webp-q96-ea01e7bcf72c8a1f.webp",
+            "mimeType": "image/webp",
+            "bytes": 262276,
+            "sha256": "ea01e7bcf72c8a1fd4e1c5978bd91555c30ffeb1dfe353883f9cc3261dd04cf8",
+            "width": 960,
+            "height": 676,
+            "compression": {
+              "profile": "ql-v1",
+              "codec": "webp",
+              "encoder": "webp-lossy",
+              "quality": 96
+            },
+            "fidelity": {
+              "mode": "measured-quasi-lossless",
+              "psnrDb": 46.12,
+              "meanAbsoluteError": 0.676,
+              "maximumChannelDelta": 14
+            }
+          },
+          {
+            "objectKey": "egypt/media.egypt.narmer-palette/f9e81cf2edaa3531/optimized/ql-v1/1600w-source-jpeg-f9e81cf2edaa3531.jpg",
+            "mimeType": "image/jpeg",
+            "bytes": 584388,
+            "sha256": "f9e81cf2edaa353122c4ee6391027838e901f6e0ea23499e9920a11f16205f42",
+            "width": 1600,
+            "height": 1127,
+            "compression": {
+              "profile": "ql-v1",
+              "codec": "jpeg",
+              "encoder": "source-passthrough"
+            },
+            "fidelity": {
+              "mode": "pixel-exact",
+              "psnrDb": null,
+              "meanAbsoluteError": 0,
+              "maximumChannelDelta": 0
+            }
+          }
+        ]
+      },
+      "source": {
+        "bucket": "media-source",
+        "objectKey": "egypt/media.egypt.narmer-palette/f9e81cf2edaa353122c4ee6391027838e901f6e0ea23499e9920a11f16205f42/original.jpg",
+        "mimeType": "image/jpeg",
+        "bytes": 584388,
+        "sha256": "f9e81cf2edaa353122c4ee6391027838e901f6e0ea23499e9920a11f16205f42",
+        "width": 1600,
+        "height": 1127
+      }
+    },
+    {
+      "id": "media.egypt.nile-corridor-map",
+      "locator": {
+        "provider": "object-storage",
+        "bucket": "media-public",
+        "fallback": {
+          "path": "/images/optimized/egypt/nile-corridor-map.optimized.jpg",
+          "width": 874,
+          "height": 1800
+        },
+        "variants": [
+          {
+            "objectKey": "egypt/media.egypt.nile-corridor-map/3cf6202cd83caebb/optimized/ql-v1/874w-source-jpeg-3cf6202cd83caebb.jpg",
+            "mimeType": "image/jpeg",
+            "bytes": 501061,
+            "sha256": "3cf6202cd83caebb7cce0d3a88e26feaf33aea984561307f7e57d757b1ee6618",
+            "width": 874,
+            "height": 1800,
+            "compression": {
+              "profile": "ql-v1",
+              "codec": "jpeg",
+              "encoder": "source-passthrough"
+            },
+            "fidelity": {
+              "mode": "pixel-exact",
+              "psnrDb": null,
+              "meanAbsoluteError": 0,
+              "maximumChannelDelta": 0
+            }
+          }
+        ]
+      },
+      "source": {
+        "bucket": "media-source",
+        "objectKey": "egypt/media.egypt.nile-corridor-map/3cf6202cd83caebb7cce0d3a88e26feaf33aea984561307f7e57d757b1ee6618/original.jpg",
+        "mimeType": "image/jpeg",
+        "bytes": 501061,
+        "sha256": "3cf6202cd83caebb7cce0d3a88e26feaf33aea984561307f7e57d757b1ee6618",
+        "width": 874,
+        "height": 1800
+      }
+    },
+    {
+      "id": "media.egypt.nile-landing-reconstruction",
+      "locator": {
+        "provider": "object-storage",
+        "bucket": "media-public",
+        "fallback": {
+          "path": "/images/optimized/egypt/nile-landing-reconstruction.optimized.jpg",
+          "width": 1659,
+          "height": 948
+        },
+        "variants": [
+          {
+            "objectKey": "egypt/media.egypt.nile-landing-reconstruction/8b2577af9ca39d73/optimized/ql-v1/480w-webp-lossless-e6637e963cb8a2ca.webp",
+            "mimeType": "image/webp",
+            "bytes": 185172,
+            "sha256": "e6637e963cb8a2caa44dc5e1c79dd65318a16c77b79420211fdbfd2d5640acac",
+            "width": 480,
+            "height": 274,
+            "compression": {
+              "profile": "ql-v1",
+              "codec": "webp",
+              "encoder": "webp-lossless"
+            },
+            "fidelity": {
+              "mode": "pixel-exact",
+              "psnrDb": null,
+              "meanAbsoluteError": 0,
+              "maximumChannelDelta": 0
+            }
+          },
+          {
+            "objectKey": "egypt/media.egypt.nile-landing-reconstruction/8b2577af9ca39d73/optimized/ql-v1/1659w-source-jpeg-8b2577af9ca39d73.jpg",
+            "mimeType": "image/jpeg",
+            "bytes": 487814,
+            "sha256": "8b2577af9ca39d73ef179c131687c86a43ab90b6bb94c16041e276e5a3a436fb",
+            "width": 1659,
+            "height": 948,
+            "compression": {
+              "profile": "ql-v1",
+              "codec": "jpeg",
+              "encoder": "source-passthrough"
+            },
+            "fidelity": {
+              "mode": "pixel-exact",
+              "psnrDb": null,
+              "meanAbsoluteError": 0,
+              "maximumChannelDelta": 0
+            }
+          }
+        ]
+      },
+      "source": {
+        "bucket": "media-source",
+        "objectKey": "egypt/media.egypt.nile-landing-reconstruction/8b2577af9ca39d73ef179c131687c86a43ab90b6bb94c16041e276e5a3a436fb/original.jpg",
+        "mimeType": "image/jpeg",
+        "bytes": 487814,
+        "sha256": "8b2577af9ca39d73ef179c131687c86a43ab90b6bb94c16041e276e5a3a436fb",
+        "width": 1659,
+        "height": 948
+      }
+    },
+    {
       "id": "media.farming.catalhoyuk-card",
       "locator": {
         "provider": "object-storage",
