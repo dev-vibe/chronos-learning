@@ -13,7 +13,7 @@ Queue status: **Awaiting approval**
 Accountable reviewer: Carlin Aylsworth
 
 Validation tier: reference
-Current stage: **Stage 18 — published and complete**
+Current stage: **Stage 18 — hosted development publication complete; PR review pending**
 
 This note is the durable source, claim, learning, visual, prototype, and checkpoint record. It replaces the two legacy `hieroglyphs` and `narmer` nodes; those older nodes are audit inputs, not trusted factual sources.
 
@@ -533,6 +533,7 @@ Constraints: change only the size, shape, material, and cord attachment of the t
 - [x] Hosted development migration and configuration verification
 - [x] Immutable media publication and remote byte verification
 - [x] Post-publication discovery, progression, Learn-shell, content, and build regression pass
+- [ ] PR review and merge
 
 ## Production-preview validation — Stage 16
 
@@ -558,4 +559,4 @@ Hosted development publication passed on Supabase project `fghjnypxhnnutgsaqvvz`
 
 All three Egypt media assets and their selected delivery variants were uploaded to immutable `media-source` / `media-public` object keys and byte-for-byte verified against the manifest. The canonical Node publisher passed its media verifier but hit a reproducible Windows `@supabase/storage-js` transport error before upload under Node 25 and bundled Node 24. A bounded authenticated Storage REST fallback preserved the same no-upsert, local-hash, immutable-key, and post-upload remote-hash safeguards; all nine selected objects passed.
 
-Release disposition: **PUBLISHED AND COMPLETE.** Carlin explicitly approved the updated lesson on 2026-08-19. The authored lesson, hosted configuration, remote media, queue, roster, tests, and durable research/provenance record now agree.
+Release disposition: **PUBLISHED IN THE CHRONOS DEVELOPMENT PROJECT; DRAFT PR #24 AWAITS FINAL REVIEW AND MERGE.** Carlin explicitly approved the updated lesson on 2026-08-19. The authored lesson, hosted configuration, remote media, roster, tests, and durable research/provenance record agree; operational queue status remains Review until the branch is merged through the normal release path.
