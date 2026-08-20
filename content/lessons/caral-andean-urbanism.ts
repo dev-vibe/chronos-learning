@@ -112,6 +112,15 @@ export const caralAndeanUrbanismSources: Source[] = [
     reviewStatus: 'reviewed',
   },
   {
+    id: 'source.caral.commons-site-panorama',
+    title: 'Cidade Sagrada de Caral, Supe - Peru',
+    url: 'https://commons.wikimedia.org/wiki/File:Cidade_Sagrada_de_Caral,_Supe_-_Peru_-_panoramio_(5).jpg',
+    publisher: 'Wikimedia Commons / Paulo JC Nogueira',
+    accessedOn: '2026-08-19',
+    licenseOrUse: 'CC BY-SA 3.0 photograph of the conserved site; runtime hero image with attribution after a documented 2.85:1 crop',
+    reviewStatus: 'reviewed',
+  },
+  {
     id: 'source.caral.commons-peru-physical-map',
     title: 'Physical map of Peru',
     url: 'https://commons.wikimedia.org/wiki/File:Peru_physical_map.svg',
@@ -292,6 +301,17 @@ export const caralAndeanUrbanismMedia: MediaAsset[] = [
     reviewStatus: 'approved',
   },
   {
+    id: 'media.caral.site-hero',
+    locator: mediaLocator('media.caral.site-hero'),
+    alt: 'Wide view of conserved Caral on a dry terrace, with a sunken circular plaza and stone platform walls in front of hazy desert hills',
+    depictionMode: 'evidence',
+    depictionLabel: 'Surviving evidence · conserved ruins, not a reconstructed city',
+    rightsLabel: 'Photograph by Paulo JC Nogueira, CC BY-SA 3.0',
+    sourceIds: ['source.caral.commons-site-panorama', 'source.caral.unesco-nomination'],
+    visualBriefRef: 'docs/research/caral-andean-urbanism.md#image-lifecycle',
+    reviewStatus: 'approved',
+  },
+  {
     id: 'media.caral.platform-mounds',
     locator: mediaLocator('media.caral.platform-mounds'),
     alt: 'Two large earthen and stone platform mounds at Caral on a dry desert terrace, with a dirt path between them and hazy hills behind',
@@ -377,6 +397,9 @@ export const caralAndeanUrbanismLesson: Lesson = {
     approximate: true,
   },
   significance: 'People built urban centers in the Andes with irrigation, coastal–inland exchange, and monumental public architecture—without pottery, metal, or writing.',
+  heroMediaId: 'media.caral.site-hero',
+  heroLabel: 'Surviving evidence',
+  heroCaption: 'Conserved ruins on a dry terrace: a sunken circular plaza, platform walls, and hills behind. This is not a reconstructed city or a ceremony in 2600 BCE.',
   sectionIdsRequired: [
     'section.caral.another-way',
     'section.caral.coast-and-valley',

@@ -209,6 +209,100 @@
       }
     },
     {
+      "id": "media.caral.site-hero",
+      "locator": {
+        "provider": "object-storage",
+        "bucket": "media-public",
+        "fallback": {
+          "path": "/images/optimized/caral/site-hero.optimized.webp",
+          "width": 1920,
+          "height": 674
+        },
+        "variants": [
+          {
+            "objectKey": "caral/media.caral.site-hero/9155746afc960169/optimized/ql-v1/480w-webp-q94-7c7343b4cbb97009.webp",
+            "mimeType": "image/webp",
+            "bytes": 15530,
+            "sha256": "7c7343b4cbb9700908ada0089af59ab147ae9c1770432f75fbf619c10e4662b5",
+            "width": 480,
+            "height": 169,
+            "compression": {
+              "profile": "ql-v1",
+              "codec": "webp",
+              "encoder": "webp-lossy",
+              "quality": 94
+            },
+            "fidelity": {
+              "mode": "measured-quasi-lossless",
+              "psnrDb": 45.13,
+              "meanAbsoluteError": 0.872,
+              "maximumChannelDelta": 15
+            }
+          },
+          {
+            "objectKey": "caral/media.caral.site-hero/9155746afc960169/optimized/ql-v1/960w-webp-q94-3759edfe125a7008.webp",
+            "mimeType": "image/webp",
+            "bytes": 52052,
+            "sha256": "3759edfe125a700856c8280bb8855cfd6fc49cc5e012c9246f9c7ee892389304",
+            "width": 960,
+            "height": 337,
+            "compression": {
+              "profile": "ql-v1",
+              "codec": "webp",
+              "encoder": "webp-lossy",
+              "quality": 94
+            },
+            "fidelity": {
+              "mode": "measured-quasi-lossless",
+              "psnrDb": 45.78,
+              "meanAbsoluteError": 0.785,
+              "maximumChannelDelta": 16
+            }
+          },
+          {
+            "objectKey": "caral/media.caral.site-hero/9155746afc960169/optimized/ql-v1/1600w-webp-q94-91b92414193cab0f.webp",
+            "mimeType": "image/webp",
+            "bytes": 122000,
+            "sha256": "91b92414193cab0f0929f3ba9c76387034418e74bbe5b256c64d867618b5079d",
+            "width": 1600,
+            "height": 562,
+            "compression": {
+              "profile": "ql-v1",
+              "codec": "webp",
+              "encoder": "webp-lossy",
+              "quality": 94
+            },
+            "fidelity": {
+              "mode": "measured-quasi-lossless",
+              "psnrDb": 46.21,
+              "meanAbsoluteError": 0.748,
+              "maximumChannelDelta": 11
+            }
+          },
+          {
+            "objectKey": "caral/media.caral.site-hero/9155746afc960169/optimized/ql-v1/1920w-webp-q92-16fb6924ea452d77.webp",
+            "mimeType": "image/webp",
+            "bytes": 140896,
+            "sha256": "16fb6924ea452d7709a2e5d0e79d645c4474f18470617db75dc4cbfdf063b7f6",
+            "width": 1920,
+            "height": 674,
+            "compression": {
+              "profile": "ql-v1",
+              "codec": "webp",
+              "encoder": "webp-lossy",
+              "quality": 92
+            },
+            "fidelity": {
+              "mode": "measured-quasi-lossless",
+              "psnrDb": 45.5,
+              "meanAbsoluteError": 0.778,
+              "maximumChannelDelta": 14
+            }
+          }
+        ]
+      }
+    },
+    {
       "id": "media.caral.sunken-plaza",
       "locator": {
         "provider": "object-storage",

@@ -14,6 +14,13 @@ export const chronosPrototypeReviews: readonly LessonPrototypeReview[] = [
     validationTier: 'reference',
     mediaIntentions: [
       {
+        sectionId: 'section.caral.another-way',
+        kind: 'evidence',
+        purpose: 'Masthead hero: arrive at Caral as a monumental site in a dry valley before the lesson names the missing pottery.',
+        status: 'ready',
+        mediaId: 'media.caral.site-hero',
+      },
+      {
         sectionId: 'section.caral.coast-and-valley',
         kind: 'map',
         purpose: 'Locate the Pacific, Áspero at the river mouth, and inland Caral on a desert terrace above the Supe Valley without borders or a capital-territory fill.',
@@ -53,7 +60,7 @@ export const chronosPrototypeReviews: readonly LessonPrototypeReview[] = [
       state: 'approved',
       reviewedBy: 'Carlin Aylsworth',
       reviewedOn: '2026-08-19',
-      notes: 'Approved title/scope/arc, Place/Foundation card card.place.caral, and truthful journey-end behavior. On 2026-08-19 asked for more images after inspecting the three approved visuals; two additional evidence photographs were added for mound scale and excavated shicra.',
+      notes: 'Approved title/scope/arc, Place/Foundation card card.place.caral, and truthful journey-end behavior. On 2026-08-19 asked for more images, then for a masthead hero; added mound-scale and excavated-shicra evidence plus a wide site-hero crop.',
     },
   },
 ];

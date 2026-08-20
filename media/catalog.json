@@ -36,6 +36,18 @@
       ]
     },
     {
+      "id": "media.caral.site-hero",
+      "collection": "caral",
+      "sourcePath": "public/images/places/caral-site-hero.jpg",
+      "fallbackPath": "/images/optimized/caral/site-hero.optimized.webp",
+      "preset": "photo",
+      "widths": [
+        480,
+        960,
+        1600
+      ]
+    },
+    {
       "id": "media.caral.sunken-plaza",
       "collection": "caral",
       "sourcePath": "public/images/evidence/caral-sunken-plaza.jpg",

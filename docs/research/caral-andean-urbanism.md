@@ -229,6 +229,7 @@ Section-count exception: none. Six sections.
 
 | Intention ID | Section ID | Teaching question | Form | Evidence/claim basis | Depiction label | Accessible equivalent | Stage 14A treatment | Final review |
 | --- | --- | --- | --- | --- | --- | --- | --- | --- |
+| `intention.caral.site-hero` | masthead | What does this urban center look like as a place in a dry valley? | evidence photograph | Commons site panorama; UNESCO architectural identification | Surviving evidence · conserved ruins, not a reconstructed city | Alt text naming plaza, platform walls, desert terrace, and hills | Added after product-owner asked why the lesson had no hero | approved |
 | `intention.caral.supe-valley-map` | `section.caral.coast-and-valley` | Why is Caral inland, and how does that make coast and valley depend on each other? | historical map | UNESCO coordinates; Science 2001 23 km inland; Aspero as coastal counterpart | Evidence-based historical map · shorelines and valley width approximate | Accessible summary of sea, Áspero, Caral, desert terrace, river | Development-only annotation, then `media.caral.supe-valley-map` | approved |
 | `intention.caral.platform-mounds` | `section.caral.another-way` | How large are the public buildings that break the Uruk/Egypt checklist? | evidence photograph | Commons mound photograph; UNESCO/nomination architectural identification | Surviving evidence · conserved mounds, not a reconstructed city | Alt text naming two platform mounds on a desert terrace | Added after product-owner request for more images | approved |
 | `intention.caral.plaza-evidence` | `section.caral.plaza` | What surviving architecture can a learner actually see? | evidence photograph | Commons plaza image; UNESCO/nomination architectural identification | Surviving evidence · conserved ruins, not a ceremony in progress | Alt text naming plaza, mound, stair relationship | Development-only annotation, then `media.caral.sunken-plaza` | approved |
@@ -238,6 +239,56 @@ Section-count exception: none. Six sections.
 Video: not used. Motion is not required to teach the model.
 
 ## Image lifecycle
+
+### `media.caral.site-hero` — masthead arrival at the site
+
+#### 1. Reasoning and source basis
+
+- Teaching job: let the learner arrive at Caral as a monumental place in a dry valley before the missing-pottery puzzle is named.
+- Governing claim IDs: `claim.caral.monumental-architecture`, `claim.caral.inland-setting`.
+- Factual/historical sources: Paulo JC Nogueira’s 2014 site panorama; UNESCO nomination architectural identification.
+- Why image instead of no media: every other published World History lesson in this shell opens with a wide hero. Reusing the plaza close-up or mound pair would crop badly in the 2.85:1 masthead and repeat a later evidence encounter.
+- Depiction and uncertainty boundary: surviving evidence. Conserved ruins are shown; a reconstructed city and a ceremony are not.
+
+#### 2. Reference image actually used
+
+| Reference preview | Origin and permitted use |
+| --- | --- |
+| ![Reviewed Caral site panorama](references/caral/caral-panorama-nogueira-reference.jpg) | Creator: Paulo JC Nogueira.<br>Canonical origin: https://commons.wikimedia.org/wiki/File:Cidade_Sagrada_de_Caral,_Supe_-_Peru_-_panoramio_(5).jpg<br>License: CC BY-SA 3.0; attribution and share-alike required.<br>Accessed: 2026-08-19. |
+
+- Repository research copy and SHA-256: `docs/research/references/caral/caral-panorama-nogueira-reference.jpg`; `4fb9817c1392a8ffdd0fd2205cf093dc1b76ea430de32f93fcf83cb4580cea34`.
+- Edit mode: adapted composition.
+- Visual relationship to preserve: sunken circular plaza, stone platform walls, dry terrace, and hills behind.
+- Locked layout/detail invariants: plaza remains readable; no labels, colorization, or reconstructed figures.
+- Details not to copy or infer: the modern visitor at the far right of the uncropped panorama; overlay captions.
+
+#### 3. Generation or transformation
+
+- Operation: hero-frame crop of the licensed panorama to 2.85:1, then JPEG compression for runtime delivery. No generative model.
+- Actual input path and SHA-256: `docs/research/references/caral/caral-panorama-nogueira-reference.jpg`; `4fb9817c1392a8ffdd0fd2205cf093dc1b76ea430de32f93fcf83cb4580cea34`.
+- Tool/model/date: Sharp extract left 280, top 220, 5000 × 1754, then resize to 1920 × 674; MozJPEG quality 92, 2026-08-19.
+- Complete prompt:
+
+```text
+No generation. Direct licensed use of Commons photograph File:Cidade_Sagrada_de_Caral,_Supe_-_Peru_-_panoramio_(5).jpg. Crop a 2.85:1 hero frame (left 280, top 220, 5000 × 1754) to keep the sunken plaza, platform walls, desert terrace, and hills, and to exclude the modern visitor at the far right. Resize the crop to 1920 × 674 JPEG for Chronos masthead delivery. Do not add labels, reconstructed figures, or colorization.
+```
+
+- Candidate/rejection record: the uncropped panorama was rejected as a plaza-section duplicate. The same file was later accepted as the masthead hero after the product owner asked why the lesson had no hero. The mound pair and plaza close-up were rejected as hero sources because the 2.85:1 CSS cover would crop their teaching subjects.
+
+#### 4. Accepted final image
+
+| Reference used | Accepted final |
+| --- | --- |
+| ![Reference comparison for the site hero](references/caral/caral-panorama-nogueira-reference.jpg) | ![Accepted site-hero crop](generated/caral/caral-site-hero-master.jpg) |
+
+- Final master path, dimensions, and SHA-256: `docs/research/generated/caral/caral-site-hero-master.jpg`; 5000 × 1754; `ae42ef0b5785903f9535c43e3f79cb2fe4841d53ac50ae3edec86384b333ecb5`.
+- Runtime/fallback path and SHA-256: `public/images/places/caral-site-hero.jpg`; 1920 × 674; `9155746afc960169c982e52db2549dd91c81db54cba9045326e5d5e3944d1c2b`. Generated fallback: `/images/optimized/caral/site-hero.optimized.webp`.
+- Reviewer/date/status: Codex historical, rights, and visual review / 2026-08-19 / accepted.
+- Fidelity verdict — every locked invariant retained: yes.
+- Lesson-size verdict — evidence-bearing differences remain visually distinct on desktop and mobile: yes; plaza and hills remain in the 2.85:1 frame.
+- Comparison verdict — preserved relationship: plaza and platform walls on a dry terrace with hills behind.
+- Comparison verdict — intentional changes: 2.85:1 hero crop; excluded extra sky, unused left margin, and a modern visitor at the far right.
+- Comparison verdict — unsupported details checked: no added people, ceremony, labels, or reconstructed skyline.
 
 ### `media.caral.supe-valley-map` — required historical map
 
@@ -495,7 +546,7 @@ Avoid: fantasy, video-game styling, satellite look, educational poster layout, i
 No generation. Direct licensed use of the uncropped Commons photograph File:PeruCaral01.jpg, resized as a complete frame from 2560 × 1920 to 1280 × 960 and recompressed as JPEG for Chronos runtime delivery without cropping, retouching, labels, or reconstructed figures.
 ```
 
-- Candidate/rejection record: a wider 2014 panorama (`caral-panorama-nogueira-reference.jpg`, SHA-256 `4fb9817c1392a8ffdd0fd2205cf093dc1b76ea430de32f93fcf83cb4580cea34`) was inspected and rejected because it repeats the plaza encounter already taught by `media.caral.sunken-plaza` rather than showing two mounds at terrace scale.
+- Candidate/rejection record: a wider 2014 panorama (`caral-panorama-nogueira-reference.jpg`, SHA-256 `4fb9817c1392a8ffdd0fd2205cf093dc1b76ea430de32f93fcf83cb4580cea34`) was inspected and rejected for this mound-scale job because it repeats the plaza encounter. It was later cropped as the masthead hero (`media.caral.site-hero`).
 
 #### 4. Accepted final image
 
@@ -719,7 +770,7 @@ Validation record:
 
 Preview route remains `/learn/lesson.caral.andean-urbanism` with `VITE_UNLOCK_PREVIEW_LESSONS=true`. Prototype annotations are hidden after product approval. Hosted publication, `status: "published"`, and the release gate wait for Carlin’s inspection of the final map, plaza photograph, and shicra reconstruction.
 
-On 2026-08-19 Carlin asked for more images after inspecting that three-visual draft. Two additional surviving-evidence photographs were added without changing the mental model: `media.caral.platform-mounds` after the opening, and `media.caral.excavated-shicra` before the reconstruction.
+On 2026-08-19 Carlin asked for more images after inspecting that three-visual draft, then asked why the lesson had no hero. Two additional surviving-evidence photographs were added without changing the mental model: `media.caral.platform-mounds` after the opening, and `media.caral.excavated-shicra` before the reconstruction. A wide conserved-site crop, `media.caral.site-hero`, now fills the masthead.
 
 ## Sign-off status
 
