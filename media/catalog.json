@@ -2,6 +2,28 @@
   "schemaVersion": 1,
   "assets": [
     {
+      "id": "media.caral.excavated-shicra",
+      "collection": "caral",
+      "sourcePath": "public/images/evidence/caral-excavated-shicra.jpg",
+      "fallbackPath": "/images/optimized/caral/excavated-shicra.optimized.jpg",
+      "preset": "photo",
+      "widths": [
+        480,
+        960
+      ]
+    },
+    {
+      "id": "media.caral.platform-mounds",
+      "collection": "caral",
+      "sourcePath": "public/images/evidence/caral-platform-mounds.jpg",
+      "fallbackPath": "/images/optimized/caral/platform-mounds.optimized.jpg",
+      "preset": "photo",
+      "widths": [
+        480,
+        960
+      ]
+    },
+    {
       "id": "media.caral.shicra-reconstruction",
       "collection": "caral",
       "sourcePath": "public/images/reconstructions/caral-shicra-bags.jpg",

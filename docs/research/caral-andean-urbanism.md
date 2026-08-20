@@ -216,10 +216,10 @@ Heading voice: each learner-facing heading names the subject or job in ordinary 
 
 | Order | Section ID | Learner-facing heading | Authoring purpose (not shown) | Claims/sources | Module | Media/action | Transition |
 | --- | --- | --- | --- | --- | --- | --- | --- |
-| 1 | `section.caral.another-way` | Another way to build a city | Break the Uruk/Egypt checklist and pose the problem | no-checklist; late-archaic-range | prose | none | The missing pottery becomes the puzzle |
+| 1 | `section.caral.another-way` | Another way to build a city | Break the Uruk/Egypt checklist and pose the problem | no-checklist; late-archaic-range | prose; evidence | platform-mound photograph | The missing pottery becomes the puzzle |
 | 2 | `section.caral.coast-and-valley` | Coast and valley together | Make inland Caral and coastal fishing one system | inland-setting; cotton-fish-exchange; regional-sites | prose; knowledge; planned map | map intention | Geography explains the goods |
 | 3 | `section.caral.plaza` | A sunken plaza and a platform mound | Observe surviving public architecture before interpreting power | plaza-observation; monumental-architecture; labor-and-hierarchy | prose; planned evidence; knowledge | plaza photograph | The building raises the labor question |
-| 4 | `section.caral.how-built` | How the monuments were built | Turn monumentality into dated human work | shicra; caral-dates; preceramic | prose; knowledge | reconstruction intention | Work done, now bound the claims |
+| 4 | `section.caral.how-built` | How the monuments were built | Turn monumentality into dated human work | shicra; caral-dates; preceramic | prose; evidence; reconstruction; knowledge | excavated bags then reconstruction | Work done, now bound the claims |
 | 5 | `section.caral.what-it-can-prove` | What this case can prove | Qualify oldest-city, state, quipu, and peace stories | not-one-recipe; oldest-qualified; polity-disagreement; quipu-contested; warfare-absence; evidence-bias | prose; knowledge | none | Learner is ready to use evidence |
 | 6 | `section.caral.world-check` | World Check | Require a supported model and an evidence limit | prompt pair | two prompts | none | Explicit completion |
 
@@ -230,7 +230,9 @@ Section-count exception: none. Six sections.
 | Intention ID | Section ID | Teaching question | Form | Evidence/claim basis | Depiction label | Accessible equivalent | Stage 14A treatment | Final review |
 | --- | --- | --- | --- | --- | --- | --- | --- | --- |
 | `intention.caral.supe-valley-map` | `section.caral.coast-and-valley` | Why is Caral inland, and how does that make coast and valley depend on each other? | historical map | UNESCO coordinates; Science 2001 23 km inland; Aspero as coastal counterpart | Evidence-based historical map · shorelines and valley width approximate | Accessible summary of sea, Áspero, Caral, desert terrace, river | Development-only annotation, then `media.caral.supe-valley-map` | approved |
+| `intention.caral.platform-mounds` | `section.caral.another-way` | How large are the public buildings that break the Uruk/Egypt checklist? | evidence photograph | Commons mound photograph; UNESCO/nomination architectural identification | Surviving evidence · conserved mounds, not a reconstructed city | Alt text naming two platform mounds on a desert terrace | Added after product-owner request for more images | approved |
 | `intention.caral.plaza-evidence` | `section.caral.plaza` | What surviving architecture can a learner actually see? | evidence photograph | Commons plaza image; UNESCO/nomination architectural identification | Surviving evidence · conserved ruins, not a ceremony in progress | Alt text naming plaza, mound, stair relationship | Development-only annotation, then `media.caral.sunken-plaza` | approved |
+| `intention.caral.excavated-shicra` | `section.caral.how-built` | What dated construction fabric actually survives in a wall? | evidence photograph | Commons excavated shicra photograph; Science 2001 dating | Surviving evidence · excavated wall core during modern fieldwork | Alt text naming fiber nets of stones plus modern excavation furniture | Added after product-owner request for more images | approved |
 | `intention.caral.shicra-reconstruction` | `section.caral.how-built` | How did people turn fiber bags and stone into a mound? | evidence-based reconstruction | Science 2001 shicra dating; nomination construction description | Evidence-led reconstruction · exact crew and moment illustrative | Accessible description of bag-filling and stacking | Development-only annotation, then `media.caral.shicra-reconstruction` | approved |
 
 Video: not used. Motion is not required to teach the model.
@@ -460,6 +462,106 @@ Avoid: fantasy, video-game styling, satellite look, educational poster layout, i
 - Comparison verdict — intentional changes: reconstructed workers and a cutaway wall; removed modern excavation furniture.
 - Comparison verdict — unsupported details checked: no metal tools, pottery, baked-in text, visitor-center posters, or invented skyline.
 
+### `media.caral.platform-mounds` — surviving mound scale
+
+#### 1. Reasoning and source basis
+
+- Teaching job: show two surviving platform mounds on a desert terrace so “huge public buildings” is seen at city scale, not only described.
+- Governing claim IDs: `claim.caral.monumental-architecture`, `claim.caral.inland-setting`.
+- Factual/historical sources: Håkan Svensson’s 2004 mound photograph; UNESCO nomination architectural identification.
+- Why image instead of no media: the plaza close-up teaches stair and hollow; it does not show multiple mounds rising from dry ground.
+- Depiction and uncertainty boundary: surviving evidence. Conserved, partly eroded mounds are shown; houses, ceremonies, and a finished ancient skyline are not.
+
+#### 2. Reference image actually used
+
+| Reference preview | Origin and permitted use |
+| --- | --- |
+| ![Reviewed platform-mound photograph](references/caral/perucarl01-pyramids-reference.jpg) | Creator: Håkan Svensson (Xauxa).<br>Canonical origin: https://commons.wikimedia.org/wiki/File:PeruCaral01.jpg<br>License: CC BY 2.5 (also GFDL / CC BY-SA 3.0); attribution required.<br>Accessed: 2026-08-19. |
+
+- Repository research copy and SHA-256: `docs/research/references/caral/perucarl01-pyramids-reference.jpg`; `aa2fe7e8fd5027c05221453b53b3576ece5db90498a494047797ffd49423ddd7`.
+- Edit mode: direct use.
+- Visual relationship to preserve: two mound masses, dry terrace, path between them, hazy hills.
+- Locked layout/detail invariants: no crop that removes either mound; no colorization, invented people, labels, or reconstructed city.
+- Details not to copy or infer: modern visitor reconstruction of ritual; overlay captions.
+
+#### 3. Generation or transformation
+
+- Operation: direct licensed use; full-frame resize from 2560 × 1920 to 1280 × 960 and high-quality JPEG compression for runtime delivery.
+- Actual input path and SHA-256: `docs/research/references/caral/perucarl01-pyramids-reference.jpg`; `aa2fe7e8fd5027c05221453b53b3576ece5db90498a494047797ffd49423ddd7`.
+- Tool/model/date: Sharp/MozJPEG quality 92, 2026-08-19; no generative model.
+- Complete prompt:
+
+```text
+No generation. Direct licensed use of the uncropped Commons photograph File:PeruCaral01.jpg, resized as a complete frame from 2560 × 1920 to 1280 × 960 and recompressed as JPEG for Chronos runtime delivery without cropping, retouching, labels, or reconstructed figures.
+```
+
+- Candidate/rejection record: a wider 2014 panorama (`caral-panorama-nogueira-reference.jpg`, SHA-256 `4fb9817c1392a8ffdd0fd2205cf093dc1b76ea430de32f93fcf83cb4580cea34`) was inspected and rejected because it repeats the plaza encounter already taught by `media.caral.sunken-plaza` rather than showing two mounds at terrace scale.
+
+#### 4. Accepted final image
+
+| Reference used | Accepted final |
+| --- | --- |
+| ![Reference comparison for the platform mounds](references/caral/perucarl01-pyramids-reference.jpg) | ![Accepted platform-mound photograph](generated/caral/perucarl01-pyramids-master.jpg) |
+
+- Final master path, dimensions, and SHA-256: `docs/research/generated/caral/perucarl01-pyramids-master.jpg`; 2560 × 1920; `aa2fe7e8fd5027c05221453b53b3576ece5db90498a494047797ffd49423ddd7`.
+- Runtime/fallback path and SHA-256: `public/images/evidence/caral-platform-mounds.jpg`; 1280 × 960; `ec1f103a631800881b1ba31577230a5f5e90fb389c8390168790a6fee740c05a`. Generated fallback: `/images/optimized/caral/platform-mounds.optimized.jpg`.
+- Reviewer/date/status: Codex historical, rights, and visual review / 2026-08-19 / accepted.
+- Fidelity verdict — every locked invariant retained: yes.
+- Lesson-size verdict — evidence-bearing differences remain visually distinct on desktop and mobile: yes; final shell verification remains part of Stage 16.
+- Comparison verdict — preserved relationship: two mound masses on a dry terrace with hills behind.
+- Comparison verdict — intentional changes: runtime JPEG compression and full-frame downscale only.
+- Comparison verdict — unsupported details checked: no added people, ceremony, crop of either mound, or caption burned into the image.
+
+### `media.caral.excavated-shicra` — surviving construction fabric
+
+#### 1. Reasoning and source basis
+
+- Teaching job: let learners inspect excavated stone-filled fiber bags in a wall core before the reconstruction of workers filling those bags.
+- Governing claim IDs: `claim.caral.shicra`, `claim.caral.caral-dates`.
+- Factual/historical sources: Gisela Xiomara Garcia Almonacid’s excavated-wall photograph; Science 2001 dating of plant fibers in shicra; UNESCO nomination construction description.
+- Why image instead of no media: the reconstruction could be mistaken for a photograph; the excavated bags are the dated fabric the reconstruction explains.
+- Depiction and uncertainty boundary: surviving evidence during modern fieldwork. Fiber nets and stones are ancient; canopy poles and the footprint are modern.
+
+#### 2. Reference image actually used
+
+| Reference preview | Origin and permitted use |
+| --- | --- |
+| ![Excavated shicra bags used as evidence](references/caral/almacenes-con-shicras-reference.jpg) | Creator: Gisela Xiomara Garcia Almonacid.<br>Canonical origin: https://commons.wikimedia.org/wiki/File:Almacenes_con_Shicras.jpg<br>License: CC BY-SA 4.0; attribution and share-alike required.<br>Accessed: 2026-08-19. |
+
+- Repository research copy and SHA-256: `docs/research/references/caral/almacenes-con-shicras-reference.jpg`; `42d096697462c845d8e52a9b194dd2be2ad2c81dab3af57557150690714c78d4`.
+- Edit mode: direct use.
+- Visual relationship to preserve: coarse plant-fiber netting, rounded stones packed inside, bags used as core fill against a rustic stone wall.
+- Locked layout/detail invariants: no crop that removes the readable bag; no retouching that hides modern excavation poles or the footprint; no labels.
+- Details not to copy or infer: visitor-center posters; reconstructed workers.
+
+#### 3. Generation or transformation
+
+- Operation: direct licensed use; full-frame resize from 3120 × 4160 to 960 × 1280 and high-quality JPEG compression for runtime delivery.
+- Actual input path and SHA-256: `docs/research/references/caral/almacenes-con-shicras-reference.jpg`; `42d096697462c845d8e52a9b194dd2be2ad2c81dab3af57557150690714c78d4`.
+- Tool/model/date: Sharp/MozJPEG quality 92, 2026-08-19; no generative model.
+- Complete prompt:
+
+```text
+No generation. Direct licensed use of the uncropped Commons photograph File:Almacenes_con_Shicras.jpg, resized as a complete frame from 3120 × 4160 to 960 × 1280 and recompressed as JPEG for Chronos runtime delivery without cropping, retouching, labels, or reconstructed figures.
+```
+
+- Candidate/rejection record: the visitor-center exhibit photograph (`shicras-de-ejemplo-caral-reference.jpg`) remains rejected as a generation or evidence input because it is a modern exhibit, not an excavated wall core.
+
+#### 4. Accepted final image
+
+| Reference used | Accepted final |
+| --- | --- |
+| ![Reference comparison for excavated shicra](references/caral/almacenes-con-shicras-reference.jpg) | ![Accepted excavated shicra photograph](generated/caral/almacenes-con-shicras-master.jpg) |
+
+- Final master path, dimensions, and SHA-256: `docs/research/generated/caral/almacenes-con-shicras-master.jpg`; 3120 × 4160; `42d096697462c845d8e52a9b194dd2be2ad2c81dab3af57557150690714c78d4`.
+- Runtime/fallback path and SHA-256: `public/images/evidence/caral-excavated-shicra.jpg`; 960 × 1280; `9370eacd43cc9b87839bda3590a8b42d5a53e5dd36c2fad452d82c5a79688711`. Generated fallback: `/images/optimized/caral/excavated-shicra.optimized.jpg`.
+- Reviewer/date/status: Codex historical, rights, and visual review / 2026-08-19 / accepted.
+- Fidelity verdict — every locked invariant retained: yes.
+- Lesson-size verdict — evidence-bearing differences remain visually distinct on desktop and mobile: yes; bag weave and stones remain readable at lesson size.
+- Comparison verdict — preserved relationship: fiber nets of stones packed as wall-core fill.
+- Comparison verdict — intentional changes: runtime JPEG compression and full-frame downscale only.
+- Comparison verdict — unsupported details checked: no added workers, no crop that hides the bag, no baked-in caption.
+
 ## Knowledge Card decision
 
 Decision: **card** (approved 2026-08-19; implemented)
@@ -616,6 +718,8 @@ Validation record:
 - `npm run build` — pass; existing large-chunk warning only.
 
 Preview route remains `/learn/lesson.caral.andean-urbanism` with `VITE_UNLOCK_PREVIEW_LESSONS=true`. Prototype annotations are hidden after product approval. Hosted publication, `status: "published"`, and the release gate wait for Carlin’s inspection of the final map, plaza photograph, and shicra reconstruction.
+
+On 2026-08-19 Carlin asked for more images after inspecting that three-visual draft. Two additional surviving-evidence photographs were added without changing the mental model: `media.caral.platform-mounds` after the opening, and `media.caral.excavated-shicra` before the reconstruction.
 
 ## Sign-off status
 

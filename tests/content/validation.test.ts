@@ -40,6 +40,13 @@ it('validates the typed Caral historical map and generated raster asset', () => 
     unlockLessonId: 'lesson.caral.andean-urbanism',
     mediaId: 'media.caral.sunken-plaza',
   });
+  expect(lesson.mediaIds).toEqual(expect.arrayContaining([
+    'media.caral.supe-valley-map',
+    'media.caral.platform-mounds',
+    'media.caral.sunken-plaza',
+    'media.caral.excavated-shicra',
+    'media.caral.shicra-reconstruction',
+  ]));
 });
 
 it('detects a missing local map fallback',()=>{const fixture=structuredClone(chronosContent);const map=fixture.media.find((item)=>item.id==='media.uruk.southern-mesopotamia-map')!;if(map.locator.provider!=='object-storage')throw new Error('object storage locator missing');map.locator.fallback.path='/images/maps/missing-map.webp';expect(validateContent(fixture).errors.join(' ')).toMatch(/missing local media asset \/images\/maps\/missing-map\.webp/)});

@@ -12,6 +12,149 @@
   },
   "assets": [
     {
+      "id": "media.caral.excavated-shicra",
+      "locator": {
+        "provider": "object-storage",
+        "bucket": "media-public",
+        "fallback": {
+          "path": "/images/optimized/caral/excavated-shicra.optimized.jpg",
+          "width": 960,
+          "height": 1280
+        },
+        "variants": [
+          {
+            "objectKey": "caral/media.caral.excavated-shicra/9370eacd43cc9b87/optimized/ql-v1/480w-webp-q94-1ec96ff06ab8a8f6.webp",
+            "mimeType": "image/webp",
+            "bytes": 100220,
+            "sha256": "1ec96ff06ab8a8f6981e9e31be9093928c2874e284461cffa065a5eb41eb1ff8",
+            "width": 480,
+            "height": 640,
+            "compression": {
+              "profile": "ql-v1",
+              "codec": "webp",
+              "encoder": "webp-lossy",
+              "quality": 94
+            },
+            "fidelity": {
+              "mode": "measured-quasi-lossless",
+              "psnrDb": 45.32,
+              "meanAbsoluteError": 0.908,
+              "maximumChannelDelta": 10
+            }
+          },
+          {
+            "objectKey": "caral/media.caral.excavated-shicra/9370eacd43cc9b87/optimized/ql-v1/960w-source-jpeg-9370eacd43cc9b87.jpg",
+            "mimeType": "image/jpeg",
+            "bytes": 253788,
+            "sha256": "9370eacd43cc9b87839bda3590a8b42d5a53e5dd36c2fad452d82c5a79688711",
+            "width": 960,
+            "height": 1280,
+            "compression": {
+              "profile": "ql-v1",
+              "codec": "jpeg",
+              "encoder": "source-passthrough"
+            },
+            "fidelity": {
+              "mode": "pixel-exact",
+              "psnrDb": null,
+              "meanAbsoluteError": 0,
+              "maximumChannelDelta": 0
+            }
+          }
+        ]
+      },
+      "source": {
+        "bucket": "media-source",
+        "objectKey": "caral/media.caral.excavated-shicra/9370eacd43cc9b87839bda3590a8b42d5a53e5dd36c2fad452d82c5a79688711/original.jpg",
+        "mimeType": "image/jpeg",
+        "bytes": 253788,
+        "sha256": "9370eacd43cc9b87839bda3590a8b42d5a53e5dd36c2fad452d82c5a79688711",
+        "width": 960,
+        "height": 1280
+      }
+    },
+    {
+      "id": "media.caral.platform-mounds",
+      "locator": {
+        "provider": "object-storage",
+        "bucket": "media-public",
+        "fallback": {
+          "path": "/images/optimized/caral/platform-mounds.optimized.jpg",
+          "width": 1280,
+          "height": 960
+        },
+        "variants": [
+          {
+            "objectKey": "caral/media.caral.platform-mounds/ec1f103a63180088/optimized/ql-v1/480w-webp-lossless-fe64a17d85231a11.webp",
+            "mimeType": "image/webp",
+            "bytes": 190782,
+            "sha256": "fe64a17d85231a11c372efcf849f7bedbb7976b6a1c9a4998504841400a383fd",
+            "width": 480,
+            "height": 360,
+            "compression": {
+              "profile": "ql-v1",
+              "codec": "webp",
+              "encoder": "webp-lossless"
+            },
+            "fidelity": {
+              "mode": "pixel-exact",
+              "psnrDb": null,
+              "meanAbsoluteError": 0,
+              "maximumChannelDelta": 0
+            }
+          },
+          {
+            "objectKey": "caral/media.caral.platform-mounds/ec1f103a63180088/optimized/ql-v1/960w-webp-q96-3468cc4f14e70926.webp",
+            "mimeType": "image/webp",
+            "bytes": 266160,
+            "sha256": "3468cc4f14e709261424eb17fecba3f0d0c1aa218c7694996a886b4c68443cab",
+            "width": 960,
+            "height": 720,
+            "compression": {
+              "profile": "ql-v1",
+              "codec": "webp",
+              "encoder": "webp-lossy",
+              "quality": 96
+            },
+            "fidelity": {
+              "mode": "measured-quasi-lossless",
+              "psnrDb": 46.23,
+              "meanAbsoluteError": 0.773,
+              "maximumChannelDelta": 14
+            }
+          },
+          {
+            "objectKey": "caral/media.caral.platform-mounds/ec1f103a63180088/optimized/ql-v1/1280w-source-jpeg-ec1f103a63180088.jpg",
+            "mimeType": "image/jpeg",
+            "bytes": 327151,
+            "sha256": "ec1f103a631800881b1ba31577230a5f5e90fb389c8390168790a6fee740c05a",
+            "width": 1280,
+            "height": 960,
+            "compression": {
+              "profile": "ql-v1",
+              "codec": "jpeg",
+              "encoder": "source-passthrough"
+            },
+            "fidelity": {
+              "mode": "pixel-exact",
+              "psnrDb": null,
+              "meanAbsoluteError": 0,
+              "maximumChannelDelta": 0
+            }
+          }
+        ]
+      },
+      "source": {
+        "bucket": "media-source",
+        "objectKey": "caral/media.caral.platform-mounds/ec1f103a631800881b1ba31577230a5f5e90fb389c8390168790a6fee740c05a/original.jpg",
+        "mimeType": "image/jpeg",
+        "bytes": 327151,
+        "sha256": "ec1f103a631800881b1ba31577230a5f5e90fb389c8390168790a6fee740c05a",
+        "width": 1280,
+        "height": 960
+      }
+    },
+    {
       "id": "media.caral.shicra-reconstruction",
       "locator": {
         "provider": "object-storage",
