@@ -23,6 +23,25 @@ it('validates the typed Farming locator map and generated raster asset', () => {
   expect(module.uncertaintyNote).toMatch(/Neolithic shorelines|coastlines/i);
 });
 
+it('validates the typed Caral historical map and generated raster asset', () => {
+  const lesson = chronosContent.lessons.find((item) => item.id === 'lesson.caral.andean-urbanism')!;
+  const module = lesson.sections.flatMap((section) => section.modules).find((item) => item.type === 'historical-map')!;
+  expect(LessonModuleSchema.safeParse(module).success).toBe(true);
+  if (module.type !== 'historical-map') throw new Error('Caral historical map missing');
+  expect(module.id).toBe('module.caral.supe-map');
+  expect(module.mediaId).toBe('media.caral.supe-valley-map');
+  expect(module.compactLabel).toMatch(/no political borders/i);
+  expect(module.coordinateNote).toMatch(/UNESCO World Heritage coordinates/i);
+  expect(module.uncertaintyNote).toMatch(/Shorelines, river width, terrace edges/i);
+  expect(lesson.status).toBe('draft');
+  expect(chronosContent.cards.find((card) => card.id === 'card.place.caral')).toMatchObject({
+    category: 'place',
+    cardClass: 'foundation',
+    unlockLessonId: 'lesson.caral.andean-urbanism',
+    mediaId: 'media.caral.sunken-plaza',
+  });
+});
+
 it('detects a missing local map fallback',()=>{const fixture=structuredClone(chronosContent);const map=fixture.media.find((item)=>item.id==='media.uruk.southern-mesopotamia-map')!;if(map.locator.provider!=='object-storage')throw new Error('object storage locator missing');map.locator.fallback.path='/images/maps/missing-map.webp';expect(validateContent(fixture).errors.join(' ')).toMatch(/missing local media asset \/images\/maps\/missing-map\.webp/)});
 
 it('rejects duplicate, oversized, or non-content-addressed media variants',()=>{const fixture=structuredClone(chronosContent);const map=fixture.media.find((item)=>item.id==='media.uruk.southern-mesopotamia-map')!;if(map.locator.provider!=='object-storage')throw new Error('object storage locator missing');map.locator.variants[1].width=map.locator.variants[0].width;map.locator.variants[1].objectKey='uruk/unversioned-map.webp';map.locator.variants[1].bytes=800000;const errors=validateContent(fixture).errors.join(' ');expect(errors).toMatch(/duplicate media variant width/);expect(errors).toMatch(/not content-addressed/);expect(errors).toMatch(/exceeds 786432 byte budget/)});

@@ -1,5 +1,6 @@
-import type { Claim, Lesson, Source, UnderstandingPrompt } from '../../src/domains/contracts';
+import type { Claim, KnowledgeCard, Lesson, MediaAsset, Source, UnderstandingPrompt } from '../../src/domains/contracts';
 import type { AuthoredContentModule } from '../assemble';
+import { mediaLocator } from '../shared/media-locator';
 
 export const caralAndeanUrbanismSources: Source[] = [
   {
@@ -89,7 +90,34 @@ export const caralAndeanUrbanismSources: Source[] = [
     url: 'https://commons.wikimedia.org/wiki/File:PeruCaral19.jpg',
     publisher: 'Wikimedia Commons / Håkan Svensson',
     accessedOn: '2026-08-19',
-    licenseOrUse: 'CC BY 2.5 photograph of surviving architecture; candidate runtime evidence image',
+    licenseOrUse: 'CC BY 2.5 photograph of surviving architecture; runtime evidence image with attribution',
+    reviewStatus: 'reviewed',
+  },
+  {
+    id: 'source.caral.commons-almacenes-shicras',
+    title: 'Almacenes con Shicras',
+    url: 'https://commons.wikimedia.org/wiki/File:Almacenes_con_Shicras.jpg',
+    publisher: 'Wikimedia Commons / Gisela Xiomara Garcia Almonacid',
+    accessedOn: '2026-08-19',
+    licenseOrUse: 'CC BY-SA 4.0 photograph of excavated shicra bags in a retaining-wall core; reconstruction reference, not redistributed as the learner reconstruction',
+    reviewStatus: 'reviewed',
+  },
+  {
+    id: 'source.caral.commons-peru-physical-map',
+    title: 'Physical map of Peru',
+    url: 'https://commons.wikimedia.org/wiki/File:Peru_physical_map.svg',
+    publisher: 'Wikimedia Commons / Urutseg',
+    accessedOn: '2026-08-19',
+    licenseOrUse: 'CC0 1.0 public-domain dedication; SRTM-derived topographic raster used as geographic composition reference',
+    reviewStatus: 'reviewed',
+  },
+  {
+    id: 'source.caral.scientific-reports-aspero-2023',
+    title: 'Analysis of starch grains trapped in human dental calculus in Áspero, Peru during the Initial Formative Period (3000–1800 BCE)',
+    url: 'https://doi.org/10.1038/s41598-023-41015-6',
+    publisher: 'Scientific Reports',
+    accessedOn: '2026-08-19',
+    licenseOrUse: 'Open-access CC BY 4.0 scholarly article cited for Áspero coordinates and coastal setting; figures are not redistributed',
     reviewStatus: 'reviewed',
   },
   {
@@ -125,7 +153,7 @@ export const caralAndeanUrbanismClaims: Claim[] = [
     statement: 'Caral occupies a dry desert terrace above the green Supe Valley about 23 km inland from the Pacific.',
     kind: 'observation',
     certainty: 'high',
-    sourceIds: ['source.caral.shady-haas-creamer-2001', 'source.caral.unesco-1269', 'source.caral.sandweiss-2009'],
+    sourceIds: ['source.caral.shady-haas-creamer-2001', 'source.caral.unesco-1269', 'source.caral.sandweiss-2009', 'source.caral.scientific-reports-aspero-2023'],
     reviewStatus: 'reviewed',
   },
   {
@@ -242,6 +270,42 @@ export const caralAndeanUrbanismClaims: Claim[] = [
   },
 ];
 
+export const caralAndeanUrbanismMedia: MediaAsset[] = [
+  {
+    id: 'media.caral.supe-valley-map',
+    locator: mediaLocator('media.caral.supe-valley-map'),
+    alt: 'West-facing illustrated map of Peru’s north-central coast with the Pacific Ocean on the left, Áspero at the Supe River mouth, inland Caral on a pale desert terrace above the green Supe Valley, and the Andes to the east',
+    depictionMode: 'map',
+    depictionLabel: 'Evidence-based historical map · shorelines, river width, and terrace edges are approximate',
+    rightsLabel: 'Chronos original raster map edit · geographic reference by Urutseg, CC0 1.0, from SRTM topography',
+    sourceIds: ['source.caral.commons-peru-physical-map', 'source.caral.unesco-maps', 'source.caral.shady-haas-creamer-2001', 'source.caral.scientific-reports-aspero-2023'],
+    visualBriefRef: 'docs/research/caral-supe-valley-map.md#generated-artwork-lineage',
+    reviewStatus: 'approved',
+  },
+  {
+    id: 'media.caral.sunken-plaza',
+    locator: mediaLocator('media.caral.sunken-plaza'),
+    alt: 'Sunken circular plaza at the foot of a stepped platform mound at Caral, with a stone stairway climbing from the plaza floor onto the mound and dry hills behind',
+    depictionMode: 'evidence',
+    depictionLabel: 'Surviving evidence · conserved ruins, not a ceremony in progress',
+    rightsLabel: 'Photograph by Håkan Svensson (Xauxa), CC BY 2.5',
+    sourceIds: ['source.caral.commons-plaza', 'source.caral.unesco-nomination'],
+    visualBriefRef: 'docs/research/caral-andean-urbanism.md#image-lifecycle',
+    reviewStatus: 'approved',
+  },
+  {
+    id: 'media.caral.shicra-reconstruction',
+    locator: mediaLocator('media.caral.shicra-reconstruction'),
+    alt: 'Evidence-led reconstruction of workers filling coarse fiber bags with rounded river stones and stacking those bags as core fill inside a stone retaining wall',
+    depictionMode: 'evidence-based-reconstruction',
+    depictionLabel: 'Evidence-led reconstruction · the exact crew and moment are illustrative',
+    rightsLabel: 'Chronos original reconstruction · bag morphology from Gisela Xiomara Garcia Almonacid, CC BY-SA 4.0',
+    sourceIds: ['source.caral.commons-almacenes-shicras', 'source.caral.shady-haas-creamer-2001', 'source.caral.unesco-nomination'],
+    visualBriefRef: 'docs/research/caral-andean-urbanism.md#image-lifecycle',
+    reviewStatus: 'approved',
+  },
+];
+
 export const caralAndeanUrbanismPrompts: UnderstandingPrompt[] = [
   {
     id: 'prompt.caral.supported-model',
@@ -331,6 +395,25 @@ export const caralAndeanUrbanismLesson: Lesson = {
           claimIds: ['claim.caral.inland-setting', 'claim.caral.cotton-fish-exchange'],
           sourceIds: ['source.caral.sandweiss-2009', 'source.caral.unesco-nomination', 'source.caral.zona-caral'],
         },
+        {
+          id: 'module.caral.supe-map',
+          type: 'historical-map',
+          eyebrow: 'Hold the two zones',
+          title: 'Coast at the mouth, city inland',
+          body: 'Use the map to keep west and east in view: the Pacific and Áspero at the river mouth, then inland Caral on a dry terrace above the green Supe Valley, with the Andes farther east. The map shows a connected landscape. It does not draw a kingdom.',
+          mediaId: 'media.caral.supe-valley-map',
+          periodLabel: 'c. 3000–1800 BCE',
+          focusPlace: 'Supe Valley, north-central coast of Peru',
+          modernContext: 'Pacific coast of present-day Peru; ancient shoreline and river channels changed',
+          accessibleSummary: 'A west-to-east map places the Pacific Ocean on the left. Áspero sits at the Supe River mouth. Caral sits inland on a pale desert terrace above a narrow green valley. The Andes rise on the right. No political borders or capital territory are shown.',
+          compactLabel: 'Coast and inland valley · no political borders',
+          coordinateNote: 'Caral is anchored by UNESCO World Heritage coordinates. Áspero is anchored by published WGS84 coordinates from a 2023 open-access study of the coastal site.',
+          uncertaintyNote: 'Shorelines, river width, terrace edges, and the exact ancient course of the Supe River are approximate. The map preserves relative west–east placement rather than reconstructing one surveyed year.',
+          depictionStatus: 'evidence-based-reconstruction',
+          introLayout: 'dense',
+          claimIds: ['claim.caral.inland-setting', 'claim.caral.cotton-fish-exchange', 'claim.caral.regional-sites'],
+          sourceIds: ['source.caral.commons-peru-physical-map', 'source.caral.unesco-maps', 'source.caral.shady-haas-creamer-2001', 'source.caral.scientific-reports-aspero-2023'],
+        },
       ],
     },
     {
@@ -344,6 +427,16 @@ export const caralAndeanUrbanismLesson: Lesson = {
           body: 'Look for a circular hollow at the foot of a stepped mound. That hollow is a sunken circular plaza. A stairway climbs from the plaza onto the platform mound above, a building later visitors often call a pyramid. The plaza is architecture you can still see. The exact ceremonies held there are not.\n\nAround the site, six large platform mounds dominate a central zone of about 65 hectares. Some residential buildings sit near the monuments. Others sit farther out and are simpler. That difference is evidence of unequal living, not a roll call of named rulers.',
           claimIds: ['claim.caral.plaza-observation', 'claim.caral.monumental-architecture', 'claim.caral.labor-and-hierarchy'],
           sourceIds: ['source.caral.commons-plaza', 'source.caral.unesco-nomination', 'source.caral.shady-haas-creamer-2001'],
+        },
+        {
+          id: 'module.caral.plaza-evidence',
+          type: 'evidence',
+          title: 'The plaza you can still see',
+          artifactLabel: 'Surviving evidence · conserved ruins',
+          body: 'The circular hollow, enclosing wall, and stairway survive as architecture. Look at the lowered floor, the climb onto the mound, and the dry hills around the site before deciding what gatherings here meant.',
+          mediaId: 'media.caral.sunken-plaza',
+          claimIds: ['claim.caral.plaza-observation', 'claim.caral.monumental-architecture'],
+          sourceIds: ['source.caral.commons-plaza', 'source.caral.unesco-nomination'],
         },
         {
           id: 'module.caral.plaza-observe',
@@ -373,6 +466,20 @@ export const caralAndeanUrbanismLesson: Lesson = {
           body: 'The mounds were not poured like modern concrete. Workers packed stones into woven fiber bags, called shicra, and stacked them inside retaining walls. Those plant fibers survived in the dry climate. Radiocarbon dates from them place Caral’s monumental construction around 2627 to 1977 BCE.\n\nBuilding on this scale required planning, many workers, food, and people who directed work. Music may have been part of public gatherings: excavators found bird-bone flutes in a sunken circular gathering space. The instruments survive. The songs do not.\n\nNo pottery does not mean no skill. People used gourds, baskets, fiber, and stone. They solved different problems with different tools.',
           claimIds: ['claim.caral.shicra', 'claim.caral.caral-dates', 'claim.caral.preceramic', 'claim.caral.labor-and-hierarchy'],
           sourceIds: ['source.caral.shady-haas-creamer-2001', 'source.caral.unesco-nomination', 'source.caral.sandweiss-2009'],
+        },
+        {
+          id: 'module.caral.shicra-field-guide',
+          type: 'scene',
+          title: 'Follow a bag of stones into the wall',
+          body: 'Evidence-led reconstruction: the exact crew and moment are illustrative. Open the field guide to see how fiber bags became the dated core of a platform mound.',
+          mediaId: 'media.caral.shicra-reconstruction',
+          hotspots: [
+            { label: 'Woven bags', detail: 'Workers packed rounded river stones into coarse plant-fiber bags called shicra. Those fibers survived in the dry climate and later provided radiocarbon dates.' },
+            { label: 'Stacked cores', detail: 'Filled bags were stacked inside stone retaining walls. The photograph of excavated bags supports this fill method; the people shown here are reconstructed.' },
+            { label: 'Organized labor', detail: 'Building on this scale required many workers, food, and people who directed work. Their exact titles and powers remain uncertain.' },
+          ],
+          claimIds: ['claim.caral.shicra', 'claim.caral.caral-dates', 'claim.caral.labor-and-hierarchy'],
+          sourceIds: ['source.caral.commons-almacenes-shicras', 'source.caral.shady-haas-creamer-2001', 'source.caral.unesco-nomination'],
         },
         {
           id: 'module.caral.work-not-magic',
@@ -444,13 +551,45 @@ export const caralAndeanUrbanismLesson: Lesson = {
   ],
   claimIds: caralAndeanUrbanismClaims.map((claim) => claim.id),
   sourceIds: caralAndeanUrbanismSources.map((source) => source.id),
-  mediaIds: [],
+  mediaIds: caralAndeanUrbanismMedia.map((media) => media.id),
   promptIds: caralAndeanUrbanismPrompts.map((prompt) => prompt.id),
 };
+
+export const caralAndeanUrbanismCards: KnowledgeCard[] = [
+  {
+    id: 'card.place.caral',
+    title: 'Caral',
+    category: 'place',
+    cardClass: 'foundation',
+    date: {
+      startYear: -3000,
+      endYear: -1800,
+      display: 'c. 3000–1800 BCE',
+      approximate: true,
+    },
+    place: 'Supe Valley, north-central coast of Peru',
+    significance: 'An inland monumental center that shows urban life can grow from irrigation, coastal–inland exchange, and public architecture without pottery, metal, or writing.',
+    revealTitle: 'A city without the usual checklist',
+    revealBody: 'You earned this Place card by using Caral’s mounds, plazas, and cotton–fish evidence while refusing trophy claims about a first city, a peaceful empire, or a decoded quipu.',
+    depictionLabel: 'Place-focused · surviving sunken plaza',
+    facts: [
+      'Sits about 23 kilometers inland on a dry desert terrace above the green Supe Valley',
+      'Central zone of about 65 hectares with platform mounds and sunken circular plazas',
+      'Built without pottery, metal tools, or a writing system like Egypt’s or Uruk’s',
+      'One of several early monumental centers in neighboring valleys, not a proven unique first city',
+    ],
+    lessonIds: ['lesson.caral.andean-urbanism'],
+    sourceIds: ['source.caral.commons-plaza', 'source.caral.shady-haas-creamer-2001', 'source.caral.unesco-1269', 'source.caral.sandweiss-2009'],
+    mediaId: 'media.caral.sunken-plaza',
+    unlockLessonId: 'lesson.caral.andean-urbanism',
+  },
+];
 
 export const caralAndeanUrbanismContent: AuthoredContentModule = {
   sources: caralAndeanUrbanismSources,
   claims: caralAndeanUrbanismClaims,
+  media: caralAndeanUrbanismMedia,
   prompts: caralAndeanUrbanismPrompts,
   lessons: [caralAndeanUrbanismLesson],
+  cards: caralAndeanUrbanismCards,
 };

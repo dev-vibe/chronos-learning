@@ -4,18 +4,18 @@ Issue: [ASH-98](https://linear.app/ashs-workshop/issue/ASH-98/research-and-publi
 
 Lesson ID: `lesson.caral.andean-urbanism`
 
-Research-note identity/version: `caral-andean-urbanism` / Stages 0–14B prototype checkpoint
+Research-note identity/version: `caral-andean-urbanism` / Stage 15 implementation
 
 Journey/chapter/position: World History · Cities, States, and Bronze Age Networks · canonical Spine position 14; journey entry after `lesson.egypt.nile-state`
 
 Required or optional: required
 
-Queue status: **Awaiting approval**
+Queue status: **Review**
 
 Accountable reviewer: Carlin Aylsworth
 
 Validation tier: reference
-Current stage: **Stage 14B — learner-prototype checkpoint pending product-owner approval**
+Current stage: **Stage 16 — final media inspection and release gates**
 
 This note is the durable source, claim, learning, visual, prototype, and checkpoint record. It replaces the legacy `caral_norte_chico` node; that older node is an audit input, not a trusted factual source.
 
@@ -43,7 +43,7 @@ Deferred:
 - child remains or sacrificial interpretation as a teaching hook;
 - modern excavation biography as the memory object.
 
-Non-goals for this PR: no final media generation, no publication migration or unlock, no hosted changes, no product-owner approval recorded by the agent.
+Non-goals until Stages 16–18: do not set `status: "published"`, do not apply the hosted Supabase migration, and do not treat this implementation as a public release. Carlin still inspects the final media in the Learn shell.
 
 ## Node proposal
 
@@ -229,29 +229,250 @@ Section-count exception: none. Six sections.
 
 | Intention ID | Section ID | Teaching question | Form | Evidence/claim basis | Depiction label | Accessible equivalent | Stage 14A treatment | Final review |
 | --- | --- | --- | --- | --- | --- | --- | --- | --- |
-| `intention.caral.supe-valley-map` | `section.caral.coast-and-valley` | Why is Caral inland, and how does that make coast and valley depend on each other? | historical map | UNESCO coordinates; Science 2001 23 km inland; Aspero as coastal counterpart | Evidence-based historical map · shorelines and valley width approximate | Accessible summary of sea, Áspero, Caral, desert terrace, river | Development-only annotation | pending product approval |
-| `intention.caral.plaza-evidence` | `section.caral.plaza` | What surviving architecture can a learner actually see? | evidence photograph | Commons plaza image; UNESCO/nomination architectural identification | Surviving evidence · conserved ruins, not a ceremony in progress | Alt text naming plaza, mound, stair relationship | Development-only annotation | pending product approval |
-| `intention.caral.shicra-reconstruction` | `section.caral.how-built` | How did people turn fiber bags and stone into a mound? | evidence-based reconstruction | Science 2001 shicra dating; nomination construction description | Evidence-led reconstruction · exact crew and moment illustrative | Accessible description of bag-filling and stacking | Development-only annotation | pending product approval |
+| `intention.caral.supe-valley-map` | `section.caral.coast-and-valley` | Why is Caral inland, and how does that make coast and valley depend on each other? | historical map | UNESCO coordinates; Science 2001 23 km inland; Aspero as coastal counterpart | Evidence-based historical map · shorelines and valley width approximate | Accessible summary of sea, Áspero, Caral, desert terrace, river | Development-only annotation, then `media.caral.supe-valley-map` | approved |
+| `intention.caral.plaza-evidence` | `section.caral.plaza` | What surviving architecture can a learner actually see? | evidence photograph | Commons plaza image; UNESCO/nomination architectural identification | Surviving evidence · conserved ruins, not a ceremony in progress | Alt text naming plaza, mound, stair relationship | Development-only annotation, then `media.caral.sunken-plaza` | approved |
+| `intention.caral.shicra-reconstruction` | `section.caral.how-built` | How did people turn fiber bags and stone into a mound? | evidence-based reconstruction | Science 2001 shicra dating; nomination construction description | Evidence-led reconstruction · exact crew and moment illustrative | Accessible description of bag-filling and stacking | Development-only annotation, then `media.caral.shicra-reconstruction` | approved |
 
 Video: not used. Motion is not required to teach the model.
 
-### Image lifecycle
+## Image lifecycle
 
-Final assets are not generated at this checkpoint. The three jobs above remain planned media intentions until product-owner approval.
+### `media.caral.supe-valley-map` — required historical map
+
+#### 1. Reasoning and source basis
+
+- Teaching job: show that Caral sits inland on a desert terrace while Áspero sits at the Pacific river mouth, so coast and valley can be held as one connected landscape.
+- Governing claim IDs: `claim.caral.inland-setting`, `claim.caral.cotton-fish-exchange`, `claim.caral.regional-sites`.
+- Factual/historical sources: Urutseg CC0 SRTM physical map of Peru, UNESCO Caral coordinates, Science 2001 inland distance, Scientific Reports 2023 Áspero coordinates.
+- Why image instead of no media: the 23 km inland relationship and the desert-terrace / green-valley contrast are easy to flatten into “a city on the beach” without a map.
+- Depiction and uncertainty boundary: evidence-based reconstruction. Site order and west–east placement are source-supported; shorelines, river width, and terrace edges are approximate. No political border or capital fill is claimed.
+
+#### 2. Reference image actually used
+
+| Reference preview | Origin and permitted use |
+| --- | --- |
+| ![Reference crop used for the Supe Valley map](references/caral/supe-coast-physical-map-crop.png) | Creator: Urutseg, from SRTM topography.<br>Canonical origin: https://commons.wikimedia.org/wiki/File:Peru_physical_map.svg<br>License: CC0 1.0 public-domain dedication.<br>Accessed: 2026-08-19. |
+
+- Repository research copy and SHA-256: `docs/research/references/caral/peru-physical-map-reference.png`; `a3a5fe50107f9b1d4d700e4901a541e2551fde7b40857214efb2450dd58ab3e7`. Working crop: `docs/research/references/caral/supe-coast-physical-map-crop.png`; `6efa93e91a9150d8cc449bb81ed5db7a23b2ee246189c3bf697aafa1c1dd0319`.
+- Edit mode: adapted composition.
+- Visual relationship to preserve: north-up, Pacific west, Andes east, a coastal desert, and a river valley running from mountains to sea; Áspero at the mouth and Caral inland.
+- Locked layout/detail invariants: exactly five reviewed labels; two subtle site dots; no border, capital fill, legend, title, date, Lima, extra settlements, or compass.
+- Details not to copy or infer: national borders, elevation scale, neighboring countries, modern cities, and exact ancient channels.
+
+#### 3. Generation or transformation
+
+- Operation: reference-led image edit followed by full-frame JPEG runtime compression.
+- Actual input path and SHA-256: `docs/research/references/caral/supe-coast-physical-map-crop.png`; `6efa93e91a9150d8cc449bb81ed5db7a23b2ee246189c3bf697aafa1c1dd0319`.
+- Tool/model/date: Cursor/Grok image generation service (model identifier not exposed), 2026-08-19; Sharp/MozJPEG quality 95 for the runtime source.
+- Complete prompt:
+
+```text
+Create a single historical map illustration for a Chronos lesson.
+
+LESSON AND PURPOSE:
+- Subject: Supe Valley on Peru’s north-central Pacific coast, Late Archaic / Late Preceramic, c. 3000–1800 BCE
+- Period: c. 3000–1800 BCE
+- Teaching goal: show that Caral sits inland on a dry desert terrace above a green river valley, while Áspero sits at the river mouth on the Pacific; coast and valley belong to one connected landscape, not a bordered kingdom
+
+GEOGRAPHIC REFERENCE:
+- Treat the attached real topographic raster as the geographic source.
+- Preserve west=Pacific Ocean, east=Andes mountains, north at top, a narrow coastal desert, and river valleys running from the mountains west to the sea.
+- Zoom the composition to one representative coastal river valley matching the Supe Valley: the ocean occupies the left/west, a short green irrigated valley runs inland, pale sand desert terraces sit above the valley, and brown Andes rise on the right/east.
+- Do not use the reference's graphic style, elevation legend, political borders, or national extent.
+
+VERIFIED FEATURES:
+- Pacific Ocean on the west
+- Áspero at the river mouth near the coast
+- Caral about 23 km inland, slightly south of Áspero, on a pale desert terrace above the green valley
+- Supe Valley as a narrow green ribbon between desert and mountains
+- Andes highlands to the east
+
+APPROXIMATE FEATURES:
+- Exact shoreline, river width, terrace edges, and valley vegetation extent
+- Render these softly; do not imply a surveyed 2600 BCE reconstruction
+
+REQUIRED LABELS (verbatim, exactly these five, no other words):
+- Pacific Ocean
+- Áspero
+- Caral
+- Supe Valley
+- Andes
+
+CHRONOS STYLE:
+- warm parchment or ivory ground
+- restrained ochre, sand, mineral blue, blue-green, and terracotta
+- subtle paper and topographic texture
+- elegant editorial historical-atlas character
+- calm, clear, and approachable for ages 10-14
+- simple composition with generous negative space
+- subtle small dots for Áspero and Caral only
+
+DO NOT ADD:
+- invented settlements, extra rivers, roads, borders, ruins, pyramids, boats, people, or symbols
+- modern national borders, Lima, Peru label, or capital-territory fill
+- fantasy, tactical-game, satellite, or generic GIS styling
+- a decorative compass, generated legend, title, date, paragraph, logo, watermark, or UI chrome
+- the reference map's elevation scale
+- any word or annotation not listed under REQUIRED LABELS
+
+OUTPUT:
+- one complete landscape historical map, north at top, west=ocean, east=mountains
+- sufficient resolution for desktop and mobile lesson display
+- no cropping of required geography
+```
+
+- Candidate/rejection record: first generated candidate accepted after geographic and label review. No generated candidate was rejected.
+
+#### 4. Accepted final image
+
+| Reference used | Accepted final |
+| --- | --- |
+| ![Reference comparison for the Supe Valley map](references/caral/supe-coast-physical-map-crop.png) | ![Accepted Supe Valley map](generated/caral/supe-valley-map-master.png) |
+
+- Final master path, dimensions, and SHA-256: `docs/research/generated/caral/supe-valley-map-master.png`; 1536 × 1024; `9e328ca878fb126609809a6d303a01fb99466ce58f2f11e5ed0cddb8dace07f8`.
+- Runtime/fallback path and SHA-256: `public/images/places/caral-supe-valley-map.jpg`; 1536 × 1024; `a1dadc917a4cedcacaf36f185e082d5afeec0698ddd4e47f18ce515c1e956674`. Generated fallback: `/images/optimized/caral/supe-valley-map.optimized.jpg`.
+- Reviewer/date/status: Codex historical, cartographic, accessibility, and visual review / 2026-08-19 / accepted.
+- Fidelity verdict — every locked invariant retained: yes.
+- Lesson-size verdict — evidence-bearing differences remain visually distinct on desktop and mobile: yes; final shell verification remains part of Stage 16.
+- Comparison verdict — preserved relationship: Pacific west; Áspero at the mouth; Caral inland on a terrace; Andes east.
+- Comparison verdict — intentional changes: cropped national extent; removed borders and elevation legend; used a calm Chronos atlas treatment.
+- Comparison verdict — unsupported details checked: exactly five labels, no Lima, borders, capital fill, extra sites, title, date, logo, or watermark.
+
+### `media.caral.sunken-plaza` — surviving plaza evidence
+
+#### 1. Reasoning and source basis
+
+- Teaching job: let learners inspect the surviving sunken circular plaza and stairway before the lesson supplies an interpretation of gathering or power.
+- Governing claim IDs: `claim.caral.plaza-observation`, `claim.caral.monumental-architecture`.
+- Factual/historical sources: Håkan Svensson’s 2004 plaza photograph; UNESCO nomination architectural identification.
+- Why image instead of no media: the core observation move depends on seeing a lowered circle, enclosing wall, and stair onto a mound rather than imagining a generic pyramid.
+- Depiction and uncertainty boundary: surviving evidence. Conserved ruins are shown; ceremonies, seating, and audience are not.
+
+#### 2. Reference image actually used
+
+| Reference preview | Origin and permitted use |
+| --- | --- |
+| ![Reviewed sunken-plaza photograph](references/caral/plaza-circular-templo-mayor-reference.jpg) | Creator: Håkan Svensson (Xauxa).<br>Canonical origin: https://commons.wikimedia.org/wiki/File:PeruCaral19.jpg<br>License: CC BY 2.5 (also GFDL / CC BY-SA 3.0); attribution required.<br>Accessed: 2026-08-19. |
+
+- Repository research copy and SHA-256: `docs/research/references/caral/plaza-circular-templo-mayor-reference.jpg`; `03be9dcbf1328c07730acabcb4377f49168329092cddb50a32d46e8f42226da0`.
+- Edit mode: direct use.
+- Visual relationship to preserve: uncropped plaza, stairway, enclosing wall, mound mass, and dry hills.
+- Locked layout/detail invariants: no crop of the plaza or stair; no colorization, invented people, labels, or reconstructed ceremony.
+- Details not to copy or infer: no later visitor reconstruction of ritual; no overlay captions.
+
+#### 3. Generation or transformation
+
+- Operation: direct licensed use; full-frame resize from 2048 × 1536 to 960 × 720 and high-quality JPEG compression for runtime delivery.
+- Actual input path and SHA-256: `docs/research/references/caral/plaza-circular-templo-mayor-reference.jpg`; `03be9dcbf1328c07730acabcb4377f49168329092cddb50a32d46e8f42226da0`.
+- Tool/model/date: Sharp/MozJPEG quality 92, 2026-08-19; no generative model.
+- Complete prompt:
+
+```text
+No generation. Direct licensed use of the uncropped Commons photograph File:PeruCaral19.jpg, resized as a complete frame from 2048 × 1536 to 960 × 720 and recompressed as JPEG for Chronos runtime delivery without cropping, retouching, labels, or reconstructed figures.
+```
+
+- Candidate/rejection record: the uncropped original was accepted. No crop candidate was used.
+
+#### 4. Accepted final image
+
+| Reference used | Accepted final |
+| --- | --- |
+| ![Reference comparison for the plaza photograph](references/caral/plaza-circular-templo-mayor-reference.jpg) | ![Accepted plaza photograph](generated/caral/plaza-circular-templo-mayor-master.jpg) |
+
+- Final master path, dimensions, and SHA-256: `docs/research/generated/caral/plaza-circular-templo-mayor-master.jpg`; 2048 × 1536; `03be9dcbf1328c07730acabcb4377f49168329092cddb50a32d46e8f42226da0`.
+- Runtime/fallback path and SHA-256: `public/images/evidence/caral-sunken-plaza.jpg`; 960 × 720; `b433cb9f76f882fddd5dca85c4cef810b5cbe5ef76d788d1d06f161f3f0e1abb`. Generated fallback: `/images/optimized/caral/sunken-plaza.optimized.jpg`.
+- Reviewer/date/status: Codex historical, rights, and visual review / 2026-08-19 / accepted.
+- Fidelity verdict — every locked invariant retained: yes.
+- Lesson-size verdict — evidence-bearing differences remain visually distinct on desktop and mobile: yes; final shell verification remains part of Stage 16.
+- Comparison verdict — preserved relationship: plaza hollow, stair, and mound remain uncropped.
+- Comparison verdict — intentional changes: runtime JPEG compression only.
+- Comparison verdict — unsupported details checked: no added people, ceremony, crop, or caption burned into the image.
+
+### `media.caral.shicra-reconstruction` — recommended construction reconstruction
+
+#### 1. Reasoning and source basis
+
+- Teaching job: show how fiber bags of stone became the dated core of a platform mound, as organized human work rather than a pottery-free primitive leftover.
+- Governing claim IDs: `claim.caral.shicra`, `claim.caral.caral-dates`, `claim.caral.labor-and-hierarchy`.
+- Factual/historical sources: excavated shicra bags photographed in a wall core (Garcia Almonacid, CC BY-SA 4.0); Science 2001 dating of plant fibers in shicra; UNESCO nomination construction description.
+- Why image instead of no media: learners need to see bags as building fabric, not as a vocabulary word.
+- Depiction and uncertainty boundary: evidence-led reconstruction. Bag morphology and wall-fill use are evidence-based; the exact crew, clothing details, and moment are illustrative.
+
+#### 2. Reference image actually used
+
+| Reference preview | Origin and permitted use |
+| --- | --- |
+| ![Excavated shicra bags used as reconstruction reference](references/caral/almacenes-con-shicras-reference.jpg) | Creator: Gisela Xiomara Garcia Almonacid.<br>Canonical origin: https://commons.wikimedia.org/wiki/File:Almacenes_con_Shicras.jpg<br>License: CC BY-SA 4.0; attribution and share-alike required for derivatives.<br>Accessed: 2026-08-19. |
+
+- Repository research copy and SHA-256: `docs/research/references/caral/almacenes-con-shicras-reference.jpg`; `42d096697462c845d8e52a9b194dd2be2ad2c81dab3af57557150690714c78d4`.
+- Edit mode: adapted composition.
+- Visual relationship to preserve: coarse plant-fiber netting, rounded river cobbles packed inside, bags used as core fill against a rustic stone retaining wall.
+- Locked layout/detail invariants: bags remain fiber nets of stones, not modern sacks; reconstruction must be recognizable as construction work; no baked-in title or caption.
+- Details not to copy or infer: modern excavation canopy poles, boot prints, visitor-center posters, quincha exhibit architecture, or seismic-engineering infographic text. A visitor-center example photograph (`shicras-de-ejemplo-caral-reference.jpg`) was inspected and rejected as a generation input because it is a modern exhibit, not an excavated wall core.
+
+#### 3. Generation or transformation
+
+- Operation: reference-led image edit followed by full-frame JPEG runtime compression.
+- Actual input path and SHA-256: `docs/research/references/caral/almacenes-con-shicras-reference.jpg`; `42d096697462c845d8e52a9b194dd2be2ad2c81dab3af57557150690714c78d4`.
+- Tool/model/date: Cursor/Grok image generation service (model identifier not exposed), 2026-08-19; Sharp/MozJPEG quality 92 for the runtime source.
+- Complete prompt:
+
+```text
+Create a single evidence-led historical reconstruction illustration for a Chronos lesson, ages 10-14.
+
+Use case: scientific-educational
+Asset type: Chronos evidence-based reconstruction
+Primary request: Reconstruct the construction method shown by the attached archaeological photograph: workers filling coarse woven vegetable-fiber bags (shicra) with rounded river stones and stacking those bags as core fill inside a low stone retaining wall on a dry Peruvian desert terrace.
+
+Input images: Image 1 is the evidence reference. Preserve the bag morphology from the photograph: coarse knotted/twisted plant-fiber netting, rounded mixed-size river cobbles packed inside, bags used as structural fill against a rustic stone-and-mud retaining wall. Do not copy the modern excavation setting.
+
+Scene: a few adult Andean workers in simple Late Preceramic clothing (unbleached cotton cloth, no metal jewelry, no pottery vessels) filling and stacking shicra bags during platform-mound construction. Dry pale sand, bright daylight, arid coastal-desert terrace. One unfinished low retaining wall of irregular stones. Bags in progress in the foreground; stacked bags visible in a wall core cutaway.
+
+Style/medium: calm, museum-quality editorial reconstruction painting; naturalistic but not photorealistic; no gore, no spectacle, no heroic poses.
+
+Composition: landscape 4:3, close enough to read bag weave and stones, wide enough to show wall stacking.
+
+Constraints:
+- No text, title, caption, date, labels, logo, watermark, or UI chrome in the image
+- No modern clothes, tools, cameras, canopy poles, boot prints, helmets, or visitor-center architecture
+- No metal tools, pottery, writing, wheels, or pack animals
+- Do not invent a finished skyline of pyramids or a royal court
+- Do not copy the photograph’s excavation canopy poles, modern prints, or contemporary site furniture
+- Keep faces ordinary and unidealized; no named historical person
+
+Avoid: fantasy, video-game styling, satellite look, educational poster layout, infographic callouts.
+```
+
+- Candidate/rejection record: first generated candidate accepted. The visitor-center exhibit photograph was rejected as a generation input.
+
+#### 4. Accepted final image
+
+| Reference used | Accepted final |
+| --- | --- |
+| ![Reference comparison for the shicra reconstruction](references/caral/almacenes-con-shicras-reference.jpg) | ![Accepted shicra reconstruction](generated/caral/shicra-reconstruction-master.png) |
+
+- Final master path, dimensions, and SHA-256: `docs/research/generated/caral/shicra-reconstruction-master.png`; 1536 × 1024; `6dbffd4e2bee6a854033447175becba05c9dc774fd4eb2cdfac55bd6d0b64d28`.
+- Runtime/fallback path and SHA-256: `public/images/reconstructions/caral-shicra-bags.jpg`; 1536 × 1024; `1f595b0f3be195778d9b81d2954f3e8dd998611ea33b9062438b3b473b280bd7`. Generated fallback: `/images/optimized/caral/shicra-reconstruction.optimized.jpg`.
+- Reviewer/date/status: Codex historical, rights, and visual review / 2026-08-19 / accepted.
+- Fidelity verdict — every locked invariant retained: yes.
+- Lesson-size verdict — evidence-bearing differences remain visually distinct on desktop and mobile: yes; final shell verification remains part of Stage 16.
+- Comparison verdict — preserved relationship: fiber nets of rounded stones stacked as wall-core fill.
+- Comparison verdict — intentional changes: reconstructed workers and a cutaway wall; removed modern excavation furniture.
+- Comparison verdict — unsupported details checked: no metal tools, pottery, baked-in text, visitor-center posters, or invented skyline.
 
 ## Knowledge Card decision
 
-Decision: card (proposed; not implemented)
+Decision: **card** (approved 2026-08-19; implemented)
 
 Rationale: Caral is a durable place memory for an independent urban tradition. A person card would invent a ruler. An artifact card for the contested quipu would reward a claim the lesson refuses to settle. A place card can hold the plaza, the inland setting, and the no-checklist understanding.
 
-Stable card ID, category, class, and unlock lesson if applicable: `card.place.caral` · Place · Foundation · unlock `lesson.caral.andean-urbanism` after approval
+Stable card ID, category, class, and unlock lesson if applicable: `card.place.caral` · Place · Foundation · unlock `lesson.caral.andean-urbanism`
 
 Understanding anchored: cities can be built without pottery, metal, or writing, through irrigation, exchange, and public architecture.
 
-Sources and visual brief: plaza photograph as evidence; reconstruction only if labeled; no invented skyline.
+Sources and visual brief: plaza photograph as the card image; reconstruction remains labeled reconstruction in the lesson.
 
-Status: **proposed; not implemented or unlockable before product review.**
+Status: **implemented in the draft lesson; unlockable only after publication.**
 
 ## Prompt rationale
 
@@ -262,7 +483,7 @@ Status: **proposed; not implemented or unlockable before product review.**
 
 ## Stage 14A — raw learner prototype checkpoint
 
-State: **Complete.** Product-owner review remains pending.
+State: **Complete.** Product-owner review **approved 2026-08-19**.
 
 The unpublished Learn-shell prototype is `content/lessons/caral-andean-urbanism.ts` (`status: "draft"`). Preview unlocking is required. The six required sections, both required prompts, and three development-only media-intention annotations render through the real Learn shell.
 
@@ -343,9 +564,9 @@ Contract disposition: **PASS.** No finding returns the lesson to Stage 14A.
 
 ### Product/editorial review
 
-Reviewer/date: Carlin Aylsworth / pending
+Reviewer/date: Carlin Aylsworth / 2026-08-19
 
-State: **pending**
+State: **approved**
 
 Material decisions:
 
@@ -363,3 +584,58 @@ Explicit safe deferrals: final media, card unlock, and publication configuration
 Observed: no
 
 Future family/public-release UAT note: belongs to the later broad-public-release program, not this lesson gate.
+
+## Stage 15 implementation
+
+State: **implementation gate passed 2026-08-19.** The approved draft was refined in place. Final media, provenance, card, journey entry, and the unpublished publication migration are in the repository. The authored lesson remains `status: "draft"` until Stages 16–18.
+
+Implemented teaching sequence:
+
+1. Opening still breaks the Uruk/Egypt checklist.
+2. Coast/valley knowledge items are immediately paired with `module.caral.supe-map`.
+3. The uncropped plaza photograph follows the first-look paragraph and precedes the observation cards.
+4. The shicra field guide is labeled as an evidence-led reconstruction.
+5. Limits and both required prompts are unchanged in job; wording stays bounded.
+
+Media IDs:
+
+- `media.caral.supe-valley-map`
+- `media.caral.sunken-plaza`
+- `media.caral.shicra-reconstruction`
+
+Card: `card.place.caral` (Place / Foundation), plaza photograph, unlock on this lesson after publication.
+
+Committed migration: `supabase/migrations/20260820002000_publish_caral_andean_urbanism.sql` — World History position 7, two required prompts, card unlock, alias `caral_norte_chico`. Not applied to hosted Chronos.
+
+Validation record:
+
+- `npm run media:verify` — pass, 26 assets / 57 derivatives.
+- `npm run validate:content` — pass.
+- `npm run lesson:gate -- --lesson lesson.caral.andean-urbanism --note docs/research/caral-andean-urbanism.md --gate implementation` — pass.
+- `npx vitest run --exclude ".worktrees/**"` — pass, 21 files / 127 tests.
+- `npm run build` — pass; existing large-chunk warning only.
+
+Preview route remains `/learn/lesson.caral.andean-urbanism` with `VITE_UNLOCK_PREVIEW_LESSONS=true`. Prototype annotations are hidden after product approval. Hosted publication, `status: "published"`, and the release gate wait for Carlin’s inspection of the final map, plaza photograph, and shicra reconstruction.
+
+## Sign-off status
+
+- [x] Work boundary, queue selection, and node proposal
+- [x] Research questions, source ledger, and claim ledger
+- [x] Content triage and learning blueprint
+- [x] Ages 11–14 editorial pass and ordinary-language heading review
+- [x] Section/component storyboard
+- [x] Media decision, authoritative-map anchor, and image lifecycle records
+- [x] Knowledge Card decision
+- [x] Understanding-check plan
+- [x] Journey framing and truthful no-successor end state
+- [x] Independent adult learner-proxy review
+- [x] Product-owner approval
+- [x] Stage 15 implementation, migration, and test coverage
+- [ ] Responsive desktop/mobile browser review of final media in light and dark themes
+- [ ] Explicit completion and deterministic card-unlock review
+- [ ] Final media verification
+- [ ] Deterministic release gate
+- [ ] Hosted development migration and configuration verification
+- [ ] Immutable media publication and remote byte verification
+- [ ] Post-publication discovery, progression, Learn-shell, content, and build regression pass
+- [ ] PR review and merge

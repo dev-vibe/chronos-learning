@@ -12,6 +12,163 @@
   },
   "assets": [
     {
+      "id": "media.caral.shicra-reconstruction",
+      "locator": {
+        "provider": "object-storage",
+        "bucket": "media-public",
+        "fallback": {
+          "path": "/images/optimized/caral/shicra-reconstruction.optimized.jpg",
+          "width": 1536,
+          "height": 1024
+        },
+        "variants": [
+          {
+            "objectKey": "caral/media.caral.shicra-reconstruction/1f595b0f3be19577/optimized/ql-v1/480w-webp-lossless-47ea162cadba0f6a.webp",
+            "mimeType": "image/webp",
+            "bytes": 217248,
+            "sha256": "47ea162cadba0f6a190cac05ec818ce56a8d6555e4990bbde1b03c2a6657db2d",
+            "width": 480,
+            "height": 320,
+            "compression": {
+              "profile": "ql-v1",
+              "codec": "webp",
+              "encoder": "webp-lossless"
+            },
+            "fidelity": {
+              "mode": "pixel-exact",
+              "psnrDb": null,
+              "meanAbsoluteError": 0,
+              "maximumChannelDelta": 0
+            }
+          },
+          {
+            "objectKey": "caral/media.caral.shicra-reconstruction/1f595b0f3be19577/optimized/ql-v1/960w-webp-q96-66fa158d8a713a58.webp",
+            "mimeType": "image/webp",
+            "bytes": 298490,
+            "sha256": "66fa158d8a713a5869260aadd89c9250926e0ef84592fa337be3abfce9f56dde",
+            "width": 960,
+            "height": 640,
+            "compression": {
+              "profile": "ql-v1",
+              "codec": "webp",
+              "encoder": "webp-lossy",
+              "quality": 96
+            },
+            "fidelity": {
+              "mode": "measured-quasi-lossless",
+              "psnrDb": 45.16,
+              "meanAbsoluteError": 0.925,
+              "maximumChannelDelta": 13
+            }
+          },
+          {
+            "objectKey": "caral/media.caral.shicra-reconstruction/1f595b0f3be19577/optimized/ql-v1/1536w-source-jpeg-1f595b0f3be19577.jpg",
+            "mimeType": "image/jpeg",
+            "bytes": 448321,
+            "sha256": "1f595b0f3be195778d9b81d2954f3e8dd998611ea33b9062438b3b473b280bd7",
+            "width": 1536,
+            "height": 1024,
+            "compression": {
+              "profile": "ql-v1",
+              "codec": "jpeg",
+              "encoder": "source-passthrough"
+            },
+            "fidelity": {
+              "mode": "pixel-exact",
+              "psnrDb": null,
+              "meanAbsoluteError": 0,
+              "maximumChannelDelta": 0
+            }
+          }
+        ]
+      }
+    },
+    {
+      "id": "media.caral.sunken-plaza",
+      "locator": {
+        "provider": "object-storage",
+        "bucket": "media-public",
+        "fallback": {
+          "path": "/images/optimized/caral/sunken-plaza.optimized.jpg",
+          "width": 960,
+          "height": 720
+        },
+        "variants": [
+          {
+            "objectKey": "caral/media.caral.sunken-plaza/b433cb9f76f882fd/optimized/ql-v1/960w-source-jpeg-b433cb9f76f882fd.jpg",
+            "mimeType": "image/jpeg",
+            "bytes": 223633,
+            "sha256": "b433cb9f76f882fddd5dca85c4cef810b5cbe5ef76d788d1d06f161f3f0e1abb",
+            "width": 960,
+            "height": 720,
+            "compression": {
+              "profile": "ql-v1",
+              "codec": "jpeg",
+              "encoder": "source-passthrough"
+            },
+            "fidelity": {
+              "mode": "pixel-exact",
+              "psnrDb": null,
+              "meanAbsoluteError": 0,
+              "maximumChannelDelta": 0
+            }
+          }
+        ]
+      }
+    },
+    {
+      "id": "media.caral.supe-valley-map",
+      "locator": {
+        "provider": "object-storage",
+        "bucket": "media-public",
+        "fallback": {
+          "path": "/images/optimized/caral/supe-valley-map.optimized.jpg",
+          "width": 1536,
+          "height": 1024
+        },
+        "variants": [
+          {
+            "objectKey": "caral/media.caral.supe-valley-map/a1dadc917a4cedca/optimized/ql-v1/480w-webp-lossless-68b6ec22cdabdc73.webp",
+            "mimeType": "image/webp",
+            "bytes": 199646,
+            "sha256": "68b6ec22cdabdc73f3f9d72bf5ae0ff76d7187005321da5de2eb3fa9f821a433",
+            "width": 480,
+            "height": 320,
+            "compression": {
+              "profile": "ql-v1",
+              "codec": "webp",
+              "encoder": "webp-lossless"
+            },
+            "fidelity": {
+              "mode": "pixel-exact",
+              "psnrDb": null,
+              "meanAbsoluteError": 0,
+              "maximumChannelDelta": 0
+            }
+          },
+          {
+            "objectKey": "caral/media.caral.supe-valley-map/a1dadc917a4cedca/optimized/ql-v1/1536w-source-jpeg-a1dadc917a4cedca.jpg",
+            "mimeType": "image/jpeg",
+            "bytes": 582778,
+            "sha256": "a1dadc917a4cedcacaf36f185e082d5afeec0698ddd4e47f18ce515c1e956674",
+            "width": 1536,
+            "height": 1024,
+            "compression": {
+              "profile": "ql-v1",
+              "codec": "jpeg",
+              "encoder": "source-passthrough"
+            },
+            "fidelity": {
+              "mode": "pixel-exact",
+              "psnrDb": null,
+              "meanAbsoluteError": 0,
+              "maximumChannelDelta": 0
+            }
+          }
+        ]
+      }
+    },
+    {
       "id": "media.egypt.narmer-palette",
       "locator": {
         "provider": "object-storage",
