@@ -15,6 +15,7 @@ class MultiLessonGateway implements LearnProgressGateway {
     ['lesson.uruk.first-city', { ...emptyState('lesson.uruk.first-city'), status: 'completed', completedAt: '2026-01-01T00:00:00.000Z' }],
     ['lesson.writing.early-systems', emptyState('lesson.writing.early-systems')],
     ['lesson.egypt.nile-state', emptyState('lesson.egypt.nile-state')],
+    ['lesson.caral.andean-urbanism', emptyState('lesson.caral.andean-urbanism')],
   ]);
   load = vi.fn(async (lessonId: string) => this.states.get(lessonId)!);
   loadJourneySummaries = vi.fn(async (lessonIds: readonly string[]) => Object.fromEntries(lessonIds.map((lessonId) => {
@@ -40,7 +41,9 @@ class MultiLessonGateway implements LearnProgressGateway {
       ? 'card.artifact.proto-cuneiform-tablet'
       : lessonId === 'lesson.egypt.nile-state'
         ? 'card.artifact.narmer-palette'
-        : 'card.place.uruk';
+        : lessonId === 'lesson.caral.andean-urbanism'
+          ? 'card.place.caral'
+          : 'card.place.uruk';
     this.states.set(lessonId, { ...state, status: 'completed', completedAt: new Date().toISOString(), cardId });
     return { completion: 'newly-completed', cardOwnership: 'newly-acquired', cardId } as const;
   });
@@ -93,6 +96,7 @@ describe('multi-lesson Learn runtime', () => {
       'lesson.uruk.first-city',
       'lesson.writing.early-systems',
       'lesson.egypt.nile-state',
+      'lesson.caral.andean-urbanism',
     ]);
   });
 
@@ -131,6 +135,24 @@ describe('multi-lesson Learn runtime', () => {
     expect(await screen.findByRole('heading', { name: 'The Nile and an Early Egyptian State' })).toBeTruthy();
     expect(document.querySelectorAll('[data-section-id]')).toHaveLength(6);
     expect(screen.getByRole('figure', { name: 'Three places along one river' }).parentElement?.classList.contains('historical-map-pair-portrait')).toBe(true);
+    expect(screen.getByRole('button', { name: '0 of 2 required prompts attempted' }).hasAttribute('disabled')).toBe(true);
+  });
+  it('opens the published Caral lesson once Egypt is complete', async () => {
+    const gateway = new MultiLessonGateway();
+    gateway.states.set('lesson.farming.multiple-origins', {
+      ...emptyState('lesson.farming.multiple-origins'),
+      status: 'completed',
+      completedAt: '2026-01-02T00:00:00.000Z',
+    });
+    gateway.states.set('lesson.egypt.nile-state', {
+      ...emptyState('lesson.egypt.nile-state'),
+      status: 'completed',
+      completedAt: '2026-01-03T00:00:00.000Z',
+    });
+    render(<LearnApp lessonId="lesson.caral.andean-urbanism" gatewayFactory={async () => gateway} />);
+    expect(await screen.findByRole('heading', { name: 'Caral and Early Andean Urbanism' })).toBeTruthy();
+    expect(document.querySelectorAll('[data-section-id]')).toHaveLength(6);
+    expect(screen.getByText('Illustrated ruins')).toBeTruthy();
     expect(screen.getByRole('button', { name: '0 of 2 required prompts attempted' }).hasAttribute('disabled')).toBe(true);
   });
   it('always permits revisiting a completed lesson even when its prerequisite is incomplete', async () => {

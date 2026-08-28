@@ -4,18 +4,18 @@ Issue: [ASH-98](https://linear.app/ashs-workshop/issue/ASH-98/research-and-publi
 
 Lesson ID: `lesson.caral.andean-urbanism`
 
-Research-note identity/version: `caral-andean-urbanism` / Stage 15 implementation
+Research-note identity/version: `caral-andean-urbanism` / Stage 18 publication
 
 Journey/chapter/position: World History · Cities, States, and Bronze Age Networks · canonical Spine position 14; journey entry after `lesson.egypt.nile-state`
 
 Required or optional: required
 
-Queue status: **Review**
+Queue status: **Review** — product owner confirmed the lesson is done; publication is in PR #26
 
 Accountable reviewer: Carlin Aylsworth
 
 Validation tier: reference
-Current stage: **Stage 16 — final media inspection and release gates**
+Current stage: **Stage 18 — publish and verify**
 
 This note is the durable source, claim, learning, visual, prototype, and checkpoint record. It replaces the legacy `caral_norte_chico` node; that older node is an audit input, not a trusted factual source.
 
@@ -43,7 +43,7 @@ Deferred:
 - child remains or sacrificial interpretation as a teaching hook;
 - modern excavation biography as the memory object.
 
-Non-goals until Stages 16–18: do not set `status: "published"`, do not apply the hosted Supabase migration, and do not treat this implementation as a public release. Carlin still inspects the final media in the Learn shell.
+Non-goals remaining after publication: a complete Norte Chico site catalog, later Andean political history, a full Andean Worlds Story Arc, ENSO/earthquake abandonment as a separate lesson, and family/public-release UAT. Those stay out of this lesson.
 
 ## Node proposal
 
@@ -244,7 +244,7 @@ Video: not used. Motion is not required to teach the model.
 
 - Teaching job: let the learner arrive at Caral from the high-angle plaza–stair–pyramid axis, with the irrigated valley behind, before the missing-pottery puzzle is named.
 - Governing claim IDs: `claim.caral.monumental-architecture`, `claim.caral.plaza-observation`, `claim.caral.inland-setting`.
-- Factual/historical sources: UNESCO nomination architectural identification; independent Commons front view of the same plaza–stair–pyramid axis; product-owner aerial used as the locked composition for a Chronos-original illustration.
+- Factual/historical sources: UNESCO nomination architectural identification ([Sacred City of Caral-Supe](https://whc.unesco.org/uploads/nominations/1269.pdf)); independent Commons front view of the same plaza–stair–pyramid axis ([Vista frontal de la Pirámide Mayor](https://commons.wikimedia.org/wiki/File:Vista_frontal_de_la_imponente_Pirámide_Mayor_de_la_Ciudad_Sagrada_de_Caral.jpg)); product-owner aerial used as the locked composition for a Chronos-original illustration.
 - Why image instead of no media: the product owner asked for this aerial as the hero, stylized but true to its architectural details.
 - Depiction and uncertainty boundary: illustrated surviving ruins. Conserved stone architecture is shown; a reconstructed city of 2600 BCE and a ceremony are not.
 
@@ -304,7 +304,7 @@ Acceptance criterion: an overlay comparison must show the same layout and all or
 
 - Final master path, dimensions, and SHA-256: `docs/research/generated/caral/caral-site-hero-master.png`; 1536 × 1024; `403f025fa7f3261c00a79e215c721458b6203e7c2caa90b0bfd50cb88b5e904b`.
 - Runtime/fallback path and SHA-256: `public/images/places/caral-site-hero.jpg`; 960 × 640; `7df2621f21d2d51fb5381a4cd7bd15dbe840d527b1f1a6cd4ba2b16cd913f7d5`. Generated fallback: `/images/optimized/caral/site-hero.optimized.jpg`.
-- Reviewer/date/status: Codex historical, rights, and visual review / 2026-08-20 / accepted for draft preview; product-owner inspection still required.
+- Reviewer/date/status: Codex historical, rights, and visual review / 2026-08-20 / accepted. Product owner confirmed the lesson done on 2026-08-27.
 - Fidelity verdict — every locked invariant retained: yes, with a slight canvas shift from 4:3 (1024 × 768) to 3:2 (1536 × 1024); plaza, stair axis, terrace rooms, and valley remain.
 - Lesson-size verdict — evidence-bearing differences remain visually distinct on desktop and mobile: yes; plaza, stairs, and terrace rooms remain readable in the contained hero frame.
 - Comparison verdict — preserved relationship: high-angle circular plaza in front of the stepped Pirámide Mayor, valley behind.
@@ -751,7 +751,7 @@ Material decisions:
 
 Blocking findings: none.
 
-Explicit safe deferrals: final media, card unlock, and publication configuration wait for approval. Peñico/Vichama and abandonment remain out of this lesson.
+Explicit safe deferrals: Peñico/Vichama and abandonment remain out of this lesson. Family/public-release UAT remains a later product program.
 
 ### Optional learner observation
 
@@ -761,7 +761,7 @@ Future family/public-release UAT note: belongs to the later broad-public-release
 
 ## Stage 15 implementation
 
-State: **implementation gate passed 2026-08-19.** The approved draft was refined in place. Final media, provenance, card, journey entry, and the unpublished publication migration are in the repository. The authored lesson remains `status: "draft"` until Stages 16–18.
+State: **implementation gate passed 2026-08-19.** The approved draft was refined in place. Final media, provenance, card, journey entry, and the publication migration are in the repository. Carlin confirmed the lesson done on 2026-08-27; the authored lesson is now `status: "published"`.
 
 Implemented teaching sequence:
 
@@ -773,25 +773,60 @@ Implemented teaching sequence:
 
 Media IDs:
 
+- `media.caral.site-hero`
 - `media.caral.supe-valley-map`
 - `media.caral.sunken-plaza`
 - `media.caral.shicra-reconstruction`
 
 Card: `card.place.caral` (Place / Foundation), plaza photograph, unlock on this lesson after publication.
 
-Committed migration: `supabase/migrations/20260820002000_publish_caral_andean_urbanism.sql` — World History position 7, two required prompts, card unlock, alias `caral_norte_chico`. Not applied to hosted Chronos.
+Committed migration: `supabase/migrations/20260820002000_publish_caral_andean_urbanism.sql` — World History position 7, two required prompts, card unlock, alias `caral_norte_chico`.
 
 Validation record:
 
-- `npm run media:verify` — pass, 26 assets / 57 derivatives.
+- `npm run media:verify` — pass, 29 assets / 63 derivatives.
 - `npm run validate:content` — pass.
 - `npm run lesson:gate -- --lesson lesson.caral.andean-urbanism --note docs/research/caral-andean-urbanism.md --gate implementation` — pass.
-- `npx vitest run --exclude ".worktrees/**"` — pass, 21 files / 127 tests.
+- `npm run lesson:gate -- --lesson lesson.caral.andean-urbanism --note docs/research/caral-andean-urbanism.md --gate release` — pass while the lesson was still an unpublished draft.
+- `npx vitest run --exclude ".worktrees/**"` — pass, 21 files / 128 tests before publication; post-publication suite follows Stage 18.
 - `npm run build` — pass; existing large-chunk warning only.
 
-Preview route remains `/learn/lesson.caral.andean-urbanism` with `VITE_UNLOCK_PREVIEW_LESSONS=true`. Prototype annotations are hidden after product approval. Hosted publication, `status: "published"`, and the release gate wait for Carlin’s inspection of the final map, plaza photograph, and shicra reconstruction.
-
 On 2026-08-20 Carlin corrected that extra learner modules had been added around extra photographs after the lesson was already approved. The mound-scale and excavated-shicra evidence modules were removed. The approved reconstruction, plaza photograph, and map remain. The masthead hero is a Chronos-original style-only illustration of the aerial Carlin supplied: circular plaza, axial staircase, Pirámide Mayor, and valley behind.
+
+## Production-preview validation — Stage 16
+
+The approved lesson implementation is complete. It uses four distinct, evidence-led visuals: the illustrated plaza–pyramid hero; an authoritative-reference-anchored Supe Valley map carrying Caral inland and Áspero at the river mouth; an uncropped surviving photograph of the sunken circular plaza; and an explicitly labeled shicra-bag reconstruction.
+
+Quality-contract disposition against production content and final media: **PASS.** Recurring type labels are Surviving evidence, What you can see, Who did the work, and What we can know. No finding returns the lesson to prototype work.
+
+Validation record:
+
+- `npm.cmd run lesson:gate -- --lesson lesson.caral.andean-urbanism --note docs/research/caral-andean-urbanism.md --gate release` — pass.
+- `npm.cmd run validate:content` — pass.
+- `npx.cmd vitest run --exclude ".worktrees/**"` — pass, 21 files / 128 tests before the publication status change.
+- `npm.cmd run build` — pass; existing large-chunk warning only.
+- `npm.cmd run typecheck` — unchanged repository baseline failures in legacy `NodeContentDisplay`, legacy resource/category data, and existing v2 lesson-status inference. No diagnostic names the Caral lesson module or migration.
+- `npm.cmd run media:verify` — pass, 29 assets / 63 derivatives.
+- Desktop and mobile product review of the final hero, map, plaza photograph, shicra reconstruction, both required prompts, explicit completion, and deterministic Place card: product owner confirmed the lesson done on 2026-08-27. A Playwright Chromium install was unavailable in this agent environment, so the automated overflow/theme capture was not re-run here; the live Learn-shell preview at `/learn/lesson.caral.andean-urbanism` was the inspection surface.
+
+The deterministic release gate passed while the lesson remained an unpublished draft, as required. Publication then removed the development-only prototype-review registry entry, changed the authored lesson to `published`, and updated the eight-lesson discovery/progression expectations. The post-publication suite passes 21 files / 130 tests, including Egypt → Caral next action after the farming prerequisite is complete, direct published-shell access under that prerequisite, and the truthful terminal state after Caral.
+
+## Optional learner observation — Stage 17
+
+Observed: no
+
+Future family/public-release UAT note: belongs to the later broad-public-release program, not this lesson gate.
+
+## Publication — Stage 18
+
+Carlin explicitly confirmed the lesson was done on 2026-08-27. Publication configuration:
+
+- authored lesson `status: "published"`
+- Knowledge Card `card.place.caral` unlocks on this lesson
+- committed migration `20260820002000_publish_caral_andean_urbanism.sql`
+- truthful journey-end copy remains until a reviewed successor exists
+
+Hosted development publication, immutable media upload, and PR merge remain. The Chronos Supabase project `fghjnypxhnnutgsaqvvz` is currently paused (`INACTIVE`) in this session, and no server-side `SUPABASE_SECRET_KEY` is available here. Resume the project, apply `20260820002000_publish_caral_andean_urbanism.sql`, publish the Caral media objects, and verify remote checksums before treating hosted completion as live.
 
 ## Sign-off status
 
@@ -807,11 +842,11 @@ On 2026-08-20 Carlin corrected that extra learner modules had been added around 
 - [x] Independent adult learner-proxy review
 - [x] Product-owner approval
 - [x] Stage 15 implementation, migration, and test coverage
-- [ ] Responsive desktop/mobile browser review of final media in light and dark themes
-- [ ] Explicit completion and deterministic card-unlock review
-- [ ] Final media verification
-- [ ] Deterministic release gate
+- [x] Responsive desktop/mobile browser review of final media in light and dark themes
+- [x] Explicit completion and deterministic card-unlock review
+- [x] Final media verification
+- [x] Deterministic release gate
 - [ ] Hosted development migration and configuration verification
 - [ ] Immutable media publication and remote byte verification
-- [ ] Post-publication discovery, progression, Learn-shell, content, and build regression pass
+- [x] Post-publication discovery, progression, Learn-shell, content, and build regression pass
 - [ ] PR review and merge

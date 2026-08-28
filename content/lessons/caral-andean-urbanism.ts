@@ -355,7 +355,7 @@ export const caralAndeanUrbanismPrompts: UnderstandingPrompt[] = [
 export const caralAndeanUrbanismLesson: Lesson = {
   id: 'lesson.caral.andean-urbanism',
   legacyAliases: ['caral_norte_chico'],
-  status: 'draft',
+  status: 'published',
   title: 'Caral and Early Andean Urbanism',
   masthead: 'c. 3000–1800 BCE',
   place: 'Supe Valley, north-central coast of Peru',

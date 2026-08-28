@@ -172,6 +172,7 @@ describe('Home, Library, preview, and search composition', () => {
       'lesson.uruk.first-city': { lessonId: 'lesson.uruk.first-city', status: 'completed' },
       'lesson.writing.early-systems': { lessonId: 'lesson.writing.early-systems', status: 'completed' },
       'lesson.egypt.nile-state': { lessonId: 'lesson.egypt.nile-state', status: 'completed' },
+      'lesson.caral.andean-urbanism': { lessonId: 'lesson.caral.andean-urbanism', status: 'completed' },
     });
     render(<DiscoveryApp
       route={{ name: 'home' }}
