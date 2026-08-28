@@ -16,7 +16,7 @@ export const chronosPrototypeReviews: readonly LessonPrototypeReview[] = [
       {
         sectionId: 'section.caral.another-way',
         kind: 'evidence',
-        purpose: 'Masthead hero: arrive at Caral as a monumental site in a dry valley before the lesson names the missing pottery.',
+        purpose: 'Masthead hero: arrive at Caral from a high-angle view of the sunken circular plaza, axial staircase, and stepped Pirámide Mayor with the valley behind.',
         status: 'ready',
         mediaId: 'media.caral.site-hero',
       },
@@ -28,25 +28,11 @@ export const chronosPrototypeReviews: readonly LessonPrototypeReview[] = [
         mediaId: 'media.caral.supe-valley-map',
       },
       {
-        sectionId: 'section.caral.another-way',
-        kind: 'evidence',
-        purpose: 'Show surviving platform mounds at city scale on the desert terrace so “huge public buildings” is seen, not only described.',
-        status: 'ready',
-        mediaId: 'media.caral.platform-mounds',
-      },
-      {
         sectionId: 'section.caral.plaza',
         kind: 'evidence',
         purpose: 'Let learners inspect the surviving sunken circular plaza and platform mound before reading an interpretation of gathering or power.',
         status: 'ready',
         mediaId: 'media.caral.sunken-plaza',
-      },
-      {
-        sectionId: 'section.caral.how-built',
-        kind: 'evidence',
-        purpose: 'Show excavated shicra bags in a wall core as surviving construction fabric before the reconstruction of the work.',
-        status: 'ready',
-        mediaId: 'media.caral.excavated-shicra',
       },
       {
         sectionId: 'section.caral.how-built',
@@ -60,7 +46,7 @@ export const chronosPrototypeReviews: readonly LessonPrototypeReview[] = [
       state: 'approved',
       reviewedBy: 'Carlin Aylsworth',
       reviewedOn: '2026-08-19',
-      notes: 'Approved title/scope/arc, Place/Foundation card card.place.caral, and truthful journey-end behavior. On 2026-08-19 asked for more images, then for a masthead hero; added mound-scale and excavated-shicra evidence plus a wide site-hero crop.',
+      notes: 'Approved title/scope/arc, Place/Foundation card card.place.caral, and truthful journey-end behavior. Extra image-wrapping modules added after the more-images request were removed on 2026-08-20 after product-owner correction; hero remains.',
     },
   },
 ];

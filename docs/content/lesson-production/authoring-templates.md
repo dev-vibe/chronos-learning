@@ -67,6 +67,7 @@ Required sincere-attempt evidence:
 | --- | --- | --- | --- | --- | --- | --- | --- |
 
 Heading voice: each learner-facing heading names the subject or job in ordinary words. Fail metaphors, riddles, and punchlines. If the heading needs explaining, rewrite it.
+Recurring type labels: evidence chrome **Surviving evidence**; close-read knowledge **What you can see**; labor/institution knowledge **Who did the work**; source-limit knowledge **What we can know**.
 
 ## Media decisions
 

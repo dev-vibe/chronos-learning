@@ -460,7 +460,7 @@ export const egyptNileStateLesson: Lesson = {
         {
           id: 'module.egypt.palette-observe',
           type: 'knowledge',
-          eyebrow: 'Observation before interpretation',
+          eyebrow: 'What you can see',
           title: 'Four details worth holding onto',
           body: 'An observation names what is visible. An interpretation explains why it may matter.',
           items: [
@@ -489,7 +489,7 @@ export const egyptNileStateLesson: Lesson = {
         {
           id: 'module.egypt.palette-can-cannot',
           type: 'knowledge',
-          eyebrow: 'Evidence boundary',
+          eyebrow: 'What we can know',
           title: 'What the Palette can—and cannot—do',
           body: 'A source can be powerful without answering every question.',
           items: [
@@ -518,7 +518,7 @@ export const egyptNileStateLesson: Lesson = {
         {
           id: 'module.egypt.state-in-practice',
           type: 'knowledge',
-          eyebrow: 'A state in practice',
+          eyebrow: 'Who did the work',
           title: 'Power depended on repeated human work',
           body: 'The ruler was visible on stone. The state became durable through the work of many people, most of whose names are gone.',
           items: [

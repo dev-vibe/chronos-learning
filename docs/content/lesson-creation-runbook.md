@@ -439,7 +439,7 @@ Each section must perform a distinct job. A common pattern is:
 4. **Mechanism or development** — how something worked or changed.
 5. **Evidence encounter** — examine an object, source, map, or record.
 6. **Consequences and power** — possibilities, costs, unequal effects, or limits.
-7. **Evidence/interpretation/uncertainty** — what can and cannot be concluded.
+7. **Evidence/interpretation/uncertainty** — what can and cannot be concluded. When this job is a `knowledge` module, use the stable eyebrow **What we can know** and the four-item shape: it can show; it can support; it cannot prove alone; it cannot recover. Do not use “evidence boundary” or other methods jargon as the learner-facing label.
 8. **World Check and explicit completion** — use evidence, receive feedback, complete deliberately.
 
 This is a pattern, not a template to fill blindly. A biography, battle, migration, intellectual debate, environmental change, and archaeological investigation may need different sequences. Keep the stable shell while authoring the historical argument.
@@ -467,6 +467,15 @@ Use the smallest current module that expresses the teaching job:
 | `prompt` | a canonical understanding prompt placed where requirements are satisfied | navigation, surveys, trivia, or fake participation |
 
 Titles: section `heading` owns orientation. For `knowledge` modules, the learner sees eyebrow + `body` as the lead into the item grid — do not invent a second grabber title for display. Module `title` on `evidence`, `scene`, and `historical-map` is a local cue only when needed (observe X; compare Y). Module `eyebrow` is a type/place label, not a slogan.
+
+Keep these recurring learner-facing type labels in ordinary words:
+
+- `evidence` module chrome: **Surviving evidence** (not “from the evidence room”).
+- Close-read `knowledge` module after a source: **What you can see** (not “observation before interpretation” or “look before you explain”).
+- Labor/institution `knowledge` module: **Who did the work** (not “a city/state in practice”).
+- Source-limit `knowledge` module: **What we can know** (not “evidence boundary”).
+
+Do not invent a new methods slogan for the same job.
 
 If the lesson genuinely needs a timeline, comparison table, audio source, diagram, or another unsupported teaching primitive, stop and decide whether to add a bounded reusable module. Do not fake it with arbitrary HTML, an image containing educational text, overloaded `knowledge` cards, hand-authored SVG, canvas drawing, or procedurally arranged shape primitives. A new module is an architecture/design change and requires its own validation and accessibility coverage.
 

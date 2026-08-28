@@ -285,7 +285,7 @@ Learner retelling:
 
 > The Nile connected many communities, but the river did not automatically create Egypt. An early state developed gradually through competition, labor, administration, writing, and royal claims. The Narmer Palette shows how a ruler’s court presented power; it cannot prove that one battle created the state or that everyone accepted Narmer’s rule.
 
-Strongest learning moment: **the can-show/cannot-prove evidence-boundary panel after the Palette close read.** The proxy found that this turned the Palette from a famous object into a memorable historical-reasoning lesson, and that both prompts reinforced the distinction. Later heading-voice revision renamed the section “What the Palette can prove”; the teaching job is unchanged.
+Strongest learning moment: **the What we can know panel after the Palette close read.** The proxy found that this turned the Palette from a famous object into a memorable historical-reasoning lesson, and that both prompts reinforced the distinction. Later heading-voice revision renamed the section “What the Palette can prove”; the teaching job is unchanged.
 
 Findings and dispositions:
 

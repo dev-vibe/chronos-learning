@@ -39,7 +39,7 @@
       "id": "media.caral.site-hero",
       "collection": "caral",
       "sourcePath": "public/images/places/caral-site-hero.jpg",
-      "fallbackPath": "/images/optimized/caral/site-hero.optimized.webp",
+      "fallbackPath": "/images/optimized/caral/site-hero.optimized.jpg",
       "preset": "photo",
       "widths": [
         480,
