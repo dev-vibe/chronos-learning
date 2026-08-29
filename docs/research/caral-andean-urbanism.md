@@ -10,12 +10,12 @@ Journey/chapter/position: World History · Cities, States, and Bronze Age Networ
 
 Required or optional: required
 
-Queue status: **Review** — product owner confirmed the lesson is done; publication is in PR #26
+Queue status: **Complete**
 
 Accountable reviewer: Carlin Aylsworth
 
 Validation tier: reference
-Current stage: **Stage 18 — publish and verify**
+Current stage: **Complete**
 
 This note is the durable source, claim, learning, visual, prototype, and checkpoint record. It replaces the legacy `caral_norte_chico` node; that older node is an audit input, not a trusted factual source.
 
@@ -830,6 +830,8 @@ Hosted development publication passed on Supabase project `fghjnypxhnnutgsaqvvz`
 
 The canonical Node publisher again encountered the documented Windows `@supabase/storage-js` transport failure after media verification. The bounded authenticated Storage REST fallback preserved the same no-upsert, local-hash, immutable-key, and post-upload remote-hash safeguards. All 11 selected objects for the hero, Supe Valley map, plaza photograph, and shicra reconstruction were uploaded and byte-for-byte verified against the manifest.
 
+Release disposition: **COMPLETE.** [PR #26](https://github.com/dev-vibe/chronos-learning/pull/26) merged to `main` as `ef0d58b` on 2026-08-29. The Vercel deployment built from that exact merge commit completed successfully. The authored lesson, hosted migration, immutable media, World History progression, tests, and durable research/provenance record agree.
+
 ## Sign-off status
 
 - [x] Work boundary, queue selection, and node proposal
@@ -851,4 +853,4 @@ The canonical Node publisher again encountered the documented Windows `@supabase
 - [x] Hosted development migration and configuration verification
 - [x] Immutable media publication and remote byte verification
 - [x] Post-publication discovery, progression, Learn-shell, content, and build regression pass
-- [ ] PR review and merge
+- [x] PR review and merge
