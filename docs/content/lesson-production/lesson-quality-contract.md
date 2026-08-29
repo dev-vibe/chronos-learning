@@ -43,7 +43,7 @@ Record concrete evidence from the rendered lesson for every finding. Mark each f
 - Give the learner a concrete source, object, map, pattern, or comparison from which to reason.
 - Distinguish observation, inference, interpretation, uncertainty, reconstruction, and later tradition at the point of use.
 - Ensure prompts require reasoning available from the lesson and that feedback explains both support and limits.
-- Confirm that no source is made to prove more than it can.
+- Confirm that no source is made to prove more than it can. Keep recurring type labels in ordinary words: evidence-module chrome is “Surviving evidence”; the close-read knowledge module is “What you can see”; the labor/institution knowledge module is “Who did the work”; the can-show / cannot-prove knowledge module is “What we can know”. Fail “evidence room,” “evidence boundary,” “observation before interpretation,” “look before you explain,” and “in practice” as learner-facing methods jargon.
 
 ### Historical proportionality
 

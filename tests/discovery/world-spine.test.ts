@@ -21,9 +21,9 @@ describe('canonical World Spine roadmap', () => {
 
   it('keeps unfinished roadmap nodes visible but non-navigable', () => {
     const view = createWorldSpineRoadmapView(worldSpineRoadmap, chronosContent.lessons, {}, 'lesson.uruk.first-city');
-    const caral = view.flatMap((chapter) => chapter.nodes).find((node) => node.id === 'lesson.caral.andean-urbanism');
-    expect(caral).toMatchObject({ title: 'Caral and Early Andean Urbanism', status: 'preparing' });
-    expect(caral?.href).toBeUndefined();
+    const pyramids = view.flatMap((chapter) => chapter.nodes).find((node) => node.id === 'lesson.egypt.pyramids-and-state-labor');
+    expect(pyramids).toMatchObject({ title: 'Pyramids, Power, and State Labor', status: 'preparing' });
+    expect(pyramids?.href).toBeUndefined();
   });
 
   it('publishes Many Beginnings as a navigable World Spine node', () => {
@@ -38,6 +38,12 @@ describe('canonical World Spine roadmap', () => {
     const view = createWorldSpineRoadmapView(worldSpineRoadmap, chronosContent.lessons, {}, 'lesson.farming.settlements');
     const farming = view.flatMap((chapter) => chapter.nodes).find((node) => node.id === 'lesson.farming.settlements');
     expect(farming).toMatchObject({ status: 'current', href: '/learn/lesson.farming.settlements' });
+  });
+
+  it('publishes Caral as a navigable World Spine node', () => {
+    const view = createWorldSpineRoadmapView(worldSpineRoadmap, chronosContent.lessons, {}, 'lesson.caral.andean-urbanism');
+    const caral = view.flatMap((chapter) => chapter.nodes).find((node) => node.id === 'lesson.caral.andean-urbanism');
+    expect(caral).toMatchObject({ status: 'current', href: '/learn/lesson.caral.andean-urbanism' });
   });
 
   it('uses the named Uruk development cutoff without publication-timing regressions', () => {

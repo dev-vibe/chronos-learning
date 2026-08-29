@@ -23,11 +23,77 @@ it('validates the typed Farming locator map and generated raster asset', () => {
   expect(module.uncertaintyNote).toMatch(/Neolithic shorelines|coastlines/i);
 });
 
+it('validates the typed Caral historical map and generated raster asset', () => {
+  const lesson = chronosContent.lessons.find((item) => item.id === 'lesson.caral.andean-urbanism')!;
+  const module = lesson.sections.flatMap((section) => section.modules).find((item) => item.type === 'historical-map')!;
+  expect(LessonModuleSchema.safeParse(module).success).toBe(true);
+  if (module.type !== 'historical-map') throw new Error('Caral historical map missing');
+  expect(module.id).toBe('module.caral.supe-map');
+  expect(module.mediaId).toBe('media.caral.supe-valley-map');
+  expect(module.compactLabel).toMatch(/no political borders/i);
+  expect(module.coordinateNote).toMatch(/UNESCO World Heritage coordinates/i);
+  expect(module.uncertaintyNote).toMatch(/Shorelines, river width, terrace edges/i);
+  expect(lesson.status).toBe('published');
+  expect(chronosContent.cards.find((card) => card.id === 'card.place.caral')).toMatchObject({
+    category: 'place',
+    cardClass: 'foundation',
+    unlockLessonId: 'lesson.caral.andean-urbanism',
+    mediaId: 'media.caral.sunken-plaza',
+  });
+  expect(lesson.mediaIds).toEqual(expect.arrayContaining([
+    'media.caral.supe-valley-map',
+    'media.caral.site-hero',
+    'media.caral.sunken-plaza',
+    'media.caral.shicra-reconstruction',
+  ]));
+  expect(lesson).toMatchObject({
+    heroMediaId: 'media.caral.site-hero',
+    heroLabel: 'Illustrated ruins',
+  });
+});
+
+it('keeps recurring evidence-type labels in ordinary language', () => {
+  const knowledgeModules = chronosContent.lessons.flatMap((lesson) =>
+    lesson.sections.flatMap((section) => section.modules.filter((module) => module.type === 'knowledge')),
+  );
+  expect(knowledgeModules.map((module) => module.eyebrow)).not.toEqual(
+    expect.arrayContaining([
+      'Evidence boundary',
+      'Observation before interpretation',
+      'Look before you explain',
+      'A city in practice',
+      'A state in practice',
+    ]),
+  );
+  const canCannot = knowledgeModules.filter((module) => {
+    const labels = module.items.map((item) => item.label);
+    return labels.includes('It can show') && labels.includes('It cannot prove alone');
+  });
+  expect(canCannot.length).toBeGreaterThan(0);
+  for (const module of canCannot) {
+    expect(module.eyebrow).toBe('What we can know');
+  }
+  const lookFirst = knowledgeModules.filter((module) =>
+    ['module.caral.plaza-observe', 'module.egypt.palette-observe'].includes(module.id),
+  );
+  expect(lookFirst).toHaveLength(2);
+  for (const module of lookFirst) {
+    expect(module.eyebrow).toBe('What you can see');
+  }
+  const whoWorked = knowledgeModules.filter((module) =>
+    ['module.caral.work-not-magic', 'module.egypt.state-in-practice'].includes(module.id),
+  );
+  expect(whoWorked).toHaveLength(2);
+  for (const module of whoWorked) {
+    expect(module.eyebrow).toBe('Who did the work');
+  }
+});
+
 it('detects a missing local map fallback',()=>{const fixture=structuredClone(chronosContent);const map=fixture.media.find((item)=>item.id==='media.uruk.southern-mesopotamia-map')!;if(map.locator.provider!=='object-storage')throw new Error('object storage locator missing');map.locator.fallback.path='/images/maps/missing-map.webp';expect(validateContent(fixture).errors.join(' ')).toMatch(/missing local media asset \/images\/maps\/missing-map\.webp/)});
 
 it('rejects duplicate, oversized, or non-content-addressed media variants',()=>{const fixture=structuredClone(chronosContent);const map=fixture.media.find((item)=>item.id==='media.uruk.southern-mesopotamia-map')!;if(map.locator.provider!=='object-storage')throw new Error('object storage locator missing');map.locator.variants[1].width=map.locator.variants[0].width;map.locator.variants[1].objectKey='uruk/unversioned-map.webp';map.locator.variants[1].bytes=800000;const errors=validateContent(fixture).errors.join(' ');expect(errors).toMatch(/duplicate media variant width/);expect(errors).toMatch(/not content-addressed/);expect(errors).toMatch(/exceeds 786432 byte budget/)});
 
-it('publishes the seven reviewed World History lessons in journey order', () => {
+it('publishes the eight reviewed World History lessons in journey order', () => {
   const published = chronosContent.lessons.filter((lesson) => lesson.status === 'published');
   expect(published.map((lesson) => lesson.id)).toEqual([
     'lesson.humans.homo-sapiens-origins',
@@ -37,6 +103,7 @@ it('publishes the seven reviewed World History lessons in journey order', () => 
     'lesson.uruk.first-city',
     'lesson.writing.early-systems',
     'lesson.egypt.nile-state',
+    'lesson.caral.andean-urbanism',
   ]);
   const entries = chronosContent.journeys[0].chapters
     .slice()
@@ -51,6 +118,7 @@ it('publishes the seven reviewed World History lessons in journey order', () => 
     'lesson.uruk.first-city',
     'lesson.writing.early-systems',
     'lesson.egypt.nile-state',
+    'lesson.caral.andean-urbanism',
   ]);
   expect(chronosContent.lessons.find((lesson) => lesson.id === 'lesson.humans.homo-sapiens-origins')).toMatchObject({
     status: 'published',

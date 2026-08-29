@@ -125,8 +125,8 @@ describe('learner journey state', () => {
     };
     expect(deriveJourneyProgress(world, chronosContent.lessons, summaries)).toEqual({
       completed: 2,
-      total: 7,
-      percent: 29,
+      total: 8,
+      percent: 25,
       isCompleted: false,
     });
     const state = createDefaultJourneyState(fixtureContent.journeys, fixtureContent.lessons);
@@ -151,17 +151,27 @@ describe('learner journey state', () => {
     expect(selectJourneyNextAction(world, chronosContent.lessons, writingCompleted, 'lesson.writing.early-systems')).toEqual({
       kind: 'lesson', lessonId: 'lesson.egypt.nile-state', source: 'next',
     });
-    expect(selectJourneyNextAction(world, chronosContent.lessons, {}, 'lesson.writing.early-systems')).toEqual({
-      kind: 'lesson', lessonId: 'lesson.humans.homo-sapiens-origins', source: 'backfill',
-    });
-    expect(selectJourneyNextAction(world, chronosContent.lessons, {
+    const egyptCompleted = {
+      ...writingCompleted,
+      'lesson.egypt.nile-state': { lessonId: 'lesson.egypt.nile-state', status: 'completed' as const },
+    };
+    const spineThroughEgypt = {
       'lesson.humans.homo-sapiens-origins': { lessonId: 'lesson.humans.homo-sapiens-origins', status: 'completed' as const },
       'lesson.humans.migrations-and-interbreeding': { lessonId: 'lesson.humans.migrations-and-interbreeding', status: 'completed' as const },
       'lesson.farming.multiple-origins': { lessonId: 'lesson.farming.multiple-origins', status: 'completed' as const },
       'lesson.farming.settlements': { lessonId: 'lesson.farming.settlements', status: 'completed' as const },
-      ...writingCompleted,
-      'lesson.egypt.nile-state': { lessonId: 'lesson.egypt.nile-state', status: 'completed' as const },
-    }, 'lesson.egypt.nile-state')).toEqual({ kind: 'complete' });
+      ...egyptCompleted,
+    };
+    expect(selectJourneyNextAction(world, chronosContent.lessons, spineThroughEgypt, 'lesson.egypt.nile-state')).toEqual({
+      kind: 'lesson', lessonId: 'lesson.caral.andean-urbanism', source: 'next',
+    });
+    expect(selectJourneyNextAction(world, chronosContent.lessons, {}, 'lesson.writing.early-systems')).toEqual({
+      kind: 'lesson', lessonId: 'lesson.humans.homo-sapiens-origins', source: 'backfill',
+    });
+    expect(selectJourneyNextAction(world, chronosContent.lessons, {
+      ...spineThroughEgypt,
+      'lesson.caral.andean-urbanism': { lessonId: 'lesson.caral.andean-urbanism', status: 'completed' as const },
+    }, 'lesson.caral.andean-urbanism')).toEqual({ kind: 'complete' });
   });
 
   it('preserves an accessible incomplete optional active lesson without counting it as required progress', () => {
@@ -190,8 +200,8 @@ describe('published catalog and authored invitations', () => {
     expect(catalog.groups['civilizations-regions'].map((item) => item.id)).toEqual([optionalJourney.id]);
     expect(catalog.groups['ideas-across-time'].map((item) => item.id)).toEqual([optionalIdea.id]);
     expect(catalog.groups.investigations).toEqual([]);
-    expect(catalog.worldHistory?.lessonCount).toBe(7);
-    expect(catalog.worldHistory?.requiredLessonCount).toBe(7);
+    expect(catalog.worldHistory?.lessonCount).toBe(8);
+    expect(catalog.worldHistory?.requiredLessonCount).toBe(8);
   });
 
   it('selects at most one eligible invitation by priority and stable ID', () => {

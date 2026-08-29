@@ -2,6 +2,74 @@
   "schemaVersion": 1,
   "assets": [
     {
+      "id": "media.caral.excavated-shicra",
+      "collection": "caral",
+      "sourcePath": "public/images/evidence/caral-excavated-shicra.jpg",
+      "fallbackPath": "/images/optimized/caral/excavated-shicra.optimized.jpg",
+      "preset": "photo",
+      "widths": [
+        480,
+        960
+      ]
+    },
+    {
+      "id": "media.caral.platform-mounds",
+      "collection": "caral",
+      "sourcePath": "public/images/evidence/caral-platform-mounds.jpg",
+      "fallbackPath": "/images/optimized/caral/platform-mounds.optimized.jpg",
+      "preset": "photo",
+      "widths": [
+        480,
+        960
+      ]
+    },
+    {
+      "id": "media.caral.shicra-reconstruction",
+      "collection": "caral",
+      "sourcePath": "public/images/reconstructions/caral-shicra-bags.jpg",
+      "fallbackPath": "/images/optimized/caral/shicra-reconstruction.optimized.jpg",
+      "preset": "picture",
+      "widths": [
+        480,
+        960,
+        1600
+      ]
+    },
+    {
+      "id": "media.caral.site-hero",
+      "collection": "caral",
+      "sourcePath": "public/images/places/caral-site-hero.jpg",
+      "fallbackPath": "/images/optimized/caral/site-hero.optimized.jpg",
+      "preset": "photo",
+      "widths": [
+        480,
+        960,
+        1600
+      ]
+    },
+    {
+      "id": "media.caral.sunken-plaza",
+      "collection": "caral",
+      "sourcePath": "public/images/evidence/caral-sunken-plaza.jpg",
+      "fallbackPath": "/images/optimized/caral/sunken-plaza.optimized.jpg",
+      "preset": "photo",
+      "widths": [
+        480,
+        960
+      ]
+    },
+    {
+      "id": "media.caral.supe-valley-map",
+      "collection": "caral",
+      "sourcePath": "public/images/places/caral-supe-valley-map.jpg",
+      "fallbackPath": "/images/optimized/caral/supe-valley-map.optimized.jpg",
+      "preset": "drawing",
+      "widths": [
+        480,
+        960
+      ]
+    },
+    {
       "id": "media.egypt.narmer-palette",
       "collection": "egypt",
       "sourcePath": "public/images/evidence/egypt-narmer-palette-both-faces.jpg",
