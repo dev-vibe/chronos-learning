@@ -826,7 +826,9 @@ Carlin explicitly confirmed the lesson was done on 2026-08-27. Publication confi
 - committed migration `20260820002000_publish_caral_andean_urbanism.sql`
 - truthful journey-end copy remains until a reviewed successor exists
 
-Hosted development publication, immutable media upload, and PR merge remain. The Chronos Supabase project `fghjnypxhnnutgsaqvvz` is currently paused (`INACTIVE`) in this session, and no server-side `SUPABASE_SECRET_KEY` is available here. Resume the project, apply `20260820002000_publish_caral_andean_urbanism.sql`, publish the Caral media objects, and verify remote checksums before treating hosted completion as live.
+Hosted development publication passed on Supabase project `fghjnypxhnnutgsaqvvz`. The project was resumed, and an isolated migration workspace reconstructed the hosted migration history before applying only `20260820002000_publish_caral_andean_urbanism.sql`; a post-apply migration-list check confirmed version `20260820002000` locally and remotely. The migration publishes snapshot `caral-andean-urbanism-v1`, adds required World History position 7, enables completion with the two reviewed prompt IDs, configures the deterministic Caral Place card unlock, and maps `caral_norte_chico` to the canonical lesson.
+
+The canonical Node publisher again encountered the documented Windows `@supabase/storage-js` transport failure after media verification. The bounded authenticated Storage REST fallback preserved the same no-upsert, local-hash, immutable-key, and post-upload remote-hash safeguards. All 11 selected objects for the hero, Supe Valley map, plaza photograph, and shicra reconstruction were uploaded and byte-for-byte verified against the manifest.
 
 ## Sign-off status
 
@@ -846,7 +848,7 @@ Hosted development publication, immutable media upload, and PR merge remain. The
 - [x] Explicit completion and deterministic card-unlock review
 - [x] Final media verification
 - [x] Deterministic release gate
-- [ ] Hosted development migration and configuration verification
-- [ ] Immutable media publication and remote byte verification
+- [x] Hosted development migration and configuration verification
+- [x] Immutable media publication and remote byte verification
 - [x] Post-publication discovery, progression, Learn-shell, content, and build regression pass
 - [ ] PR review and merge
