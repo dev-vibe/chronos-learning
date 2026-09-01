@@ -203,7 +203,8 @@ No image has been accepted at the Stage 14A prototype checkpoint. Final acquisit
 Prototype lesson ID: `lesson.egypt.pyramids-and-state-labor`
 Research-note identity/version: `ash-99-prototype-v1`
 Preview route: `/learn/lesson.egypt.pyramids-and-state-labor`
-Prototype commit: pending
+Prototype commit: [`272b826`](https://github.com/dev-vibe/chronos-learning/commit/272b826)
+Draft PR: [#29](https://github.com/dev-vibe/chronos-learning/pull/29)
 Validation tier: high-risk
 Deterministic prototype gate: passed 2026-08-31
 
