@@ -256,4 +256,4 @@ These are decision anchors for roster approval, not complete lesson bibliographi
 
 ## Approved implementation boundary
 
-Approval authorizes the canonical audit and roster plus queue entries only for roster positions 7–14. It does not authorize full lesson writing, runtime-fixture changes, schema or application-behavior changes, bulk per-node Linear issues, or automatic promotion of later nodes into production. Research-required nodes keep their explicit editorial gates.
+The July 19, 2026 approval authorized the canonical audit and roster plus queue entries for roster positions 7–14. On August 31, 2026, the product owner extended the operational production queue to roster positions 15–24. This still does not authorize full lesson writing until a queued row becomes active, runtime-fixture changes, schema or application-behavior changes, bulk per-node Linear issues, or automatic promotion of nodes beyond the current queue. Research-required nodes keep their explicit editorial gates. Spine positions 3–6 remain outside this runway.

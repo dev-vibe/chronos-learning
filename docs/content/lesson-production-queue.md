@@ -4,7 +4,7 @@ Linear anchor: [ASH-65 — Maintain the canonical Chronos lesson production queu
 
 Curriculum source: [Canonical World Spine roster](world-spine-canonical-roster.md) and [World Spine audit](world-spine-audit.md)
 
-Status: **Roster positions 7–14 approved on July 19, 2026.** Farming and Settlements, Human Origins, and Migrations merged by July 27, 2026. Selection returned to the lowest eligible `Ready` row: Many Beginnings of Farming under ASH-74. No other World Spine node is approved for automatic production by this update.
+Status: **Roster positions 7–14 approved on July 19, 2026. Positions 15–24 added to the production queue on August 31, 2026** by product-owner direction after Caral completed. Animals, Herding, and Mobility and Wheels, Metals, and Specialized Work remain `Planned`. The lowest eligible `Ready` row is Pyramids, Power, and State Labor. Spine positions 3–6 remain outside this runway.
 
 This is the version-controlled source of truth for which canonical lesson is produced next. It is an editorially curated production queue, not the complete knowledge graph, legacy-data order, or a promise that every canonical node is ready for lesson production.
 
@@ -54,6 +54,16 @@ The production order below is operational and may differ from canonical learner 
 | 40 | `lesson.technology.wheels-metals-and-work` — Wheels, Metals, and Specialized Work | 10 | Provide the material and labor-system bridge into early cities and states. | Farming and Settlements implementation available; dedicated source brief | `Planned` | None |
 | 50 | `lesson.egypt.nile-state` — The Nile and an Early Egyptian State | 13 | Add a contrasting, evidence-rich pathway to early state formation. | Uruk reference implementation available | `Complete` | [ASH-97](https://linear.app/ashs-workshop/issue/ASH-97/research-and-publish-the-nile-and-an-early-egyptian-state) · [PR #24 merged](https://github.com/dev-vibe/chronos-learning/pull/24) |
 | 60 | `lesson.caral.andean-urbanism` — Caral and Early Andean Urbanism | 14 | Add an independently developed urban case that challenges one-path models of cities. | Many Beginnings of Farming implementation available | `Complete` | [ASH-98](https://linear.app/ashs-workshop/issue/ASH-98/research-and-publish-caral-and-early-andean-urbanism) · [PR #26 merged](https://github.com/dev-vibe/chronos-learning/pull/26) |
+| 70 | `lesson.egypt.pyramids-and-state-labor` — Pyramids, Power, and State Labor | 15 | Teach how an early state mobilized skilled labor and resources for monumental building, using Old Kingdom evidence rather than pyramid myths. | Nile lesson merged and verified | `Ready` | None |
+| 80 | `lesson.indus.cities-and-signs` — Indus Cities and Undeciphered Signs | 16 | Add a major independent urban tradition and teach disciplined inference from archaeology when writing cannot be read. | Early Writing Systems merged and verified | `Ready` | None |
+| 90 | `lesson.nubia.kerma-and-nile-world` — Kerma and the Middle Nile | 17 | Explain the Nile as a connected political world rather than an Egypt-only story. | Nile lesson merged and verified | `Ready` | None |
+| 100 | `lesson.mesopotamia.akkadian-empire` — Akkad and the Problem of Empire | 18 | Introduce empire as a recurring political strategy rather than a celebratory first. | Early Writing Systems merged and verified | `Ready` | None |
+| 110 | `lesson.bronze-age.exchange-networks` — Bronze Age Exchange Networks | 19 | Show that early states depended on cross-regional exchange and specialist intermediaries. | Wheels, Metals, and Specialized Work implementation available | `Ready` | None |
+| 120 | `lesson.steppe.chariots-and-mobility` — Steppe Mobility and the Chariot | 20 | Provide a causal bridge between mobile societies and changing Eurasian states. | Animals, Herding, and Mobility implementation available | `Ready` | None |
+| 130 | `lesson.mesopotamia.law-and-kingship` — Law, Kingship, and Hammurabi's Babylon | 21 | Use a famous law collection to teach what royal laws reveal—and what they do not prove about practice. | Akkad lesson implementation available | `Ready` | None |
+| 140 | `lesson.china.shang-bronze-and-writing` — Shang Power, Bronze, and Oracle Bones | 22 | Anchor early Chinese state formation in surviving bronze objects and inscriptions. | Wheels, Metals, and Specialized Work implementation available | `Ready` | None |
+| 150 | `lesson.bronze-age.diplomacy-and-rivalry` — Diplomacy and Rivalry in the Late Bronze Age | 23 | Make interstate causality visible before the region's political transformation. | Bronze Age Exchange Networks implementation available | `Ready` | None |
+| 160 | `lesson.bronze-age.transformation` — The Late Bronze Age Transformation | 24 | Replace a single-cause collapse story with a teachable, regionally uneven evidence problem. | Diplomacy and Rivalry implementation available; close the Late Bronze Age regional-variation research gate in the lesson brief before drafting learner prose | `Ready` | None |
 
 `lesson.farming.multiple-origins` completed production on August 16, 2026. Carlin approved its Stages 0–14B learner prototype on August 11, approved the corrected wheat morphology on August 15, and explicitly confirmed the lesson was done and no longer draft on August 16. PR #22 merged, the release gate passed, and the committed publication configuration preserves the later family/public-release UAT program as a separate product gate.
 
@@ -61,9 +71,9 @@ The production order below is operational and may differ from canonical learner 
 
 `lesson.caral.andean-urbanism` completed production on August 29, 2026. Carlin approved the Stages 0–14B prototype on August 19 and confirmed the final lesson was done on August 27. The release gate and post-publication suite passed; the hosted Chronos migration and all 11 selected immutable media objects were verified; PR #26 merged as `ef0d58b`; and the corresponding Vercel deployment completed successfully.
 
-There is no active or automatically selectable `Ready` lesson after this completion. The curriculum queue needs replenishment before the following production cycle; Planned rows still require explicit promotion.
+On August 31, 2026, the product owner replenished the runway with World Spine positions 15–24. Animals, Herding, and Mobility and Wheels, Metals, and Specialized Work remain `Planned` and are not auto-selected. The lowest eligible `Ready` row is `lesson.egypt.pyramids-and-state-labor`. Rows 110, 120, 130, 140, 150, and 160 stay `Ready` but ineligible until their named production dependencies are satisfied. Per-lesson Linear issues will be created only when a row becomes active.
 
-Publishing position 7 after position 8 does not change canonical learner order. `lesson.farming.multiple-origins` remains the curriculum prerequisite for `lesson.farming.settlements`, and that prerequisite cannot be skipped.
+Publishing position 7 after position 8 does not change canonical learner order. `lesson.farming.multiple-origins` remains the curriculum prerequisite for `lesson.farming.settlements`, and that prerequisite cannot be skipped. Producing positions 15–24 before positions 9–10 likewise does not permit learners to skip Animals, Herding, and Mobility or Wheels, Metals, and Specialized Work.
 
 ## Completed reference lessons in the approved segment
 
@@ -77,7 +87,7 @@ Publishing position 7 after position 8 does not change canonical learner order. 
 
 ## Approved boundary
 
-This queue records World Spine positions 1 and 2, each added by explicit product-owner direction, plus positions 7–14. It does not promote any other roster node, create per-node Linear issues, or authorize full-lesson work without the queue and runbook gates. Spine positions 3–6 remain `Planned` in the canonical roster and are not eligible for automatic selection. The complete roster remains the curriculum source of truth; this file owns operational production state.
+This queue records World Spine positions 1 and 2, each added by explicit product-owner direction, plus positions 7–14 and the August 31, 2026 extension through 15–24. It does not promote any other roster node, create per-node Linear issues, or authorize full-lesson work without the queue and runbook gates. Spine positions 3–6 remain `Planned` in the canonical roster and are not eligible for automatic selection. The complete roster remains the curriculum source of truth; this file owns operational production state.
 
 ## Queue-change checklist
 
