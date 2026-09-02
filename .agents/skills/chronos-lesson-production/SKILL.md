@@ -32,6 +32,7 @@ Ask the user for a topic only when the queue and active work cannot supply one a
 3. Reuse the active issue, branch, and PR when continuing work. For new work, create only the selected lesson's issue and prescribed branch from current `main`.
 4. Set or retain `Researching` while performing research, modeling, and learner-prototype work. Keep repository changes bounded to one reviewable lesson outcome.
 5. Create or update one `docs/research/<lesson>.md` editorial record using `docs/content/lesson-production/authoring-templates.md`.
+6. Execute the runbook's Stage 3A recent-challenge audit and Stage 3B research-direction checkpoint before selecting learner claims or building the prototype. Share the analytical packet with Carlin, keep the queue row `Researching`, and stop until Carlin has considered it and responded.
 
 Do not overwrite unrelated changes or start a second active lesson without explicit parallel-ownership approval.
 
@@ -43,11 +44,11 @@ Lock lesson identity, curriculum and journey position, prerequisites, scope, ess
 
 ### 2. Research and model — Stages 2–7
 
-Build the research questions, source ledger, atomic claim ledger, content triage, learning blueprint, and ages 11–14 transformation record before drafting learner prose. Distinguish evidence, interpretation, uncertainty, reconstruction, and later tradition. Invoke specialist historical-map or media runbooks only when the selected teaching form triggers them.
+Build the research questions and source ledger, then conduct the runbook's dedicated recent-challenge audit. Search the default approximately 50-year window for consequential accepted revisions and proposed upsets, including comparative analysis, ancient or transmitted accounts, reproducible independent work, and claim-owner evidence; judge them by evidence and method rather than acceptance status. Record the coverage statement and analytical matrix, present the Stage 3B packet to Carlin, and stop before Stage 4. Only after Carlin has considered the findings and responded should you build the atomic claim ledger, content triage, learning blueprint, and ages 11–14 transformation record. Distinguish evidence, interpretation, uncertainty, reconstruction, and later tradition. Invoke specialist historical-map or media runbooks only when the selected teaching form triggers them.
 
 ### 3. Prototype and review — Stages 8–14B
 
-Storyboard the complete lesson, map it to existing typed modules, plan media by teaching job, decide the card honestly, author required sincere-attempt prompts, and finish the research note. Apply the runbook heading-voice test before drafting learner-facing headings: name the subject or job in ordinary words; do not use metaphors, riddles, or punchlines.
+After the Stage 3B research-direction checkpoint has been considered and its disposition recorded, storyboard the complete lesson, map it to existing typed modules, plan media by teaching job, decide the card honestly, author required sincere-attempt prompts, and finish the research note. Apply the runbook heading-voice test before drafting learner-facing headings: name the subject or job in ordinary words; do not use metaphors, riddles, or punchlines.
 
 Then build a complete unpublished `Lesson` with real prose and prompts in the actual Learn shell:
 
@@ -93,6 +94,7 @@ Publish only after accountable approval, committed migration review, hosted deve
 ## Preserve gate integrity
 
 - Treat deterministic gate output as structural evidence, never as an automated quality judgment.
+- Do not collapse the Stage 3B research-direction checkpoint into the later learner-prototype approval. No claim selection, storyboard, prose, prompts, media/card plan, or Learn-shell prototype may precede Carlin's consideration of the recent-challenge packet.
 - Keep prototype annotations outside semantic headings, sections, prompts, progress, completion, and published rendering.
 - Keep final assets, publication configuration, and unlocks behind the learner-prototype checkpoint.
 - Keep the production-preview and release gates distinct from prototype approval.

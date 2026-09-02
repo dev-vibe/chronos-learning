@@ -39,6 +39,37 @@ Bridge to next lesson:
 | Source ID | Citation/link | Type/authority | Claims supported | Limits/bias | Corroboration | Rights | Review |
 | --- | --- | --- | --- | --- | --- | --- | --- |
 
+## Recent-challenge audit (Stages 3A–3B)
+
+Baseline account that would otherwise be inherited:
+Default search window and any extension beyond approximately 50 years:
+
+| Revision/upset and consequence | Origin/current form | Evidence/provenance | Method and inferential link | Independent corroboration | Strongest countercase | Discriminating test | Status | Lesson consequence |
+| --- | --- | --- | --- | --- | --- | --- | --- | --- |
+
+Ancient, Indigenous, local, descendant, or transmitted accounts considered:
+Comparative analyses considered:
+
+### Coverage statement
+
+- Search terms and terminology variants:
+- Databases, repositories, and citation trails:
+- Disciplines and evidence classes:
+- Independent or claim-owner channels:
+- Inaccessible evidence:
+- Known gaps:
+
+### Research-direction packet and product-owner response
+
+Provisional synthesis:
+Possible effect on essential question and central argument:
+Required main-lesson highlights:
+Story Arc / Investigation depth candidates:
+Judgments or further research requested from product owner:
+Packet shared (date/link):
+Product-owner response:
+Follow-up research and disposition:
+
 ## Claim ledger
 
 | Claim ID and wording | Kind | Certainty | Sources | Counterevidence/limits | Missing perspective | Learner treatment | Review |
@@ -227,6 +258,7 @@ Unclear action hierarchy found earlier:
 ## Final sign-off
 
 - [ ] Research integrity
+- [ ] Recent-challenge research checkpoint considered by product owner before lesson build-out
 - [ ] Historical/editorial review
 - [ ] Ages 11–14 learning/editorial design review
 - [ ] Learner-prototype checkpoint approved
