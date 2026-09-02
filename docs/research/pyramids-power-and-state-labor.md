@@ -2,10 +2,10 @@
 
 Issue: [ASH-99](https://linear.app/ashs-workshop/issue/ASH-99/research-and-publish-pyramids-power-and-state-labor)
 Lesson ID: `lesson.egypt.pyramids-and-state-labor`
-Research-note identity/version: `ash-99-prototype-v1`
+Research-note identity/version: `ash-99-revision-research-v2`
 Journey/chapter/position: World History / Cities, States, and Bronze Age Networks / canonical position 15
 Required or optional: Required
-Queue status: `Awaiting approval`
+Queue status: `Researching`
 Accountable reviewer: Carlin Aylsworth
 Validation tier: high-risk
 Branch: `codex/ash-99-pyramids-power-state-labor`
@@ -13,6 +13,18 @@ Branch: `codex/ash-99-pyramids-power-state-labor`
 ## Work boundary
 
 This increment creates one unpublished World History lesson explaining how Old Kingdom Egyptian rulers concentrated skilled knowledge, transport, supplies, administration, and human labor into pyramid building. It continues the state-capacity question introduced by `lesson.egypt.nile-state`, follows the independent Andean urban case at Caral, and prepares learners to compare another urban tradition in the Indus lesson. The scope runs from Djoser’s Step Pyramid to the Fourth Dynasty pyramid complexes at Giza, c. 2700–2500 BCE, with Khufu’s Great Pyramid as the main evidence case. It does not build an Ancient Egypt Story Arc, settle the exact ramp configuration, survey every pyramid, generate final media, create a publication migration, unlock a card, or change hosted systems. The lesson remains `draft` and fail-closed outside development preview.
+
+### Revision status and journey placement
+
+The product owner rejected the prototype's state-capacity argument as too narrow and requested a new evidence-led treatment of chronology, attribution, construction phases, inheritance, reuse, and purpose. Research has therefore returned to the earliest affected modeling stage; the prototype is not awaiting approval.
+
+The revised content should be divided deliberately:
+
+- **Required World History lesson:** clearly teach the essential historical point and the highest-value evidence. A royal name, inscription, or later cult identifies a relationship to a monument but does not automatically date every construction phase. Learners should encounter the strongest Old Kingdom evidence at Giza, the difference between building and reuse, the genuine limits of attribution, and one concise comparison showing why precision or an anomaly does not date itself.
+- **Ancient Egypt Story Arc depth lesson:** reserve the more comprehensive Egyptian comparison for an arc-only or arc-prioritized lesson, provisionally framed around **built, inherited, repaired, or repurposed?** It can compare Giza, the Osirion, Hawara, hard-stone vessels, and Egyptian traditions of primeval predecessors without overloading the chronological spine.
+- **Investigation reuse:** the proposed `investigation.egypt.pyramid-workers` should be reconsidered during journey blueprinting. Its current candidate framing is too narrowly designed to replace an enslaved-labor myth. The evidence packet could instead let learners test competing phase/attribution hypotheses, revise confidence, and distinguish measurement, context, date, and interpretation. This portfolio change is a recommendation only; no journey has been promoted or altered by this lesson increment.
+
+No Story Arc or Investigation is currently implemented. The repository contains a proposed `story.egypt.nile-and-kingship` journey and a proposed `investigation.egypt.pyramid-workers`; both remain portfolio candidates requiring separate product/curriculum approval and blueprinting.
 
 ## Node proposal
 
