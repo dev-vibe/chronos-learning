@@ -134,7 +134,7 @@ The old lesson direction is rejected. The evidence supports a stronger, more ope
 
 ### Possible effect on journey design
 
-- **Required World History lesson:** retain the largest chronological and attribution distinctions, extraordinary demonstrated Egyptian capability, the incompleteness of “tomb only,” and one clean case showing why context, phase, and direct date are not interchangeable. State labor becomes evidence of Old Kingdom use and capacity, not the lesson's foregone central answer.
+- **Required World History lesson:** anchor the distinction between context, phase, direct date, and purpose at Giza, then use three concise pressure tests: the Osirion's conflicting luminescence/structural evidence, Hawara's contradictory traditions and active excavation, and hard-stone vessels as direct evidence of an earlier high-skill Nile technical regime. Ancient/transmitted accounts should be integrated where they bear on each case. State labor becomes evidence of Old Kingdom use and capacity, not the lesson's foregone central answer.
 - **Ancient Egypt Story Arc:** develop a full “built, inherited, repaired, or repurposed?” comparison across Giza, the Osirion, Hawara, precision vessels, and Egyptian deep-time traditions.
 - **Investigation:** let learners compare competing phase/attribution hypotheses using the same chain: measurement → provenance/context → construction relationship → date → interpretation → discriminating test.
 
@@ -143,7 +143,7 @@ The old lesson direction is rejected. The evidence supports a stronger, more ope
 Before Stage 4, the product owner should respond to these questions:
 
 1. Should the World History lesson's center move from state labor to **how we distinguish Old Kingdom building, use, inheritance, and later claim**, with labor retained as one strong evidence stream?
-2. Which two or three cases are mandatory highlights in the short main lesson: Giza internal/chronology evidence, Hawara, the Osirion, hard-stone vessels, or Egyptian deep-time texts?
+2. Should the short main lesson include the recommended four-case set—Giza as the anchor, then concise Osirion, Hawara, and hard-stone-vessel pressure tests—with Egyptian deep-time and transmitted accounts integrated rather than isolated? If that is too much, which case should move wholly to the Story Arc?
 3. Should the phrase **earlier Nile cultural/technical regime of materially different character and ability** be used as the neutral live hypothesis, or should the lesson use different language?
 4. Should Hawara be described in the main lesson as an active excavation capable of testing conflicting ancient chronologies, with the full source comparison reserved for the Story Arc?
 5. Which unresolved claim, if any, needs another research pass before claim selection begins?
