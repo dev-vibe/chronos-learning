@@ -23,16 +23,38 @@ On that request, the agent must perform this boot sequence without asking the us
 7. If no entry is eligible, summarize the queue and ask for the smallest necessary curriculum decision. Do not invent, reorder, or promote a lesson silently.
 8. Create or reuse one per-lesson Linear issue under the curriculum epic. Do not pre-create the rest of the queue as granular issues.
 9. Create or reuse the prescribed lesson branch from latest `main`, and change the selected queue row to `Researching` in that branch.
-10. Execute Stages 0–14B through the product-review request. Produce the durable research/editorial note, a complete unpublished typed lesson in the real Learn shell, and the decision packet.
-11. Commit and push the research and learner-prototype checkpoint, update Linear, set the queue row to `Awaiting approval`, and ask the user to approve only the material decisions identified by the runbook. Do not make the user repeat operational instructions.
-12. After approval, continue on the same issue, branch, and PR through Stages 15–18. Set the queue row to `Implementing`, then `Review`, and finally `Complete` only when the corresponding gates pass.
-13. When the lesson becomes `Complete`, ensure the queue still has reviewed future candidates. If fewer than three candidates remain, flag curriculum-queue replenishment without inventing entries.
+10. Execute Stages 0–3B and present the mandatory recent-challenge research packet. Keep the queue row `Researching` and stop before claim selection, learning design, learner prose, media planning, or prototype implementation. Continue only after the product owner has considered the packet and responded with corrections, priorities, or permission to proceed.
+11. Incorporate that response into the research note, then execute Stages 4–14B through the product-review request. Produce the durable research/editorial note, a complete unpublished typed lesson in the real Learn shell, and the learner-prototype decision packet.
+12. Commit and push the research and learner-prototype checkpoint, update Linear, set the queue row to `Awaiting approval`, and ask the user to approve only the material decisions identified by the runbook. Do not make the user repeat operational instructions.
+13. After approval, continue on the same issue, branch, and PR through Stages 15–18. Set the queue row to `Implementing`, then `Review`, and finally `Complete` only when the corresponding gates pass.
+14. When the lesson becomes `Complete`, ensure the queue still has reviewed future candidates. If fewer than three candidates remain, flag curriculum-queue replenishment without inventing entries.
 
 The agent may ask an early question only when a missing decision materially changes lesson identity, curriculum order, audience, or scope and cannot be resolved from the queue, repository, PRD, or existing issue. Ordinary research and implementation choices belong to this runbook.
 
+### Mandatory recent-challenge research checkpoint
+
+Stages 0–3B establish the evidence landscape before the lesson chooses a central argument. This is a separate, earlier product-owner checkpoint: no claim ledger, learning blueprint, storyboard, learner prose, prompt, media plan, card plan, or Learn-shell prototype may be built until the product owner has considered its findings.
+
+The checkpoint exists to prevent a familiar or institutionally dominant synthesis from becoming the lesson merely because it was easiest to source. It requires a documented good-faith search for consequential evidence and interpretations from approximately the previous 50 years, including major proposed upsets that remain disputed, independently published, incompletely tested, or based primarily on comparative analysis. Inclusion in the packet is determined by potential consequence and inspectable evidence—not by whether an institution, journal, press label, or popular consensus has accepted the proposal.
+
+The packet must concisely show:
+
+1. the baseline account the lesson would otherwise inherit;
+2. every discoverable major recent finding, revision, anomaly, and proposed upset that could materially change chronology, attribution, causation, capability, identity, purpose, scale, or interpretation;
+3. relevant ancient, Indigenous, local, descendant, or otherwise historically transmitted accounts, without treating genre or transmission limits as grounds for silence;
+4. comparative analyses—including cross-site, architectural, material, technological, metrological, environmental, textual, linguistic, astronomical, or experimental comparisons—that generate a consequential alternative even when excavation has not yet tested it;
+5. the evidence, method, provenance, data access, independent corroboration, counterevidence, and strongest criticism for each proposal;
+6. what would follow if each proposal were true, what observation could distinguish it from alternatives, and what remains untested;
+7. a provisional status expressed in words rather than a numeric score, separating direct observation, supported inference, plausible hypothesis, unverified claim, contradicted claim, and unresolved conflict;
+8. the proposed effect on the lesson's central argument, essential highlights, uncertainty treatment, and any material that belongs in a Story Arc or Investigation instead;
+9. a coverage statement naming searches performed, source communities consulted, inaccessible evidence, and known gaps so “all major challenges” means an auditable sweep rather than an impossible claim of omniscience;
+10. the specific judgments or research directions on which the product owner's consideration is needed.
+
+The agent must share the actual analytical outcome, not merely report that a search was performed. Keep the queue row `Researching`, record the product owner's response in the research note, and repeat this checkpoint when that response reveals a missed evidence class or materially changes the historical model.
+
 ### Mandatory research and learner-prototype checkpoint
 
-Stages 0–14B are one coherent discovery, design, and cheap-prototype phase. Stage 14A deliberately permits only the typed draft content needed to render the actual learner experience. Final asset acquisition or generation, publication migrations, unlocks, hosted changes, and production approval states wait until the checkpoint is approved.
+After the recent-challenge research checkpoint has been considered, Stages 4–14B form the claim-selection, design, and cheap-prototype phase. Stage 14A deliberately permits only the typed draft content needed to render the actual learner experience. Final asset acquisition or generation, publication migrations, unlocks, hosted changes, and production approval states wait until the checkpoint is approved.
 
 The packet must concisely show:
 
@@ -57,7 +79,7 @@ Use the stages through these five production phases. Stage numbers remain stable
 | Phase | Stages | Exit condition |
 | --- | --- | --- |
 | Select and bound | 0–1 | The lesson identity, curriculum role, learner outcome, owner, and non-goals are explicit. |
-| Research and model | 2–7 | Sources, claims, scope, learning model, and ages 11–14 transformations are reviewable. |
+| Research and model | 2–7 | The recent-challenge audit has been considered by the product owner; sources, claims, scope, learning model, and ages 11–14 transformations are reviewable. |
 | Prototype and review | 8–14B | A complete draft is rendered in the real Learn shell and passes proxy/product review. |
 | Implement | 15 | Approved content, media, provenance, card, and publication configuration are production-ready. |
 | Validate and publish | 16–18 | Quality, technical, learner, publication, and correction gates are satisfied. |
@@ -128,13 +150,14 @@ Create one lesson research/editorial note under `docs/research/` before writing 
 1. node proposal;
 2. research questions;
 3. source ledger;
-4. claim ledger;
-5. content triage;
-6. learning blueprint;
-7. section and component storyboard;
-8. media and Knowledge Card plan;
-9. age/editorial pass notes;
-10. review decisions, open questions, and publication sign-off.
+4. recent-challenge audit, coverage statement, research packet, and product-owner response;
+5. claim ledger;
+6. content triage;
+7. learning blueprint;
+8. section and component storyboard;
+9. media and Knowledge Card plan;
+10. age/editorial pass notes;
+11. review decisions, open questions, and publication sign-off.
 
 Do not rely on chat history, browser tabs, or an agent’s memory as the editorial record.
 
@@ -169,7 +192,7 @@ Answer these before collecting facts:
 - What common misconception, myth, or oversimplification should it prevent?
 - Does the proposed scope accidentally combine two lessons?
 
-Write:
+Write the following as a provisional research target. The essential question and durable understanding do not become the lesson's settled model until the Stage 3B research-direction checkpoint has been considered:
 
 - **Essential question:** one genuine historical question, not a topic label.
 - **Durable understanding:** one sentence the learner should remember months later.
@@ -193,11 +216,15 @@ Turn the essential question into a research plan. Include:
 - causes, enabling conditions, constraints, and consequences;
 - who benefited, who bore costs, and whose experience is poorly preserved;
 - scholarly agreements, live disagreements, obsolete popular stories, and genuine unknowns;
+- consequential discoveries, revisions, anomalies, and proposed upsets from approximately the previous 50 years, plus older proposals made newly testable by recent evidence or methods;
+- relevant comparative-analysis traditions and independent or claim-owner research that may not appear in ordinary academic review articles;
 - vocabulary requiring precise definitions;
 - visual evidence and likely media-rights constraints;
 - age-sensitive material such as violence, death, enslavement, religion, sexuality, or human remains.
 
 Write questions before answers. This reduces the risk of gathering only sources that support the first attractive narrative.
+
+Plan the recent-challenge search as its own workstream rather than assuming the ordinary source search will reveal it. Name likely terminology changes, disciplinary boundaries, non-academic research communities, primary-data repositories, translated or transmitted traditions, and evidence classes that could overturn the baseline account.
 
 ## Stage 3 — Gather sources in a deliberate order
 
@@ -219,8 +246,10 @@ Use this research loop:
 3. Follow citations backward to the underlying object, corpus, excavation, primary source, or study.
 4. Follow later citations forward to see whether the interpretation was refined, rejected, or remains influential.
 5. Search deliberately for disagreement, regional/specialist perspectives, and evidence that would weaken the emerging narrative.
-6. Locate at least one concrete primary/evidence encounter suitable for the learner.
-7. Stop when the essential claims are independently supported, important disagreement is understood, new sources mostly repeat known evidence, and remaining gaps are recorded honestly. Do not stop merely because the first coherent story has appeared.
+6. Search outside the dominant synthesis for consequential claim-owner reports, independent fieldwork, preprints, conference material, technical datasets, replications, comparative analyses, and serious criticism. Discovery is not endorsement; omission based only on venue, affiliation, or acceptance status is not allowed.
+7. Trace widely circulated upset claims back to their earliest recoverable evidence, data, text, scan, object, excavation context, experiment, or explicit method. Record when that chain is unavailable rather than silently discarding the claim.
+8. Locate at least one concrete primary/evidence encounter suitable for the learner.
+9. Stop ordinary source gathering only when the essential claims are independently supported, important disagreement is understood, new sources mostly repeat known evidence, and remaining gaps are recorded honestly. The separate Stage 3A challenge audit still must pass before research can close. Do not stop merely because the first coherent story has appeared.
 
 Wikipedia and search-result summaries may help discover terminology and references. They are not sufficient support for a material claim. A museum label is valuable but not automatically the last word. A single scholar’s interpretation is not “what historians believe.” Popular documentaries and unsourced educational sites are discovery leads, not claim authorities.
 
@@ -255,6 +284,58 @@ Do not treat all citations as equal and do not turn source quality into a fake n
 - **Claim fit:** does the source support the exact learner-facing wording and strength of certainty?
 
 When strong sources conflict, identify whether they disagree about evidence, translation, dating, definition, causal interpretation, or values. Narrow the claim if possible; otherwise represent the major interpretations proportionately and make the uncertainty part of the teaching. Never resolve disagreement by choosing the source with the cleanest prose.
+
+## Stage 3A — Audit recent upsets and proposed revisions
+
+Before deciding what the lesson will claim, conduct a dedicated challenge audit covering approximately the previous 50 years. Treat 50 years as the default discovery window, not a hard cutoff: include older proposals that remain influential, have received important new evidence, or have become newly testable through scanning, dating, computation, excavation, translation, experimental archaeology, or comparative analysis.
+
+Search for material that could substantially revise any of the following:
+
+- chronology or periodization;
+- who made, occupied, inherited, modified, or claimed something;
+- the character, continuity, organization, or technical ability of a society;
+- purpose, function, scale, geography, environment, or construction sequence;
+- causal explanations and assumptions about what was possible;
+- the authenticity, translation, provenance, context, or interpretation of central evidence;
+- the relationship between surviving material, later tradition, and modern reconstruction.
+
+The audit must include both accepted revisions and serious proposed upsets. Search across peer-reviewed literature, excavation and museum records, primary texts and critical editions, technical reports, theses, preprints, conference proceedings, public datasets, reproducible independent research, claim-owner releases, and substantive comparative analysis. Also search for ancient, Indigenous, local, descendant, and transmitted accounts relevant to the attribution or interpretation. Do not use “fringe,” “not consensus,” “not peer reviewed,” or institutional affiliation as a substitute for examining the evidence and method.
+
+Comparative analysis is a legitimate hypothesis-generating form of evidence. Evaluate what is being compared, whether the cases and measurements are genuinely comparable, whether selection effects or circular assumptions are present, what alternative explanations fit, and what new observation the comparison predicts. Do not dismiss it merely because it does not itself provide excavation stratigraphy or a direct date; instead, state precisely which inferential link it supplies and which links remain missing.
+
+For every major challenge or revision, record:
+
+| Field | Required analysis |
+| --- | --- |
+| Proposal and consequence | What changes if it is correct, and why is that material to the lesson? |
+| Origin and current form | Who made the claim, when, and how has it changed or been repeated? |
+| Evidence and provenance | What object, text, context, measurement, dataset, scan, comparison, or experiment supports it? Can the underlying material be inspected? |
+| Method | How does the evidence become the conclusion? Are assumptions, processing, calibration, and uncertainty visible? |
+| Corroboration and independence | Has another source, method, team, or evidence class reached a compatible result without copying the same origin? |
+| Strongest countercase | What evidence or reasoning most seriously weakens it? Has the claimant answered that objection? |
+| Discriminating test | What observation would distinguish this proposal from the strongest alternative? Has that test occurred? |
+| Status | Direct observation, supported inference, plausible hypothesis, unverified claim, contradicted claim, or unresolved conflict—with a short explanation, never a numeric score. |
+| Lesson consequence | Essential highlight, qualified comparison, Investigation/Story Arc depth, contextual note, or omit with a recorded reason. |
+
+Actively look for asymmetric scrutiny. Do not demand perfect provenance, replication, or direct dating from a challenge while allowing the inherited account to rest on names, associations, stylistic attribution, later tradition, or untested assumptions. Apply the same claim-fit questions to every account and state when different evidence types answer different parts of the problem.
+
+Complete the audit with a coverage statement listing the search window, terminology, databases and repositories, disciplines, primary-source traditions, independent or claim-owner channels, major citation trails, inaccessible items, and known gaps. “No major challenge found” is acceptable only when this search record makes the negative result reviewable.
+
+## Stage 3B — Present the research-direction checkpoint
+
+Write the audit into the lesson's research note and share a concise analytical packet with the product owner before building the lesson. The packet must identify:
+
+1. the inherited baseline account;
+2. the strongest evidence supporting it;
+3. each consequential recent revision or proposed upset and its present evidentiary status;
+4. ancient or transmitted accounts that materially complicate attribution or interpretation;
+5. comparative analyses and the exact inference each contributes;
+6. genuine contradictions, missing tests, and evidence that is inaccessible or not reproducible;
+7. the research team's provisional synthesis without concealing minority or unresolved possibilities;
+8. how the findings could change the essential question, central argument, main-lesson highlights, Story Arc depth, or Investigation design;
+9. the specific judgments or further research questions for the product owner.
+
+Stop after sharing the packet. Keep the queue row `Researching`. Do not begin Stage 4, settle the durable understanding, select claims for learner treatment, storyboard sections, draft prose or prompts, plan final media or a card, or build the Learn-shell prototype until the product owner has considered the findings and responded. Record that response and any requested follow-up research in the note. If the response exposes a missing evidence class or materially changes the historical model, repeat Stages 3A–3B.
 
 ## Stage 4 — Build the claim ledger before drafting prose
 
@@ -651,6 +732,7 @@ Before production implementation, make the note readable by someone who did not 
 - learner-facing scope and title rationale;
 - chronology/geography decisions;
 - source ledger and claim ledger;
+- the Stage 3A recent-challenge audit, coverage statement, analytical packet, product-owner response, and any repeated research cycle;
 - disagreements and uncertainty handling;
 - outdated or popular claims deliberately excluded;
 - missing voices/survival bias;
@@ -801,6 +883,7 @@ A lesson is done only when:
 - its reason for existing and place in the curriculum are clear;
 - the research note makes the editorial reasoning recoverable;
 - claims and sources are atomic, proportional, and reviewed;
+- the recent-challenge audit seriously examined consequential accepted and proposed revisions, including comparative analysis, and the product owner considered its findings before lesson build-out;
 - content triage produced a coherent, bounded learning sequence;
 - the ages 11–14 pass improved comprehension without distorting history;
 - every section, component, medium, prompt, and card has a teaching purpose;
