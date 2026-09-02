@@ -7,6 +7,7 @@ import { AuthProvider } from './contexts/AuthContext';
 import { UserProfileProvider } from './contexts/UserProfileContext';
 import { LearnApp } from './src/learn/LearnApp';
 import { DiscoveryApp } from './src/app/ChronosApp';
+import { AuditApp } from './src/app/AuditApp';
 import { parseChronosRoute } from './src/app/routes';
 
 const queryClient = new QueryClient({
@@ -30,6 +31,8 @@ document.body.classList.toggle('discovery-route', !['learn', 'legacy'].includes(
 let application: React.ReactNode;
 if (route.name === 'learn') {
   application = <LearnApp lessonId={route.lessonId} />;
+} else if (route.name === 'audit') {
+  application = <AuditApp />;
 } else if (route.name === 'legacy') {
   application = <QueryClientProvider client={queryClient}>
     <AuthProvider>

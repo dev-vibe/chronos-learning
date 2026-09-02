@@ -26,6 +26,14 @@ describe('canonical World Spine roadmap', () => {
     expect(pyramids?.href).toBeUndefined();
   });
 
+  it('opens authored draft spine nodes when preview unlock is on', () => {
+    setUnlockPreviewLessonsForTests(true);
+    const draft = { ...chronosContent.lessons[0], id: 'lesson.egypt.pyramids-and-state-labor', status: 'draft' as const };
+    const view = createWorldSpineRoadmapView(worldSpineRoadmap, [...chronosContent.lessons, draft], {}, 'lesson.uruk.first-city');
+    const pyramids = view.flatMap((chapter) => chapter.nodes).find((node) => node.id === 'lesson.egypt.pyramids-and-state-labor');
+    expect(pyramids).toMatchObject({ status: 'available', href: '/learn/lesson.egypt.pyramids-and-state-labor' });
+  });
+
   it('publishes Many Beginnings as a navigable World Spine node', () => {
     setUnlockPreviewLessonsForTests(true);
     const view = createWorldSpineRoadmapView(worldSpineRoadmap, chronosContent.lessons, {}, 'lesson.farming.multiple-origins');

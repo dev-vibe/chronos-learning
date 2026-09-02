@@ -131,3 +131,7 @@ VITE_UNLOCK_PREVIEW_LESSONS=true
 ```
 
 That flag opens draft lessons in Learn, links them in the World Spine, and skips curriculum prerequisite locks. Leave both unset for production-like progress behavior.
+
+### Hosted audit mode
+
+The Learn shell has no sign-in. To inspect drafts on staging or production without baking the env flag into the build, visit `/audit` (or `/admin`) in that browser and turn audit mode on. It is stored in local storage for that browser only, so other visitors stay on the published learner path. Bookmark `/audit?on` to enable and jump straight to World History.

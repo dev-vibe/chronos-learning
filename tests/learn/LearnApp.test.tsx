@@ -105,6 +105,16 @@ describe('Learn route and interactions', () => {
     render(<LearnApp lessonId="lesson.farming.settlements" gatewayFactory={async () => gateway} />);
     expect(await screen.findByRole('heading', { name: 'Farming and Settlements' })).toBeTruthy();
     expect(screen.queryByText('This archive entry is not available.')).toBeNull();
+    expect(within(screen.getByRole('complementary', { name: 'Chronos navigation' })).getByRole('link', { name: 'Audit on' }).getAttribute('href')).toBe('/audit');
+  });
+  it('shows the audit control when browser audit mode is stored', async () => {
+    const { AUDIT_UNLOCK_STORAGE_KEY, setUnlockPreviewLessonsForTests } = await import('../../src/config/runtimeFlags');
+    setUnlockPreviewLessonsForTests(undefined);
+    window.localStorage.setItem(AUDIT_UNLOCK_STORAGE_KEY, '1');
+    const gateway = new TestGateway();
+    render(<LearnApp lessonId="lesson.uruk.first-city" gatewayFactory={async () => gateway} />);
+    await screen.findByRole('heading', { name: 'Uruk: Life in an Early City' });
+    expect(within(screen.getByRole('complementary', { name: 'Chronos navigation' })).getByRole('link', { name: 'Audit on' }).getAttribute('href')).toBe('/audit');
   });
   it('hides Rights metadata until media review is approved', async () => {
     const gateway = new TestGateway();
