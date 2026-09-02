@@ -123,8 +123,6 @@ h1,h2,h3{font-family:Newsreader,Georgia,serif;font-weight:500}
 .current-lesson-sections{margin:0 4px 8px 34px;padding:0 5px 5px;border-left:1px solid #d19a3161}
 .current-lesson-sections .section-index-label{margin-top:0}
 @media(max-width:620px){.prototype-media-intentions{padding:16px}.prototype-media-label{align-items:flex-start;justify-content:space-between}.prototype-media-intentions li{grid-template-columns:1fr auto;gap:5px 10px}.prototype-media-intentions li>p{grid-column:1/-1;grid-row:2}}
-.spine-chapter-quiet,.spine-hidden-count{margin:0 5px 10px 37px;color:#9eb1ba;font-size:.58rem;line-height:1.45}
-.spine-hidden-count{padding-top:8px;border-top:1px solid #ffffff14}
 .rail-roadmap-link{min-height:44px;display:flex;align-items:center;justify-content:center;margin-top:12px;border:1px solid #d4aa665e;border-radius:9px;color:#f5d89e;font-size:.66rem;font-weight:600;text-decoration:none}
 .rail-roadmap-link:hover{background:#ffffff0b}
 @media(prefers-reduced-motion:reduce){.spine-chapter summary>svg{transition:none}}

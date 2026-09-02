@@ -52,24 +52,16 @@ export function WorldSpineTimeline({
       <span><b>{worldSpineNodeCount}</b> lesson roadmap</span>
     </div>
     <section className="spine-timeline" aria-label="World History timeline">
-      {chapters.map((chapter) => {
-        const currentIndex = chapter.nodes.findIndex((node) => node.id === lesson.id);
-        const nearbyIds = new Set(
-          currentIndex < 0
-            ? []
-            : chapter.nodes.slice(Math.max(0, currentIndex - 2), currentIndex + 3).map((node) => node.id),
-        );
-        const visibleNodes = chapter.nodes.filter((node) => node.status !== 'preparing' || nearbyIds.has(node.id));
-        const hiddenCount = chapter.nodes.length - visibleNodes.length;
-        return <details className="spine-chapter" key={chapter.id} open={chapter.containsCurrent || undefined}>
+      {chapters.map((chapter) => (
+        <details className="spine-chapter" key={chapter.id} open={chapter.containsCurrent || undefined}>
           <summary>
             <span className="spine-chapter-number">{chapter.id}</span>
             <span className="spine-chapter-copy"><strong>{chapter.title}</strong><small>{chapter.period}</small></span>
             <span className="spine-chapter-count">{chapter.nodes.length}</span>
             <ChevronDown aria-hidden="true" />
           </summary>
-          {visibleNodes.length ? <ol className="spine-node-list">
-          {visibleNodes.map((node) => {
+          <ol className="spine-node-list">
+          {chapter.nodes.map((node) => {
             const body = <>
               <span className="spine-node-marker" aria-hidden="true">
                 {node.completed ? <Check /> : node.status === 'locked' || node.status === 'preparing' ? <Lock /> : node.order}
@@ -100,10 +92,9 @@ export function WorldSpineTimeline({
               </div>}
             </li>;
           })}
-          </ol> : <p className="spine-chapter-quiet">Lessons in this chapter are still being prepared.</p>}
-          {hiddenCount > 0 && <p className="spine-hidden-count">{hiddenCount} more planned {hiddenCount === 1 ? 'lesson' : 'lessons'} in the complete roadmap</p>}
-        </details>;
-      })}
+          </ol>
+        </details>
+      ))}
     </section>
     <a className="rail-roadmap-link" href="/library/journey.world-history#world-spine-title">View complete 185-lesson roadmap</a>
   </>;
