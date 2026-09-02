@@ -162,6 +162,7 @@ function LearnStatusShell({
       onTheme={onTheme}
       onWorldHistory={drawerLesson && drawerJourney ? openDrawer : undefined}
       worldHistoryOpen={drawer}
+      auditMode={unlockPreviewLessonsEnabled()}
     />
     {drawerLesson && drawerJourney && drawerState && <JourneyDrawer
       open={drawer}
@@ -349,6 +350,7 @@ export function LearnApp({ lessonId, gatewayFactory = createProgressGateway }: {
       onTheme={toggleTheme}
       onWorldHistory={openDrawer}
       worldHistoryOpen={drawer}
+      auditMode={unlockPreviewLessonsEnabled()}
     />
     <JourneyDrawer open={drawer} onClose={() => setDrawer(false)} onNavigate={navigate} lesson={lesson} journey={journey} summaries={journeySummaries} currentState={state} currentSectionId={state.resumeSectionId ?? lesson.sections[0].id} returnFocus={menuRef} />
     <header className="mobile-progress"><span className="mobile-progress-spacer" aria-hidden="true" /><div><strong>{lesson.title}</strong><span>{state.exploredSectionIds.length} of {lesson.sections.length} sections explored</span></div><button className="icon-button" onClick={toggleTheme} aria-label={'Use ' + (theme === 'light' ? 'dark' : 'light') + ' theme'}>{theme === 'light' ? <Moon /> : <Sun />}</button></header>

@@ -288,6 +288,8 @@ describe('stable routes', () => {
     expect(parseChronosRoute('/learn/lesson.uruk.first-city')).toEqual({ name: 'learn', lessonId: 'lesson.uruk.first-city' });
     expect(parseChronosRoute('/library/journey.world-history')).toEqual({ name: 'journey', journeyId: 'journey.world-history' });
     expect(parseChronosRoute('/search', '?q=proto%20cuneiform')).toEqual({ name: 'search', query: 'proto cuneiform' });
+    expect(parseChronosRoute('/audit')).toEqual({ name: 'audit' });
+    expect(parseChronosRoute('/admin/')).toEqual({ name: 'audit' });
     expect(parseChronosRoute('/library/unknown/extra')).toEqual({ name: 'not-found' });
     expect(parseChronosRoute('/learn/%E0%A4%A')).toEqual({ name: 'not-found' });
     expect(parseChronosRoute('/library/%E0%A4%A')).toEqual({ name: 'not-found' });

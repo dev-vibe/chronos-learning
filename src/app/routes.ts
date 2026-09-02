@@ -6,6 +6,7 @@ export type ChronosRoute =
   | { name: 'journey'; journeyId: string }
   | { name: 'search'; query: string }
   | { name: 'learn'; lessonId: string }
+  | { name: 'audit' }
   | { name: 'legacy' }
   | { name: 'not-found' };
 
@@ -13,6 +14,7 @@ export function parseChronosRoute(pathname: string, search = ''): ChronosRoute {
   const clean = pathname.replace(/\/+$/, '') || '/';
   if (clean === '/' || clean === '/home') return { name: 'home' };
   if (clean === '/library') return { name: 'library' };
+  if (clean === '/audit' || clean === '/admin') return { name: 'audit' };
   const journey = clean.match(/^\/library\/([^/]+)$/);
   if (journey) { const journeyId = safeDecodePathSegment(journey[1]); return journeyId === undefined ? { name: 'not-found' } : { name: 'journey', journeyId }; }
   if (clean === '/search') return { name: 'search', query: new URLSearchParams(search).get('q') ?? '' };
