@@ -158,5 +158,24 @@ describe('Learn route and interactions', () => {
   });
   it('persists prompt feedback, completes, centers one card reveal, and gives a truthful next action', async () => { const gateway = new TestGateway(); render(<LearnApp lessonId="lesson.uruk.first-city" gatewayFactory={async () => gateway} />); await screen.findByRole('heading', { name: 'Uruk: Life in an Early City' }); await userEvent.click(screen.getByLabelText('Administrative tablets and cylinder seals')); expect(await screen.findByText(/Compare the evidence/)).toBeTruthy(); const text = screen.getByRole('textbox'); await userEvent.type(text, 'Specialized work created opportunity, while unequal labor was a serious cost.'); fireEvent.blur(text); await waitFor(() => expect(screen.getByRole('button', { name: 'Complete lesson' }).hasAttribute('disabled')).toBe(false)); await userEvent.click(screen.getByRole('button', { name: 'Complete lesson' })); expect(await screen.findByText('Knowledge Card acquired')).toBeTruthy();
     expect(document.querySelector('.card-class')?.textContent).toContain('Place'); const reveal = document.querySelector('.card-reveal'); await waitFor(() => expect(reveal?.scrollIntoView).toHaveBeenCalledWith({ behavior: 'smooth', block: 'center' })); expect(document.activeElement).toBe(reveal); expect(screen.getAllByRole('heading', { name: 'Uruk' })).toHaveLength(1); const next = screen.getByRole('link', { name: /Continue World History/ }); expect(next.getAttribute('href')).toBe('/learn/lesson.writing.early-systems'); });
-  it('keeps the learning drawer concise and links to the complete World History roadmap', async () => { const gateway = new TestGateway(); render(<LearnApp lessonId="lesson.uruk.first-city" gatewayFactory={async () => gateway} />); await screen.findByRole('heading', { name: 'Uruk: Life in an Early City' }); await userEvent.click(within(screen.getByRole('complementary', { name: 'Chronos navigation' })).getByRole('button', { name: 'World History' })); const timeline = screen.getByLabelText('World History timeline'); const visibleNodes = timeline.querySelectorAll('.spine-node'); expect(visibleNodes.length).toBeGreaterThan(3); expect(visibleNodes.length).toBeLessThan(185); expect(within(timeline).getByText('Farming and Settlements')).toBeTruthy(); expect([...timeline.querySelectorAll('.spine-node-copy strong')].some((node) => node.textContent === 'Decolonization and an Interdependent World')).toBe(false); expect(within(timeline).getAllByText(/more planned lessons/i).length).toBeGreaterThan(0); expect(screen.getByRole('link', { name: 'View complete 185-lesson roadmap' }).getAttribute('href')).toBe('/library/journey.world-history#world-spine-title'); })
+  it('lists every canonical World History lesson title in the drawer, including unpublished stops', async () => {
+    const gateway = new TestGateway();
+    render(<LearnApp lessonId="lesson.uruk.first-city" gatewayFactory={async () => gateway} />);
+    await screen.findByRole('heading', { name: 'Uruk: Life in an Early City' });
+    await userEvent.click(within(screen.getByRole('complementary', { name: 'Chronos navigation' })).getByRole('button', { name: 'World History' }));
+    const timeline = screen.getByLabelText('World History timeline');
+    expect(timeline.querySelectorAll('.spine-node')).toHaveLength(185);
+    expect(within(timeline).getByText('Crossing to Sahul')).toBeTruthy();
+    expect(within(timeline).getByText('Living Through the Ice Age')).toBeTruthy();
+    expect(within(timeline).getByText('Peopling the Americas')).toBeTruthy();
+    expect(within(timeline).getByText('Climate Change at the Start of the Holocene')).toBeTruthy();
+    expect(within(timeline).getByText('Animals, Herding, and Mobility')).toBeTruthy();
+    expect(within(timeline).getByText('Wheels, Metals, and Specialized Work')).toBeTruthy();
+    expect(within(timeline).getByText('Farming and Settlements')).toBeTruthy();
+    expect(within(timeline).getByText('New Evidence Changes How We Know the Past')).toBeTruthy();
+    expect(within(timeline).queryByText(/more planned lessons/i)).toBeNull();
+    expect(within(timeline).getAllByText('Lesson in preparation').length).toBeGreaterThan(0);
+    expect(within(timeline).getByText('Crossing to Sahul').closest('a')).toBeNull();
+    expect(screen.getByRole('link', { name: 'View complete 185-lesson roadmap' }).getAttribute('href')).toBe('/library/journey.world-history#world-spine-title');
+  });
 });
