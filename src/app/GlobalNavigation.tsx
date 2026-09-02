@@ -10,6 +10,7 @@ type GlobalNavigationProps = {
   onTheme(): void;
   onWorldHistory?(event: React.MouseEvent<HTMLButtonElement>): void;
   worldHistoryOpen?: boolean;
+  auditMode?: boolean;
 };
 
 const destinations = [
@@ -24,6 +25,7 @@ export function GlobalNavigation({
   onTheme,
   onWorldHistory,
   worldHistoryOpen = false,
+  auditMode = false,
 }: GlobalNavigationProps) {
   const links = destinations.map(({ id, label, href, icon: Icon }) => (
     <a
@@ -53,6 +55,7 @@ export function GlobalNavigation({
         <strong>Chronos</strong>
       </a>
       <nav>{links[0]}{worldHistory}{links.slice(1)}</nav>
+      {auditMode ? <a className="audit-nav" href="/audit">Audit on</a> : null}
       <button
         className="theme-button"
         onClick={onTheme}
@@ -61,6 +64,6 @@ export function GlobalNavigation({
         {theme === 'light' ? <Moon /> : <Sun />}
       </button>
     </aside>
-    <nav className="mobile-nav" aria-label="Chronos navigation">{links[0]}{worldHistory}{links.slice(1)}</nav>
+    <nav className={`mobile-nav${auditMode ? ' with-audit' : ''}`} aria-label="Chronos navigation">{links[0]}{worldHistory}{links.slice(1)}{auditMode ? <a className="audit-nav" href="/audit">Audit on</a> : null}</nav>
   </>;
 }

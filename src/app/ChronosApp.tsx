@@ -10,7 +10,7 @@ import { closeJourney, continueJourney, deriveJourneyProgress, openJourney, save
 import { resolveJourneyInvitation } from '../domains/journeys/invitations';
 import { createLocalSearchProvider, type SearchProvider, type SearchResult } from '../domains/search/search';
 import { knowledgeCardTypeLabel } from '../domains/knowledgeCards';
-import { isLessonOpenable } from '../config/runtimeFlags';
+import { isLessonOpenable, unlockPreviewLessonsEnabled } from '../config/runtimeFlags';
 import { createProgressGateway, type JourneyProgressSummary, type LearnProgressGateway } from '../learn/progress';
 import { createJourneyDrawerState, JourneyDrawer } from '../learn/JourneyDrawer';
 import { ResponsiveMedia } from '../learn/ResponsiveMedia';
@@ -24,7 +24,7 @@ import './app.css';
 
 type Navigate = (destination: string) => void;
 type DiscoveryAppProps = {
-  route: Exclude<ChronosRoute, { name: 'learn' | 'legacy' }>;
+  route: Exclude<ChronosRoute, { name: 'learn' | 'legacy' | 'audit' }>;
   content?: ChronosContentBundle;
   journeyGatewayFactory?: () => Promise<JourneyStateGateway>;
   progressGatewayFactory?: () => Promise<LearnProgressGateway>;
@@ -184,6 +184,7 @@ export function DiscoveryApp({ route, content = chronosContent, journeyGatewayFa
     onTheme={toggleTheme}
     onWorldHistory={drawerContext ? openWorldHistory : undefined}
     worldHistoryOpen={drawer}
+    auditMode={unlockPreviewLessonsEnabled()}
   />;
   const worldHistoryDrawer = drawerContext ? <JourneyDrawer
     open={drawer}

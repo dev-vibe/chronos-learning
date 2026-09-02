@@ -7,6 +7,7 @@
 .global-rail nav a svg,.global-rail nav button svg,.theme-button svg{width:20px}
 .global-rail nav a.active,.global-rail nav button.active{background:#ffffff12;color:#fff;box-shadow:inset 3px 0 var(--gold)}
 .theme-button{width:54px;cursor:pointer}
+.audit-nav{width:54px;min-height:42px;margin:0 0 8px;display:grid;place-items:center;border:1px solid #d19a3166;border-radius:8px;color:#e6b55f;text-decoration:none;font:700 .58rem/1.2 Inter,sans-serif;letter-spacing:.08em;text-transform:uppercase}
 .mobile-nav{display:none}
 
 @media(max-width:900px){
@@ -15,4 +16,6 @@
   .mobile-nav a,.mobile-nav button{min-height:50px;display:grid;place-items:center;gap:2px;border:0;border-radius:9px;background:transparent;color:var(--muted);text-decoration:none;font:inherit;font-size:.59rem;cursor:pointer}
   .mobile-nav a svg,.mobile-nav button svg{width:20px}
   .mobile-nav a.active,.mobile-nav button.active{background:color-mix(in srgb,var(--teal) 10%,transparent);color:var(--teal)}
+  .mobile-nav.with-audit{grid-template-columns:repeat(5,1fr)}
+  .mobile-nav .audit-nav{width:auto;min-height:50px;margin:0;border-color:color-mix(in srgb,var(--gold) 55%,var(--line));color:var(--bronze)}
 }
