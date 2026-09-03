@@ -295,7 +295,8 @@ Research-note identity/version: `docs/research/crossing-to-sahul.md` · 2026-09-
 Preview route: `/learn/lesson.humans.sahul-crossing`
 Preview flag: `VITE_UNLOCK_PREVIEW_LESSONS=true`
 Launch: `npm run lesson:preview -- --lesson lesson.humans.sahul-crossing`
-Prototype commit: pending push
+Prototype commit: `43c42be`
+Draft PR: https://github.com/dev-vibe/chronos-learning/pull/35
 Validation tier: high-risk
 Deterministic prototype gate: passed 2026-09-03
 
