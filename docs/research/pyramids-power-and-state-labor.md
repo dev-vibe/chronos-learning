@@ -589,6 +589,16 @@ Decorative media found earlier: none; every planned job answers a specific sourc
 Prompt mismatch found earlier: conspicuous absolute distractors; resolved with plausible context-versus-phase confusions.
 Unclear action hierarchy found earlier: none; browser verification confirmed prompt and completion behavior.
 
+### Plain-language correction — 3 September 2026
+
+Carlin identified the conclusion's “earlier Nile cultural or technical regime of materially different character and ability” as unsuitable for the intended reading level and requested a lesson-wide pass. The earlier proxy/ages 11–14 review missed this problem; its completion was not evidence that the language was clear enough.
+
+Revised all seven sections, both prompts and feedback, knowledge summaries, and four media captions/labels/alt descriptions. Replaced abstract phrases with concrete actions and objects: “structural assembly” becomes joined blocks, “subsurface anomalies” becomes patterns underground, and “exposure history” becomes how much light reached a stone surface. Explained mortar, radiocarbon dating, muons, and stone vessels at first use. Introduced the people and periods needed to follow the comparisons. Retained the approved earlier-Nile possibility in plain language, without turning it into a demonstrated monument date or builder attribution.
+
+Independent text-only learner-proxy review: Codex `reading_review`, 3 September 2026. Findings resolved: keep private-vessel precision tentative (“appear to show”); add Seti's approximate time anchor; avoid equating Predynastic with “before the first kings”; replace dangling plural labels in the Turin King List summary. This is a qualitative clarity/claim-fidelity review, not a measured reading-grade certification, child observation, or new rendered-layout approval.
+
+Stable lesson/module/prompt IDs, claim/source links, required sections, prompt requirements, media files, no-card decision, and publication/review states are unchanged. This is the Stage 18 correction path, not a new research direction or publication approval. Validation: content validation and implementation gate pass; the full suite passes 140/140 tests; production build passes with the existing large-chunk advisory. No new browser or hosted-content verification is claimed for this text-only correction.
+
 ## Sign-off status
 
 - [x] Recent-challenge research checkpoint considered by product owner before lesson build-out
