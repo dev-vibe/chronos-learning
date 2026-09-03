@@ -332,9 +332,9 @@ The selection check depends only on taught Giza evidence. The concise response r
 ## Learner-prototype review
 
 Prototype lesson ID: `lesson.egypt.pyramids-and-state-labor`
-Research-note identity/version: `ash-99-evidence-prototype-v4`
+Research-note identity/version: `ash-99-evidence-prototype-v5`
 Preview route: `/audit?on&next=%2Flearn%2Flesson.egypt.pyramids-and-state-labor` (enables browser-local audit mode before opening the draft)
-Prototype commit: [`9b34f23`](https://github.com/dev-vibe/chronos-learning/commit/9b34f23); Draft PR [#29](https://github.com/dev-vibe/chronos-learning/pull/29)
+Prototype commit: [`e8e23a6`](https://github.com/dev-vibe/chronos-learning/commit/e8e23a6); Draft PR [#29](https://github.com/dev-vibe/chronos-learning/pull/29)
 Validation tier: high-risk
 Deterministic prototype gate: passed 3 September 2026
 
@@ -371,10 +371,21 @@ Raw prototype supplied without intended diagnosis: yes; the reviewer received on
 
 Blocking findings: none. Every proxy revision was resolved before product review, and deterministic validation was rerun successfully.
 
+### Narrative-voice revision
+
+Product-owner feedback/date: Carlin Aylsworth / 3 September 2026
+Feedback: the evidence model was directionally right, but the learner experience felt too clerical.
+Disposition: returned to Stage 14A. Recast the opening around standing beneath the Great Pyramid; followed Merer’s crew through the Giza landscape; made the Osirion, Hawara, and vessel passages tactile and place-led; changed procedural headings and prompt language into ordinary learner-facing invitations; retained every claim boundary and the six-part reasoning model beneath the narrative.
+
+Fresh independent proxy result: no blockers. Narrative momentum, evidence reasoning, historical proportionality, visual jobs, and next-action clarity passed. The proxy’s bounded revisions were resolved by removing the apparent five-item/six-question mismatch, reducing Hawara’s name-and-date pileup, explaining the Osirion’s stone connector and broad date range in plain language, and replacing the generic `World Check` heading with `Build a case from one clue`.
+
+Real-shell follow-up: pass. The revised draft rendered at the exact lesson route with the new opening, simplified Hawara passage, revised final heading, and audit state visible. No publication state, media, card, or completion rule changed.
+
 ### Product/editorial review
 
 Reviewer/date: Carlin Aylsworth / pending
 State: pending
+Latest feedback: requested a less clerical learner voice on 3 September 2026; revision completed and returned for review. This response is not recorded as approval.
 Material decisions: approve or revise the title *Pyramids, Builders, and Evidence*; the essential question and six-link evidence model; Giza plus concise Osirion, Hawara, and vessel scope; the neutral earlier-Nile-regime wording; the explicit no-card decision; and the four planned visual jobs.
 Blocking findings: none.
 Explicit safe deferrals: the Sphinx, construction-function models, builders’ marks authenticity audit, systematic precision-decline analysis, complete Hawara testimonia, and deeper Osirion replication review remain in the Story Arc/Investigation research backlog. No final media, card, publication migration, unlock, review-state approval, or hosted production change occurs before product approval.
