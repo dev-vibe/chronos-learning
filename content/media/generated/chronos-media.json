@@ -1153,6 +1153,77 @@
       }
     },
     {
+      "id": "media.humans.jebel-irhoud-landscape-reconstruction",
+      "locator": {
+        "provider": "object-storage",
+        "bucket": "media-public",
+        "fallback": {
+          "path": "/images/optimized/human-origins/jebel-irhoud-landscape-reconstruction.optimized.jpg",
+          "width": 2119,
+          "height": 742
+        },
+        "variants": [
+          {
+            "objectKey": "human-origins/media.humans.jebel-irhoud-landscape-reconstruction/ae08fde6986bff63/optimized/ql-v1/480w-webp-lossless-9f7113bdc791fa43.webp",
+            "mimeType": "image/webp",
+            "bytes": 108400,
+            "sha256": "9f7113bdc791fa43704abd7870badbf306e93bcf1420e7ab867de5ccdb124ad5",
+            "width": 480,
+            "height": 168,
+            "compression": {
+              "profile": "ql-v1",
+              "codec": "webp",
+              "encoder": "webp-lossless"
+            },
+            "fidelity": {
+              "mode": "pixel-exact",
+              "psnrDb": null,
+              "meanAbsoluteError": 0,
+              "maximumChannelDelta": 0
+            }
+          },
+          {
+            "objectKey": "human-origins/media.humans.jebel-irhoud-landscape-reconstruction/ae08fde6986bff63/optimized/ql-v1/960w-webp-lossless-198fbaec36636be3.webp",
+            "mimeType": "image/webp",
+            "bytes": 401364,
+            "sha256": "198fbaec36636be372003dd2608086ed8f488db5de3abf2aa5697c7dd3a56c7a",
+            "width": 960,
+            "height": 336,
+            "compression": {
+              "profile": "ql-v1",
+              "codec": "webp",
+              "encoder": "webp-lossless"
+            },
+            "fidelity": {
+              "mode": "pixel-exact",
+              "psnrDb": null,
+              "meanAbsoluteError": 0,
+              "maximumChannelDelta": 0
+            }
+          },
+          {
+            "objectKey": "human-origins/media.humans.jebel-irhoud-landscape-reconstruction/ae08fde6986bff63/optimized/ql-v1/2119w-source-jpeg-ae08fde6986bff63.jpg",
+            "mimeType": "image/jpeg",
+            "bytes": 462521,
+            "sha256": "ae08fde6986bff63704ef9ad49bd961c47382d999cce14909e5a4ec759637a3b",
+            "width": 2119,
+            "height": 742,
+            "compression": {
+              "profile": "ql-v1",
+              "codec": "jpeg",
+              "encoder": "source-passthrough"
+            },
+            "fidelity": {
+              "mode": "pixel-exact",
+              "psnrDb": null,
+              "meanAbsoluteError": 0,
+              "maximumChannelDelta": 0
+            }
+          }
+        ]
+      }
+    },
+    {
       "id": "media.humans.jebel-irhoud-tools",
       "locator": {
         "provider": "object-storage",

@@ -150,8 +150,8 @@ Use one block below for every accepted image. Keep the actual reference and fina
 | --- | --- |
 | ![Reference comparison for <media-id>](<repository-relative-reference-path>) | ![Accepted final for <media-id>](<repository-relative-final-master-path>) |
 
-- Final master path, dimensions, and SHA-256:
-- Runtime/fallback path and SHA-256:
+- Final master path, dimensions, and SHA-256: (archival research copy; typically PNG)
+- Runtime/fallback path and SHA-256: (catalog `sourcePath` under `public/images/` plus optimized fallback; JPEG + `photo` when the archival file cannot meet ql-v1)
 - Reviewer/date/status:
 - Fidelity verdict — every locked invariant retained: yes | no (a `no` cannot be accepted)
 - Lesson-size verdict — evidence-bearing differences remain visually distinct on desktop and mobile: yes | no (a `no` cannot be accepted)

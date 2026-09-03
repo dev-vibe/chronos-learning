@@ -605,7 +605,7 @@ Do not invent an “MVP skip” for an approved recommended historical map, diag
 
 Rows marked **Preferred / optional** (for example an atmospheric hero when a diagram already carries the evidence encounter) may ship after the required and recommended assets, or wait for a bounded follow-up on the same issue when generation or rights block them.
 
-For every image or generated asset, follow the [media provenance research and generation prompt](../prompts/media-provenance-research-and-generation.md); after approval, follow the [media ingestion and publishing runbook](../architecture/media-publishing.md).
+For every image or generated asset, follow the [media provenance research and generation prompt](../prompts/media-provenance-research-and-generation.md); after visual approval, follow the [media ingestion and publishing runbook](../architecture/media-publishing.md). Git holds identity and provenance; Supabase Storage holds bytes; Postgres does not store image blobs. Prepare the runtime source before `media:add`: keep the archival master in research, use a JPEG catalog source and the `photo` preset for large reconstructions, and do not overwrite a different asset's identity. A ql-v1 size failure is ingest prep, not a storage-architecture problem.
 
 ### Mandatory raster image-edit workflow
 
@@ -802,7 +802,7 @@ Follow the existing bounded-module architecture:
 8. Export one `AuthoredContentModule` for the bounded lesson.
 9. Add the module to the small `content/chronos.ts` aggregation boundary. Do not move authored content into the aggregator.
 10. Add or update the relevant journey entry in `content/journeys/`.
-11. Update the media catalog/manifests through the pipeline, never by hand-editing generated outputs.
+11. Update the media catalog/manifests through the pipeline, never by hand-editing generated outputs. Follow the media publishing runbook's runtime-source prep before `media:add` / `media:build`.
 12. Add a committed Supabase migration for publication, required prompts, deterministic unlock configuration, and any reviewed legacy alias only after checkpoint approval.
 13. Keep unpublished or incomplete neighbors fail-closed and non-completable.
 14. Do not mark the lesson Review-ready while an approved Recommended map or core evidence visual remains unimplemented without explicit deferral.

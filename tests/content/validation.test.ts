@@ -122,7 +122,7 @@ it('publishes the eight reviewed World History lessons in journey order', () => 
   ]);
   expect(chronosContent.lessons.find((lesson) => lesson.id === 'lesson.humans.homo-sapiens-origins')).toMatchObject({
     status: 'published',
-    heroMediaId: 'media.humans.jebel-irhoud-excavation',
+    heroMediaId: 'media.humans.jebel-irhoud-landscape-reconstruction',
     promptIds: ['prompt.humans.best-supported-conclusion', 'prompt.humans.evidence-and-limit'],
     sectionIdsRequired: [
       'section.humans.skull-in-the-wrong-place',
