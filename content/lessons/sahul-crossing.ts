@@ -241,7 +241,7 @@ export const sahulCrossingMedia: MediaAsset[] = [
 export const sahulCrossingLesson: Lesson = {
   id: 'lesson.humans.sahul-crossing',
   legacyAliases: [],
-  status: 'draft',
+  status: 'published',
   title: 'Crossing to Sahul',
   masthead: 'About 65,000–50,000 years ago',
   place: 'Sahul',

@@ -42,14 +42,14 @@ afterEach(() => {
 });
 
 describe('Crossing to Sahul Learn preview', () => {
-  it('fails closed without preview unlock', () => {
+  it('opens the published lesson without preview unlock', async () => {
     setUnlockPreviewLessonsForTests(false);
     render(<LearnApp lessonId={LESSON_ID} gatewayFactory={async () => new PreviewGateway()} />);
-    expect(screen.getByRole('heading', { name: /not available/i })).toBeTruthy();
-    expect(screen.queryByRole('heading', { name: 'Crossing to Sahul' })).toBeNull();
+    expect(await screen.findByRole('heading', { name: 'Crossing to Sahul' })).toBeTruthy();
+    expect(screen.queryByText(/Not learner content/i)).toBeNull();
   });
 
-  it('renders the unpublished prototype with preview unlock', async () => {
+  it('renders all six sections with preview unlock', async () => {
     setUnlockPreviewLessonsForTests(true);
     render(<LearnApp lessonId={LESSON_ID} gatewayFactory={async () => new PreviewGateway()} />);
     expect(await screen.findByRole('heading', { name: 'Crossing to Sahul' })).toBeTruthy();

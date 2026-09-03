@@ -20,8 +20,7 @@
     "media:verify:remote": "tsx scripts/media/publish.ts --verify-only",
     "test:domain": "vitest run tests/domain tests/content tests/legacy tests/lesson",
     "test:hero-delivery": "node scripts/verify-hero-delivery.mjs",
-    "test": "vitest run",
-    "lesson:prepare-publication": "tsx scripts/lesson/prepare-publication.ts"
+    "test": "vitest run"
   },
   "dependencies": {
     "@fontsource/inter": "^5.2.8",

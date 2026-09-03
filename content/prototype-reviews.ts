@@ -1,5 +1,4 @@
 import type { LessonPrototypeReview } from '../src/infrastructure/content/prototypeReview';
-import { crossingToSahulPrototypeReview } from './prototype-reviews/crossing-to-sahul';
 
 /**
  * Development and authoring-only review metadata.
@@ -8,4 +7,4 @@ import { crossingToSahulPrototypeReview } from './prototype-reviews/crossing-to-
  * imports it only in Vite development preview mode, while lesson gate scripts
  * import it directly for deterministic validation.
  */
-export const chronosPrototypeReviews: readonly LessonPrototypeReview[] = [crossingToSahulPrototypeReview];
+export const chronosPrototypeReviews: readonly LessonPrototypeReview[] = [];

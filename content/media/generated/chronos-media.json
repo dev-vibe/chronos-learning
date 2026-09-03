@@ -1277,6 +1277,100 @@
       }
     },
     {
+      "id": "media.humans.madjedbebe-grinding-stones",
+      "locator": {
+        "provider": "object-storage",
+        "bucket": "media-public",
+        "fallback": {
+          "path": "/images/optimized/sahul/madjedbebe-grinding-stones.optimized.webp",
+          "width": 1770,
+          "height": 1987
+        },
+        "variants": [
+          {
+            "objectKey": "sahul/media.humans.madjedbebe-grinding-stones/0f7d7076cf66c618/optimized/ql-v1/480w-webp-q92-c79923a603470448.webp",
+            "mimeType": "image/webp",
+            "bytes": 49754,
+            "sha256": "c79923a6034704482d2837ab38a04a2b5ab69a9349860f4eabad3f372ff67b17",
+            "width": 480,
+            "height": 539,
+            "compression": {
+              "profile": "ql-v1",
+              "codec": "webp",
+              "encoder": "webp-lossy",
+              "quality": 92
+            },
+            "fidelity": {
+              "mode": "measured-quasi-lossless",
+              "psnrDb": 45.44,
+              "meanAbsoluteError": 0.679,
+              "maximumChannelDelta": 13
+            }
+          },
+          {
+            "objectKey": "sahul/media.humans.madjedbebe-grinding-stones/0f7d7076cf66c618/optimized/ql-v1/960w-webp-q92-36449b55651b4d27.webp",
+            "mimeType": "image/webp",
+            "bytes": 143218,
+            "sha256": "36449b55651b4d27fe1fd3451583eb6d2f47408a8a3be3b40993ee5125771405",
+            "width": 960,
+            "height": 1078,
+            "compression": {
+              "profile": "ql-v1",
+              "codec": "webp",
+              "encoder": "webp-lossy",
+              "quality": 92
+            },
+            "fidelity": {
+              "mode": "measured-quasi-lossless",
+              "psnrDb": 45.77,
+              "meanAbsoluteError": 0.643,
+              "maximumChannelDelta": 13
+            }
+          },
+          {
+            "objectKey": "sahul/media.humans.madjedbebe-grinding-stones/0f7d7076cf66c618/optimized/ql-v1/1600w-webp-q90-633e7f3c06725b20.webp",
+            "mimeType": "image/webp",
+            "bytes": 229358,
+            "sha256": "633e7f3c06725b2020d89b33ec5c65b083960083fdbd93ee644f5a20aa332456",
+            "width": 1600,
+            "height": 1796,
+            "compression": {
+              "profile": "ql-v1",
+              "codec": "webp",
+              "encoder": "webp-lossy",
+              "quality": 90
+            },
+            "fidelity": {
+              "mode": "measured-quasi-lossless",
+              "psnrDb": 45.42,
+              "meanAbsoluteError": 0.657,
+              "maximumChannelDelta": 16
+            }
+          },
+          {
+            "objectKey": "sahul/media.humans.madjedbebe-grinding-stones/0f7d7076cf66c618/optimized/ql-v1/1770w-webp-q90-fb713276bf470987.webp",
+            "mimeType": "image/webp",
+            "bytes": 261296,
+            "sha256": "fb713276bf47098724ee4a47ab837a954635bb90a13bab26197d104038e0a0f4",
+            "width": 1770,
+            "height": 1987,
+            "compression": {
+              "profile": "ql-v1",
+              "codec": "webp",
+              "encoder": "webp-lossy",
+              "quality": 90
+            },
+            "fidelity": {
+              "mode": "measured-quasi-lossless",
+              "psnrDb": 45.76,
+              "meanAbsoluteError": 0.627,
+              "maximumChannelDelta": 16
+            }
+          }
+        ]
+      }
+    },
+    {
       "id": "media.humans.migrations-hero-map",
       "locator": {
         "provider": "object-storage",
@@ -1389,6 +1483,58 @@
               "profile": "ql-v1",
               "codec": "webp",
               "encoder": "webp-lossless"
+            },
+            "fidelity": {
+              "mode": "pixel-exact",
+              "psnrDb": null,
+              "meanAbsoluteError": 0,
+              "maximumChannelDelta": 0
+            }
+          }
+        ]
+      }
+    },
+    {
+      "id": "media.humans.sahul-landmass-map",
+      "locator": {
+        "provider": "object-storage",
+        "bucket": "media-public",
+        "fallback": {
+          "path": "/images/optimized/sahul/sahul-landmass-map.optimized.jpg",
+          "width": 1317,
+          "height": 1194
+        },
+        "variants": [
+          {
+            "objectKey": "sahul/media.humans.sahul-landmass-map/b32a253d16690ef9/optimized/ql-v1/480w-webp-lossless-a87c4a9b97e3b59b.webp",
+            "mimeType": "image/webp",
+            "bytes": 229888,
+            "sha256": "a87c4a9b97e3b59b87037f8232a75790ca6c3299fa86ae6af3931b206bb01f70",
+            "width": 480,
+            "height": 435,
+            "compression": {
+              "profile": "ql-v1",
+              "codec": "webp",
+              "encoder": "webp-lossless"
+            },
+            "fidelity": {
+              "mode": "pixel-exact",
+              "psnrDb": null,
+              "meanAbsoluteError": 0,
+              "maximumChannelDelta": 0
+            }
+          },
+          {
+            "objectKey": "sahul/media.humans.sahul-landmass-map/b32a253d16690ef9/optimized/ql-v1/1317w-source-jpeg-b32a253d16690ef9.jpg",
+            "mimeType": "image/jpeg",
+            "bytes": 595601,
+            "sha256": "b32a253d16690ef94d789375f59d47f40e2b380366477adec0cf2694a4de5fb3",
+            "width": 1317,
+            "height": 1194,
+            "compression": {
+              "profile": "ql-v1",
+              "codec": "jpeg",
+              "encoder": "source-passthrough"
             },
             "fidelity": {
               "mode": "pixel-exact",

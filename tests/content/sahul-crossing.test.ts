@@ -7,18 +7,18 @@ import { selectJourneyNextAction } from '../../src/domains/journeys/state';
 const LESSON_ID = 'lesson.humans.sahul-crossing';
 const world = chronosContent.journeys[0];
 
-describe('Crossing to Sahul unpublished prototype', () => {
+describe('Crossing to Sahul published lesson', () => {
   afterEach(() => setUnlockPreviewLessonsForTests(undefined));
 
-  it('keeps the lesson draft and fail-closed outside preview unlock', () => {
+  it('opens the published lesson without preview unlock', () => {
     const lesson = chronosContent.lessons.find((item) => item.id === LESSON_ID);
     expect(lesson).toMatchObject({
-      status: 'draft',
+      status: 'published',
       title: 'Crossing to Sahul',
       mediaIds: ['media.humans.sahul-landmass-map', 'media.humans.madjedbebe-grinding-stones'],
     });
     setUnlockPreviewLessonsForTests(false);
-    expect(isLessonOpenable(lesson!)).toBe(false);
+    expect(isLessonOpenable(lesson!)).toBe(true);
   });
 
   it('sits after Migrations and before Many Beginnings without implying Ice Age exists', () => {
@@ -36,7 +36,7 @@ describe('Crossing to Sahul unpublished prototype', () => {
     expect(entries).not.toContain('lesson.humans.ice-age-lifeways');
   });
 
-  it('skips the draft in production next-action and opens it only in preview', () => {
+  it('offers Sahul after Migrations in production and preview', () => {
     const migrationsDone = {
       'lesson.humans.homo-sapiens-origins': { lessonId: 'lesson.humans.homo-sapiens-origins', status: 'completed' as const },
       'lesson.humans.migrations-and-interbreeding': { lessonId: 'lesson.humans.migrations-and-interbreeding', status: 'completed' as const },
@@ -45,7 +45,7 @@ describe('Crossing to Sahul unpublished prototype', () => {
     setUnlockPreviewLessonsForTests(false);
     expect(selectJourneyNextAction(world, chronosContent.lessons, migrationsDone, 'lesson.humans.migrations-and-interbreeding')).toEqual({
       kind: 'lesson',
-      lessonId: 'lesson.farming.multiple-origins',
+      lessonId: LESSON_ID,
       source: 'next',
     });
 

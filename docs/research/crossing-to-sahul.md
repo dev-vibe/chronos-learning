@@ -5,7 +5,7 @@ Lesson ID: `lesson.humans.sahul-crossing`
 World Spine position: 3
 Journey/chapter/position: `journey.world-history` / `chapter.world-history.human-beginnings` / entry position 2
 Linear: [ASH-109](https://linear.app/ashs-workshop/issue/ASH-109/research-and-publish-crossing-to-sahul)
-Queue status: **Implementing**
+Queue status: **Review**
 Accountable reviewer: Carlin Aylsworth
 Validation tier: **high-risk**
 
@@ -19,7 +19,7 @@ Carlin requested a second pass on section structure and page writing for preteen
 
 The revised page follows geography → required sea travel → planning → dating evidence → other evidence → World Check. Planning now follows the obstacle it explains. Headings name their subjects, the Madjedbebe explanation distinguishes younger tools from older surrounding sand, and the ending gives later coastal traditions their own context. The selection prompt now tests what researchers must establish about tools and sand, with plausible alternatives instead of obviously impossible answers. Its learning objective and correct-option ID are retained; replacement distractors have new IDs.
 
-Current preview: [Crossing to Sahul](http://localhost:3001/learn/lesson.humans.sahul-crossing). Launch with `npm run lesson:preview -- --lesson lesson.humans.sahul-crossing`; the available port may differ. The draft remains unpublished, with product review **pending**. Earlier review records below describe the earlier wording and are retained as history; the current review is recorded here.
+Current preview: [Crossing to Sahul](http://localhost:3001/learn/lesson.humans.sahul-crossing). Launch with `npm run lesson:preview -- --lesson lesson.humans.sahul-crossing`; the available port may differ. The revised prototype was approved by Carlin on 2026-09-03; final implementation is in progress. Earlier review records below describe the earlier wording and are retained as history; the current review is recorded here.
 
 ### Review of the revised text
 
@@ -463,8 +463,8 @@ Contract disposition after revision: **PASS.** No finding returns the lesson to 
 
 ### Product/editorial review
 
-Reviewer/date: Carlin Aylsworth / pending
-State: **pending**
+Reviewer/date: Carlin Aylsworth / 2026-09-03
+State: **approved** — see the current product-owner directive above.
 Material decisions: range chronology; supporting DNA beat; planning as bounded conclusion; no megafauna; later-tradition sentence; no-card prototype; two planned visuals.
 Blocking findings: none from proxy.
 Explicit safe deferrals: final map and Madjedbebe evidence image; Sahul place card art; publication migration.
@@ -505,9 +505,19 @@ Approve a six-section unpublished lesson that treats first arrival as an evidenc
 | --- | --- |
 | Recent-challenge checkpoint | Considered by Carlin 2026-09-03; editorial discretion recorded |
 | Research/source review | Complete for prototype |
-| Claim and uncertainty review | Complete for prototype; editorial review still required |
+| Claim and uncertainty review | Complete; existing evidence and uncertainty bounds retained |
 | Learning blueprint and storyboard | Complete for prototype |
-| Media/provenance plan | Intentions only; no final assets |
-| Learner-prototype checkpoint | **Pending Carlin** |
-| Runtime implementation | Unpublished draft in the real Learn shell |
-| Publication | Fail-closed; no migration |
+| Media/provenance plan | Map and direct-use stone scans implemented; full provenance above |
+| Learner-prototype checkpoint | Approved by Carlin 2026-09-03 |
+| Runtime implementation | Finished; publication status prepared on branch; full local completion smoke passed |
+| Publication | Migration generated; Storage upload and database cutover pending server credential |
+
+## Final implementation and release work
+
+The approved map, Madjedbebe scans, and deterministic Sahul place card are implemented. The map uses 480 px and original-width 1317 px delivery variants: the intermediate 960 px encoding could not meet both the unchanged fidelity threshold and byte cap. Keeping the passing sizes preserves the complete map and the existing quality policy.
+
+The branch incorporates the completed Egypt lesson from main after Git reported merge conflicts. No neighboring lesson was removed or republished. Storage upload and hosted completion verification remain pending the project server credential.
+
+Release gate passed 2026-09-03 before the canonical prepare-publication command. Content validation, 50 domain/content/lesson tests, and two targeted Learn tests pass. The local browser smoke accepted both prompts, completed explicitly, revealed the full-map card, reopened at the top, and showed no prototype notes, missing images, or mobile overflow. Publication migration: `supabase/migrations/20260903234946_publish_sahul_crossing.sql`; database test: `supabase/tests/013_sahul_crossing.sql`. Neither database cutover nor production go-live is claimed here.
+
+Current hosted review route: [Crossing to Sahul](https://chronos-learning-git-carlinaylsworth-97b08f-dev-vibes-projects.vercel.app/learn/lesson.humans.sahul-crossing). The preview uses committed image fallbacks until Storage upload is complete.

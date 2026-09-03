@@ -19,18 +19,18 @@ describe('lesson publication plan', () => {
       snapshotVersion: 'multiple-origins-v1',
       journeyId: 'journey.world-history',
       entryId: 'entry.world-history.multiple-origins',
-      journeyPosition: 2,
+      journeyPosition: 3,
       required: true,
       requiredPromptIds: ['prompt.farming.multi.what-evidence-supports', 'prompt.farming.multi.explain-independent'],
       cardIds: [],
-      previousLessonId: 'lesson.humans.migrations-and-interbreeding',
+      previousLessonId: 'lesson.humans.sahul-crossing',
     });
     expect(plan.aliases).toEqual([
       expect.objectContaining({ legacyId: 'neolithic_revolution', semanticallyEquivalent: true }),
     ]);
     const sql = renderPublicationMigration(plan);
     expect(sql).not.toContain('knowledge_cards');
-    expect(sql).toContain("values ('entry.world-history.multiple-origins', 'journey.world-history', 'lesson.farming.multiple-origins', 2, true)");
+    expect(sql).toContain("values ('entry.world-history.multiple-origins', 'journey.world-history', 'lesson.farming.multiple-origins', 3, true)");
     const testSql = renderPublicationDatabaseTest(plan);
     expect(testSql).toContain('not-configured');
     const planned = Number(testSql.match(/select plan\((\d+)\)/)?.[1]);
@@ -58,7 +58,7 @@ describe('lesson publication plan', () => {
     const farming = bundle.lessons.find((lesson) => lesson.id === 'lesson.farming.multiple-origins')!;
     farming.status = 'draft';
     const plan = planLessonPublication(bundle, 'lesson.farming.multiple-origins');
-    expect(plan.journeyPosition).toBe(2);
+    expect(plan.journeyPosition).toBe(3);
     expect(plan.shiftLaterEntries).toBe(true);
     expect(renderPublicationMigration(plan)).toContain('position + 100');
   });
