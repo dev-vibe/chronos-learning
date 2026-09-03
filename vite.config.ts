@@ -28,6 +28,7 @@ export default defineConfig(({ mode }) => {
       },
       test: {
         setupFiles: ['./tests/setup.ts'],
+        exclude: ['node_modules/**', 'dist/**', '.worktrees/**'],
       },
     };
 });

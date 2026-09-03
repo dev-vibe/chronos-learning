@@ -26,7 +26,7 @@ On that request, the agent must perform this boot sequence without asking the us
 10. Execute Stages 0–3B and present the mandatory recent-challenge research packet. Keep the queue row `Researching` and stop before claim selection, learning design, learner prose, media planning, or prototype implementation. Continue only after the product owner has considered the packet and responded with corrections, priorities, or permission to proceed.
 11. Incorporate that response into the research note, then execute Stages 4–14B through the product-review request. Produce the durable research/editorial note, a complete unpublished typed lesson in the real Learn shell, and the learner-prototype decision packet.
 12. Commit and push the research and learner-prototype checkpoint, update Linear, set the queue row to `Awaiting approval`, and ask the user to approve only the material decisions identified by the runbook. Do not make the user repeat operational instructions.
-13. After approval, continue on the same issue, branch, and PR through Stages 15–18. Set the queue row to `Implementing`, then `Review`, and finally `Complete` only when the corresponding gates pass.
+13. After approval, continue on the same issue, branch, and PR through Stages 15–18. Set the queue row to `Implementing`, then `Review`, and finally `Complete` only when the corresponding gates pass. A request to publish an already-approved lesson follows [`docs/content/lesson-publication.md`](lesson-publication.md); do not restart research or the quality contract.
 14. When the lesson becomes `Complete`, ensure the queue still has reviewed future candidates. If fewer than three candidates remain, flag curriculum-queue replenishment without inventing entries.
 
 The agent may ask an early question only when a missing decision materially changes lesson identity, curriculum order, audience, or scope and cannot be resolved from the queue, repository, PRD, or existing issue. Ordinary research and implementation choices belong to this runbook.
@@ -72,6 +72,14 @@ The packet must concisely show:
 
 The accountable reviewer must inspect the prototype, not only the packet. An agent or proxy may not approve on that person's behalf. Any blocking finding returns the lesson to Stage 14A. The user should be able to respond with “approved” or a few substantive changes. After explicit approval, the agent records the decision and continues without requiring a second implementation prompt.
 
+### Preview-link handoff contract
+
+Every learner-prototype, implementation, review, and correction handoff must include a clickable Markdown link directly to the current lesson preview in the final user-facing response. Repeat the link every time, including after a one-line copy change or when the URL has not changed. Do not rely on a link in earlier commentary, a previous turn, a PR, or an editorial record. A PR link, source-file link, bare route, or app homepage does not replace the lesson preview.
+
+Use the actual branch/deployment URL and exact lesson route, retaining any required preview/audit query parameters. Prefer the current hosted branch preview; identify it as a preview rather than production. If deployment is pending or access requires sign-in, include the known link with that caveat and do not claim the latest content is verified there. If no hosted preview exists, link a running local preview and state that it is local; if neither is available, explain the blocker rather than inventing a URL. Before a learner prototype exists, link the actual research packet being presented instead.
+
+Before sending the final response, check: **Can the user open the lesson being discussed from this message alone?**
+
 ## Five operational phases
 
 Use the stages through these five production phases. Stage numbers remain stable so existing research notes and issue history continue to resolve.
@@ -82,7 +90,7 @@ Use the stages through these five production phases. Stage numbers remain stable
 | Research and model | 2–7 | The recent-challenge audit has been considered by the product owner; sources, claims, scope, learning model, and ages 11–14 transformations are reviewable. |
 | Prototype and review | 8–14B | A complete draft is rendered in the real Learn shell and passes proxy/product review. |
 | Implement | 15 | Approved content, media, provenance, card, and publication configuration are production-ready. |
-| Validate and publish | 16–18 | Quality, technical, learner, publication, and correction gates are satisfied. |
+| Validate and publish | 16–18 | Implementation is internally consistent; go-live is the mechanical cutover in the publication playbook. |
 
 ## What this runbook protects
 
@@ -120,6 +128,7 @@ Use these specialist runbooks when triggered:
 - Historical maps: [`docs/content/historical-map-production.md`](historical-map-production.md)
 - Image research, rights, provenance, or generation: [`docs/prompts/media-provenance-research-and-generation.md`](../prompts/media-provenance-research-and-generation.md)
 - Asset ingestion, responsive derivatives, publishing, and rollback: [`docs/architecture/media-publishing.md`](../architecture/media-publishing.md)
+- Publishing an already-approved lesson: [`docs/content/lesson-publication.md`](lesson-publication.md)
 
 The specialist runbooks own their details. This document decides when they are needed and how their outputs fit the lesson.
 
@@ -795,7 +804,7 @@ Follow the existing bounded-module architecture:
 9. Add the module to the small `content/chronos.ts` aggregation boundary. Do not move authored content into the aggregator.
 10. Add or update the relevant journey entry in `content/journeys/`.
 11. Update the media catalog/manifests through the pipeline, never by hand-editing generated outputs. Follow the media publishing runbook's runtime-source prep before `media:add` / `media:build`.
-12. Add a committed Supabase migration for publication, required prompts, deterministic unlock configuration, and any reviewed legacy alias only after checkpoint approval.
+12. Do not hand-author the publication SQL. `npm run lesson:prepare-publication` writes the committed migration and database test at go-live from the authored lesson.
 13. Keep unpublished or incomplete neighbors fail-closed and non-completable.
 14. Do not mark the lesson Review-ready while an approved Recommended map or core evidence visual remains unimplemented without explicit deferral.
 15. Reject any lesson-media SVG or hand/procedurally drawn diagram. Verify that every diagram-like asset has a recorded raster reference and image-edit lineage before registering it.
@@ -805,24 +814,31 @@ Use stable IDs everywhere. Array position is not identity. Do not duplicate less
 
 # Phase 5 — Validate and publish
 
-## Stage 16 — Run the review gates
+## Stage 16 — Confirm the lesson is ready to publish
 
-The lesson is not publishable until every applicable item in the [lesson quality contract](lesson-production/lesson-quality-contract.md) passes or the accountable reviewer records an explicit safe deferral. Stage 16 repeats the full contract against production content and final media; Stage 14B's prototype pass is not a substitute.
+Run `npm run lesson:gate -- --lesson <lesson-id> --note <path> --gate implementation` before moving the queue row to `Review`. If legacy code has documented failures, report the exact baseline and prove there are no new failures in changed paths. Do not normalize a new error as “legacy.”
 
-Run at minimum:
+Stage 16 is a consistency check, not a second editorial review. The quality contract was applied at Stage 14B against the rendered prototype. If final media changed after that approval, inspect only the changed assets in the Learn shell. Do not recapture a desktop/mobile/light/dark matrix, re-score pedagogy, or relaunch a proxy reviewer.
+
+Run:
 
 ```text
+npm run lesson:gate -- --lesson <lesson-id> --note <path> --gate implementation
 npm run validate:content
-npm run media:verify
 npm run test:domain
-npm test
-npm run typecheck
-npm run build
 ```
 
-Run `npm run lesson:gate -- --lesson <lesson-id> --note <path> --gate implementation` before moving the queue row to `Review`, then run the `release` gate before publication. If legacy code has documented failures, report the exact baseline and prove there are no new failures in changed paths. Do not normalize a new error as “legacy.”
+CI on the pull request runs the full test suite, typecheck, and production build. Do not wait on a local `npm test` / `npm run build` loop before asking the product owner to publish.
 
-For every final image, open the rendered research note and inspect the reference and accepted final together. Confirm that the intended teaching relationship survived, protected or irrelevant expression was not copied, uncertainty did not become false precision, and no unsupported element was introduced. Paths, hashes, and an approved `MediaAsset` are necessary but do not replace this visual comparison.
+Then run the `release` gate. It must pass while the lesson is still a draft:
+
+```text
+npm run lesson:gate -- --lesson <lesson-id> --note <path> --gate release
+```
+
+Ask the product owner to publish. After that yes, follow [`docs/content/lesson-publication.md`](lesson-publication.md). Do not repeat this stage.
+
+For every final image that changed after the last product-owner look, open the rendered research note and inspect the reference and accepted final together. Confirm that the intended teaching relationship survived, protected or irrelevant expression was not copied, uncertainty did not become false precision, and no unsupported element was introduced. Paths, hashes, and an approved `MediaAsset` are necessary but do not replace this visual comparison.
 
 ## Stage 17 — Reserve future family and public-release UAT
 
@@ -844,16 +860,17 @@ Record observed behavior and any resulting revision in the research note. Fix th
 
 ## Stage 18 — Publish, monitor, and correct
 
+After the product owner says to publish, follow [`docs/content/lesson-publication.md`](lesson-publication.md). That playbook is the procedure. Do not rediscover Supabase, Vercel, storage, or browser-automation skills, and do not repeat Stages 0–16.
+
 Publication sequence:
 
-1. Resolve or explicitly defer every review note.
-2. Mark sources, claims, media, lesson, and card with the correct reviewed/approved states.
-3. Apply only committed migrations to the Chronos development project.
-4. Verify hosted publication configuration, required prompts, legacy aliases, and unlocks.
-5. Run security/performance advisors and behavioral completion tests.
-6. Complete responsive browser verification and capture representative PR screenshots.
-7. Update the Linear issue and PR with research basis, validation, limitations, reviewer checklist, and preview link.
-8. Merge only after review; deploy through the normal release path.
+1. Run `npm run lesson:prepare-publication -- --lesson <id> --note <path> --issue <ASH-n> --write --apply-status`.
+2. Run `npm run validate:content` and `npm run test:domain`.
+3. Publish only this lesson’s approved media assets. Do not rebuild the whole catalog.
+4. Apply the committed migration to the Chronos development project.
+5. Smoke the hosted preview once: sincere attempts, explicit completion, reopen at the top.
+6. Push the branch and let CI run the full suite. Update the Linear issue and PR with the preview link.
+7. Merge only after review; deploy through the normal release path.
 
 After release, monitor:
 
@@ -870,7 +887,8 @@ For a correction:
 3. update the research note, source/claim ledger, content, media, tests, and migration/configuration as applicable;
 4. preserve stable IDs when the lesson remains semantically equivalent;
 5. create a new canonical lesson or reviewed mapping decision when meaning changes materially;
-6. record the correction and reviewer decision in Git and Linear.
+6. record the correction and reviewer decision in Git and Linear;
+7. include the direct lesson preview link in the final response, following the preview-link handoff contract above—even for a small text-only correction.
 
 # Reusable templates
 
@@ -890,7 +908,8 @@ A lesson is done only when:
 - every accepted image has an obvious, rendered reasoning → reference → exact prompt/transformation → final lifecycle record;
 - evidence and uncertainty are honest and understandable;
 - repository modules, journey framing, media, migrations, and stable IDs are coherent;
-- validation, tests, build, database behavior, accessibility, and responsive preview pass;
+- the publication playbook has been followed rather than rediscovered;
+- validation, tests, build, database behavior, accessibility, and responsive preview pass or are covered by CI after a publication smoke check;
 - accountable humans have reviewed the historical/editorial and publication decisions;
 - the learner can explain the central idea and use evidence—not merely reach the bottom.
 

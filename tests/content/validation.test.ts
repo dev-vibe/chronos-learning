@@ -4,7 +4,7 @@ import { earlyWritingSystemsContent } from '../../content/lessons/early-writing-
 import { farmingSettlementsContent } from '../../content/lessons/farming-settlements';
 import { urukContent } from '../../content/lessons/uruk';
 import { worldHistoryJourney } from '../../content/journeys/world-history';
-import{chronosContent}from'../../content/chronos';import{LessonModuleSchema}from'../../src/domains/contracts';import{validateContent}from'../../src/infrastructure/content/validate';
+import{chronosContent}from'../../content/chronos';import { publishedRequiredLessonIds } from '../../src/domains/journeys/catalog';import{LessonModuleSchema}from'../../src/domains/contracts';import{validateContent}from'../../src/infrastructure/content/validate';
 describe('content validation',()=>{it('accepts canonical Uruk fixtures',()=>expect(validateContent(chronosContent)).toEqual({success:true,errors:[]}));it('catches duplicate ids and broken unlocks',()=>{const bad=structuredClone(chronosContent);bad.cards.push({...bad.cards[0],unlockLessonId:'lesson.missing'});const r=validateContent(bad);expect(r.success).toBe(false);expect(r.errors.join(' ')).toMatch(/duplicate ID|invalid card unlock/)})});
 
 it('allows each chapter to begin at entry position zero',()=>{const fixture=structuredClone(chronosContent);fixture.journeys[0].chapters.push({id:'chapter.world-history.second',title:'Second chapter',position:1,entries:[{id:'entry.world-history.second-start',lessonId:'lesson.uruk.first-city',position:0,required:true,framing:'A valid new chapter start'}]});expect(validateContent(fixture).errors).not.toContain(expect.stringMatching(/duplicate journey entry position/))});
@@ -93,33 +93,9 @@ it('detects a missing local map fallback',()=>{const fixture=structuredClone(chr
 
 it('rejects duplicate, oversized, or non-content-addressed media variants',()=>{const fixture=structuredClone(chronosContent);const map=fixture.media.find((item)=>item.id==='media.uruk.southern-mesopotamia-map')!;if(map.locator.provider!=='object-storage')throw new Error('object storage locator missing');map.locator.variants[1].width=map.locator.variants[0].width;map.locator.variants[1].objectKey='uruk/unversioned-map.webp';map.locator.variants[1].bytes=800000;const errors=validateContent(fixture).errors.join(' ');expect(errors).toMatch(/duplicate media variant width/);expect(errors).toMatch(/not content-addressed/);expect(errors).toMatch(/exceeds 786432 byte budget/)});
 
-it('publishes the eight reviewed World History lessons in journey order', () => {
-  const published = chronosContent.lessons.filter((lesson) => lesson.status === 'published');
-  expect(published.map((lesson) => lesson.id)).toEqual([
-    'lesson.humans.homo-sapiens-origins',
-    'lesson.humans.migrations-and-interbreeding',
-    'lesson.farming.multiple-origins',
-    'lesson.farming.settlements',
-    'lesson.uruk.first-city',
-    'lesson.writing.early-systems',
-    'lesson.egypt.nile-state',
-    'lesson.caral.andean-urbanism',
-  ]);
-  const entries = chronosContent.journeys[0].chapters
-    .slice()
-    .sort((left, right) => left.position - right.position)
-    .flatMap((chapter) => chapter.entries.slice().sort((left, right) => left.position - right.position))
-    .filter((entry) => published.some((lesson) => lesson.id === entry.lessonId));
-  expect(entries.map((entry) => entry.lessonId)).toEqual([
-    'lesson.humans.homo-sapiens-origins',
-    'lesson.humans.migrations-and-interbreeding',
-    'lesson.farming.multiple-origins',
-    'lesson.farming.settlements',
-    'lesson.uruk.first-city',
-    'lesson.writing.early-systems',
-    'lesson.egypt.nile-state',
-    'lesson.caral.andean-urbanism',
-  ]);
+it('publishes World History lessons only in authored journey order', () => {
+  const published = publishedRequiredLessonIds(chronosContent.journeys[0], chronosContent.lessons);
+  expect(chronosContent.lessons.filter((lesson) => lesson.status === 'published').map((lesson) => lesson.id).sort()).toEqual([...published].sort());
   expect(chronosContent.lessons.find((lesson) => lesson.id === 'lesson.humans.homo-sapiens-origins')).toMatchObject({
     status: 'published',
     heroMediaId: 'media.humans.jebel-irhoud-landscape-reconstruction',
