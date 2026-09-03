@@ -125,8 +125,8 @@ describe('learner journey state', () => {
     };
     expect(deriveJourneyProgress(world, chronosContent.lessons, summaries)).toEqual({
       completed: 2,
-      total: 8,
-      percent: 25,
+      total: 9,
+      percent: 22,
       isCompleted: false,
     });
     const state = createDefaultJourneyState(fixtureContent.journeys, fixtureContent.lessons);
@@ -171,7 +171,12 @@ describe('learner journey state', () => {
     expect(selectJourneyNextAction(world, chronosContent.lessons, {
       ...spineThroughEgypt,
       'lesson.caral.andean-urbanism': { lessonId: 'lesson.caral.andean-urbanism', status: 'completed' as const },
-    }, 'lesson.caral.andean-urbanism')).toEqual({ kind: 'complete' });
+    }, 'lesson.caral.andean-urbanism')).toEqual({ kind: 'lesson', lessonId: 'lesson.egypt.pyramids-and-state-labor', source: 'next' });
+    expect(selectJourneyNextAction(world, chronosContent.lessons, {
+      ...spineThroughEgypt,
+      'lesson.caral.andean-urbanism': { lessonId: 'lesson.caral.andean-urbanism', status: 'completed' as const },
+      'lesson.egypt.pyramids-and-state-labor': { lessonId: 'lesson.egypt.pyramids-and-state-labor', status: 'completed' as const },
+    }, 'lesson.egypt.pyramids-and-state-labor')).toEqual({ kind: 'complete' });
   });
 
   it('preserves an accessible incomplete optional active lesson without counting it as required progress', () => {
@@ -200,8 +205,8 @@ describe('published catalog and authored invitations', () => {
     expect(catalog.groups['civilizations-regions'].map((item) => item.id)).toEqual([optionalJourney.id]);
     expect(catalog.groups['ideas-across-time'].map((item) => item.id)).toEqual([optionalIdea.id]);
     expect(catalog.groups.investigations).toEqual([]);
-    expect(catalog.worldHistory?.lessonCount).toBe(8);
-    expect(catalog.worldHistory?.requiredLessonCount).toBe(8);
+    expect(catalog.worldHistory?.lessonCount).toBe(9);
+    expect(catalog.worldHistory?.requiredLessonCount).toBe(9);
   });
 
   it('selects at most one eligible invitation by priority and stable ID', () => {

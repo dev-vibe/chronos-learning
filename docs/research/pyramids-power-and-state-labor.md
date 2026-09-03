@@ -599,6 +599,16 @@ Independent text-only learner-proxy review: Codex `reading_review`, 3 September 
 
 Stable lesson/module/prompt IDs, claim/source links, required sections, prompt requirements, media files, no-card decision, and publication/review states are unchanged. This is the Stage 18 correction path, not a new research direction or publication approval. Validation: content validation and implementation gate pass; the full suite passes 140/140 tests; production build passes with the existing large-chunk advisory. No new browser or hosted-content verification is claimed for this text-only correction.
 
+### Publication approval and release preparation — 3 September 2026
+
+Carlin accepted the revised lesson (“this is very perfect”) and explicitly authorized publication (“yes!” in response to taking Egypt through release checks, publication, merge, and production verification). This closes the accountable final lesson/media/publication approval checkpoint. Source and claim records are promoted to reviewed; historical certainty labels are unchanged. The accepted four images and no-card decision remain unchanged.
+
+The release gate passed while the lesson was still a draft with its approved prototype metadata. Publication then removes that metadata from the active registry and sets the canonical lesson to published. The archived prototype record remains available for provenance. Migration `20260903210905_publish_pyramids_builders_evidence.sql` adds only this lesson, its ninth published World History entry, two required prompts, and completion configuration. Legacy navigation aliases remain semantically unapproved for completion transfer: the new four-case reasoning task is not equivalent to old Imhotep/pyramid work.
+
+Baseline hosted advisors: one warning for the intentionally authenticated security-definer completion RPC; it already checks `auth.uid()`, publication, required attempts, and idempotency, and has no anonymous execution grant. No function, grant, RLS policy, or learner data is changed by this publication migration. Performance notices are unused-index informational findings. See [security-definer advisor guidance](https://supabase.com/docs/guides/database/database-linter?lint=0029_authenticated_security_definer_function_executable) and [unused-index guidance](https://supabase.com/docs/guides/database/database-linter?lint=0005_unused_index). Deployment and hosted behavior verification remain in progress until recorded below.
+
+Release regression results: content validation, 24 focused domain/content/legacy tests, and all 143 repository tests pass. Production build passes with the existing bundle-size advisory. The independent release reviewer found no blocking defect and confirmed that learner text/media/prompt content is unchanged by publication. Added `supabase/tests/012_pyramids_builders_evidence.sql`; all 17 assertions pass against the hosted schema with the migration and test user enclosed in one rolled-back transaction. This covers missing/partial attempts, no-card completion, retry idempotency, unchanged Caral progress, alias safeguards, and blocked Indus completion. No test user or progress is retained. A fresh local empty-database replay was unavailable because the Docker daemon is not running; the migration contains data inserts/updates only, and its exact statements were exercised transactionally against the target schema before application.
+
 ## Sign-off status
 
 - [x] Recent-challenge research checkpoint considered by product owner before lesson build-out
@@ -609,7 +619,7 @@ Stable lesson/module/prompt IDs, claim/source links, required sections, prompt r
 - [x] Desktop/mobile and light/dark real-shell prototype inspected
 - [x] Explicit no-card decision recorded
 - [x] Product-owner learner-prototype checkpoint approved
-- [ ] Final media lifecycle and rights review complete — lifecycle and proxy review pass; accountable product-owner inspection pending
+- [x] Final media lifecycle and rights review complete — lifecycle and proxy review pass; product-owner acceptance and publication approval recorded September 3
 - [ ] Implementation and release gates complete
 - [ ] Publication migration and hosted verification complete
 

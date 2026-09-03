@@ -97,6 +97,7 @@ describe('multi-lesson Learn runtime', () => {
       'lesson.writing.early-systems',
       'lesson.egypt.nile-state',
       'lesson.caral.andean-urbanism',
+      'lesson.egypt.pyramids-and-state-labor',
     ]);
   });
 
