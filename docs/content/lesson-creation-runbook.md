@@ -72,6 +72,14 @@ The packet must concisely show:
 
 The accountable reviewer must inspect the prototype, not only the packet. An agent or proxy may not approve on that person's behalf. Any blocking finding returns the lesson to Stage 14A. The user should be able to respond with “approved” or a few substantive changes. After explicit approval, the agent records the decision and continues without requiring a second implementation prompt.
 
+### Preview-link handoff contract
+
+Every learner-prototype, implementation, review, and correction handoff must include a clickable Markdown link directly to the current lesson preview in the final user-facing response. Repeat the link every time, including after a one-line copy change or when the URL has not changed. Do not rely on a link in earlier commentary, a previous turn, a PR, or an editorial record. A PR link, source-file link, bare route, or app homepage does not replace the lesson preview.
+
+Use the actual branch/deployment URL and exact lesson route, retaining any required preview/audit query parameters. Prefer the current hosted branch preview; identify it as a preview rather than production. If deployment is pending or access requires sign-in, include the known link with that caveat and do not claim the latest content is verified there. If no hosted preview exists, link a running local preview and state that it is local; if neither is available, explain the blocker rather than inventing a URL. Before a learner prototype exists, link the actual research packet being presented instead.
+
+Before sending the final response, check: **Can the user open the lesson being discussed from this message alone?**
+
 ## Five operational phases
 
 Use the stages through these five production phases. Stage numbers remain stable so existing research notes and issue history continue to resolve.
@@ -870,7 +878,8 @@ For a correction:
 3. update the research note, source/claim ledger, content, media, tests, and migration/configuration as applicable;
 4. preserve stable IDs when the lesson remains semantically equivalent;
 5. create a new canonical lesson or reviewed mapping decision when meaning changes materially;
-6. record the correction and reviewer decision in Git and Linear.
+6. record the correction and reviewer decision in Git and Linear;
+7. include the direct lesson preview link in the final response, following the preview-link handoff contract above—even for a small text-only correction.
 
 # Reusable templates
 

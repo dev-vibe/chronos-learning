@@ -15,6 +15,8 @@ For lesson creation or material lesson revision, follow `docs/content/lesson-cre
 
 A user request equivalent to “Let's create the next Chronos lesson” is complete. Do not ask the user to supply a topic or repeat the workflow. Run the boot sequence in the lesson creation runbook, continue an active queued lesson or select the first eligible Ready lesson, and proceed through its built-in research/editorial approval gate.
 
+Every lesson-review handoff must include a clickable, direct link to the current lesson preview in the final user-facing response. Repeat it after every revision, including small copy fixes; an earlier message, PR link, source-file link, or app homepage is not a substitute. Follow the runbook's preview-link handoff contract for deployment/access caveats.
+
 For UI work, inspect the images in `docs/design/references/`. They express visual intent, hierarchy, and product personality. Rebuild them with real responsive components and accessible native text; do not embed screenshots or imitate generated text errors.
 
 For generated historical maps, follow `docs/content/historical-map-production.md`. A real authoritative map must anchor the geography; generated output is never the geographic source.
