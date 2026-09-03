@@ -15,7 +15,7 @@ describe('Crossing to Sahul unpublished prototype', () => {
     expect(lesson).toMatchObject({
       status: 'draft',
       title: 'Crossing to Sahul',
-      mediaIds: [],
+      mediaIds: ['media.humans.sahul-landmass-map', 'media.humans.madjedbebe-grinding-stones'],
     });
     setUnlockPreviewLessonsForTests(false);
     expect(isLessonOpenable(lesson!)).toBe(false);

@@ -125,3 +125,7 @@ h1,h2,h3{font-family:Newsreader,Georgia,serif;font-weight:500}
 .rail-roadmap-link{min-height:44px;display:flex;align-items:center;justify-content:center;margin-top:12px;border:1px solid #d4aa665e;border-radius:9px;color:#f5d89e;font-size:.66rem;font-weight:600;text-decoration:none}
 .rail-roadmap-link:hover{background:#ffffff0b}
 @media(prefers-reduced-motion:reduce){.spine-chapter summary>svg{transition:none}}
+
+/* Preserve the complete geography when a map is used as card artwork. */
+.card-image[data-depiction="map"]{height:auto;aspect-ratio:1.1;background:var(--surface-2)}
+.card-image[data-depiction="map"] img{object-fit:contain}

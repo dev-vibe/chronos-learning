@@ -5,9 +5,13 @@ Lesson ID: `lesson.humans.sahul-crossing`
 World Spine position: 3
 Journey/chapter/position: `journey.world-history` / `chapter.world-history.human-beginnings` / entry position 2
 Linear: [ASH-109](https://linear.app/ashs-workshop/issue/ASH-109/research-and-publish-crossing-to-sahul)
-Queue status: **Awaiting approval**
+Queue status: **Implementing**
 Accountable reviewer: Carlin Aylsworth
 Validation tier: **high-risk**
+
+## Product-owner approval to finish the build
+
+Carlin approved the revised lesson and directed completion on 2026-09-03: “perfect. please finish that lesson build from here”. This records approval of the existing prototype and planned media/card direction. Proceed from Stage 15 without repeating the historical research or writing pass. Final image fidelity and provenance checks remain implementation duties.
 
 ## Current editorial revision — 2026-09-03
 
@@ -185,6 +189,8 @@ Follow-up research: none required before prototype. The historical model did not
 
 ## Claim ledger
 
+Stage 15 visual-source addition: `claim.humans.sahul.recovered-grinding-stones` records that Hayes et al. (2022), Figure 2, shows 3-D scans of recovered grinding stones from multiple phases, each with a 2 cm scale bar. This supports the new evidence caption without changing the approved chronology or planning model.
+
 | Claim ID and wording | Kind | Certainty | Sources | Counterevidence/limits | Missing perspective | Learner treatment | Review |
 | --- | --- | --- | --- | --- | --- | --- | --- |
 | `claim.humans.sahul.connected-landmass` — At lower Ice Age sea levels, Australia, New Guinea, and Tasmania formed one landmass now called Sahul. | observation | high | Clarkson 2017; Bird et al. 2019 | The name is modern; coastlines changed through the period. | Later drowned-shelf communities are poorly preserved. | State directly | editorial-review-required |
@@ -268,15 +274,94 @@ No reconstructed boat. No megafauna scene. No final assets in this increment.
 
 ## Image lifecycle
 
-No accepted final images in this prototype. Lifecycle blocks wait for Stage 15 after product-owner approval of the media plan.
+### `media.humans.sahul-landmass-map` — geography and Sahul place card
+
+#### 1. Reasoning and source basis
+
+- Teaching job: locate Sunda, Wallacea, and Sahul; distinguish connected land within Sahul from sea crossings needed to reach it. Reused for the Place / Foundation card.
+- Governing claims: connected-landmass; no-land-bridge. [Map brief](sahul-map.md).
+- Primary raster reference: [Maximilian Dörrbecker (Chumwa), Blank map of Sunda and Sahul](https://commons.wikimedia.org/wiki/File:Blank_map_of_Sunda_and_Sahul.png), October 2007. Independent cross-check: [Bird et al. 2019, Figure 1](https://www.nature.com/articles/s41598-019-42946-9), whose modelled routes are intentionally not reproduced.
+- Ancient shelf boundaries are approximate and vary with sea level. The map is a broad Ice Age geographic comparison, not a dated first-crossing route or exact 65,000-year shoreline.
+
+#### 2. Reference image actually used
+
+![Licensed geographic reference](sahul-assets/sunda-sahul-reference.png)
+
+- Creator: Maximilian Dörrbecker (Chumwa). License: [CC BY-SA 3.0](https://creativecommons.org/licenses/by-sa/3.0/), permits redistribution and adaptation with attribution and share-alike. Accessed 2026-09-03. Chronos derivative is also CC BY-SA 3.0.
+- Reference: `docs/research/sahul-assets/sunda-sahul-reference.png`; SHA-256: `8636e9f476952e47a0a8743f57570f475c195f444479990c2f55b7d86b6d38a1`.
+- Edit mode: style-only transformation. Lock aspect ratio, complete extent, north-up orientation, coastlines, island positions, Australia–New Guinea and Tasmania land connections, and all open sea channels. Distinguish today's dry land, additional exposed shelf, and water.
+- Only permitted labels: Sunda, Wallacea, Sahul, New Guinea, Tasmania. No invented route, boats, people, settlements, legend, or educational paragraphs.
+
+#### 3. Generation or transformation
+
+- Tool: built-in image_gen; model identifier not returned; 2026-09-03.
+- Actual input: the reference path and SHA-256 above. One candidate generated; no rejected candidate.
+- Complete prompt:
+
+```text
+Create a style-only raster edit of the attached licensed geographic reference for the Chronos lesson Crossing to Sahul. Preserve the exact north-up map composition, extent, relative scale, coastline contours, island positions, and every land/water connection. Do not zoom, crop, rotate, simplify or redesign geography. The source covers Southeast Asia, Australia, New Guinea and Tasmania. Contemporary dry land is pale cream; the light grey-green shelf areas are additional land exposed at lower Ice Age sea levels; blue is sea. Keep ALL these regions and boundaries precisely where they are, especially the joined Australia–New Guinea shelf and Tasmania land connection and the OPEN sea gaps across Wallacea. Never join the island belt into a land bridge. Treat the supplied reference as authoritative for shapes, not your own recalled map.
+Rendering only: refined museum historical atlas on subtle warm ivory paper, contemporary land in warm sand, exposed shelf land in muted ochre, remaining water in pale mineral blue; crisp legible coastlines and very restrained paper texture. Keep land colors distinct but close enough to show the shelf as connected land. No invented mountain ranges, shading that resembles elevation, no buildings, boats, people, settlements, routes, arrows, compass, borders, legend, title, date, paragraph, frame or logo.
+The only allowed text is these five source-verified geographic labels: "Sunda" centered over the exposed land between Malay Peninsula/Borneo/Sumatra; "Wallacea" across the island belt between Sunda and Sahul without covering key sea gaps; "Sahul" centered inside Australia; "New Guinea" on New Guinea; "Tasmania" adjacent to Tasmania. Use clear dark navy editorial lettering, well separated, readable at mobile width. No other text whatsoever. Keep all geography identical to the reference. Output one high-resolution raster map, same aspect ratio as reference.
+```
+
+#### 4. Accepted final image
+
+| Reference used | Accepted final |
+| --- | --- |
+| ![Reference](sahul-assets/sunda-sahul-reference.png) | ![Accepted map](sahul-assets/sahul-map-master.png) |
+
+- Final master: `docs/research/sahul-assets/sahul-map-master.png`, 1317 × 1194; SHA-256: `cf0ed9eb6e807fb057c83d2ad78bc1bb7d26bc67e7e04eecd6cb3492b82e64e7`.
+- Runtime source: `public/images/sahul/sahul-landmass-map.jpg`; SHA-256: `b32a253d16690ef94d789375f59d47f40e2b380366477adec0cf2694a4de5fb3`. JPEG quality 95, 4:4:4 chroma; no crop. Responsive derivatives are produced by the repository pipeline.
+- Reviewer/date/status: Codex visual and provenance implementation review, 2026-09-03, accepted under the product-owner-approved media brief.
+- Fidelity verdict: full extent, island placement, shelf connections, and sea gaps retained. Only palette, paper texture, outline treatment, and listed labels changed. All five labels are spelled correctly and positioned on the intended regions. No route or landing is asserted.
+- The map module provides a complete native-text equivalent and states the shoreline limit. Card rendering uses contain and the source aspect ratio so the map is not cropped.
+
+### `media.humans.madjedbebe-grinding-stones` — recovered objects
+
+#### 1. Reasoning and source basis
+
+- Teaching job: let learners inspect actual recovered objects, then distinguish an object's shape from evidence for its date. Governing claims: osl-dates-sand; madjedbebe-window.
+- Source: [Hayes et al. 2022, Figure 2](https://doi.org/10.1038/s41598-022-15174-x). These are published 3-D scans, not photographs or AI reconstructions. Caption identifies stone a as GS32, C2-C3/37, Phase 2; other examples come from several phases. Every scale bar represents 2 cm.
+- The main lesson's already-reviewed dating dispute is retained. The figure does not independently prove the age of the earliest occupation.
+
+#### 2. Reference image actually used
+
+![Published scans](sahul-assets/madjedbebe-stones-reference.png)
+
+- Creator: Chris Clarkson, Figure 2, in Hayes, Fullagar, Field and colleagues (2022). The publisher's author-contributions section credits Figures 1–2 to Clarkson.
+- License: [CC BY 4.0](https://creativecommons.org/licenses/by/4.0/). The authoritative article's Rights and permissions section includes its images unless excluded by a credit line; Figure 2 has no exclusion. Accessed 2026-09-03.
+- Source asset: https://media.springernature.com/full/springer-static/image/art%3A10.1038%2Fs41598-022-15174-x/MediaObjects/41598_2022_15174_Fig2_HTML.png
+- Reference: `docs/research/sahul-assets/madjedbebe-stones-reference.png`, 1770 × 1987; SHA-256: `9fbbb7f5487b0617829ce585ed78eaceae25eed31a73af598076a9dad0a52b73`.
+- Edit mode: direct licensed use. Preserve all nine objects, their positions, surfaces, panel letters, and scale bars.
+
+#### 3. Generation or transformation
+
+```text
+No generation. Direct use of Figure 2. Convert the complete raster to JPEG at quality 95 with 4:4:4 chroma, then create responsive derivatives with the repository media pipeline. No crop, retouching, relabeling, rearrangement, or invented evidence.
+```
+
+- Tool/date: sharp, 2026-09-03. Input path and SHA-256 above.
+- Candidate disposition: Figure 1 was inspected but its mixed site map, excavation grid, and scientific plots would add unnecessary load. Figure 2 supplies inspectable stones without requiring learners to read technical plots.
+
+#### 4. Accepted final image
+
+| Reference used | Accepted final |
+| --- | --- |
+| ![Reference scans](sahul-assets/madjedbebe-stones-reference.png) | ![Complete scan figure prepared for the lesson](../../public/images/sahul/madjedbebe-grinding-stones.jpg) |
+
+- Archival master: unchanged reference above. Runtime: `public/images/sahul/madjedbebe-grinding-stones.jpg`; SHA-256: `0f7d7076cf66c618bffe921e3f405b8426c6f00686e8c039cc5964d27a9b7117`.
+- Reviewer/date/status: Codex visual and provenance implementation review, 2026-09-03, accepted for direct licensed use.
+- Fidelity verdict: same complete figure, objects, scale bars, and panel positions; compression only. Native caption identifies scans, differing periods, the top-left hollow, the 2 cm scale, and the limits of inferring age from appearance. No image is presented as an early voyage or a photo of dated sand.
+
+Implementation visual choice: the site-photo candidate was replaced by direct licensed scans of recovered stones, within the approved object-or-site evidence role. The complete scan figure retains all scale bars and is explicitly identified as spanning different periods.
 
 ## Knowledge Card decision
 
-Decision: **card planned, not built in this prototype**
+Decision: **Sahul Place / Foundation card implemented**
 
-Rationale: Sahul itself is the durable memory object — a named Ice Age landmass that makes the crossing make sense. A Place / Foundation card would earn its keep. It needs reviewed art and must not look like a first-landing reconstruction. The prototype therefore ships with **no card** so completion is not blocked on unreviewed media.
+Rationale: Sahul itself is the durable memory object — a named Ice Age landmass that makes the crossing make sense. A Place / Foundation card would earn its keep. It needs reviewed art and must not look like a first-landing reconstruction. The completed build reuses the reviewed Sahul map for the card, preserving its full geography. The card unlocks deterministically on explicit lesson completion.
 
-Stable card ID if approved later: `card.place.sahul` · category `place` · class `foundation` · unlock `lesson.humans.sahul-crossing`.
+Stable card ID: `card.place.sahul` · category `place` · class `foundation` · unlock `lesson.humans.sahul-crossing`.
 
 ## Prompt rationale
 
