@@ -7,6 +7,7 @@ import '../learn/learn.css';
 import './app.css';
 
 const WORLD_HISTORY_HREF = '/library/journey.world-history';
+const LESSON_DESTINATION_PATTERN = /^\/learn\/lesson\.[a-z0-9.-]+$/;
 
 type AuditAppProps = {
   search?: string;
@@ -14,6 +15,10 @@ type AuditAppProps = {
 };
 
 const readSearch = (search: string) => new URLSearchParams(search.startsWith('?') ? search.slice(1) : search);
+const readAuditDestination = (params: URLSearchParams) => {
+  const requested = params.get('next');
+  return requested && LESSON_DESTINATION_PATTERN.test(requested) ? requested : WORLD_HISTORY_HREF;
+};
 
 export function AuditApp({
   search = typeof window === 'undefined' ? '' : window.location.search,
@@ -23,6 +28,7 @@ export function AuditApp({
   const params = useMemo(() => readSearch(search), [search]);
   const autoOn = params.has('on');
   const autoOff = params.has('off');
+  const autoOnDestination = readAuditDestination(params);
   const browserOn = auditUnlockEnabled();
   const envOn = envPreviewUnlockEnabled();
   const previewOn = unlockPreviewLessonsEnabled();
@@ -34,14 +40,14 @@ export function AuditApp({
   useEffect(() => {
     if (autoOn) {
       setAuditUnlockEnabled(true);
-      navigate(WORLD_HISTORY_HREF);
+      navigate(autoOnDestination);
       return;
     }
     if (autoOff) {
       setAuditUnlockEnabled(false);
       navigate('/audit');
     }
-  }, [autoOn, autoOff, navigate]);
+  }, [autoOn, autoOff, autoOnDestination, navigate]);
 
   const turnOn = () => {
     setAuditUnlockEnabled(true);

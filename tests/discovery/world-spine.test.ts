@@ -21,9 +21,9 @@ describe('canonical World Spine roadmap', () => {
 
   it('keeps unfinished roadmap nodes visible but non-navigable', () => {
     const view = createWorldSpineRoadmapView(worldSpineRoadmap, chronosContent.lessons, {}, 'lesson.uruk.first-city');
-    const pyramids = view.flatMap((chapter) => chapter.nodes).find((node) => node.id === 'lesson.egypt.pyramids-and-state-labor');
-    expect(pyramids).toMatchObject({ title: 'Pyramids, Power, and State Labor', status: 'preparing' });
-    expect(pyramids?.href).toBeUndefined();
+    const indus = view.flatMap((chapter) => chapter.nodes).find((node) => node.id === 'lesson.indus.cities-and-signs');
+    expect(indus).toMatchObject({ status: 'preparing' });
+    expect(indus?.href).toBeUndefined();
   });
 
   it('opens authored draft spine nodes when preview unlock is on', () => {
