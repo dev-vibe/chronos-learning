@@ -6,32 +6,32 @@ export const pyramidsPowerStateLaborPrototypeReview: LessonPrototypeReview = {
   validationTier: 'high-risk',
   mediaIntentions: [
     {
-      sectionId: 'section.pyramids.development',
-      kind: 'reconstruction',
-      purpose: 'Open with a reference-led comparison that makes the development from stepped to smooth-sided royal monuments legible without presenting one invented building moment as evidence.',
-      status: 'planned',
-    },
-    {
-      sectionId: 'section.pyramids.merer-logbook',
-      kind: 'evidence',
-      purpose: 'Show a legible surviving fragment of Merer’s papyrus only if item-level rights and a mobile crop can be verified; the native-text can-and-cannot module remains the fallback.',
-      status: 'planned',
-    },
-    {
-      sectionId: 'section.pyramids.workforce',
-      kind: 'evidence',
-      purpose: 'Use source-cleared builders’ marks to make named crews visible without turning the marks into a precise workforce chart.',
-      status: 'planned',
-    },
-    {
-      sectionId: 'section.pyramids.construction',
+      sectionId: 'section.pyramids.giza',
       kind: 'diagram',
-      purpose: 'Keep the prototype focused on supported components and uncertainty; a construction-method diagram would imply more agreement than the lesson can currently defend.',
-      status: 'not-needed',
+      purpose: 'Compare the different links in the Giza evidence chain—dated record, monument context, radiocarbon, and newly detected space—without depicting one link as proof of every phase.',
+      status: 'planned',
+    },
+    {
+      sectionId: 'section.pyramids.osirion',
+      kind: 'evidence',
+      purpose: 'Place the protected Seti-marked structural component beside the two surface-luminescence results so reviewers can judge whether the unresolved phase conflict becomes clearer.',
+      status: 'planned',
+    },
+    {
+      sectionId: 'section.pyramids.hawara',
+      kind: 'diagram',
+      purpose: 'Distinguish ancient testimony, excavated inscriptional context, geophysical anomaly, and excavation ground truth in one source-role comparison.',
+      status: 'planned',
+    },
+    {
+      sectionId: 'section.pyramids.vessels',
+      kind: 'evidence',
+      purpose: 'Compare a securely catalogued early stone vessel with a measured mesh and tool-process evidence so precision, provenance, age, and method remain separate questions.',
+      status: 'planned',
     },
   ],
   productReview: {
     state: 'pending',
-    notes: 'Awaiting Carlin’s learner-prototype checkpoint before any final media production or publication work.',
+    notes: 'Awaiting Carlin’s review of the rebuilt evidence-led prototype, no-card decision, and four proposed visual jobs before final media or publication work.',
   },
 };

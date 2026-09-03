@@ -1,18 +1,18 @@
-# Pyramids, Power, and State Labor — lesson production record
+# Pyramids, Builders, and Evidence — lesson production record
 
 Issue: [ASH-99](https://linear.app/ashs-workshop/issue/ASH-99/research-and-publish-pyramids-power-and-state-labor)
 Lesson ID: `lesson.egypt.pyramids-and-state-labor`
-Research-note identity/version: `ash-99-revision-research-v3`
+Research-note identity/version: `ash-99-evidence-prototype-v4`
 Journey/chapter/position: World History / Cities, States, and Bronze Age Networks / canonical position 15
 Required or optional: Required
-Queue status: `Researching`
+Queue status: `Awaiting approval`
 Accountable reviewer: Carlin Aylsworth
 Validation tier: high-risk
 Branch: `codex/ash-99-pyramids-power-state-labor`
 
 ## Work boundary
 
-This increment creates one unpublished World History lesson explaining how Old Kingdom Egyptian rulers concentrated skilled knowledge, transport, supplies, administration, and human labor into pyramid building. It continues the state-capacity question introduced by `lesson.egypt.nile-state`, follows the independent Andean urban case at Caral, and prepares learners to compare another urban tradition in the Indus lesson. The scope runs from Djoser’s Step Pyramid to the Fourth Dynasty pyramid complexes at Giza, c. 2700–2500 BCE, with Khufu’s Great Pyramid as the main evidence case. It does not build an Ancient Egypt Story Arc, settle the exact ramp configuration, survey every pyramid, generate final media, create a publication migration, unlock a card, or change hosted systems. The lesson remains `draft` and fail-closed outside development preview.
+This increment creates one unpublished World History lesson teaching how context, construction phase, material date, named ruler, later use, and inferred purpose must be connected rather than collapsed. Giza remains the chronological anchor at c. 2700–2500 BCE. Concise comparisons with the Osirion, Hawara, and early hard-stone vessels test the method and make an earlier Nile cultural or technical regime of materially different character and ability visible as a legitimate structure-by-structure hypothesis. State labor remains one important Giza evidence stream rather than the lesson’s answer. The increment does not build the deeper Ancient Egypt Story Arc or Investigation, generate final media, create a publication migration, unlock a card, or change hosted systems. The lesson remains `draft` and fail-closed outside development preview.
 
 ### Revision status and journey placement
 
@@ -150,9 +150,267 @@ Before Stage 4, the product owner should respond to these questions:
 
 The specifically identified follow-up candidates are (a) a source-critical audit of the Great Pyramid builders'/quarry marks and modern forgery objections, (b) a controlled search for evidence behind the comparative claim that Egyptian precision systematically declined across periods, and (c) a focused replication/context review of the 2015 Osirion surface-luminescence study before deciding whether its anomalous older result belongs in the short lesson or Story Arc only.
 
-**Product-owner response:** pending. Stop here under the Stage 3B gate.
+**Product-owner response:** approved on 2 September 2026. Carlin approved moving the lesson’s center away from state labor; using Giza as the anchor with concise Osirion, Hawara, and hard-stone-vessel comparisons; using “earlier Nile cultural/technical regime of materially different character and ability” as a neutral live hypothesis; and treating Hawara’s active excavation as a real test of conflicting ancient chronologies. The main lesson must teach the strongest highlights clearly while reserving the comprehensive comparison for a future Story Arc.
 
-## Superseded prototype record — non-operative pending Stage 3B response
+**Follow-up research and disposition:** the Great Pyramid builders’/quarry-marks forgery audit, a systematic precision-decline dataset, and deeper independent replication/context work on the Osirion luminescence result remain worthwhile. They do not block this prototype because the quarry marks are not made the central Giza proof, no claim of systematic decline is taught, and the Osirion result is presented as a two-sample unresolved conflict. Reserve these questions for the Story Arc or Investigation unless new evidence changes the main model.
+
+## Node proposal
+
+**Learner title:** *Pyramids, Builders, and Evidence*. The revised title keeps the famous Giza anchor while naming the lesson’s actual work. “State Labor” was removed because labor is now one evidence stream, not the conclusion.
+
+**Essential question:** How can evidence help us tell whether a monument was built, inherited, changed, or reused?
+
+**Durable understanding:** Egypt’s monuments grew through long-changing Nile traditions. Old Kingdom activity at Giza is strongly evidenced, but a name, nearby activity, a scientific date, an ancient account, or a scan may answer different questions about who built, inherited, changed, and used a structure.
+
+**Supporting understandings:**
+
+1. Context, construction phase, material date, named ruler, use, and purpose are connected but distinct.
+2. Merer’s log, monument radiocarbon, royal-complex archaeology, and settlement evidence strongly support intensive Old Kingdom work at Giza while leaving some internal phase and purpose questions open.
+3. The Osirion contains both a protected Seti I structural connection and a discordant older surface-luminescence result; neither evidence stream should be erased.
+4. Hawara combines Middle Kingdom royal material, conflicting ancient accounts including Pliny’s deep-date tradition, real geophysical anomalies, and a current excavation that can test older phases.
+5. Securely provenanced early hard-stone vessels establish remarkable pre-Giza technical skill; geometry alone does not settle provenance, maker, or method.
+
+**Evidence encounter:** compare the Osirion’s Seti-marked cramp beneath intact roofing with two material-specific surface-luminescence results, then name the missing evidence that could distinguish reused stone, exposure history, and an older construction phase.
+
+**Prerequisites:** understand that early Egyptian state formation was a long process; distinguish an observed object from an interpretation; recognize that a later inscription can be evidence of use without necessarily being a construction date.
+
+**Common misconceptions:** one royal name dates every stone; one anomalous measurement erases all contextual evidence; scans date what they detect; extraordinary precision identifies a machine or maker; ancient accounts are either worthless myth or literal excavation reports; acknowledging uncertainty means all proposals have equal support.
+
+**Scope — dates/places/actors:** Giza is the chronological anchor, c. 2700–2500 BCE. Comparison cases range from Predynastic/Early Dynastic vessels through Middle Kingdom Hawara and New Kingdom Abydos, with later Egyptian, Greek, and Roman testimony used only as testimony about remembered histories.
+
+**Why this is one lesson:** all four cases train the same historical move and correct the same category error. Giza establishes strong contextual attribution; the other cases reveal what changes when the evidence chain is incomplete, discordant, or drawn from a different source type.
+
+**Non-goals/deferred material:** a complete pyramid-construction theory; the Sphinx chronology dispute; cast-stone, hydraulic, energy, Orion, and erosion models; a full builders’ marks authenticity audit; the complete ancient Hawara testimonia; a systematic precision-decline study; or naming a replacement civilization. Those belong in the future Story Arc or Investigation.
+
+**Bridge from previous lesson:** Caral showed that monumental building can emerge through a social pathway unlike Mesopotamia or Egypt. This lesson now asks how securely any monument’s surviving parts can be assigned to one pathway or phase.
+
+**Bridge to next lesson:** the Indus lesson will apply the same discipline where a script cannot yet be read: strong archaeological patterns can support explanations without closing every question.
+
+## Source ledger
+
+The detailed source-by-source review and challenge coverage remain in the [recent-evidence audit](./pyramids-recent-evidence-audit.md). This table lists the sources that carry the prototype.
+
+| Source ID | Type/authority | Claims supported | Limits/bias | Corroboration and rights | Review |
+| --- | --- | --- | --- | --- | --- |
+| `source.pyramids.ifao-merer` | Official papyrus edition | Khufu-era transport to Akhet-Khufu | Records fine limestone and workdays, not every phase or method | Converges with Giza archaeology; no images reused | Editorial review required |
+| `source.pyramids.harvard-giza` | University excavation archive | Royal-complex context | Complex-level evidence does not directly date every inner block | Converges with texts, radiocarbon, and settlement; item rights separate | Editorial review required |
+| `source.pyramids.aera-settlement` | Active excavation synthesis | Organized settlement, food, workshops, administration | Best-preserved phase is chiefly Khafre/Menkaure; labor status remains incomplete | Converges with administrative evidence; no images reused | Editorial review required |
+| `source.pyramids.mortar-radiocarbon` | Peer-reviewed monument dating | Old Kingdom-scale mortar chronology | Old wood, scatter, and attribution affect estimates | Later reanalysis and newer short-lived samples provide control | Editorial review required |
+| `source.pyramids.high-chronology` | Peer-reviewed Bayesian chronology | Older Old Kingdom model | Priors and archaeological attribution remain part of the model | 160 measurements and multiple configurations; CC BY | Editorial review required |
+| `source.pyramids.dixon-cedar` | Peer-reviewed object study | Cedar age and object/event distinction | One object; tree age is not masonry date | Securely documented rediscovery and radiocarbon | Editorial review required |
+| `source.pyramids.scanpyramids-corridor` | Peer-reviewed muography | Previously unknown Great Pyramid corridor | Purpose and construction date remain unknown | Multiple detector positions; later methods independently confirm existence | Editorial review required |
+| `source.pyramids.osirion-frankfort` | Primary excavation report | Seti construction relationships and named cramp | Early excavation language and interpretation require contextual reading | Physical junctions and protected component provide strong control | Editorial review required |
+| `source.pyramids.osirion-luminescence` | Peer-reviewed surface dating | Two Osirion surface estimates | Two unlike samples, broad discordance, no independent replication | Direct method attempt; must be paired with construction relationships | Editorial review required |
+| `source.pyramids.hawara-petrie` | Primary excavation report | Robbed footprint and Middle Kingdom royal material | Early methods; loose objects do not date all foundations | Object catalogues corroborate royal names; public-domain report | Editorial review required |
+| `source.pyramids.hawara-vlf` | Peer-reviewed geophysics | Organized shallow anomalies | Geophysical contrast is not automatically a wall or date | Independent later ERT/TEM broadly supports a subsurface target | Editorial review required |
+| `source.pyramids.hawara-ert` | Egyptian technical survey | High-resistivity anomalies and groundwater risk | Authors require excavation for identification | Distinct method and field program; image rights separate | Editorial review required |
+| `source.pyramids.hawara-pliny` | Ancient Roman compilation | Conflicting purposes and deep-date tradition | Hearsay marker, place error, and 3,600/4,600 textual variant | Compared with other ancient accounts and site archaeology | Editorial review required |
+| `source.pyramids.hawara-excavation` | Named-official news report | 2026 Egyptian excavation underway | No published stratigraphy or date yet | Fayoum University visit record supplies separate institutional context | Editorial review required |
+| `source.pyramids.vessels-metrology` | Peer-reviewed comparative study | Controlled early workmanship and abrasive rotation inference | Single-author classifier; incomplete scans; code by request | Public museum meshes and reference scans improve reproducibility | Editorial review required |
+| `source.pyramids.vessels-abu-rawash` | Peer-reviewed archaeological study | Context-rich Early Dynastic manufacturing sequence | One site and reign; not a universal technique | Connects form, tool process, and excavated context | Editorial review required |
+| `source.pyramids.vessels-private-scans` | Claim-owner public files | Measurable private-vessel geometry | Underprovenance and incomplete acquisition chain | Files allow partial rechecking; no assets reused | Editorial review required |
+| `source.pyramids.turin-king-list` | Official museum papyrus context | Egyptian primeval/deep-time succession | Ramesside copy and mythic-ideological chronology | Corroborates cultural memory, not a monument date | Editorial review required |
+
+## Claim ledger
+
+| Claim ID and wording | Kind / certainty | Sources | Counterevidence/limits and missing perspective | Learner treatment | Review |
+| --- | --- | --- | --- | --- | --- |
+| `claim.pyramids.separate-questions` — context, phase, material date, named ruler, use, and purpose differ | Interpretation / high | Merer; radiocarbon; Frankfort; Petrie | Relationships must still be argued case by case | State directly as the lesson method | Editorial review required |
+| `claim.pyramids.giza-old-kingdom-context` — converging evidence connects major Giza work to the Old Kingdom | Interpretation / high | Merer; Digital Giza; AERA; mortar dates | Does not identify every phase or worker | State directly, then qualify | Editorial review required |
+| `claim.pyramids.giza-context-limit` — complex evidence does not date every internal phase or purpose | Interpretation / high | Merer; Digital Giza; corridor study | Absence of a direct phase date is not proof of an older phase | State directly | Editorial review required |
+| `claim.pyramids.labor-stream` — organized labor is evidenced but does not settle the whole monument | Interpretation / high | Merer; AERA | Worker voices and status categories survive unevenly | Supporting treatment only | Editorial review required |
+| `claim.pyramids.high-chronology` — recent model shifts the Old Kingdom older by decades to about a century | Interpretation / moderate | 2025 PLOS chronology | Model depends on priors and attribution | State as a real bounded revision | Editorial review required |
+| `claim.pyramids.material-is-not-event` — wood age is not automatically wall age | Interpretation / high | Dixon cedar; mortar dates | A secure construction interface can strengthen the connection | State directly with cedar example | Editorial review required |
+| `claim.pyramids.plan-incomplete` — a newly measured corridor exists; purpose is unknown | Observation / high | ScanPyramids corridor | Existence does not supply function or date | State directly and separate interpretation | Editorial review required |
+| `claim.pyramids.osirion-seti-assembly` — protected structural components name Seti I | Observation / high | Frankfort | Does not date every megalithic wall | Compare with surface dates | Editorial review required |
+| `claim.pyramids.osirion-date-conflict` — two broad surface dates disagree | Observation / moderate | 2015 luminescence study | Two materials, no replication, construction relation incomplete | State exact results without averaging them away | Editorial review required |
+| `claim.pyramids.osirion-unresolved` — earlier component or exposure history remains possible | Interpretation / contested | Frankfort; luminescence | Seti integration is strong; older reading has multiple explanations | Teach as unresolved phase problem | Editorial review required |
+| `claim.pyramids.hawara-middle-kingdom-link` — royal material supports Amenemhat III/Sobekneferu work and use | Interpretation / high | Petrie | Loose inscribed material does not date all foundations | State strongly with phase limit | Editorial review required |
+| `claim.pyramids.hawara-anomalies` — surveys find organized anomalies but cannot date them | Interpretation / moderate | VLF; ERT/TEM | Geology, wet sediment, and later remains are alternatives | Compare measurement with ground truth | Editorial review required |
+| `claim.pyramids.hawara-traditions` — ancient accounts conflict and Pliny preserves a much older date | Later tradition / high | Pliny and comparative audit | Variant numeral and hearsay chain prevent direct dating | Include because the ancient conflict is historically real | Editorial review required |
+| `claim.pyramids.hawara-excavation-test` — a 2026 Egyptian mission can test older phases | Observation / moderate | Cairo24 named-official report | Results and contexts remain unpublished | Date-stamp and keep open | Editorial review required |
+| `claim.pyramids.vessels-early-skill` — secure early vessels show controlled, specialized hard-stone work | Interpretation / high | Heritage Science; Abu Rawash | Exact methods vary and remain partly reconstructed | State directly; teach ability upward | Editorial review required |
+| `claim.pyramids.vessels-private-limit` — private meshes can measure geometry but not establish provenance or maker | Interpretation / high | UnchartedX; Heritage Science | A securely provenanced outlier could change the assessment | Treat measurements seriously and separate claims | Editorial review required |
+| `claim.pyramids.deep-time-memory` — Egyptians preserved primeval successions | Later tradition / high | Turin King List | Genre does not provide a construction date | Include briefly with source boundary | Editorial review required |
+| `claim.pyramids.earlier-regime-hypothesis` — an earlier Nile regime of different character and ability is testable case by case | Interpretation / contested | Cross-case evidence | No single public chain presently attributes all four cases to one society | Name neutrally; neither dismiss nor settle | Editorial review required |
+
+**Survival bias and perspective:** royal and institutional records dominate. The makers of early vessels, ordinary construction workers, local guides behind classical reports, and people whose earlier sites were built over often remain unnamed. Absence of their texts is not absence of knowledge or agency. The lesson avoids turning later elite labels into the only possible identity of the people who made surviving things.
+
+## Content triage
+
+| Candidate idea | Disposition | Why | Destination |
+| --- | --- | --- | --- |
+| Six-question evidence chain | Essential | Gives the learner a reusable method | Opening and conclusion |
+| Merer, monument context, radiocarbon, settlement | Essential | Strongest Old Kingdom convergence and honest limits | Giza section |
+| High chronology, old cedar, new corridor | Supporting | Shows three different meanings of “new evidence” | Dating section |
+| Osirion structural/date conflict | Essential | Best compact test of named component versus anomalous measurement | Osirion section |
+| Hawara traditions, surveys, excavation | Essential | Preserves ancient disagreement and a live archaeological test | Hawara section |
+| Secure and private vessel scans | Essential | Establishes earlier skill while teaching provenance | Vessel section |
+| Egyptian deep-time traditions | Supporting | Corrects the claim that Egyptians imagined no predecessors | Vessel/deep-time module |
+| Workforce status detail | Enrichment | Important but no longer carries the central argument | Brief Giza treatment; future arc |
+| Sphinx chronology | Deferred | Consequential but would add a fifth complex dispute | Story Arc/Investigation |
+| Cast stone, hydraulic, energy, Orion, REM | Deferred | Need full model-specific evidence chains | Investigation |
+| Kilometer-deep Khafre claim | Rejected for main lesson | No inspectable results dataset or ground truth | Audit record only pending evidence |
+| One named replacement civilization | Rejected | Current evidence does not support responsible identification | Reconsider only if evidence changes |
+
+## Learning blueprint
+
+**Essential question:** How can evidence help us tell whether a monument was built, inherited, changed, or reused?
+
+**Durable understanding:** Evidence strongly connects Old Kingdom institutions to major work at Giza, but context, phase, date, builder, use, and purpose remain different questions. Egyptian monuments and objects preserve long, changing technical traditions; an earlier Nile regime is a legitimate possibility to test structure by structure rather than a label to assume or suppress.
+
+**Supporting understandings:** converging evidence is stronger than one isolated clue; material age and construction date can differ; measurements and ancient accounts need contextual links; excavation can test relationships scans cannot; remarkable early skill is already securely evidenced.
+
+**Prerequisites:** early Egyptian state formation; evidence versus interpretation; rough sequence of Predynastic, Early Dynastic, Old Kingdom, Middle Kingdom, and New Kingdom.
+
+**Misconceptions:** listed in the Node proposal above.
+
+**Indispensable vocabulary:** context, construction phase, documented find history, radiocarbon, surface luminescence, geophysics, replication, reuse.
+
+**Evidence encounter:** Osirion protected cramp plus surface-luminescence pair, reinforced by the Hawara source-role comparison.
+
+**Historical-thinking move:** build and test a chain from observation → context → dated event → interpretation → discriminating test.
+
+**Required sincere-attempt evidence:** select one proportionate Giza conclusion, then write a 40-character minimum explanation identifying an observation, an interpretation, and a useful test for the Osirion, Hawara, or a vessel.
+
+**Natural bridge:** the Indus lesson asks learners to reason from strong material patterns when a major evidence class—readable writing—is unavailable.
+
+## Ages 11–14 transformations
+
+- Abstract source criticism → six concrete questions attached to a royal name and a stone monument.
+- Four sites across several periods → Giza remains the anchor; every comparison repeats the same evidence chain.
+- Dense dating methods → one sentence each on what radiocarbon, surface luminescence, and geophysics actually measure.
+- “Civilization” as a potentially racial or foreign label → “earlier Nile cultural or technical regime of materially different character and ability,” with no assumed ethnicity or discontinuity.
+- Hawara’s five-author textual problem → preserve the key disagreement and Pliny’s deep-date tradition in prose; reserve the complete source matrix for the Story Arc.
+- Precision claims → honor the observed geometry first, then separate authenticity, provenance, age, and manufacturing method.
+- Uncertainty → direct sentences naming both the supported result and the missing link; never use mystery language as spectacle.
+
+## Section/component storyboard
+
+| Order | Section ID | Learner-facing heading | Authoring purpose | Claims/sources | Module(s) | Media/action | Transition |
+| ---: | --- | --- | --- | --- | --- | --- | --- |
+| 1 | `section.pyramids.questions` | Six questions about one monument | Establish the evidence-chain method | Separate questions; cross-case sources | Prose + knowledge | No final media required | Apply the questions first where evidence is strongest |
+| 2 | `section.pyramids.giza` | What connects Giza to the Old Kingdom | Present convergence and its limits | Giza context; labor stream; Merer/AERA/radiocarbon | Prose + knowledge | Planned evidence-chain visual | Ask what different dates actually date |
+| 3 | `section.pyramids.dating` | What a date actually dates | Distinguish material, context, phase, and discovery | Cedar; high chronology; corridor | Prose + required selection | Learner selects proportionate conclusion | Move from strong convergence to a real conflict |
+| 4 | `section.pyramids.osirion` | The Osirion’s construction evidence | Compare protected name evidence with discordant surface dates | Frankfort; luminescence | Prose + knowledge | Planned paired evidence visual | Test the method where texts and scans also conflict |
+| 5 | `section.pyramids.hawara` | The Labyrinth at Hawara | Keep ancient testimony, inscriptions, scans, and excavation distinct | Petrie; VLF/ERT; Pliny; 2026 dig | Prose + knowledge | Planned source-role visual | Move from buildings to portable technical evidence |
+| 6 | `section.pyramids.vessels` | Stone vessels and early technical skill | Establish secure early ability and provenance limits | Metrology; Abu Rawash; private scans; Turin list | Prose + knowledge | Planned object/mesh comparison | Ask the learner to build one full chain |
+| 7 | `section.pyramids.world-check` | World Check | Require evidence reasoning and synthesize the open conclusion | Cross-case claims | Required concise explanation + prose | Explicit completion after sincere attempts | Continue to Indus evidence limits |
+
+All headings name their historical subject or teaching job in ordinary words. The seven sections each perform a distinct job; removing a comparison would eliminate one of the approved evidence classes.
+
+## Media decisions
+
+| Intention ID | Section ID | Teaching question | Form | Evidence/claim basis | Depiction label | Accessible equivalent | Stage 14A treatment | Final review |
+| --- | --- | --- | --- | --- | --- | --- | --- | --- |
+| `intent.pyramids.giza-chain` | `section.pyramids.giza` | Which evidence dates activity, context, material, or space? | Reference-led raster diagram | Merer, radiocarbon, settlement, corridor | Evidence relationship diagram; dates/roles simplified from reviewed sources | Native-text list naming every link and limit | Development-only annotation; no final asset | Planned after approval |
+| `intent.pyramids.osirion-pair` | `section.pyramids.osirion` | How can a protected named component and two surface dates coexist? | Evidence object/section plus compact native labels | Frankfort and Liritzis/Vafiadou | Surviving evidence and measured dates; not a whole-monument reconstruction | Prose and three-item comparison | Development-only annotation | Planned after approval |
+| `intent.pyramids.hawara-streams` | `section.pyramids.hawara` | What can testimony, inscription, geophysics, and excavation each show? | Reference-led raster comparison | Petrie, VLF, ERT/TEM, Pliny, active dig | Evidence-stream diagram; anomalies are not rendered as confirmed rooms | Four-item native-text comparison | Development-only annotation | Planned after approval |
+| `intent.pyramids.vessel-test` | `section.pyramids.vessels` | Which observations concern shape, provenance, age, and method? | Directly licensed evidence image plus measured mesh/process comparison | Museum metrology, Abu Rawash, claim-owner files | Surviving object and measured surface; no machine claim implied | Full prose description and test list | Development-only annotation | Planned after approval |
+
+**Video decision:** no video. Motion or sound is not necessary for the approved teaching job, and source comparison is clearer in static evidence plus native text.
+
+## Image lifecycle
+
+No image is accepted at Stage 14A. All four media jobs remain development-only intentions. After product approval, each required or recommended asset must receive its visible reasoning → reviewed raster reference → exact edit/direct-use record → accepted final comparison here before registration.
+
+## Knowledge Card decision
+
+**Decision:** no card for this prototype.
+
+**Rationale:** the durable memory object is a way of reasoning across several sites, not one person, place, or artifact. A Great Pyramid Masterwork card would over-center the monument and could imply that the lesson settled its builder, date, or purpose. An Enigma card would reward mystery language. The no-card ending keeps completion focused on the learner’s evidence chain. Reconsider only if product review identifies a genuinely durable, representable anchor that does not distort the argument.
+
+## Prompt rationale
+
+| Prompt ID | Required | Understanding/evidence assessed | Misconception exposed | Feedback job |
+| --- | --- | --- | --- | --- |
+| `prompt.pyramids.context-and-phase` | Yes | Strong Giza context can coexist with open phase/purpose questions | A name or anomaly either proves everything or erases all context | Restate the proportionate claim and its limit |
+| `prompt.pyramids.build-evidence-chain` | Yes | Observation → interpretation → discriminating test using an approved comparison case | An impressive datum automatically supplies age, maker, or purpose | Name the missing link and useful test |
+
+The selection check depends only on taught Giza evidence. The concise response requires a sincere attempt rather than historical perfection and is excluded from general analytics under the shared shell contract.
+
+## Learner-prototype review
+
+Prototype lesson ID: `lesson.egypt.pyramids-and-state-labor`
+Research-note identity/version: `ash-99-evidence-prototype-v4`
+Preview route: `/learn/lesson.egypt.pyramids-and-state-labor`
+Prototype commit: pending branch commit; Draft PR [#29](https://github.com/dev-vibe/chronos-learning/pull/29)
+Validation tier: high-risk
+Deterministic prototype gate: passed 3 September 2026
+
+### Media intentions
+
+| Intention ID | Section ID | Annotation shown | Review state | Disposition |
+| --- | --- | --- | --- | --- |
+| `intent.pyramids.giza-chain` | `section.pyramids.giza` | Compare record, context, material date, and newly detected space without collapsing them | planned | Await product judgment; native text is safe fallback |
+| `intent.pyramids.osirion-pair` | `section.pyramids.osirion` | Pair the protected Seti component with the two surface estimates | planned | Await product judgment; native comparison remains complete |
+| `intent.pyramids.hawara-streams` | `section.pyramids.hawara` | Keep testimony, inscription, geophysics, and excavation in separate roles | planned | Await product judgment; never render anomalies as confirmed rooms |
+| `intent.pyramids.vessel-test` | `section.pyramids.vessels` | Separate object, mesh, documented find history, and process evidence | planned | Await product judgment; never combine unlike object histories |
+
+### Real-shell inspection
+
+Reviewer/date: Codex / 2–3 September 2026
+Viewports/themes: 1440 × 900 light and dark; 390 × 844 light and dark
+Result: pass. The exact draft route rendered seven sections and four visibly separate “Not learner content” media annotations. The page had no error overlay, console error, or horizontal overflow at either viewport. Headings, masthead, long prose, knowledge blocks, prompt controls, and the fixed mobile navigation remained legible in both themes. A selection plus a 40-character response enabled `Complete lesson`; scrolling alone did not. Completion produced the truthful no-card `Lesson explored` ending and a safe World History continuation state.
+
+### Proxy review
+
+Reviewer/date: independent Codex adult learner-proxy / 3 September 2026
+Raw prototype supplied without intended diagnosis: yes; the reviewer received only the lesson source, prototype media-intention record, and quality contract.
+
+| Quality area | Pass/revise/blocking/N/A | Evidence from prototype | Disposition |
+| --- | --- | --- | --- |
+| Mental-model coherence | revise → pass | The opening established a strong context/date/phase/builder/use/purpose method, but “Six questions” initially displayed five links and the cross-case role could be clearer. | Made purpose the explicit sixth question and stated that Osirion, Hawara, and vessels are separate tests of the same method. |
+| Narrative momentum | pass | Royal-name hook → strong Giza convergence → dating limits → harder building cases → portable objects → learner synthesis forms a coherent investigation. | No structural change required. |
+| Age-appropriate cognitive load | revise → pass | Osirion stacked method, two dates, signal reset, and phase implications; Hawara named five writers; vessels stacked metrology jargon. | Split result/method/limit into separate paragraphs; replaced signal jargon; grouped minor Hawara witnesses; replaced concentricity, provenance, slurry, and technical-regime language with plain explanations. |
+| Heading voice | pass | Every section heading names the historical subject or teaching job in ordinary words. | Retained. |
+| Evidence reasoning | revise → pass | Final observation → suggestion → test prompt was strong, but initial selection distractors used conspicuous absolutes; vessel evidence sets could blur. | Replaced distractors with plausible single-link confusions and explicitly separated excavated vessel evidence from the 19-object museum comparison. |
+| Historical proportionality | revise → pass | Overall balance was proportionate, but the masthead could place all cases in the Giza range, “genuinely older result” over-compressed uncertainty, and “remembered” could certify tradition. | Expanded the masthead’s cross-period range; named the older Osirion result as one uncertain estimate; retitled the king-list module to describe the source rather than validate its memory. |
+| Visual teaching value | pass for intentions / N/A for final | Each proposed visual has a distinct evidence job and a complete native-text equivalent. | Retained four planned jobs with explicit Hawara and vessel anti-conflation constraints. Final media remains gated. |
+| Next-action clarity | pass | Both prompts specify the action and the final prompt offers three bounded cases. Browser verification confirmed sincere attempts unlock explicit completion. | Retained. |
+
+Blocking findings: none. Every proxy revision was resolved before product review, and deterministic validation was rerun successfully.
+
+### Product/editorial review
+
+Reviewer/date: Carlin Aylsworth / pending
+State: pending
+Material decisions: approve or revise the title *Pyramids, Builders, and Evidence*; the essential question and six-link evidence model; Giza plus concise Osirion, Hawara, and vessel scope; the neutral earlier-Nile-regime wording; the explicit no-card decision; and the four planned visual jobs.
+Blocking findings: none.
+Explicit safe deferrals: the Sphinx, construction-function models, builders’ marks authenticity audit, systematic precision-decline analysis, complete Hawara testimonia, and deeper Osirion replication review remain in the Story Arc/Investigation research backlog. No final media, card, publication migration, unlock, review-state approval, or hosted production change occurs before product approval.
+
+### Optional learner observation
+
+Observed: no
+Learner age band/date, if applicable: not applicable
+Observed behavior: none
+Changes made: none
+Future family/public-release UAT note: reserved for the broader family/beta program; not a per-lesson gate.
+
+### Earlier-risk comparison
+
+Confusing prose found earlier: material-date, named-component, and source-role distinctions; resolved through the repeated six-question model and plain-language method definitions.
+Weak transitions found earlier: comparison cases could appear to be one monument history; resolved by stating that each independently tests the same method.
+Cognitive overload found earlier: Osirion measurement language, five Hawara authors, and vessel metrology jargon; resolved in the proxy polish pass.
+Decorative media found earlier: none; every planned job answers a specific source-reasoning question and has a native-text fallback.
+Prompt mismatch found earlier: conspicuous absolute distractors; resolved with plausible context-versus-phase confusions.
+Unclear action hierarchy found earlier: none; browser verification confirmed prompt and completion behavior.
+
+## Sign-off status
+
+- [x] Recent-challenge research checkpoint considered by product owner before lesson build-out
+- [x] Revised source/claim ledger, content triage, blueprint, and storyboard recorded
+- [x] Ages 11–14 pass complete
+- [x] Independent adult learner-proxy review complete and all findings disposed
+- [x] Deterministic prototype gate passes
+- [x] Desktop/mobile and light/dark real-shell prototype inspected
+- [x] Explicit no-card decision recorded
+- [ ] Product-owner learner-prototype checkpoint approved
+- [ ] Final media lifecycle and rights review complete
+- [ ] Implementation and release gates complete
+- [ ] Publication migration and hosted verification complete
+
+## Superseded labor-centered prototype record — non-operative archive
 
 Everything below this heading records the earlier labor-centered prototype and its review history. It is retained for provenance only. Its claim ledger, learning blueprint, storyboard, media jobs, Knowledge Card decision, prompts, and prototype sign-off must not guide new learner content unless they are independently reconsidered after the product-owner response above.
 
