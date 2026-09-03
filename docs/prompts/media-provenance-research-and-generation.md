@@ -62,6 +62,7 @@ Find or create an image that is historically suitable, publicly redistributable,
 9. Only after an approved decision:
    - add or update the Source and MediaAsset records, including a concise learner-facing `rightsLabel`;
    - change the internal `MediaAsset.reviewStatus` publication gate to approved; never render that workflow value as learner-facing historical/editorial approval;
+   - prepare the runtime source as the [media publishing runbook](../architecture/media-publishing.md) requires: keep the archival master in research; use a JPEG catalog source and the `photo` preset for large reconstructions; never overwrite a different asset's identity;
    - run media:add when the catalog entry is new;
    - run media:build, media:verify, validate:content, and tests;
    - publish with the trusted server-side credential and verify remote checksums.

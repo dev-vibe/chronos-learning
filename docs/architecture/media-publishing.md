@@ -1,6 +1,19 @@
 # Media ingestion and publishing runbook
 
 The media pipeline keeps canonical sources unchanged, commits a compact optimized rollback copy, stages responsive derivatives under ignored tmp/chronos-media/, and publishes immutable objects to Supabase Storage. ADR 004 defines the measured ql-v1 compression contract.
+
+## Where records and bytes live
+
+This split is the intended agentic path. Review identity and provenance in Git; upload bytes mechanically to Storage. Do not put image blobs in Postgres, and do not treat a compression failure as a reason to change the split.
+
+| Home | What belongs there |
+| --- | --- |
+| Git | Stable media IDs, license/provenance, catalog, manifests, captions, and the canary rollback copies under `public/images/optimized/` |
+| Supabase Storage | Source masters in private `media-source` and learner-facing derivatives in public `media-public` |
+| Postgres | Learner progress and published lesson snapshots. Image bytes do not belong here |
+
+`media:build` currently re-encodes the whole catalog. That is expected at the current corpus size. A few thousand finished-course images still belong in Storage, not in Git history and not in the database. A ql-v1 size or fidelity refusal is an ingest-prep problem: fix the runtime source and preset, then rebuild.
+
 ## Automated research and approval
 
 Before sourcing or generating an image, run the workflow in [the media provenance research and generation prompt](../prompts/media-provenance-research-and-generation.md). The agent gathers authoritative license evidence, records attribution and historical suitability, and either recommends approval or replaces the asset.
@@ -9,14 +22,24 @@ Historical lesson maps also follow the [map-specific requirements in the media p
 
 The product owner is not the default copyright analyst. Clear public-domain, CC0, CC BY, CC BY-SA, or documented Chronos-original assets can follow the automated approval path. Unknown origin, educational-use-only, fair-use assumptions, all-rights-reserved, NC, ND, hotlinked, or watermarked assets remain blocked and should normally be replaced. Ambiguous edge cases go to a qualified reviewer; the publisher gate is never bypassed.
 
+## Prepare the runtime source
+
+Do this before `media:add`. The archival master and the catalog source are not always the same file.
+
+- Keep asset identity stable. Replacing a hero must not overwrite a different image's source, catalog ID, or teaching role. Preserve a quarry photograph used as evidence; register a new or existing reconstruction ID for the hero.
+- Leave the accepted generation master in `docs/research/` (typically PNG). Record it in the image lifecycle as the reviewed final. Do not make a multi-megabyte lossless PNG the catalog source.
+- For photographs, and for painterly reconstructions or heroes that cannot meet the 768 KiB lossless-style `picture` budget at 1600px, write a high-quality JPEG runtime source under `public/images/` and catalog that file with `--preset photo`. The archival PNG stays pixel-for-pixel in research; only the web source and derivatives are compressed.
+- Choose the preset on the first add: `photo` for photographs and those reconstructions; `picture` for mixed illustrations that already fit the budget; `drawing` only after checking its output; `default` when unsure. Do not start a large PNG panorama as `picture` and switch presets after the build fails.
+- While the canary rollback period is active, the runtime source still lives under `public/images/`. Do not pre-compress it further or overwrite the archival research master.
+
 ## Add an image
 
-1. Put the canonical source under public/images/ while the canary rollback period is active. Do not pre-compress or overwrite it.
+1. Prepare the runtime source as above, then point the catalog at that file under `public/images/`.
 2. Add the catalog entry:
 
        npm run media:add -- --id media.uruk.example --source public/images/places/example.jpg --collection uruk --fallback /images/optimized/uruk/example.optimized.webp --preset photo --widths 480,960,1600
 
-   Use photo for photographs, picture for mixed illustrations, drawing only after checking its output, and default when unsure. The build always includes the source width and refuses unsafe paths or duplicate IDs.
+   The build always includes the source width and refuses unsafe paths or duplicate IDs. If the asset already exists, update its catalog `sourcePath` and `preset` rather than adding a duplicate ID.
 3. Add the asset’s source/provenance, alt text, depiction mode, learner-facing `rightsLabel`, and internal review state to authored content. New assets stay `provenance-review-required` until redistribution rights are actually confirmed. The publisher uses `reviewStatus`; learner UI must never present that internal workflow field as historical or editorial approval.
 4. Build and verify:
 
