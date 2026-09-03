@@ -6,6 +6,7 @@ import userEvent from '@testing-library/user-event';
 import { chronosContent } from '../../content/chronos';
 import type { ChronosContentBundle } from '../../content/assemble';
 import type { Journey, JourneyInvitation } from '../../src/domains/contracts';
+import { publishedRequiredLessonIds } from '../../src/domains/journeys/catalog';
 import { DiscoveryApp } from '../../src/app/ChronosApp';
 import { createDefaultJourneyState, openJourney } from '../../src/domains/journeys/state';
 import type { JourneyStateGateway, JourneyStateLoad } from '../../src/infrastructure/journeys/gateway';
@@ -164,17 +165,9 @@ describe('Home, Library, preview, and search composition', () => {
 
   it('renders an honest completed state when no published required lesson remains', async () => {
     const harness = makeHarness();
-    vi.mocked(harness.progressGateway.loadJourneySummaries).mockResolvedValue({
-      'lesson.humans.homo-sapiens-origins': { lessonId: 'lesson.humans.homo-sapiens-origins', status: 'completed' },
-      'lesson.humans.migrations-and-interbreeding': { lessonId: 'lesson.humans.migrations-and-interbreeding', status: 'completed' },
-      'lesson.farming.multiple-origins': { lessonId: 'lesson.farming.multiple-origins', status: 'completed' },
-      'lesson.farming.settlements': { lessonId: 'lesson.farming.settlements', status: 'completed' },
-      'lesson.uruk.first-city': { lessonId: 'lesson.uruk.first-city', status: 'completed' },
-      'lesson.writing.early-systems': { lessonId: 'lesson.writing.early-systems', status: 'completed' },
-      'lesson.egypt.nile-state': { lessonId: 'lesson.egypt.nile-state', status: 'completed' },
-      'lesson.caral.andean-urbanism': { lessonId: 'lesson.caral.andean-urbanism', status: 'completed' },
-      'lesson.egypt.pyramids-and-state-labor': { lessonId: 'lesson.egypt.pyramids-and-state-labor', status: 'completed' },
-    });
+    vi.mocked(harness.progressGateway.loadJourneySummaries).mockResolvedValue(
+      Object.fromEntries(publishedRequiredLessonIds(world, chronosContent.lessons).map((lessonId) => [lessonId, { lessonId, status: 'completed' }])),
+    );
     render(<DiscoveryApp
       route={{ name: 'home' }}
       journeyGatewayFactory={async () => harness.journeyGateway}

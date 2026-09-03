@@ -11,7 +11,7 @@ Before changing product behavior, data models, or UI, read:
 3. `docs/design/design-system.md`
 4. The active Linear epic in the [Chronos rebuild project](https://linear.app/ashs-workshop/project/chronos-guided-history-learning-rebuild-0fe768438099)
 
-For lesson creation or material lesson revision, follow `docs/content/lesson-creation-runbook.md` and `docs/content/lesson-production-queue.md`. They are the canonical process and ordered work source; do not rely on older informal runbooks.
+For lesson creation or material lesson revision, follow `docs/content/lesson-creation-runbook.md` and `docs/content/lesson-production-queue.md`. They are the canonical process and ordered work source; do not rely on older informal runbooks. After the product owner has approved a lesson for publication, follow `docs/content/lesson-publication.md` and do not re-run research, the quality contract, or platform-skill discovery.
 
 A user request equivalent to “Let's create the next Chronos lesson” is complete. Do not ask the user to supply a topic or repeat the workflow. Run the boot sequence in the lesson creation runbook, continue an active queued lesson or select the first eligible Ready lesson, and proceed through its built-in research/editorial approval gate.
 

@@ -3,7 +3,7 @@ import { chronosContent } from '../../content/chronos';
 import { searchAliases } from '../../content/search/aliases';
 import type { ChronosContentBundle } from '../../content/assemble';
 import type { Journey, JourneyInvitation } from '../../src/domains/contracts';
-import { createPublishedJourneyCatalog } from '../../src/domains/journeys/catalog';
+import { createPublishedJourneyCatalog, publishedRequiredLessonIds } from '../../src/domains/journeys/catalog';
 import { resolveJourneyInvitation } from '../../src/domains/journeys/invitations';
 import {
   DEFAULT_JOURNEY_ID,
@@ -123,10 +123,11 @@ describe('learner journey state', () => {
       'lesson.uruk.first-city': { lessonId: 'lesson.uruk.first-city', status: 'completed' as const },
       'lesson.farming.settlements': { lessonId: 'lesson.farming.settlements', status: 'completed' as const },
     };
+    const total = publishedRequiredLessonIds(world, chronosContent.lessons).length;
     expect(deriveJourneyProgress(world, chronosContent.lessons, summaries)).toEqual({
       completed: 2,
-      total: 9,
-      percent: 22,
+      total,
+      percent: Math.round(2 / total * 100),
       isCompleted: false,
     });
     const state = createDefaultJourneyState(fixtureContent.journeys, fixtureContent.lessons);
@@ -135,48 +136,23 @@ describe('learner journey state', () => {
   });
 
   it('selects one valid next action for active, completed, locked, backfilled, and finished states', () => {
-    expect(selectJourneyNextAction(world, chronosContent.lessons, {}, 'lesson.uruk.first-city')).toEqual({
-      kind: 'lesson', lessonId: 'lesson.uruk.first-city', source: 'active',
+    const ids = publishedRequiredLessonIds(world, chronosContent.lessons);
+    expect(selectJourneyNextAction(world, chronosContent.lessons, {}, ids[0])).toEqual({
+      kind: 'lesson', lessonId: ids[0], source: 'active',
     });
-    const urukCompleted = {
-      'lesson.uruk.first-city': { lessonId: 'lesson.uruk.first-city', status: 'completed' as const },
-    };
-    expect(selectJourneyNextAction(world, chronosContent.lessons, urukCompleted, 'lesson.uruk.first-city')).toEqual({
-      kind: 'lesson', lessonId: 'lesson.writing.early-systems', source: 'next',
+    const completed: Record<string, { lessonId: string; status: 'completed' }> = {};
+    for (const [index, lessonId] of ids.entries()) {
+      completed[lessonId] = { lessonId, status: 'completed' };
+      if (index < ids.length - 1) {
+        expect(selectJourneyNextAction(world, chronosContent.lessons, completed, lessonId)).toEqual({
+          kind: 'lesson', lessonId: ids[index + 1], source: 'next',
+        });
+      }
+    }
+    expect(selectJourneyNextAction(world, chronosContent.lessons, completed, ids.at(-1))).toEqual({ kind: 'complete' });
+    expect(selectJourneyNextAction(world, chronosContent.lessons, {}, ids.at(-1))).toEqual({
+      kind: 'lesson', lessonId: ids[0], source: 'backfill',
     });
-    const writingCompleted = {
-      ...urukCompleted,
-      'lesson.writing.early-systems': { lessonId: 'lesson.writing.early-systems', status: 'completed' as const },
-    };
-    expect(selectJourneyNextAction(world, chronosContent.lessons, writingCompleted, 'lesson.writing.early-systems')).toEqual({
-      kind: 'lesson', lessonId: 'lesson.egypt.nile-state', source: 'next',
-    });
-    const egyptCompleted = {
-      ...writingCompleted,
-      'lesson.egypt.nile-state': { lessonId: 'lesson.egypt.nile-state', status: 'completed' as const },
-    };
-    const spineThroughEgypt = {
-      'lesson.humans.homo-sapiens-origins': { lessonId: 'lesson.humans.homo-sapiens-origins', status: 'completed' as const },
-      'lesson.humans.migrations-and-interbreeding': { lessonId: 'lesson.humans.migrations-and-interbreeding', status: 'completed' as const },
-      'lesson.farming.multiple-origins': { lessonId: 'lesson.farming.multiple-origins', status: 'completed' as const },
-      'lesson.farming.settlements': { lessonId: 'lesson.farming.settlements', status: 'completed' as const },
-      ...egyptCompleted,
-    };
-    expect(selectJourneyNextAction(world, chronosContent.lessons, spineThroughEgypt, 'lesson.egypt.nile-state')).toEqual({
-      kind: 'lesson', lessonId: 'lesson.caral.andean-urbanism', source: 'next',
-    });
-    expect(selectJourneyNextAction(world, chronosContent.lessons, {}, 'lesson.writing.early-systems')).toEqual({
-      kind: 'lesson', lessonId: 'lesson.humans.homo-sapiens-origins', source: 'backfill',
-    });
-    expect(selectJourneyNextAction(world, chronosContent.lessons, {
-      ...spineThroughEgypt,
-      'lesson.caral.andean-urbanism': { lessonId: 'lesson.caral.andean-urbanism', status: 'completed' as const },
-    }, 'lesson.caral.andean-urbanism')).toEqual({ kind: 'lesson', lessonId: 'lesson.egypt.pyramids-and-state-labor', source: 'next' });
-    expect(selectJourneyNextAction(world, chronosContent.lessons, {
-      ...spineThroughEgypt,
-      'lesson.caral.andean-urbanism': { lessonId: 'lesson.caral.andean-urbanism', status: 'completed' as const },
-      'lesson.egypt.pyramids-and-state-labor': { lessonId: 'lesson.egypt.pyramids-and-state-labor', status: 'completed' as const },
-    }, 'lesson.egypt.pyramids-and-state-labor')).toEqual({ kind: 'complete' });
   });
 
   it('preserves an accessible incomplete optional active lesson without counting it as required progress', () => {
@@ -205,8 +181,9 @@ describe('published catalog and authored invitations', () => {
     expect(catalog.groups['civilizations-regions'].map((item) => item.id)).toEqual([optionalJourney.id]);
     expect(catalog.groups['ideas-across-time'].map((item) => item.id)).toEqual([optionalIdea.id]);
     expect(catalog.groups.investigations).toEqual([]);
-    expect(catalog.worldHistory?.lessonCount).toBe(9);
-    expect(catalog.worldHistory?.requiredLessonCount).toBe(9);
+    const publishedCount = publishedRequiredLessonIds(world, chronosContent.lessons).length;
+    expect(catalog.worldHistory?.lessonCount).toBe(publishedCount);
+    expect(catalog.worldHistory?.requiredLessonCount).toBe(publishedCount);
   });
 
   it('selects at most one eligible invitation by priority and stable ID', () => {
