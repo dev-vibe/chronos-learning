@@ -165,22 +165,22 @@ export const sahulCrossingPrompts: UnderstandingPrompt[] = [
     id: 'prompt.humans.sahul.sand-date-supports',
     lessonId: 'lesson.humans.sahul-crossing',
     kind: 'supported-selection',
-    question: 'At Madjedbebe, researchers dated sand around stone tools to about 65,000 years ago. Which conclusion is best supported?',
-    explanation: 'The date is for when the sand last saw sunlight. If the tools belong to that layer, people were there around then. Mixing could make the visit younger. The sand cannot recover the boat, the landing beach, or an exact first day.',
+    question: 'Sand around stone tools at Madjedbebe was dated to about 65,000 years ago. What must researchers check before using that date as evidence that people lived there then?',
+    explanation: 'The method dates the burial of the sand. To use it to date human activity, researchers must check that the tools were buried at about the same time. Tools that moved down from a younger layer could be much younger than the sand around them.',
     required: true,
     options: [
-      { id: 'option.humans.sahul.sand-and-tools', label: 'If the tools belong to that sand layer, people may have been there around then — but mixing could make the visit younger.' },
-      { id: 'option.humans.sahul.exact-first-day', label: 'The date proves the exact day the first boat landed, so the crossing is a solved calendar event.' },
-      { id: 'option.humans.sahul.dna-drew-route', label: 'The sand date is a DNA map that draws the island-by-island crossing path.' },
-      { id: 'option.humans.sahul.known-boat', label: 'The date tells us which kind of boat they used and where they landed first.' },
+      { id: 'option.humans.sahul.sand-and-tools', label: 'Whether the tools were buried with that sand or moved down from a younger layer.' },
+      { id: 'option.humans.sahul.age-of-stone', label: 'Whether the rock used to make the tools formed about 65,000 years ago.' },
+      { id: 'option.humans.sahul.tool-shape', label: 'Whether the tools have the same shape as tools from a site dated to 65,000 years ago.' },
+      { id: 'option.humans.sahul.shelter-age', label: 'Whether the rock shelter itself formed about 65,000 years ago.' },
     ],
   },
   {
     id: 'prompt.humans.sahul.planning-and-limit',
     lessonId: 'lesson.humans.sahul-crossing',
     kind: 'concise-explanation',
-    question: 'Explain why the crossing looks planned, and name one thing this evidence still cannot prove.',
-    explanation: 'A strong answer says the water never went away, so people needed craft and choices, and that accidental wash-up is a poor way to start a lasting community. Limits include the boat itself, the exact route, the first-landing day, and later sea stories that remember later drowned coasts.',
+    question: 'Why do researchers think people planned their sea journeys to Sahul? Use an example from the lesson, then name one detail of the journeys that remains unknown.',
+    explanation: 'Voyage models suggest that choosing when and where to travel made successful crossings more likely than drifting at random. Enough people also had to arrive to establish a community. Together, these findings support planning. The exact routes, departure dates, and designs of the watercraft remain unknown.',
     required: true,
     minimumResponseLength: 80,
   },
@@ -191,50 +191,50 @@ export const sahulCrossingLesson: Lesson = {
   legacyAliases: [],
   status: 'draft',
   title: 'Crossing to Sahul',
-  masthead: 'at least c. 65,000–50,000 years ago',
+  masthead: 'About 65,000–50,000 years ago',
   place: 'Sahul',
   chronology: {
     startYear: -65000,
     endYear: -50000,
-    display: 'at least c. 65,000–50,000 years ago',
+    display: 'About 65,000–50,000 years ago',
     approximate: true,
   },
-  significance: 'People reached Australia–New Guinea by crossing open water tens of thousands of years before farming. The dates are a window, and the boats do not survive.',
+  significance: 'Tens of thousands of years before farming, people crossed the sea to reach Australia and New Guinea. Their journeys reveal skills and cooperation that left few traces behind.',
   sectionIdsRequired: [
     'section.humans.sahul.landmass',
     'section.humans.sahul.open-water',
-    'section.humans.sahul.dated-sand',
     'section.humans.sahul.planned-crossing',
+    'section.humans.sahul.dated-sand',
     'section.humans.sahul.what-we-can-know',
     'section.humans.sahul.world-check',
   ],
   sections: [
     {
       id: 'section.humans.sahul.landmass',
-      heading: 'Sahul was one land',
+      heading: 'Sahul in the Ice Age',
       purpose: 'Orient learners to the Ice Age landmass and the lesson question',
       modules: [
         {
           id: 'module.humans.sahul.opening',
           type: 'prose',
-          body: `The last lesson followed some Homo sapiens groups as they moved beyond Africa and met other humans. Some of those groups kept moving east.
+          body: `On a map today, Australia, New Guinea, and Tasmania are separated by water. During the Ice Age, sea levels were lower. Land that is now underwater connected them into one huge landmass. Researchers call it Sahul.
 
-When the sea was lower, Australia, New Guinea, and Tasmania were one continent. Researchers call that land Sahul. Today's Australia, New Guinea, and Tasmania are leftover pieces of that land — not a dry path from Asia.
+In the previous lesson, we followed groups of Homo sapiens moving beyond Africa. Some eventually reached the islands of Southeast Asia. To reach Sahul from there, they faced a different challenge: stretches of open sea.
 
-How they got there, and how early, depends on what the surviving evidence can support.`,
-          claimIds: ['claim.humans.sahul.connected-landmass'],
+How did people make those journeys, and what traces of them can we still find?`,
+          claimIds: ['claim.humans.sahul.connected-landmass', 'claim.humans.sahul.no-land-bridge'],
           sourceIds: ['source.humans.clarkson-2017-madjedbebe', 'source.humans.bird-2019-not-accident'],
         },
         {
           id: 'module.humans.sahul.three-names',
           type: 'knowledge',
-          eyebrow: 'Three places to keep straight',
+          eyebrow: 'The geography',
           title: 'Sunda, Wallacea, and Sahul',
-          body: 'Lower seas joined some lands and left others as islands. The names are modern. They help us keep three lands straight.',
+          body: 'Three names help describe the region from west to east:',
           items: [
-            { label: 'Sunda', detail: 'The Asian mainland plus nearby islands when seas were low — the starting side, not Sahul.' },
-            { label: 'Wallacea', detail: 'A belt of islands between Sunda and Sahul. They stayed islands. They never became a dry walk.' },
-            { label: 'Sahul', detail: 'Australia, New Guinea, and Tasmania joined as one land until later seas rose again.' },
+            { label: 'Sunda', detail: 'The landmass formed when lower seas connected parts of Southeast Asia to the Asian mainland.' },
+            { label: 'Wallacea', detail: 'The islands between Sunda and Sahul, separated by deep channels of water.' },
+            { label: 'Sahul', detail: 'Australia, New Guinea, and Tasmania, joined by land that is now beneath the sea.' },
           ],
           claimIds: ['claim.humans.sahul.connected-landmass', 'claim.humans.sahul.no-land-bridge'],
           sourceIds: ['source.humans.kealy-2017-visibility', 'source.humans.bird-2019-not-accident'],
@@ -243,48 +243,83 @@ How they got there, and how early, depends on what the surviving evidence can su
     },
     {
       id: 'section.humans.sahul.open-water',
-      heading: 'No dry walk to Sahul',
+      heading: 'Reaching Sahul by sea',
       purpose: 'Establish that water crossings were required',
       modules: [
         {
           id: 'module.humans.sahul.water-gap',
           type: 'prose',
-          body: `Even at the lowest Ice Age seas, deep water still sat between Wallacea and Sahul. People could hop from island to island, but the last steps were crossings, not a land bridge.
+          body: `Lower seas exposed more land, but the deep channels through Wallacea and across to Sahul never dried out. People could travel through the islands, yet no route let them walk all the way.
 
-At least one of those crossings was tens of kilometres of open water. A community, including children, cannot swim that far.
+At least one crossing involved tens of kilometres of open water. Reaching Sahul required some kind of watercraft: a boat, raft, or another way to carry people over the sea.
 
-So the arrival of people in Sahul is also evidence of water travel — long before farms, cities, or states.`,
-          claimIds: ['claim.humans.sahul.no-land-bridge'],
+The people who arrived went on to establish communities there. Explaining that takes more than showing that a single traveller could survive a lucky crossing. Enough people had to reach Sahul for a community to continue.`,
+          claimIds: ['claim.humans.sahul.no-land-bridge', 'claim.humans.sahul.planning-inferred'],
           sourceIds: ['source.humans.kealy-2017-visibility', 'source.humans.bird-2019-not-accident', 'source.humans.bird-2018-timor-roti'],
         },
       ],
     },
     {
+      id: 'section.humans.sahul.planned-crossing',
+      heading: 'Planning a sea crossing',
+      purpose: 'Infer watercraft and choice without reconstructing a boat',
+      modules: [
+        {
+          id: 'module.humans.sahul.planning',
+          type: 'prose',
+          body: `No watercraft from these early journeys has been found. Materials such as wood and plant fibre decay, so we cannot examine a surviving boat to see how it worked.
+
+Instead, researchers use computer models to test possible journeys. They include winds, currents, and how long travellers could survive without fresh water. They compare craft drifting at random with journeys in which people choose when to leave and travel toward land.
+
+In these models, deliberate journeys make successful settlement much more likely. Accidental drift might bring some people ashore, but it is a weaker explanation for enough arrivals to establish a lasting community.
+
+The results depend on assumptions about the craft and the conditions at sea. They support the idea of planned travel, without showing exactly how any one journey happened.`,
+          claimIds: ['claim.humans.sahul.planning-inferred', 'claim.humans.sahul.no-surviving-craft'],
+          sourceIds: ['source.humans.bird-2019-not-accident', 'source.humans.bird-2018-timor-roti'],
+        },
+        {
+          id: 'module.humans.sahul.what-planning-means',
+          type: 'knowledge',
+          eyebrow: 'The journey',
+          title: 'Decisions that could help a crossing succeed',
+          body: 'The models consider several conditions for successful settlement:',
+          items: [
+            { label: 'When to leave', detail: 'Seasonal winds and currents could make a crossing easier or harder.' },
+            { label: 'Where to head', detail: 'Travelling toward land could improve the chance of reaching it before fresh water ran out.' },
+            { label: 'Enough people arriving', detail: 'Enough people needed to arrive to establish a community, whether in one journey or several.' },
+          ],
+          claimIds: ['claim.humans.sahul.planning-inferred', 'claim.humans.sahul.no-surviving-craft'],
+          sourceIds: ['source.humans.bird-2019-not-accident', 'source.humans.bird-2018-timor-roti'],
+        },
+      ],
+    },
+    {
       id: 'section.humans.sahul.dated-sand',
-      heading: 'Tools in dated sand',
+      heading: 'Dating the earliest settlements',
       purpose: 'Use Madjedbebe to teach dating association and the 50–65 ka window',
       modules: [
         {
           id: 'module.humans.sahul.madjedbebe',
           type: 'prose',
-          body: `A rock shelter called Madjedbebe, on Mirarr Country in northern Australia, holds stone tools, ground ochre, and grinding stones in deep sand.
+          body: `When did people reach Sahul? One important clue comes from Madjedbebe, a rock shelter on the land of the Mirarr people in northern Australia. Archaeologists have found stone tools, grinding stones, and ochre, a mineral used as a pigment, buried there.
 
-Researchers cannot read a year off the tools. They date the sand around them. A lab method asks when those sand grains last saw sunlight. Once the sand is buried, that clock starts.
+The tools show that people used the shelter. To work out when, researchers tested the sand around them. A laboratory method estimates how long it has been since sand grains were last exposed to sunlight, before they were buried.
 
-If the tools were dropped onto that sand and later layers did not mix them, the sand date can estimate when people were there. If later feet pushed older tools down, the visit could be younger than the sand.`,
+Some of that sand was dated to about 65,000 years ago. If the tools were buried with it, people were using the shelter around that time. But if tools moved down from a younger layer, they could be younger than the sand now surrounding them.
+
+That is the central disagreement at Madjedbebe. The excavation team argues that the earliest tools belong to the old layers. Other researchers question whether movement within the sand makes the human occupation seem older than it was.`,
           claimIds: ['claim.humans.sahul.osl-dates-sand', 'claim.humans.sahul.madjedbebe-window'],
           sourceIds: ['source.humans.clarkson-2017-madjedbebe', 'source.humans.veth-2025-madjedbebe-comment'],
         },
         {
           id: 'module.humans.sahul.two-numbers',
           type: 'knowledge',
-          eyebrow: 'The dating argument',
-          title: 'Two numbers to hold together',
-          body: 'Historians do not all pick the same earliest year. The honest lesson is a range.',
+          eyebrow: 'The dates',
+          title: 'When people were living in Sahul',
+          body: 'The evidence supports two different levels of confidence:',
           items: [
-            { label: 'About 50,000 years ago', detail: 'Many sites across Sahul support people living there by this time. This is the safer end of the window.' },
-            { label: 'About 65,000 years ago', detail: 'Some teams read Madjedbebe this early. Others say mixing could make the occupation younger.' },
-            { label: 'No first-day stamp', detail: 'Neither number is a landing-day on a calendar. Both are arguments from dated layers and how those layers formed.' },
+            { label: 'By about 50,000 years ago', detail: 'There is strong evidence that people were already living in Sahul.' },
+            { label: 'Possibly about 65,000 years ago', detail: 'The oldest finds at Madjedbebe support an earlier presence, but their age remains debated.' },
           ],
           claimIds: ['claim.humans.sahul.present-by-50ka', 'claim.humans.sahul.madjedbebe-window'],
           sourceIds: ['source.humans.allen-oconnell-2014-short-chronology', 'source.humans.clarkson-2017-madjedbebe', 'source.humans.veth-2025-madjedbebe-comment'],
@@ -292,54 +327,18 @@ If the tools were dropped onto that sand and later layers did not mix them, the 
       ],
     },
     {
-      id: 'section.humans.sahul.planned-crossing',
-      heading: 'Why the crossing looks planned',
-      purpose: 'Infer watercraft and choice without reconstructing a boat',
-      modules: [
-        {
-          id: 'module.humans.sahul.planning',
-          type: 'prose',
-          body: `No canoe, raft, or paddle from this crossing has been found. Wood and fibre rot.
-
-That does not make the crossing an accident. Researchers model winds, currents, and how long a person can survive without fresh water. Random wash-up can move someone to a nearby island now and then. It is a poor way to start a lasting community on a new continent.
-
-Choosing a season, heading toward land, and travelling with enough people makes arrival much more likely. The models do not photograph the craft. They make planning the better explanation.`,
-          claimIds: ['claim.humans.sahul.planning-inferred', 'claim.humans.sahul.no-surviving-craft'],
-          sourceIds: ['source.humans.bird-2019-not-accident', 'source.humans.bird-2018-timor-roti'],
-        },
-        {
-          id: 'module.humans.sahul.what-planning-means',
-          type: 'knowledge',
-          eyebrow: 'What planning can mean here',
-          title: 'Watercraft, timing, and a group',
-          body: 'Planning does not mean kings, maps, or a known boat design. It means people used watercraft and decided when to go.',
-          items: [
-            { label: 'Watercraft', detail: 'Something that could carry people across kilometres of sea. The materials have not survived.' },
-            { label: 'A chosen time', detail: 'Winds and currents change with the season. Models work much better when departure is not random.' },
-            { label: 'Enough people', detail: 'A lasting community needs more than one washed-up traveller, not a lone accident.' },
-          ],
-          claimIds: ['claim.humans.sahul.planning-inferred', 'claim.humans.sahul.no-surviving-craft'],
-          sourceIds: ['source.humans.bird-2019-not-accident', 'source.humans.bird-2018-timor-roti'],
-        },
-      ],
-    },
-    {
       id: 'section.humans.sahul.what-we-can-know',
-      heading: 'What dates and DNA can show',
+      heading: 'What other evidence can tell us',
       purpose: 'Separate observation, inference, and later tradition',
       modules: [
         {
           id: 'module.humans.sahul.limits',
-          type: 'knowledge',
-          eyebrow: 'What we can know',
-          title: 'Dates, DNA, and later stories',
-          body: 'Different kinds of evidence answer different questions. Mixing them up creates a fake first-day story.',
-          items: [
-            { label: 'It can show', detail: 'People reached Sahul across water tens of thousands of years before farming. Tools and dated sand place occupation in a window around 65,000–50,000 years ago.' },
-            { label: 'It can support', detail: 'Planning and watercraft. DNA from much later people can back a broad time window, as in the last lesson. It is not a map of the crossing.' },
-            { label: 'It cannot prove alone', detail: 'The exact first landing day, the island path, or the boat.' },
-            { label: 'Later tradition', detail: 'Some Indigenous stories remember drowned coasts after the ice melted. Those stories are later, not a record of the first crossing.' },
-          ],
+          type: 'prose',
+          body: `Tools and sand are part of a much larger history. As we saw in the previous lesson, DNA can also help researchers investigate the past. Comparisons of genetic patterns can support a broad estimate of when people settled Sahul. They cannot tell us the exact route taken by a particular group.
+
+Some Aboriginal Australian communities also pass down stories about coastal land being covered by the sea. Researchers have linked some of these accounts to rising seas thousands of years after the first crossings. These are later traditions about changes to familiar country, rather than accounts of the original arrival.
+
+Much remains unknown about the early journeys: the craft people built, the routes they took, and the choices they made along the way. But the achievement is clear. People crossed open water and established communities in Sahul tens of thousands of years before farming. The evidence points to travellers capable of planning and working together.`,
           claimIds: [
             'claim.humans.sahul.present-by-50ka',
             'claim.humans.sahul.planning-inferred',

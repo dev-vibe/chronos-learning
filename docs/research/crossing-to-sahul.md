@@ -9,6 +9,36 @@ Queue status: **Awaiting approval**
 Accountable reviewer: Carlin Aylsworth
 Validation tier: **high-risk**
 
+## Current editorial revision — 2026-09-03
+
+Carlin requested a second pass on section structure and page writing for preteen–teen learners, explicitly excluding a repeat of research. This revision re-enters Stage 14A using the existing source ledger, claims, and research-direction disposition. Research Stages 0–3B have not been repeated. The historical scope, media teaching jobs, no-card prototype, six required sections, and two sincere-attempt prompts remain in place.
+
+The revised page follows geography → required sea travel → planning → dating evidence → other evidence → World Check. Planning now follows the obstacle it explains. Headings name their subjects, the Madjedbebe explanation distinguishes younger tools from older surrounding sand, and the ending gives later coastal traditions their own context. The selection prompt now tests what researchers must establish about tools and sand, with plausible alternatives instead of obviously impossible answers. Its learning objective and correct-option ID are retained; replacement distractors have new IDs.
+
+Current preview: [Crossing to Sahul](http://localhost:3001/learn/lesson.humans.sahul-crossing). Launch with `npm run lesson:preview -- --lesson lesson.humans.sahul-crossing`; the available port may differ. The draft remains unpublished, with product review **pending**. Earlier review records below describe the earlier wording and are retained as history; the current review is recorded here.
+
+### Review of the revised text
+
+Reviewer: independent AI editorial proxy, 2026-09-03. Supplied the raw typed lesson and quality contract without the author's diagnosis. This was a text review, not observed behavior from a human learner and not product approval.
+
+| Area | Finding | Disposition |
+| --- | --- | --- |
+| Mental model and sequence | Pass: geography establishes the obstacle, models explain planning, and sand–tool association explains the dating disagreement. | No change required. |
+| Prose, headings, and cognitive load | Pass: subject headings, defined vocabulary, and short paragraphs support two distinct reasoning tasks. | No change required. |
+| Evidence and prompts | Pass: the date applies to sand; association with tools must be established. Model assumptions and limits are explicit. Both prompts are answerable from the page. | No change required. |
+| Planning knowledge module | Revise: “Travelling together” suggests simultaneous travel although the detail allows several journeys. | Changed to “Enough people arriving”; the introduction now describes conditions for settlement rather than treating every item as a choice. |
+| Visual teaching | Existing map and site-evidence intentions remain pending. | Text carries the explanation during prototype review; final assets remain behind approval. |
+
+### Verification of the revision
+
+- Content validation and the deterministic prototype gate passed.
+- Both targeted test files passed: five tests covering draft visibility, journey placement, and Learn-shell rendering. Existing heading/date assertions were updated to match the revised copy.
+- Browser checks passed at 1440 × 900 and 390 × 844 in light and dark themes, with six sections, working prompt inputs, no horizontal overflow, and no page or console errors. Representative screenshots were visually inspected. Evidence is in `tmp/sahul-rewrite-visual/` locally.
+- Full TypeScript checking reports 62 errors. A compiler comparison against the original `HEAD` versions of both changed TypeScript files produces exactly the same 62 diagnostics (file, code, and message): this editorial revision introduces none. Local comparison evidence: `tmp/rewrite-typecheck-comparison.json`.
+- No research, final-media production, publication migrations, or hosted content changes were performed.
+
+The requested writing pass is complete. Carlin's review of this revised draft remains the learner-prototype approval step before further lesson production.
+
 ## Work boundary (Stages 0–1)
 
 This lesson teaches the evidence problem behind early settlement of Sahul (Australia + New Guinea connected during lower sea levels) through **sea crossing planning and water travel** long before states or farming. It should sit directly after the “Migrations, Encounters, and Ancient DNA” lesson so learners continue the same method: start from surviving evidence, then reason about what it can and cannot prove about timing, routes, and intentions. This note is the durable research/editorial record. Stages 0–3B were shared with Carlin on 2026-09-03. Carlin returned editorial discretion the same day, with an explicit instruction to keep a preteen mind in view. Stages 4–14B follow that disposition. The Learn-shell prototype remains `status: "draft"` and production-fail-closed.
@@ -26,7 +56,7 @@ Non-goals/deferred material:
 | Stable lesson ID | `lesson.humans.sahul-crossing` |
 | Learner-facing title | **Crossing to Sahul** |
 | Essential question | What does the evidence allow us to say about when and how people reached Australia–New Guinea across open water? |
-| Durable understanding | People reached Sahul by crossing open water tens of thousands of years before farming. The safest claim is a time window, not an exact first-arrival day, and planning is inferred because no boats survive. |
+| Durable understanding | People reached Sahul by crossing open water tens of thousands of years before farming. Voyage models support planned travel, while tools and dated sand help estimate when people were living there. The earliest dates remain debated, and no watercraft from these journeys has been found. |
 | Supporting understandings | (1) OSL/ESR/U-series dating can estimate ages of occupation layers but can be disturbed by site-formation processes; (2) genetic studies can suggest settlement time windows and multiple groups, but not precise landfall points; (3) route models (palaeo-shorelines and inter-island visibility) turn sea-level assumptions into testable predictions; (4) “intentional vs accidental” crossings can be argued from drift and probability models even though no watercraft survives; (5) extinction correlations can be discussed without turning them into a single-cause story. |
 | Evidence encounter | The Madjedbebe/“Malakunanja II” OSL record as a case where dating method + stratigraphic integrity decide whether an early arrival is credible. |
 | Prerequisites | Learners can already reason about how evidence (in that case, ancient DNA) supports some parts of a story and not others. |
@@ -173,8 +203,8 @@ Follow-up research: none required before prototype. The historical model did not
 | --- | --- | --- | --- |
 | Sahul as a connected Pleistocene landmass | Essential | Learners cannot reason about a crossing without knowing the receiving land. | Opening section |
 | Wallacea / no land bridge | Essential | Makes “open water” a geographic fact, not a slogan. | Second section |
-| Madjedbebe OSL + association debate | Essential | Concrete evidence encounter for the dating window. | Third section |
-| Planning vs accidental drift | Essential | This is the capability the node exists to teach. | Fourth section |
+| Madjedbebe OSL + association debate | Essential | Concrete evidence encounter for the dating window. | Fourth section |
+| Planning vs accidental drift | Essential | This is the capability the node exists to teach. | Third section |
 | DNA as a broad window, not a route | Supporting | Continues the previous lesson’s method without repeating it. | Limits section |
 | Northern vs southern route models | Enrichment, kept one-line | Too many maps for a first pass; one sentence that more than one island path is possible. | Planned map caption / limits |
 | Megafauna extinction | Deferred | Exciting, but it would steal the lesson. | Ice Age / later Investigation |
@@ -188,13 +218,13 @@ Follow-up research: none required before prototype. The historical model did not
 
 Essential question: What does the evidence allow us to say about when and how people reached Australia–New Guinea across open water?
 
-Durable understanding: People reached Sahul by crossing open water tens of thousands of years before farming. The safest claim is a time window, not an exact first-arrival day, and planning is inferred because no boats survive.
+Durable understanding: People reached Sahul by crossing open water tens of thousands of years before farming. Voyage models support planned travel, while tools and dated sand help estimate when people were living there. The earliest dates remain debated, and no watercraft from these journeys has been found.
 
 Supporting understandings:
 
-1. Sahul was one land when seas were lower; today’s Australia and New Guinea are the leftover pieces.
-2. Island stepping-stones never became a dry walk into Sahul.
-3. Dates often come from sand around tools, so mixing can move the story.
+1. Lower seas connected Australia, New Guinea, and Tasmania into Sahul.
+2. Deep channels remained, so reaching Sahul required sea travel.
+3. Dating the sand around tools helps date human activity only if the tools belong to that layer.
 4. Models make accidental founding unlikely; that supports planning without recovering the craft.
 5. DNA can back a broad window and cannot draw the path.
 
@@ -218,11 +248,11 @@ Heading voice: each learner-facing heading names the subject or job in ordinary 
 
 | Order | Section ID | Learner-facing heading | Authoring purpose (not shown) | Claims/sources | Module | Media/action | Transition |
 | --- | --- | --- | --- | --- | --- | --- | --- |
-| 1 | `section.humans.sahul.landmass` | Sahul was one land | Orient time, place, and the name Sahul | connected-landmass | prose + knowledge | Planned map of lowered-sea Sahul | Then ask how people arrived |
-| 2 | `section.humans.sahul.open-water` | No dry walk to Sahul | Establish Wallacea and required crossings | no-land-bridge | prose | Same map job, now focused on the water gap | Then look at dated tools |
-| 3 | `section.humans.sahul.dated-sand` | Tools in dated sand | Madjedbebe encounter: method + disagreement | osl-dates-sand; madjedbebe-window; present-by-50ka | prose + knowledge | Planned evidence photo of the shelter or tools, not a reconstruction of “first people” | Then ask how they crossed |
-| 4 | `section.humans.sahul.planned-crossing` | Why the crossing looks planned | Infer watercraft from distance and models | planning-inferred; no-surviving-craft | prose + knowledge | No reconstruction of a boat | Then name the limits |
-| 5 | `section.humans.sahul.what-we-can-know` | What dates and DNA can show | Source-limit close; later tradition; DNA as support | dna-window-not-route; later-sea-stories | knowledge (eyebrow **What we can know**) | not-needed | Then World Check |
+| 1 | `section.humans.sahul.landmass` | Sahul in the Ice Age | Orient time, place, and the name Sahul | connected-landmass; no-land-bridge | prose + knowledge | Planned map of lowered-sea Sahul | Establish the sea barrier |
+| 2 | `section.humans.sahul.open-water` | Reaching Sahul by sea | Explain required crossings and the difference between arrival and settlement | no-land-bridge; planning-inferred | prose | No additional media | Ask how enough people arrived |
+| 3 | `section.humans.sahul.planned-crossing` | Planning a sea crossing | Explain voyage models and their assumptions | planning-inferred; no-surviving-craft | prose + knowledge | No reconstruction of a boat | Turn from how to when |
+| 4 | `section.humans.sahul.dated-sand` | Dating the earliest settlements | Distinguish the date of sand from the date of tools buried in it | osl-dates-sand; madjedbebe-window; present-by-50ka | prose + knowledge | Planned evidence photo of the shelter or tools | Broaden to other evidence |
+| 5 | `section.humans.sahul.what-we-can-know` | What other evidence can tell us | Explain DNA and later coastal traditions, then resolve the opening question | dna-window-not-route; later-sea-stories; planning-inferred; present-by-50ka | prose | not-needed | Apply the reasoning |
 | 6 | `section.humans.sahul.world-check` | World Check | Two sincere-attempt prompts | — | prompt × 2 | none | Completion; next published/openable World History lesson |
 
 Section-count exception: none.
@@ -252,7 +282,7 @@ Stable card ID if approved later: `card.place.sahul` · category `place` · clas
 
 | Prompt ID | Required | Understanding/evidence assessed | Misconception exposed | Feedback job |
 | --- | --- | --- | --- | --- |
-| `prompt.humans.sahul.sand-date-supports` | yes | What a sand date around tools can and cannot show | Treating 65,000 as an exact landing day, or as proof of a boat | Explain association vs a stamp on the tool |
+| `prompt.humans.sahul.sand-date-supports` | yes | Establishing whether tools were buried with the dated sand | Confusing the age of surrounding sand, raw stone, or a shelter with the age of human activity | Explain why tools from a younger layer cannot be dated by the older sand around them |
 | `prompt.humans.sahul.planning-and-limit` | yes | Why planning is inferred; name a limit | Inventing the craft, the route, or an accidental-only story | Reward the inference and the bound; 80-character minimum so both parts are attempted |
 
 ## Ages 11–14 transformations
@@ -307,7 +337,7 @@ Deterministic prototype gate: passed 2026-09-03
 | `media.intention.sahul.landmass-map` | `section.humans.sahul.landmass` | Planned map | pending | Keep planned until approval |
 | `media.intention.sahul.madjedbebe-evidence` | `section.humans.sahul.dated-sand` | Planned evidence | pending | Keep planned until approval |
 
-### Proxy review
+### Proxy review of the earlier draft (superseded)
 
 Reviewer/date: Independent adult learner-proxy, 2026-09-03. The reviewer received the lesson quality contract and the raw Learn-shell lesson, not the author’s intended diagnosis. A first pass returned the prototype to Stage 14A. The second pass reviewed the revised typed lesson. Product review remains Carlin’s.
 
@@ -359,7 +389,7 @@ Explicit safe deferrals: final map and Madjedbebe evidence image; Sahul place ca
 Observed: no
 Future family/public-release UAT note: reserved for the later program; not a lesson gate.
 
-## Research/editorial checkpoint — decision packet
+## Earlier research/editorial checkpoint — decision packet
 
 ### Recommended direction
 
@@ -396,4 +426,3 @@ Approve a six-section unpublished lesson that treats first arrival as an evidenc
 | Learner-prototype checkpoint | **Pending Carlin** |
 | Runtime implementation | Unpublished draft in the real Learn shell |
 | Publication | Fail-closed; no migration |
-

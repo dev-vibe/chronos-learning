@@ -53,10 +53,10 @@ describe('Crossing to Sahul Learn preview', () => {
     setUnlockPreviewLessonsForTests(true);
     render(<LearnApp lessonId={LESSON_ID} gatewayFactory={async () => new PreviewGateway()} />);
     expect(await screen.findByRole('heading', { name: 'Crossing to Sahul' })).toBeTruthy();
-    expect(screen.getByRole('heading', { name: 'Sahul was one land' })).toBeTruthy();
-    expect(screen.getByRole('heading', { name: 'Tools in dated sand' })).toBeTruthy();
+    expect(screen.getByRole('heading', { name: 'Sahul in the Ice Age' })).toBeTruthy();
+    expect(screen.getByRole('heading', { name: 'Dating the earliest settlements' })).toBeTruthy();
     expect(screen.getByRole('heading', { name: 'World Check' })).toBeTruthy();
-    expect(screen.getAllByText(/at least c\. 65,000–50,000 years ago/i).length).toBeGreaterThan(0);
+    expect(screen.getAllByText(/About 65,000–50,000 years ago/i).length).toBeGreaterThan(0);
     expect(document.querySelectorAll('[data-section-id]')).toHaveLength(6);
   });
 });
