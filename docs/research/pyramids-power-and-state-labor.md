@@ -5,7 +5,7 @@ Lesson ID: `lesson.egypt.pyramids-and-state-labor`
 Research-note identity/version: `ash-99-evidence-prototype-v5`
 Journey/chapter/position: World History / Cities, States, and Bronze Age Networks / canonical position 15
 Required or optional: Required
-Queue status: `Review`
+Queue status: `Complete` — published September 3, 2026; production deployment READY, with the live-site walkthrough left to Carlin at his explicit request.
 Accountable reviewer: Carlin Aylsworth
 Validation tier: high-risk
 Branch: `codex/ash-99-pyramids-power-state-labor`
@@ -616,7 +616,9 @@ Release regression results: content validation, 24 focused domain/content/legacy
 - Four approved Egypt images published to Storage: four private source objects and eight public derivatives. All 12 downloaded checksums match the release manifest; no existing object overwritten. The JavaScript uploader failed locally, so the existing hash-checking PowerShell upload approach was used for this explicitly selected set.
 - Hosted branch preview inspected at 1440×900 and 390×844 in light/dark themes. Four images load; mobile document width equals viewport width; both prompts enable explicit completion; completion shows “Lesson explored” without a card; revisit starts at `scrollY=0`; the journey drawer closes with Escape and returns focus to World History. No browser errors reported. Screenshots are retained under `tmp/egypt-release-*`.
 - Current typecheck still fails only in the documented legacy/component/domain baseline paths, not this release's changed paths. Security advisors are unchanged after application; Vercel runtime-error scan for the prior hour is empty. These checks do not imply configured external monitoring or a fresh empty-database replay.
-- Production merge/deployment and final live-route smoke test pending below; queue remains `Review` until those finish.
+- PR [#29](https://github.com/dev-vibe/chronos-learning/pull/29) merged as `cb8a1470a7623f4380a218ee7c062f845e0c2548`. Vercel deployment `dpl_Cr54WMzWZKNnBMWmQTBiy73kLkis` reports target `production`, state `READY`, and the same commit, with the production domain assigned. This is deployment-status verification, not a live-site behavior test. Carlin explicitly requested to perform the live-site check himself; no further production browser inspection was performed.
+- Final merge regression check: content validation and 69 targeted tests across 10 files pass. Main's dynamic published-lesson-count tests were retained alongside Egypt's dedicated publication/completion tests; no learner content changed.
+- [Live lesson](https://chronos-learning.vercel.app/learn/lesson.egypt.pyramids-and-state-labor) · [Approved branch preview](https://chronos-learning-git-codex-ash-99-pyr-4875cc-dev-vibes-projects.vercel.app/audit?on&next=%2Flearn%2Flesson.egypt.pyramids-and-state-labor). The current publication state supersedes the earlier draft/pending statements in this chronological research record.
 
 ## Sign-off status
 
@@ -630,7 +632,7 @@ Release regression results: content validation, 24 focused domain/content/legacy
 - [x] Product-owner learner-prototype checkpoint approved
 - [x] Final media lifecycle and rights review complete — lifecycle and proxy review pass; product-owner acceptance and publication approval recorded September 3
 - [x] Implementation and release gates complete
-- [ ] Publication migration and hosted verification complete
+- [x] Publication migration, immutable media, and hosted preview verified; production deployment READY; live-site walkthrough delegated to Carlin at his request
 
 ## Superseded labor-centered prototype record — non-operative archive
 
