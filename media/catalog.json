@@ -236,6 +236,17 @@
       ]
     },
     {
+      "id": "media.humans.jebel-irhoud-landscape-reconstruction",
+      "collection": "human-origins",
+      "sourcePath": "public/images/human-origins/jebel-irhoud-landscape-reconstruction.jpg",
+      "fallbackPath": "/images/optimized/human-origins/jebel-irhoud-landscape-reconstruction.optimized.jpg",
+      "preset": "photo",
+      "widths": [
+        480,
+        960
+      ]
+    },
+    {
       "id": "media.humans.jebel-irhoud-tools",
       "collection": "human-origins",
       "sourcePath": "public/images/human-origins/jebel-irhoud-tools.jpg",

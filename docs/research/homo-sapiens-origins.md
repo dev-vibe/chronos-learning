@@ -392,3 +392,161 @@ No journey invitations are added. There is no authored optional path from this l
 - [x] Product owner approval — decision packet approved 2026-07-26, with media direction A on both open questions
 
 Status: **Implemented and open for review.** Remaining gates are the ones that need a running database and a browser: `npm test`, the pgTAP suite including `supabase/tests/008_homo_sapiens_origins.sql`, an empty-database run of the migrations, and the responsive review.
+
+## Visual correction audit — 2026-09-02
+
+Post-publication learner feedback identified the lesson hero as visually inert: at desktop size it is a 2.85:1 quarry panorama dominated by bare rock, while the excavators are too small to create a focal point; at the mobile 16:9 crop the same problem becomes a smaller rectangle of undifferentiated rock. A full Learn-shell review in dark mode at 1440×900 and 390×844 confirmed the issue. The cranium evidence module, Africa evidence map, and tool plate remain visually legible and each performs a distinct teaching job. The prose, prompts, completion requirement, and durable understanding remain coherent. This is therefore a Stage 18 visual correction, not a material lesson rebuild.
+
+The first replacement explored made the opening object the opening image: the licensed single-view Jebel Irhoud composite cranial reconstruction, anatomy-locked with only its white background and wide framing changed. That solves the focal-point problem and avoids inventing a living person, but it repeats the skull that already performs the lesson's core evidence job in section 3.
+
+Current recommendation after product-owner direction to pursue a romantic African landscape with deliberately indistinct people: use candidate v4 recorded below. It gives the lesson wonder, geographic scale, and ancestral human presence while preserving the skull's distinct later evidence role. The landscape is specifically Jebel Irhoud rather than a generic pan-African savanna, and its caption must identify it as an evidence-based reconstruction rather than a literal view.
+
+State: **product-owner visual approval recorded**. On 2026-09-02, after the two landscape directions were presented and the second was identified as the refined romantic landscape with distant people, Carlin Aylsworth approved it with: “yes, let's go with the 2nd one~”. The accepted candidate is now registered as the lesson hero; hosted publication remains a separate release action.
+
+Responsive Learn-shell verification: **passed on 2026-09-03** at 1440 × 900 and 390 × 844 in dark mode. The desktop hero has a clear cave-and-people focal structure; the centred mobile crop retains the cave and both distant figure groups; the 2119 × 742 runtime image loads without horizontal overflow; and the reconstruction label and uncertainty caption remain visible.
+
+| Scientific reference | Recommended hero candidate |
+| --- | --- |
+| ![Single-view Jebel Irhoud composite cranial reconstruction reference](references/homo-sapiens-origins/jebel-irhoud-cranium-single-view-reference.jpg) | ![Wide museum-style Jebel Irhoud cranium hero candidate](generated/homo-sapiens-origins/jebel-irhoud-cranium-hero-candidate-v2.png) |
+
+- Reference origin: [Max Planck Institute for Evolutionary Anthropology press kit](https://www.eva.mpg.de/press/news/2017/2017-06-07-the-first-of-our-kind/), Figure 10.
+- Creator and license: Philipp Gunz / MPI EVA Leipzig, CC BY-SA 2.0.
+- Reference research copy: `docs/research/references/homo-sapiens-origins/jebel-irhoud-cranium-single-view-reference.jpg`, 1536×1537, SHA-256 `fb04aaeb0f059fc53da19432f2412972316dec108a540293057c028afda96fe3`.
+- Edit mode: style-only transformation with canvas extension; skull anatomy, orientation, proportions, missing areas, joins, and surface detail are locked.
+- Candidate: `docs/research/generated/homo-sapiens-origins/jebel-irhoud-cranium-hero-candidate-v2.png`, 2118×742, SHA-256 `9c1f5c9f316bfbff4fd960ed4097d96c9b4ddbb50522a48093e296f5e904428f`.
+- Tool/date: OpenAI built-in image generation, 2026-09-02.
+- Agent comparison verdict: the evidence-bearing silhouette, long low braincase, facial projection, jaw discontinuities, and major fracture pattern remain visually distinct at intended lesson size. Final acceptance waits on product-owner review in the actual Learn shell.
+- Rejected candidate: `docs/research/generated/homo-sapiens-origins/rejected/jebel-irhoud-cranium-hero-candidate-v1.png`, SHA-256 `c77e5e78fac5e195999ae5de67d5cbbe66b7b0aa0dd5e3a1f83eb559aa0dc601`; rejected because cinematic relighting appeared to re-render tooth and fracture detail instead of limiting the edit to background and framing.
+
+Complete candidate prompt:
+
+```text
+Use case: precise-object-edit
+Asset type: Chronos history lesson hero image; very wide 2.85:1 panorama, center-safe for a 16:9 mobile crop.
+Primary request: Change only the white background and canvas framing of the provided Jebel Irhoud composite cranial reconstruction. The skull is a scientific reference and must remain visually identical to the input; it is not permission to redraw, reinterpret, relight, repair, clean up, complete, or restyle the skull.
+Input image: Exact scientific edit target. Preserve the skull pixel-faithfully: identical orientation, size relative to its own bounding box, silhouette, long low braincase, brow, face, jaw, individual teeth, missing areas, cracks, joins, color, highlights, shadows, and surface texture.
+Scene/backdrop: Extend the canvas horizontally into a very wide panorama. Replace only the pure white background outside the skull with a deep archive-blue and charcoal museum-neutral background with extremely subtle sediment texture and restrained falloff. Do not place texture over the skull.
+Composition/framing: Place the unchanged skull around the left-center/center of the wide panorama, fully visible with comfortable margin, and keep it fully inside the centered 16:9 safe area. No crop through bone. No extra objects.
+Constraints: Change background and canvas only. The skull must be a faithful photographic cutout of the input, with no anatomical or surface changes. No new lighting on the skull. No humans, animals, tools, extra fossils, maps, diagrams, callouts, labels, text, title, logo, watermark, UI chrome, fantasy effects, or movie-poster treatment.
+Avoid: any regenerated teeth or bone, repaired gaps, smoothed cracks, changed jaw, altered braincase, mirror flip, color grading on the skull, orange cast, decorative clutter.
+```
+
+### Intermediate alternative: reconstructed Jebel Irhoud landscape without people
+
+| Present published hero | Preferred landscape candidate |
+| --- | --- |
+| ![Current Jebel Irhoud quarry hero](../../public/images/human-origins/jebel-irhoud-excavation.jpg) | ![Evidence-based reconstruction of the Jebel Irhoud landscape](generated/homo-sapiens-origins/jebel-irhoud-landscape-hero-candidate-v3.png) |
+
+- Teaching job: establish wonder, African place, deep time, and the site's lost cave setting before the lesson turns to surviving evidence.
+- Factual basis: the documented Jebel Irhoud ridge and excavation; the site's pre-mining cave form; Geraads et al.'s micromammal reconstruction of a relatively open, probably grassland-dominated environment that was less arid than later periods; and the varied fauna described as typical of an open environment.
+- Depiction boundary: the ridge relationship and open-environment category are evidence-led. Exact cave shape, vegetation placement, season, weather, and light are reconstructed and must not be read as observed facts. The indistinct distant grazers are atmospheric only and do not claim a species identification.
+- Primary image reference: `public/images/human-origins/jebel-irhoud-excavation.jpg`, 1600×557, SHA-256 `da0e6bbbdfe9b5daee13dc93d8b2fd49388e977c0017f7d04571e0df0a66c1aa`; Shannon McPherron / MPI EVA Leipzig, CC BY-SA 2.0.
+- Wider ridge reference: `docs/research/references/homo-sapiens-origins/jebel-irhoud-ridge-reference.jpg`, SHA-256 `5fb58791bc2dd53df417bbe7f9b6eff290e0863a9c6fe0424893939d68b0c8c0`; Shannon McPherron / MPI EVA Leipzig, CC BY-SA 2.0.
+- Edit mode: adapted composition, explicitly requested for review by the product owner on 2026-09-02. Modern quarry damage and land use are removed; the cave form and palaeoenvironment are reconstructed with uncertainty recorded above.
+- Candidate: `docs/research/generated/homo-sapiens-origins/jebel-irhoud-landscape-hero-candidate-v3.png`, 2127×739, SHA-256 `c1a81c1fe2f5dd406937c2731474bff495d51a68d2906ede1e6a60a52d728718`.
+- Tool/date: OpenAI built-in image generation, 2026-09-02.
+- Agent comparison verdict: the low rounded ridge, open-country scale, and limestone character remain recognizable; unsupported modern features are absent; the generalized cave is appropriately non-specific; the focal ridge/cave survives the central 16:9 mobile crop. Product-owner acceptance in the Learn shell remains pending.
+
+Complete landscape candidate prompt:
+
+```text
+Use case: historical-scene
+Asset type: Chronos history lesson hero; very wide 2.85:1 panoramic landscape, with the central 16:9 area also usable on mobile.
+Primary request: Create a cinematic but scientifically cautious evidence-based reconstruction of the landscape around Jebel Irhoud, Morocco, approximately 315,000 years ago. It should feel unmistakably like a consequential African landscape and invite curiosity, not like a generic brown quarry photograph.
+Input images:
+- Image 1 is the primary geographic and geological reference: the documented Jebel Irhoud site looking south. Preserve the broad ridge/plains relationship and mineral character, but reconstruct the occupied location before twentieth-century mining removed the cave roof and much sediment. Do not reproduce modern vehicles, buildings, excavation cuts, equipment, or archaeologists.
+- Image 2 is the wider Jebel Irhoud ridge reference. Preserve its low rounded ridge profile and expansive open-country scale. Do not reproduce modern fields, tracks, buildings, fences, or other recent land use.
+Historical/environmental basis: faunal and micromammal research describes a relatively open environment, probably grassland-dominated and less arid than later periods, with scattered shrubs. Treat the exact vegetation and season as uncertain.
+Scene/backdrop: An expansive North African open grassland and shrub mosaic beneath the Jebel Irhoud ridge. A generalized limestone cave entrance or deep rock overhang sits around the visual center, partially shadowed and modest in scale, restoring the site's pre-mining cave character without claiming an exact architecture. Golden-green grasses, scattered low shrubs, pale grey and warm limestone, atmospheric distant plains, and a broad blue sky with layered clouds. No lush jungle and no modern desert wasteland.
+Subject: The landscape itself. No close human figures. If any life appears, use only two or three extremely distant, indistinct grazing silhouettes that cannot be read as a precise species; they are atmospheric and may be omitted.
+Style/medium: Museum-grade cinematic painterly realism with believable geology, vegetation, depth, and physically plausible light. Premium editorial history illustration, calm and intelligent rather than fantasy concept art.
+Composition/framing: Sweeping wide panorama with foreground grasses for texture, the cave/ridge as a clear center focal point, and deep plains receding beyond. Keep the focal ridge and cave fully visible in the central 16:9 safe crop. Strong layers and visual depth; no empty monochrome rock field.
+Lighting/mood: Early morning after cool mist has lifted, low warm sunlight grazing the ridge, luminous but natural sky, restrained sense of discovery and deep time.
+Color palette: Mineral blue sky, muted golden-green grasses, limestone grey, soft ochre, restrained terracotta shadows. Avoid an all-red or all-brown image.
+Depiction boundary: This is an evidence-based reconstruction of a generally open paleoenvironment and the site's lost cave form, not a literal snapshot. Avoid false precision.
+Constraints: no people, no facial reconstructions, no camp, no fire, no huts, no clothing, no tools, no modern roads, farms, buildings, vehicles, excavation trenches, fences, power lines, or equipment; no elephants, giraffes, acacias, or stereotyped safari imagery; no dramatic predators; no map, labels, callouts, educational text, title, logo, watermark, or UI chrome.
+Avoid: generic savanna wallpaper, red-clay monotony, barren quarry, fantasy geology, Saharan dunes, lush tropical vegetation, cinematic battle atmosphere, oversaturated orange grading.
+```
+
+### Preferred candidate: romantic Jebel Irhoud landscape with distant people
+
+![Preferred romantic Jebel Irhoud landscape hero candidate](generated/homo-sapiens-origins/jebel-irhoud-romantic-landscape-hero-candidate-v4.png)
+
+- Product-owner direction: preserve the romantic vision of Africa and include people, but keep them too distant to claim unsupported details.
+- Human depiction boundary: six tiny backlit silhouettes in two loose groups communicate human presence, movement, and scale only. No face, hair, skin, clothing, tool, weapon, ornament, or individualized anatomy can be read. The exact number, arrangement, and gestures are reconstruction.
+- Landscape and source basis: unchanged from candidate v3 above.
+- Candidate: `docs/research/generated/homo-sapiens-origins/jebel-irhoud-romantic-landscape-hero-candidate-v4.png`, 2119×742, SHA-256 `15a5d758803a8520b4de7bcca40d058345eb3fc7cbe13f97cc4adfd8c221ca4f`.
+- Generation lineage: candidate v3 was used as the edit target; the edit changed only the human presence. The initial many-figure draft was rejected because the procession-like arrangement felt staged and overpopulated.
+- Agent comparison verdict: the landscape remains source-anchored and visually coherent; the figures are non-specific at desktop size and become still less detailed on mobile; the cave and both figure groups survive the central 16:9 crop. Product-owner visual acceptance was recorded on 2026-09-02; final Learn-shell verification follows media registration.
+
+Complete refinement prompt:
+
+```text
+Use case: precise-object-edit
+Asset type: Chronos history lesson hero.
+Primary request: Keep the entire landscape, cave, ridge, sky, lighting, vegetation, geology, framing, color, and atmosphere unchanged. Edit only the human figures.
+Human edit: Remove the long procession of figures. Show exactly five tiny, distant, backlit human silhouettes in a natural loose grouping: three gathered quietly near the cave entrance and two standing together at the overlook facing the luminous plains. Keep every figure no more than roughly 4–5 percent of image height. Their poses may communicate standing, looking, or slow walking, but no individual should pose heroically.
+Uncertainty constraints: Keep the figures as simple dark silhouettes with rim light. No readable faces, hair, skin detail, clothing detail, anatomy, tools, weapons, ornaments, bags, camp, fire, or activity-specific props.
+Preserve: exact 2.85:1 canvas and central 16:9 mobile-safe composition; cave and all five figures remain visible in the mobile-safe center.
+Avoid: line or procession formation, crowd, close figure, detailed caveman appearance, fur costume, racial caricature, modern clothing, added objects, changes anywhere else in the image.
+```
+
+## Image lifecycle
+
+This Stage 18 correction adds one accepted learner-facing image. The lesson's previously approved evidence images and map are unchanged.
+
+### `media.humans.jebel-irhoud-landscape-reconstruction` — lesson hero
+
+#### 1. Reasoning and source basis
+
+- Teaching job: open the lesson with wonder, African place, deep time, and human presence before the lesson turns to the surviving fossils and tools.
+- Governing claims: `claim.humans.irhoud-age` and `claim.humans.irhoud-was-a-cave` establish the place, date, and lost cave; the image does not carry a claim about the people's appearance or activity.
+- Factual and historical sources: Hublin et al. 2017 for the Jebel Irhoud context and date; the Max Planck press materials for the documented ridge and pre-mining cave context; Geraads et al. 2013, https://doi.org/10.1016/j.yqres.2013.08.003, for a relatively open, probably grassland-dominated and less xeric environment.
+- Why image instead of no media: the former quarry photograph supplied evidence but not an inviting sense of scale, landscape, or human stakes. The skull remains in section 3 where it supports a close evidence-reading task.
+- Depiction and uncertainty boundary: the ridge relationship, cave context, and open-environment category are evidence-led. The cave shape, plants, season, weather, light, people count, placement, gestures, and exact moment are illustrative. The tiny silhouettes show human presence and scale only.
+
+#### 2. Reference image actually used
+
+| Reference used | Origin and permitted use |
+| --- | --- |
+| ![Documented Jebel Irhoud ridge and excavation reference](../../public/images/human-origins/jebel-irhoud-excavation.jpg) | [Max Planck Institute for Evolutionary Anthropology press materials](https://www.eva.mpg.de/press/news/2017/2017-06-07-the-first-of-our-kind/), Shannon McPherron / MPI EVA Leipzig, CC BY-SA 2.0. |
+| ![Wider documented Jebel Irhoud ridge reference](references/homo-sapiens-origins/jebel-irhoud-ridge-reference.jpg) | Same press kit and creator/license; retained as the wider topographic reference. |
+
+- Repository reference paths and SHA-256: `public/images/human-origins/jebel-irhoud-excavation.jpg`, `da0e6bbbdfe9b5daee13dc93d8b2fd49388e977c0017f7d04571e0df0a66c1aa`; `docs/research/references/homo-sapiens-origins/jebel-irhoud-ridge-reference.jpg`, `5fb58791bc2dd53df417bbe7f9b6eff290e0863a9c6fe0424893939d68b0c8c0`.
+- Edit mode: adapted composition. The references anchor the low rounded ridge, limestone character, cave location, and open-country scale; modern quarry damage, roads, buildings, fields, equipment, and excavators are not copied.
+- Locked relationships: expansive plain on the left, limestone ridge and cave near the visual centre, human figures kept small and within the centre-safe crop, and no unsupported close view of a person.
+- Details not to copy or infer: modern land use; exact prehistoric cave geometry; identifiable clothing, tools, anatomy, skin, hair, or activity; stereotyped safari fauna or vegetation.
+
+#### 3. Generation or transformation
+
+- Operation: multi-reference original reconstruction, followed by a precise edit that reduced the human presence to two loose, distant groups, then full-frame high-quality JPEG encoding for runtime delivery.
+- Actual inputs and SHA-256: the two reference images listed above; intermediate landscape candidate `docs/research/generated/homo-sapiens-origins/jebel-irhoud-landscape-hero-candidate-v3.png`, `c1a81c1fe2f5dd406937c2731474bff495d51a68d2906ede1e6a60a52d728718`.
+- Tool/model/date: OpenAI built-in image generation service (model identifier not exposed), 2026-09-02; Sharp/MozJPEG quality 94 for runtime delivery.
+- Complete final refinement prompt:
+
+```text
+Use case: precise-object-edit
+Asset type: Chronos history lesson hero.
+Primary request: Keep the entire landscape, cave, ridge, sky, lighting, vegetation, geology, framing, color, and atmosphere unchanged. Edit only the human figures.
+Human edit: Remove the long procession of figures. Show exactly five tiny, distant, backlit human silhouettes in a natural loose grouping: three gathered quietly near the cave entrance and two standing together at the overlook facing the luminous plains. Keep every figure no more than roughly 4–5 percent of image height. Their poses may communicate standing, looking, or slow walking, but no individual should pose heroically.
+Uncertainty constraints: Keep the figures as simple dark silhouettes with rim light. No readable faces, hair, skin detail, clothing detail, anatomy, tools, weapons, ornaments, bags, camp, fire, or activity-specific props.
+Preserve: exact 2.85:1 canvas and central 16:9 mobile-safe composition; cave and all five figures remain visible in the mobile-safe center.
+Avoid: line or procession formation, crowd, close figure, detailed caveman appearance, fur costume, racial caricature, modern clothing, added objects, changes anywhere else in the image.
+```
+
+- Candidate/rejection record: the first skull treatment was rejected because cinematic relighting appeared to alter evidence detail; the skull direction was then declined because it repeated the later evidence module. The first people-in-landscape draft was rejected because its long procession felt staged and overpopulated. The accepted edit produced six rather than the requested five silhouettes; the additional figure is non-specific, the count carries no historical claim, and the product owner accepted the displayed result.
+
+#### 4. Accepted final image
+
+| Reference used | Accepted final |
+| --- | --- |
+| ![Documented Jebel Irhoud ridge reference](references/homo-sapiens-origins/jebel-irhoud-ridge-reference.jpg) | ![Accepted romantic Jebel Irhoud landscape reconstruction](generated/homo-sapiens-origins/jebel-irhoud-romantic-landscape-hero-candidate-v4.png) |
+
+- Final master path, dimensions, and SHA-256: `docs/research/generated/homo-sapiens-origins/jebel-irhoud-romantic-landscape-hero-candidate-v4.png`; 2119 × 742; `15a5d758803a8520b4de7bcca40d058345eb3fc7cbe13f97cc4adfd8c221ca4f`.
+- Runtime source path, dimensions, and SHA-256: `public/images/human-origins/jebel-irhoud-landscape-reconstruction.jpg`; 2119 × 742; `ae08fde6986bff63704ef9ad49bd961c47382d999cce14909e5a4ec759637a3b`. Generated fallback: `/images/optimized/human-origins/jebel-irhoud-landscape-reconstruction.optimized.jpg`, same dimensions and SHA-256. Responsive 480 px and 960 px WebP variants are lossless relative to the reviewed runtime source.
+- Reviewer/date/status: Carlin Aylsworth product-owner visual review and Codex historical, uncertainty, rights, accessibility, and composition review / 2026-09-02 / accepted.
+- Fidelity verdict — source-anchored relationships retained: yes; the low ridge, limestone character, cave focus, and open-country scale remain legible without reproducing modern quarry damage.
+- Lesson-size verdict — the image has a strong focal structure at 2.85:1, while the cave and both small figure groups remain in the central 16:9 mobile crop.
+- Comparison verdict — preserved relationship: broad plain, low Jebel Irhoud ridge, centred cave/overhang, and human-scale relationship to the landscape.
+- Comparison verdict — intentional changes: reconstructed the lost cave and palaeoenvironment; introduced romantic dawn light and six distant silhouettes to create wonder without asserting personal detail.
+- Comparison verdict — unsupported details checked: no readable faces, hair, skin, clothing, tools, weapons, camp, fire, modern infrastructure, stereotyped safari animals, labels, text, logo, watermark, or UI chrome.

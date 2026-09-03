@@ -171,7 +171,16 @@ export const homoSapiensOriginsSources: Source[] = [
     url: 'https://www.eva.mpg.de/press/news/2017/2017-06-07-the-first-of-our-kind/',
     publisher: 'Max Planck Institute for Evolutionary Anthropology',
     accessedOn: '2026-07-26',
-    licenseOrUse: 'Press images released under CC BY-SA 2.0; reused with credit and share-alike, resized only',
+    licenseOrUse: 'Press images released under CC BY-SA 2.0; reused with credit and share-alike, including as references for an adapted reconstruction',
+    reviewStatus: 'reviewed',
+  },
+  {
+    id: 'source.humans.geraads-2013-irhoud-paleoenvironment',
+    title: "The rodents from the late middle Pleistocene hominid-bearing site of J'bel Irhoud, Morocco, and their chronological and paleoenvironmental implications",
+    url: 'https://doi.org/10.1016/j.yqres.2013.08.003',
+    publisher: 'Quaternary Research',
+    accessedOn: '2026-09-02',
+    licenseOrUse: 'Peer-reviewed palaeoenvironmental analysis cited for the open-landscape reconstruction; article figures not redistributed',
     reviewStatus: 'reviewed',
   },
   {
@@ -403,6 +412,21 @@ export const homoSapiensOriginsClaims: Claim[] = [
 
 export const homoSapiensOriginsMedia: MediaAsset[] = [
   {
+    id: 'media.humans.jebel-irhoud-landscape-reconstruction',
+    locator: mediaLocator('media.humans.jebel-irhoud-landscape-reconstruction'),
+    alt: 'Wide reconstruction of the Jebel Irhoud ridge at dawn, with golden-green open grassland, a shadowed cave in the limestone slope, and six tiny backlit human silhouettes near the cave and overlook',
+    depictionMode: 'evidence-based-reconstruction',
+    depictionLabel: 'Evidence-based reconstruction · Jebel Irhoud, about 315,000 years ago',
+    rightsLabel: 'Chronos reconstruction · based on Shannon McPherron / MPI EVA Leipzig references, CC BY-SA 2.0',
+    sourceIds: [
+      'source.humans.mpi-irhoud-presskit',
+      'source.humans.hublin-2017-irhoud',
+      'source.humans.geraads-2013-irhoud-paleoenvironment',
+    ],
+    visualBriefRef: 'docs/research/homo-sapiens-origins.md#mediahumansjebel-irhoud-landscape-reconstruction--lesson-hero',
+    reviewStatus: 'approved',
+  },
+  {
     id: 'media.humans.jebel-irhoud-excavation',
     locator: mediaLocator('media.humans.jebel-irhoud-excavation'),
     alt: 'Wide photograph of the Jebel Irhoud site in Morocco looking south: a bare limestone hillside cut into an open face, with excavators and equipment small in the centre and dry plains stretching to the horizon',
@@ -532,9 +556,9 @@ export const homoSapiensOriginsLesson: Lesson = {
     approximate: true,
   },
   significance: 'The oldest fossils of our species were found in Morocco, not East Africa. Bones, stone tools, and DNA together point to beginnings spread across the continent.',
-  heroMediaId: 'media.humans.jebel-irhoud-excavation',
-  heroLabel: 'Excavation photograph',
-  heroCaption: 'Jebel Irhoud, Morocco, looking south. People once used this place as a cave. Mining in the 1960s removed the roof and much of the soil, leaving the open face where fossils were later dug out.',
+  heroMediaId: 'media.humans.jebel-irhoud-landscape-reconstruction',
+  heroLabel: 'Evidence-based reconstruction',
+  heroCaption: 'Jebel Irhoud, Morocco, around 315,000 years ago. The open landscape and the site’s lost cave form are reconstructed from environmental and archaeological evidence; the distant people show presence and scale, not known appearance or exact activity.',
   sectionIdsRequired: [
     'section.humans.skull-in-the-wrong-place',
     'section.humans.what-counts-as-us',
@@ -827,7 +851,7 @@ export const homoSapiensOriginsLesson: Lesson = {
   claimIds: homoSapiensOriginsClaims.map((claim) => claim.id),
   sourceIds: homoSapiensOriginsSources.map((source) => source.id),
   mediaIds: [
-    'media.humans.jebel-irhoud-excavation',
+    'media.humans.jebel-irhoud-landscape-reconstruction',
     'media.humans.jebel-irhoud-cranium',
     'media.humans.jebel-irhoud-tools',
     'media.humans.africa-evidence-map',
