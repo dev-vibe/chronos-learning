@@ -1,4 +1,5 @@
 -- ASH-99: publish the approved evidence-led Egypt lesson. No card unlock.
+-- Filename matches the hosted migration version assigned on application.
 insert into public.content_lessons (id, snapshot_version, published_at)
 values ('lesson.egypt.pyramids-and-state-labor', 'pyramids-builders-evidence-v1', now());
 

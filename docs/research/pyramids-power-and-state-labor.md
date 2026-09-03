@@ -603,11 +603,20 @@ Stable lesson/module/prompt IDs, claim/source links, required sections, prompt r
 
 Carlin accepted the revised lesson (“this is very perfect”) and explicitly authorized publication (“yes!” in response to taking Egypt through release checks, publication, merge, and production verification). This closes the accountable final lesson/media/publication approval checkpoint. Source and claim records are promoted to reviewed; historical certainty labels are unchanged. The accepted four images and no-card decision remain unchanged.
 
-The release gate passed while the lesson was still a draft with its approved prototype metadata. Publication then removes that metadata from the active registry and sets the canonical lesson to published. The archived prototype record remains available for provenance. Migration `20260903210905_publish_pyramids_builders_evidence.sql` adds only this lesson, its ninth published World History entry, two required prompts, and completion configuration. Legacy navigation aliases remain semantically unapproved for completion transfer: the new four-case reasoning task is not equivalent to old Imhotep/pyramid work.
+The release gate passed while the lesson was still a draft with its approved prototype metadata. Publication then removes that metadata from the active registry and sets the canonical lesson to published. The archived prototype record remains available for provenance. Migration `20260903211749_publish_pyramids_builders_evidence.sql` adds only this lesson, its ninth published World History entry, two required prompts, and completion configuration. It was committed as `20260903210905` before application, then renamed to match the version assigned by the hosted migration service; executable SQL is unchanged. Legacy navigation aliases remain semantically unapproved for completion transfer: the new four-case reasoning task is not equivalent to old Imhotep/pyramid work.
 
 Baseline hosted advisors: one warning for the intentionally authenticated security-definer completion RPC; it already checks `auth.uid()`, publication, required attempts, and idempotency, and has no anonymous execution grant. No function, grant, RLS policy, or learner data is changed by this publication migration. Performance notices are unused-index informational findings. See [security-definer advisor guidance](https://supabase.com/docs/guides/database/database-linter?lint=0029_authenticated_security_definer_function_executable) and [unused-index guidance](https://supabase.com/docs/guides/database/database-linter?lint=0005_unused_index). Deployment and hosted behavior verification remain in progress until recorded below.
 
 Release regression results: content validation, 24 focused domain/content/legacy tests, and all 143 repository tests pass. Production build passes with the existing bundle-size advisory. The independent release reviewer found no blocking defect and confirmed that learner text/media/prompt content is unchanged by publication. Added `supabase/tests/012_pyramids_builders_evidence.sql`; all 17 assertions pass against the hosted schema with the migration and test user enclosed in one rolled-back transaction. This covers missing/partial attempts, no-card completion, retry idempotency, unchanged Caral progress, alias safeguards, and blocked Indus completion. No test user or progress is retained. A fresh local empty-database replay was unavailable because the Docker daemon is not running; the migration contains data inserts/updates only, and its exact statements were exercised transactionally against the target schema before application.
+
+### Hosted release verification — 3 September 2026
+
+- Migration applied to Chronos (`fghjnypxhnnutgsaqvvz`) as version `20260903211749`; the committed filename now matches. All 17 database assertions pass again after application, with test work rolled back and no test user retained.
+- `npm run media:verify` passes: 34 assets / 74 derivatives. The merge's initial stale-manifest failure was a CRLF/LF comparison, not a changed asset or hash; rebuilding restores the expected bytes without a semantic manifest diff.
+- Four approved Egypt images published to Storage: four private source objects and eight public derivatives. All 12 downloaded checksums match the release manifest; no existing object overwritten. The JavaScript uploader failed locally, so the existing hash-checking PowerShell upload approach was used for this explicitly selected set.
+- Hosted branch preview inspected at 1440×900 and 390×844 in light/dark themes. Four images load; mobile document width equals viewport width; both prompts enable explicit completion; completion shows “Lesson explored” without a card; revisit starts at `scrollY=0`; the journey drawer closes with Escape and returns focus to World History. No browser errors reported. Screenshots are retained under `tmp/egypt-release-*`.
+- Current typecheck still fails only in the documented legacy/component/domain baseline paths, not this release's changed paths. Security advisors are unchanged after application; Vercel runtime-error scan for the prior hour is empty. These checks do not imply configured external monitoring or a fresh empty-database replay.
+- Production merge/deployment and final live-route smoke test pending below; queue remains `Review` until those finish.
 
 ## Sign-off status
 
@@ -620,7 +629,7 @@ Release regression results: content validation, 24 focused domain/content/legacy
 - [x] Explicit no-card decision recorded
 - [x] Product-owner learner-prototype checkpoint approved
 - [x] Final media lifecycle and rights review complete — lifecycle and proxy review pass; product-owner acceptance and publication approval recorded September 3
-- [ ] Implementation and release gates complete
+- [x] Implementation and release gates complete
 - [ ] Publication migration and hosted verification complete
 
 ## Superseded labor-centered prototype record — non-operative archive
