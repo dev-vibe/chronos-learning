@@ -29,15 +29,20 @@ const categoryFor = (kind: Journey['kind']): LibraryCategory | undefined => ({
   'world-history': undefined,
 }[kind] as LibraryCategory | undefined);
 
-export const publishedEntries = (journey: Journey, lessons: readonly Lesson[]) => {
-  const openableIds = new Set(lessons.filter((lesson) => isLessonOpenable(lesson)).map((lesson) => lesson.id));
-  return [...journey.chapters]
+export const orderedJourneyEntries = (journey: Journey) =>
+  [...journey.chapters]
     .sort((left, right) => left.position - right.position || left.id.localeCompare(right.id))
     .flatMap((chapter) => [...chapter.entries]
       .sort((left, right) => left.position - right.position || left.id.localeCompare(right.id))
-      .filter((entry) => openableIds.has(entry.lessonId))
       .map((entry) => ({ chapter, entry })));
+
+export const publishedEntries = (journey: Journey, lessons: readonly Lesson[]) => {
+  const openableIds = new Set(lessons.filter((lesson) => isLessonOpenable(lesson)).map((lesson) => lesson.id));
+  return orderedJourneyEntries(journey).filter(({ entry }) => openableIds.has(entry.lessonId));
 };
+
+export const publishedRequiredLessonIds = (journey: Journey, lessons: readonly Lesson[]) =>
+  publishedEntries(journey, lessons).filter(({ entry }) => entry.required).map(({ entry }) => entry.lessonId);
 
 const projectJourney = (journey: Journey, lessons: readonly Lesson[]): CatalogJourney | undefined => {
   if (journey.status !== 'published') return undefined;

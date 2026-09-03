@@ -262,15 +262,11 @@ Unclear action hierarchy found earlier:
 - [ ] Historical/editorial review
 - [ ] Ages 11–14 learning/editorial design review
 - [ ] Learner-prototype checkpoint approved
-- [ ] Section/component storyboard review
 - [ ] Visual/media/map/video review as applicable
 - [ ] Rights/provenance review
 - [ ] Knowledge Card review or explicit no-card decision
 - [ ] Prompt/completion review
-- [ ] Accessibility review
 - [ ] Deterministic implementation and release gates
-- [ ] Content/media/tests/type/build validation
-- [ ] Empty-database and hosted-development verification
-- [ ] Responsive browser review
-- [ ] Product owner approval
+- [ ] Publication playbook (`docs/content/lesson-publication.md`)
+- [ ] Product owner approval to publish
 ```

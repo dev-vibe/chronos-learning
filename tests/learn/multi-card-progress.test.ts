@@ -41,4 +41,19 @@ describe('Knowledge Card completion', () => {
       cardId: 'card.people.neanderthals',
     });
   });
+
+  it('requires both Egypt attempts and completes idempotently without awarding a card', async () => {
+    const gateway = new LocalPreviewGateway();
+    const lessonId = 'lesson.egypt.pyramids-and-state-labor';
+    await expect(gateway.complete(lessonId, 'egypt-before-attempts')).rejects.toThrow('required prompt attempts missing');
+    await gateway.saveAttempt(lessonId, 'prompt.pyramids.context-and-phase', 'option.pyramids.strong-context-open-phases');
+    await expect(gateway.complete(lessonId, 'egypt-one-attempt')).rejects.toThrow('required prompt attempts missing');
+    await gateway.saveAttempt(lessonId, 'prompt.pyramids.build-evidence-chain', 'I would test more stones where walls meet to check whether old blocks were reused or an older building survives.');
+    await expect(gateway.complete(lessonId, 'egypt-complete')).resolves.toMatchObject({
+      completion: 'newly-completed', cardOwnership: 'not-configured', cardIds: [],
+    });
+    await expect(gateway.complete(lessonId, 'egypt-repeat')).resolves.toMatchObject({
+      completion: 'already-completed', cardOwnership: 'not-configured', cardIds: [],
+    });
+  });
 });

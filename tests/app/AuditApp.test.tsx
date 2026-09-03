@@ -43,6 +43,20 @@ describe('AuditApp', () => {
     expect(navigate).toHaveBeenCalledWith('/library/journey.world-history');
   });
 
+  it('enables audit mode and opens a requested draft lesson', () => {
+    const navigate = vi.fn();
+    render(<AuditApp search="?on&next=%2Flearn%2Flesson.egypt.pyramids-and-state-labor" navigate={navigate} />);
+    expect(window.localStorage.getItem(AUDIT_UNLOCK_STORAGE_KEY)).toBe('1');
+    expect(navigate).toHaveBeenCalledWith('/learn/lesson.egypt.pyramids-and-state-labor');
+  });
+
+  it('ignores unsafe audit destinations', () => {
+    const navigate = vi.fn();
+    render(<AuditApp search="?on&next=https%3A%2F%2Fexample.com" navigate={navigate} />);
+    expect(window.localStorage.getItem(AUDIT_UNLOCK_STORAGE_KEY)).toBe('1');
+    expect(navigate).toHaveBeenCalledWith('/library/journey.world-history');
+  });
+
   it('turns off stored audit mode', async () => {
     window.localStorage.setItem(AUDIT_UNLOCK_STORAGE_KEY, '1');
     const navigate = vi.fn();

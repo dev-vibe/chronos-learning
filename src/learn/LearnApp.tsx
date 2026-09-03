@@ -1,7 +1,7 @@
 import React, { useCallback, useEffect, useLayoutEffect, useMemo, useRef, useState } from 'react';
 import { Archive, BookOpen, ChevronRight, Compass, Landmark, Lock, Moon, Sun } from 'lucide-react';
 import { chronosContent } from '../../content/chronos';
-import type { Journey, KnowledgeCard, Lesson, LessonModule, LessonSection } from '../domains/contracts';
+import type { Journey, KnowledgeCard, Lesson, LessonModule, LessonSection, UnderstandingPrompt } from '../domains/contracts';
 import { isLessonOpenable, unlockPreviewLessonsEnabled } from '../config/runtimeFlags';
 import type { LessonPrototypeReview } from '../infrastructure/content/prototypeReview';
 import { HistoricalMapModule } from './HistoricalMapModule';
@@ -38,6 +38,22 @@ const firstPublishedLesson = lessonById.get(firstPublishedLessonId);
 const findJourney = (lessonId: string) => chronosContent.journeys.find((item) => item.status === 'published' && item.chapters.some((chapter) => chapter.entries.some((entry) => entry.lessonId === lessonId)));
 type ModuleProps = { module: LessonModule; state: LearnState; onAttempt(id: string, response: string): void };
 
+type ConciseExplanationPrompt = Extract<UnderstandingPrompt, { kind: 'concise-explanation' }>;
+
+function ConciseExplanationModule({ prompt, answer, onAttempt }: { prompt: ConciseExplanationPrompt; answer: string; onAttempt(id: string, response: string): void }) {
+  const attemptStarted = useRef(Boolean(answer));
+  const record = (value: string, allowUpdate: boolean) => {
+    const response = value.trim();
+    if (response.length < prompt.minimumResponseLength) return;
+    if (!attemptStarted.current || (allowUpdate && response !== answer)) {
+      attemptStarted.current = true;
+      onAttempt(prompt.id, response);
+    }
+  };
+
+  return <div className="prompt"><label htmlFor={prompt.id}><strong>{prompt.question}</strong></label><textarea id={prompt.id} defaultValue={answer} minLength={prompt.minimumResponseLength} placeholder="Use an example from the lesson…" onChange={(event) => record(event.currentTarget.value, false)} onBlur={(event) => record(event.currentTarget.value, true)} />{answer && <p className="feedback" role="status"><strong>Your explanation is recorded.</strong> {prompt.explanation}</p>}<small>Write at least {prompt.minimumResponseLength} characters. Thoughtful attempts count; this is not scored.</small></div>;
+}
+
 function Module({ module, state, onAttempt }: ModuleProps) {
   if (module.type === 'prose') {
     const paragraphs = module.body.split(/\n\n+/).map((part) => part.trim()).filter(Boolean);
@@ -63,7 +79,7 @@ function Module({ module, state, onAttempt }: ModuleProps) {
     const questionId = `${prompt.id}-question`;
     return <div className="prompt" role="radiogroup" aria-labelledby={questionId}><strong id={questionId}>{prompt.question}</strong>{prompt.options.map((choice) => <label key={choice.id}><input type="radio" name={prompt.id} checked={answer === choice.id} onChange={() => onAttempt(prompt.id, choice.id)} /><span>{choice.label}</span></label>)}{answer && <p className="feedback" role="status"><strong>Compare the evidence.</strong> {prompt.explanation}</p>}</div>;
   }
-  return <div className="prompt"><label htmlFor={prompt.id}><strong>{prompt.question}</strong></label><textarea id={prompt.id} defaultValue={answer} minLength={prompt.minimumResponseLength} placeholder="Use an example from the lesson…" onBlur={(event) => event.currentTarget.value.trim().length >= prompt.minimumResponseLength && onAttempt(prompt.id, event.currentTarget.value.trim())} />{answer && <p className="feedback" role="status"><strong>Your explanation is recorded.</strong> {prompt.explanation}</p>}<small>Write at least {prompt.minimumResponseLength} characters. Thoughtful attempts count; this is not scored.</small></div>;
+  return <ConciseExplanationModule prompt={prompt} answer={answer} onAttempt={onAttempt} />;
 }
 
 function Section({ section, state, onAttempt }: { section: LessonSection; state: LearnState; onAttempt(id: string, response: string): void }) {

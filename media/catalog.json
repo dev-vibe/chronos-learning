@@ -303,6 +303,53 @@
       ]
     },
     {
+      "id": "media.pyramids.giza-evidence-chain",
+      "collection": "pyramids",
+      "sourcePath": "public/images/evidence/pyramids-giza-evidence-chain.jpg",
+      "fallbackPath": "/images/optimized/pyramids/giza-evidence-chain.optimized.jpg",
+      "preset": "picture",
+      "widths": [
+        480,
+        960,
+        1536
+      ]
+    },
+    {
+      "id": "media.pyramids.hawara-evidence-streams",
+      "collection": "pyramids",
+      "sourcePath": "public/images/evidence/pyramids-hawara-evidence-streams.jpg",
+      "fallbackPath": "/images/optimized/pyramids/hawara-evidence-streams.optimized.jpg",
+      "preset": "picture",
+      "widths": [
+        480,
+        960,
+        1536
+      ]
+    },
+    {
+      "id": "media.pyramids.osirion-evidence-pair",
+      "collection": "pyramids",
+      "sourcePath": "public/images/evidence/pyramids-osirion-evidence-pair.jpg",
+      "fallbackPath": "/images/optimized/pyramids/osirion-evidence-pair.optimized.jpg",
+      "preset": "picture",
+      "widths": [
+        480,
+        1536
+      ]
+    },
+    {
+      "id": "media.pyramids.vessel-evidence-test",
+      "collection": "pyramids",
+      "sourcePath": "public/images/evidence/pyramids-vessel-evidence-test.jpg",
+      "fallbackPath": "/images/optimized/pyramids/vessel-evidence-test.optimized.jpg",
+      "preset": "picture",
+      "widths": [
+        480,
+        960,
+        1536
+      ]
+    },
+    {
       "id": "media.uruk.clay-envelope",
       "collection": "uruk",
       "sourcePath": "public/images/inventions/clay_envelope.jpg",

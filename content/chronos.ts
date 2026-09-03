@@ -2,6 +2,7 @@ import { assembleContent } from './assemble';
 import { earlyWritingSystemsContent } from './lessons/early-writing-systems';
 import { caralAndeanUrbanismContent } from './lessons/caral-andean-urbanism';
 import { egyptNileStateContent } from './lessons/egypt-nile-state';
+import { pyramidsPowerStateLaborContent } from './lessons/pyramids-power-and-state-labor';
 import { farmingSettlementsContent } from './lessons/farming-settlements';
 import { homoSapiensOriginsContent } from './lessons/homo-sapiens-origins';
 import { migrationsAncientDnaContent } from './lessons/migrations-and-interbreeding';
@@ -12,7 +13,7 @@ import { worldHistoryJourney } from './journeys/world-history';
 import { journeyInvitations } from './journeys/invitations';
 
 export const chronosContent = assembleContent(
-  [homoSapiensOriginsContent, migrationsAncientDnaContent, sahulCrossingContent, manyBeginningsOfFarmingContent, farmingSettlementsContent, urukContent, earlyWritingSystemsContent, egyptNileStateContent, caralAndeanUrbanismContent],
+  [homoSapiensOriginsContent, migrationsAncientDnaContent, sahulCrossingContent, manyBeginningsOfFarmingContent, farmingSettlementsContent, urukContent, earlyWritingSystemsContent, egyptNileStateContent, caralAndeanUrbanismContent, pyramidsPowerStateLaborContent],
   [worldHistoryJourney],
   journeyInvitations,
 );

@@ -91,7 +91,7 @@ Private canonical sources can be ingested before public rights approval:
 
     npm run media:ingest-sources -- --asset media.uruk.example
 
-Publish an approved asset and verify its immutable objects:
+Publish an approved asset and verify its immutable objects. Do not rebuild the whole catalog at go-live; follow [the lesson publication playbook](../content/lesson-publication.md).
 
     npm run media:publish -- --asset media.uruk.example
     npm run media:verify:remote -- --asset media.uruk.example

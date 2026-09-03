@@ -1,6 +1,6 @@
 # Chronos lesson quality contract
 
-Use this contract at the Stage 14B learner-prototype checkpoint and again at Stage 16 with production content and final media. It is a qualitative review instrument, not a scoring rubric. Do not total points or allow strength in one area to cancel a blocking weakness in another.
+Use this contract at the Stage 14B learner-prototype checkpoint. Stage 16 is a production-consistency check, not a second scoring pass. If the product owner already approved the rendered lesson with final media, do not recapture a viewport matrix or re-score pedagogy. If final media changed after that approval, inspect only the changed assets. Do not total points or allow strength in one area to cancel a blocking weakness in another.
 
 The quality promise is:
 
@@ -122,13 +122,12 @@ Record optional observations when available, but do not mark the lesson provisio
 
 ## Production-preview states
 
-At Stage 16, repeat the complete contract with final content and media. Review at minimum:
+At Stage 16, confirm that implementation did not drift from the approved prototype. If final media or prompts changed after product-owner approval, review those changed surfaces at:
 
 - 1440×900 and 390×844;
 - light and dark themes;
-- long text and media fallbacks;
-- journey rail/drawer and focus order;
-- prompts, feedback, explicit completion, card reveal or no-card ending, and revisit;
-- unpublished neighbors, locked routes, and the next valid action.
+- prompts, feedback, explicit completion, card reveal or no-card ending, and revisit.
+
+Do not treat a full responsive screenshot gallery as a publication gate. After the product owner says to publish, follow [the publication playbook](../lesson-publication.md): one hosted completion smoke check is enough.
 
 Use the [authoring templates](authoring-templates.md) to record the gate result. Approval belongs to the accountable human; deterministic validation may prove structure and integrity but must never manufacture a pedagogy score.
