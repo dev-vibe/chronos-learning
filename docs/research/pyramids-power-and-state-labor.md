@@ -333,8 +333,8 @@ The selection check depends only on taught Giza evidence. The concise response r
 
 Prototype lesson ID: `lesson.egypt.pyramids-and-state-labor`
 Research-note identity/version: `ash-99-evidence-prototype-v4`
-Preview route: `/learn/lesson.egypt.pyramids-and-state-labor`
-Prototype commit: [`3c5b96a`](https://github.com/dev-vibe/chronos-learning/commit/3c5b96a); Draft PR [#29](https://github.com/dev-vibe/chronos-learning/pull/29)
+Preview route: `/audit?on&next=%2Flearn%2Flesson.egypt.pyramids-and-state-labor` (enables browser-local audit mode before opening the draft)
+Prototype commit: [`9b34f23`](https://github.com/dev-vibe/chronos-learning/commit/9b34f23); Draft PR [#29](https://github.com/dev-vibe/chronos-learning/pull/29)
 Validation tier: high-risk
 Deterministic prototype gate: passed 3 September 2026
 
