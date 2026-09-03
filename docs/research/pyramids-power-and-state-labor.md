@@ -2,17 +2,17 @@
 
 Issue: [ASH-99](https://linear.app/ashs-workshop/issue/ASH-99/research-and-publish-pyramids-power-and-state-labor)
 Lesson ID: `lesson.egypt.pyramids-and-state-labor`
-Research-note identity/version: `ash-99-evidence-prototype-v4`
+Research-note identity/version: `ash-99-evidence-prototype-v5`
 Journey/chapter/position: World History / Cities, States, and Bronze Age Networks / canonical position 15
 Required or optional: Required
-Queue status: `Awaiting approval`
+Queue status: `Review`
 Accountable reviewer: Carlin Aylsworth
 Validation tier: high-risk
 Branch: `codex/ash-99-pyramids-power-state-labor`
 
 ## Work boundary
 
-This increment creates one unpublished World History lesson teaching how context, construction phase, material date, named ruler, later use, and inferred purpose must be connected rather than collapsed. Giza remains the chronological anchor at c. 2700–2500 BCE. Concise comparisons with the Osirion, Hawara, and early hard-stone vessels test the method and make an earlier Nile cultural or technical regime of materially different character and ability visible as a legitimate structure-by-structure hypothesis. State labor remains one important Giza evidence stream rather than the lesson’s answer. The increment does not build the deeper Ancient Egypt Story Arc or Investigation, generate final media, create a publication migration, unlock a card, or change hosted systems. The lesson remains `draft` and fail-closed outside development preview.
+This increment creates one World History lesson teaching how context, construction phase, material date, named ruler, later use, and inferred purpose must be connected rather than collapsed. Giza remains the chronological anchor at c. 2700–2500 BCE. Concise comparisons with the Osirion, Hawara, and early hard-stone vessels test the method and make an earlier Nile cultural or technical regime of materially different character and ability visible as a legitimate structure-by-structure hypothesis. State labor remains one important Giza evidence stream rather than the lesson’s answer. The approved final evidence visuals are now implemented; the deeper Ancient Egypt Story Arc or Investigation remains deferred, and no card is unlocked. The lesson stays `draft` and fail-closed outside development preview until final accountable review, the release gate, a committed publication migration, and hosted verification are complete.
 
 ### Revision status and journey placement
 
@@ -312,7 +312,166 @@ All headings name their historical subject or teaching job in ordinary words. Th
 
 ## Image lifecycle
 
-No image is accepted at Stage 14A. All four media jobs remain development-only intentions. After product approval, each required or recommended asset must receive its visible reasoning → reviewed raster reference → exact edit/direct-use record → accepted final comparison here before registration.
+Product-owner approval on 3 September 2026 authorized the four adapted evidence relationships below. The accepted rasters contain no learner-facing prose; dates, labels, and uncertainty explanations remain native, accessible lesson text.
+
+### `media.pyramids.giza-evidence-chain` — four clues do four different jobs
+
+#### 1. Reasoning and source basis
+
+**Reasoning.** The learner must see why a dated record, surrounding archaeological context, dated material, and a newly detected space can converge without becoming interchangeable. The adapted four-station relationship was explicitly approved; the 1785 section is an archival spatial anchor, not a modern survey.
+
+| Field | Record |
+| --- | --- |
+| Rights decision | **approved** |
+| Primary raster reference | [E. Giraud, *Plan intérieur de la grande Pyramide* (1785)](https://commons.wikimedia.org/wiki/File:Plan_int%C3%A9rieur_de_la_grande_Pyramide.jpg), Public Domain Mark 1.0; 1,200 × 864; accessed 2026-09-03 |
+| Reference path / SHA-256 | `docs/research/references/pyramids-builders-evidence/great-pyramid-interior-plan-1785.jpg` · `c5c8662d25068f88e211323bdfc3fe00ac4457b621851c073b263a4b6e9bfa4b` |
+| Factual cross-checks | IFAO Merer publication; Harvard Digital Giza; AERA settlement record; monument radiocarbon series; ScanPyramids corridor paper |
+| Tool / date | OpenAI image generation, reference-image edit workflow / 2026-09-03 |
+| Accepted master / SHA-256 | `docs/research/generated/pyramids-builders-evidence/giza-evidence-chain-master.png` · 1,536 × 1,024 · `accff599cd7fd0478b6b1bb2b04e7207d5c96ccb966c8b7ca615eb352dea82d7` |
+| Runtime publication master / SHA-256 | `public/images/evidence/pyramids-giza-evidence-chain.jpg` · q94 4:4:4 JPEG export, visually matched to the accepted master · `b57c622218498405e6fa522064a58c5be69096d541d4dfff7ac86d7328cb4881` |
+| Redistribution | Chronos original raster edit; public-domain primary reference; generated master approved for Chronos publication |
+
+#### 2. Reference image actually used
+
+![Public-domain 1785 section of the Great Pyramid used as the spatial anchor](references/pyramids-builders-evidence/great-pyramid-interior-plan-1785.jpg)
+
+#### 3. Generation or transformation
+
+**Complete prompt chain (verbatim)**
+
+```text
+Create a polished 3:2 landscape educational evidence diagram for a history lesson, using the supplied 1785 public-domain Great Pyramid section as the factual monument anchor and the supplied Chronos comparison graphic only as a visual-grammar reference for clear separated evidence stations. Adapted composition explicitly approved. Preserve the Great Pyramid’s recognizable triangular section and passage/chamber relationship without pretending the old plan is a modern survey. Arrange four visually distinct but connected evidence stations around or across the monument: (1) a small ancient papyrus log fragment and a river boat carrying pale limestone, representing a dated administrative record and transport activity; (2) an archaeological landscape strip with causeway, work buildings, food storage, and stone-working traces, representing surrounding context; (3) a mortar/charcoal sample beside a restrained radiocarbon curve or ring motif, representing a dated material whose age may precede placement; (4) a subtle empty corridor-like space revealed by translucent muon paths through the pyramid, representing a newly detected space of unknown function. Make it obvious that these are four different kinds of clues, not one continuous construction scene: use separate softly bounded panels or islands with thin connecting lines, generous whitespace, and distinct color accents. No written words, letters, dates, numbers, hieroglyphic claims, captions, title, legend, UI, borders, logos, or watermark. Do not depict aliens, electricity, machinery, secret treasure, bodies, or a completed theory of purpose. The unknown corridor must remain visually understated, not glowing or sensational. Style: warm mineral palette, refined museum-editorial illustration, tactile archival paper and stone textures, crisp enough for mobile, calm and evidence-led, not photorealistic spectacle.
+
+Edit the supplied Giza evidence diagram, preserving its 3:2 canvas, four-panel arrangement, central pyramid section, connecting lines, warm mineral palette, and all evidence relationships. Make exactly these corrections: replace every invented hieroglyph-like figure or pseudo-writing on the upper-left papyrus with non-semantic abstract horizontal ink strokes and simple tally marks that cannot be read as Egyptian signs, letters, names, or a facsimile; remove any other legible or pseudo-legible writing anywhere in the image. Keep the papyrus visibly ancient and fragmentary. Maintain the boat-and-limestone scene, archaeological context panel, mortar/charcoal sample, and understated muon-revealed corridor. Do not add titles, labels, dates, numbers, captions, UI, logos, watermark, aliens, machinery, treasure, or a claim about purpose. Keep the old section drawing visibly archival, not a modern survey.
+```
+
+#### 4. Accepted final image
+
+![Four-part Giza evidence diagram with record and transport, surrounding archaeology, dated organic material, and an understated muon-detected corridor](generated/pyramids-builders-evidence/giza-evidence-chain-master.png)
+
+**Reviewer/date/status:** Codex / 2026-09-03 / approved. **Rejected draft:** `exec-4fbb2d27-f32f-445e-bcc0-b50e57b322e4.png` was rejected because its papyrus contained invented pseudo-hieroglyphs. **Preserved relationship / fidelity verdict:** pass after correction. The accepted version retains all four approved clue types and the archival section relationship, removes pseudo-writing, keeps the new corridor visually modest, and does not imply that one clue dates or explains every phase.
+
+### `media.pyramids.osirion-evidence-pair` — protected Seti connection and discordant surface estimates
+
+#### 1. Reasoning and source basis
+
+**Reasoning.** A current photograph establishes the surviving place. The adapted lower comparison makes the protected connector and two broad, discordant surface estimates legible without copying the still-protected 1934 excavation plate or assigning one birthday to the whole monument.
+
+| Field | Record |
+| --- | --- |
+| Rights decision | **approved** under CC BY-SA 2.0; attribution and share-alike retained |
+| Primary raster reference | [Panegyrics of Granovetter, *the Osireion at Abydos* (2020)](https://commons.wikimedia.org/wiki/File:26869-_the_Osireion_at_Abydos.jpg), CC BY-SA 2.0; 7,453 × 5,253; accessed 2026-09-03 |
+| Reference path / SHA-256 | `docs/research/references/pyramids-builders-evidence/osirion-modern-photo.jpg` · `37e8ae33d5cd956766e6eb94a3523c32a75b1136b220886d0a289cbf028245a7` |
+| Factual cross-checks | Frankfort, *The Cenotaph of Seti I at Abydos*, Plate VIII and excavation text (fact/reference-only; plate not redistributed); Liritzis and Vafiadou surface-luminescence paper |
+| Tool / date | OpenAI image generation, reference-image edit workflow / 2026-09-03 |
+| Accepted master / SHA-256 | `docs/research/generated/pyramids-builders-evidence/osirion-evidence-pair-master.png` · 1,536 × 1,024 · `0ac00dee4dd0ed68fa2660957df94fda562bc2f1468b677acfdad86b206377d8` |
+| Runtime publication master / SHA-256 | `public/images/evidence/pyramids-osirion-evidence-pair.jpg` · q94 4:4:4 JPEG export, visually matched to the accepted master · `4d6292912c824a11d2b9b2d5cf47be0446a444dc72b4b2b2ed3b9a0f5adeb446` |
+| Required attribution | “Adapted from a photograph by Panegyrics of Granovetter, CC BY-SA 2.0; changes made. Chronos evidence diagram, also CC BY-SA 2.0.” |
+
+#### 2. Reference image actually used
+
+![CC BY-SA modern view of the sunken Osirion used as the architectural anchor](references/pyramids-builders-evidence/osirion-modern-photo.jpg)
+
+#### 3. Generation or transformation
+
+**Complete prompt chain (verbatim)**
+
+```text
+Create a polished 3:2 landscape educational evidence diagram for a history lesson about the Osirion at Abydos. Use the supplied CC BY-SA modern Osirion photograph as the exact architectural and material anchor; keep the sunken rectangular complex, central massive granite uprights and lintels, surrounding stonework, water/shadowed low level, and desert setting recognizable. Use the supplied Chronos diagram only as visual grammar for separated comparisons. Adapted composition explicitly approved. Compose three calm evidence stations: a large primary view of the surviving Osirion; a close technical cutaway showing a plain butterfly/dovetail-shaped granite connector seated across the joint between two masonry blocks beneath intact covering stones, with one small shallow royal-name cartouche-shaped depression but absolutely no invented hieroglyphs or legible signs; and two adjacent stone-surface sampling vignettes, one sandstone and one granite, each with a restrained luminescence glow fading into two visibly different broad timeline bands. The bands must communicate broad, uncertain, discordant estimates without dates, numbers, words, or a single exact point. Make the connector’s protected structural context clear and make the two samples visibly too limited to date the entire complex. No title, caption, labels, dates, numbers, letters, hieroglyphs, pseudo-writing, UI, logos, watermark, treasure, bodies, modern machinery, or reconstruction of an original complete monument. Style: warm mineral palette, tactile museum-editorial illustration, archival linework layered with realistic stone texture, crisp at mobile size, generous whitespace, evidence-led rather than mysterious or sensational.
+
+Edit the supplied Osirion evidence diagram while preserving its exact 3:2 arrangement, recognizable modern site view, bottom-left protected dovetail connector cutaway, stone textures, warm museum-editorial style, and absence of words. Change only the two bottom-right sampling comparisons so they become legible at mobile size: place both results on the same quiet horizontal visual baseline running left-to-right from earlier to later, with no arrowheads and no text. Under the sandstone sample, show a broad translucent amber range clearly centered toward the right/later side. Under the granite sample, show a broad translucent blue-gray range clearly centered far toward the left/earlier side. Give each range soft feathered ends to communicate uncertainty, and keep them separated enough that the discordance is immediately visible. Do not add numbers, dates, labels, letters, glyphs, captions, title, legend, UI, logos, watermark, treasure, bodies, machinery, or a whole-monument construction date. Remove the ambiguous duplicate mountain-like bands currently beneath the samples.
+
+Edit the supplied Osirion evidence diagram, preserving the entire top site view and bottom-left protected dovetail connector cutaway exactly. Redesign only the bottom-right half as one unified rounded evidence panel rather than two isolated panels. Across the top of that unified panel, place the sandstone sample on the left and granite sample on the right. Across the full width below both samples, draw one single thin neutral horizontal timeline baseline with no arrowhead. On that shared baseline, place a broad soft blue-gray uncertainty band clearly on the far left/earlier end and a broad soft amber uncertainty band clearly on the far right/later end, leaving visible empty distance between their centers while allowing slight overlap of feathered tails if needed. Connect the granite sample to the blue-gray earlier band with a thin line and the sandstone sample to the amber later band with a thin line. This must be immediately legible at mobile size as two broad discordant ranges on the same scale, not two decorative shadows. Do not add words, numbers, dates, labels, letters, glyphs, title, caption, legend, UI, logos, or watermark. Do not imply either band dates the whole monument.
+
+Make one precise factual edit to the supplied Osirion evidence diagram. Preserve the top site image, bottom-left connector cutaway, unified bottom-right panel, shared timeline, bands, lines, colors, proportions, and all styling exactly. In the bottom-right panel only, swap the two stone sample images so the coarse blue-gray granite sample is on the LEFT directly above and connected to the blue-gray earlier range, while the warm tan sandstone sample is on the RIGHT directly above and connected to the amber later range. Do not change anything else. No words, labels, numbers, dates, letters, glyphs, title, caption, UI, logo, or watermark.
+
+Edit the first supplied Osirion evidence diagram, using the second supplied modern photograph as the factual surface and masonry reference. Preserve the exact 3:2 landscape layout: large Osirion view across the top; lower-left protected structural-joint inset; lower-right two material sample panels connected to one shared horizontal earlier-to-later visual scale, with granite blue-gray and sandstone amber. CRITICAL CORRECTIONS: remove every invented incised mark, decorative carving, glyph-like mark, pseudo-hieroglyph, pseudo-writing, scratched symbol, and ornamental texture from every stone in every panel. The Osirion's large masonry must read as plain, undecorated, weathered stone like the photograph, with only natural joints, chips, grain, and mineral variation. In the lower-left inset, clearly depict a horizontal masonry joint viewed from above/obliquely: two adjacent granite blocks meet at a vertical seam; a small dovetail/bow-tie-shaped granite cramp is seated horizontally in a matching shallow socket spanning across that seam; one plain covering/roofing block is lifted slightly in cutaway so the protected connector beneath it can be seen. The cramp must not look like a vertical column, support, lintel, doorway, or freestanding object. No royal-name glyphs or writing are shown; the native lesson text explains that documentary fact. Keep all stones plain. In the lower-right, retain realistic close textures of blue-gray granite and warm sandstone and their broad fuzzy ranges on the same scale, without numbers, ticks, letters, dates, legends, labels, UI, logos, watermark, or any text. Do not imply that two samples date the whole monument. Maintain refined museum-editorial realism, warm archival paper framing, strong mobile readability, restrained lines, and generous whitespace.
+
+Correct this Osirion evidence diagram without changing the 3:2 panel layout or the shared blue-to-amber range graphic. The supplied photograph is authoritative for how the masonry surfaces look. REMOVE the remaining repeated curls, swirls, circles, etched-looking scratches, decorative speckles, glyph-like motifs, pseudo-inscriptions, and patterned texture from every stone in the top scene and lower-left inset. This is not normal weathering: replace it with visually quiet, PLAIN undecorated granite and sandstone surfaces—broad flat mineral grain, subtle tonal variation, occasional natural chip or straight joint only—matching the supplied photograph. Do not retain even faint decorative-looking patterns. Simplify the lower-left joint diagram into an unmistakable archaeological cutaway viewed from above at about 45 degrees: two large plain rectangular granite blocks lie side by side, their straight seam running vertically through the panel. A small flat bow-tie/dovetail connector lies HORIZONTALLY in a shallow bow-tie-shaped recess carved across the top surfaces of both blocks, crossing the seam like an inlaid clamp. It must be flush with the top surface, not suspended between blocks, not vertical, not a lintel, column, doorway, or support. Show one separate plain covering slab lifted above and slightly behind the joint so the normally hidden connector is exposed. Keep strong whitespace and thin neutral leader lines. No text, numbers, dates, ticks, letters, hieroglyphs, pseudo-writing, icons, logo, or watermark. Retain the two realistic material sample windows and broad fuzzy ranges, with blue-gray granite earlier on the left and amber sandstone later on the right, without implying a whole-monument date.
+
+Create a clean 3:2 landscape museum evidence graphic about the Osirion, anchored strictly to the supplied modern photograph. Use a mostly photographic editorial treatment, not etched illustration. Top 58%: a faithful cropped view of the Osirion's sunken masonry from the supplied photograph. Preserve the plain undecorated stone blocks, water, stairs, excavation walls, and subdued desert colors. Do not add, invent, or stylize any carvings, scratches, symbols, reliefs, hieroglyphs, pseudo-writing, ornamental patterns, or decorative surface marks. Stone surfaces should remain visually quiet and photographic, with only broad natural grain, normal weathering, straight joints, and occasional chips visible in the reference.
+Bottom left 42%: a simple realistic archaeological cutaway diagram on plain warm paper, viewed from above at 45 degrees. Show exactly two large rectangular plain granite blocks lying side-by-side with one straight seam. A small flat bow-tie/dovetail-shaped granite connector is seated flush inside a matching shallow recess that crosses the seam on the blocks' TOP surfaces. Behind them, show one separate plain rectangular covering slab lifted slightly upward so it is obvious the connector was normally hidden beneath covering masonry. The connector must be horizontal and inlaid, never a column, support, lintel, doorway, hole, or freestanding object. Keep every surface plain and undecorated.
+Bottom right 42%: two realistic material sample windows, left blue-gray granite and right warm sandstone, each connected by one thin straight leader to a single shared horizontal scale below. On that scale show one broad fuzzy blue-gray range toward the earlier/left side and one broad fuzzy amber range toward the later/right side, with generous overlap/uncertainty softness and no false precision.
+Use thin neutral divider lines and generous whitespace. No words, labels, title, caption, numbers, dates, tick marks, letters, hieroglyphs, pseudo-writing, symbols, UI, logo, or watermark anywhere. Mobile-readable, restrained, evidence-led, and realistic rather than dramatic. The image must separate: surviving site, protected construction joint, two sampled materials, and broad ranges; it must not imply that two samples date the whole monument.
+```
+
+#### 4. Accepted final image
+
+![Osirion evidence diagram showing the surviving complex, a protected dovetail connector, and granite and sandstone samples linked to broad discordant ranges](generated/pyramids-builders-evidence/osirion-evidence-pair-master.png)
+
+**Reviewer/date/status:** Codex / 2026-09-03 / approved after independent proxy correction; accountable product-owner review pending. **Rejected drafts:** `exec-cbfdd3ad-4228-4e65-8845-b4df7f6ad640.png` made the two estimates too visually similar; `exec-08fec54a-33fb-4469-a4de-79a60d27bf1e.png` separated colors but not one common scale; `exec-de23c34b-2d26-4bf9-8e3c-38b10fc478c4.png` reversed sample/range correspondence; the replaced `413e976b...` master and `exec-15b496db-e063-4016-b955-e4482c65a7fc.png` introduced invented decorative surface marks and made the protected connector ambiguous; `exec-40d0cf39-6f60-43f8-b133-3275b774f51c.png` clarified the connector but retained patterned stone surfaces. **Preserved relationship / fidelity verdict:** pass after correction. The accepted version uses a faithful photographic site treatment with plain undecorated masonry, shows a small horizontal dovetail connector seated across the top joint beneath a lifted covering slab, makes the granite range earlier and sandstone range later on one shared scale, and leaves exact dates and caveats in native text.
+
+### `media.pyramids.hawara-evidence-streams` — four source roles at one site
+
+#### 1. Reasoning and source basis
+
+**Reasoning.** The approved relationship must stop testimony, royal-name context, geophysical anomaly, and excavation from masquerading as the same kind of proof. The plan anchors the site, while the anomaly remains fuzzy and the excavation remains an open test.
+
+| Field | Record |
+| --- | --- |
+| Rights decision | **approved** under the creator-offered CC BY 2.5 option |
+| Primary raster reference | [Franck Monnier, *Hawara-plan-complexe* (2007), after Petrie](https://commons.wikimedia.org/wiki/File:Hawara-plan-complexe.jpg), CC BY 2.5; 1,240 × 697; accessed 2026-09-03 |
+| Reference path / SHA-256 | `docs/research/references/pyramids-builders-evidence/hawara-complex-plan.jpg` · `742209e83d864c68332252e8d78e8b8b6f88d2511173e67cead984ec5b76fea9` |
+| Factual cross-checks | Petrie excavation report; Pliny 36.84–89; 2010 VLF study; 2024 ERT/TEM report; 2026 excavation-status report |
+| Tool / date | OpenAI image generation, reference-image edit workflow / 2026-09-03 |
+| Accepted master / SHA-256 | `docs/research/generated/pyramids-builders-evidence/hawara-evidence-streams-master.png` · 1,536 × 1,024 · `ed0d2ac944344ce609ac014ab7f9a95426c80be238fc4f3f2427e1e88f55825a` |
+| Runtime publication master / SHA-256 | `public/images/evidence/pyramids-hawara-evidence-streams.jpg` · q94 4:4:4 JPEG export, visually matched to the accepted master · `09144f89f5e0397ade1ea40ff1fb3ace4e64bce8c6f571ad397c7a7f83f97ded` |
+| Required attribution | “Plan reference by Franck Monnier after Petrie, CC BY 2.5; changes made. Chronos original evidence diagram.” |
+
+#### 2. Reference image actually used
+
+![CC-licensed plan of the Hawara complex with the pyramid on the right and labyrinth or mortuary area to the left](references/pyramids-builders-evidence/hawara-complex-plan.jpg)
+
+#### 3. Generation or transformation
+
+**Complete prompt (verbatim)**
+
+```text
+Create a polished 3:2 landscape educational evidence-stream diagram for a history lesson about the Labyrinth at Hawara. Use the supplied CC-licensed Franck Monnier plan as the exact spatial anchor: preserve the pyramid on the right and the large rectilinear mortuary/labyrinth area extending to its left, while clearly treating the plan as one reconstruction based on excavated remains rather than a complete surviving building. Use the supplied Chronos comparison image only as visual grammar for four distinct evidence stations. Adapted composition explicitly approved. Center the simplified site plan on calm archival paper. Around it, arrange four separate, equally weighted evidence vignettes connected by thin lines: (1) an aged Greek/Roman manuscript scroll with only blank or non-semantic ink strokes, representing ancient testimony and conflicting memories; (2) a broken architectural stone fragment with a framed but unreadable royal cartouche-shaped mark, representing excavated Middle Kingdom royal-name context; (3) a shallow earth cross-section with soft irregular geophysical color bands and dotted survey traces, representing organized subsurface anomalies that are possible architecture but not confirmed rooms; (4) a present-day archaeological trench with string grid, hand tools, and exposed crossing wall edges, representing excavation that can test sequence and date. Make the four sources visibly different in what they can show. Do not turn the anomalies into crisp chambers, underground fantasy architecture, or a complete hidden labyrinth. No words, letters, numbers, dates, readable Greek, readable hieroglyphs, pseudo-writing, title, caption, legend, UI, logos, or watermark. No treasure, tunnels, bodies, robots, or sensational glow. Style: warm desert and mineral palette with muted blue survey accents, refined museum-editorial illustration, tactile archival textures, crisp at mobile size, generous whitespace, calm and evidence-led.
+```
+
+#### 4. Accepted final image
+
+![Hawara evidence-stream diagram separating ancient testimony, royal-name material, fuzzy geophysical anomalies, and excavation trenches around a central site plan](generated/pyramids-builders-evidence/hawara-evidence-streams-master.png)
+
+**Reviewer/date/status:** Codex / 2026-09-03 / approved. **Rejected drafts:** none. **Preserved relationship / fidelity verdict:** pass. The accepted composition retains the reference plan’s pyramid-right/site-left relationship, makes the four source roles visually distinct, and renders the survey output as irregular probability-like patches rather than confirmed architecture.
+
+### `media.pyramids.vessel-evidence-test` — object, measurement, and process stay separate
+
+#### 1. Reasoning and source basis
+
+**Reasoning.** The approved visual must honor real early vessel forms while preventing a precise mesh from manufacturing a find history or one tool hypothesis from becoming a demonstrated recipe. The generated featured object is an evidence-based representation, not a facsimile or scan of one catalogued vessel.
+
+| Field | Record |
+| --- | --- |
+| Rights decision | **approved** |
+| Primary raster reference | [Gary Todd, *Ancient Egypt Predynastic Stone Vessels* (Louvre, 2016)](https://commons.wikimedia.org/wiki/File:Ancient_Egypt_Predynastic_Stone_Vessels_(27732541153).jpg), CC0 1.0; 5,184 × 3,456; accessed 2026-09-03 |
+| Reference path / SHA-256 | `docs/research/references/pyramids-builders-evidence/predynastic-stone-vessels-louvre.jpg` · `c9e3ee6fc2658221ca47052c789c0227b2e953c34b7bd7431dd55afce81cc8c5` |
+| Factual cross-checks | Petrie Museum 19-object metrology study; Abu Rawash excavated-production study; public private-scan claim files used only to define the provenance/replication limit |
+| Tool / date | OpenAI image generation, reference-image edit workflow / 2026-09-03 |
+| Accepted master / SHA-256 | `docs/research/generated/pyramids-builders-evidence/vessel-evidence-test-master.png` · 1,536 × 1,024 · `a3f1f3e27bdd17de09d842869e43ec32360de2c2533d73a9c68aff5c7e917231` |
+| Runtime publication master / SHA-256 | `public/images/evidence/pyramids-vessel-evidence-test.jpg` · q94 4:4:4 JPEG export, visually matched to the accepted master · `c64c063ef0de0d5c4dfee56759ed7f0e5b65232ee88f627b19c3219526ebbbc1` |
+| Redistribution | Chronos original raster edit; CC0 primary reference; generated master approved for Chronos publication |
+
+#### 2. Reference image actually used
+
+![CC0 photograph of Predynastic stone vessels displayed at the Louvre](references/pyramids-builders-evidence/predynastic-stone-vessels-louvre.jpg)
+
+#### 3. Generation or transformation
+
+**Complete prompt chain (verbatim)**
+
+```text
+Create a polished 3:2 landscape educational evidence comparison for a history lesson about early Egyptian stone vessels. Use the supplied CC0 Louvre display photograph as the factual object-form and material anchor: preserve the variety of compact Predynastic hard-stone jars and bowls, their rounded bodies, small openings, lug handles, varied minerals, and museum-object scale. Use the supplied Chronos comparison image only as visual grammar for distinct evidence stations. Adapted composition explicitly approved. Arrange three clearly separated stations on warm archival paper: (1) one securely catalogued Predynastic hard-stone vessel presented as a museum evidence object, with a small neutral accession-tag shape left completely blank; (2) a translucent measured surface model of a similar but explicitly generic vessel form, showing fine wireframe rings around the outer and inner walls and a cutaway opening so centered inner and outer surfaces can be compared, without pretending this is a scan of the photographed object; (3) a restrained process-evidence still life with abrasive sand, water bowl, simple stone and copper working tools, a core/drill trace, and a small test piece with wear marks, presented as clues and testable methods rather than one proven manufacturing recipe. Visually separate object provenance, geometric measurement, and process evidence; do not merge them into a single claimed biography. No people operating a lathe, no modern machine tools, no advanced lost technology, no electricity, no impossible thinness, no glowing precision effects. No words, numbers, dates, letters, hieroglyphs, pseudo-writing, title, caption, labels, UI, logos, or watermark. Style: refined museum-editorial illustration with realistic mineral textures, calm warm palette with a muted blue-gray wireframe, crisp enough for mobile, generous whitespace, evidence-led and tactile rather than spectacular.
+
+Edit the supplied three-panel stone-vessel evidence comparison while preserving its exact 3:2 layout, three-part separation, museum display context, generic cutaway wireframe, blank accession tag, process-evidence still life, warm archival palette, and mobile clarity. Correct the left featured vessel so it is a plain, undecorated Predynastic hard-stone jar faithfully based on one of the compact lug-handled dark vessels visible in the supplied CC0 Louvre photograph. Remove all invented figures, markings, scratches that resemble pictures, painted designs, hieroglyphs, and pseudo-writing from the vessel. Keep natural mineral veining only. Make the featured vessel smaller and less spectacular, consistent with the reference objects’ actual museum scale. In the center, keep the wireframe a visibly generic comparison model, not a scan of the left object; simplify its texture so it does not resemble the same stone. On the right, make every implement visibly simple and archaeological/experimental: abrasive sand, water bowl, rounded grinding stone, plain wooden shaft, and a short undecorated copper tube or bit; remove any sharp modern spear-like copper points. Preserve the drilled test-core clue. No words, numbers, dates, letters, hieroglyphs, pseudo-writing, title, caption, labels, UI, logos, or watermark. Do not imply one proven manufacturing recipe or advanced lost machinery.
+```
+
+#### 4. Accepted final image
+
+![Three-part vessel comparison separating a plain museum-context object, a generic cutaway wireframe, and abrasive working and test-piece clues](generated/pyramids-builders-evidence/vessel-evidence-test-master.png)
+
+**Reviewer/date/status:** Codex / 2026-09-03 / approved. **Rejected draft:** `exec-869af8cc-06c1-420c-84b5-8b7908a41b1f.png` was rejected for invented figurative decoration and overly modern pointed tools. **Preserved relationship / fidelity verdict:** pass after correction. The accepted version preserves the reference collection’s plain hard-stone forms and scale, distinguishes the generic mesh from the represented museum object, and presents abrasives and simple tools as evidence to test rather than a settled manufacturing history.
 
 ## Knowledge Card decision
 
@@ -342,16 +501,16 @@ Deterministic prototype gate: passed 3 September 2026
 
 | Intention ID | Section ID | Annotation shown | Review state | Disposition |
 | --- | --- | --- | --- | --- |
-| `intent.pyramids.giza-chain` | `section.pyramids.giza` | Compare record, context, material date, and newly detected space without collapsing them | planned | Await product judgment; native text is safe fallback |
-| `intent.pyramids.osirion-pair` | `section.pyramids.osirion` | Pair the protected Seti component with the two surface estimates | planned | Await product judgment; native comparison remains complete |
-| `intent.pyramids.hawara-streams` | `section.pyramids.hawara` | Keep testimony, inscription, geophysics, and excavation in separate roles | planned | Await product judgment; never render anomalies as confirmed rooms |
-| `intent.pyramids.vessel-test` | `section.pyramids.vessels` | Separate object, mesh, documented find history, and process evidence | planned | Await product judgment; never combine unlike object histories |
+| `intent.pyramids.giza-chain` | `section.pyramids.giza` | Compare record, context, material date, and newly detected space without collapsing them | ready | Approved final raster registered as `media.pyramids.giza-evidence-chain`; native text remains the fallback |
+| `intent.pyramids.osirion-pair` | `section.pyramids.osirion` | Pair the protected Seti component with the two surface estimates | ready | Approved final raster registered as `media.pyramids.osirion-evidence-pair`; native comparison remains complete |
+| `intent.pyramids.hawara-streams` | `section.pyramids.hawara` | Keep testimony, inscription, geophysics, and excavation in separate roles | ready | Approved final raster registered as `media.pyramids.hawara-evidence-streams`; anomalies remain visibly distinct from confirmed rooms |
+| `intent.pyramids.vessel-test` | `section.pyramids.vessels` | Separate object, mesh, documented find history, and process evidence | ready | Approved final raster registered as `media.pyramids.vessel-evidence-test`; the object, generic mesh, and process clues remain separate evidence roles |
 
 ### Real-shell inspection
 
-Reviewer/date: Codex / 2–3 September 2026
+Reviewer/date: Codex / 2–3 September 2026; final-media follow-up 3 September 2026
 Viewports/themes: 1440 × 900 light and dark; 390 × 844 light and dark
-Result: pass. The exact draft route rendered seven sections and four visibly separate “Not learner content” media annotations. The page had no error overlay, console error, or horizontal overflow at either viewport. Headings, masthead, long prose, knowledge blocks, prompt controls, and the fixed mobile navigation remained legible in both themes. A selection plus a 40-character response enabled `Complete lesson`; scrolling alone did not. Completion produced the truthful no-card `Lesson explored` ending and a safe World History continuation state.
+Result: pass. The exact draft route rendered seven sections and the four approved final evidence visuals. Every image completed with a nonzero 1536 × 1024 intrinsic size and resolved through the optimized media path. The page had no error overlay, console error, or horizontal page overflow at either viewport; the only console warning was the repository's existing Tailwind CDN development warning. Headings, masthead, long prose, knowledge blocks, media captions and rights lines, prompt controls, and the fixed mobile navigation remained legible in both themes. A selection plus a 132-character response enabled `Complete lesson` while the response remained in the field; scrolling alone did not. The truthful no-card ending and safe World History continuation behavior were already verified in the prototype pass and were unchanged by media integration.
 
 ### Proxy review
 
@@ -383,12 +542,35 @@ Real-shell follow-up: pass. The revised draft rendered at the exact lesson route
 
 ### Product/editorial review
 
-Reviewer/date: Carlin Aylsworth / pending
-State: pending
-Latest feedback: requested a less clerical learner voice on 3 September 2026; revision completed and returned for review. This response is not recorded as approval.
-Material decisions: approve or revise the title *Pyramids, Builders, and Evidence*; the essential question and six-link evidence model; Giza plus concise Osirion, Hawara, and vessel scope; the neutral earlier-Nile-regime wording; the explicit no-card decision; and the four planned visual jobs.
+Reviewer/date: Carlin Aylsworth / 3 September 2026
+State: approved
+Approval: “much better! please continue the lesson creation.”
+Material decisions: approved the title *Pyramids, Builders, and Evidence*; the essential question and six-link evidence model; Giza plus concise Osirion, Hawara, and vessel scope; the neutral earlier-Nile-regime wording; the explicit no-card decision; and the four planned visual jobs. This authorizes Stage 15 implementation, including adapted visual compositions that preserve the four explicitly reviewed evidence relationships; it is not publication approval.
 Blocking findings: none.
 Explicit safe deferrals: the Sphinx, construction-function models, builders’ marks authenticity audit, systematic precision-decline analysis, complete Hawara testimonia, and deeper Osirion replication review remain in the Story Arc/Investigation research backlog. No final media, card, publication migration, unlock, review-state approval, or hosted production change occurs before product approval.
+
+### Post-implementation production review
+
+Reviewer/date: independent Codex adult learner-proxy / 3 September 2026
+Inputs: implemented learner source, operative production record, prototype review record, four rights-cleared raster references, and four accepted final images.
+
+Result: pass after bounded revisions. Mental-model coherence, narrative momentum, heading voice, evidence reasoning, historical proportionality, prompt clarity, and the Giza visual passed. The first implemented Osirion master was blocked because invented incised patterns contradicted the lesson's undecorated masonry and the protected cramp read ambiguously. It was replaced with a photographic site treatment and a clear horizontal dovetail connector seated across a joint beneath a lifted covering slab; the proxy recheck passed at reduced size. Hawara was simplified from institution names to an antiquities-and-university team, and its depiction now states that the central plan reconstructs excavated remains. The vessel visual copy now distinguishes the represented jar from dates supplied by documented find and collection records. No proxy blockers remain.
+
+Accountable review state: pending. Carlin's prototype approval authorized the four visual teaching jobs but did not inspect these final reference/image pairs or authorize publication. Claims, non-media sources, lesson publication state, migration, and hosted release therefore remain fail-closed.
+
+### Stage 16 verification
+
+Repository checks on 3 September 2026:
+
+- `npm run validate:content` — pass.
+- `npm run media:verify` — pass; 33 assets and 71 derivatives verified.
+- `npm run lesson:gate -- --lesson lesson.egypt.pyramids-and-state-labor --note docs/research/pyramids-power-and-state-labor.md --gate implementation` — pass.
+- `npm run test:domain -- --exclude .worktrees/**` — pass, 22/22 tests.
+- `npm test -- --exclude .worktrees/**` — pass, 140/140 tests.
+- `npm run build` — pass; only the existing large-chunk advisory remains.
+- `npm run typecheck` — repository baseline still reports the pre-existing legacy `NodeContentDisplay` helper, legacy resource-URL, and broad Zod inferred-optionality failures. No diagnostic names the Egypt lesson, its production record, its media catalog entries, or its generated manifests. The passing production build, focused domain/content suite, complete test suite, and lesson gates provide the changed-path evidence; the baseline debt is not reclassified as a lesson failure.
+
+The release gate intentionally remains pending until accountable product-owner review permits source/claim review-state promotion and publication work.
 
 ### Optional learner observation
 
@@ -416,8 +598,8 @@ Unclear action hierarchy found earlier: none; browser verification confirmed pro
 - [x] Deterministic prototype gate passes
 - [x] Desktop/mobile and light/dark real-shell prototype inspected
 - [x] Explicit no-card decision recorded
-- [ ] Product-owner learner-prototype checkpoint approved
-- [ ] Final media lifecycle and rights review complete
+- [x] Product-owner learner-prototype checkpoint approved
+- [ ] Final media lifecycle and rights review complete — lifecycle and proxy review pass; accountable product-owner inspection pending
 - [ ] Implementation and release gates complete
 - [ ] Publication migration and hosted verification complete
 
