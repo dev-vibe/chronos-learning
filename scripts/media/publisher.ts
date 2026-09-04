@@ -5,7 +5,7 @@ export type StoredObject = { bucket: string; objectKey: string; mimeType: string
 export type ManifestAsset = { id: string; source: StoredObject; locator: { bucket: string; variants: Array<Omit<StoredObject, 'bucket'>> } };
 export type Manifest = { assets: ManifestAsset[] };
 export type MediaRecord = { id: string; reviewStatus: string };
-export type StorageError = { statusCode?: number | string; message?: string };
+export type StorageError = { statusCode?: number | string; message?: string; originalError?: unknown };
 export type StorageDownload = { data: { arrayBuffer(): Promise<ArrayBuffer> } | null; error: StorageError | null };
 export type UploadOptions = { cacheControl: string; contentType: string; upsert: false };
 export interface StorageBucket {
@@ -27,6 +27,19 @@ export type PublishMediaOptions = {
 };
 
 const sha256 = (value: Uint8Array) => createHash('sha256').update(value).digest('hex');
+
+async function isMissingObject(error: StorageError): Promise<boolean> {
+  if (String(error.statusCode) === '404') return true;
+  // Binary downloads can wrap the API response instead of parsing its error body.
+  const response = error.originalError;
+  if (!(response instanceof Response) || ![400, 404].includes(response.status)) return false;
+  try {
+    const body = await response.clone().json() as { statusCode?: string; code?: string };
+    return String(body.statusCode) === '404' && body.code === 'NoSuchKey';
+  } catch {
+    return false;
+  }
+}
 
 export function selectMedia(media: readonly MediaRecord[], requestedIds: readonly string[], sourcesOnly: boolean, verifyOnly: boolean) {
   const selected = requestedIds.length === 0 ? [...media] : media.filter((asset) => requestedIds.includes(asset.id));
@@ -67,7 +80,7 @@ export async function publishMedia({
       log('verified ' + object.bucket + '/' + object.objectKey);
       continue;
     }
-    if (existing.error && String(existing.error.statusCode) !== '404') throw existing.error;
+    if (existing.error && !await isMissingObject(existing.error)) throw existing.error;
     if (verifyOnly) throw new Error('Missing remote media object ' + object.bucket + '/' + object.objectKey);
     const stagedPath = resolve(root, 'tmp/chronos-media', object.bucket, ...object.objectKey.split('/'));
     const bytes = await readBytes(stagedPath);

@@ -56,6 +56,22 @@ function options(storage: StorageBoundary, overrides: Partial<Parameters<typeof 
 }
 
 describe('media publisher trust boundary', () => {
+  it('recognizes an SDK-wrapped missing binary object response', async () => {
+    const storage = createStorage({
+      'media-source/test/source.png': { data: null, error: { originalError: new Response(JSON.stringify({ statusCode: '404', code: 'NoSuchKey' }), { status: 400 }) } },
+    });
+    await publishMedia(options(storage.boundary, { sourcesOnly: true }));
+    expect(storage.upload).toHaveBeenCalledTimes(1);
+    expect(storage.upload.mock.calls[0][3]).toMatchObject({ upsert: false });
+  });
+
+  it.each([400, 403, 500])('does not turn a wrapped HTTP %s permission or server error into an upload', async (status) => {
+    const error = { originalError: new Response(JSON.stringify({ statusCode: '403', code: 'AccessDenied' }), { status }) };
+    const storage = createStorage({ 'media-source/test/source.png': { data: null, error } });
+    await expect(publishMedia(options(storage.boundary, { sourcesOnly: true }))).rejects.toBe(error);
+    expect(storage.upload).not.toHaveBeenCalled();
+  });
+
   it('rejects unapproved public publication before touching Storage', async () => {
     const storage = createStorage();
     await expect(publishMedia(options(storage.boundary, { media: unapproved }))).rejects.toThrow(/Publication blocked.*media\.test\.owned/);
