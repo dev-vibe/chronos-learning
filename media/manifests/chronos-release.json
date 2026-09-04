@@ -1484,6 +1484,109 @@
       }
     },
     {
+      "id": "media.humans.madjedbebe-grinding-stones",
+      "locator": {
+        "provider": "object-storage",
+        "bucket": "media-public",
+        "fallback": {
+          "path": "/images/optimized/sahul/madjedbebe-grinding-stones.optimized.webp",
+          "width": 1770,
+          "height": 1987
+        },
+        "variants": [
+          {
+            "objectKey": "sahul/media.humans.madjedbebe-grinding-stones/0f7d7076cf66c618/optimized/ql-v1/480w-webp-q92-c79923a603470448.webp",
+            "mimeType": "image/webp",
+            "bytes": 49754,
+            "sha256": "c79923a6034704482d2837ab38a04a2b5ab69a9349860f4eabad3f372ff67b17",
+            "width": 480,
+            "height": 539,
+            "compression": {
+              "profile": "ql-v1",
+              "codec": "webp",
+              "encoder": "webp-lossy",
+              "quality": 92
+            },
+            "fidelity": {
+              "mode": "measured-quasi-lossless",
+              "psnrDb": 45.44,
+              "meanAbsoluteError": 0.679,
+              "maximumChannelDelta": 13
+            }
+          },
+          {
+            "objectKey": "sahul/media.humans.madjedbebe-grinding-stones/0f7d7076cf66c618/optimized/ql-v1/960w-webp-q92-36449b55651b4d27.webp",
+            "mimeType": "image/webp",
+            "bytes": 143218,
+            "sha256": "36449b55651b4d27fe1fd3451583eb6d2f47408a8a3be3b40993ee5125771405",
+            "width": 960,
+            "height": 1078,
+            "compression": {
+              "profile": "ql-v1",
+              "codec": "webp",
+              "encoder": "webp-lossy",
+              "quality": 92
+            },
+            "fidelity": {
+              "mode": "measured-quasi-lossless",
+              "psnrDb": 45.77,
+              "meanAbsoluteError": 0.643,
+              "maximumChannelDelta": 13
+            }
+          },
+          {
+            "objectKey": "sahul/media.humans.madjedbebe-grinding-stones/0f7d7076cf66c618/optimized/ql-v1/1600w-webp-q90-633e7f3c06725b20.webp",
+            "mimeType": "image/webp",
+            "bytes": 229358,
+            "sha256": "633e7f3c06725b2020d89b33ec5c65b083960083fdbd93ee644f5a20aa332456",
+            "width": 1600,
+            "height": 1796,
+            "compression": {
+              "profile": "ql-v1",
+              "codec": "webp",
+              "encoder": "webp-lossy",
+              "quality": 90
+            },
+            "fidelity": {
+              "mode": "measured-quasi-lossless",
+              "psnrDb": 45.42,
+              "meanAbsoluteError": 0.657,
+              "maximumChannelDelta": 16
+            }
+          },
+          {
+            "objectKey": "sahul/media.humans.madjedbebe-grinding-stones/0f7d7076cf66c618/optimized/ql-v1/1770w-webp-q90-fb713276bf470987.webp",
+            "mimeType": "image/webp",
+            "bytes": 261296,
+            "sha256": "fb713276bf47098724ee4a47ab837a954635bb90a13bab26197d104038e0a0f4",
+            "width": 1770,
+            "height": 1987,
+            "compression": {
+              "profile": "ql-v1",
+              "codec": "webp",
+              "encoder": "webp-lossy",
+              "quality": 90
+            },
+            "fidelity": {
+              "mode": "measured-quasi-lossless",
+              "psnrDb": 45.76,
+              "meanAbsoluteError": 0.627,
+              "maximumChannelDelta": 16
+            }
+          }
+        ]
+      },
+      "source": {
+        "bucket": "media-source",
+        "objectKey": "sahul/media.humans.madjedbebe-grinding-stones/0f7d7076cf66c618bffe921e3f405b8426c6f00686e8c039cc5964d27a9b7117/original.jpg",
+        "mimeType": "image/jpeg",
+        "bytes": 638768,
+        "sha256": "0f7d7076cf66c618bffe921e3f405b8426c6f00686e8c039cc5964d27a9b7117",
+        "width": 1770,
+        "height": 1987
+      }
+    },
+    {
       "id": "media.humans.migrations-hero-map",
       "locator": {
         "provider": "object-storage",
@@ -1623,6 +1726,67 @@
         "sha256": "9f8c8cede2483a3c5416f0cc94ea52369aa930c557b90a27bbed9c88fa9dfd48",
         "width": 640,
         "height": 960
+      }
+    },
+    {
+      "id": "media.humans.sahul-landmass-map",
+      "locator": {
+        "provider": "object-storage",
+        "bucket": "media-public",
+        "fallback": {
+          "path": "/images/optimized/sahul/sahul-landmass-map.optimized.jpg",
+          "width": 1024,
+          "height": 1024
+        },
+        "variants": [
+          {
+            "objectKey": "sahul/media.humans.sahul-landmass-map/7b59ad4f05a9c991/optimized/ql-v1/480w-webp-lossless-9414d2ab1d335483.webp",
+            "mimeType": "image/webp",
+            "bytes": 306700,
+            "sha256": "9414d2ab1d3354834a0995132cf97088ed05f354a5a00d99ef7a043173dffe8c",
+            "width": 480,
+            "height": 480,
+            "compression": {
+              "profile": "ql-v1",
+              "codec": "webp",
+              "encoder": "webp-lossless"
+            },
+            "fidelity": {
+              "mode": "pixel-exact",
+              "psnrDb": null,
+              "meanAbsoluteError": 0,
+              "maximumChannelDelta": 0
+            }
+          },
+          {
+            "objectKey": "sahul/media.humans.sahul-landmass-map/7b59ad4f05a9c991/optimized/ql-v1/1024w-source-jpeg-7b59ad4f05a9c991.jpg",
+            "mimeType": "image/jpeg",
+            "bytes": 585989,
+            "sha256": "7b59ad4f05a9c991c2da363a56f505e413e2dd276b7eb8f8b8cb5eeea71b6728",
+            "width": 1024,
+            "height": 1024,
+            "compression": {
+              "profile": "ql-v1",
+              "codec": "jpeg",
+              "encoder": "source-passthrough"
+            },
+            "fidelity": {
+              "mode": "pixel-exact",
+              "psnrDb": null,
+              "meanAbsoluteError": 0,
+              "maximumChannelDelta": 0
+            }
+          }
+        ]
+      },
+      "source": {
+        "bucket": "media-source",
+        "objectKey": "sahul/media.humans.sahul-landmass-map/7b59ad4f05a9c991c2da363a56f505e413e2dd276b7eb8f8b8cb5eeea71b6728/original.jpg",
+        "mimeType": "image/jpeg",
+        "bytes": 585989,
+        "sha256": "7b59ad4f05a9c991c2da363a56f505e413e2dd276b7eb8f8b8cb5eeea71b6728",
+        "width": 1024,
+        "height": 1024
       }
     },
     {

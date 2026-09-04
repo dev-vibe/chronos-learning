@@ -152,7 +152,7 @@ describe('Home, Library, preview, and search composition', () => {
       journeyGatewayFactory={async () => harness.journeyGateway}
       progressGatewayFactory={async () => harness.progressGateway}
     />);
-    expect((await screen.findByRole('link', { name: /Continue lesson/i })).getAttribute('href')).toBe('/learn/lesson.farming.multiple-origins');
+    expect((await screen.findByRole('link', { name: /Continue lesson/i })).getAttribute('href')).toBe('/learn/lesson.humans.sahul-crossing');
 
     cleanup();
     render(<DiscoveryApp
@@ -160,7 +160,7 @@ describe('Home, Library, preview, and search composition', () => {
       journeyGatewayFactory={async () => harness.journeyGateway}
       progressGatewayFactory={async () => harness.progressGateway}
     />);
-    expect((await screen.findByRole('link', { name: /Continue journey/i })).getAttribute('href')).toBe('/learn/lesson.farming.multiple-origins');
+    expect((await screen.findByRole('link', { name: /Continue journey/i })).getAttribute('href')).toBe('/learn/lesson.humans.sahul-crossing');
   });
 
   it('renders an honest completed state when no published required lesson remains', async () => {
@@ -347,7 +347,7 @@ describe('Home, Library, preview, and search composition', () => {
       navigate={navigate}
     />);
     const continueLink = await screen.findByRole('link', { name: /Continue lesson/i });
-    expect(continueLink.getAttribute('href')).toBe('/learn/lesson.farming.multiple-origins');
+    expect(continueLink.getAttribute('href')).toBe('/learn/lesson.humans.sahul-crossing');
     await userEvent.click(continueLink);
     expect((await screen.findByRole('alert')).textContent).toMatch(/lesson completion is safe/i);
     expect(navigate).not.toHaveBeenCalled();

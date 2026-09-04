@@ -4,7 +4,7 @@ Linear anchor: [ASH-65 — Maintain the canonical Chronos lesson production queu
 
 Curriculum source: [Canonical World Spine roster](world-spine-canonical-roster.md) and [World Spine audit](world-spine-audit.md)
 
-Status: **Roster positions 7–14 approved on July 19, 2026. Positions 15–24 added to the production queue on August 31, 2026** by product-owner direction after Caral completed. Animals, Herding, and Mobility and Wheels, Metals, and Specialized Work remain `Planned`. Pyramids, Builders, and Evidence completed publication September 3. No lesson is active; Indus Cities and Undeciphered Signs is next eligible. Spine positions 3–6 remain outside this runway.
+Status: **Roster positions 7–14 approved on July 19, 2026. Positions 15–24 added to the production queue on August 31, 2026** by product-owner direction after Caral completed. On 2026-09-03 the product owner also promoted World Spine position 3, Crossing to Sahul, as a first-era backfill. Animals, Herding, and Mobility and Wheels, Metals, and Specialized Work remain `Planned`. Pyramids, Builders, and Evidence completed publication September 3. Crossing to Sahul is the active lesson. Spine positions 4–6 remain outside this runway.
 
 This is the version-controlled source of truth for which canonical lesson is produced next. It is an editorially curated production queue, not the complete knowledge graph, legacy-data order, or a promise that every canonical node is ready for lesson production.
 
@@ -49,6 +49,7 @@ The production order below is operational and may differ from canonical learner 
 | Production order | Lesson | Spine position | Why it is queued | Production dependencies | Status | Linear / PR |
 | ---: | --- | ---: | --- | --- | --- | --- |
 | 10 | `lesson.humans.migrations-and-interbreeding` — Migrations, Encounters, and Ancient DNA | 2 | Product-owner direction: continue the World History opening sequence immediately after Human Origins. | Human Origins merged and verified; source and claim brief approved with a Neanderthal card | `Complete` | [ASH-73](https://linear.app/ashs-workshop/issue/ASH-73/research-and-publish-migrations-encounters-and-ancient-dna) · [PR #19 merged](https://github.com/dev-vibe/chronos-learning/pull/19) |
+| 15 | `lesson.humans.sahul-crossing` — Crossing to Sahul | 3 | Product-owner direction (2026-09-03): backfill first-era World Spine position 3 in parallel with Pyramids, Builders, and Evidence. | `lesson.humans.migrations-and-interbreeding` merged and verified | `Review` | [ASH-109](https://linear.app/ashs-workshop/issue/ASH-109/research-and-publish-crossing-to-sahul) · [PR #35](https://github.com/dev-vibe/chronos-learning/pull/35) |
 | 20 | `lesson.farming.multiple-origins` — Many Beginnings of Farming | 7 | Establish the global frame that prevents a single “Neolithic Revolution” story. | No prior lesson implementation; source and claim brief is the first research gate | `Complete` | [ASH-74](https://linear.app/ashs-workshop/issue/ASH-74/research-and-publish-many-beginnings-of-farming) · [PR #22 merged](https://github.com/dev-vibe/chronos-learning/pull/22) |
 | 30 | `lesson.animals.domestication-and-pastoralism` — Animals, Herding, and Mobility | 9 | Explain mobile pastoral lifeways as a durable complement and alternative to settled farming. | Many Beginnings of Farming implementation available | `Planned` | None |
 | 40 | `lesson.technology.wheels-metals-and-work` — Wheels, Metals, and Specialized Work | 10 | Provide the material and labor-system bridge into early cities and states. | Farming and Settlements implementation available; dedicated source brief | `Planned` | None |
@@ -91,7 +92,7 @@ Publishing position 7 after position 8 does not change canonical learner order. 
 
 ## Approved boundary
 
-This queue records World Spine positions 1 and 2, each added by explicit product-owner direction, plus positions 7–14 and the August 31, 2026 extension through 15–24. The product owner also directed creation of per-lesson issues ASH-99 through ASH-108 for that extension. It does not promote any other roster node, create issues for `Planned` rows, or authorize full-lesson work without the queue and runbook gates. Spine positions 3–6 remain `Planned` in the canonical roster and are not eligible for automatic selection. The complete roster remains the curriculum source of truth; this file owns operational production state.
+This queue records World Spine positions 1–3, each added by explicit product-owner direction, plus positions 7–14 and the August 31, 2026 extension through 15–24. On 2026-09-03 the product owner promoted position 3, Crossing to Sahul, onto the production runway in parallel with Pyramids. Positions 4–6 remain outside this runway and are not eligible for automatic selection. The complete roster remains the curriculum source of truth; this file owns operational production state.
 
 ## Queue-change checklist
 

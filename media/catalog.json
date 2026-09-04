@@ -257,6 +257,18 @@
       ]
     },
     {
+      "id": "media.humans.madjedbebe-grinding-stones",
+      "collection": "sahul",
+      "sourcePath": "public/images/sahul/madjedbebe-grinding-stones.jpg",
+      "fallbackPath": "/images/optimized/sahul/madjedbebe-grinding-stones.optimized.webp",
+      "preset": "photo",
+      "widths": [
+        480,
+        960,
+        1600
+      ]
+    },
+    {
       "id": "media.humans.migrations-hero-map",
       "collection": "ancient-dna",
       "sourcePath": "public/images/maps/migrations-ancient-genomes-hero.webp",
@@ -277,6 +289,17 @@
       "widths": [
         480,
         640
+      ]
+    },
+    {
+      "id": "media.humans.sahul-landmass-map",
+      "collection": "sahul",
+      "sourcePath": "public/images/sahul/sahul-landmass-map.jpg",
+      "fallbackPath": "/images/optimized/sahul/sahul-landmass-map.optimized.jpg",
+      "preset": "photo",
+      "widths": [
+        480,
+        1024
       ]
     },
     {
