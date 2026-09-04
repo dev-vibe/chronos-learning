@@ -18,7 +18,9 @@ describe('Pyramids, Builders, and Evidence publication', () => {
     expect(lesson.status).toBe('published');
     expect(lesson.sections).toHaveLength(7);
     expect(lesson.sections.map((section) => section.id)).toEqual(lesson.sectionIdsRequired);
-    expect(lesson.mediaIds).toHaveLength(5);
+    expect(lesson.mediaIds).toHaveLength(6);
+    expect(lesson.mediaIds).toEqual(expect.arrayContaining(['media.pyramids.hawara-kircher', 'media.pyramids.hawara-scan-illustration']));
+    expect(lesson.mediaIds).not.toContain('media.pyramids.hawara-evidence-streams');
     expect(lesson.heroMediaId).toBe('media.pyramids.giza-hero');
     expect(lesson.heroLabel).toBe('Illustrated view');
     expect(lesson.heroCaption).toContain('Giza today');

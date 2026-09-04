@@ -1767,23 +1767,23 @@
       }
     },
     {
-      "id": "media.pyramids.hawara-evidence-streams",
+      "id": "media.pyramids.hawara-kircher",
       "locator": {
         "provider": "object-storage",
         "bucket": "media-public",
         "fallback": {
-          "path": "/images/optimized/pyramids/hawara-evidence-streams.optimized.jpg",
-          "width": 1536,
-          "height": 1024
+          "path": "/images/optimized/pyramids/hawara-kircher.optimized.jpg",
+          "width": 1221,
+          "height": 1225
         },
         "variants": [
           {
-            "objectKey": "pyramids/media.pyramids.hawara-evidence-streams/09144f89f5e0397a/optimized/ql-v1/480w-webp-lossless-5b5c02a632e3e6a8.webp",
+            "objectKey": "pyramids/media.pyramids.hawara-kircher/f231877724eb1504/optimized/ql-v1/480w-webp-lossless-924c69b5437dfe00.webp",
             "mimeType": "image/webp",
-            "bytes": 188164,
-            "sha256": "5b5c02a632e3e6a8a1483b203d27a33736b03a3fce68bb9ae40ef28a9eb245d2",
+            "bytes": 359774,
+            "sha256": "924c69b5437dfe006d57417d5601ed19053076c313ef315585a4f19235dc7fea",
             "width": 480,
-            "height": 320,
+            "height": 482,
             "compression": {
               "profile": "ql-v1",
               "codec": "webp",
@@ -1797,12 +1797,12 @@
             }
           },
           {
-            "objectKey": "pyramids/media.pyramids.hawara-evidence-streams/09144f89f5e0397a/optimized/ql-v1/1536w-source-jpeg-09144f89f5e0397a.jpg",
+            "objectKey": "pyramids/media.pyramids.hawara-kircher/f231877724eb1504/optimized/ql-v1/1221w-source-jpeg-f231877724eb1504.jpg",
             "mimeType": "image/jpeg",
-            "bytes": 652885,
-            "sha256": "09144f89f5e0397ade1ea40ff1fb3ace4e64bce8c6f571ad397c7a7f83f97ded",
-            "width": 1536,
-            "height": 1024,
+            "bytes": 618744,
+            "sha256": "f231877724eb15040d62bfed444678c31e8e12fb0e74fdd75d52ea0dbc6a4ca9",
+            "width": 1221,
+            "height": 1225,
             "compression": {
               "profile": "ql-v1",
               "codec": "jpeg",
@@ -1819,12 +1819,92 @@
       },
       "source": {
         "bucket": "media-source",
-        "objectKey": "pyramids/media.pyramids.hawara-evidence-streams/09144f89f5e0397ade1ea40ff1fb3ace4e64bce8c6f571ad397c7a7f83f97ded/original.jpg",
+        "objectKey": "pyramids/media.pyramids.hawara-kircher/f231877724eb15040d62bfed444678c31e8e12fb0e74fdd75d52ea0dbc6a4ca9/original.jpg",
         "mimeType": "image/jpeg",
-        "bytes": 652885,
-        "sha256": "09144f89f5e0397ade1ea40ff1fb3ace4e64bce8c6f571ad397c7a7f83f97ded",
-        "width": 1536,
-        "height": 1024
+        "bytes": 618744,
+        "sha256": "f231877724eb15040d62bfed444678c31e8e12fb0e74fdd75d52ea0dbc6a4ca9",
+        "width": 1221,
+        "height": 1225
+      }
+    },
+    {
+      "id": "media.pyramids.hawara-scan-illustration",
+      "locator": {
+        "provider": "object-storage",
+        "bucket": "media-public",
+        "fallback": {
+          "path": "/images/optimized/pyramids/hawara-scan-illustration.optimized.jpg",
+          "width": 1688,
+          "height": 932
+        },
+        "variants": [
+          {
+            "objectKey": "pyramids/media.pyramids.hawara-scan-illustration/39fdd3df004a3efd/optimized/ql-v1/480w-webp-lossless-4deac1e681210b37.webp",
+            "mimeType": "image/webp",
+            "bytes": 162688,
+            "sha256": "4deac1e681210b37856ab513d2af4ab83472f85ec27cffad4d78d133aa73d25a",
+            "width": 480,
+            "height": 265,
+            "compression": {
+              "profile": "ql-v1",
+              "codec": "webp",
+              "encoder": "webp-lossless"
+            },
+            "fidelity": {
+              "mode": "pixel-exact",
+              "psnrDb": null,
+              "meanAbsoluteError": 0,
+              "maximumChannelDelta": 0
+            }
+          },
+          {
+            "objectKey": "pyramids/media.pyramids.hawara-scan-illustration/39fdd3df004a3efd/optimized/ql-v1/960w-webp-lossless-795bf3f90b04b1b6.webp",
+            "mimeType": "image/webp",
+            "bytes": 526998,
+            "sha256": "795bf3f90b04b1b624eeb1115467cd968ba482f5f6db4e3db09863b205ade4c5",
+            "width": 960,
+            "height": 530,
+            "compression": {
+              "profile": "ql-v1",
+              "codec": "webp",
+              "encoder": "webp-lossless"
+            },
+            "fidelity": {
+              "mode": "pixel-exact",
+              "psnrDb": null,
+              "meanAbsoluteError": 0,
+              "maximumChannelDelta": 0
+            }
+          },
+          {
+            "objectKey": "pyramids/media.pyramids.hawara-scan-illustration/39fdd3df004a3efd/optimized/ql-v1/1688w-source-jpeg-39fdd3df004a3efd.jpg",
+            "mimeType": "image/jpeg",
+            "bytes": 590981,
+            "sha256": "39fdd3df004a3efd16c5f9ea8bb025ba02e089b30b3ec8d1e9f804ceafd25240",
+            "width": 1688,
+            "height": 932,
+            "compression": {
+              "profile": "ql-v1",
+              "codec": "jpeg",
+              "encoder": "source-passthrough"
+            },
+            "fidelity": {
+              "mode": "pixel-exact",
+              "psnrDb": null,
+              "meanAbsoluteError": 0,
+              "maximumChannelDelta": 0
+            }
+          }
+        ]
+      },
+      "source": {
+        "bucket": "media-source",
+        "objectKey": "pyramids/media.pyramids.hawara-scan-illustration/39fdd3df004a3efd16c5f9ea8bb025ba02e089b30b3ec8d1e9f804ceafd25240/original.jpg",
+        "mimeType": "image/jpeg",
+        "bytes": 590981,
+        "sha256": "39fdd3df004a3efd16c5f9ea8bb025ba02e089b30b3ec8d1e9f804ceafd25240",
+        "width": 1688,
+        "height": 932
       }
     },
     {
