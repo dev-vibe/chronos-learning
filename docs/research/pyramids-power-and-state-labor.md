@@ -336,6 +336,8 @@ Use case: style-transfer. Asset: cinematic opening hero for Chronos history less
 
 **Validation:** Content validation and 34 focused content/media/completion tests pass. The image build succeeds with 35 assets; the manifest comparison confirms that only the new hero entry is added and every pre-existing asset record is unchanged. The 480px derivative is pixel-exact WebP (230,866 bytes); the 1440px fallback is the exact runtime JPEG (675,526 bytes).
 
+`media:verify` passes: 35 assets / 76 derivatives. Hosted preview header checked at 1440×1000 and 390×1000: all three large pyramid silhouettes remain visible; the hero loads from its repository fallback; mobile document width equals the viewport; the illustration label and caption are readable in light and dark treatments; no browser errors were reported. Only the preview was opened, and its temporary browser was closed. [Hero preview](https://chronos-learning-git-codex-ash-99-egypt-hero-dev-vibes-projects.vercel.app/audit?on&next=%2Flearn%2Flesson.egypt.pyramids-and-state-labor) · [PR #38](https://github.com/dev-vibe/chronos-learning/pull/38). Public Storage upload and merge remain pending Carlin's aesthetic approval; the existing published lesson is unchanged on main.
+
 Product-owner approval on 3 September 2026 authorized the four adapted evidence relationships below. The accepted rasters contain no learner-facing prose; dates, labels, and uncertainty explanations remain native, accessible lesson text.
 
 ### `media.pyramids.giza-evidence-chain` — four clues do four different jobs
