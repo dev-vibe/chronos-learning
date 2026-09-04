@@ -1692,17 +1692,36 @@
         "provider": "object-storage",
         "bucket": "media-public",
         "fallback": {
-          "path": "/images/optimized/pyramids/giza-hero.optimized.jpg",
-          "width": 1440,
-          "height": 958
+          "path": "/images/optimized/pyramids/giza-hero-wide.optimized.jpg",
+          "width": 2174,
+          "height": 723
         },
         "variants": [
           {
-            "objectKey": "pyramids/media.pyramids.giza-hero/ff8a37e75a4a7a90/optimized/ql-v1/480w-webp-lossless-3319dd2ed040947e.webp",
+            "objectKey": "pyramids/media.pyramids.giza-hero/2b39fe1996521533/optimized/ql-v1/480w-webp-lossless-e69fe1855f9d7f02.webp",
             "mimeType": "image/webp",
-            "bytes": 230866,
-            "sha256": "3319dd2ed040947e1626122928f1f5bc6fcd1aff223138329a15603bc6412e3d",
+            "bytes": 87854,
+            "sha256": "e69fe1855f9d7f02ae18f2c31c807b80fd61165a3042324ed5ed8c79f8a250cc",
             "width": 480,
+            "height": 159,
+            "compression": {
+              "profile": "ql-v1",
+              "codec": "webp",
+              "encoder": "webp-lossless"
+            },
+            "fidelity": {
+              "mode": "pixel-exact",
+              "psnrDb": null,
+              "meanAbsoluteError": 0,
+              "maximumChannelDelta": 0
+            }
+          },
+          {
+            "objectKey": "pyramids/media.pyramids.giza-hero/2b39fe1996521533/optimized/ql-v1/960w-webp-lossless-4efb5ba15b4502c8.webp",
+            "mimeType": "image/webp",
+            "bytes": 355792,
+            "sha256": "4efb5ba15b4502c84466a032d32c8f3d87f9b5ec305ce119f7854fd159a099f6",
+            "width": 960,
             "height": 319,
             "compression": {
               "profile": "ql-v1",
@@ -1717,12 +1736,12 @@
             }
           },
           {
-            "objectKey": "pyramids/media.pyramids.giza-hero/ff8a37e75a4a7a90/optimized/ql-v1/1440w-source-jpeg-ff8a37e75a4a7a90.jpg",
+            "objectKey": "pyramids/media.pyramids.giza-hero/2b39fe1996521533/optimized/ql-v1/2174w-source-jpeg-2b39fe1996521533.jpg",
             "mimeType": "image/jpeg",
-            "bytes": 675526,
-            "sha256": "ff8a37e75a4a7a909323ce53fbe02ae162001fb7bd823adedfc316572359bdaf",
-            "width": 1440,
-            "height": 958,
+            "bytes": 677258,
+            "sha256": "2b39fe19965215337b758a7c66116b864b45de0d5696a8bbb45243f2387fb98a",
+            "width": 2174,
+            "height": 723,
             "compression": {
               "profile": "ql-v1",
               "codec": "jpeg",
@@ -1739,12 +1758,12 @@
       },
       "source": {
         "bucket": "media-source",
-        "objectKey": "pyramids/media.pyramids.giza-hero/ff8a37e75a4a7a909323ce53fbe02ae162001fb7bd823adedfc316572359bdaf/original.jpg",
+        "objectKey": "pyramids/media.pyramids.giza-hero/2b39fe19965215337b758a7c66116b864b45de0d5696a8bbb45243f2387fb98a/original.jpg",
         "mimeType": "image/jpeg",
-        "bytes": 675526,
-        "sha256": "ff8a37e75a4a7a909323ce53fbe02ae162001fb7bd823adedfc316572359bdaf",
-        "width": 1440,
-        "height": 958
+        "bytes": 677258,
+        "sha256": "2b39fe19965215337b758a7c66116b864b45de0d5696a8bbb45243f2387fb98a",
+        "width": 2174,
+        "height": 723
       }
     },
     {

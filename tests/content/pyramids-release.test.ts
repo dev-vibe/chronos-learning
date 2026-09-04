@@ -1,10 +1,18 @@
 import { describe, expect, it } from 'vitest';
 import { chronosContent } from '../../content/chronos';
 import { chronosPrototypeReviews } from '../../content/prototype-reviews';
+import mediaManifest from '../../content/media/generated/chronos-media.json';
 
 const id = 'lesson.egypt.pyramids-and-state-labor';
 
 describe('Pyramids, Builders, and Evidence publication', () => {
+  it('delivers a wide, high-resolution hero without changing its stable identity', () => {
+    const locator = mediaManifest.assets.find((asset) => asset.id === 'media.pyramids.giza-hero')!.locator;
+    expect(locator.fallback.width).toBeGreaterThanOrEqual(2000);
+    expect(locator.fallback.width / locator.fallback.height).toBeGreaterThan(2.9);
+    expect(locator.fallback.width / locator.fallback.height).toBeLessThan(3.1);
+    expect(locator.variants.map((variant) => variant.width)).toEqual([480, 960, 2174]);
+  });
   it('publishes the reviewed four-case lesson without a card or prototype annotations', () => {
     const lesson = chronosContent.lessons.find((item) => item.id === id)!;
     expect(lesson.status).toBe('published');

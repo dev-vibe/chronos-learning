@@ -294,12 +294,13 @@
     {
       "id": "media.pyramids.giza-hero",
       "collection": "pyramids",
-      "sourcePath": "public/images/places/giza-hero.jpg",
-      "fallbackPath": "/images/optimized/pyramids/giza-hero.optimized.jpg",
+      "sourcePath": "public/images/places/giza-hero-wide.jpg",
+      "fallbackPath": "/images/optimized/pyramids/giza-hero-wide.optimized.jpg",
       "preset": "photo",
       "widths": [
         480,
-        1440
+        960,
+        2174
       ]
     },
     {
