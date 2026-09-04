@@ -292,6 +292,18 @@
       ]
     },
     {
+      "id": "media.pyramids.giza-hero",
+      "collection": "pyramids",
+      "sourcePath": "public/images/places/giza-hero-wide.jpg",
+      "fallbackPath": "/images/optimized/pyramids/giza-hero-wide.optimized.jpg",
+      "preset": "photo",
+      "widths": [
+        480,
+        960,
+        2174
+      ]
+    },
+    {
       "id": "media.pyramids.hawara-evidence-streams",
       "collection": "pyramids",
       "sourcePath": "public/images/evidence/pyramids-hawara-evidence-streams.jpg",
