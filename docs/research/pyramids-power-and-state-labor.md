@@ -305,12 +305,16 @@ All headings name their historical subject or teaching job in ordinary words. Th
 | --- | --- | --- | --- | --- | --- | --- | --- | --- |
 | `intent.pyramids.giza-chain` | `section.pyramids.giza` | Which evidence dates activity, context, material, or space? | Reference-led raster diagram | Merer, radiocarbon, settlement, corridor | Evidence relationship diagram; dates/roles simplified from reviewed sources | Native-text list naming every link and limit | Development-only annotation; no final asset | Planned after approval |
 | `intent.pyramids.osirion-pair` | `section.pyramids.osirion` | How can a protected named component and two surface dates coexist? | Evidence object/section plus compact native labels | Frankfort and Liritzis/Vafiadou | Surviving evidence and measured dates; not a whole-monument reconstruction | Prose and three-item comparison | Development-only annotation | Planned after approval |
-| `intent.pyramids.hawara-streams` | `section.pyramids.hawara` | What can testimony, inscription, geophysics, and excavation each show? | Reference-led raster comparison | Petrie, VLF, ERT/TEM, Pliny, active dig | Evidence-stream diagram; anomalies are not rendered as confirmed rooms | Four-item native-text comparison | Development-only annotation | Planned after approval |
+| `intent.pyramids.hawara-streams` | `section.pyramids.hawara` | What can a historical illustration tell us, compared with archaeology? | Direct historical engraving plus separately labeled scan illustration | Kircher, Turris Babel (1679); supplied Merlin Burrows rendering; four evidence categories retained in native text | Imagined historical layout; modern illustrated interpretation, not raw data | Two native captions, scale limitation, and four-item evidence comparison | Original composite superseded | Corrected 2026-09-04; Carlin approved the scan illustration and requested both cards |
 | `intent.pyramids.vessel-test` | `section.pyramids.vessels` | Which observations concern shape, provenance, age, and method? | Directly licensed evidence image plus measured mesh/process comparison | Museum metrology, Abu Rawash, claim-owner files | Surviving object and measured surface; no machine claim implied | Full prose description and test list | Development-only annotation | Planned after approval |
 
 **Video decision:** no video. Motion or sound is not necessary for the approved teaching job, and source comparison is clearer in static evidence plus native text.
 
 ## Image lifecycle
+
+### Hawara correction publication — 2026-09-04
+
+Carlin approved the two-card result and explicitly requested publication (“perfect. please publish”). The release preserves the live Giza hero and all seven sections, both required prompts, and the no-card completion. The existing migration `20260903211749_publish_pyramids_builders_evidence` is confirmed applied; this media-only correction requires no new database configuration. The seven immutable objects for the two new Hawara assets have been uploaded and remotely checksum-verified. Content validation and all 50 domain/content/lesson tests pass in the isolated release checkout. The image-reference workflow updates are included; unrelated publication-workflow edits remain outside this release. Hosted preview and production cutover are tracked in the release PR.
 
 ### media.pyramids.giza-hero — Opening invitation
 
@@ -451,7 +455,96 @@ Use thin neutral divider lines and generous whitespace. No words, labels, title,
 
 **Reviewer/date/status:** Codex / 2026-09-03 / approved after independent proxy correction; accountable product-owner review pending. **Rejected drafts:** `exec-cbfdd3ad-4228-4e65-8845-b4df7f6ad640.png` made the two estimates too visually similar; `exec-08fec54a-33fb-4469-a4de-79a60d27bf1e.png` separated colors but not one common scale; `exec-de23c34b-2d26-4bf9-8e3c-38b10fc478c4.png` reversed sample/range correspondence; the replaced `413e976b...` master and `exec-15b496db-e063-4016-b955-e4482c65a7fc.png` introduced invented decorative surface marks and made the protected connector ambiguous; `exec-40d0cf39-6f60-43f8-b133-3275b774f51c.png` clarified the connector but retained patterned stone surfaces. **Preserved relationship / fidelity verdict:** pass after correction. The accepted version uses a faithful photographic site treatment with plain undecorated masonry, shows a small horizontal dovetail connector seated across the top joint beneath a lifted covering slab, makes the granite range earlier and sandstone range later on one shared scale, and leaves exact dates and caveats in native text.
 
-### `media.pyramids.hawara-evidence-streams` — four source roles at one site
+### `media.pyramids.hawara-kircher` — a historical interpretation of the Labyrinth
+
+#### 1. Reasoning and source basis
+
+Correction requested by Carlin on 2026-09-04: replace the Hawara composite with truthful, real-image references. Carlin supplied the Kircher engraving and a color rendering, permitting editorial selection. Use the engraving directly. The four evidence categories remain in native lesson text; the new image demonstrates how a later reader interpreted ancient accounts. No lesson identity, chronology, progress rule, or understanding prompt changes.
+
+The earlier composite's scroll, royal-name fragment, scan patches, and trench were generated without actual subject references. Its prior visual approval is superseded by this correction; it must not be reused as evidence.
+
+- Teaching job: distinguish a surviving historical illustration from a measured archaeological plan.
+- Sources: [the matching public-domain reproduction](https://commons.wikimedia.org/wiki/File:Лабіринт_в_Хаварі,_описаний_Геродотом.jpg); [Getty Research Institute digitized Turris Babel, leaf 125](https://archive.org/stream/gri_athanasiikir00kirc/gri_athanasiikir00kirc#page/n125/mode/1up), with [Commons bibliographic record](https://commons.wikimedia.org/wiki/File:Athanasii_Kircheri_e_Soc._Jesu_Turris_Babel,_sive,_Archontologia_qua_primo_priscorum_post_diluvium_hominum_vita,_mores_rerumque_gestarum_magnitudo,_secundo_Turris_fabrica_civitatumque_extructio,_(14798023013).jpg).
+- Date: 1679 publication, correcting the user-supplied 1670 attribution.
+- Depiction boundary: authentic reproduction of a later imagined layout; not direct evidence of the building's rooms or an excavated plan. The existing lettering is part of the historical source, not generated educational text.
+- Color-rendering disposition updated after Carlin's follow-up: retain this engraving card and add the approved illustration of the supplied rendering's lower panel in its own card. Carlin explicitly directed use despite the earlier rights concern, then approved the displayed illustration (“yesssss”) and asked to keep both images. See the separate lifecycle below. The underlying source is not represented as openly licensed or as excavation confirmation.
+
+#### 2. Reference image actually used
+
+![Original Kircher engraving of an imagined Egyptian Labyrinth](references/pyramids-builders-evidence/hawara-kircher-1679.jpg)
+
+| Depicted subject | Actual reference | Input path / SHA-256 | Details preserved |
+| --- | --- | --- | --- |
+| Kircher's printed interpretation, including the central maze, courts, figures, and lettering | Matching Commons reproduction of the historical engraving; public domain, accessed 2026-09-04 | `docs/research/references/pyramids-builders-evidence/hawara-kircher-1679.jpg` · `f231877724eb15040d62bfed444678c31e8e12fb0e74fdd75d52ea0dbc6a4ca9` | Entire source composition and source pixels; no crops, additions, retouching, or invented subjects |
+
+Rights decision: approved for direct use of the public-domain historical engraving. Attribution: “Athanasius Kircher, Turris Babel (1679), public domain; reproduction via Wikimedia Commons.” The illustration's historical status does not authenticate the architecture it imagines.
+
+#### 3. Generation or transformation
+
+- Edit mode / operation: direct use. **No generation.**
+- Tool/date: Node fetch and byte-for-byte file copy, 2026-09-04; responsive derivatives through `npm run media:build`.
+- Input: the reference JPEG above, 1,221 × 1,225 pixels, 618,744 bytes.
+- Prompt/model: not applicable; no image-generation tool or generative upscaling used.
+- Runtime source: `public/images/evidence/pyramids-hawara-kircher-1679.jpg`, identical SHA-256 to the reference.
+- Rejected candidate: former `media.pyramids.hawara-evidence-streams`, because the surrounding real-looking subjects lack actual image references. Its old files and record remain only as historical provenance.
+
+#### 4. Accepted final image
+
+| Actual reference | Final source used in the lesson |
+| --- | --- |
+| ![Kircher reference](references/pyramids-builders-evidence/hawara-kircher-1679.jpg) | ![Unaltered Kircher engraving used in the lesson](../../public/images/evidence/pyramids-hawara-kircher-1679.jpg) |
+
+- Master/runtime SHA-256: `f231877724eb15040d62bfed444678c31e8e12fb0e74fdd75d52ea0dbc6a4ca9`.
+- Subject coverage: pass; the subject is this historical print, directly reproduced.
+- Subject fidelity: pass; byte-identical reference and runtime source. All architecture and marks belong to the print; none are newly generated.
+- Independent editorial proxy: `hawara_review`, 2026-09-04, pass with no blockers. Required boundary retained: imagined layout, not archaeological reconstruction or surveyed plan.
+- Accountable review: Carlin authorized the replacement and source selection on 2026-09-04; final rendered correction remains available for review before publication.
+- Correction validation: `validate:content` passed and all 13 tests in `tests/content/validation.test.ts` passed. The source image and revised caption were visually checked in the Learn shell at the default desktop width and 390 × 844; no horizontal overflow or missing image was observed. The source and runtime JPEG checksums match. The project-wide typecheck remains failing in legacy files and the existing temporary checkout; this correction does not claim a clean typecheck. The prototype implementation gate is not applicable to this already-published lesson (it rejects published lessons and the active registry excludes their old prototype metadata).
+- Local correction preview: [Pyramids, Builders, and Evidence](http://127.0.0.1:3021/learn/lesson.egypt.pyramids-and-state-labor). This is a local review, not a deployed correction.
+- Final delivery verification: `media:build` completed (34 catalogue assets); the new 480px derivative is lossless and the 1,221px fallback is byte-identical JPEG passthrough. The 960px candidate exceeded the byte budget, so the catalogue requests 480px and the original 1,221px width instead. The generated manifest is connected through `mediaLocator`; the final browser check loaded `/images/optimized/pyramids/hawara-kircher.optimized.jpg` successfully. Content validation and the Vite production build passed. Correction recorded in ASH-99; hosted publication remains pending review.
+
+### `media.pyramids.hawara-scan-illustration` — illustration of a published rendering
+
+#### 1. Reasoning and source basis
+
+Carlin requested the lower oblique view from the supplied composite, allowed an illustrated treatment, approved the generated result, and asked to keep Kircher's imagination card plus a second image card (2026-09-04). The two cards distinguish a historical imagined layout from a modern published rendering. Neither becomes a confirmed archaeological plan. The previously approved lesson claims and completion requirements remain unchanged.
+
+- Source: [The Merlin Burrows Scans](https://labyrinthofegypt.substack.com/p/the-merlin-burrows-scans), supplemented by [the claim-owner follow-up](https://labyrinthofegypt.substack.com/p/the-merlin-burrows-scans-ii). The user-supplied composition matches this rendering family. These are claim-owner accounts, not independent excavation verification; do not conflate the image with the separate 2010 VLF or 2024 ERT/TEM studies.
+- Rights decision: Carlin explicitly directed inclusion despite the earlier all-rights-reserved concern and authorized illustration from the supplied image. This session instruction overrides the local workflow's earlier omission decision for this asset. It does **not** establish a new open license or permission from Cosco. Credit the underlying Merlin Burrows / Cosco Foundation rendering; no copyright-cleared or Chronos-original claim.
+- Scale request: the supplied view has no verified scale bar or calibration. No person, pyramid, metric bar, or invented dimensions have been added. A small native-text scale note states this limitation beside the illustration.
+
+#### 2. Reference image actually used
+
+![User-supplied composite; only its lower oblique panel is the subject reference](references/pyramids-builders-evidence/hawara-merlin-user-reference.png)
+
+Reference: `docs/research/references/pyramids-builders-evidence/hawara-merlin-user-reference.png`, 447 × 447 pixels; SHA-256 `870c8a0ae371f4f2229f5f792395fa02eef63772d907cedb410040d362441b0a`. Origin: user attachment `codex-clipboard-a3cadf5f-4089-4187-9218-900e48654a5f.png`. Lower panel from approximately y=200 to the bottom; upper plan excluded.
+
+#### 3. Generation or transformation
+
+Built-in image-generation/editing tool, 2026-09-04; local reference supplied through `referenced_image_paths`. Model version not exposed by tool. Complete prompt:
+
+> Perform a strict crop-only extraction of the supplied image's bottom panel. The source image is 447 by 447 pixels. Retain the lower oblique three-dimensional false-color rendering beginning just below the upper flat plan (approximately y=200) through the bottom edge. Remove the entire upper plan. Preserve EVERY existing color band, every pixel-level structural pattern, every rectangular depression, every small lump, the precise perspective, borders, and black background in this lower panel. DO NOT redraw, reinterpret, stylize, sharpen, invent, smooth, interpolate new architectural details, add rooms, recolor, rotate, or change relative dimensions. This is a historical research rendering being reproduced for documentary source comparison. The correct result is simply the original lower raster panel, landscape approximately 447:247 aspect ratio. No caption, added labels, text, frames, title, ornament, or new imagery. Fidelity to this exact source matters more than beauty or resolution.
+
+**Actual result differs from the requested operation:** the tool produced a larger illustrated redraw, not a pixel-exact crop. Fine texture is synthesized and cannot be treated as measured detail. Carlin then explicitly approved this displayed image and requested its inclusion. Accepted only as a labeled illustration of the rendering's broad patterns and perspective, never as the original scan, a room count, a distance measurement, or independently verified underground architecture. No unrelated objects or scale silhouettes added.
+
+#### 4. Accepted final image
+
+| Actual subject reference | User-approved illustrated adaptation |
+| --- | --- |
+| ![Full supplied reference; bottom panel used](references/pyramids-builders-evidence/hawara-merlin-user-reference.png) | ![Illustration of the lower oblique panel](references/pyramids-builders-evidence/hawara-scan-illustration-master.png) |
+
+- Master: `docs/research/references/pyramids-builders-evidence/hawara-scan-illustration-master.png`, 1688 × 932; SHA-256 `f4bb50c21ef37b4d069e244bab3c9133b875f5a5bac7a4a1a13268760002a305`.
+- Runtime source: `public/images/evidence/pyramids-hawara-scan-illustration.jpg`, high-quality JPEG (quality 96, 4:4:4), SHA-256 `39fdd3df004a3efd16c5f9ea8bb025ba02e089b30b3ec8d1e9f804ceafd25240`. Archival PNG remains unchanged.
+- Final comparison: the major blue rectangular groups, surrounding color bands, oblique view, and black background follow the lower reference. Upper panel removed. Fine texture is generated, so the native depiction label explicitly says “AI-assisted illustration … not raw survey data.”
+- Presentation: second evidence-card component with opt-in stacked layout; complete uncropped illustration above the caption. Kircher card preserved. A ruler icon accompanies a native scale note without implying calibration.
+- Registration: `media.pyramids.hawara-scan-illustration`; catalog source above with `photo` preset, widths 480 / 960 / 1688; optimized fallback `/images/optimized/pyramids/hawara-scan-illustration.optimized.jpg`.
+- Review state: user-approved illustrated adaptation; local lesson review before hosted publication. Focused card tests cover interpretation labeling, scale-note visibility, and backward compatibility for existing evidence cards.
+- Final validation, 2026-09-04: full `media:build` passed for 35 assets. Scan derivatives at 480px (162,688 B) and 960px (526,998 B) are lossless relative to the runtime JPEG; 1688px fallback is byte-identical JPEG passthrough (590,981 B). `validate:content`, 15 content/card tests, and `npm run build` passed. Desktop (1280px) and phone (390 × 844) inspection confirmed both images load, full scan aspect ratio is retained, captions and scale note remain readable in light/dark themes, and no horizontal overflow or browser errors occur. React review found no new state/effects, dependencies, or interaction changes; the card extension is optional for existing content. Local correction preview: [Pyramids, Builders, and Evidence](http://127.0.0.1:3021/learn/lesson.egypt.pyramids-and-state-labor). No hosted publication in this correction turn.
+- Tracker handoff: automatic approval review rejected the attempted ASH-99 description update because external posting of project details was not explicitly authorized. No retry or alternative external write was attempted. This local record is current; the issue's earlier engraving-only correction text is stale pending authorization to update it.
+
+### Superseded `media.pyramids.hawara-evidence-streams` — four source roles at one site
+
+**Superseded 2026-09-04.** The following is the historical generation record, not current approval. The scroll, stone, scan, and trench lack actual subject references. Use `media.pyramids.hawara-kircher` above instead.
 
 #### 1. Reasoning and source basis
 
@@ -553,7 +646,7 @@ Deterministic prototype gate: passed 3 September 2026
 | --- | --- | --- | --- | --- |
 | `intent.pyramids.giza-chain` | `section.pyramids.giza` | Compare record, context, material date, and newly detected space without collapsing them | ready | Approved final raster registered as `media.pyramids.giza-evidence-chain`; native text remains the fallback |
 | `intent.pyramids.osirion-pair` | `section.pyramids.osirion` | Pair the protected Seti component with the two surface estimates | ready | Approved final raster registered as `media.pyramids.osirion-evidence-pair`; native comparison remains complete |
-| `intent.pyramids.hawara-streams` | `section.pyramids.hawara` | Keep testimony, inscription, geophysics, and excavation in separate roles | ready | Approved final raster registered as `media.pyramids.hawara-evidence-streams`; anomalies remain visibly distinct from confirmed rooms |
+| `intent.pyramids.hawara-streams` | `section.pyramids.hawara` | Distinguish historical imagination, a modern illustrated rendering, and archaeological evidence; retain the four evidence roles in native text | ready | Corrected 2026-09-04: `media.pyramids.hawara-kircher` retained and `media.pyramids.hawara-scan-illustration` added at Carlin's direction; original generated composite superseded |
 | `intent.pyramids.vessel-test` | `section.pyramids.vessels` | Separate object, mesh, documented find history, and process evidence | ready | Approved final raster registered as `media.pyramids.vessel-evidence-test`; the object, generic mesh, and process clues remain separate evidence roles |
 
 ### Real-shell inspection

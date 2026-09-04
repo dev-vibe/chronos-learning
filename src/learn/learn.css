@@ -126,3 +126,11 @@ h1,h2,h3{font-family:Newsreader,Georgia,serif;font-weight:500}
 .rail-roadmap-link{min-height:44px;display:flex;align-items:center;justify-content:center;margin-top:12px;border:1px solid #d4aa665e;border-radius:9px;color:#f5d89e;font-size:.66rem;font-weight:600;text-decoration:none}
 .rail-roadmap-link:hover{background:#ffffff0b}
 @media(prefers-reduced-motion:reduce){.spine-chapter summary>svg{transition:none}}
+.evidence-module--stacked{grid-template-columns:minmax(0,1fr)}
+.evidence-module--stacked .evidence-image{min-height:0;background:#050706}
+.evidence-module--stacked .evidence-image img{display:block;position:static;width:100%;height:auto;object-fit:contain}
+.evidence-module--stacked .evidence-image>span{position:static;display:inline-block;margin:0 14px 14px}
+.evidence-scale-note{display:flex;align-items:flex-start;gap:10px;padding:12px 14px;border:1px solid var(--line);border-radius:9px;background:var(--surface-2);color:var(--muted);font-size:.78rem;line-height:1.5}
+.evidence-scale-note>svg{width:20px;height:20px;flex-shrink:0;color:var(--teal)}
+.evidence-scale-note>p{margin:0}
+.evidence-scale-note strong{color:var(--ink)}
