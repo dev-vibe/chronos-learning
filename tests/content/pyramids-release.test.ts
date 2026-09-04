@@ -10,7 +10,16 @@ describe('Pyramids, Builders, and Evidence publication', () => {
     expect(lesson.status).toBe('published');
     expect(lesson.sections).toHaveLength(7);
     expect(lesson.sections.map((section) => section.id)).toEqual(lesson.sectionIdsRequired);
-    expect(lesson.mediaIds).toHaveLength(4);
+    expect(lesson.mediaIds).toHaveLength(5);
+    expect(lesson.heroMediaId).toBe('media.pyramids.giza-hero');
+    expect(lesson.heroLabel).toBe('Illustrated view');
+    expect(lesson.heroCaption).toContain('Giza today');
+    expect(lesson.mediaIds).toContain(lesson.heroMediaId);
+    expect(chronosContent.media.find((media) => media.id === lesson.heroMediaId)).toMatchObject({
+      depictionMode: 'evidence-based-reconstruction',
+      reviewStatus: 'approved',
+      sourceIds: expect.arrayContaining(['source.pyramids.commons-giza-hero']),
+    });
     expect(chronosContent.cards.filter((card) => card.unlockLessonId === id)).toEqual([]);
     expect(chronosPrototypeReviews.some((review) => review.lessonId === id)).toBe(false);
     expect(chronosContent.prompts.filter((prompt) => prompt.lessonId === id && prompt.required).map((prompt) => prompt.id)).toEqual([

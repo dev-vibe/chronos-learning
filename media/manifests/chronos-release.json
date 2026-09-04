@@ -1687,6 +1687,67 @@
       }
     },
     {
+      "id": "media.pyramids.giza-hero",
+      "locator": {
+        "provider": "object-storage",
+        "bucket": "media-public",
+        "fallback": {
+          "path": "/images/optimized/pyramids/giza-hero.optimized.jpg",
+          "width": 1440,
+          "height": 958
+        },
+        "variants": [
+          {
+            "objectKey": "pyramids/media.pyramids.giza-hero/ff8a37e75a4a7a90/optimized/ql-v1/480w-webp-lossless-3319dd2ed040947e.webp",
+            "mimeType": "image/webp",
+            "bytes": 230866,
+            "sha256": "3319dd2ed040947e1626122928f1f5bc6fcd1aff223138329a15603bc6412e3d",
+            "width": 480,
+            "height": 319,
+            "compression": {
+              "profile": "ql-v1",
+              "codec": "webp",
+              "encoder": "webp-lossless"
+            },
+            "fidelity": {
+              "mode": "pixel-exact",
+              "psnrDb": null,
+              "meanAbsoluteError": 0,
+              "maximumChannelDelta": 0
+            }
+          },
+          {
+            "objectKey": "pyramids/media.pyramids.giza-hero/ff8a37e75a4a7a90/optimized/ql-v1/1440w-source-jpeg-ff8a37e75a4a7a90.jpg",
+            "mimeType": "image/jpeg",
+            "bytes": 675526,
+            "sha256": "ff8a37e75a4a7a909323ce53fbe02ae162001fb7bd823adedfc316572359bdaf",
+            "width": 1440,
+            "height": 958,
+            "compression": {
+              "profile": "ql-v1",
+              "codec": "jpeg",
+              "encoder": "source-passthrough"
+            },
+            "fidelity": {
+              "mode": "pixel-exact",
+              "psnrDb": null,
+              "meanAbsoluteError": 0,
+              "maximumChannelDelta": 0
+            }
+          }
+        ]
+      },
+      "source": {
+        "bucket": "media-source",
+        "objectKey": "pyramids/media.pyramids.giza-hero/ff8a37e75a4a7a909323ce53fbe02ae162001fb7bd823adedfc316572359bdaf/original.jpg",
+        "mimeType": "image/jpeg",
+        "bytes": 675526,
+        "sha256": "ff8a37e75a4a7a909323ce53fbe02ae162001fb7bd823adedfc316572359bdaf",
+        "width": 1440,
+        "height": 958
+      }
+    },
+    {
       "id": "media.pyramids.hawara-evidence-streams",
       "locator": {
         "provider": "object-storage",

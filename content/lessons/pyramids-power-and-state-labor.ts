@@ -3,6 +3,8 @@ import type { AuthoredContentModule } from '../assemble';
 import { mediaLocator } from '../shared/media-locator';
 
 export const pyramidsPowerStateLaborSources: Source[] = [
+  { id: 'source.pyramids.commons-giza-hero', title: 'All Gizah Pyramids — hero photograph reference', url: 'https://commons.wikimedia.org/wiki/File:All_Gizah_Pyramids.jpg', publisher: 'Ricardo Liberato / Wikimedia Commons', accessedOn: '2026-09-03', licenseOrUse: 'CC BY-SA 2.0: https://creativecommons.org/licenses/by-sa/2.0/ — photograph with dust/white-balance edits by Ikiwaner; adapted into a painterly illustration by Chronos; changes made; adaptation also CC BY-SA 2.0', reviewStatus: 'reviewed' },
+  { id: 'source.pyramids.unesco-giza', title: 'Memphis and its Necropolis — the Pyramid Fields from Giza to Dahshur', url: 'https://whc.unesco.org/en/list/86/', publisher: 'UNESCO World Heritage Centre', accessedOn: '2026-09-03', licenseOrUse: 'Official site description used to cross-check the hero setting; no UNESCO images redistributed', reviewStatus: 'reviewed' },
   { id: 'source.pyramids.ifao-merer', title: 'Les Papyrus de la Mer Rouge I: Le Journal de Merer', url: 'https://www.ifao.egnet.net/uploads/publications/divers/MIFAO136_ann_01.pdf', publisher: 'Institut français d’archéologie orientale', accessedOn: '2026-09-02', licenseOrUse: 'Official excavation publication cited for research; publication photography is not redistributed', reviewStatus: 'reviewed' },
   { id: 'source.pyramids.harvard-giza', title: 'Digital Giza: Introduction to Giza', url: 'https://giza.fas.harvard.edu/gizaintro/', publisher: 'Harvard University', accessedOn: '2026-09-02', licenseOrUse: 'University archaeological archive cited for research; individual media require item-level rights review', reviewStatus: 'reviewed' },
   { id: 'source.pyramids.aera-settlement', title: 'The Lost City of the Pyramid Builders', url: 'https://aeraweb.org/projects/lost-city/', publisher: 'Ancient Egypt Research Associates', accessedOn: '2026-09-02', licenseOrUse: 'Excavation-project synthesis cited for research; project images are not redistributed', reviewStatus: 'reviewed' },
@@ -49,6 +51,17 @@ export const pyramidsPowerStateLaborClaims: Claim[] = [
 ];
 
 export const pyramidsPowerStateLaborMedia: MediaAsset[] = [
+  {
+    id: 'media.pyramids.giza-hero',
+    locator: mediaLocator('media.pyramids.giza-hero'),
+    alt: 'Golden, weathered pyramids rise above smaller ruined pyramids at Giza, painted against a deep blue sky. Tiny visitors near the base show their enormous scale.',
+    depictionMode: 'evidence-based-reconstruction',
+    depictionLabel: 'Illustration after Ricardo Liberato · CC BY-SA 2.0',
+    rightsLabel: 'Adapted from Ricardo Liberato, CC BY-SA 2.0; painterly rendering by Chronos; changes made · illustration CC BY-SA 2.0',
+    sourceIds: ['source.pyramids.commons-giza-hero', 'source.pyramids.harvard-giza', 'source.pyramids.unesco-giza'],
+    visualBriefRef: 'docs/research/pyramids-power-and-state-labor.md#mediapyramidsgiza-hero--opening-invitation',
+    reviewStatus: 'approved',
+  },
   {
     id: 'media.pyramids.giza-evidence-chain',
     locator: mediaLocator('media.pyramids.giza-evidence-chain'),
@@ -122,6 +135,9 @@ export const pyramidsPowerStateLaborLesson: Lesson = {
   legacyAliases: ['imhotep', 'pyramids'],
   status: 'published',
   title: 'Pyramids, Builders, and Evidence',
+  heroMediaId: 'media.pyramids.giza-hero',
+  heroLabel: 'Illustrated view',
+  heroCaption: 'Giza today, reimagined in paint. The monument shapes follow a photograph; the colors and light are artistic.',
   masthead: 'Giza around 2700–2500 BCE; clues from earlier Egypt to today',
   place: 'Giza, Abydos, Hawara, and museum collections in Egypt',
   chronology: { startYear: -2700, endYear: -2500, display: 'Giza c. 2700–2500 BCE', approximate: true },
