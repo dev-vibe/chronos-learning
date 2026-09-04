@@ -1501,17 +1501,17 @@
         "bucket": "media-public",
         "fallback": {
           "path": "/images/optimized/sahul/sahul-landmass-map.optimized.jpg",
-          "width": 1317,
-          "height": 1194
+          "width": 1024,
+          "height": 1024
         },
         "variants": [
           {
-            "objectKey": "sahul/media.humans.sahul-landmass-map/b32a253d16690ef9/optimized/ql-v1/480w-webp-lossless-a87c4a9b97e3b59b.webp",
+            "objectKey": "sahul/media.humans.sahul-landmass-map/7b59ad4f05a9c991/optimized/ql-v1/480w-webp-lossless-9414d2ab1d335483.webp",
             "mimeType": "image/webp",
-            "bytes": 229888,
-            "sha256": "a87c4a9b97e3b59b87037f8232a75790ca6c3299fa86ae6af3931b206bb01f70",
+            "bytes": 306700,
+            "sha256": "9414d2ab1d3354834a0995132cf97088ed05f354a5a00d99ef7a043173dffe8c",
             "width": 480,
-            "height": 435,
+            "height": 480,
             "compression": {
               "profile": "ql-v1",
               "codec": "webp",
@@ -1525,12 +1525,12 @@
             }
           },
           {
-            "objectKey": "sahul/media.humans.sahul-landmass-map/b32a253d16690ef9/optimized/ql-v1/1317w-source-jpeg-b32a253d16690ef9.jpg",
+            "objectKey": "sahul/media.humans.sahul-landmass-map/7b59ad4f05a9c991/optimized/ql-v1/1024w-source-jpeg-7b59ad4f05a9c991.jpg",
             "mimeType": "image/jpeg",
-            "bytes": 595601,
-            "sha256": "b32a253d16690ef94d789375f59d47f40e2b380366477adec0cf2694a4de5fb3",
-            "width": 1317,
-            "height": 1194,
+            "bytes": 585989,
+            "sha256": "7b59ad4f05a9c991c2da363a56f505e413e2dd276b7eb8f8b8cb5eeea71b6728",
+            "width": 1024,
+            "height": 1024,
             "compression": {
               "profile": "ql-v1",
               "codec": "jpeg",

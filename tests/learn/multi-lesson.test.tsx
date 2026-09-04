@@ -78,6 +78,7 @@ describe('multi-lesson Learn runtime', () => {
     expect(publishedLinks).toEqual([
       '/learn/lesson.humans.homo-sapiens-origins',
       '/learn/lesson.humans.migrations-and-interbreeding',
+      '/learn/lesson.humans.sahul-crossing',
       '/learn/lesson.farming.multiple-origins',
       '/learn/lesson.farming.settlements',
       '/learn/lesson.uruk.first-city',
@@ -91,6 +92,7 @@ describe('multi-lesson Learn runtime', () => {
     expect(gateway.loadJourneySummaries).toHaveBeenCalledWith([
       'lesson.humans.homo-sapiens-origins',
       'lesson.humans.migrations-and-interbreeding',
+      'lesson.humans.sahul-crossing',
       'lesson.farming.multiple-origins',
       'lesson.farming.settlements',
       'lesson.uruk.first-city',

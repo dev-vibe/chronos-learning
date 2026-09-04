@@ -294,14 +294,20 @@ No reconstructed boat. No megafauna scene. No final assets in this increment.
 
 #### 3. Generation or transformation
 
-- Tool: built-in image_gen; model identifier not returned; 2026-09-03.
-- Actual input: the reference path and SHA-256 above. One candidate generated; no rejected candidate.
+- Tool: Cursor built-in image generator; model identifier not returned; 2026-09-04.
+- Actual input: the Chumwa reference path and SHA-256 above.
+- Rejected candidates: a pale low-contrast atlas pass (too worksheet-like); a gold-outline pass that reduced the Ice Age shelf to a rim instead of filled extra land.
+- Accepted candidate: high-contrast cream present-day land, filled ochre shelf, deep mineral-blue sea. Product owner asked to finish and publish this pass.
 - Complete prompt:
 
 ```text
-Create a style-only raster edit of the attached licensed geographic reference for the Chronos lesson Crossing to Sahul. Preserve the exact north-up map composition, extent, relative scale, coastline contours, island positions, and every land/water connection. Do not zoom, crop, rotate, simplify or redesign geography. The source covers Southeast Asia, Australia, New Guinea and Tasmania. Contemporary dry land is pale cream; the light grey-green shelf areas are additional land exposed at lower Ice Age sea levels; blue is sea. Keep ALL these regions and boundaries precisely where they are, especially the joined Australia–New Guinea shelf and Tasmania land connection and the OPEN sea gaps across Wallacea. Never join the island belt into a land bridge. Treat the supplied reference as authoritative for shapes, not your own recalled map.
-Rendering only: refined museum historical atlas on subtle warm ivory paper, contemporary land in warm sand, exposed shelf land in muted ochre, remaining water in pale mineral blue; crisp legible coastlines and very restrained paper texture. Keep land colors distinct but close enough to show the shelf as connected land. No invented mountain ranges, shading that resembles elevation, no buildings, boats, people, settlements, routes, arrows, compass, borders, legend, title, date, paragraph, frame or logo.
-The only allowed text is these five source-verified geographic labels: "Sunda" centered over the exposed land between Malay Peninsula/Borneo/Sumatra; "Wallacea" across the island belt between Sunda and Sahul without covering key sea gaps; "Sahul" centered inside Australia; "New Guinea" on New Guinea; "Tasmania" adjacent to Tasmania. Use clear dark navy editorial lettering, well separated, readable at mobile width. No other text whatsoever. Keep all geography identical to the reference. Output one high-resolution raster map, same aspect ratio as reference.
+Style-only edit of the ATTACHED reference map. Trace every coastline and island exactly. Do not invent geography.
+
+CRITICAL COLOR LOGIC copied from the reference: pale cream = land that is dry TODAY. light grey-green filled shapes = ADDITIONAL land exposed when Ice Age seas were lower. blue = sea. You must FILL those entire grey-green shelf polygons with rich glowing ochre-bronze, not draw a gold outline around continents. The ochre must be a wide filled land area — especially the Arafura/Carpentaria join between Australia and New Guinea, the Bass Strait join to Tasmania, and the Sunda shelf joining Sumatra, Java, Borneo to the mainland. Wallacea stays a chain of islands with OPEN blue water between them. Never make a land bridge across Wallacea.
+
+Make it beautiful: deep textured mineral-blue ocean, high contrast so a child sees extra land at a glance, crisp ink coasts, warm ivory paper, premium historical atlas. No mountains, boats, people, animals, arrows, compass, legend, title, or extra text.
+
+Only labels, dark navy serif: Sunda, Wallacea (not Wallaceea), Sahul, New Guinea, Tasmania.
 ```
 
 #### 4. Accepted final image
@@ -310,10 +316,10 @@ The only allowed text is these five source-verified geographic labels: "Sunda" c
 | --- | --- |
 | ![Reference](sahul-assets/sunda-sahul-reference.png) | ![Accepted map](sahul-assets/sahul-map-master.png) |
 
-- Final master: `docs/research/sahul-assets/sahul-map-master.png`, 1317 × 1194; SHA-256: `cf0ed9eb6e807fb057c83d2ad78bc1bb7d26bc67e7e04eecd6cb3492b82e64e7`.
-- Runtime source: `public/images/sahul/sahul-landmass-map.jpg`; SHA-256: `b32a253d16690ef94d789375f59d47f40e2b380366477adec0cf2694a4de5fb3`. JPEG quality 95, 4:4:4 chroma; no crop. Responsive derivatives are produced by the repository pipeline.
-- Reviewer/date/status: Codex visual and provenance implementation review, 2026-09-03, accepted under the product-owner-approved media brief.
-- Fidelity verdict: full extent, island placement, shelf connections, and sea gaps retained. Only palette, paper texture, outline treatment, and listed labels changed. All five labels are spelled correctly and positioned on the intended regions. No route or landing is asserted.
+- Final master: `docs/research/sahul-assets/sahul-map-master.png`, 1024 × 1024; SHA-256: `252b6b4d6adf06bf0a1ae16213998cab57e6baab147d07e4daaa47cf2b04c0a0`.
+- Runtime source: `public/images/sahul/sahul-landmass-map.jpg`; SHA-256: `7b59ad4f05a9c991c2da363a56f505e413e2dd276b7eb8f8b8cb5eeea71b6728`. JPEG quality 95, 4:4:4 chroma; no crop. Responsive derivatives are produced by the repository pipeline.
+- Reviewer/date/status: Product-owner visual direction 2026-09-04 (reject pale worksheet map; keep licensed stone scans; publish the filled-shelf atlas pass).
+- Fidelity verdict: north-up extent, Wallacea sea gaps, Australia–New Guinea join, and Tasmania connection retained from the Chumwa reference. Shelf is painted as filled extra land, not an outline. Labels are Sunda, Wallacea, Sahul, New Guinea, Tasmania. No route, boat, or landing is asserted.
 - The map module provides a complete native-text equivalent and states the shoreline limit. Card rendering uses contain and the source aspect ratio so the map is not cropped.
 
 ### `media.humans.madjedbebe-grinding-stones` — recovered objects
@@ -510,14 +516,14 @@ Approve a six-section unpublished lesson that treats first arrival as an evidenc
 | Media/provenance plan | Map and direct-use stone scans implemented; full provenance above |
 | Learner-prototype checkpoint | Approved by Carlin 2026-09-03 |
 | Runtime implementation | Finished; publication status prepared on branch; full local completion smoke passed |
-| Publication | Migration generated; Storage upload and database cutover pending server credential |
+| Publication | Applied on Chronos 2026-09-04; media checksums verified |
 
 ## Final implementation and release work
 
-The approved map, Madjedbebe scans, and deterministic Sahul place card are implemented. The map uses 480 px and original-width 1317 px delivery variants: the intermediate 960 px encoding could not meet both the unchanged fidelity threshold and byte cap. Keeping the passing sizes preserves the complete map and the existing quality policy.
+The approved map, Madjedbebe scans, and deterministic Sahul place card are implemented. The learner map is the 2026-09-04 filled-shelf atlas pass (1024 × 1024 master; 480 px and 1024 px delivery variants). Both lesson media IDs were uploaded and checksum-verified in Chronos Storage on 2026-09-04. Migration `20260903234946_publish_sahul_crossing` is applied: the lesson is published at World History position 2, completion is enabled with both required prompts, and `card.place.sahul` unlocks on explicit completion.
 
-The branch incorporates the completed Egypt lesson from main after Git reported merge conflicts. No neighboring lesson was removed or republished. Storage upload and hosted completion verification remain pending the project server credential.
+The branch incorporates the completed Egypt lesson from main after Git reported merge conflicts. No neighboring lesson was removed or republished.
 
-Release gate passed 2026-09-03 before the canonical prepare-publication command. Content validation, 50 domain/content/lesson tests, and two targeted Learn tests pass. The local browser smoke accepted both prompts, completed explicitly, revealed the full-map card, reopened at the top, and showed no prototype notes, missing images, or mobile overflow. Publication migration: `supabase/migrations/20260903234946_publish_sahul_crossing.sql`; database test: `supabase/tests/013_sahul_crossing.sql`. Neither database cutover nor production go-live is claimed here.
+Release gate passed 2026-09-03 before the canonical prepare-publication command. Content validation, 50 domain/content/lesson tests, publisher wrapped-404 coverage, and targeted Learn tests pass. Publication migration: `supabase/migrations/20260903234946_publish_sahul_crossing.sql`; database test: `supabase/tests/013_sahul_crossing.sql`.
 
-Current hosted review route: [Crossing to Sahul](https://chronos-learning-git-carlinaylsworth-97b08f-dev-vibes-projects.vercel.app/learn/lesson.humans.sahul-crossing). The preview uses committed image fallbacks until Storage upload is complete.
+Current hosted review route: [Crossing to Sahul](https://chronos-learning-git-carlinaylsworth-97b08f-dev-vibes-projects.vercel.app/learn/lesson.humans.sahul-crossing).
