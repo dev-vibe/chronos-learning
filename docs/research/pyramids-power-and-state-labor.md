@@ -314,6 +314,8 @@ All headings name their historical subject or teaching job in ordinary words. Th
 
 ### Hawara correction publication — 2026-09-04
 
+Published: [PR #39](https://github.com/dev-vibe/chronos-learning/pull/39) merged as `4eb1a7d5d1e35e67a94b78a3bf0d5fb62a65a9b7`. Production deployment `dpl_G9WeqEWxLmUpSRARUo5jcNwHbcXU` is `READY` at that commit and serves [the live lesson](https://chronos-learning.vercel.app/learn/lesson.egypt.pyramids-and-state-labor). Vercel checks passed. The protected branch preview accepted both prompts, completed with the no-card ending, and retained completion while a fresh reopening started at the top. Both new images loaded and no prototype annotations or browser errors appeared. Browser reload itself retained native scroll position; no claim is made that reload resets it. The live walkthrough remains Carlin's; no additional production completion action was taken.
+
 Carlin approved the two-card result and explicitly requested publication (“perfect. please publish”). The release preserves the live Giza hero and all seven sections, both required prompts, and the no-card completion. The existing migration `20260903211749_publish_pyramids_builders_evidence` is confirmed applied; this media-only correction requires no new database configuration. The seven immutable objects for the two new Hawara assets have been uploaded and remotely checksum-verified. Content validation and all 50 domain/content/lesson tests pass in the isolated release checkout. The image-reference workflow updates are included; unrelated publication-workflow edits remain outside this release. Hosted preview and production cutover are tracked in the release PR.
 
 ### media.pyramids.giza-hero — Opening invitation
