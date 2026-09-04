@@ -3,6 +3,9 @@ import type { AuthoredContentModule } from '../assemble';
 import { mediaLocator } from '../shared/media-locator';
 
 export const pyramidsPowerStateLaborSources: Source[] = [
+  { id: 'source.pyramids.commons-giza-hero', title: 'All Gizah Pyramids — hero photograph reference', url: 'https://commons.wikimedia.org/wiki/File:All_Gizah_Pyramids.jpg', publisher: 'Ricardo Liberato / Wikimedia Commons', accessedOn: '2026-09-03', licenseOrUse: 'CC BY-SA 2.0: https://creativecommons.org/licenses/by-sa/2.0/ — photograph with dust/white-balance edits by Ikiwaner; adapted into a painterly illustration by Chronos; changes made; adaptation also CC BY-SA 2.0', reviewStatus: 'reviewed' },
+  { id: 'source.pyramids.unesco-giza', title: 'Memphis and its Necropolis — the Pyramid Fields from Giza to Dahshur', url: 'https://whc.unesco.org/en/list/86/', publisher: 'UNESCO World Heritage Centre', accessedOn: '2026-09-03', licenseOrUse: 'Official site description used to cross-check the hero setting; no UNESCO images redistributed', reviewStatus: 'reviewed' },
+  { id: 'source.pyramids.hawara-merlin-rendering', title: 'The Merlin Burrows Scans', url: 'https://labyrinthofegypt.substack.com/p/the-merlin-burrows-scans', publisher: 'Labyrinth of Egypt / Cosco Foundation', accessedOn: '2026-09-04', licenseOrUse: 'User-supplied rendering used as the visual reference for an illustration at the product owner’s explicit direction. Underlying rendering attributed to Merlin Burrows / Cosco Foundation; no open license claimed.', reviewStatus: 'reviewed' },
   { id: 'source.pyramids.ifao-merer', title: 'Les Papyrus de la Mer Rouge I: Le Journal de Merer', url: 'https://www.ifao.egnet.net/uploads/publications/divers/MIFAO136_ann_01.pdf', publisher: 'Institut français d’archéologie orientale', accessedOn: '2026-09-02', licenseOrUse: 'Official excavation publication cited for research; publication photography is not redistributed', reviewStatus: 'reviewed' },
   { id: 'source.pyramids.harvard-giza', title: 'Digital Giza: Introduction to Giza', url: 'https://giza.fas.harvard.edu/gizaintro/', publisher: 'Harvard University', accessedOn: '2026-09-02', licenseOrUse: 'University archaeological archive cited for research; individual media require item-level rights review', reviewStatus: 'reviewed' },
   { id: 'source.pyramids.aera-settlement', title: 'The Lost City of the Pyramid Builders', url: 'https://aeraweb.org/projects/lost-city/', publisher: 'Ancient Egypt Research Associates', accessedOn: '2026-09-02', licenseOrUse: 'Excavation-project synthesis cited for research; project images are not redistributed', reviewStatus: 'reviewed' },
@@ -23,7 +26,9 @@ export const pyramidsPowerStateLaborSources: Source[] = [
   { id: 'source.pyramids.turin-king-list', title: 'Turin King List, Papyrus Cat. 1874', url: 'https://collezionepapiri.museoegizio.it/section/Papyrus-Collection/History-and-content/History-and-content/', publisher: 'Museo Egizio', accessedOn: '2026-09-02', licenseOrUse: 'Official museum context cited for research; object imagery is not redistributed', reviewStatus: 'reviewed' },
   { id: 'source.pyramids.commons-giza-plan', title: 'Plan intérieur de la grande Pyramide', url: 'https://commons.wikimedia.org/wiki/File:Plan_int%C3%A9rieur_de_la_grande_Pyramide.jpg', publisher: 'Wikimedia Commons / E. Giraud', accessedOn: '2026-09-03', licenseOrUse: 'Public Domain Mark 1.0 raster used as the spatial reference for a Chronos evidence diagram', reviewStatus: 'reviewed' },
   { id: 'source.pyramids.commons-osirion-photo', title: '26869 — the Osireion at Abydos', url: 'https://commons.wikimedia.org/wiki/File:26869-_the_Osireion_at_Abydos.jpg', publisher: 'Wikimedia Commons / Panegyrics of Granovetter', accessedOn: '2026-09-03', licenseOrUse: 'CC BY-SA 2.0 photograph adapted with attribution and share-alike for a Chronos evidence diagram', reviewStatus: 'reviewed' },
-  { id: 'source.pyramids.commons-hawara-plan', title: 'Hawara-plan-complexe', url: 'https://commons.wikimedia.org/wiki/File:Hawara-plan-complexe.jpg', publisher: 'Wikimedia Commons / Franck Monnier', accessedOn: '2026-09-03', licenseOrUse: 'CC BY 2.5 plan adapted with attribution for a Chronos evidence-stream diagram', reviewStatus: 'reviewed' },
+  { id: 'source.pyramids.commons-hawara-plan', title: 'Hawara-plan-complexe', url: 'https://commons.wikimedia.org/wiki/File:Hawara-plan-complexe.jpg', publisher: 'Wikimedia Commons / Franck Monnier', accessedOn: '2026-09-03', licenseOrUse: 'CC BY 2.5; reference for the superseded evidence-stream diagram, retained for research history', reviewStatus: 'reviewed' },
+  { id: 'source.pyramids.hawara-kircher', title: 'The Egyptian Labyrinth, interpretation by Athanasius Kircher', url: 'https://commons.wikimedia.org/wiki/File:Лабіринт_в_Хаварі,_описаний_Геродотом.jpg', publisher: 'Athanasius Kircher / Wikimedia Commons', accessedOn: '2026-09-04', licenseOrUse: 'Public-domain seventeenth-century engraving; original reproduction used directly without generative editing', reviewStatus: 'reviewed' },
+  { id: 'source.pyramids.kircher-turris-babel', title: 'Turris Babel (1679), Getty Research Institute digitized copy, leaf 125', url: 'https://archive.org/stream/gri_athanasiikir00kirc/gri_athanasiikir00kirc#page/n125/mode/1up', publisher: 'Getty Research Institute / Internet Archive', accessedOn: '2026-09-04', licenseOrUse: 'Public-domain source volume; bibliographic cross-check for the engraving and publication date', reviewStatus: 'reviewed' },
   { id: 'source.pyramids.commons-vessels-photo', title: 'Ancient Egypt Predynastic Stone Vessels', url: 'https://commons.wikimedia.org/wiki/File:Ancient_Egypt_Predynastic_Stone_Vessels_(27732541153).jpg', publisher: 'Wikimedia Commons / Gary Todd', accessedOn: '2026-09-03', licenseOrUse: 'CC0 1.0 Louvre display photograph used as the object-form reference for a Chronos evidence diagram', reviewStatus: 'reviewed' },
 ];
 
@@ -50,6 +55,17 @@ export const pyramidsPowerStateLaborClaims: Claim[] = [
 
 export const pyramidsPowerStateLaborMedia: MediaAsset[] = [
   {
+    id: 'media.pyramids.giza-hero',
+    locator: mediaLocator('media.pyramids.giza-hero'),
+    alt: 'Golden, weathered pyramids rise above smaller ruined pyramids at Giza, painted against a deep blue sky. Tiny visitors near the base show their enormous scale.',
+    depictionMode: 'evidence-based-reconstruction',
+    depictionLabel: 'Illustration after Ricardo Liberato · CC BY-SA 2.0',
+    rightsLabel: 'Adapted from Ricardo Liberato, CC BY-SA 2.0; painterly rendering by Chronos; changes made · illustration CC BY-SA 2.0',
+    sourceIds: ['source.pyramids.commons-giza-hero', 'source.pyramids.harvard-giza', 'source.pyramids.unesco-giza'],
+    visualBriefRef: 'docs/research/pyramids-power-and-state-labor.md#mediapyramidsgiza-hero--opening-invitation',
+    reviewStatus: 'approved',
+  },
+  {
     id: 'media.pyramids.giza-evidence-chain',
     locator: mediaLocator('media.pyramids.giza-evidence-chain'),
     alt: 'Diagram with an old drawing of the Great Pyramid cut open to show its rooms. Around it are a written log and stone-carrying boat, nearby workplaces, charcoal in mortar, and scan paths revealing a small hidden corridor.',
@@ -72,13 +88,24 @@ export const pyramidsPowerStateLaborMedia: MediaAsset[] = [
     reviewStatus: 'approved',
   },
   {
-    id: 'media.pyramids.hawara-evidence-streams',
-    locator: mediaLocator('media.pyramids.hawara-evidence-streams'),
-    alt: 'Plan of Hawara surrounded by four panels: an ancient text, building pieces with royal names, blurry underground shapes detected by scans, and a dig revealing walls that cross.',
+    id: 'media.pyramids.hawara-kircher',
+    locator: mediaLocator('media.pyramids.hawara-kircher'),
+    alt: 'Kircher’s seventeenth-century engraving imagines the Egyptian Labyrinth as a square maze surrounded by rectangular and circular courts, with figures around the border. This is an imagined layout, not an excavated plan.',
+    depictionMode: 'evidence',
+    depictionLabel: 'Historical illustration, 1679 · an imagined layout, not an excavated plan',
+    rightsLabel: 'Public domain · Athanasius Kircher, Turris Babel (1679) · reproduction via Wikimedia Commons',
+    sourceIds: ['source.pyramids.hawara-kircher', 'source.pyramids.kircher-turris-babel'],
+    visualBriefRef: 'docs/research/pyramids-power-and-state-labor.md#image-lifecycle',
+    reviewStatus: 'approved',
+  },
+  {
+    id: 'media.pyramids.hawara-scan-illustration',
+    locator: mediaLocator('media.pyramids.hawara-scan-illustration'),
+    alt: 'Illustration based on the lower, oblique view of a supplied Hawara scan rendering: blue rectangular patterns lie within green, yellow, and red bands. The colors are part of the rendering, not the natural colors of buried ruins.',
     depictionMode: 'diagram',
-    depictionLabel: 'Diagram comparing clues · plan is based on dug-up remains; scan shapes are not confirmed rooms',
-    rightsLabel: 'Chronos original raster edit · plan reference by Franck Monnier after Petrie, CC BY 2.5',
-    sourceIds: ['source.pyramids.commons-hawara-plan', 'source.pyramids.hawara-petrie', 'source.pyramids.hawara-vlf', 'source.pyramids.hawara-ert', 'source.pyramids.hawara-pliny', 'source.pyramids.hawara-excavation'],
+    depictionLabel: 'AI-assisted illustration after a Merlin Burrows rendering · not raw survey data',
+    rightsLabel: 'Illustration after the user-supplied Merlin Burrows / Cosco Foundation rendering',
+    sourceIds: ['source.pyramids.hawara-merlin-rendering'],
     visualBriefRef: 'docs/research/pyramids-power-and-state-labor.md#image-lifecycle',
     reviewStatus: 'approved',
   },
@@ -122,6 +149,9 @@ export const pyramidsPowerStateLaborLesson: Lesson = {
   legacyAliases: ['imhotep', 'pyramids'],
   status: 'published',
   title: 'Pyramids, Builders, and Evidence',
+  heroMediaId: 'media.pyramids.giza-hero',
+  heroLabel: 'Illustrated view',
+  heroCaption: 'Giza today, reimagined in paint. The monument shapes follow a photograph; the colors and light are artistic.',
   masthead: 'Giza around 2700–2500 BCE; clues from earlier Egypt to today',
   place: 'Giza, Abydos, Hawara, and museum collections in Egypt',
   chronology: { startYear: -2700, endYear: -2500, display: 'Giza c. 2700–2500 BCE', approximate: true },
@@ -177,7 +207,8 @@ export const pyramidsPowerStateLaborLesson: Lesson = {
       id: 'section.pyramids.hawara', heading: 'The Labyrinth at Hawara', purpose: 'Compare ancient testimony, excavated royal material, geophysics, and active excavation without flattening their conflicts',
       modules: [
         { id: 'module.pyramids.hawara-evidence', type: 'prose', body: 'Ancient visitors struggled to describe the huge building at Hawara known as the Labyrinth. The writer Herodotus called it greater than the pyramids. He said he had walked through its upper rooms and linked it to twelve kings. Other writers disagreed about who built it and why. Pliny recorded a startling story: the Labyrinth had been built 3,600 years before his time. Surviving copies of his text give different numbers, but all place it far back in the past.\n\nMuch of the building had vanished by the time the archaeologist Petrie dug at Hawara. People had taken away stones, leaving gaps in its base, or foundations. Among the remains, he found building pieces bearing the names of Amenemhat III and Sobekneferu. These rulers lived during the Middle Kingdom, a later period than Khufu’s Old Kingdom. Their names link them to work and use at the site. The names alone cannot tell us the age of every foundation underneath it.\n\nSurveys in 2010 and 2024 found patterns beneath the soil south of the pyramid that could be walls or rooms. In 2026, an Egyptian official reported that a team of antiquities staff and university researchers had begun digging there. Hawara is no longer only a debate about old texts and scans. Digging can reveal which walls join, which were built through older walls, and whether parts of an earlier building survive below.', claimIds: ['claim.pyramids.hawara-middle-kingdom-link', 'claim.pyramids.hawara-anomalies', 'claim.pyramids.hawara-traditions', 'claim.pyramids.hawara-excavation-test'], sourceIds: ['source.pyramids.hawara-petrie', 'source.pyramids.hawara-vlf', 'source.pyramids.hawara-ert', 'source.pyramids.hawara-pliny', 'source.pyramids.hawara-excavation'] },
-        { id: 'module.pyramids.hawara-visual', type: 'evidence', title: 'Four kinds of clues at Hawara', artifactLabel: 'Diagram comparing clues', body: 'The plan in the center shows a possible layout based on remains found by digging, not a building still standing today. Ancient writers describe its size but disagree about its history. Pieces with royal names link work to the Middle Kingdom. The scan colors show patterns underground, not rooms that have been dug out and checked. New digs can uncover walls and materials we can date.', mediaId: 'media.pyramids.hawara-evidence-streams', claimIds: ['claim.pyramids.hawara-middle-kingdom-link', 'claim.pyramids.hawara-anomalies', 'claim.pyramids.hawara-traditions', 'claim.pyramids.hawara-excavation-test'], sourceIds: ['source.pyramids.hawara-petrie', 'source.pyramids.hawara-vlf', 'source.pyramids.hawara-ert', 'source.pyramids.hawara-pliny', 'source.pyramids.hawara-excavation'] },
+        { id: 'module.pyramids.hawara-visual', type: 'evidence', title: 'How Kircher imagined the Labyrinth', artifactLabel: 'Historical illustration · 1679', body: 'Look at the maze in the center and the many courts around it. Athanasius Kircher published this interpretation in 1679, drawing on ancient descriptions such as Herodotus’s. It shows how a much later reader imagined the Labyrinth. These rooms were not mapped by excavation. The engraving is evidence of that later interpretation; buried walls and modern surveys must be studied separately to test the building’s actual layout.', mediaId: 'media.pyramids.hawara-kircher', claimIds: [], sourceIds: ['source.pyramids.hawara-kircher', 'source.pyramids.kircher-turris-babel'] },
+        { id: 'module.pyramids.hawara-scan-visual', type: 'evidence', layout: 'stacked', title: 'Patterns beneath Hawara', artifactLabel: 'Illustration after a scan rendering', body: 'Look for the rectangular patterns in blue. This illustration follows the lower view of a Merlin Burrows rendering associated with Hawara. Its bright colors help us see shapes; they are not the natural colors of buried stone. Comparing this view with Kircher’s drawing raises a question: which patterns could belong to an actual building? Excavation is needed to identify and date any remains. The illustration is a guide to the published image, not a measured plan of confirmed rooms.', scaleNote: 'The supplied view has no verified scale bar. We cannot reliably size a person or a familiar building beside it.', mediaId: 'media.pyramids.hawara-scan-illustration', claimIds: [], sourceIds: ['source.pyramids.hawara-merlin-rendering'] },
         { id: 'module.pyramids.hawara-streams', type: 'knowledge', eyebrow: 'Hawara today', title: 'Four voices in an unfinished history', body: 'No single voice tells the whole story, but together they show where to look next.', items: [
           { label: 'The ancient visitors', detail: 'Left stories about the building’s huge size, different builders, and a possible age much older than the Middle Kingdom.' },
           { label: 'The royal names', detail: 'Link Amenemhat III and Sobekneferu to building work and use of the site.' },

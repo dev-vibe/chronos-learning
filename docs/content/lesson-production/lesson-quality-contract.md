@@ -80,6 +80,8 @@ Record concrete evidence from the rendered lesson for every finding. Mark each f
 - Confirm redistribution rights, source files, checksums, derivatives, manifests, provenance, and review status.
 - Reject lesson-media SVG and any blank-canvas, hand-drawn, procedural, canvas, plotting, or shape-primitive instructional diagram.
 - Require the actual reviewed raster reference and image-edit lineage for diagram-like generated media.
+- Require actual visual references for every depicted real subject, including every artifact, manuscript, inscription, structure, excavation, and survey panel in a composite. Verify the subject-to-reference mapping and that every reference was supplied to the edit tool; text citations and style/layout references do not establish subject coverage.
+- Compare each depicted subject with its reference and reject invented or altered physical details, inscriptions, wall relationships, stratigraphy, and measurement patterns. Missing references or failed subject fidelity block acceptance in both style-only and adapted compositions, regardless of illustrative or reconstruction labels. Source the missing evidence, omit the subject, or use native text.
 - Verify semantic headings and landmarks, keyboard and focus behavior, WCAG 2.2 AA contrast, reflow/zoom, touch targets, reduced motion, alt text, captions, transcripts, map summaries, and screen-reader states.
 
 ### Technical and data integrity

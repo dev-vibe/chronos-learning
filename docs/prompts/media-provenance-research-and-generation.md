@@ -11,7 +11,7 @@ Find or create an image that is historically suitable, publicly redistributable,
 1. Read AGENTS.md, the product and design invariants, ADR 003, ADR 004, and the media publishing runbook.
 2. Inspect the intended lesson claim, depiction mode, alt text, and visual brief before searching. For a historical map, also follow the additional map requirements below.
 3. Prefer sources in this order:
-   - Chronos-original or newly generated artwork with complete generation lineage;
+   - Chronos-original or newly generated artwork with complete generation lineage and actual visual references for every depicted real subject;
    - explicit public-domain or CC0 media from an authoritative collection;
    - explicit CC BY or CC BY-SA media with complete attribution;
    - another source only if its authoritative asset page grants redistribution and derivative rights in unambiguous language.
@@ -28,16 +28,19 @@ Find or create an image that is historically suitable, publicly redistributable,
 6. Apply the publication policy:
    - Recommend approval when the authoritative evidence explicitly establishes public domain, CC0, CC BY, CC BY-SA, or Chronos ownership with documented generation lineage.
    - Do not recommend approval for unknown origin, all-rights-reserved media, fair-use assumptions, educational-use-only language, hotlinks, watermarked assets, or licenses containing NC or ND restrictions.
-   - If the rights are unclear, prefer a clearly licensed replacement or generate new artwork. Do not ask an unqualified product owner to guess.
+   - If the rights are unclear, find a clearly licensed reference or replacement. Generate new artwork only from permitted references of the actual subjects; generation cannot bypass missing rights or missing visual evidence. Do not ask an unqualified product owner to guess.
 7. For generated artwork:
    - research the factual composition using at least two suitable references;
-   - use copyrighted references only for non-expressive facts, not as an image-to-image style or composition source;
+   - follow the [mandatory raster image-edit workflow](../content/lesson-creation-runbook.md#mandatory-raster-image-edit-workflow). Every depicted real artifact, manuscript, inscription, site, structure, excavation, and survey result must have an inspected image of that actual subject supplied to the edit tool. Textual research and similar-looking subjects cannot replace these images;
+   - map every subject and composite panel to its photograph, scan, measured drawing, or published plan, recording the object/accession or figure identifier where available. Keep style/layout references separate; a sourced plan cannot justify invented surrounding objects or scenes;
+   - use copyrighted references without derivative permission only for non-expressive factual research, never as image-edit inputs. All image-edit inputs must have rights permitting the intended derivative;
+   - preserve referenced physical details and measurement patterns. Do not invent or replace inscriptions, manuscript marks, artifact features, wall arrangements, stratigraphy, or survey anomalies. If suitable visual evidence is unavailable, source it, omit the subject, or use native text; an “illustrative” or “reconstruction” label is not an exception;
    - save the generation tool, model when available, date, complete prompt, reference URLs, rejected drafts, and final master path;
    - prohibit baked-in educational prose, titles, logos, watermarks, and UI chrome;
    - label reconstruction, uncertainty, and approximate geography explicitly;
-   - visually inspect the final image for anachronisms and unsupported details.
+   - visually compare every real subject in the final against its actual input reference. Missing subject coverage or unsupported details block acceptance in either edit mode;
    - when the reference already supplies the approved scientific or explanatory composition, use a **style-only transformation**: lock its canvas ratio, panel order, object positions/orientations/proportions, actions, callouts, short source-verified labels, and evidence-bearing details; change only the rendering style. Reject any candidate that omits, adds, moves, mirrors, rescales, relabels, or reinterprets a locked element, or makes comparison subjects visually indistinguishable at their actual desktop or mobile lesson size.
-   - use an adapted composition only when its changed relationship is documented and explicitly approved by the product owner; visual polish is never grounds for silently redesigning a reference.
+   - use an adapted composition only when its changed relationship is documented and explicitly approved by the product owner. Approval permits arranging referenced subjects, not inventing their physical details; visual polish is never grounds for silently redesigning a reference;
    - complete the lesson research note's top-level `## Image lifecycle` block: visibly embed the actual reference and accepted final together, preserve the complete prompt verbatim, and record a comparison verdict. Do not make a reviewer infer this chain from paths or prose alone.
 
 ### Additional requirements for historical maps

@@ -107,7 +107,7 @@ Recurring type labels: evidence chrome **Surviving evidence**; close-read knowle
 
 ## Image lifecycle
 
-Use one block below for every accepted image. Keep the actual reference and final image visible in rendered Markdown so reviewers can compare them without locating files manually.
+Use one block below for every accepted image. Keep every actual subject reference and the final image visible in rendered Markdown so reviewers can compare them without locating files manually. Repeat the reference preview row for every input; style/layout references do not count as evidence for a real subject.
 
 ### `<media-id>` — <teaching role>
 
@@ -131,12 +131,19 @@ Use one block below for every accepted image. Keep the actual reference and fina
 - Locked layout/detail invariants (required for style-only transformation):
 - Details not to copy or infer:
 
+| Depicted real subject / composite panel | Actual subject reference and object/accession or figure ID | Input path and SHA-256 | Physical or measured details to preserve | Final fidelity verdict |
+| --- | --- | --- | --- | --- |
+| <each subject; no uncovered real subjects permitted> | <photograph, scan, measured drawing, or published plan of that subject> | <actual image supplied to tool> | <identity, morphology, inscription, wall relationships, survey patterns as applicable> | pass / fail |
+
+- Separate style/layout-only references:
+- Unsupported subjects omitted or replaced with native text:
+
 #### 3. Generation or transformation
 
 - Operation: image edit | direct licensed use | crop/compression only
-- Actual input path and SHA-256:
+- Every actual input path and SHA-256:
 - Tool/model/date:
-- Complete prompt (`No generation` when applicable):
+- Complete prompt, including subject-to-reference mapping and prohibition on invented physical or measured details (`No generation` when applicable):
 
 ```text
 <exact prompt, unchanged>
@@ -153,6 +160,8 @@ Use one block below for every accepted image. Keep the actual reference and fina
 - Final master path, dimensions, and SHA-256: (archival research copy; typically PNG)
 - Runtime/fallback path and SHA-256: (catalog `sourcePath` under `public/images/` plus optimized fallback; JPEG + `photo` when the archival file cannot meet ql-v1)
 - Reviewer/date/status:
+- Subject coverage verdict — every depicted real subject has an actual visual reference supplied to the tool: yes | no (a `no` cannot be accepted)
+- Subject fidelity verdict — every subject preserves its referenced physical or measured details: yes | no (a `no` cannot be accepted in either edit mode; illustrative/reconstruction labels do not waive this)
 - Fidelity verdict — every locked invariant retained: yes | no (a `no` cannot be accepted)
 - Lesson-size verdict — evidence-bearing differences remain visually distinct on desktop and mobile: yes | no (a `no` cannot be accepted)
 - Comparison verdict — preserved relationship:

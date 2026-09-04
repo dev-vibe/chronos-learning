@@ -315,15 +315,38 @@
       ]
     },
     {
-      "id": "media.pyramids.hawara-evidence-streams",
+      "id": "media.pyramids.giza-hero",
       "collection": "pyramids",
-      "sourcePath": "public/images/evidence/pyramids-hawara-evidence-streams.jpg",
-      "fallbackPath": "/images/optimized/pyramids/hawara-evidence-streams.optimized.jpg",
-      "preset": "picture",
+      "sourcePath": "public/images/places/giza-hero-wide.jpg",
+      "fallbackPath": "/images/optimized/pyramids/giza-hero-wide.optimized.jpg",
+      "preset": "photo",
       "widths": [
         480,
         960,
-        1536
+        2174
+      ]
+    },
+    {
+      "id": "media.pyramids.hawara-kircher",
+      "collection": "pyramids",
+      "sourcePath": "public/images/evidence/pyramids-hawara-kircher-1679.jpg",
+      "fallbackPath": "/images/optimized/pyramids/hawara-kircher.optimized.jpg",
+      "preset": "picture",
+      "widths": [
+        480,
+        1221
+      ]
+    },
+    {
+      "id": "media.pyramids.hawara-scan-illustration",
+      "collection": "pyramids",
+      "sourcePath": "public/images/evidence/pyramids-hawara-scan-illustration.jpg",
+      "fallbackPath": "/images/optimized/pyramids/hawara-scan-illustration.optimized.jpg",
+      "preset": "photo",
+      "widths": [
+        480,
+        960,
+        1688
       ]
     },
     {

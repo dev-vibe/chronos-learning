@@ -21,11 +21,18 @@ export const pyramidsPowerStateLaborPrototypeReview: LessonPrototypeReview = {
     },
     {
       sectionId: 'section.pyramids.hawara',
-      kind: 'diagram',
-      purpose: 'Distinguish ancient testimony, excavated inscriptional context, geophysical anomaly, and excavation ground truth in one source-role comparison.',
+      kind: 'evidence',
+      purpose: 'Observe Kircher’s actual 1679 engraving as evidence of a later interpretation, keeping its imagined layout distinct from excavated remains and survey findings.',
       status: 'ready',
-      mediaId: 'media.pyramids.hawara-evidence-streams',
-    },
+        mediaId: 'media.pyramids.hawara-kircher',
+      },
+      {
+        sectionId: 'section.pyramids.hawara',
+        kind: 'diagram',
+        purpose: 'Compare the supplied scan rendering’s broad patterns with Kircher’s imagined layout, labeling the illustrated adaptation and unavailable scale explicitly.',
+        status: 'ready',
+        mediaId: 'media.pyramids.hawara-scan-illustration',
+      },
     {
       sectionId: 'section.pyramids.vessels',
       kind: 'evidence',
