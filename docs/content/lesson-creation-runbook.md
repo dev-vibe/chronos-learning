@@ -62,7 +62,7 @@ The packet must concisely show:
 2. essential question and durable understanding;
 3. major claims, sources, disagreement, and uncertainty;
 4. content deliberately deferred or rejected;
-5. ages 11–14 learning decisions;
+5. ages 11–15 learning decisions;
 6. a link to the unpublished Learn-shell prototype with real prose and prompts;
 7. findings against the non-numeric lesson quality contract;
 8. media/map/video/no-media intentions at their proposed section locations;
@@ -80,21 +80,34 @@ Use the actual branch/deployment URL and exact lesson route, retaining any requi
 
 Before sending the final response, check: **Can the user open the lesson being discussed from this message alone?**
 
-## Five operational phases
+## Operational path
 
-Use the stages through these five production phases. Stage numbers remain stable so existing research notes and issue history continue to resolve.
+**Brief → research/material decisions → learning prototype → review → final assets/verification → publication.** Stage numbers below remain stable for existing notes and issue links. Use the path to operate; consult specialist detail only when its teaching form or risk applies.
 
-| Phase | Stages | Exit condition |
+| Step | Stages | Reviewable output / exit |
 | --- | --- | --- |
-| Select and bound | 0–1 | The lesson identity, curriculum role, learner outcome, owner, and non-goals are explicit. |
-| Research and model | 2–7 | The recent-challenge audit has been considered by the product owner; sources, claims, scope, learning model, and ages 11–14 transformations are reviewable. |
-| Prototype and review | 8–14B | A complete draft is rendered in the real Learn shell and passes proxy/product review. |
-| Implement | 15 | Approved content, media, provenance, card, and publication configuration are production-ready. |
-| Validate and publish | 16–18 | Implementation is internally consistent; go-live is the mechanical cutover in the publication playbook. |
+| Brief | 0–2 | Stable identity, audience, curriculum position, essential question, scope, reviewer, non-goals and research questions. |
+| Research/material decisions | 3–7 | Proportional source/challenge review; owner research-direction response before claim selection; claim ledger, content triage and cumulative blueprint. |
+| Learning prototype | 8–14A | Complete draft in the shared Learn shell, real prompts and media intentions; no publication or final assets. |
+| Review | 14B | One quality-contract pass, identified proxy evidence, owner approval of the actual prototype. |
+| Final assets/verification | 15–16 | Refine approved draft, review final visual fidelity and technical integrity; revisit only changed or unresolved findings. |
+| Publication | 18 | Only after explicit go-live authorization, use the lean [publication playbook](lesson-publication.md); no repeated completed reviews. |
+
+The single research note owns the source/claim evidence and decisions; templates define its shape, the quality contract defines review questions, and the skill routes here. Do not maintain parallel checklists or re-copy specialist procedures. New records use `Production record version: 2`; mechanical lesson gates check cumulative fields and registered central claim/source references. Legacy approved and pending records retain their recorded gates; adoption does not restart research, waive an owner decision, or change queue state.
+
+Stage 17 is an early, sampled [learner-observation program](lesson-production/learner-observation.md), run alongside production rather than after the catalogue is built. Individual lessons need not recruit children to pass a gate.
+
+### Research-direction rollout and future routine path
+
+**Current mode: owner checkpoint required.** Stage 3B remains active for every new lesson and any pending lesson gate, including paused work. No automation, template version, source review, or proxy may count as the owner's response.
+
+A possible future routine path would allow work within an explicitly approved brief (bounded question, chronology, claim boundaries, media jobs and escalation triggers). It would retain discovery, close central-source review, challenge screening, prototype review and publication approval, and return to the owner for consequential evidence, scope, depiction or uncertainty changes. **That path is inactive.** Enabling it requires an explicit owner decision and a versioned policy change; it cannot grandfather or bypass pending gates.
 
 ## What this runbook protects
 
-Chronos exists to teach history well. Shipping a page is not the goal; helping an approximately 11–14-year-old build an accurate, memorable, evidence-aware mental model is the goal.
+Chronos primarily serves ages 11–15 and homeschooling. Draft initially for a roughly 12–13-year-old reader, then revise against actual learner observation; adult and AI proxy judgments do not establish age suitability. Institutional support must preserve canonical editorial control and the shared learner experience.
+
+Chronos exists to teach history well. Shipping a page is not the goal; helping an approximately 11–15-year-old build an accurate, memorable, evidence-aware mental model is the goal.
 
 A publishable lesson must be:
 
@@ -102,7 +115,7 @@ A publishable lesson must be:
 - clear about evidence, interpretation, uncertainty, reconstruction, and later tradition;
 - narrow enough to teach one coherent transformation, problem, question, person, object, place, event, or idea;
 - vivid without inventing certainty or drama;
-- intellectually serious and emotionally approachable for ages 11–14;
+- intellectually serious and emotionally approachable for ages 11–15;
 - structured as a deliberate sequence rather than a pile of facts;
 - visually planned around teaching needs rather than decoration;
 - reusable across journeys without duplicating its canonical content;
@@ -144,8 +157,8 @@ The specialist runbooks own their details. This document decides when they are n
 - A reconstruction is never presented as direct evidence. Uncertainty is never hidden merely to make prose cleaner.
 - Knowledge Cards are deterministic memory anchors, not loot. A lesson may have no card if no honest, useful memory object exists.
 - Media is selected because it teaches. A lesson has no image, map, audio, or video quota.
-- Never use SVG for lesson media. No lesson-media source, reference copy, intermediate, master, generated asset, map, diagram, card image, reconstruction, or runtime derivative may be an SVG.
-- Never hand-author or procedurally draw an instructional diagram, infographic, or diagram-like lesson image with vector geometry, canvas commands, plotting code, or shape primitives. Every such visual must be produced as a raster image edit from a reviewed, rights-cleared pre-existing image of the same or closely similar visual type. If no suitable reference image exists, stop visual production and use no image or request a product-owner decision.
+- Select media methods by teaching purpose and fidelity using Stage 10. Licensed originals, native/vector and raster factual visuals, and generated reconstruction have distinct appropriate roles.
+- Never let visual polish alter reviewed geometry, measurements, labels, relationships, subject details, or uncertainty. Generation is not required for stylistic consistency.
 - Each section has one learner-facing title (`heading`). The heading names the subject or teaching job in ordinary words. It orients; it is not a joke, metaphor, riddle, or magazine punchline. Interest comes from the history, not from the title.
 - Do not stack a second attention-grabbing title, slogan, or paraphrase immediately under the heading.
 - `purpose` is authoring metadata for storyboards, agents, and review. It is not learner-facing copy and must not read like a second headline.
@@ -239,7 +252,7 @@ Plan the recent-challenge search as its own workstream rather than assuming the 
 
 Search broadly enough to discover the field, then rely on the best available sources.
 
-Preferred order:
+Useful discovery routes (not a ranking that substitutes for evidence):
 
 1. surviving primary material and authoritative object/site records;
 2. specialist corpora, excavation projects, archives, and critical editions;
@@ -251,7 +264,7 @@ Preferred order:
 Use this research loop:
 
 1. Run an orientation search to learn the field's current terminology, major evidence, and obvious disputes.
-2. Identify at least one authoritative anchor source for chronology/geography and one for the lesson's central claim.
+2. Identify direct support for the chronology/geography and central explanation; source counts are not a quality target.
 3. Follow citations backward to the underlying object, corpus, excavation, primary source, or study.
 4. Follow later citations forward to see whether the interpretation was refined, rejected, or remains influential.
 5. Search deliberately for disagreement, regional/specialist perspectives, and evidence that would weaken the emerging narrative.
@@ -262,14 +275,23 @@ Use this research loop:
 
 Wikipedia and search-result summaries may help discover terminology and references. They are not sufficient support for a material claim. A museum label is valuable but not automatically the last word. A single scholar’s interpretation is not “what historians believe.” Popular documentaries and unsourced educational sites are discovery leads, not claim authorities.
 
-For every candidate source, record:
+Classify sources by instructional role before spending equal effort on every lead:
+
+- **Central supporting:** carries a central claim, chronology, attribution, key visual relationship or essential misconception correction. Closely read the relevant full passage, figure, data context or object record. Record exact page/figure/passage/object identifiers, the inference it supports, its limits and review identity. Abstracts or snippets are insufficient. If inaccessible, recover the evidence, narrow/defer the claim or record the unresolved dependency; do not claim close review.
+- **Qualifying:** changes a central claim's confidence, limits or alternatives. Read the relevant material closely enough to support that qualification; give precise locations for material qualifications.
+- **Discovery lead:** helps find evidence or scope the field. Record its citation/link, potential relevance and disposition briefly. It does not support learner claims until promoted and reviewed.
+
+No source quota, equal-space requirement or institutional endorsement replaces these questions. Roles describe use in this lesson, not intrinsic prestige. The same source may support one claim and qualify another.
+
+For central supporting and qualifying sources, record:
 
 | Field | Required note |
 | --- | --- |
 | Stable source ID | Repository-safe ID |
 | Full title, creator/publisher, URL | Enough to recover the source |
 | Access date | ISO date |
-| Source type | Primary object/text, corpus, excavation, scholarship, synthesis, visual reference |
+| Source type and role | Primary object/text, corpus, excavation, scholarship, synthesis, visual reference; central supporting / qualifying / discovery lead |
+| Exact location | Page, figure/panel, named passage, dataset section or object/accession record plus relevant description |
 | Authority | Why this creator/institution is relevant |
 | Claims supported | Claim IDs or research questions |
 | Limits/bias | Date, perspective, selection, translation, institutional or evidentiary limits |
@@ -312,7 +334,9 @@ The audit must include both accepted revisions and serious proposed upsets. Sear
 
 Comparative analysis is a legitimate hypothesis-generating form of evidence. Evaluate what is being compared, whether the cases and measurements are genuinely comparable, whether selection effects or circular assumptions are present, what alternative explanations fit, and what new observation the comparison predicts. Do not dismiss it merely because it does not itself provide excavation stratigraphy or a direct date; instead, state precisely which inferential link it supplies and which links remain missing.
 
-For every major challenge or revision, record:
+Screen broadly, then assess instructional consequence. Use the full analysis below when a proposal could materially change the explanation, chronology, attribution, visual depiction, or a major misconception. Record peripheral proposals in a short table with their evidence lead, reason for deferral and trigger for reconsideration; do not write a full dossier for each. Popularity or unfamiliarity alone does not make a proposal central. Screen the inherited account with the same questions.
+
+For each consequential challenge or revision, record:
 
 | Field | Required analysis |
 | --- | --- |
@@ -370,7 +394,7 @@ For each claim record:
 | --- | --- |
 | Claim ID and statement | What exactly is being asserted? |
 | Kind and certainty | Observation, interpretation, reconstruction, or later tradition? How sure? |
-| Direct support | Which sources actually support this wording? |
+| Direct support | Which sources actually support this wording? For central claims, identify precise page/figure/passage/object locations in the Central claim support table; record close review. |
 | Corroboration | Is the support independent, or are sources repeating one origin? |
 | Counterevidence/alternative | What credible evidence or interpretation complicates it? |
 | Survival bias | Is absence of evidence being mistaken for evidence of absence? |
@@ -378,7 +402,7 @@ For each claim record:
 | Learner treatment | State directly, qualify, compare interpretations, or omit? |
 | Review status | Reviewed or editorial review required? |
 
-Use proportionality, not false balance. A fringe claim does not receive equal space with a strongly supported consensus. A real scholarly disagreement is not erased because one version is easier to narrate. If evidence cannot support a clean answer, teach the limit or narrow the question.
+Use proportionality, not false balance. A weakly supported proposal does not receive equal space with a strongly evidenced explanation. A real scholarly disagreement is not erased because one version is easier to narrate. If evidence cannot support a clean answer, teach the limit or narrow the question.
 
 Recommended historical-reading habits:
 
@@ -433,7 +457,15 @@ Prefer “Explain how clay records helped institutions coordinate goods, and nam
 
 The U.S. Institute of Education Sciences recommends building world and word knowledge and giving grades 4–9 learners repeated chances to ask and answer questions while making sense of text. Apply that here by giving necessary context before demanding inference, defining essential vocabulary in use, and making the understanding check depend on the lesson’s evidence rather than trivia. See the [grades 4–9 practice guide](https://ies.ed.gov/ncee/wwc/PracticeGuide/29).
 
-## Stage 7 — Perform the ages 11–14 design pass
+### Cumulative learning in every blueprint
+
+Record **Retrieve** (which earlier idea returns), **Extend** (how this lesson develops or complicates it), and **Revisit** (where understanding will be used again). Name stable existing lesson IDs where available. For an opening lesson, Retrieve may name everyday prior knowledge without assuming formal study; a future use is an editorial intention, never a claim that unpublished content is available.
+
+Plan progression from observing and separating inference, through contextualizing and corroborating, to comparing explanations and qualifying a conclusion. Name the move practiced now, its prior scaffold, and the next increase in independence. Occasionally plan transfer to unfamiliar evidence using reviewed material, with enough context for a fair attempt; it need not appear in every lesson or become a completion hurdle. [Learner observation](lesson-production/learner-observation.md) tests whether these choices work.
+
+Completion records studied content and sincere attempts. It is distinct from demonstrated mastery; an example answer, character count, or optional recall task cannot certify mastery or revoke completion.
+
+## Stage 7 — Perform the ages 11–15 design pass
 
 Age adaptation changes explanation, pacing, assumptions, and support. It does not merely shorten words or remove nuance.
 
@@ -567,7 +599,7 @@ Keep these recurring learner-facing type labels in ordinary words:
 
 Do not invent a new methods slogan for the same job.
 
-If the lesson genuinely needs a timeline, comparison table, audio source, diagram, or another unsupported teaching primitive, stop and decide whether to add a bounded reusable module. Do not fake it with arbitrary HTML, an image containing educational text, overloaded `knowledge` cards, hand-authored SVG, canvas drawing, or procedurally arranged shape primitives. A new module is an architecture/design change and requires its own validation and accessibility coverage.
+If the lesson genuinely needs a timeline, comparison table, audio source, diagram, or another unsupported teaching primitive, stop and decide whether to add a bounded reusable module. Do not fake it with arbitrary HTML, an image containing educational text, overloaded `knowledge` cards, an inaccessible visual without a reviewed data model or text equivalent. A new module is an architecture/design change and requires its own validation and accessibility coverage.
 
 Native application text carries titles, explanations, labels, and captions. Do not bake educational prose into artwork.
 
@@ -593,7 +625,7 @@ Media must either provide evidence, explain a relationship, orient the learner, 
 
 - Use a **surviving object or primary visual source** when the learner should observe evidence.
 - Use a **map** when location, distance, environment, movement, boundaries, or spatial uncertainty is part of the explanation. Then follow the [historical map production runbook](historical-map-production.md).
-- Use a **diagram** when a process or relationship matters more than literal appearance. Start from a reviewed, rights-cleared pre-existing diagram or closely similar visual, provide that raster reference to the image-generation tool, and create the Chronos version as an image edit. Do not draw it manually or generate it from an empty canvas.
+- Use a **diagram** when a process or relationship matters more than literal appearance. Use reviewed geometry, measurements, labels and relationships; native components, deterministic vector drawing or raster production are appropriate. Choose the method that preserves those facts reliably.
 - Use an **evidence-based reconstruction** when a scene materially helps learners imagine a poorly preserved environment, every depicted real subject has a reviewed visual reference, and the brief distinguishes surviving evidence from source-supported reconstruction. A reconstruction label does not permit invented artifacts, inscriptions, architecture, or measurements.
 - Use a **symbolic treatment** sparingly for an abstract idea. Keep it visibly abstract; do not substitute a realistic invented object, manuscript, excavation, or scan for missing evidence.
 - Use **no media** when text is clearer and an asset would only create noise.
@@ -608,21 +640,22 @@ Rows marked **Preferred / optional** (for example an atmospheric hero when a dia
 
 For every image or generated asset, follow the [media provenance research and generation prompt](../prompts/media-provenance-research-and-generation.md); after visual approval, follow the [media ingestion and publishing runbook](../architecture/media-publishing.md). Git holds identity and provenance; Supabase Storage holds bytes; Postgres does not store image blobs. Prepare the runtime source before `media:add`: keep the archival master in research, use a JPEG catalog source and the `photo` preset for large reconstructions, and do not overwrite a different asset's identity. A ql-v1 size failure is ingest prep, not a storage-architecture problem.
 
-### Mandatory raster image-edit workflow
+### Media method and fidelity policy
 
-This workflow applies to diagrams, infographics, timelines, maps, explanatory composites, card art, and reconstructions:
+| Teaching purpose | Preferred method | Review invariant |
+| --- | --- | --- |
+| Inspect surviving evidence | Licensed original photograph, scan or object record; only permitted non-misleading crops/compression | The learner can inspect actual evidence; reconstruction cannot replace or masquerade as it. |
+| Explain factual geometry, process, chronology or comparison | Native/deterministic/vector or raster rendering from reviewed data and relationships | Preserve reviewed geometry, measurements, labels, order and uncertainty; retain code/data versions and text equivalents. |
+| Orient geographically | Reviewed geographic data or licensed map with source-specific historical interpretation | Use the [historical-map guidance](historical-map-production.md); no invented coordinates, borders, routes or precision. |
+| Reconstruct or set atmosphere | Image generation when the approved brief benefits from it | Explicit depiction label, source-supported real subjects, honest unknowns; no fabricated evidence or baked-in educational prose. |
 
-1. For every depicted real subject, find and visually inspect a rights-cleared image of that actual subject: the specific artifact, manuscript, inscription, site, structure, excavation, or published survey result. Use photographs, scans, measured drawings, or published archaeological plans as appropriate. Text citations, a similar object, a style reference, and generated images do not establish what the subject looks like. A closely similar diagram may guide abstract layout only; it cannot supply missing historical subjects or details.
-2. Record each reference's canonical URL, creator, license/use status, local research-copy path/hash, object/accession or figure identifier where available, and the subject and details it supports. In a composite, map every panel and real subject to its own supporting reference; one sourced central plan does not cover surrounding vignettes.
-3. Supply every mapped reference image to the image-generation tool and use image editing, not blank-canvas generation, manual drawing, vector markup, canvas commands, plotting libraries, or procedural shape composition. If suitable references are missing, continue sourcing, omit the unsupported subject, or use native text. Do not generate a plausible substitute.
-4. Classify the edit before prompting:
-   - **Style-only transformation** — required when the reviewed reference already contains the approved scientific or explanatory composition. Lock the canvas ratio, panel order, object positions/orientations/proportions, actions, callouts, short source-verified labels, and evidence-bearing details. Change only rendering style. Do not simplify, rearrange, crop, relabel, reinterpret, or “improve” the teaching structure.
-   - **Adapted composition** — permitted only when the research note explains why the source structure cannot be retained and the product owner explicitly approves the changed relationship. This permits an approved arrangement of referenced subjects, never fabrication of their physical details. Preserve each subject's identity, morphology, inscriptions, construction relationships, and measured patterns. Remove source-specific branding and keep educational prose in native application text.
-5. Export and retain only raster files through the entire lesson-media pipeline. Allowed publication formats are PNG, JPEG, WebP, or AVIF as supported by the pipeline. SVG is prohibited even as an intermediate file.
-6. Compare the edited result against both the reference image and the governing historical/scientific sources, then inspect it at its actual desktop and mobile lesson sizes. For a style-only transformation, reject any candidate that omits, adds, moves, mirrors, rescales, relabels, or changes an evidence-bearing element. Also reject it when a comparison's subjects become visually indistinguishable at lesson size even if the surrounding labels remain correct. Attractive output does not excuse structural drift. For an adapted composition, reject it if the approved relationship changed or the edit added a false claim. In either mode, confirm the license permits the intended derivative; never use this rule to copy protected expression without permission.
-7. Record every reference image, the subject-to-reference mapping, complete edit prompt, model/tool, accepted raster master, rejected drafts, and review decision in the research note. Review every depicted real subject against its supplied reference. Reject invented or altered inscriptions, artifact features, walls, stratigraphy, or scan patterns in either edit mode. An “illustrative,” “diagram,” or “reconstruction” label does not cure an unsupported depiction.
+Raster publication remains appropriate for the current image pipeline. Vector sources/intermediates and accessible native diagrams are allowed. Export a raster derivative when ingestion requires it; do not apply generative transformation merely to harmonize style. Use typed native modules for new reusable forms, with responsive and accessibility coverage.
 
-Actual subject references govern depicted appearance; reviewed authoritative sources govern interpretation, geography, chronology, and uncertainty. Both are required. A source-supported reconstruction or plan must retain its stated limits and cannot become a depiction of confirmed surviving remains. A text-only description is insufficient; every actual reference must be supplied to the image-edit operation. For example, a Hawara plan cannot authorize an invented royal-name fragment, scroll, scan, or excavation trench: each needs its own real visual reference or must be omitted.
+For generated depictions of a specific real artifact, inscription, site, structure, excavation or survey, inspect and supply references of the actual subject. Record subject-to-reference mapping, provenance, permitted transformation, complete prompt and rejected candidates. Similar objects and style references cannot supply missing historical details. Generic atmospheric reconstruction must state what is generalized or unknown and cannot invent identifiable artifacts or measured evidence.
+
+Where an approved reference already carries the intended composition, preserve its canvas relationship, panel order, subject proportions, labels and evidence-bearing details. A style-only edit must retain those invariants. An adapted composition needs a documented teaching reason and owner review of the changed relationship. Neither mode permits invented inscriptions, wall arrangements, stratigraphy, scan patterns or other physical evidence. This same fidelity standard applies to deterministic output: code is not historical evidence.
+
+Compare reference/data against the accepted final at desktop and mobile lesson sizes. Reject changed relationships, unsupported detail, ambiguous comparison subjects, illegible labels or false precision. Keep rights and attribution intact; copyrighted research references without derivative permission may inform facts but cannot become copied expression or image-edit inputs. Follow the [media provenance guidance](../prompts/media-provenance-research-and-generation.md) for rights and method records.
 
 ### Required image lifecycle record
 
@@ -631,11 +664,11 @@ Every accepted lesson image must have one plainly visible lifecycle block under 
 Use one `### <media-id> — <teaching role>` block per image and present the sequence in this order:
 
 1. **Reasoning and source basis** — the teaching job, governing claim IDs and factual sources, why an image is better than no media, and the depiction/uncertainty boundary.
-2. **Reference image actually used** — embed every reviewed raster reference, then record its canonical origin, creator, license, repository research-copy path and hash, the visual relationship to preserve, and what must not be copied or inferred. Include a subject-to-reference table covering every real subject and composite panel, with object/accession or figure identifiers where available. Separate subject references from style/layout references. A URL or prose description without the visible reference image is insufficient.
-3. **Generation or transformation** — record every actual input file/hash, edit mode (`style-only transformation`, `adapted composition`, or direct use), tool/model/date, and the complete prompt verbatim. Include the subject-to-reference mapping and explicit prohibition on inventing physical or measured details in the prompt. For style-only work, list the locked layout and detail invariants explicitly. For a directly licensed image that is only cropped or compressed, say `No generation` and record those transformations instead.
+2. **Reference image actually used** — embed permitted visual references or a rendered view of the reviewed data, then record its canonical origin, creator, license, repository research-copy path and hash, the visual relationship to preserve, and what must not be copied or inferred. Include a subject-to-reference table covering every real subject and composite panel, with object/accession or figure identifiers where available. Separate subject references from style/layout references. A URL or prose description without the visible reference image is insufficient.
+3. **Generation or transformation** — record every actual input file/hash, method (`style-only transformation`, `adapted composition`, direct use, or deterministic/native/vector rendering), tool/model/date, and the complete prompt verbatim. Include the subject-to-reference mapping and explicit prohibition on inventing physical or measured details in the prompt. For style-only work, list the locked layout and detail invariants explicitly. For direct use or deterministic production, say `No generation`, record transformations or code/data paths and versions, and list the relationships tested.
 4. **Accepted final image** — embed the accepted master beside all subject references, then record master/runtime paths and hashes, rejected candidates with reasons, reviewer/status, and a comparison verdict for every subject: whether its appearance and every locked layout/detail invariant survived, what intentionally changed, and what unsupported details were checked. Missing subject references or failed fidelity checks block acceptance in either edit mode; they cannot be recorded as acceptable intentional changes.
 
-The reference and accepted final must be visible together in the rendered Markdown when repository redistribution is permitted. Because the mandatory edit workflow already requires a rights-cleared reference, inability to retain and show that reference is a blocking rights/provenance finding: choose another reference, use the licensed original directly, use no image, or request a product-owner decision. Do not make reviewers reconstruct lineage from browser tabs, temporary generation storage, chat, or scattered note sections.
+The reference and accepted final must be visible together in the rendered Markdown when repository redistribution is permitted. Do not redistribute a reference without permission. For reference-only geographic/factual research, link the exact source and show a permitted data/reference rendering for fidelity review; for image-edit inputs, secure derivative rights or choose another reference. Record limitations explicitly. Do not make reviewers reconstruct lineage from browser tabs, temporary generation storage, chat, or scattered note sections.
 
 Copy the exact lifecycle block from the [authoring templates](lesson-production/authoring-templates.md). Historical maps keep their specialist brief, but still receive this concise reference-versus-final lifecycle block in the lesson's main research note.
 
@@ -750,7 +783,7 @@ Before production implementation, make the note readable by someone who did not 
 - media and card rationale, rights, provenance, and visual briefs;
 - a top-level image lifecycle section with visible reference-versus-final comparisons and exact prompts for every accepted image;
 - prompt rationale;
-- age 11–14 transformations;
+- age 11–15 transformations;
 - reviewer names/statuses or explicit pending gates;
 - unresolved questions and the safe publication behavior they require.
 
@@ -807,7 +840,7 @@ Follow the existing bounded-module architecture:
 12. Do not hand-author the publication SQL. `npm run lesson:prepare-publication` writes the committed migration and database test at go-live from the authored lesson.
 13. Keep unpublished or incomplete neighbors fail-closed and non-completable.
 14. Do not mark the lesson Review-ready while an approved Recommended map or core evidence visual remains unimplemented without explicit deferral.
-15. Reject any lesson-media SVG or hand/procedurally drawn diagram. Verify that every diagram-like asset has a recorded raster reference and image-edit lineage before registering it.
+15. Verify the selected media method and reviewed reference/data-to-final fidelity using Stage 10; generation is optional, provenance is required.
 16. Before registering any final image, complete its visible `## Image lifecycle` block in the lesson research note. The implementation gate must be able to match every ready media intention to its media ID in that section.
 
 Use stable IDs everywhere. Array position is not identity. Do not duplicate lesson copy inside React components, migrations, or test fixtures when the repository module can be used.
@@ -840,23 +873,11 @@ Ask the product owner to publish. After that yes, follow [`docs/content/lesson-p
 
 For every final image that changed after the last product-owner look, open the rendered research note and inspect the reference and accepted final together. Confirm that the intended teaching relationship survived, protected or irrelevant expression was not copied, uncertainty did not become false precision, and no unsupported element was introduced. Paths, hashes, and an approved `MediaAsset` are necessary but do not replace this visual comparison.
 
-## Stage 17 — Reserve future family and public-release UAT
+## Stage 17 — Observe learners early and sustainably
 
-Learner UAT is not a per-lesson implementation, merge, or release gate in this production workflow. Chronos will run a deeper family/beta UAT program before sharing the product with the larger public. A lesson may record optional learner observations before then, but absence of that evidence does not block its current gates and does not require a provisional state.
+Use the [learner-observation protocol and session templates](lesson-production/learner-observation.md). Sample representative lessons, new interactions and uncertain age fit early; include independent and parent-supported use, immediate understanding and delayed recall/transfer. Adult and AI proxies are useful design evidence, but insufficient evidence of age suitability.
 
-If an optional walkthrough is run, do not ask only “Did you like it?” Observe and ask:
-
-- What do you think this lesson was mainly about?
-- What evidence do you remember?
-- What is one thing historians know, and one thing they are less sure about?
-- Where did you feel lost, bored, rushed, talked down to, or overloaded?
-- Which image/map/object helped you understand something? Which felt decorative?
-- What did you think you were supposed to do next?
-- Can you answer the essential question in your own words?
-
-Record where learners hesitate, misread a causal link, skip a label, misunderstand reconstruction as evidence, or pass a prompt without the intended understanding. Fix the lesson, not the learner.
-
-Record observed behavior and any resulting revision in the research note. Fix the lesson, not the learner. Keep the future broad-public-release UAT decision separate from the lesson-production gate.
+This is a product learning program, not mandatory child testing for every lesson or repeated publication UAT. Record actual sessions separately from planned work. Current sessions are **pending human participation** until they occur. Never invent participants, observations, consent, successful recall or mastery. Carry observed blockers back to the affected prototype/interaction and owner review; preserve completion history.
 
 ## Stage 18 — Publish, monitor, and correct
 
@@ -903,7 +924,7 @@ A lesson is done only when:
 - claims and sources are atomic, proportional, and reviewed;
 - the recent-challenge audit seriously examined consequential accepted and proposed revisions, including comparative analysis, and the product owner considered its findings before lesson build-out;
 - content triage produced a coherent, bounded learning sequence;
-- the ages 11–14 pass improved comprehension without distorting history;
+- the ages 11–15 pass improved comprehension without distorting history;
 - every section, component, medium, prompt, and card has a teaching purpose;
 - every accepted image has an obvious, rendered reasoning → reference → exact prompt/transformation → final lifecycle record;
 - evidence and uncertainty are honest and understandable;
@@ -911,6 +932,6 @@ A lesson is done only when:
 - the publication playbook has been followed rather than rediscovered;
 - validation, tests, build, database behavior, accessibility, and responsive preview pass or are covered by CI after a publication smoke check;
 - accountable humans have reviewed the historical/editorial and publication decisions;
-- the learner can explain the central idea and use evidence—not merely reach the bottom.
+- the lesson supports explaining the central idea and using evidence; distinguish verified behavior, proxy hypotheses and actual learner observations rather than declaring mastery from completion.
 
 When schedule pressure threatens these conditions, reduce the lesson’s scope or keep it draft. Do not lower the historical or learning standard that defines the product.
