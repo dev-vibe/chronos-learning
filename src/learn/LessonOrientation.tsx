@@ -29,16 +29,16 @@ export function LessonOrientation({ lesson, journey }: { lesson: Lesson; journey
     <div className="orientation-heading"><strong>Time and place</strong><span>{chapter?.title}</span></div>
     <div className={media ? 'orientation-layout' : 'orientation-layout orientation-layout--text'}>
       <div className="orientation-place">
-        {media && <div className="orientation-map"><ResponsiveMedia media={media} alt={media.alt} sizes="240px" loading="lazy" /><EvidenceViewer media={media} title={`Locator: ${lesson.place}`} summary={map?.accessibleSummary ?? media.alt}><p>{map?.uncertaintyNote ?? lesson.heroCaption}</p><p>{media.rightsLabel}</p></EvidenceViewer></div>}
+        {media && <div className="orientation-map"><ResponsiveMedia media={media} alt={media.alt} sizes="(max-width: 600px) calc(100vw - 64px), 280px" loading="lazy" /><EvidenceViewer className="orientation-enlarge" media={media} title={`Locator: ${lesson.place}`} summary={map?.accessibleSummary ?? media.alt}><p>{map?.uncertaintyNote ?? lesson.heroCaption}</p><p>{media.rightsLabel}</p></EvidenceViewer></div>}
         <p><strong>{lesson.place}</strong></p>
         {map ? <p className="orientation-note">{map.modernContext}. {map.compactLabel}</p> : media ? <p className="orientation-note">{media.depictionLabel}</p> : <p className="orientation-note">The place name gives the lesson’s geographic focus; it does not mark exact boundaries.</p>}
       </div>
       <div className="orientation-time">
-        <ol aria-label="Lesson focus periods">{periods.map(({ lesson: item, relation, left, width }) => <li key={item.id} className={item.id === lesson.id ? 'is-current' : ''}>
-          <div><span>{relation}</span><strong>{item.title}</strong><span>{item.chronology.display}</span></div>
-          <div className="orientation-track" aria-hidden="true"><span style={{ marginLeft: `${left}%`, width: `${width}%` }} /></div>
+        <p className="orientation-time-heading">When these lessons take place</p>
+        <ol aria-label="Lesson focus periods">{periods.map(({ lesson: item, relation }) => <li key={item.id} className={item.id === lesson.id ? 'is-current' : ''}>
+          <div><span className="orientation-date">{item.chronology.display}</span><strong>{item.title}</strong><span className="orientation-relation">{relation}</span></div>
         </li>)}</ol>
-        <p className="orientation-note">Earlier ← time → later. Bars share one scale and show the periods these lessons focus on, not the full duration of a society. Approximate dates can overlap.</p>
+        <p className="orientation-note">Earlier to later, from top to bottom. Spacing is not to scale; approximate dates can overlap.</p>
       </div>
     </div>
     {connection && <div className="orientation-bridge">{connection.retrieve && <p><strong>Bring back an earlier idea:</strong> {connection.retrieve.prompt}</p>}<p>{connection.extend}</p></div>}

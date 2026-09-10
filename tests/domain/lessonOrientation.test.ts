@@ -3,12 +3,12 @@ import { chronosContent } from '../../content/chronos';
 import { orientationPeriods, periodRelationship } from '../../src/domains/lessonOrientation';
 import { learningConnectionsByLessonId } from '../../content/learning-connections';
 
-it('uses one chronological scale across deep time and preserves authored approximate labels', () => {
+it('orders deep-time periods chronologically and preserves authored approximate labels', () => {
   const current = chronosContent.lessons.find(l => l.id === 'lesson.humans.homo-sapiens-origins')!;
   const next = chronosContent.lessons.find(l => l.id === 'lesson.humans.migrations-and-interbreeding')!;
   const periods = orientationPeriods(current, [next]);
-  expect(periods[0].left).toBe(0);
-  expect(periods[1].left + periods[1].width).toBeCloseTo(100);
+  expect(periods.map(item => item.lesson.id)).toEqual([current.id, next.id]);
+  expect(orientationPeriods(next, [current]).map(item => item.lesson.id)).toEqual([current.id, next.id]);
   expect(periods[0].lesson.chronology.display).toBe(current.chronology.display);
   expect(periods[1].relation).toBe('Later focus period');
   expect(orientationPeriods(current, [{ ...next, status: 'draft' }])).toHaveLength(1);
