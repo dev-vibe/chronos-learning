@@ -252,7 +252,7 @@ export const farmingSettlementsPrompts: UnderstandingPrompt[] = [
     lessonId: 'lesson.farming.settlements',
     kind: 'concise-explanation',
     question: 'How could staying in one dense settlement create both an advantage and a problem? Use one detail from the houses, stored food, work, or health evidence.',
-    explanation: 'A sincere answer might link an advantage — food kept for later, sturdy homes, or nearby neighbors — to a problem such as repetitive work, crowding and illness, tension around private stores, or coordinating wall-to-wall households.',
+    explanation: 'An explanation could link an advantage — food kept for later, sturdy homes, or nearby neighbors — to a problem such as repetitive work, crowding and illness, tension around private stores, or coordinating wall-to-wall households.',
     required: true,
     minimumResponseLength: 20,
   },

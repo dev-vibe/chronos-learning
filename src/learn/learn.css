@@ -138,3 +138,34 @@ h1,h2,h3{font-family:Newsreader,Georgia,serif;font-weight:500}
 .evidence-scale-note>svg{width:20px;height:20px;flex-shrink:0;color:var(--teal)}
 .evidence-scale-note>p{margin:0}
 .evidence-scale-note strong{color:var(--ink)}
+/* Reading and evidence controls share the calm editorial surfaces. */
+.reading-controls{display:flex;flex-wrap:wrap;align-items:center;justify-content:flex-end;gap:6px;margin:0 0 24px;font-size:.82rem;color:var(--muted)}
+.reading-controls button{min-height:44px;padding:8px 11px;border:1px solid var(--line);border-radius:8px;background:var(--surface);color:var(--ink);cursor:pointer}
+.reading-controls button[aria-pressed=true]{border-color:var(--teal);background:var(--surface-2)}
+.learn-app{--reading-scale:1}.learn-app[data-reading-size=large]{--reading-scale:1.18}.learn-app[data-reading-size=largest]{--reading-scale:1.38}
+.lesson article .prose-module>p{font-size:calc(1.08rem * var(--reading-scale));line-height:1.75;max-width:70ch}
+.lesson article .knowledge-block dl{display:block}.lesson article .knowledge-block dl>div{padding:14px 0;grid-column:auto;border-bottom:1px solid var(--line)}
+.lesson article .knowledge-block dd,.lesson article .module-heading p,.lesson article .evidence-module figcaption>p,.lesson article .historical-map-intro p,.lesson article .prompt label,.lesson article .prompt textarea,.lesson article .feedback,.lesson article .look-here,.lesson article .completion-understanding,.lesson article .next-lesson-preview p{font-size:calc(1rem * var(--reading-scale));line-height:1.65}
+.lesson article .knowledge-block dt{font-size:calc(1.1rem * var(--reading-scale));line-height:1.4}
+.hero figcaption,.evidence-module dl,.evidence-module dl dt,.evidence-module dl dd,.evidence-scale-note,.evidence-provenance summary,.prompt>small{font-size:calc(.88rem * var(--reading-scale));line-height:1.55}
+.evidence-module,.evidence-visuals,.evidence-image,.evidence-comparison{min-width:0}
+.evidence-visuals{position:relative;display:grid;align-content:start;background:var(--surface-2)}
+.evidence-image{position:relative}.evidence-visuals .evidence-image img{display:block;position:static;width:100%;height:auto;min-height:0;object-fit:contain}
+.evidence-enlarge{position:absolute;left:12px;bottom:12px;display:flex;align-items:center;gap:7px;min-height:44px;padding:9px 12px;border:1px solid var(--line);border-radius:9px;background:var(--surface);color:var(--ink);cursor:pointer;z-index:3}
+.evidence-enlarge svg{width:18px;height:18px}.historical-map__enlarge{left:12px;bottom:12px}
+.evidence-viewer{width:min(1200px,calc(100vw - 24px));max-width:calc(100vw - 24px);max-height:calc(100dvh - 24px);padding:0;border:1px solid var(--line);border-radius:16px;background:var(--surface);color:var(--ink);overflow:auto;overscroll-behavior:contain}
+.evidence-viewer::backdrop{background:#061a28cc}.evidence-viewer>header{position:sticky;top:0;z-index:2;display:flex;justify-content:space-between;align-items:center;gap:18px;padding:14px 20px;background:var(--surface);border-bottom:1px solid var(--line)}
+.evidence-viewer h3{font-size:1.6rem;line-height:1.25;margin:0}.evidence-viewer__body{padding:18px;line-height:1.6}.evidence-viewer__body>p{max-width:80ch}.evidence-viewer a{color:var(--teal)}
+.evidence-viewer__canvas{overflow:auto;max-height:65dvh;margin-top:14px;border:1px solid var(--line);background:var(--surface-2);overscroll-behavior:contain}
+.evidence-viewer__canvas:focus-visible{outline:3px solid var(--focus);outline-offset:2px}
+.evidence-viewer .evidence-viewer__canvas img{display:block;position:static;width:100%;max-width:none;height:auto;min-height:0;object-fit:contain}
+.evidence-viewer .evidence-viewer__canvas img.is-zoomed{width:180%}.evidence-viewer__depiction{color:var(--muted);font-size:.9rem}
+.look-here h4{margin:18px 0 8px;color:var(--teal)}.look-here ul{list-style:none;padding:0;margin:0}.look-here li{padding:8px 0}.look-here li p{margin:4px 0 0}
+.evidence-provenance{margin-top:18px}.evidence-provenance summary,.prompt-hint summary,.prompt-evidence summary,.card-recall summary{min-height:44px;padding:11px 0;cursor:pointer;color:var(--teal);font-weight:600}
+.evidence-provenance dl{margin-top:8px}.evidence-visuals--comparison{grid-template-columns:1fr 1fr;gap:12px;padding:12px}.evidence-module:has(.evidence-visuals--comparison){grid-template-columns:1fr}.evidence-comparison>p{padding:0 12px;line-height:1.5}
+.prompt-actions{display:flex;flex-wrap:wrap;gap:12px;margin:12px 0}.prompt-actions button{min-height:44px}.prompt .feedback strong{display:block}.prompt .feedback p{margin:8px 0}.prompt-hint p{line-height:1.6}.prompt-evidence>div{display:grid;gap:16px;padding:12px 0}.prompt-evidence .evidence-module{grid-template-columns:1fr}.prompt-evidence .historical-map{max-width:100%}
+.prompt>small{display:block}.next-lesson-preview{margin:22px 0}.next-lesson-preview h3{font-size:1.6rem;margin:0 0 8px}.card-recall{margin-top:18px;text-align:left}.card-copy a{color:var(--teal)}
+.learn-app[data-reading-size=largest] .evidence-module,.learn-app[data-reading-size=largest] .historical-map-pair,.learn-app[data-reading-size=largest] .card-reveal{grid-template-columns:minmax(0,1fr)}
+.learn-app[data-reading-size=largest] .card-copy li,.learn-app[data-reading-size=largest] .card-copy p{font-size:1.15rem;line-height:1.65}
+@media(max-width:620px){.reading-controls{justify-content:flex-start}.evidence-viewer{width:calc(100vw - 12px);max-width:calc(100vw - 12px);max-height:calc(100dvh - 12px)}.evidence-viewer>header{padding:12px}.evidence-viewer__body{padding:12px}.evidence-viewer h3{font-size:1.3rem}.evidence-visuals--comparison{grid-template-columns:1fr}.evidence-image{min-height:0}.evidence-module dl>div{grid-template-columns:1fr}.prompt{padding:18px}.prompt-evidence .evidence-module figcaption{padding:14px}.historical-map__enlarge span{font-size:.8rem}}
+.prompt-evidence-image{margin:0}.prompt-evidence-image>div{position:relative}.prompt-evidence-image img{display:block;width:100%;height:auto;object-fit:contain}.prompt-evidence-image figcaption{padding:12px 0;font-size:calc(.92rem * var(--reading-scale));line-height:1.6}.prompt-evidence-image figcaption p{margin:6px 0}

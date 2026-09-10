@@ -183,7 +183,7 @@ export const earlyWritingPrompts: UnderstandingPrompt[] = [
     lessonId: 'lesson.writing.early-systems',
     kind: 'concise-explanation',
     question: 'Explain one thing durable records made possible and one limit of what surviving proto-cuneiform tablets can tell historians.',
-    explanation: 'A sincere answer might link records to counting, comparing, sharing out goods, checking, or institutional memory — then name a limit: the tablets keep narrow administrative information, leave many voices out, and often cannot be read as full sentences or exact deals.',
+    explanation: 'An explanation could link records to counting, comparing, sharing out goods, checking, or institutional memory — then name a limit: the tablets keep narrow administrative information, leave many voices out, and often cannot be read as full sentences or exact deals.',
     required: true,
     minimumResponseLength: 30,
   },

@@ -70,6 +70,9 @@ export function validateContent(input: ContentBundle) {
 
   for (const lesson of lessons) {
     const sectionIds = new Set<string>();
+    const modules = lesson.sections.flatMap((section: any) => section.modules);
+    const inspectableIds = new Set<string>(modules.filter((module: any) => ['evidence', 'historical-map'].includes(module.type)).map((module: any) => module.id));
+    if (lesson.orientationMapModuleId && !modules.some((module: any) => module.id === lesson.orientationMapModuleId && module.type === 'historical-map')) errors.push(`${lesson.id}: orientation must reference a historical map in this lesson`);
     const renderedPromptIds = new Set<string>();
     for (const section of lesson.sections) {
       if (sectionIds.has(section.id)) errors.push(`${lesson.id}: duplicate section ID ${section.id}`);
@@ -77,6 +80,11 @@ export function validateContent(input: ContentBundle) {
       for (const module of section.modules) {
         refs(module.id, module.sourceIds, sourceIds, 'source');
         refs(module.id, module.claimIds, claimIds, 'claim');
+        for (const annotation of module.lookHere ?? []) refs(module.id, annotation.sourceIds, new Set<string>(module.sourceIds), 'annotation source');
+        if (module.comparison) {
+          refs(module.id, [module.comparison.mediaId], new Set<string>(lesson.mediaIds), 'comparison media');
+          refs(module.id, module.comparison.sourceIds, new Set<string>(lesson.sourceIds), 'comparison source');
+        }
         if ((module.type === 'evidence' || module.type === 'historical-map') && !mediaIds.has(module.mediaId)) errors.push(`${module.id}: broken media reference ${module.mediaId}`);
         if (module.type === 'historical-map') {
           const asset = mediaById.get(module.mediaId);
@@ -100,6 +108,7 @@ export function validateContent(input: ContentBundle) {
     for (const promptId of lesson.promptIds) {
       const prompt = promptById.get(promptId);
       if (prompt && prompt.lessonId !== lesson.id) errors.push(`${lesson.id}: prompt ${promptId} belongs to ${prompt.lessonId}`);
+      if (prompt?.evidenceModuleIds) refs(prompt.id, prompt.evidenceModuleIds, inspectableIds, 'inspectable evidence module');
       if (prompt?.required && !renderedPromptIds.has(promptId)) errors.push(`${lesson.id}: required prompt ${promptId} is not rendered by a lesson module`);
     }
     const requiredPromptCount = lesson.promptIds.filter((id: string) => promptById.get(id)?.required).length;
@@ -183,6 +192,7 @@ export function validateContent(input: ContentBundle) {
   for (const card of cards) {
     refs(card.id, card.lessonIds, lessonIds, 'lesson');
     refs(card.id, card.sourceIds, sourceIds, 'source');
+    refs(card.id, (card.connections ?? []).map((item: any) => item.lessonId), lessonIds, 'connected lesson');
     if (!lessonIds.has(card.unlockLessonId)) errors.push(`${card.id}: invalid card unlock reference ${card.unlockLessonId}`);
     const unlockCount = (cardUnlockCounts.get(card.unlockLessonId) ?? 0) + 1;
     cardUnlockCounts.set(card.unlockLessonId, unlockCount);

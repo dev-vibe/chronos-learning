@@ -221,7 +221,7 @@ describe('Home, Library, preview, and search composition', () => {
     expect(openHarness.snapshot().state.invitationStates[fixtureInvitation.id].action).toBe('opened');
   });
 
-  it('keeps empty Library categories intentional and excludes draft lessons', async () => {
+  it('leads Library with published subjects and keeps unavailable paths in a collapsed plan', async () => {
     const harness = makeHarness();
     render(<DiscoveryApp
       route={{ name: 'library' }}
@@ -229,15 +229,49 @@ describe('Home, Library, preview, and search composition', () => {
       progressGatewayFactory={async () => harness.progressGateway}
     />);
     expect(await screen.findByRole('heading', { name: 'Explore history.' })).toBeTruthy();
-    expect(screen.getByRole('heading', { name: 'Civilizations and Regions' })).toBeTruthy();
-    expect(screen.getByText(/More authored journeys are being prepared/i)).toBeTruthy();
-    expect(within(document.querySelector('.library-page')!).queryByText('Farming and Settlements')).toBeNull();
+    const subjects = screen.getByRole('region', { name: 'People, places, and evidence' });
+    const links = within(subjects).getAllByRole('link').filter((link) => link.getAttribute('href')?.startsWith('/learn/'));
+    expect(links).toHaveLength(chronosContent.lessons.filter((lesson) => lesson.status === 'published').length);
+    expect(within(subjects).getByRole('link', { name: 'Our Species Begins in Africa' }).getAttribute('href')).toBe('/learn/lesson.humans.homo-sapiens-origins');
+    const plans = document.querySelector('.library-plans')!;
+    expect(plans.hasAttribute('open')).toBe(false);
+    expect(plans.textContent).toContain('Civilizations and Regions');
+    expect(plans.textContent).toContain('More authored journeys are being prepared');
+    expect(subjects.compareDocumentPosition(plans) & Node.DOCUMENT_POSITION_FOLLOWING).toBeTruthy();
+    expect(screen.getByRole('link', { name: /Open lesson companions/ }).getAttribute('href')).toBe('/educators');
+    expect(within(subjects).getByRole('link', { name: 'Farming and Settlements' }).getAttribute('href')).toBe('/learn/lesson.farming.settlements');
     const open = screen.getByRole('button', { name: 'Open World History' });
     await userEvent.click(open);
     const drawer = screen.getByRole('dialog', { name: 'World History' });
     expect(within(drawer).getByRole('heading', { name: 'World History' })).toBeTruthy();
     fireEvent.keyDown(document, { key: 'Escape' });
     expect(open).toBe(document.activeElement);
+  });
+
+  it('never lists a draft subject as available in Library', async () => {
+    const content = { ...chronosContent, lessons: chronosContent.lessons.map((lesson) => lesson.id === 'lesson.farming.settlements' ? { ...lesson, status: 'draft' as const } : lesson) };
+    const harness = makeHarness(content);
+    render(<DiscoveryApp route={{ name: 'library' }} content={content} journeyGatewayFactory={async () => harness.journeyGateway} progressGatewayFactory={async () => harness.progressGateway} />);
+    const subjects = await screen.findByRole('region', { name: 'People, places, and evidence' });
+    expect(within(subjects).queryByRole('link', { name: 'Farming and Settlements' })).toBeNull();
+    expect(within(subjects).getByRole('link', { name: 'Our Species Begins in Africa' })).toBeTruthy();
+  });
+
+  it('offers an authored Home revisit only after its earlier lesson is complete', async () => {
+    const harness = makeHarness();
+    vi.mocked(harness.progressGateway.loadJourneySummaries).mockResolvedValue({
+      'lesson.humans.homo-sapiens-origins': { lessonId: 'lesson.humans.homo-sapiens-origins', status: 'completed' },
+    });
+    render(<DiscoveryApp route={{ name: 'home' }} journeyGatewayFactory={async () => harness.journeyGateway} progressGatewayFactory={async () => harness.progressGateway} />);
+    expect((await screen.findByRole('link', { name: /Continue lesson/ })).getAttribute('href')).toBe('/learn/lesson.humans.migrations-and-interbreeding');
+    expect(screen.getByRole('link', { name: 'Revisit Our Species Begins in Africa' }).getAttribute('href')).toBe('/learn/lesson.humans.homo-sapiens-origins');
+    expect(screen.getByText(/Chapter 1 · Human Beginnings and Food Systems/)).toBeTruthy();
+    expect(harness.journeyGateway.save).not.toHaveBeenCalled();
+    cleanup();
+    const fresh = makeHarness();
+    render(<DiscoveryApp route={{ name: 'home' }} journeyGatewayFactory={async () => fresh.journeyGateway} progressGatewayFactory={async () => fresh.progressGateway} />);
+    await screen.findByRole('link', { name: /Continue lesson/ });
+    expect(screen.queryByRole('link', { name: /^Revisit / })).toBeNull();
   });
 
   it('fails closed for invalid and unpublished journey destinations', async () => {

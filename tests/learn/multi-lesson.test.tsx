@@ -50,6 +50,7 @@ class MultiLessonGateway implements LearnProgressGateway {
 }
 
 beforeEach(() => {
+  sessionStorage.clear();
   vi.stubEnv('VITE_MEDIA_PROVIDER', 'repository');
   vi.stubGlobal('matchMedia', vi.fn(() => ({ matches: false, addEventListener: vi.fn(), removeEventListener: vi.fn() })));
   vi.stubGlobal('IntersectionObserver', class { observe() {} disconnect() {} });
@@ -108,9 +109,14 @@ describe('multi-lesson Learn runtime', () => {
     render(<LearnApp lessonId="lesson.writing.early-systems" gatewayFactory={async () => gateway} />);
     await screen.findByRole('heading', { name: 'From Marks to Proto-Cuneiform' });
     await userEvent.click(screen.getByRole('radio', { name: /^A proto-cuneiform tablet combining numbers and signs for goods$/i }));
+    expect(gateway.saveAttempt).not.toHaveBeenCalled();
+    await userEvent.click(screen.getAllByRole('button', { name: 'Compare your thinking' })[0]);
     const explanation = screen.getByRole('textbox', { name: /Explain one thing durable records made possible/ });
     await userEvent.type(explanation, 'Writing made allocations durable, but surviving administrative tablets omit many voices.');
     fireEvent.blur(explanation);
+    expect(gateway.saveAttempt).toHaveBeenCalledTimes(1);
+    expect(screen.getByRole('button', { name: 'Answer the checks above' }).hasAttribute('disabled')).toBe(true);
+    await userEvent.click(screen.getAllByRole('button', { name: 'Compare your thinking' })[1]);
     await waitFor(() => expect(screen.getByRole('button', { name: 'Complete lesson' }).hasAttribute('disabled')).toBe(false));
     await userEvent.click(screen.getByRole('button', { name: 'Complete lesson' }));
     expect(await screen.findByText('Knowledge Card acquired')).toBeTruthy();
@@ -138,7 +144,7 @@ describe('multi-lesson Learn runtime', () => {
     expect(await screen.findByRole('heading', { name: 'The Nile and an Early Egyptian State' })).toBeTruthy();
     expect(document.querySelectorAll('[data-section-id]')).toHaveLength(6);
     expect(screen.getByRole('figure', { name: 'Three places along one river' }).parentElement?.classList.contains('historical-map-pair-portrait')).toBe(true);
-    expect(screen.getByRole('button', { name: '0 of 2 required prompts attempted' }).hasAttribute('disabled')).toBe(true);
+    expect(screen.getByRole('button', { name: 'Answer the checks above' }).hasAttribute('disabled')).toBe(true);
   });
   it('opens the published Caral lesson once Egypt is complete', async () => {
     const gateway = new MultiLessonGateway();
@@ -156,7 +162,7 @@ describe('multi-lesson Learn runtime', () => {
     expect(await screen.findByRole('heading', { name: 'Caral and Early Andean Urbanism' })).toBeTruthy();
     expect(document.querySelectorAll('[data-section-id]')).toHaveLength(6);
     expect(screen.getByText('Illustrated ruins')).toBeTruthy();
-    expect(screen.getByRole('button', { name: '0 of 2 required prompts attempted' }).hasAttribute('disabled')).toBe(true);
+    expect(screen.getByRole('button', { name: 'Answer the checks above' }).hasAttribute('disabled')).toBe(true);
   });
   it('always permits revisiting a completed lesson even when its prerequisite is incomplete', async () => {
     const gateway = new MultiLessonGateway();

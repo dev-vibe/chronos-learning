@@ -2,6 +2,7 @@ import { Info, X } from 'lucide-react';
 import { useRef } from 'react';
 import type { HistoricalMapModule as HistoricalMapData, MediaAsset, Source } from '../domains/contracts';
 import { ResponsiveMedia } from './ResponsiveMedia';
+import { EvidenceViewer } from './EvidenceViewer';
 
 type HistoricalMapModuleProps = {
   module: HistoricalMapData;
@@ -38,6 +39,11 @@ export function HistoricalMapModule({ module, media, sources }: HistoricalMapMod
 
   return <figure className="historical-map" aria-label={module.title} aria-describedby={summaryId}>
     <ResponsiveMedia media={media} alt={media.alt} sizes="(max-width: 800px) 100vw, 960px" loading="lazy" />
+    <EvidenceViewer className="historical-map__enlarge" media={media} title={module.title} summary={module.accessibleSummary}>
+      <p>{module.uncertaintyNote}</p>
+      {module.lookHere && <aside className="look-here"><h4>Look here</h4><ul>{module.lookHere.map((item) => <li key={item.label}><strong>{item.label}</strong><p>{item.detail}</p></li>)}</ul></aside>}
+      <ul>{sources.map((source) => <li key={source.id}><a href={source.url} target="_blank" rel="noreferrer">{source.title}</a></li>)}</ul>
+    </EvidenceViewer>
     <button
       ref={triggerRef}
       className="historical-map__info"
