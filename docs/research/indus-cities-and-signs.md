@@ -2,6 +2,8 @@
 
 Issue: [ASH-100](https://linear.app/ashs-workshop/issue/ASH-100/research-and-publish-indus-cities-and-undeciphered-signs)
 
+Draft PR: [#41](https://github.com/dev-vibe/chronos-learning/pull/41)
+
 Lesson ID: `lesson.indus.cities-and-signs`
 
 Research-note identity/version: `indus-cities-and-signs-v1`, Stage 3B packet, 2026-09-09 (America/New_York; source access 2026-09-10 UTC)
