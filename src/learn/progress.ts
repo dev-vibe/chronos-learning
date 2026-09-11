@@ -106,6 +106,7 @@ export class SupabaseLearnGateway implements LearnProgressGateway {
     const failed = [progressResult, resumeResult, exploredResult, attemptsResult, ownershipResult].find((result) => result.error);
     if (failed?.error) throw failed.error;
     const { data: progress } = progressResult;
+    if (!progress) throw new Error('Lesson progress could not be loaded');
     const { data: resume } = resumeResult;
     const { data: explored } = exploredResult;
     const { data: attempts } = attemptsResult;

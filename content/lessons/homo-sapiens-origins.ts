@@ -509,24 +509,30 @@ export const homoSapiensOriginsPrompts: UnderstandingPrompt[] = [
     id: 'prompt.humans.best-supported-conclusion',
     lessonId: 'lesson.humans.homo-sapiens-origins',
     kind: 'supported-selection',
+    hint: 'Compare the spread of the finds. Does the oldest find prove where the first people lived?',
+    evidenceModuleIds: ['module.humans.africa-evidence-map'],
     question: 'Fossils of early Homo sapiens have been found in Morocco from about 315,000 years ago, in South Africa from about 259,000 years ago, and in Ethiopia from at least 233,000 years ago. They are thousands of kilometres apart, and they do not all share the same mix of features. Which conclusion does this set of finds best support?',
     explanation: 'The finds are spread across Africa, cover more than 150,000 years, and mix features in different ways. That fits groups that were sometimes apart and sometimes in contact. One valley cannot explain finds that far apart. Different mixes of features are not separate species either, because these groups kept exchanging genes. And “oldest known” is not the same as “first”: Jebel Irhoud is the oldest evidence found so far — the next dig could be older and somewhere else. This evidence rules out a simple one-place story. It does not replace it with a different single place.',
     required: true,
     options: [
       {
         id: 'option.humans.connected-populations',
+        feedback: 'The spread and different mixes of features fit connected populations across Africa. That does not identify one exact birthplace.',
         label: 'Our species took shape among populations living in many parts of Africa that were sometimes separated and sometimes in contact.',
       },
       {
         id: 'option.humans.one-valley',
+        feedback: 'A single eastern valley does not account for this spread of finds. Compare Morocco and South Africa as well as Ethiopia.',
         label: 'Our species began in one valley in eastern Africa and spread out from there.',
       },
       {
         id: 'option.humans.separate-species',
+        feedback: 'Different mixes of features alone do not establish separate species. This lesson also considers evidence for contact between populations.',
         label: 'Each region of Africa evolved its own separate human species.',
       },
       {
         id: 'option.humans.morocco-first',
+        feedback: 'Oldest found so far does not mean first ever. An older fossil might survive somewhere researchers have not yet found it.',
         label: 'The Morocco fossils are the first members of our species, so our species began in Morocco.',
       },
     ],
@@ -535,8 +541,10 @@ export const homoSapiensOriginsPrompts: UnderstandingPrompt[] = [
     id: 'prompt.humans.evidence-and-limit',
     lessonId: 'lesson.humans.homo-sapiens-origins',
     kind: 'concise-explanation',
+    hint: 'Compare the face with the back of the skull. Then consider how much a few fossils from one site can tell us.',
+    evidenceModuleIds: ['module.humans.irhoud-cranium'],
     question: 'The Jebel Irhoud fossils have a face much like ours but a long, low braincase. What does that mix suggest about how our species’ features appeared? Name one thing this evidence cannot tell us.',
-    explanation: 'A sincere answer links the mix to features arriving separately, not all at once — with a modern-looking face before the rounded braincase. Any real limit counts for the second part: only a few people from one site; the record is thin; whole regions have barely been dug; no DNA survives from African fossils this old; researchers still disagree about which fossils count as our species. The length rule measures effort, not polish. Write what you actually think.',
+    explanation: 'The face looks much like ours, but the braincase is long and low. That suggests these features appeared at different times. A few fossils from one site cannot tell us exactly where all the changes happened or describe every population in Africa.',
     required: true,
     minimumResponseLength: 20,
   },
@@ -556,6 +564,8 @@ export const homoSapiensOriginsLesson: Lesson = {
     approximate: true,
   },
   significance: 'The oldest fossils of our species were found in Morocco, not East Africa. Bones, stone tools, and DNA together point to beginnings spread across the continent.',
+  learningOutcome: 'You explored how fossils, tools, and DNA inform accounts of our origins, and why surviving evidence leaves important questions open.',
+  orientationMapModuleId: 'module.humans.africa-evidence-map',
   heroMediaId: 'media.humans.jebel-irhoud-landscape-reconstruction',
   heroLabel: 'Evidence-based reconstruction',
   heroCaption: 'Jebel Irhoud, Morocco, around 315,000 years ago. The open landscape and the site’s lost cave form are reconstructed from environmental and archaeological evidence; the distant people show presence and scale, not known appearance or exact activity.',
@@ -643,6 +653,11 @@ export const homoSapiensOriginsLesson: Lesson = {
           artifactLabel: 'Composite reconstruction · Jebel Irhoud',
           body: 'No single Jebel Irhoud fossil keeps a whole skull. Researchers scanned several pieces and combined them into one reconstruction. On the right, the blue shape shows the space the brain filled. Look at the face first: small, flat, tucked under the brow — a face that would not stand out among people today. Then look behind it. The braincase is long and low, pushed out toward the back, like earlier humans. It is nothing like the high, round skull of a person alive now.',
           mediaId: 'media.humans.jebel-irhoud-cranium',
+          layout: 'stacked',
+          lookHere: [
+            { label: 'The face', detail: 'Notice the small, flat face tucked under the brow.', sourceIds: ['source.humans.hublin-2017-irhoud'] },
+            { label: 'Behind the face', detail: 'The long, low braincase contrasts with the face. The blue shape shows the space inside it, not a surviving brain.', sourceIds: ['source.humans.mpi-irhoud-presskit'] },
+          ],
           claimIds: ['claim.humans.irhoud-mosaic'],
           sourceIds: [
             'source.humans.hublin-2017-irhoud',
@@ -893,6 +908,8 @@ export const homoSapiensOriginsCards: KnowledgeCard[] = [
     ],
     mediaId: 'media.humans.africa-origins-card',
     unlockLessonId: 'lesson.humans.homo-sapiens-origins',
+    recallPrompt: 'What does a modern-looking face with a long, low braincase suggest? What can one find not settle?',
+    connections: [{ lessonId: 'lesson.humans.migrations-and-interbreeding', label: 'Fossils and ancient DNA', reason: 'Compare how a different kind of evidence adds to our account of ancient people.' }],
   },
 ];
 

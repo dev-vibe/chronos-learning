@@ -2,9 +2,11 @@
 
 Use this contract at the Stage 14B learner-prototype checkpoint. Stage 16 is a production-consistency check, not a second scoring pass. If the product owner already approved the rendered lesson with final media, do not recapture a viewport matrix or re-score pedagogy. If final media changed after that approval, inspect only the changed assets. Do not total points or allow strength in one area to cancel a blocking weakness in another.
 
+Draft initially for a roughly 12–13-year-old reader; ages 11–15 and homeschooling are the primary audience. Proxy review assesses a design hypothesis, not demonstrated age suitability.
+
 The quality promise is:
 
-> An ages 11–14 learner can form an accurate, memorable mental model, reason from evidence, explain the central idea, and understand the next action.
+> An ages 11–15 learner can form an accurate, memorable mental model, reason from evidence, explain the central idea, and understand the next action.
 
 Record concrete evidence from the rendered lesson for every finding. Mark each finding `pass`, `revise`, `blocking`, or `not applicable`, name the reviewer, and explain any safe deferral. A blocking finding returns the lesson to prototype or implementation work.
 
@@ -16,6 +18,12 @@ Record concrete evidence from the rendered lesson for every finding. Mark each f
 - Verify that every required section contributes to that model and that no indispensable causal step exists only in metadata, alt text, or feedback.
 - Check that chronology, geography, actors, conditions, changes, and consequences connect without requiring unspoken specialist knowledge.
 - Ask whether a learner could explain the central idea in their own words rather than repeat a slogan.
+
+### Cumulative learning
+
+- Identify Retrieve, Extend and Revisit in the blueprint, including an honest opening-lesson/prior-knowledge case.
+- Check the progression of observation, inference, contextualization, corroboration and qualified explanation, with occasional transfer to unfamiliar reviewed evidence.
+- Keep optional recall useful and subordinate; completion is studied content and sincere attempts, never inferred mastery.
 
 ### Narrative momentum
 
@@ -57,7 +65,7 @@ Record concrete evidence from the rendered lesson for every finding. Mark each f
 - Require every image, map, diagram, object, audio, or video to answer a named learner question.
 - Judge the visual at its exact section location: it must clarify evidence, geography, sequence, scale, comparison, technique, or uncertainty rather than decorate a pause in prose.
 - Provide an accessible equivalent and preserve essential depiction/evidence labels in the learner experience.
-- Follow the specialist historical-map, provenance/generation, and media-publishing runbooks for geographic truth, rights, raster lineage, responsive derivatives, and rollback.
+- Follow the specialist historical-map, provenance/generation, and media-publishing runbooks for geographic truth, rights, method/data lineage, responsive derivatives, and rollback.
 
 ### Next-action clarity
 
@@ -70,7 +78,7 @@ Record concrete evidence from the rendered lesson for every finding. Mark each f
 
 ### Research and editorial integrity
 
-- Back every material claim with a source that supports its exact wording.
+- Back every material claim with a source that supports its exact wording. Closely review central support with precise page/figure/passage/object locations; distinguish qualifying sources and discovery leads. Give consequential challenges full analysis and peripheral proposals concise deferral reasons. Apply equal scrutiny to inherited and alternative accounts without quotas, false balance or authority shortcuts.
 - Corroborate material interpretations when independent evidence is available.
 - Verify chronology, geography, certainty, disagreements, obsolete popular claims, and missing voices against the research note.
 - Keep title, significance, modules, prompts, media, journey framing, and any card consistent with the approved scope.
@@ -78,9 +86,9 @@ Record concrete evidence from the rendered lesson for every finding. Mark each f
 ### Rights, media, and accessibility
 
 - Confirm redistribution rights, source files, checksums, derivatives, manifests, provenance, and review status.
-- Reject lesson-media SVG and any blank-canvas, hand-drawn, procedural, canvas, plotting, or shape-primitive instructional diagram.
-- Require the actual reviewed raster reference and image-edit lineage for diagram-like generated media.
-- Require actual visual references for every depicted real subject, including every artifact, manuscript, inscription, structure, excavation, and survey panel in a composite. Verify the subject-to-reference mapping and that every reference was supplied to the edit tool; text citations and style/layout references do not establish subject coverage.
+- Apply the runbook's [media method and fidelity policy](../lesson-creation-runbook.md#media-method-and-fidelity-policy): licensed originals for direct evidence; native/vector or raster factual diagrams with reviewed geometry/data; generated reconstruction where appropriate. Do not require generative transformation solely for style.
+- Verify source/data-versus-final fidelity and accessible equivalents for every method; preserve reviewed measurements, relationships, labels and uncertainty.
+- Require actual visual references for every depicted real subject, including every artifact, manuscript, inscription, structure, excavation, and survey panel in a composite. For generated depictions, verify the subject-to-reference mapping and that every reference was supplied to the edit tool; text citations and style/layout references do not establish subject coverage.
 - Compare each depicted subject with its reference and reject invented or altered physical details, inscriptions, wall relationships, stratigraphy, and measurement patterns. Missing references or failed subject fidelity block acceptance in both style-only and adapted compositions, regardless of illustrative or reconstruction labels. Source the missing evidence, omit the subject, or use native text.
 - Verify semantic headings and landmarks, keyboard and focus behavior, WCAG 2.2 AA contrast, reflow/zoom, touch targets, reduced motion, alt text, captions, transcripts, map summaries, and screen-reader states.
 
@@ -104,23 +112,11 @@ Record concrete evidence from the rendered lesson for every finding. Mark each f
 6. Have the owner inspect desktop/mobile and light/dark states and disposition every finding. Never let an agent or proxy approve on the owner's behalf.
 7. Record explicit approval or return to Stage 14A for requested changes; repeat the affected review on the revised experience.
 
-### Optional learner observation and future public-release UAT
+### Early learner observation
 
-Learner UAT is not a per-lesson gate. A deeper family/beta pass belongs to the later broad-public-release program. Optional learner observation can still inform product judgment; proxy disagreement, observed confusion, or uncertain age fit returns the lesson to prototype/product review rather than creating a separate UAT blocker.
+Use the [observation protocol](learner-observation.md) for representative lessons, new interactions and uncertain age fit. Include independent/parent-supported use and immediate plus delayed understanding/transfer. Adult and AI proxy reviews are useful but insufficient evidence of age suitability; identify their type and limitations.
 
-Observe before explaining, then ask:
-
-- What was this lesson mainly about?
-- What evidence do you remember, and what did it help you work out?
-- What is one thing historians know and one thing they are less sure about?
-- Where did you feel lost, bored, rushed, talked down to, or overloaded?
-- Which visual taught you something, and which felt decorative?
-- What did you think you were supposed to do next?
-- How would you answer the essential question in your own words?
-
-Record behavior, not only preference. Note skipped labels, mistaken causal links, reconstruction treated as evidence, prompts passed without intended understanding, and unclear actions. Revise the lesson, then repeat the affected part of the walkthrough.
-
-Record optional observations when available, but do not mark the lesson provisional merely because no learner walkthrough occurred.
+Real sessions remain **pending human participation** until observed. No child test is required for every lesson, and no missing observation creates an automatic publication block. Known serious observed confusion still requires a disposition and affected review. Never label completion or proxy success demonstrated mastery.
 
 ## Production-preview states
 
