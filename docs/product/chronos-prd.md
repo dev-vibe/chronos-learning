@@ -36,6 +36,8 @@ Lessons exist once and may be reused in multiple journeys through journey-specif
 
 A secondary Knowledge Card system adds wonder and motivation. Learners discover beautifully illustrated cards for people, artifacts, inventions, places, events, ideas, and mysteries as a direct consequence of learning. Cards have the visual drama of premium collectible cards but do not introduce random drops, duplicates, currencies, or an implied hierarchy of historical worth. The collection becomes a personal atlas of knowledge and a gateway back into lessons and connections.
 
+Chronos primarily serves ages 11–15 and homeschooling. Use a roughly 12–13-year-old reader as the initial drafting reference, subject to actual learner observation. Institutional support is appropriate only where it preserves canonical Chronos editorial decisions and the learner experience; institutional assignments or reporting controls do not belong in the shared Learn shell.
+
 ## 1.1 Primary outcomes
 
 - A learner can always tell what to do next.
@@ -63,7 +65,7 @@ A learner needs a clear path through history but may also develop strong interes
 
 ## 2.2 Product problem
 
-Chronos must support a comprehensive and expanding historical corpus while remaining intuitive for an approximately 10- to 14-year-old learner. Nodes can belong to multiple stories. Some are essential prerequisites; some are locally important; some are memorable discoveries; and some primarily teach how historical knowledge is constructed. The product needs to represent all of these without displaying all of them at once.
+Chronos must support a comprehensive and expanding historical corpus while remaining intuitive for an learner aged 11–15. Nodes can belong to multiple stories. Some are essential prerequisites; some are locally important; some are memorable discoveries; and some primarily teach how historical knowledge is constructed. The product needs to represent all of these without displaying all of them at once.
 
 ## 2.3 Design challenge
 
@@ -73,10 +75,10 @@ The design challenge is not how to display the entire graph. It is how to reveal
 
 | User | Primary job | Product need |
 | --- | --- | --- |
-| Explorer learner (10-13) | Understand the story of history and pursue interesting subjects without getting lost. | Clear next action, vivid lessons, meaningful discoveries, limited choice at each moment. |
+| Explorer learner (11–15) | Understand the story of history and pursue interesting subjects without getting lost. | Clear next action, vivid lessons, meaningful discoveries, limited choice at each moment. |
 | Independent learner (13+) | Follow deeper themes and compare developments across societies. | More optional depth, sources, cross-links, and synthesis. |
 | Adult/general learner | Build or repair historical context without a childish interface. | Shared structure with denser language, historiography, and source depth. |
-| Parent/educator | Know what the learner is studying and whether knowledge is accumulating coherently. | Progress by journey, completed knowledge, optional recommendations, transparent content levels. |
+| Parent/educator | Understand lesson purpose and support historical discussion. | Public lesson companions and print; private studied-content/explanation access only with verified identity, relationship, consent and authorization. |
 | Curriculum editor | Create reusable lessons and authored paths without duplicating content. | Structured node model, journey-entry framing, prerequisites, editorial workflow. |
 | Historical reviewer | Verify claims and visual details. | Source provenance, uncertainty annotations, visual briefs, review statuses. |
 
@@ -131,7 +133,7 @@ Progress
 | --- | --- |
 | Home | Continue the current journey at its active lesson, see a few open stories, and receive one restrained recommendation. |
 | Learn | Open the current journey and lesson in the stable rail-plus-content interface. |
-| Library | Browse authored Stories, Idea Trails, and Investigations. |
+| Library | Discover available historical subjects, objects and questions, with World History the default and other available authored journeys secondary. |
 | Collection | Browse discovered Knowledge Cards and their connections. |
 | Profile | Audience level, accessibility, progress summary, account and parent/educator settings. |
 
@@ -142,7 +144,7 @@ On mobile, use a five-item bottom navigation only if Collection merits a primary
 - Learn opens the most recent active journey and lesson; the lesson always starts at the top.
 - Explored-section progress is informational only. Reopening a lesson never restores a prior section, scroll position, or viewport.
 - The current journey selector changes the authored path, not the visual layout.
-- The Library never opens as an overwhelming undifferentiated catalog; it begins with three comprehensible categories and curated recommendations.
+- The Library leads with available historical subjects, objects and questions, with World History the clear default. Unavailable categories and the production roadmap are secondary; never imply an unpublished journey is available.
 - Contextual journey invitations are preferred over asking learners to browse first.
 - Global search can find nodes, cards, journeys, people, places, and artifacts, but search is not required for normal progression.
 - Locked future lessons remain visible in a journey when useful for anticipation, but archive-only nodes are not injected into the rail.
@@ -173,7 +175,7 @@ Every journey uses the same shell. The left side shows the current journey as an
 
 ## 6.3 Lesson page anatomy
 
-1. Lesson masthead: date or date range, title, place, role, and one-sentence significance.
+1. Lesson masthead: date or date range, title, place, role, and one-sentence significance; compact time-and-place orientation near the opening.
 2. Opening hook: vivid question, dilemma, object, or scene.
 3. Narrative sections: short, scannable segments with one clear heading each. Authoring purpose metadata is not learner-facing UI.
 4. Purpose-selected embedded media: evidence image, map, diagram, reconstruction, audio, short video, artifact viewer, or source excerpt. There is no media quota; video is exceptional and used only when motion, sound, performance, technique, testimony, or change over time is itself necessary to the learning.
@@ -184,6 +186,18 @@ Every journey uses the same shell. The left side shows the current journey as an
 9. Post-completion next step: continuing the current journey is primary; a card reveal or one authored optional exploration may appear when meaningful.
 
 A required lesson must not include a progress-bearing “Connections,” “Follow the idea forward,” or similar section whose main purpose is to route the learner elsewhere. Useful historical connections should appear at the point where they strengthen understanding. Any affordance to open a related lesson, Story Arc, Idea Trail, or Investigation must be visually distinct from that explanatory content, clearly optional, and unable to interrupt or alter required progress.
+
+### Time, evidence and reading controls
+
+Opening orientation uses reviewed geographic data and existing chronology. A compact locator and timeline relate the subject to earlier learning and meaningful overlap. Deep time, approximate dates, uncertain locations and any schematic scale are labeled honestly; do not invent precision or expose the raw graph.
+
+Artifact images and maps support accessible enlargement, authored source-grounded “Look here” notes and useful comparisons. Relevant evidence remains conveniently available when writing an evidence explanation. Keyboard, touch, narrow-screen operation, modal focus containment/return and non-visual equivalents are required.
+
+Explanatory prompts follow **write → Compare your thinking → example/explanation → optional revision**. Feedback does not appear automatically at a character threshold. Preserve drafts and existing attempts; authored hints may direct attention to evidence, and choice-specific feedback may explain a misconception. Examples are clearly authored examples, never personalized evaluation. Sincere attempts remain sufficient for completion; completion does not demonstrate mastery.
+
+Use warm, actionable copy. Keep terms such as “deterministic Knowledge Card,” “reviewed path,” and character-count rules out of ordinary learning instructions. Necessary validation explains a useful next action without admonishment. Editorial/provenance detail belongs in secondary inspectable surfaces.
+
+Keep explanations in reading order, reduce dense multi-column grids when sequence matters, and make captions/evidence labels readable. Remove redundant badges without losing depiction distinctions. Simple text-size controls must preserve responsive reflow and the established warm editorial identity.
 
 ## 6.4 Contextual journey invitation
 
@@ -327,7 +341,7 @@ Cards may use classes that communicate historical or educational function. These
 - Three to five memorable facts.
 - What historians actually know and how they know it.
 - Uncertainty note when applicable.
-- Connected cards and journeys.
+- Optional authored recall prompt and useful connections to existing cards/lessons/journeys, without obligatory review or inferred mastery.
 - Lesson where discovered.
 - Primary and secondary sources.
 - Image provenance and depiction label: documented likeness, evidence-based reconstruction, symbolic illustration, or artifact-focused.
@@ -349,15 +363,14 @@ Curated sets can provide gentle collection motivation. Completing a set unlocks 
 
 ## 10.1 Product visual direction
 
-Chronos should feel like a modern historical learning terminal and premium digital archive: dark, calm, tactile, and precise. It should not feel like fantasy role-playing software, a neon cyberpunk dashboard, a beige school textbook, or a dense enterprise analytics product.
+Chronos is a warm editorial history publication and museum companion: calm, spacious, approachable and precise. The [design system](../design/design-system.md) and inspected reference images define the current identity; older concept prompts below are historical design explorations, not instructions for a cosmetic redesign. Avoid terminal, fantasy-game, neon dashboard and institutional-control aesthetics.
 
 ## 10.2 Design attributes
 
-- Dark charcoal and near-black structural surfaces.
-- Restrained cyan used for active navigation, information, and chronology.
-- Restrained amber used for discovery, artifacts, and emphasis.
-- Warm off-white reading surfaces or text where long-form readability benefits.
-- Clean contemporary sans-serif typography with optional restrained serif display accents for cards only.
+- Warm ivory/parchment reading surfaces with deep archive-blue structure.
+- Aegean teal/mineral blue for evidence and supportive actions; restrained ochre for discovery.
+- Authored dark mode in ink navy and charcoal-blue with warm ivory text.
+- Contemporary sans-serif body/controls with editorial serif lesson, brand and selected card titles.
 - Thin rules, subtle depth, fine texture, and precise spacing.
 - No purple gradients, glowing orbs, excessive glassmorphism, bokeh, fantasy runes, or illegible science-fiction typography.
 - Animation communicates state change and discovery; it does not constantly decorate the screen.
@@ -389,9 +402,9 @@ Cards should evoke the emotional appeal of premium collectible illustration with
 
 ## 11.1 Home dashboard
 
-- Prominent Continue card for the current journey and lesson.
+- Dominant Continue card for the current journey and lesson, with meaningful chapter context and a concrete next lesson.
 - At most three Open Stories displayed without horizontal-scroll dependence on desktop.
-- One featured recommendation, justified by recent learning.
+- One small authored opportunity to recall prior learning and connect it to upcoming content; optional and subordinate to Continue.
 - Recently discovered cards preview, limited to three or four.
 - No global progress gamification dashboard, leaderboard, daily quest wall, or currency balance.
 - Parent or educator status remains secondary and role-gated.
@@ -402,7 +415,7 @@ Cards should evoke the emotional appeal of premium collectible illustration with
 - Pinned journey rail with chapter grouping and vertical progress.
 - Lesson content scrolls independently or as the primary page scroll; selected approach must not create nested-scroll confusion.
 - Inline knowledge blocks are visually simpler than collectible cards.
-- Completion controls appear at the natural end of the lesson.
+- Completion controls appear at the natural end of the lesson. State the understanding studied and concretely preview the next available lesson without certifying mastery or implying unpublished content is available.
 - Card reveal uses a modal or focused overlay and returns the learner to the next-step decision.
 
 ## 11.3 Learn - mobile
@@ -416,8 +429,8 @@ Cards should evoke the emotional appeal of premium collectible illustration with
 
 ## 11.4 Library
 
-- Top-level categories: Civilizations and Regions; Ideas Across Time; Investigations.
-- Each category begins with curated featured journeys and Continue sections.
+- Lead with published historical subjects, objects and questions; World History is the default.
+- Show other authored journeys only when available. Unavailable categories and the full production roadmap live in secondary context, with truthful availability labels.
 - Filters are secondary and simple: time period, region, approximate length, and status.
 - Cards display journey title, concise promise, period, lesson count, and progress.
 - Learners can preview a journey before starting it.
@@ -458,6 +471,12 @@ Cards should evoke the emotional appeal of premium collectible illustration with
 - A lightweight evidence board may be used inside the lesson, but does not replace the global Learn shell.
 - Learner revises or explains a conclusion before completion.
 - An Enigma or Witness card may be revealed upon completion.
+
+## 11.9 Parent and educator companions
+
+Provide a modest separate public experience with lesson purpose, discussion guidance, likely misconceptions, examples of sound explanations and printable material. It follows canonical Chronos historical content; adults may guide discussion without customizing canonical claims or importing institutional controls into the learner shell.
+
+Private studied-content and learner-explanation views require existing identity, verified adult-child account relationship, consent and authorization. If those relationships are missing, provide public companions and document the dependency; an adult route, role label or shared device never grants access to child data. Future curriculum mappings must identify framework/version and canonical content version, remain editorially reviewed, and make no unsupported coverage claims.
 
 # 12. Data model
 
@@ -603,30 +622,23 @@ type VisualBrief = {
 
 ## 13.1 Lesson production workflow
 
-The canonical, step-by-step process is `docs/content/lesson-creation-runbook.md`; the ordered source of work is `docs/content/lesson-production-queue.md`. A request equivalent to “Let's create the next Chronos lesson” invokes both: continue active work or select the first eligible Ready lesson, create/reuse its issue and branch, run the research/editorial approval gate, and continue through publication after approval. The runbook governs research planning, source and claim weighting, content triage, learning design for ages 11–14, section/component storyboarding, images/maps/audio/video decisions, Knowledge Cards, understanding prompts, repository implementation, review, publication, learner observation, and correction. If a shorter summary or older runbook conflicts with it, the canonical runbook wins.
+The [lesson creation runbook](../content/lesson-creation-runbook.md) owns the operational path: **brief → research/material decisions → learning prototype → review → final assets/verification → publication**. The [production queue](../content/lesson-production-queue.md) supplies ordered work and pauses; a next-lesson request invokes their boot sequence. The [quality contract](../content/lesson-production/lesson-quality-contract.md) and [authoring templates](../content/lesson-production/authoring-templates.md) are review and record instruments, not parallel procedures.
 
-1. Node proposal: define why the lesson exists and where it may appear.
-2. Research brief: chronology, geography, claims, controversies, and sources.
-3. Canonical lesson draft: reusable factual and narrative modules.
-4. Journey framing: introductions, transitions, significance-here, and synthesis.
-5. Knowledge-card selection: identify whether any entity merits a card.
-6. Visual brief: evidence basis, required details, uncertainty, and anachronism exclusions.
-7. Historical review.
-8. Age-level editorial passes.
-9. Media rights and attribution review.
-10. Publish and monitor learner comprehension.
+Discover broadly and examine challenges to inherited accounts. Research depth is proportional to instructional importance: central supporting and qualifying evidence requires close review and precise locations; discovery leads remain concise. Consequential challenges receive full analysis, peripheral proposals a reasoned deferral. Apply the same evidentiary questions to established and alternative accounts, without quotas, false balance or institutional authority replacing evidence. The owner research-direction checkpoint remains active during rollout; the possible routine path within an approved brief is explicitly inactive and cannot bypass pending gates.
 
-Historical lesson maps follow the repository's historical map production runbook. Their geography is grounded in authoritative real maps, independently cross-checked, and explicit about approximate or disputed features before any stylistic generation occurs.
+Every blueprint includes Retrieve, Extend and Revisit, historical reasoning progression and occasional transfer to unfamiliar reviewed evidence. Completion records studied content and sincere attempts, not demonstrated mastery. Use the [early learner-observation program](../content/lesson-production/learner-observation.md) to sample representative lessons, new interactions and uncertain age fit in independent and parent-supported use, with immediate and delayed understanding. Adult/AI proxies are useful but insufficient evidence of age suitability. Real sessions require human participation; no child test is required for every lesson and no observations may be fabricated.
+
+After explicit approval to publish, use only the lean [publication playbook](../content/lesson-publication.md). Preserve authoritative claim/source records and automate mechanical integrity checks; do not repeat completed research or quality reviews. Historical maps use the [map guidance](../content/historical-map-production.md), with reviewed geography and honest uncertainty regardless of rendering method.
 
 ## 13.2 Audience levels
 
 | Level | Target | Treatment |
 | --- | --- | --- |
-| Explorer | Approximately 10-13 | Vivid narrative, short sections, vocabulary support, concrete causation, limited historiography. |
+| Explorer | Ages 11–15; initial drafting reference 12–13 | Vivid narrative, short sections, vocabulary support, concrete causation, limited historiography. |
 | Standard | Teens and general adults | Greater density, institutional detail, more primary sources, broader causal nuance. |
 | Deep Dive | Advanced teens and adults | Historiography, contested interpretations, source criticism, extended context and citations. |
 
-Audience adaptation must change depth and assumptions, not merely replace simple words with difficult synonyms.
+These depth levels describe future presentation possibilities, not a required learner control or currently available catalogue. Audience adaptation must change depth and assumptions, not merely replace simple words with difficult synonyms.
 
 ## 13.3 Historical uncertainty
 
@@ -639,10 +651,14 @@ Audience adaptation must change depth and assumptions, not merely replace simple
 
 # 14. Image and media production requirements
 
-## 14.1 Source hierarchy
+## 14.1 Evidence and method selection
+
+Follow the runbook's [media method and fidelity policy](../content/lesson-creation-runbook.md#media-method-and-fidelity-policy). Prefer licensed originals for direct evidence. Deterministic/native/vector or raster methods are appropriate for factual diagrams, maps, timelines and comparisons when they reliably preserve reviewed geometry, measurements, labels and relationships. Generation is appropriate for suitable reconstruction and atmospheric art, not mandatory stylistic transformation. Raster publication may remain appropriate. Every method retains provenance, rights, uncertainty, accessible equivalents and reference/data-versus-final fidelity review.
+
+Useful source types (judge evidence and claim fit rather than affiliation):
 
 1. Primary visual evidence: surviving artifacts, period art, inscriptions, maps, photographs, and excavated material.
-2. Authoritative institutional interpretation: museums, archives, universities, archaeological projects, and recognized scholarly publications.
+2. Inspectable specialist interpretation: museums, archives, universities, archaeological projects, and recognized scholarly publications.
 3. Scholarly reconstruction: clearly attributed and methodologically explained.
 4. Generated illustration: used to imagine, synthesize, or dramatize only after a visual brief is prepared.
 5. General web imagery: used only when licensing, provenance, and factual suitability are verified.
@@ -685,7 +701,7 @@ Audience adaptation must change depth and assumptions, not merely replace simple
 | FR-013 | Card detail shows depiction type, sources, and connections. | Must |
 | FR-014 | Investigation lessons can distinguish evidence and interpretation. | Should |
 | FR-015 | Learner can change audience depth without losing progress. | Should |
-| FR-016 | Parent/educator can view journey-level progress. | Could |
+| FR-016 | Parent/educator can use public lesson companions and print; private progress/explanation access requires verified account relationships, consent and authorization. | Must for companions; gated for private data |
 | FR-017 | Collection can show curated set completion. | Should |
 | FR-018 | Optional Atlas can arrange learned knowledge on maps/timelines. | Later |
 | FR-019 | Learner can search across journeys, lessons, cards, and entities. | Should |
@@ -746,7 +762,8 @@ Audience adaptation must change depth and assumptions, not merely replace simple
 
 ## 18.2 Phase 1 - foundational MVP
 
-- Home Continue experience.
+- Home Continue experience with chapter context and optional authored retrieval.
+- Public parent/educator companions with lesson purpose, discussion, misconceptions, sound explanation examples and print, separate from learner controls.
 - Learn shell and journey switcher.
 - World Spine journey.
 - One complete Story Arc and one complete Idea Trail.
@@ -762,7 +779,7 @@ Audience adaptation must change depth and assumptions, not merely replace simple
 - Context-specific shared-lesson bridges.
 - Card sets and synthesis unlocks.
 - Audience-level content variants.
-- Parent/educator progress view.
+- Private parent/educator progress views only after verified account relationships, consent and authorization; public companions are part of the foundation.
 - Expanded search and recommendation logic.
 - Evidence galleries and richer source interactions.
 
@@ -846,7 +863,7 @@ Audience adaptation must change depth and assumptions, not merely replace simple
 - Whether desktop global navigation uses a narrow icon rail or labeled sidebar.
 - Whether undiscovered cards appear as silhouettes, partial clues, or remain hidden.
 - How many World Spine lessons are appropriate for the first complete curriculum.
-- What level of educator assignment and reporting belongs in the consumer MVP.
+- Which verified account relationships and consent lifecycle will support future private adult progress access; public lesson companions do not require that relationship or expose private data.
 - Whether physical/printable card support is strategically valuable after digital validation.
 
 

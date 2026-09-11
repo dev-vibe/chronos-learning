@@ -12,7 +12,7 @@ export function JourneySwitcher({ currentJourneyId, currentLessonId, content = c
   currentJourneyId: string; currentLessonId: string; content?: ChronosContentBundle;
   journeyGatewayFactory?: () => Promise<JourneyStateGateway>; progressGatewayFactory?: () => Promise<LearnProgressGateway>; navigate?: (destination: string) => void;
 }) {
-  const dialogRef = useRef<HTMLDialogElement>(null); const gatewayRef = useRef<JourneyStateGateway>();
+  const dialogRef = useRef<HTMLDialogElement>(null); const gatewayRef = useRef<JourneyStateGateway | undefined>(undefined);
   const [state, setState] = useState<LearnerJourneyState>(); const [summaries, setSummaries] = useState<Record<string, JourneyProgressSummary>>({}); const [error, setError] = useState(''); const [attempt, setAttempt] = useState(0);
   const catalog = useMemo(() => createPublishedJourneyCatalog(content.journeys, content.lessons), [content]); const items = [catalog.worldHistory, ...Object.values(catalog.groups).flat()].filter((item): item is CatalogJourney => Boolean(item));
   const current = items.find((item) => item.id === currentJourneyId);

@@ -10,6 +10,7 @@ Copy the needed blocks into the lesson's single `docs/research/<lesson>.md` reco
 Issue:
 Lesson ID:
 Research-note identity/version:
+Production record version: 2
 Journey/chapter/position:
 Required or optional:
 Queue status:
@@ -36,8 +37,8 @@ Bridge to next lesson:
 
 ## Source ledger
 
-| Source ID | Citation/link | Type/authority | Claims supported | Limits/bias | Corroboration | Rights | Review |
-| --- | --- | --- | --- | --- | --- | --- | --- |
+| Source ID | Citation/link | Type/expertise | Role (central supporting / qualifying / discovery lead) | Claims supported and exact location | Limits/bias | Corroboration | Rights | Review |
+| --- | --- | --- | --- | --- | --- | --- | --- | --- |
 
 ## Recent-challenge audit (Stages 3A–3B)
 
@@ -46,6 +47,11 @@ Default search window and any extension beyond approximately 50 years:
 
 | Revision/upset and consequence | Origin/current form | Evidence/provenance | Method and inferential link | Independent corroboration | Strongest countercase | Discriminating test | Status | Lesson consequence |
 | --- | --- | --- | --- | --- | --- | --- | --- | --- |
+
+Full matrix above is for consequential challenges, including the inherited account. Peripheral proposals are screened briefly:
+
+| Proposal / evidence lead | Why peripheral or deferred | Reconsider if |
+| --- | --- | --- |
 
 Ancient, Indigenous, local, descendant, or transmitted accounts considered:
 Comparative analyses considered:
@@ -75,6 +81,14 @@ Follow-up research and disposition:
 | Claim ID and wording | Kind | Certainty | Sources | Counterevidence/limits | Missing perspective | Learner treatment | Review |
 | --- | --- | --- | --- | --- | --- | --- | --- |
 
+## Central claim support
+
+List every claim carrying the explanation, chronology, attribution, key visual relationship or major misconception correction. Repeat rows for independent support or qualifying evidence; exact locators identify page/figure/passage/object and relevant context. Register central source IDs in authored content. The gate validates IDs/structure; reviewers judge completeness and claim fit.
+
+| Claim ID | Source ID | Locator | Review |
+| --- | --- | --- | --- |
+| <registered claim ID> | <registered source ID> | <p. / fig. / named passage / object ID and description> | <reviewer, date, close-reviewed> |
+
 ## Content triage
 
 | Candidate idea | Essential/supporting/enrichment/deferred/rejected | Why | Destination |
@@ -90,6 +104,12 @@ Misconceptions:
 Indispensable vocabulary:
 Evidence encounter:
 Historical-thinking move:
+Retrieve: <earlier idea and existing lesson ID, or everyday prior knowledge for an opening lesson>
+Extend: <how the explanation develops or complicates that idea>
+Revisit: <where it returns; mark planned/unpublished content honestly>
+Reasoning progression: <prior scaffold → current move → next increase in independence>
+Transfer plan: <reviewed unfamiliar evidence here or at a named later occasion; justify deferral>
+Completion versus mastery: <sincere attempts record study; what observation could show independent understanding>
 Required sincere-attempt evidence:
 
 ## Section/component storyboard
@@ -119,7 +139,9 @@ Use one block below for every accepted image. Keep every actual subject referenc
 - Why image instead of no media:
 - Depiction and uncertainty boundary:
 
-#### 2. Reference image actually used
+#### 2. Reference image or reviewed data actually used
+
+For direct evidence and image-based transformations, show the actual reference image. For factual native/vector/data rendering, link the reviewed measurements or dataset and versioned renderer instead of inventing a reference image; retain a visible accepted-final preview and compare its labels, geometry, measurements, and relationships against that record. Maps still require the authoritative geographical anchor specified in the map guidance. The gate accepts both this heading and the earlier image-only heading.
 
 | Reference preview | Origin and permitted use |
 | --- | --- |
@@ -133,14 +155,15 @@ Use one block below for every accepted image. Keep every actual subject referenc
 
 | Depicted real subject / composite panel | Actual subject reference and object/accession or figure ID | Input path and SHA-256 | Physical or measured details to preserve | Final fidelity verdict |
 | --- | --- | --- | --- | --- |
-| <each subject; no uncovered real subjects permitted> | <photograph, scan, measured drawing, or published plan of that subject> | <actual image supplied to tool> | <identity, morphology, inscription, wall relationships, survey patterns as applicable> | pass / fail |
+| <each subject; no uncovered real subjects permitted> | <photograph, scan, measured drawing, or published plan of that subject> | <actual image supplied to tool or reviewed data used by renderer> | <identity, morphology, inscription, wall relationships, survey patterns as applicable> | pass / fail |
 
 - Separate style/layout-only references:
 - Unsupported subjects omitted or replaced with native text:
 
 #### 3. Generation or transformation
 
-- Operation: image edit | direct licensed use | crop/compression only
+- Operation: image edit | direct licensed use | crop/compression only | deterministic/native/vector rendering
+- Reviewed data/code paths and versions (for deterministic output):
 - Every actual input path and SHA-256:
 - Tool/model/date:
 - Complete prompt, including subject-to-reference mapping and prohibition on invented physical or measured details (`No generation` when applicable):
@@ -160,7 +183,7 @@ Use one block below for every accepted image. Keep every actual subject referenc
 - Final master path, dimensions, and SHA-256: (archival research copy; typically PNG)
 - Runtime/fallback path and SHA-256: (catalog `sourcePath` under `public/images/` plus optimized fallback; JPEG + `photo` when the archival file cannot meet ql-v1)
 - Reviewer/date/status:
-- Subject coverage verdict — every depicted real subject has an actual visual reference supplied to the tool: yes | no (a `no` cannot be accepted)
+- Subject coverage verdict — every depicted real subject has an actual visual reference or reviewed factual data used by the method: yes | no (a `no` cannot be accepted)
 - Subject fidelity verdict — every subject preserves its referenced physical or measured details: yes | no (a `no` cannot be accepted in either edit mode; illustrative/reconstruction labels do not waive this)
 - Fidelity verdict — every locked invariant retained: yes | no (a `no` cannot be accepted)
 - Lesson-size verdict — evidence-bearing differences remain visually distinct on desktop and mobile: yes | no (a `no` cannot be accepted)
@@ -181,7 +204,9 @@ Sources and visual brief:
 | Prompt ID | Required | Understanding/evidence assessed | Misconception exposed | Feedback job |
 | --- | --- | --- | --- | --- |
 
-## Ages 11–14 transformations
+## Ages 11–15 transformations
+
+Initial drafting reference: roughly 12–13; age fit remains a hypothesis until observed with learners.
 
 - <original complexity or risk> → <learner treatment without distortion>
 ```
@@ -243,13 +268,18 @@ Material decisions:
 Blocking findings:
 Explicit safe deferrals:
 
-### Optional learner observation
+### Learner observation
 
-Observed: yes | no
-Learner age band/date, if applicable:
-Observed behavior:
-Changes made:
-Future family/public-release UAT note:
+Use `docs/content/lesson-production/learner-observation.md`; no real participation is implied by this template.
+
+Status: pending human participation | observed
+Session record (restricted; no identifying child data in Git):
+Selection reason: representative lesson | new interaction | uncertain age fit
+Mode: independent | parent-supported
+Immediate understanding evidence:
+Delayed recall/transfer evidence:
+Design hypotheses still untested:
+Changes and next observation:
 
 ### Earlier-risk comparison
 
@@ -269,7 +299,7 @@ Unclear action hierarchy found earlier:
 - [ ] Research integrity
 - [ ] Recent-challenge research checkpoint considered by product owner before lesson build-out
 - [ ] Historical/editorial review
-- [ ] Ages 11–14 learning/editorial design review
+- [ ] Ages 11–15 learning/editorial design review
 - [ ] Learner-prototype checkpoint approved
 - [ ] Visual/media/map/video review as applicable
 - [ ] Rights/provenance review

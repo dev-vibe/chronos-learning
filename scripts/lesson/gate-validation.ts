@@ -3,6 +3,7 @@ import { relative, resolve } from 'node:path';
 import type { ChronosContentBundle } from '../../content/assemble';
 import type { LessonPrototypeReview } from '../../src/infrastructure/content/prototypeReview';
 import { validateContent } from '../../src/infrastructure/content/validate';
+import { validateEditorialRecord } from './editorial-record';
 
 export type LessonGate = 'prototype' | 'implementation' | 'release';
 
@@ -82,11 +83,11 @@ function mediaLifecycleBody(lifecycle: string, mediaId: string): string {
   return lines.slice(start, end).join('\n');
 }
 
-function validateMediaLifecycle(mediaId: string, body: string): string[] {
+export function validateMediaLifecycle(mediaId: string, body: string): string[] {
   if (!body) return [`image lifecycle does not identify ready media ${mediaId}`];
   const requirements: Array<[RegExp, string]> = [
     [/^####\s+1\.\s+Reasoning and source basis\s*$/im, 'reasoning and source basis'],
-    [/^####\s+2\.\s+Reference image actually used\s*$/im, 'reference image'],
+    [/^####\s+2\.\s+Reference (?:image|image or reviewed data) actually used\s*$/im, 'reference image or reviewed data'],
     [/^####\s+3\.\s+Generation or transformation\s*$/im, 'generation or transformation'],
     [/^####\s+4\.\s+Accepted final image\s*$/im, 'accepted final image'],
     [/https:\/\//i, 'source link'],
@@ -99,7 +100,9 @@ function validateMediaLifecycle(mediaId: string, body: string): string[] {
     .filter(([expression]) => !expression.test(body))
     .map(([, label]) => `image lifecycle for ${mediaId} is missing ${label}`);
   const visibleImages = body.match(/!\[[^\]]*\]\([^\)]+\)/g) ?? [];
-  if (visibleImages.length < 2) errors.push(`image lifecycle for ${mediaId} must show the reference and accepted final`);
+  const dataRendering = /Operation:\s*deterministic\/native\/vector rendering/i.test(body)
+    && /Reviewed data\/code paths and versions:\s*[^\r\n<]+/i.test(body);
+  if (visibleImages.length < (dataRendering ? 1 : 2)) errors.push(`image lifecycle for ${mediaId} must show the reference and accepted final (reviewed data rendering requires its data/code record and final preview)`);
   return errors;
 }
 
@@ -139,6 +142,7 @@ export function validateLessonGate({
   }
 
   if (note) {
+    errors.push(...validateEditorialRecord(note, lessonId, bundle).map((error) => `${lessonId}: ${error}`));
     if (!new RegExp(`Lesson ID[^\\r\\n]*${lessonId.replaceAll('.', '\\.')}\\b`, 'i').test(note)) {
       errors.push(`${lessonId}: research note does not identify this lesson ID`);
     }

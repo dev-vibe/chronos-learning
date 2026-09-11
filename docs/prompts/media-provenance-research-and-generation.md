@@ -10,11 +10,7 @@ Find or create an image that is historically suitable, publicly redistributable,
 
 1. Read AGENTS.md, the product and design invariants, ADR 003, ADR 004, and the media publishing runbook.
 2. Inspect the intended lesson claim, depiction mode, alt text, and visual brief before searching. For a historical map, also follow the additional map requirements below.
-3. Prefer sources in this order:
-   - Chronos-original or newly generated artwork with complete generation lineage and actual visual references for every depicted real subject;
-   - explicit public-domain or CC0 media from an authoritative collection;
-   - explicit CC BY or CC BY-SA media with complete attribution;
-   - another source only if its authoritative asset page grants redistribution and derivative rights in unambiguous language.
+3. Choose a method by teaching purpose using the [media method and fidelity policy](../content/lesson-creation-runbook.md#media-method-and-fidelity-policy). Prefer licensed originals for direct evidence: explicit public domain/CC0, CC BY or CC BY-SA with complete attribution, or another unambiguous redistribution/derivative grant. Factual diagrams, maps, timelines and comparisons may use deterministic/native/vector or raster methods from reviewed data. Use generated art for suitable reconstruction/atmosphere with complete lineage; do not require generation solely for style.
 4. Use the authoritative asset/object page as evidence. A search result, hotlink, article-level copyright notice, or general educational-use statement is not sufficient.
 5. Record:
    - canonical asset URL and direct origin page;
@@ -26,12 +22,12 @@ Find or create an image that is historically suitable, publicly redistributable,
    - factual/historical references used to assess the depiction;
    - whether cropping, compression, recoloring, or other derivatives are allowed.
 6. Apply the publication policy:
-   - Recommend approval when the authoritative evidence explicitly establishes public domain, CC0, CC BY, CC BY-SA, or Chronos ownership with documented generation lineage.
+   - Recommend approval when the authoritative evidence explicitly establishes public domain, CC0, CC BY, CC BY-SA, or Chronos ownership with documented production lineage (generation or deterministic code/data as applicable).
    - Do not recommend approval for unknown origin, all-rights-reserved media, fair-use assumptions, educational-use-only language, hotlinks, watermarked assets, or licenses containing NC or ND restrictions.
    - If the rights are unclear, find a clearly licensed reference or replacement. Generate new artwork only from permitted references of the actual subjects; generation cannot bypass missing rights or missing visual evidence. Do not ask an unqualified product owner to guess.
 7. For generated artwork:
-   - research the factual composition using at least two suitable references;
-   - follow the [mandatory raster image-edit workflow](../content/lesson-creation-runbook.md#mandatory-raster-image-edit-workflow). Every depicted real artifact, manuscript, inscription, site, structure, excavation, and survey result must have an inspected image of that actual subject supplied to the edit tool. Textual research and similar-looking subjects cannot replace these images;
+   - research the factual composition and its meaningful alternatives; use independent corroboration where available rather than a source quota;
+   - follow the [media method and fidelity policy](../content/lesson-creation-runbook.md#media-method-and-fidelity-policy). Every depicted real artifact, manuscript, inscription, site, structure, excavation, and survey result must have an inspected image of that actual subject supplied to the edit tool. Textual research and similar-looking subjects cannot replace these images;
    - map every subject and composite panel to its photograph, scan, measured drawing, or published plan, recording the object/accession or figure identifier where available. Keep style/layout references separate; a sourced plan cannot justify invented surrounding objects or scenes;
    - use copyrighted references without derivative permission only for non-expressive factual research, never as image-edit inputs. All image-edit inputs must have rights permitting the intended derivative;
    - preserve referenced physical details and measurement patterns. Do not invent or replace inscriptions, manuscript marks, artifact features, wall arrangements, stratigraphy, or survey anomalies. If suitable visual evidence is unavailable, source it, omit the subject, or use native text; an “illustrative” or “reconstruction” label is not an exception;
@@ -39,18 +35,22 @@ Find or create an image that is historically suitable, publicly redistributable,
    - prohibit baked-in educational prose, titles, logos, watermarks, and UI chrome;
    - label reconstruction, uncertainty, and approximate geography explicitly;
    - visually compare every real subject in the final against its actual input reference. Missing subject coverage or unsupported details block acceptance in either edit mode;
-   - when the reference already supplies the approved scientific or explanatory composition, use a **style-only transformation**: lock its canvas ratio, panel order, object positions/orientations/proportions, actions, callouts, short source-verified labels, and evidence-bearing details; change only the rendering style. Reject any candidate that omits, adds, moves, mirrors, rescales, relabels, or reinterprets a locked element, or makes comparison subjects visually indistinguishable at their actual desktop or mobile lesson size.
+   - when an image edit is selected and the reference already supplies the approved scientific or explanatory composition, use a **style-only transformation**: lock its canvas ratio, panel order, object positions/orientations/proportions, actions, callouts, short source-verified labels, and evidence-bearing details; change only the rendering style. Reject any candidate that omits, adds, moves, mirrors, rescales, relabels, or reinterprets a locked element, or makes comparison subjects visually indistinguishable at their actual desktop or mobile lesson size.
    - use an adapted composition only when its changed relationship is documented and explicitly approved by the product owner. Approval permits arranging referenced subjects, not inventing their physical details; visual polish is never grounds for silently redesigning a reference;
    - complete the lesson research note's top-level `## Image lifecycle` block: visibly embed the actual reference and accepted final together, preserve the complete prompt verbatim, and record a comparison verdict. Do not make a reviewer infer this chain from paths or prose alone.
+
+### Deterministic/native/vector factual visuals
+
+Record the reviewed source data, precise passages/figures/objects or geographic dataset version, code/configuration and transformations. Preserve geometry, measurements, order, labels, uncertainty and comparison relationships; deterministic rendering does not itself prove facts. Compare the accepted final to the reviewed reference/data view at actual lesson sizes. Keep visible reference/data-versus-final review, source/rights lineage, checksums for assets, and accessible text equivalents. Native labels must reflow and remain inspectable. Export raster only when the delivery pipeline requires it; vector source/intermediate files are permitted.
 
 ### Additional requirements for historical maps
 
 - Select one authoritative real map as the primary geographic reference and use at least one independent cross-check. Generated output is never a geographic source.
-- Prefer UNESCO and other official heritage bodies, archaeological institutes, museums, universities, peer-reviewed publications, scholarly atlases, and clearly licensed maps.
+- Use inspectable, fit-for-purpose maps or geographic data from heritage bodies, excavation projects, museums, universities, scholarship or licensed geographic datasets. Institutional affiliation alone does not establish accuracy.
 - Record what each reference contributes, its license or reference-only status, and where suitable sources disagree.
 - Coordinate-check known locations against an authoritative source when coordinates are available.
 - Classify important features as coordinate-verified, source-supported, approximate, or omitted. Never present changing rivers, wetlands, coastlines, routes, or boundaries as exact without evidence.
-- Treat image generation as a stylistic transformation of researched geography. Do not invent settlements, waterways, borders, ruins, roads, or landmarks.
+- Use deterministic/native/vector or raster rendering when it preserves reviewed geography reliably. If using image generation, treat it as a stylistic transformation of researched geography. Do not invent settlements, waterways, borders, ruins, roads, or landmarks.
 - Short geographic labels or concise spatial annotations may appear in the raster only when the reviewed brief provides their exact wording. Manually verify spelling and placement; keep prose, captions, provenance, and uncertainty explanations in application content.
 - Preserve research maps outside runtime asset directories unless their redistribution rights and intended publication are separately approved.
 

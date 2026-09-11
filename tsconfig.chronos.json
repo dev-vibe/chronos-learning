@@ -1,0 +1,22 @@
+{
+  "extends": "./tsconfig.json",
+  "compilerOptions": {
+    "strictNullChecks": true
+  },
+  "include": [
+    "src/**/*.ts",
+    "src/**/*.tsx",
+    "content/**/*.ts",
+    "scripts/content/**/*.ts",
+    "scripts/lesson/**/*.ts",
+    "tests/**/*.ts",
+    "tests/**/*.tsx",
+    "lib/supabase.ts"
+  ],
+  "exclude": [
+    "node_modules",
+    ".worktrees",
+    "tmp",
+    "dist"
+  ]
+}

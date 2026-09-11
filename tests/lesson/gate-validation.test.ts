@@ -2,7 +2,7 @@ import { describe, expect, it } from 'vitest';
 import { chronosContent } from '../../content/chronos';
 import type { ChronosContentBundle } from '../../content/assemble';
 import type { LessonPrototypeReview } from '../../src/infrastructure/content/prototypeReview';
-import { prepareLessonPreview, validateLessonGate, type LessonGate } from '../../scripts/lesson/gate-validation';
+import { prepareLessonPreview, validateLessonGate, validateMediaLifecycle, type LessonGate } from '../../scripts/lesson/gate-validation';
 
 const LESSON_ID = 'lesson.uruk.first-city';
 const NOTE_PATH = 'docs/research/uruk-gate-fixture.md';
@@ -71,6 +71,14 @@ function fixture(): ChronosContentBundle {
   bundle.lessons.find((candidate) => candidate.id === LESSON_ID)!.status = 'draft';
   return bundle;
 }
+
+it('accepts a reviewed deterministic data rendering without a generative reference transformation', () => {
+  const record = lifecycle('media.test.diagram').replace('![Reference](https://example.org/reference.png)', '')
+    .replace('Reference image actually used', 'Reference image or reviewed data actually used')
+    + '\n- Operation: deterministic/native/vector rendering\n- Reviewed data/code paths and versions: reviewed-measurements.csv revision 2; renderer.ts revision 1\n';
+  expect(validateMediaLifecycle('media.test.diagram', record)).toEqual([]);
+  expect(validateMediaLifecycle('media.test.diagram', record.replace('![Accepted final](/images/generated/final.png)', ''))).not.toEqual([]);
+});
 
 function run(bundle: ChronosContentBundle, prototypeReviews = [review()], gate: LessonGate = 'prototype', noteText = note()) {
   return validateLessonGate({ bundle, prototypeReviews, lessonId: LESSON_ID, notePath: NOTE_PATH, gate, readNote: () => noteText });

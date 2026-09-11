@@ -1,12 +1,15 @@
 import React, { useCallback, useEffect, useLayoutEffect, useMemo, useRef, useState } from 'react';
 import { Archive, BookOpen, ChevronRight, Compass, Landmark, Lock, Moon, Sun } from 'lucide-react';
 import { chronosContent } from '../../content/chronos';
-import type { Journey, KnowledgeCard, Lesson, LessonModule, LessonSection, UnderstandingPrompt } from '../domains/contracts';
+import type { Journey, KnowledgeCard, Lesson, LessonModule, LessonSection } from '../domains/contracts';
 import { isLessonOpenable, unlockPreviewLessonsEnabled } from '../config/runtimeFlags';
 import type { LessonPrototypeReview } from '../infrastructure/content/prototypeReview';
 import { HistoricalMapModule } from './HistoricalMapModule';
 import { ResponsiveMedia } from './ResponsiveMedia';
 import { EvidenceModule } from './EvidenceModule';
+import { UnderstandingCheck } from './UnderstandingCheck';
+import { ReadingControls, useReadingSize } from './ReadingControls';
+import { EvidenceViewer } from './EvidenceViewer';
 import { completionKey, createProgressGateway, LocalPreviewGateway, type JourneyProgressSummary, type LearnProgressGateway, type LearnState } from './progress';
 import { useChronosTheme } from '../theme/useChronosTheme';
 import { derivePromptRequirementState } from './prompt-requirements';
@@ -18,6 +21,8 @@ import { createJourneyDrawerState, JourneyDrawer, orderedJourneyEntries } from '
 import { GlobalNavigation } from '../app/GlobalNavigation';
 import { PrototypeMediaIntentions } from './PrototypeMediaIntentions';
 import { resolveMediaAsset } from '../media/resolve';
+import { LessonOrientation } from './LessonOrientation';
+import { orientationMapForLesson } from '../domains/lessonOrientation';
 import './learn.css';
 
 const lessonById = new Map(chronosContent.lessons.map((item) => [item.id, item]));
@@ -37,23 +42,7 @@ const worldHistoryJourney = chronosContent.journeys.find(
 const firstPublishedLesson = lessonById.get(firstPublishedLessonId);
 
 const findJourney = (lessonId: string) => chronosContent.journeys.find((item) => item.status === 'published' && item.chapters.some((chapter) => chapter.entries.some((entry) => entry.lessonId === lessonId)));
-type ModuleProps = { module: LessonModule; state: LearnState; onAttempt(id: string, response: string): void };
-
-type ConciseExplanationPrompt = Extract<UnderstandingPrompt, { kind: 'concise-explanation' }>;
-
-function ConciseExplanationModule({ prompt, answer, onAttempt }: { prompt: ConciseExplanationPrompt; answer: string; onAttempt(id: string, response: string): void }) {
-  const attemptStarted = useRef(Boolean(answer));
-  const record = (value: string, allowUpdate: boolean) => {
-    const response = value.trim();
-    if (response.length < prompt.minimumResponseLength) return;
-    if (!attemptStarted.current || (allowUpdate && response !== answer)) {
-      attemptStarted.current = true;
-      onAttempt(prompt.id, response);
-    }
-  };
-
-  return <div className="prompt"><label htmlFor={prompt.id}><strong>{prompt.question}</strong></label><textarea id={prompt.id} defaultValue={answer} minLength={prompt.minimumResponseLength} placeholder="Use an example from the lesson…" onChange={(event) => record(event.currentTarget.value, false)} onBlur={(event) => record(event.currentTarget.value, true)} />{answer && <p className="feedback" role="status"><strong>Your explanation is recorded.</strong> {prompt.explanation}</p>}<small>Write at least {prompt.minimumResponseLength} characters. Thoughtful attempts count; this is not scored.</small></div>;
-}
+type ModuleProps = { module: LessonModule; state: LearnState; onAttempt(id: string, response: string): Promise<void> };
 
 function Module({ module, state, onAttempt }: ModuleProps) {
   if (module.type === 'prose') {
@@ -68,7 +57,7 @@ function Module({ module, state, onAttempt }: ModuleProps) {
   if (module.type === 'evidence') {
     const media = mediaById.get(module.mediaId)!;
     const source = media.sourceIds.map((id) => sourceById.get(id)).find(Boolean);
-    return <EvidenceModule module={module} media={media} source={source} />;
+    return <EvidenceModule module={module} media={media} source={source} sources={chronosContent.sources} comparisonMedia={module.comparison ? mediaById.get(module.comparison.mediaId) : undefined} />;
   }
   if (module.type === 'historical-map') {
     const media = mediaById.get(module.mediaId)!;
@@ -76,21 +65,26 @@ function Module({ module, state, onAttempt }: ModuleProps) {
   }
   const prompt = promptById.get(module.promptId)!;
   const answer = state.responses[prompt.id] ?? '';
-  if (prompt.kind === 'supported-selection') {
-    const questionId = `${prompt.id}-question`;
-    return <div className="prompt" role="radiogroup" aria-labelledby={questionId}><strong id={questionId}>{prompt.question}</strong>{prompt.options.map((choice) => <label key={choice.id}><input type="radio" name={prompt.id} checked={answer === choice.id} onChange={() => onAttempt(prompt.id, choice.id)} /><span>{choice.label}</span></label>)}{answer && <p className="feedback" role="status"><strong>Compare the evidence.</strong> {prompt.explanation}</p>}</div>;
-  }
-  return <ConciseExplanationModule prompt={prompt} answer={answer} onAttempt={onAttempt} />;
+  const lesson = lessonById.get(prompt.lessonId);
+  const evidence = (prompt.evidenceModuleIds ?? []).flatMap((id) => lesson?.sections.flatMap((section) => section.modules).filter((candidate) => candidate.id === id && (candidate.type === 'evidence' || candidate.type === 'historical-map')) ?? []);
+  return <UnderstandingCheck key={`${state.learnerId}:${prompt.id}`} prompt={prompt} answer={answer} learnerId={state.learnerId} onAttempt={onAttempt} evidence={evidence.length ? evidence.map((item) => {
+    if (item.type !== 'evidence' && item.type !== 'historical-map') return null;
+    const media = mediaById.get(item.mediaId)!;
+    return <figure key={item.id} className="prompt-evidence-image"><div><ResponsiveMedia media={media} alt={media.alt} sizes="(max-width: 800px) 100vw, 700px" loading="lazy" /><EvidenceViewer media={media} title={item.title} summary={item.type === 'historical-map' ? item.accessibleSummary : item.body} /></div><figcaption><strong>{item.title}</strong><p>{item.type === 'historical-map' ? item.accessibleSummary : item.body}</p><small>{media.depictionLabel}</small></figcaption></figure>;
+  }) : undefined} />;
 }
 
-function Section({ section, state, onAttempt }: { section: LessonSection; state: LearnState; onAttempt(id: string, response: string): void }) {
+function Section({ section, state, onAttempt, openingMapId }: { section: LessonSection; state: LearnState; onAttempt(id: string, response: string): Promise<void>; openingMapId?: string }) {
   return <section id={section.id} className={`lesson-section section-${section.modules[0].type}`} data-section-id={section.id} tabIndex={-1}><header className="section-heading"><h2>{section.heading}</h2></header><div className="section-modules">{section.modules.map((module, index) => {
     const nextModule = section.modules[index + 1];
     const previousModule = section.modules[index - 1];
 
-    if (module.type === 'knowledge' && nextModule?.type === 'historical-map') return null;
+    if (module.type === 'knowledge' && nextModule?.type === 'historical-map' && nextModule.id !== openingMapId) return null;
 
     if (module.type === 'historical-map') {
+      // The map and its references are already inspectable at the opening.
+      // Keep the section's teaching text and stable progress anchor in place.
+      if (module.id === openingMapId) return previousModule?.type === 'knowledge' ? null : <div className="prose-module" key={module.id}><p>{module.body}</p></div>;
       const mapMedia = mediaById.get(module.mediaId);
       const resolvedMap = mapMedia ? resolveMediaAsset(mapMedia) : undefined;
       const portraitMap = resolvedMap ? resolvedMap.height > resolvedMap.width * 1.2 : false;
@@ -111,7 +105,7 @@ function Section({ section, state, onAttempt }: { section: LessonSection; state:
 function KnowledgeCardReveal({ card, revealRef, acquired = false }: { card: KnowledgeCard; revealRef?: React.RefObject<HTMLDivElement | null>; acquired?: boolean }) {
   const media = mediaById.get(card.mediaId)!;
   const typeLabel = knowledgeCardTypeLabel(card.category);
-  return <div ref={revealRef} className="card-reveal" tabIndex={-1} aria-live={acquired ? 'polite' : undefined}><div className="knowledge-card"><div className="card-frame"><div className={`card-image card-image-${card.category}`} data-depiction={media.depictionMode}><ResponsiveMedia media={media} alt={media.alt} sizes="320px" loading="lazy" /></div><div className="card-body"><span className="card-class">{card.category === 'place' ? <Landmark /> : <Archive />} {typeLabel}</span><h3>{card.title}</h3><p className="card-date">{card.date.display} · {card.place}</p><p>{card.significance}</p><div className="card-ornament" aria-hidden="true"><i /><Compass /><i /></div></div></div></div><div className="card-copy"><p className="eyebrow">{acquired ? 'Knowledge Card acquired' : 'In your Knowledge Cards'}</p><h3>{card.revealTitle}</h3><p>{card.revealBody}</p><ul>{card.facts.map((fact) => <li key={fact}>{fact}</li>)}</ul></div></div>;
+  return <div ref={revealRef} className="card-reveal" tabIndex={-1} aria-live={acquired ? 'polite' : undefined}><div className="knowledge-card"><div className="card-frame"><div className={`card-image card-image-${card.category}`} data-depiction={media.depictionMode}><ResponsiveMedia media={media} alt={media.alt} sizes="320px" loading="lazy" /></div><div className="card-body"><span className="card-class">{card.category === 'place' ? <Landmark /> : <Archive />} {typeLabel}</span><h3>{card.title}</h3><p className="card-date">{card.date.display} · {card.place}</p><p>{card.significance}</p><div className="card-ornament" aria-hidden="true"><i /><Compass /><i /></div></div></div></div><div className="card-copy"><p className="eyebrow">{acquired ? 'Knowledge Card acquired' : 'In your Knowledge Cards'}</p><h3>{card.revealTitle}</h3><p>{card.revealBody}</p><ul>{card.facts.map((fact) => <li key={fact}>{fact}</li>)}</ul>{card.recallPrompt && <details className="card-recall"><summary>Try remembering</summary><p>{card.recallPrompt}</p></details>}{card.connections?.filter((connection) => lessonById.get(connection.lessonId)?.status === 'published').map((connection) => <p key={connection.lessonId}><a href={`/learn/${connection.lessonId}`}>{connection.label}</a> — {connection.reason}</p>)}</div></div>;
 }
 
 type LearnStatusShellProps = {
@@ -210,6 +204,7 @@ export function LearnApp({ lessonId, gatewayFactory = createProgressGateway }: {
   const state = currentProgress?.lessonId === lessonId ? currentProgress : null;
   const [drawer, setDrawer] = useState(false);
   const { theme, toggleTheme } = useChronosTheme();
+  const reading = useReadingSize();
   const [error, setError] = useState('');
   const [busy, setBusy] = useState(false);
   const [loadAttempt, setLoadAttempt] = useState(0);
@@ -335,6 +330,7 @@ export function LearnApp({ lessonId, gatewayFactory = createProgressGateway }: {
     finally { setBusy(false); }
   };
 
+  const openingMapId = orientationMapForLesson(lesson)?.id;
   const hero = lesson.heroMediaId ? mediaById.get(lesson.heroMediaId) : undefined;
   const configuredCards = cardsByLessonId.get(lesson.id) ?? [];
   const newlyAcquired = revealedCardIds.length > 0;
@@ -345,7 +341,7 @@ export function LearnApp({ lessonId, gatewayFactory = createProgressGateway }: {
       ? (ownedCardIds.length ? ownedCardIds : configuredCards.map((card) => card.id))
       : [];
   const displayCards = displayCardIds.map((id) => cardById.get(id)).filter((card): card is KnowledgeCard => Boolean(card));
-  return <div className="learn-app" data-theme={theme}>
+  return <div className="learn-app" data-theme={theme} data-reading-size={reading.size}>
     <GlobalNavigation
       theme={theme}
       onTheme={toggleTheme}
@@ -356,9 +352,10 @@ export function LearnApp({ lessonId, gatewayFactory = createProgressGateway }: {
     <JourneyDrawer open={drawer} onClose={() => setDrawer(false)} onNavigate={navigate} lesson={lesson} journey={journey} summaries={journeySummaries} currentState={state} currentSectionId={state.resumeSectionId ?? lesson.sections[0].id} returnFocus={menuRef} />
     <header className="mobile-progress"><span className="mobile-progress-spacer" aria-hidden="true" /><div><strong>{lesson.title}</strong><span>{state.exploredSectionIds.length} of {lesson.sections.length} sections explored</span></div><button className="icon-button" onClick={toggleTheme} aria-label={'Use ' + (theme === 'light' ? 'dark' : 'light') + ' theme'}>{theme === 'light' ? <Moon /> : <Sun />}</button></header>
     <main className="lesson"><div className="lesson-toolbar"><JourneySwitcher currentJourneyId={journey.id} currentLessonId={lesson.id} /><span className="lesson-breadcrumb">{breadcrumbChapter} <ChevronRight /> {lesson.title}</span></div>
-      <article><header className="masthead"><div className="masthead-copy"><p className="eyebrow">{lesson.masthead} <span>·</span> {lesson.place}</p><h1>{lesson.title}</h1><p className="dek">{lesson.significance}</p></div>{hero && <figure className="hero"><div className={'hero-image hero-image-' + hero.depictionMode}><ResponsiveMedia className={`hero-media hero-${hero.depictionMode}`} media={hero} alt={hero.alt} sizes="(max-width: 800px) 100vw, 60vw" loading="eager" decoding="async" /><span className="depiction-label">{lesson.heroLabel}</span></div><figcaption><span>{hero.depictionLabel}</span><span>{lesson.heroCaption}</span></figcaption></figure>}</header>
-        {lesson.sections.map((section) => <React.Fragment key={section.id}><Section section={section} state={state} onAttempt={attempt} /><PrototypeMediaIntentions lesson={lesson} review={prototypeReview} sectionId={section.id} /></React.Fragment>)}
-        <section className="completion-panel" aria-labelledby="completion-title"><p className="eyebrow">Your next step</p><h2 id="completion-title">{state.status === 'completed' ? 'Lesson explored' : `Complete ${lesson.title}`}</h2>{state.status === 'completed' ? <>{displayCards.length > 0 && <div className="card-reveal-list">{displayCards.map((card, index) => <React.Fragment key={card.id}><KnowledgeCardReveal card={card} acquired={newlyAcquired} revealRef={newlyAcquired && index === 0 ? revealRef : undefined} /></React.Fragment>)}</div>}<div className="actions">{next ? <a className="primary" href={`/learn/${next.lesson.id}`}>Continue World History <ChevronRight /></a> : <span className="journey-end">World History continues with the next reviewed lesson.</span>}</div></> : <><p>{requirement.requiredIds.length === 1 ? 'The required understanding prompt needs' : `All ${requirement.requiredIds.length} required understanding prompts need`} a sincere attempt. Scrolling alone never completes a lesson.</p><button className="primary" disabled={!requirement.ready || busy} onClick={complete}>{busy ? 'Completing…' : requirement.ready ? 'Complete lesson' : `${requirement.attemptedCount} of ${requirement.requiredIds.length} required prompts attempted`}</button></>}{error && <p className="error" role="alert">{error} <button onClick={complete}>Retry</button></p>}</section>
+      <article><ReadingControls size={reading.size} onChange={reading.change} /><header className="masthead"><div className="masthead-copy"><p className="eyebrow">{lesson.masthead} <span>·</span> {lesson.place}</p><h1>{lesson.title}</h1><p className="dek">{lesson.significance}</p></div>{hero && <figure className="hero"><div className={'hero-image hero-image-' + hero.depictionMode}><ResponsiveMedia className={`hero-media hero-${hero.depictionMode}`} media={hero} alt={hero.alt} sizes="(max-width: 800px) 100vw, 60vw" loading="eager" decoding="async" /><span className="depiction-label">{lesson.heroLabel}</span></div><figcaption><span>{hero.depictionLabel}</span><span>{lesson.heroCaption}</span></figcaption></figure>}</header>
+        <LessonOrientation lesson={lesson} journey={journey} />
+        {lesson.sections.map((section) => <React.Fragment key={section.id}><Section section={section} state={state} onAttempt={attempt} openingMapId={openingMapId} /><PrototypeMediaIntentions lesson={lesson} review={prototypeReview} sectionId={section.id} /></React.Fragment>)}
+        <section className="completion-panel" aria-labelledby="completion-title"><p className="eyebrow">Your next step</p><h2 id="completion-title">{state.status === 'completed' ? 'Lesson explored' : `Complete ${lesson.title}`}</h2>{state.status === 'completed' ? <><p className="completion-understanding">{lesson.learningOutcome ?? lesson.significance}</p>{displayCards.length > 0 && <div className="card-reveal-list">{displayCards.map((card, index) => <React.Fragment key={card.id}><KnowledgeCardReveal card={card} acquired={newlyAcquired} revealRef={newlyAcquired && index === 0 ? revealRef : undefined} /></React.Fragment>)}</div>}<div className="next-lesson-preview">{next && <><h3>Next: {next.lesson.title}</h3><p>{next.lesson.significance}</p></>}</div><div className="actions">{next ? <a className="primary" href={`/learn/${next.lesson.id}`}>Continue: {next.lesson.title} <ChevronRight /></a> : <span className="journey-end">You have reached the available lessons in this journey. Come back to explore them again.</span>}</div></> : <><p>Share your thinking in the checks above, then complete the lesson when you are ready.</p><button className="primary" disabled={!requirement.ready || busy} onClick={complete}>{busy ? 'Completing…' : requirement.ready ? 'Complete lesson' : 'Answer the checks above'}</button></>}{error && <p className="error" role="alert">{error} <button onClick={complete}>Retry</button></p>}</section>
       </article>
     </main>
   </div>;

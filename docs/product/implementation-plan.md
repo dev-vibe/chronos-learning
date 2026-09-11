@@ -201,7 +201,7 @@ CHR-009 \| Run a focused usability test with target learners
 
 **Outcome:** Test the main mental model before expensive implementation.
 
-**Implementation notes:** Test with several learners around ages 10-14 and at least one adult. Focus on “what do I do next?”, switching journeys, card meaning, and investigation uncertainty.
+**Implementation notes:** Start the sampled [learner-observation program](../content/lesson-production/learner-observation.md) early with representative lessons, new interactions and uncertain age fit. Include independent and parent-supported use and immediate plus delayed recall/transfer. Adult/AI proxies are useful but do not establish age suitability. Actual sessions remain pending human participation; no child test is required for every lesson.
 
 **Acceptance criteria**
 
@@ -210,6 +210,16 @@ CHR-009 \| Run a focused usability test with target learners
 - Critical confusion is resolved in designs.
 
 - A learner can explain the difference between World History and an optional Story in their own words.
+
+## Learning-experience rollout scope
+
+The [PRD](chronos-prd.md) defines the current 11–15/homeschool audience and roughly 12–13 drafting reference. This inventory retains its ticket identities; it does not require a new tiny issue per improvement or imply planned catalogue content is available.
+
+- Extend the shared Learn shell with compact reviewed time/place orientation, inspectable evidence/comparisons, deliberate answer comparison, preserved drafts, warm next-action copy and responsive text size. Reopening still starts at the top; completion remains sincere attempts, not mastery.
+- Keep Continue dominant with chapter context and optional authored retrieval. Improve completion/card connections and available-subject Library discovery without exposing the graph or unfinished journeys.
+- Add separate public parent/educator companions and print now. Private progress/explanation access depends on verified identities, relationships, consent and authorization; do not infer access from a parent label or shared device. Curriculum mappings remain versioned and under canonical editorial control.
+- Implement the [canonical production path](../content/lesson-creation-runbook.md), proportional research, cumulative blueprints, suitable media methods and early sampled [learner observation](../content/lesson-production/learner-observation.md). Preserve the active owner research checkpoint and lean publication playbook. Real sessions remain pending human participation.
+- Use additive optional authored fields where possible; progress/completion/account relationship changes need explicit domain review and committed migrations. Do not add a migration merely to store public companion text. Validate compatibility, existing progress and access boundaries proportionally.
 
 # Phase 1 - Core Platform and Data Model
 
@@ -326,7 +336,7 @@ CHR-016 \| Implement visual brief schema
 
 **Outcome:** Capture evidence, required details, prohibited anachronisms, uncertainty, and depiction mode for generated artwork.
 
-**Implementation notes:** Follow the PRD visual brief model and include generation/review lineage.
+**Implementation notes:** Follow the canonical media policy and visual brief; include reference/data and production/review lineage. Licensed originals and reviewed deterministic/native/vector or raster factual visuals are appropriate; generation is optional for suitable reconstruction/art.
 
 **Acceptance criteria**
 
@@ -682,7 +692,7 @@ CHR-036 \| Build embedded media and attribution components
 
 **Outcome:** Render approved evidence images, maps, diagrams, reconstructions, audio, exceptional-purpose video, captions/transcripts, licenses, and source links consistently.
 
-**Implementation notes:** Respect aspect ratios and provide full provenance. Media follows the decision gates in `docs/content/lesson-creation-runbook.md`; there is no per-lesson media or video quota.
+**Implementation notes:** Respect aspect ratios, provide full provenance and accessible enlargement for artifacts/maps, source-grounded “Look here” annotations and teaching comparisons. Keep evidence available while answering; verify keyboard/touch, focus return, text alternatives and mobile reflow. Media follows the decision gates in `docs/content/lesson-creation-runbook.md`; there is no per-lesson media or video quota.
 
 **Acceptance criteria**
 
@@ -718,7 +728,7 @@ CHR-038 \| Build historical context and World Check modules
 
 **Outcome:** Teach useful before/after, elsewhere-at-the-time, and future-reappearance context without turning related content into disguised navigation.
 
-**Implementation notes:** Keep historical context curated and limited rather than generating a graph browser. Render it only when the comparison adds instructional value; do not create a progress-bearing “Connections” or “Follow the idea forward” section whose primary purpose is linking elsewhere.
+**Implementation notes:** Add compact locator/timeline orientation near openings using reviewed geography and authored chronology; disclose deep time, approximate dates and uncertain geography, and show meaningful overlap without invented precision. Keep historical context curated and limited rather than generating a graph browser. Render it only when the comparison adds instructional value; do not create a progress-bearing “Connections” or “Follow the idea forward” section whose primary purpose is linking elsewhere.
 
 **Acceptance criteria**
 
@@ -735,7 +745,7 @@ CHR-039 \| Build checks for understanding
 
 **Outcome:** Support retrieval, multiple choice, ordering, comparison, explanation, and source interpretation for MVP.
 
-**Implementation notes:** Persist attempts while prioritizing explanatory feedback over scoring.
+**Implementation notes:** Preserve drafts/attempts and use deliberate write → Compare your thinking → authored example/explanation → optional revision. Avoid automatic threshold feedback and personalized-evaluation claims. Optional hints direct attention to reviewed evidence; choice-specific feedback explains reasoning. Sincere attempts remain sufficient.
 
 **Acceptance criteria**
 
@@ -811,7 +821,7 @@ CHR-043 \| Build Home dashboard
 
 **Outcome:** Provide current-journey continuation, open stories, one recommendation, and restrained progress.
 
-**Implementation notes:** Avoid dense analytics and catalogs.
+**Implementation notes:** Keep Continue dominant with chapter context and one small authored retrieval opportunity connecting earlier understanding to upcoming content. Avoid dense analytics and catalogs.
 
 **Acceptance criteria**
 
@@ -885,13 +895,13 @@ CHR-047 \| Build Library landing page
 | **Priority:** P0 | **Dependencies:** CHR-046, CHR-030 | **Sequence:** 47 |
 |------------------|------------------------------------|------------------|
 
-**Outcome:** Present three understandable categories and curated entry points.
+**Outcome:** Lead with available historical subjects, objects and questions, with World History the default and unavailable categories/roadmap secondary.
 
 **Implementation notes:** Use editorial groupings, not an undifferentiated list.
 
 **Acceptance criteria**
 
-- Stories, Idea Trails, and Investigations are immediately distinguishable.
+- Available journeys are distinguishable; unpublished journeys and unavailable categories never appear ready to open.
 
 - Open and completed status is visible.
 
@@ -1374,7 +1384,7 @@ CHR-074 \| Build lesson editor or structured authoring workflow
 
 **Outcome:** Allow creation and preview of typed lesson modules without editing application code.
 
-**Implementation notes:** May begin as validated repository files with preview tooling; full CMS is optional. The authoring workflow must implement `docs/content/lesson-creation-runbook.md` and select work from `docs/content/lesson-production-queue.md` rather than reducing lesson work to field entry or requiring a custom prompt for every lesson.
+**Implementation notes:** Use the canonical brief → research/material decisions → learning prototype → review → final assets/verification → publication path. Keep one authoritative source/claim record, precise central support, cumulative Retrieve/Extend/Revisit and structural validation. Retain the owner research-direction gate; the possible routine path remains inactive. Approved publication uses the lean playbook without repeating completed review. May begin as validated repository files with preview tooling; full CMS is optional. The authoring workflow must implement `docs/content/lesson-creation-runbook.md` and select work from `docs/content/lesson-production-queue.md` rather than reducing lesson work to field entry or requiring a custom prompt for every lesson.
 
 **Acceptance criteria**
 
@@ -1836,11 +1846,11 @@ CHR-100 \| Add parent and educator progress views
 
 **Outcome:** Summarize coherent learning without reducing the product to time-on-task or points.
 
-**Implementation notes:** Show journey progress, demonstrated knowledge, investigations, and suggested discussion prompts.
+**Implementation notes:** Public lesson companions and print ship in the foundation; private studied-content and explanation views remain dependent on verified adult-child relationships, consent and authorization. Completion records study, not demonstrated mastery. Version future curriculum references without altering canonical historical content or adding institutional controls to the learner shell.
 
 **Acceptance criteria**
 
-- Views avoid exposing private free-form learner notes by default.
+- Private learner explanations and progress are inaccessible without verified relationship, consent and authorization; public companion routes do not read child data.
 
 - Progress definitions are transparent.
 

@@ -1,6 +1,6 @@
 # Historical lesson map production runbook
 
-Use this runbook when a lesson needs a designed historical map rather than a modern interactive map. The finished result may be a Chronos-original raster illustration, but its geography must come from real, documented references.
+Use this runbook when a lesson needs a designed historical map rather than a modern interactive map. The result may be a licensed original, deterministic/native/vector diagram or raster illustration; its geography must come from real, reviewed references or geographic data. Generation is optional, never a geographic source.
 
 This workflow applies the visual-brief, provenance, rights, review, and publication requirements in the Chronos PRD to the specific work of producing a historical lesson map.
 
@@ -33,7 +33,7 @@ Record:
 
 ## 2. Research the geography
 
-Find a trustworthy real map that can serve as the primary geographic reference. Prefer, in order:
+Find a trustworthy real map or documented geographic dataset that can serve as the primary geographic reference. Assess methods, scale, period, precision and claim fit; institutional status alone is insufficient. Useful sources include:
 
 1. UNESCO or another official heritage body;
 2. archaeological institutes and excavation publications;
@@ -47,7 +47,7 @@ For every reference, record the canonical URL, publisher or author, date when av
 
 ## 3. Separate verified and approximate features
 
-Before generation, classify each important feature:
+Before rendering, classify each important feature:
 
 - **Coordinate-verified:** known sites or modern reference points with authoritative coordinates.
 - **Source-supported:** broadly agreed relationships or landforms shown consistently across suitable references.
@@ -58,7 +58,15 @@ Use authoritative coordinates to check relative placement when they are availabl
 
 When suitable sources disagree, record the disagreement and use a deliberately approximate treatment. Do not silently select one speculative reconstruction and present it as settled fact.
 
-## 4. Prepare the generation brief
+## 4. Select a method and prepare the brief
+
+Prefer deterministic/native/vector or raster methods when they reliably preserve reviewed geometry, location, measurements and labels. Keep source data/version, coordinate system and any projection/generalization decisions with the brief; do not invent coordinates to fill gaps. A compact locator may use a broad approximate region and textual summary instead of a falsely precise point. Modern coastlines are modern orientation, not a claim about prehistoric geography.
+
+For timelines paired with maps, retain authored chronology and units. Show meaningful overlap only when intervals support it; avoid converting deep-time or approximate dates into exact events. Use an explicitly schematic scale when a linear scale would make recent events unreadable, with an equivalent textual chronology. Do not combine different date conventions silently.
+
+Record transformation/code paths and a rendered reference/data view for deterministic fidelity review. Use the same geographic, rights, label, accessibility and reference-versus-final checks as for raster output. If the current media pipeline requires raster, export a raster derivative; vector sources and accessible native UI are permitted.
+
+### Optional image-generation brief
 
 Image generation changes the visual treatment, not the researched geography. Provide the selected map reference image to the generation tool and make the verified relationships explicit in the prompt.
 
@@ -93,7 +101,7 @@ CHRONOS STYLE:
 - restrained ochre, sand, mineral blue, blue-green, and terracotta;
 - subtle paper and topographic texture;
 - elegant editorial historical-atlas character;
-- calm, clear, and approachable for ages 10-14;
+- calm, clear, and approachable for ages 11-15;
 - simple composition with generous negative space.
 
 DO NOT ADD:
@@ -113,9 +121,9 @@ Short source-verified geographic labels and concise spatial annotations may be g
 
 If generated labeling cannot be made reliable, generate a label-free base and render the labels as accessible application text. Do not accept plausible-looking misspellings or misplaced labels.
 
-## 5. Generate and review
+## 5. Produce and review
 
-Preserve the generation tool, model or version when available, date, complete prompt, input reference URLs, reference file identities, and output candidates.
+Preserve tool/code/data versions, date, transformations, input reference URLs/identities, and output candidates. For generation also retain model and complete prompt. Compare reviewed reference/data and final together; inspect geometry and labels independently of visual polish.
 
 Reject any draft that:
 

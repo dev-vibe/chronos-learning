@@ -4,7 +4,9 @@ This is the concise implementation guide. The PRD remains authoritative for full
 
 ## Product personality
 
-Chronos combines a best-in-class learning app, an editorial history publication, and a premium museum companion. It is warm, intelligent, calm, spacious, and intuitively enjoyable for learners around ages 10–14 while remaining visually credible for adults.
+Chronos combines a best-in-class learning app, an editorial history publication, and a premium museum companion. It is warm, intelligent, calm, spacious, and intuitively enjoyable for learners around ages 11–15 while remaining visually credible for adults.
+
+Use roughly age 12–13 as the initial drafting reference, subject to actual learner observation. Primarily support homeschooling; parent/educator companions remain separate from the learner shell.
 
 Avoid tactical terminal UI, fantasy-game styling, childish mascots, candy colors, dense dashboards, faux-antique clutter, excessive glass effects, and noisy gamification.
 
@@ -53,7 +55,7 @@ Changing journey type changes authored content and rail entries—not the intera
 
 Typical required lesson:
 
-1. Masthead and significance
+1. Masthead, significance and compact time/place orientation from reviewed geography and authored chronology
 2. Cinematic hero reconstruction or evidence-led opening
 3. Opening hook
 4. Five to eight semantic narrative/evidence sections, with contextual comparison only when it has teaching value
@@ -73,7 +75,23 @@ Do not create a progress-bearing “Connections” or “Follow the idea forward
 
 ## Understanding checks
 
-Use multiple choice, ordering, matching, image hotspots, comparison, concise explanation, or source interpretation. Feedback is immediate and explanatory. Incorrect answers invite retry without punishment. No lives, countdowns, grades, loud failure states, or perfect-score completion gate.
+Use multiple choice, ordering, matching, image hotspots, comparison, concise explanation, or source interpretation. Explanations use write → “Compare your thinking” → clearly labeled authored example/explanation → optional revision. Do not reveal feedback automatically at a character threshold or present an example as personalized evaluation. Preserve drafts and progress. Optional authored hints point to evidence; choices may have specific explanatory feedback. Sincere attempts are sufficient; completion does not certify mastery. No lives, countdowns, grades, loud failure states, or perfect-score completion gate.
+
+## Reading and inspectable evidence
+
+Evidence cards use the registered image dimensions: landscape images span the top with text below; square and portrait images sit to the left of text. Mobile and the largest reading size stack both. Keep the full image at its natural proportions, without fixed-height filler or cropping. Enlargement is a discreet, labeled 44px overlay control. An authored layout can override the default when evidence details need a different presentation; unrelated images must not be paired just to demonstrate comparison support.
+
+Keep prose in reading order; use multi-column explanations only when comparison benefits. Captions and evidence labels must remain readable, with redundant badges removed while evidence/reconstruction distinctions remain clear. Simple text-size controls must reflow on narrow screens without horizontal reading scroll.
+
+Artifacts and maps can enlarge in an accessible viewer with keyboard/touch controls, focus containment and return, and text alternatives. Authored “Look here” notes and side-by-side comparisons use reviewed evidence. Keep relevant evidence available while answering. Compact opening maps/timelines disclose approximate dates, uncertain geography, deep-time units and any schematic scale; do not invent precision.
+
+Learner copy gives a warm next action. Keep internal terms such as “deterministic,” “reviewed path” and character thresholds out of ordinary instructions. Provenance remains inspectable in secondary surfaces.
+
+## Home, discovery and adult support
+
+Continue dominates Home with chapter context; an authored retrieval opportunity may connect earlier learning to what comes next. Completion states what was studied and previews the next lesson concretely. Knowledge Cards may offer optional recall and useful connections without review pressure.
+
+Library leads with available subjects, objects and questions, with World History the default. Unavailable categories and the production roadmap are secondary. Public parent/educator companions provide purpose, discussion and print in a separate surface; no private progress is exposed without verified relationships, consent and authorization.
 
 ## Hero and visual exploration
 
@@ -83,6 +101,8 @@ Preserve the excitement of legacy lesson posters by decomposing them:
 - map/timeline/process → native responsive modules;
 - surviving object → separate museum-neutral Evidence module;
 - dense poster → optional Visual Field Guide or printable completion recap.
+
+Choose factual visual methods using the [canonical media policy](../content/lesson-creation-runbook.md#media-method-and-fidelity-policy): licensed evidence originals, reviewed native/vector or raster diagrams/maps/timelines, and generated reconstruction/atmosphere where useful. No generative restyling is required. Preserve source/data fidelity, rights, uncertainty and accessibility.
 
 Generated art contains no titles or explanatory paragraphs. Native UI supplies caption, attribution, depiction label, hotspots, and educational text.
 
