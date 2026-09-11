@@ -2,6 +2,7 @@ import { Archive, Ruler } from 'lucide-react';
 import type { LessonModule, MediaAsset, Source } from '../domains/contracts';
 import { ResponsiveMedia } from './ResponsiveMedia';
 import { EvidenceViewer } from './EvidenceViewer';
+import { evidenceLayout } from './evidence-layout';
 
 type Props = {
   module: Extract<LessonModule, { type: 'evidence' }>;
@@ -19,7 +20,7 @@ const depictionHeadings = {
 };
 
 export function EvidenceModule({ module, media, source, sources = [], comparisonMedia }: Props) {
-  const stacked = module.layout === 'stacked';
+  const stacked = Boolean(comparisonMedia) || evidenceLayout(media, module.layout) === 'stacked';
   const notes = module.lookHere && <aside className="look-here"><h4>Look here</h4><ul>{module.lookHere.map((item) => <li key={item.label}><strong>{item.label}</strong><p>{item.detail}</p></li>)}</ul></aside>;
   return <figure className={`evidence-module${stacked ? ' evidence-module--stacked' : ''}`}>
     <div className={`evidence-visuals${comparisonMedia ? ' evidence-visuals--comparison' : ''}`}><div className="evidence-image">

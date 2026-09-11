@@ -86,6 +86,20 @@ try {
   results.push('Home/Library/Human Origins/Uruk/companion at 1440 and 390, light/dark; largest text and 320px reflow');
   for(const item of catalogue){await visit('/learn/'+item.id);await page.locator('.lesson-orientation').waitFor();await reflow();}
   assert(catalogue.length===10);results.push('All ten published lessons render with stable identities');
+  await page.setViewportSize({width:1440,height:1000});
+  await visit('/learn/lesson.uruk.first-city');
+  await page.getByRole('button',{name:'Standard',exact:true}).click();
+  assert.equal(await page.locator('[data-section-id="section.uruk.masthead"] img').count(),0);
+  for(const [id,stacked] of [['section.uruk.tablets-and-administration',false],['section.uruk.evidence-and-reconstruction',true]]){
+    const evidence=page.locator(`[data-section-id="${id}"] .evidence-module`);
+    assert.equal(await evidence.locator('.evidence-image>img').count(),1);
+    const image=await evidence.locator('.evidence-image>img').boundingBox();
+    const panel=await evidence.locator('.evidence-image').boundingBox();
+    const caption=await evidence.locator('figcaption').boundingBox();
+    assert(Math.abs(image.height-panel.height)<2,'Image area has empty filler');
+    assert(stacked ? caption.y>=image.y+image.height-1 : caption.x>=image.x+image.width-1,'Incorrect image-shape layout');
+  }
+  results.push('Landscape-top and portrait-left evidence geometry, no empty image filler or repeated Uruk map');
   await visit('/educators/lesson.humans.homo-sapiens-origins');
   await page.emulateMedia({media:'print'});
   assert(await page.locator('.global-rail').isHidden());

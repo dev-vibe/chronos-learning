@@ -155,7 +155,8 @@ h1,h2,h3{font-family:Newsreader,Georgia,serif;font-weight:500}
 
 .hero figcaption,.evidence-module dl,.evidence-module dl dt,.evidence-module dl dd,.evidence-scale-note,.evidence-provenance summary,.prompt>small{font-size:calc(.88rem * var(--reading-scale));line-height:1.55}
 .evidence-module,.evidence-visuals,.evidence-image,.evidence-comparison{min-width:0}
-.evidence-visuals{position:relative;display:grid;align-content:start;background:var(--surface-2)}
+.evidence-visuals{position:relative;display:grid;align-content:start;align-self:start;background:transparent}
+.evidence-module .evidence-image{min-height:0;background:transparent}
 .evidence-image{position:relative}.evidence-visuals .evidence-image img{display:block;position:static;width:100%;height:auto;min-height:0;object-fit:contain}
 .evidence-enlarge{position:absolute;left:12px;bottom:12px;display:flex;align-items:center;gap:7px;min-height:44px;padding:9px 12px;border:1px solid var(--line);border-radius:9px;background:var(--surface);color:var(--ink);cursor:pointer;z-index:3}
 .evidence-enlarge svg{width:18px;height:18px}.historical-map__enlarge{left:12px;bottom:12px;width:44px;height:44px;padding:0;display:grid;place-items:center;border-radius:50%}.historical-map__enlarge>span{display:none}
@@ -175,3 +176,5 @@ h1,h2,h3{font-family:Newsreader,Georgia,serif;font-weight:500}
 .learn-app[data-reading-size=largest] .card-copy li,.learn-app[data-reading-size=largest] .card-copy p{font-size:1.15rem;line-height:1.65}
 @media(max-width:620px){.reading-controls{justify-content:flex-start}.evidence-viewer{width:calc(100vw - 12px);max-width:calc(100vw - 12px);max-height:calc(100dvh - 12px)}.evidence-viewer>header{padding:12px}.evidence-viewer__body{padding:12px}.evidence-viewer h3{font-size:1.3rem}.evidence-visuals--comparison{grid-template-columns:1fr}.evidence-image{min-height:0}.evidence-module dl>div{grid-template-columns:1fr}.prompt{padding:18px}.prompt-evidence .evidence-module figcaption{padding:14px}.historical-map__enlarge span{font-size:.8rem}}
 .prompt-evidence-image{margin:0}.prompt-evidence-image>div{position:relative}.prompt-evidence-image img{display:block;width:100%;height:auto;object-fit:contain}.prompt-evidence-image figcaption{padding:12px 0;font-size:calc(.92rem * var(--reading-scale));line-height:1.6}.prompt-evidence-image figcaption p{margin:6px 0}
+
+.evidence-image .evidence-enlarge{inset:12px 12px auto auto;width:44px;height:44px;padding:0;display:grid;place-items:center;border-radius:50%}.evidence-image .evidence-enlarge>span{display:none}

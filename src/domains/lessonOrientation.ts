@@ -1,5 +1,11 @@
 import type { HistoricalDateRange, Lesson } from './contracts';
 
+/** One authored map is placed at the opening; its record stays in the lesson. */
+export function orientationMapForLesson(lesson: Lesson) {
+  return lesson.sections.flatMap(section => section.modules).find(module =>
+    module.type === 'historical-map' && (!lesson.orientationMapModuleId || module.id === lesson.orientationMapModuleId));
+}
+
 /** The authored display string remains authoritative, including years-ago dates. */
 export function periodRelationship(current: HistoricalDateRange, other: HistoricalDateRange) {
   if (other.endYear < current.startYear) return 'Earlier focus period';

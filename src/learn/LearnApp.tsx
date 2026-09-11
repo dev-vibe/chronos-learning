@@ -22,6 +22,7 @@ import { GlobalNavigation } from '../app/GlobalNavigation';
 import { PrototypeMediaIntentions } from './PrototypeMediaIntentions';
 import { resolveMediaAsset } from '../media/resolve';
 import { LessonOrientation } from './LessonOrientation';
+import { orientationMapForLesson } from '../domains/lessonOrientation';
 import './learn.css';
 
 const lessonById = new Map(chronosContent.lessons.map((item) => [item.id, item]));
@@ -73,14 +74,17 @@ function Module({ module, state, onAttempt }: ModuleProps) {
   }) : undefined} />;
 }
 
-function Section({ section, state, onAttempt }: { section: LessonSection; state: LearnState; onAttempt(id: string, response: string): Promise<void> }) {
+function Section({ section, state, onAttempt, openingMapId }: { section: LessonSection; state: LearnState; onAttempt(id: string, response: string): Promise<void>; openingMapId?: string }) {
   return <section id={section.id} className={`lesson-section section-${section.modules[0].type}`} data-section-id={section.id} tabIndex={-1}><header className="section-heading"><h2>{section.heading}</h2></header><div className="section-modules">{section.modules.map((module, index) => {
     const nextModule = section.modules[index + 1];
     const previousModule = section.modules[index - 1];
 
-    if (module.type === 'knowledge' && nextModule?.type === 'historical-map') return null;
+    if (module.type === 'knowledge' && nextModule?.type === 'historical-map' && nextModule.id !== openingMapId) return null;
 
     if (module.type === 'historical-map') {
+      // The map and its references are already inspectable at the opening.
+      // Keep the section's teaching text and stable progress anchor in place.
+      if (module.id === openingMapId) return previousModule?.type === 'knowledge' ? null : <div className="prose-module" key={module.id}><p>{module.body}</p></div>;
       const mapMedia = mediaById.get(module.mediaId);
       const resolvedMap = mapMedia ? resolveMediaAsset(mapMedia) : undefined;
       const portraitMap = resolvedMap ? resolvedMap.height > resolvedMap.width * 1.2 : false;
@@ -326,6 +330,7 @@ export function LearnApp({ lessonId, gatewayFactory = createProgressGateway }: {
     finally { setBusy(false); }
   };
 
+  const openingMapId = orientationMapForLesson(lesson)?.id;
   const hero = lesson.heroMediaId ? mediaById.get(lesson.heroMediaId) : undefined;
   const configuredCards = cardsByLessonId.get(lesson.id) ?? [];
   const newlyAcquired = revealedCardIds.length > 0;
@@ -349,7 +354,7 @@ export function LearnApp({ lessonId, gatewayFactory = createProgressGateway }: {
     <main className="lesson"><div className="lesson-toolbar"><JourneySwitcher currentJourneyId={journey.id} currentLessonId={lesson.id} /><span className="lesson-breadcrumb">{breadcrumbChapter} <ChevronRight /> {lesson.title}</span></div>
       <article><ReadingControls size={reading.size} onChange={reading.change} /><header className="masthead"><div className="masthead-copy"><p className="eyebrow">{lesson.masthead} <span>·</span> {lesson.place}</p><h1>{lesson.title}</h1><p className="dek">{lesson.significance}</p></div>{hero && <figure className="hero"><div className={'hero-image hero-image-' + hero.depictionMode}><ResponsiveMedia className={`hero-media hero-${hero.depictionMode}`} media={hero} alt={hero.alt} sizes="(max-width: 800px) 100vw, 60vw" loading="eager" decoding="async" /><span className="depiction-label">{lesson.heroLabel}</span></div><figcaption><span>{hero.depictionLabel}</span><span>{lesson.heroCaption}</span></figcaption></figure>}</header>
         <LessonOrientation lesson={lesson} journey={journey} />
-        {lesson.sections.map((section) => <React.Fragment key={section.id}><Section section={section} state={state} onAttempt={attempt} /><PrototypeMediaIntentions lesson={lesson} review={prototypeReview} sectionId={section.id} /></React.Fragment>)}
+        {lesson.sections.map((section) => <React.Fragment key={section.id}><Section section={section} state={state} onAttempt={attempt} openingMapId={openingMapId} /><PrototypeMediaIntentions lesson={lesson} review={prototypeReview} sectionId={section.id} /></React.Fragment>)}
         <section className="completion-panel" aria-labelledby="completion-title"><p className="eyebrow">Your next step</p><h2 id="completion-title">{state.status === 'completed' ? 'Lesson explored' : `Complete ${lesson.title}`}</h2>{state.status === 'completed' ? <><p className="completion-understanding">{lesson.learningOutcome ?? lesson.significance}</p>{displayCards.length > 0 && <div className="card-reveal-list">{displayCards.map((card, index) => <React.Fragment key={card.id}><KnowledgeCardReveal card={card} acquired={newlyAcquired} revealRef={newlyAcquired && index === 0 ? revealRef : undefined} /></React.Fragment>)}</div>}<div className="next-lesson-preview">{next && <><h3>Next: {next.lesson.title}</h3><p>{next.lesson.significance}</p></>}</div><div className="actions">{next ? <a className="primary" href={`/learn/${next.lesson.id}`}>Continue: {next.lesson.title} <ChevronRight /></a> : <span className="journey-end">You have reached the available lessons in this journey. Come back to explore them again.</span>}</div></> : <><p>Share your thinking in the checks above, then complete the lesson when you are ready.</p><button className="primary" disabled={!requirement.ready || busy} onClick={complete}>{busy ? 'Completing…' : requirement.ready ? 'Complete lesson' : 'Answer the checks above'}</button></>}{error && <p className="error" role="alert">{error} <button onClick={complete}>Retry</button></p>}</section>
       </article>
     </main>

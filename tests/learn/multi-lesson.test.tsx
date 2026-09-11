@@ -143,7 +143,8 @@ describe('multi-lesson Learn runtime', () => {
     render(<LearnApp lessonId="lesson.egypt.nile-state" gatewayFactory={async () => gateway} />);
     expect(await screen.findByRole('heading', { name: 'The Nile and an Early Egyptian State' })).toBeTruthy();
     expect(document.querySelectorAll('[data-section-id]')).toHaveLength(6);
-    expect(screen.getByRole('figure', { name: 'Three places along one river' }).parentElement?.classList.contains('historical-map-pair-portrait')).toBe(true);
+    expect(document.querySelector('.lesson-orientation .orientation-map>img')).toBeTruthy();
+    expect(document.querySelectorAll('.lesson-section .historical-map')).toHaveLength(0);
     expect(screen.getByRole('button', { name: 'Answer the checks above' }).hasAttribute('disabled')).toBe(true);
   });
   it('opens the published Caral lesson once Egypt is complete', async () => {

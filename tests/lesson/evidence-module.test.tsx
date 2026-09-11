@@ -31,10 +31,10 @@ describe('evidence card', () => {
     expect(container.querySelector('figure')?.classList.contains('evidence-module--stacked')).toBe(true);
   });
 
-  it('preserves the existing evidence presentation when no layout or scale note is authored', () => {
+  it('uses the landscape layout by default while preserving the evidence label', () => {
     const { container } = render(<EvidenceModule module={module} media={{ ...media, depictionMode: 'evidence' }} />);
     expect(screen.getByText('Surviving evidence')).toBeTruthy();
     expect(screen.queryByRole('complementary')).toBeNull();
-    expect(container.querySelector('figure')?.className).toBe('evidence-module');
+    expect(container.querySelector('figure')?.classList.contains('evidence-module--stacked')).toBe(true);
   });
 });

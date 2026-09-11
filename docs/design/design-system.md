@@ -79,6 +79,8 @@ Use multiple choice, ordering, matching, image hotspots, comparison, concise exp
 
 ## Reading and inspectable evidence
 
+Evidence cards use the registered image dimensions: landscape images span the top with text below; square and portrait images sit to the left of text. Mobile and the largest reading size stack both. Keep the full image at its natural proportions, without fixed-height filler or cropping. Enlargement is a discreet, labeled 44px overlay control. An authored layout can override the default when evidence details need a different presentation; unrelated images must not be paired just to demonstrate comparison support.
+
 Keep prose in reading order; use multi-column explanations only when comparison benefits. Captions and evidence labels must remain readable, with redundant badges removed while evidence/reconstruction distinctions remain clear. Simple text-size controls must reflow on narrow screens without horizontal reading scroll.
 
 Artifacts and maps can enlarge in an accessible viewer with keyboard/touch controls, focus containment and return, and text alternatives. Authored “Look here” notes and side-by-side comparisons use reviewed evidence. Keep relevant evidence available while answering. Compact opening maps/timelines disclose approximate dates, uncertain geography, deep-time units and any schematic scale; do not invent precision.

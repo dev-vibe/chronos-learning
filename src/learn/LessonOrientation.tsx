@@ -1,7 +1,7 @@
 import { chronosContent } from '../../content/chronos';
 import { learningConnectionsByLessonId } from '../../content/learning-connections';
 import type { Journey, Lesson } from '../domains/contracts';
-import { orientationPeriods } from '../domains/lessonOrientation';
+import { orientationMapForLesson, orientationPeriods } from '../domains/lessonOrientation';
 import { ResponsiveMedia } from './ResponsiveMedia';
 import { EvidenceViewer } from './EvidenceViewer';
 import './orientation.css';
@@ -9,8 +9,7 @@ import './orientation.css';
 /** Reuses authored geography and date ranges; never manufactures coordinates. */
 export function LessonOrientation({ lesson, journey }: { lesson: Lesson; journey: Journey }) {
   const connection = learningConnectionsByLessonId[lesson.id];
-  const mapModule = lesson.sections.flatMap((section) => section.modules).find((module) =>
-    module.type === 'historical-map' && (!lesson.orientationMapModuleId || module.id === lesson.orientationMapModuleId));
+  const mapModule = orientationMapForLesson(lesson);
   const map = mapModule?.type === 'historical-map' ? mapModule : undefined;
   const media = chronosContent.media.find((asset) => asset.id === (map?.mediaId ?? lesson.heroMediaId) && asset.depictionMode === 'map');
   const chapter = journey.chapters.find((entry) => entry.entries.some((item) => item.lessonId === lesson.id));
@@ -29,7 +28,11 @@ export function LessonOrientation({ lesson, journey }: { lesson: Lesson; journey
     <div className="orientation-heading"><strong>Time and place</strong><span>{chapter?.title}</span></div>
     <div className={media ? 'orientation-layout' : 'orientation-layout orientation-layout--text'}>
       <div className="orientation-place">
-        {media && <div className="orientation-map"><ResponsiveMedia media={media} alt={media.alt} sizes="(max-width: 700px) calc(100vw - 64px), (max-width: 1100px) 55vw, 620px" loading="lazy" /><EvidenceViewer className="orientation-enlarge" media={media} title={`Locator: ${lesson.place}`} summary={map?.accessibleSummary ?? media.alt}><p>{map?.uncertaintyNote ?? lesson.heroCaption}</p><p>{media.rightsLabel}</p></EvidenceViewer></div>}
+        {media && <div className="orientation-map"><ResponsiveMedia media={media} alt={media.alt} sizes="(max-width: 700px) calc(100vw - 64px), (max-width: 1100px) 55vw, 620px" loading="lazy" /><EvidenceViewer className="orientation-enlarge" media={media} title={`Locator: ${lesson.place}`} summary={map?.accessibleSummary ?? media.alt}>
+          {map && <><p>{map.body}</p><p>{map.coordinateNote}</p>{map.lookHere && <ul>{map.lookHere.map(item => <li key={item.label}><strong>{item.label}</strong> {item.detail}</li>)}</ul>}</>}
+          <p>{map?.uncertaintyNote ?? lesson.heroCaption}</p><p>{media.rightsLabel}</p>
+          <ul>{(map?.sourceIds ?? media.sourceIds).map(id => chronosContent.sources.find(source => source.id === id)).filter(Boolean).map(source => <li key={source!.id}><a href={source!.url}>{source!.title}</a></li>)}</ul>
+        </EvidenceViewer></div>}
         <p><strong>{lesson.place}</strong></p>
         {map ? <p className="orientation-note">{map.modernContext}. {map.compactLabel}</p> : media ? <p className="orientation-note">{media.depictionLabel}</p> : <p className="orientation-note">The place name gives the lesson’s geographic focus; it does not mark exact boundaries.</p>}
       </div>
