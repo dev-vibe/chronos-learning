@@ -65,7 +65,7 @@ try {
     await page.setViewportSize(size);
     for(const theme of ['light','dark']){
       await page.evaluate(t=>localStorage.setItem('chronos.theme.v1',t),theme);
-      for(const [name,path] of [['home','/home'],['library','/library'],['origins','/learn/lesson.humans.homo-sapiens-origins'],['uruk','/learn/lesson.uruk.first-city'],['companion','/educators/lesson.humans.homo-sapiens-origins']]){
+      for(const [name,path] of [['home','/home'],['library','/library'],['origins','/learn/lesson.humans.homo-sapiens-origins'],['uruk','/learn/lesson.uruk.first-city']]){
         await visit(path);await reflow();await capture(name+'-'+size.width+'-'+theme);
         if(name==='origins'||name==='uruk'){
           await page.getByRole('button',{name:'Largest',exact:true}).click();
@@ -83,7 +83,7 @@ try {
   await page.locator('.lesson-orientation .evidence-enlarge').click();
   await page.getByRole('button',{name:'Show more detail'}).click();await capture('evidence-mobile');
   await page.keyboard.press('Escape');
-  results.push('Home/Library/Human Origins/Uruk/companion at 1440 and 390, light/dark; largest text and 320px reflow');
+  results.push('Home/Library/Human Origins/Uruk at 1440 and 390, light/dark; largest text and 320px reflow');
   for(const item of catalogue){await visit('/learn/'+item.id);await page.locator('.lesson-orientation').waitFor();await reflow();}
   assert(catalogue.length===10);results.push('All ten published lessons render with stable identities');
   await page.setViewportSize({width:1440,height:1000});
@@ -100,11 +100,6 @@ try {
     assert(stacked ? caption.y>=image.y+image.height-1 : caption.x>=image.x+image.width-1,'Incorrect image-shape layout');
   }
   results.push('Landscape-top and portrait-left evidence geometry, no empty image filler or repeated Uruk map');
-  await visit('/educators/lesson.humans.homo-sapiens-origins');
-  await page.emulateMedia({media:'print'});
-  assert(await page.locator('.global-rail').isHidden());
-  await page.pdf({path:output+'/human-origins-companion.pdf',format:'A4',printBackground:true});
-  results.push('Public companion print rendering with navigation omitted');
   assert.deepEqual(errors,[],'Browser page errors');
   await fs.writeFile(output+'/results.json',JSON.stringify({results,errors,scope:'Local disposable preview data; no participant observations'},null,2));
   console.log(results.join('\n'));

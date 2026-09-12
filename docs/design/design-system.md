@@ -6,7 +6,7 @@ This is the concise implementation guide. The PRD remains authoritative for full
 
 Chronos combines a best-in-class learning app, an editorial history publication, and a premium museum companion. It is warm, intelligent, calm, spacious, and intuitively enjoyable for learners around ages 11–15 while remaining visually credible for adults.
 
-Use roughly age 12–13 as the initial drafting reference, subject to actual learner observation. Primarily support homeschooling; parent/educator companions remain separate from the learner shell.
+Use roughly age 12–13 as the initial drafting reference, subject to actual learner observation. Primarily support homeschooling; parent account controls and linked-child progress remain separate from the learner shell.
 
 Avoid tactical terminal UI, fantasy-game styling, childish mascots, candy colors, dense dashboards, faux-antique clutter, excessive glass effects, and noisy gamification.
 
@@ -91,7 +91,7 @@ Learner copy gives a warm next action. Keep internal terms such as “determinis
 
 Continue dominates Home with chapter context; an authored retrieval opportunity may connect earlier learning to what comes next. Completion states what was studied and previews the next lesson concretely. Knowledge Cards may offer optional recall and useful connections without review pressure.
 
-Library leads with available subjects, objects and questions, with World History the default. Unavailable categories and the production roadmap are secondary. Public parent/educator companions provide purpose, discussion and print in a separate surface; no private progress is exposed without verified relationships, consent and authorization.
+Library leads with available subjects, objects and questions, with World History the default. Unavailable categories and the production roadmap are secondary. Parent accounts provide verified child-account linking and views of progress and submitted assessments in a separate surface. No public parent teaching companions; private data requires verified relationships and authorization.
 
 ## Hero and visual exploration
 
