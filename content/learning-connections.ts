@@ -8,6 +8,11 @@ export type LearningConnection = {
 };
 
 export const learningConnectionsByLessonId: Record<string, LearningConnection> = {
+  'lesson.indus.cities-and-signs': {
+    retrieve: { lessonId: 'lesson.writing.early-systems', prompt: 'How could durable marks help people coordinate goods and work?' },
+    extend: 'Use shared measures, water systems and seals to investigate coordination where the inscriptions remain unread.',
+    reasoningSkill: 'Combine archaeological patterns with context while separating organized work from a particular form of rule.',
+  },
   'lesson.humans.homo-sapiens-origins': {
     extend: 'Start with a question we will return to: what can surviving evidence tell us, and what does it leave uncertain?',
     revisit: { lessonId: 'lesson.humans.migrations-and-interbreeding', prompt: 'How does ancient DNA add to the story told by fossils?' },

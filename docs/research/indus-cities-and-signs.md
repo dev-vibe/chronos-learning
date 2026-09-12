@@ -6,13 +6,17 @@ Draft PR: [#41](https://github.com/dev-vibe/chronos-learning/pull/41)
 
 Lesson ID: `lesson.indus.cities-and-signs`
 
-Research-note identity/version: `indus-cities-and-signs-v1`, Stage 3B packet, 2026-09-09 (America/New_York; source access 2026-09-10 UTC)
+Research-note identity/version: `indus-cities-and-signs-v2`, learner prototype, 2026-09-11
+
+Production record version: 2
+
+The September 9 research checkpoint is retained below as history; the September 11 disposition and close-review tables govern this prototype.
 
 Journey/chapter/position: `journey.world-history` / `chapter.world-history.cities-and-states` / canonical position 16
 
 Required or optional: required World Spine lesson
 
-Queue status: `Researching`
+Queue status: `Researching` — prototype built; independent review still pending before the formal owner-approval handoff.
 
 Accountable product/editorial reviewer: Carlin Aylsworth
 
@@ -22,11 +26,13 @@ Validation tier: high-risk, because language, identity, transmitted tradition, a
 
 Branch: `codex/ash-100-indus-cities-and-signs`
 
-Base: `origin/main` at `ad1b50a`
+Base: originally `ad1b50a`; merged current `origin/main` at `ca3d5dd` on September 11, including PR #42 app/workflow updates.
 
 Worktree: `C:/dev/chronos-learning/.worktrees/ash-100-indus`
 
 ## Work boundary and repository evidence
+
+The next four paragraphs record the September 9 starting state. As of September 11, the branch also contains the typed Indus draft, its preview registry and journey entry, and the owner's requested removal of public parent teaching companions. The revised PRD describes linked parent accounts; that separate account feature is not implemented by this lesson branch.
 
 Carlin requested a fresh branch from main for the next eligible lesson, explicitly authorizing parallel work. This increment begins production order 80. The original pyramids checkout contains unrelated uncommitted work and is preserved. Current main includes the pyramids publication and PR #35 for Sahul; Sahul's existing `Review` queue state is left for its owner to close out. Parallel work here is confined to this note and the Indus queue entry.
 
@@ -36,7 +42,7 @@ The content aggregator has ten lesson modules and no authored Indus lesson. The 
 
 Reviewed legacy aliases are `indus_cities` and `indus_script` in the roster. Their inclusion here records curriculum identity, not authorization to transfer historical completion without the normal semantic-equivalence check.
 
-## Node proposal — provisional research target
+## Node proposal
 
 **Essential question:** What can the remains of Indus cities tell us about how people lived and worked together when their signs cannot yet be securely read?
 
@@ -161,14 +167,174 @@ The main comparative methods examined were urban infrastructure/access, skeletal
 
 Packet shared: 2026-09-09, this note and the current task handoff.
 
-Product-owner response: **pending**.
+Product-owner response: **Proceed, 2026-09-11.** After reviewing the research packet and the workflow/UI assessments, Carlin wrote: “please continue the lesson creation.” This resumes the proposed Indus scope under the updated workflow. It is authorization for claim selection and prototype work, not approval of an unseen prototype or publication. Carlin also explicitly removed the public parent-teaching-guide direction in favor of linked parent accounts with progress and submitted-assessment access.
 
-Follow-up research/disposition: record Carlin's directions here; repeat Stages 3A–3B if a missed evidence class changes the model.
+Follow-up research/disposition: closely inspect the central sources; retain the broad discovery audit without turning every proposal into learner content. The September 11 sources refine the existing scope rather than change the historical model. No decipherment, named government or single-cause ending is asserted.
 
-## Deferred stages and safe state
+## Current stage and safe state
 
-Stages 4–18 have not started. The claim ledger, content triage, learning blueprint, storyboard, age transformation record, prompts, media intentions, Knowledge Card decision, prototype and publication sign-offs await the research-direction response. No lesson preview exists yet; this research note is the direct review surface required by the runbook before a prototype exists.
+Stages 4–14B resumed on September 11. The full typed lesson remains draft and only development preview can open/complete it. Final images, card registration, migrations, unlocks, hosted publication and Stage 15 remain pending prototype approval. Existing pyramids and app work is preserved. The user-requested removal of public parent guides is a separate correction in this branch; linked-parent accounts are specified in PRD §11.9 / CHR-100, not implemented by this lesson.
 
-No final images have been acquired or generated. There is no image lifecycle to approve at this stage. No content module, journey entry, runtime file, generated catalog, database migration, hosted configuration, completion rule or card unlock changed.
+## September 11 close review and source roles
 
-Validation for this checkpoint: review changed Markdown, confirm queue identity and source-reference coverage, and run `git diff --check`. Product/runtime tests and the prototype gate are not applicable until a typed prototype exists. The note does not claim those gates passed.
+The earlier S01–S20 ledger records discovery depth honestly. Abstract-only or inaccessible items do not carry learner assertions. The registered production sources below supersede that depth only for the exact passages listed. Research review means Codex read those passages; human historical/editorial approval remains pending. HARP captions and Kenoyer publications often share an investigator/evidence base and are not counted as independent corroboration. UNESCO syntheses likewise inherit excavation records. Green offers an alternative interpretation rather than an independent excavation dataset.
+
+| Registered source | Earlier ledger / new citation | Role | Exact reviewed material and limitation |
+| --- | --- | --- | --- |
+| `source.indus.dholavira` | S01 | Central supporting / qualifying | Description; Outstanding Universal Value, Brief synthesis and criterion (iv). Site-specific water/stone/craft evidence; the stated stratification is an inference. Do not adopt the stray Southeast Asia wording. |
+| `source.indus.moenjodaro` | S02 | Central supporting | Outstanding Universal Value, Brief synthesis: location, streets and drainage. Reject the contradictory brick summary and inherited granary/priest labels. |
+| `source.indus.street-drains` | [Mohenjo-daro Street with Drains](https://www.harappa.com/blog/mohenjo-daro-street-drains) | Central supporting | Opening five paragraphs; Wheeler plate 9 and Possehl citation identify the evidence chain. Contextual synthesis, not a newly inspected excavation archive. |
+| `source.indus.measuring` | [Kenoyer 2010, Measuring the Harappan world](https://www.harappa.com/sites/default/files/pdf/Kenoyer%202010%20Measuring%20the%20Harappan%20World.pdf) | Central supporting / qualifying | Printed pp. 115–117, fig. 9.10 and table 9.3. Measurements support standards; gateway/craft context supports several use hypotheses. Avoid exact tax claims. |
+| `source.indus.harp-weights` | [HARP, Weights, Harappa](https://www.harappa.com/slide/weights-harappa) | Central supporting | Full excavation caption. Same research tradition as Kenoyer; not independent replication. |
+| `source.indus.harp-seals` | S03 | Central supporting | Complete Mound E house-assemblage caption. “Merchants” is explicitly tentative, not an identified occupation. |
+| `source.indus.met-seal` | [Met object 49.40.2](https://www.metmuseum.org/art/collection/search/324063) | Central supporting / proposed visual | Object details, public-domain designation, displayed image reference. Collection object is not assigned a Harappa findspot; uncertain identification remains visible. |
+| `source.indus.rao-response` | S07 | Qualifying | Sections 2–4 and fig. 1 discussion; author explicitly denies that statistics prove linguistic encoding. No corpus or computational replication claimed. |
+| `source.indus.green-governance` | S04 | Qualifying / central interpretation | Section “What is The Evidence For Governance in The Indus Civilization?”, shared standards and collective works. Separate cooperative model from political equality. |
+| `source.indus.harp-settlement` | [HARP, Changing Settlement at Harappa](https://www.harappa.com/slide/changing-settlement-harappa) | Central supporting | Full periodized settlement caption, Periods 3–5. Harappa contraction is not a population census or universal regional chronology. |
+| `source.indus.kenoyer-tradition` | [Kenoyer 2006, Cultures and Societies of the Indus Tradition](https://www.harappa.com/sites/default/files/pdf/CulturesSocietiesIndusTrad.pdf) | Central supporting | Table 1 (PDF p. 6); Localization Era passage (PDF p. 9). Use period convention and continuing skills only; older linguistic/religious correlations are outside this lesson. |
+
+All above accessed and close-reviewed by Codex on 2026-09-11. Citation-only use except the proposed Met open-access image; no media rights are inferred from a source’s availability. Other final visuals require separate licensed originals or reviewed deterministic output after prototype approval.
+
+## Claim ledger
+
+The authored module is the exact wording/reference source of truth. Every row remains `editorial-review-required`; the following records the research disposition. General preservation limitation: archaeology samples surviving objects and excavated areas, not every household’s experience. No equal wealth, peaceful utopia, identified ruler, decoded language or complete transaction is asserted.
+
+| Claim ID and wording | Kind | Certainty | Sources | Counterevidence/limits | Learner treatment | Review |
+| --- | --- | --- | --- | --- | --- | --- |
+| `claim.indus.urban-period` — The Mature Harappan urban period is conventionally dated to about 2600–1900 BCE; individual settlements have longer histories. | interpretation | high | 'source.indus.kenoyer-tradition', 'source.indus.harp-settlement', 'source.indus.dholavira' | Scope and inference limits retained in wording and close-review table | Explain in context | Codex research review; owner pending |
+| `claim.indus.regional-cities` — Indus settlements occupied different environments across parts of present-day Pakistan and India, including Mohenjo-daro and Dholavira. | observation | high | 'source.indus.moenjodaro', 'source.indus.dholavira' | Scope and inference limits retained in wording and close-review table | Explain in context | Codex research review; owner pending |
+| `claim.indus.household-drainage` — At Mohenjo-daro, bathing-floor drains fed street drains; covers and settling traps formed part of a maintained drainage system. | observation | high | 'source.indus.street-drains', 'source.indus.moenjodaro' | Scope and inference limits retained in wording and close-review table | Explain in context | Codex research review; owner pending |
+| `claim.indus.water-storage` — Dholavira used reservoirs and seasonal streams in a dry setting, with substantial stone construction. | observation | high | 'source.indus.dholavira' | Scope and inference limits retained in wording and close-review table | Explain in context | Codex research review; owner pending |
+| `claim.indus.shared-weights` — Measured stone weights from Harappa and other Indus sites follow shared standards, with variation rather than perfect identity. | observation | high | 'source.indus.measuring', 'source.indus.harp-weights' | Scope and inference limits retained in wording and close-review table | Explain in context | Codex research review; owner pending |
+| `claim.indus.weight-functions` — Weights could support controlled exchange; their association with gateways and craft areas also supports taxation as an interpretation, not a recovered transaction. | interpretation | moderate | 'source.indus.measuring', 'source.indus.harp-weights' | Scope and inference limits retained in wording and close-review table | Explain in context | Codex research review; owner pending |
+| `claim.indus.crafts-and-connections` — Dholavira preserves craft-working evidence and evidence of exchange within the Indus region and with Oman and Mesopotamia. | interpretation | high | 'source.indus.dholavira' | Scope and inference limits retained in wording and close-review table | Explain in context | Codex research review; owner pending |
+| `claim.indus.seal-object` — Met object 49.40.2 is a small steatite stamp seal with an animal, a short inscription and another depicted object whose identification is uncertain. | observation | high | 'source.indus.met-seal' | Scope and inference limits retained in wording and close-review table | Explain in context | Codex research review; owner pending |
+| `claim.indus.seal-context` — Seals could make clay impressions, and a house by Harappa’s Mound E gateway contained several kinds of inscribed objects; the users’ identities are inferred. | interpretation | moderate | 'source.indus.harp-seals', 'source.indus.met-seal', 'source.indus.green-governance' | Scope and inference limits retained in wording and close-review table | Explain in context | Codex research review; owner pending |
+| `claim.indus.undeciphered-signs` — Indus inscriptions have no securely established reading; statistical regularities alone neither translate them nor settle whether they encode speech. | interpretation | high | 'source.indus.rao-response', 'source.indus.met-seal' | Scope and inference limits retained in wording and close-review table | Explain in context | Codex research review; owner pending |
+| `claim.indus.coordination-and-rule` — Shared standards and large communal works support organized cooperation; they do not by themselves identify rulers, political institutions or equal access. | interpretation | moderate | 'source.indus.green-governance', 'source.indus.dholavira' | Scope and inference limits retained in wording and close-review table | Explain in context | Codex research review; owner pending |
+| `claim.indus.urban-transformation` — After about 1900 BCE, settlement at Harappa contracted; wider changes in urban organization coexisted with continuing farming and craft traditions. | interpretation | high | 'source.indus.harp-settlement', 'source.indus.kenoyer-tradition' | Scope and inference limits retained in wording and close-review table | Explain in context | Codex research review; owner pending |
+
+## Central claim support
+
+| Claim ID | Source ID | Locator | Review |
+| --- | --- | --- | --- |
+| claim.indus.urban-period | source.indus.kenoyer-tradition | Table 1, PDF p. 6: Harappan Phase and later phases | Codex, 2026-09-11, close-reviewed |
+| claim.indus.urban-period | source.indus.harp-settlement | Passage describing Periods 1–5 and occupation extent | Codex, 2026-09-11, close-reviewed |
+| claim.indus.regional-cities | source.indus.moenjodaro | Section Outstanding Universal Value, Brief synthesis: Indus plain location | Codex, 2026-09-11, close-reviewed |
+| claim.indus.regional-cities | source.indus.dholavira | Passage Description, opening location paragraph | Codex, 2026-09-11, close-reviewed |
+| claim.indus.household-drainage | source.indus.street-drains | Passage opening five paragraphs: house connections, covers and cleaned traps | Codex, 2026-09-11, close-reviewed |
+| claim.indus.household-drainage | source.indus.moenjodaro | Section Brief synthesis, street layout and sanitation paragraph | Codex, 2026-09-11, close-reviewed |
+| claim.indus.water-storage | source.indus.dholavira | Section Brief synthesis and criterion (iv): reservoirs and stone | Codex, 2026-09-11, close-reviewed |
+| claim.indus.shared-weights | source.indus.measuring | pp. 115–116, table 9.3 and fig. 9.10 | Codex, 2026-09-11, close-reviewed |
+| claim.indus.weight-functions | source.indus.measuring | p. 117, market exchange and taxation discussion | Codex, 2026-09-11, close-reviewed |
+| claim.indus.crafts-and-connections | source.indus.dholavira | Passage Description, workshops/materials and interregional trade | Codex, 2026-09-11, close-reviewed |
+| claim.indus.seal-object | source.indus.met-seal | Object 49.40.2, title, medium, dimensions and period | Codex, 2026-09-11, close-reviewed |
+| claim.indus.seal-context | source.indus.harp-seals | Passage Seals & tablets, complete Mound E house caption | Codex, 2026-09-11, close-reviewed |
+| claim.indus.seal-context | source.indus.green-governance | Section What is The Evidence For Governance, stamp-seal and sealing paragraphs | Codex, 2026-09-11, close-reviewed |
+| claim.indus.undeciphered-signs | source.indus.rao-response | Sections 2–4, especially fig. 1 discussion denying proof of linguistic encoding | Codex, 2026-09-11, close-reviewed |
+| claim.indus.coordination-and-rule | source.indus.green-governance | Section What is The Evidence For Governance, standards and collective construction paragraphs | Codex, 2026-09-11, close-reviewed |
+| claim.indus.coordination-and-rule | source.indus.dholavira | Section Brief synthesis, differentiated residential areas | Codex, 2026-09-11, close-reviewed |
+| claim.indus.urban-transformation | source.indus.harp-settlement | Passage Periods 4–5, reduced occupied area | Codex, 2026-09-11, close-reviewed |
+| claim.indus.urban-transformation | source.indus.kenoyer-tradition | Passage Localization Era, PDF p. 9, continuing farming and craft techniques | Codex, 2026-09-11, close-reviewed |
+
+## Content triage
+
+| Candidate | Treatment | Reason / destination |
+| --- | --- | --- |
+| Household drainage and seasonal storage | Essential | Explain a city through everyday work and local constraints. |
+| Shared weights and skilled production | Essential | Concrete mechanism linking communities; keep transaction types qualified. |
+| Seal object and excavated house context | Essential | Separate visible marks, context and unread meaning. |
+| Political organization | Essential, short | Coordination is not an identified government or evidence of universal equality. |
+| Regional change after 1900 BCE | Supporting close | Prevent disappearance narrative; avoid unresolved single-cause ending. |
+| Competing decipherments, Vedic/Tamil transmission | Deferred to possible Investigation | Broad audit retained; no reading meets the needed claim standard here. Revisit with predictive contextual evidence or owner-directed inquiry. |
+| River attribution, climate models, Mehrgarh dates, ancestry | Deferred | No such precise causal, early-origin or identity claim is needed for this urban-life lesson. Revisit when authoring those questions; abstract-only sources carry no learner claims. |
+| Observatory and dockyard proposals | Deferred | Interesting capability hypotheses, unnecessary for demonstrated coordination. Revisit with new discriminating field evidence. |
+| Priest-king, universally peaceful democracy, decoded religious messages | Rejected as settled claims | The sources do not establish them. |
+
+## Learning blueprint
+
+Essential question: How did Indus communities organize city life, and what can we learn while their inscriptions remain unread?
+Durable understanding: Water systems, shared measures and seals reveal coordinated urban life; they do not by themselves identify its rulers or recover its messages.
+Supporting understandings: Local environments required different water solutions; measurement standards connected work and exchange; object context and sign meaning are different evidence problems; urban change did not erase communities and skills.
+Prerequisites: `lesson.writing.early-systems`; prior city coordination in `lesson.uruk.first-city`. Pyramids is the canonical preceding entry, not a new prerequisite invented here.
+Misconceptions: all cities require the same government; shared weights prove equal wealth; a patterned sign sequence is a decipherment; an urban phase ending means all people disappeared.
+Indispensable vocabulary: reservoir, standard, balance, seal, steatite, decipher, hierarchy. Define in use; do not quiz terminology.
+Evidence encounter: Harappa measured weights; Mohenjo-daro drainage connections; Met 49.40.2 object record alongside the separately excavated Harappa house assemblage. Final licensed images remain planned; prose provides usable descriptions now.
+Historical-thinking move: Use context and independent kinds of material evidence to constrain an explanation.
+Retrieve: Recall how durable marks supported coordination in `lesson.writing.early-systems`, and the shared work of `lesson.uruk.first-city`.
+Extend: Explain a connected urban tradition through material systems while avoiding a named government or translated message unsupported by them.
+Revisit: Planned `lesson.bronze-age.exchange-networks` can return to measures and seals; planned `lesson.nubia.kerma-and-nile-world` will supply another locally grounded political comparison. Neither is represented as currently available.
+Reasoning progression: Earlier observation/inference distinction → combine infrastructure, measurements and find context here → compare alternative explanations with less prompting in later exchange/Investigation work.
+Transfer plan: Defer an unfamiliar artifact task to the planned exchange lesson, with an independently reviewed object and contextual scaffold. Here the two required prompts consolidate new content without adding a third hurdle.
+Completion versus mastery: Two sincere attempts and explicit completion record study. Independent explanation after a delay or application to a new object would be learner evidence; no such observation has occurred.
+Required sincere-attempt evidence: A supported selection about shared measures and a concise explanation of connected water work with an authority limit. No answer accuracy requirement.
+
+## Section/component storyboard
+
+| Order | Section ID | Heading | Teaching job / claims | Module / media | Transition |
+| --- | --- | --- | --- | --- | --- |
+| 1 | section.indus.cities-and-landscapes | Cities across the Indus region | Urban dates and different settings | Prose; planned locator shared with opening orientation | Water is a common need with different local solutions. |
+| 2 | section.indus.water-systems | Water for city life | household-drainage, water-storage | Two prose passages; planned separately identified drain/reservoir evidence | Coordination also connects work and quantities. |
+| 3 | section.indus.weights-and-work | Shared measures and skilled work | shared-weights, weight-functions, crafts-and-connections | Prose; planned excavated weights | Seals add information to material exchange. |
+| 4 | section.indus.seals-and-signs | Seals and undeciphered signs | seal-object, seal-context, undeciphered-signs | Object record and prose; planned original seal | Objects reveal activity more readily than political authority. |
+| 5 | section.indus.organizing-cities | Who organized the cities? | coordination-and-rule | Prose; no decorative media | Systems can change without populations disappearing. |
+| 6 | section.indus.changing-settlements | Changes after 1900 BCE | urban-transformation | Prose; no new visual required | Explain what the evidence supports. |
+| 7 | section.indus.understanding | Explain the evidence | Shared measures and water coordination | Two canonical prompts | Explicit completion; next published content only. |
+
+Seven required sections. No navigation section, duplicate headline or invented historical scene. Orientation dates use the shared app component; the locator is planned until approved media exists. The final required action remains separate from optional recall.
+
+## Media decisions
+
+| Intention | Placement | Teaching job | Method and rights | Prototype / final review |
+| --- | --- | --- | --- | --- |
+| Required locator | Opening / cities-and-landscapes | Locate three city examples and varied setting | Reviewed geographic source and deterministic map; follow specialist runbook after approval. No border implying one state; no speculative river route. | Development annotation and native place text / pending |
+| Required drain and reservoir evidence | water-systems | Inspect a house-to-street connection and seasonal storage | Source-specific original photographs, licensed for intended distribution. Separate captions; do not imply same city or same scale. | Native descriptions and annotation / pending rights and final review |
+| Recommended core weights | weights-and-work | Inspect manufactured objects behind measured standards | Licensed original with identified excavation/context. Photograph alone does not measure mass; retain measurement source. | Native explanation and annotation / pending |
+| Required seal 49.40.2 | seals-and-signs | Distinguish visible image/signs from uncertain reading | Met public-domain original, direct use, preserve engraving; no generative restyling. Actual collection object not attributed to Harappa. | Native object description and annotation / pending acquisition and fidelity review |
+| Hero, video, extra diagram | None | No additional teaching job at this scope | Not needed; reserve space for locator and evidence | Explicit no-media decision |
+
+## Image lifecycle
+
+No final image has been acquired, generated, registered or accepted in this checkpoint. The visible reference/data-to-final lifecycle blocks will be added under this heading for each final asset after prototype approval. Source images consulted for research are not approved runtime assets.
+
+## Knowledge Card decision
+
+Propose one Artifact / Witness card, `card.indus.stamp-seal`, with `unlockLessonId: lesson.indus.cities-and-signs`. Title: Indus Stamp Seal. Period: c. 2600–1900 BCE; place: Indus region. Use Met 49.40.2 as actual surviving evidence, with a matching source and honest collection context. Significance: a small object can preserve evidence of organized communication without giving us a translated message. Three proposed facts: steatite material; roughly four-centimetre size; engraved design with unread signs. Recall prompt: What can the seal show you before anyone translates its signs? Reuse its licensed evidence image instead of inventing another seal. Card and unlock are not yet implemented; owner approval of this choice is pending.
+
+## Prompt rationale
+
+`prompt.indus.shared-standards` separates a measured pattern from emperor/equality/decipherment leaps. Each option has specific feedback in the updated shared renderer. `prompt.indus.water-and-work` asks for a causal explanation available from either city, plus a bounded uncertainty about authority. Its authored example is comparison support, not personalized grading. The shared deliberate comparison action preserves thinking time; the existing minimum length remains an internal attempt threshold. After final evidence modules exist, reuse their IDs in prompt evidence references rather than duplicate images.
+
+## Ages 11–15 transformations
+
+Drafted for approximately age 12–13: open with household needs; limit the main geography to three cities; define seven terms where used; explain maintenance as well as construction; keep the sign debate to what a decipherment would need to establish. No named speculative rulers, graphic remains, imposed religious identity, sensational disappearance or modern political labels. Short paragraphs and plain headings retain the argument. Age suitability remains a design hypothesis pending actual learner observation.
+
+## Learner-prototype review
+
+Prototype URL: [Open the local Indus prototype](http://localhost:3000/learn/lesson.indus.cities-and-signs). Verified September 11 with `lesson:preview`; this needs the local preview server running on this computer. It is not a hosted preview. The ordinary production build keeps the draft unavailable. Prototype annotations describe planned images, not final learner content.
+Proxy type: independent AI editorial/learner proxy requested September 11, but the reviewer failed before reviewing because its service reported an account usage limit. No independent findings were produced; no actual adult or child participant is claimed. This remains an outstanding Stage 14B review, not an author self-approval or a request to approve publication.
+Quality-contract findings: author review below; independent review remains pending.
+Product/editorial reviewer: Carlin Aylsworth.
+Product review: pending; research-direction permission does not approve this prototype.
+Learner observation: pending human participation under the sampled program; not a per-lesson block.
+Validation: prototype gate and content validation passed. The full suite passed 178 of 179 tests; the remaining journey-order expectation was updated to include Indus and its three-test file then passed. `typecheck:chronos` passed after installing the worktree's lockfile dependencies (the original ancestor dependency tree lacked React types). Browser walkthrough confirmed rendering, deliberate feedback, sincere-attempt completion despite a wrong selection, a truthful no-card journey ending, and reopening at the top. Inspected desktop and mobile layouts in light/dark themes; no console errors were captured. These are local engineering checks, not learner observation or hosted progress validation.
+
+### Author quality-contract pass — Codex, September 11
+
+| Area | Finding and disposition |
+| --- | --- |
+| Mental-model coherence | Pass for prototype: the opening asks how city needs were met; connected drains, seasonal reservoirs and measured weights support an explanation of coordination. Section five states the limits on recovering political authority. |
+| Cumulative learning | Pass for prototype: the opening recalls records and goods; the lesson extends reasoning when inscriptions are unread. Revisit and transfer remain explicitly planned for later lessons, not fabricated live links. |
+| Narrative momentum | Pass for prototype: city needs lead to water, shared measures, recorded information and limits on identifying rulers; the ending includes settlement change without claiming a population vanished. |
+| Cognitive load and headings | Revised: changed the conclusion-like heading to “Changes after 1900 BCE.” Necessary terms are defined in prose. The long seal section needs its planned object encounter; actual ages 11–15 suitability remains unobserved. |
+| Evidence reasoning | Pass for written prototype: named excavated contexts and the Met object record distinguish observations from possible uses; prompts require explanations taught in the text. Final visual inspection remains pending. |
+| Historical proportionality | Pass for prototype: standard weights do not prove one emperor, public works do not prove equality, and structured signs are not a decipherment. Political alternatives remain interpretations. Accountable human historical review is pending. |
+| Visual teaching value | Deferred with safe behavior: four explicit media intentions remain planned; no fabricated or unlicensed final image is displayed. The inspected Met image shows the animal, signs and adjacent object, but final image selection must resolve seal versus impression presentation and viewing orientation before captioning it. The prose does not require an absent image to answer either check. |
+| Next action | Pass locally: compare actions reveal specific feedback; two sincere attempts enable explicit completion, even with the emperor distractor chosen. No-card ending accurately says the available journey is finished. Reopening starts at the top. |
+| Rights and accessibility | Partial/deferred: native text and controls render in responsive light/dark views. Final media rights, captions, alt text, derivatives and fidelity do not exist yet and cannot be signed off. |
+| Technical/data integrity | Pass for prototype structure and local interactions; draft isolation is covered by existing runtime tests. No publication migration, hosted change or private learner-data access was made. |
+| Independent review | Outstanding: reviewer service usage limit prevented the requested review. Retain the active checkpoint; do not claim Stage 14B complete. |
+
+## Final sign-off
+
+Research-direction response recorded September 11. Learner prototype approval, final visual rights/fidelity review, historical/editorial sign-off and publication are pending. No hosted data or publication state has changed.
