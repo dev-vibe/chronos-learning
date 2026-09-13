@@ -238,7 +238,7 @@ describe('Home, Library, preview, and search composition', () => {
     expect(plans.textContent).toContain('Civilizations and Regions');
     expect(plans.textContent).toContain('More authored journeys are being prepared');
     expect(subjects.compareDocumentPosition(plans) & Node.DOCUMENT_POSITION_FOLLOWING).toBeTruthy();
-    expect(screen.getByRole('link', { name: /Open lesson companions/ }).getAttribute('href')).toBe('/educators');
+    expect(screen.queryByRole('link', { name: /Open lesson companions/ })).toBeNull();
     expect(within(subjects).getByRole('link', { name: 'Farming and Settlements' }).getAttribute('href')).toBe('/learn/lesson.farming.settlements');
     const open = screen.getByRole('button', { name: 'Open World History' });
     await userEvent.click(open);

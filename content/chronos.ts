@@ -9,11 +9,12 @@ import { migrationsAncientDnaContent } from './lessons/migrations-and-interbreed
 import { sahulCrossingContent } from './lessons/sahul-crossing';
 import { manyBeginningsOfFarmingContent } from './lessons/many-beginnings-of-farming';
 import { urukContent } from './lessons/uruk';
+import { indusContent } from './lessons/indus-cities-and-signs';
 import { worldHistoryJourney } from './journeys/world-history';
 import { journeyInvitations } from './journeys/invitations';
 
 export const chronosContent = assembleContent(
-  [homoSapiensOriginsContent, migrationsAncientDnaContent, sahulCrossingContent, manyBeginningsOfFarmingContent, farmingSettlementsContent, urukContent, earlyWritingSystemsContent, egyptNileStateContent, caralAndeanUrbanismContent, pyramidsPowerStateLaborContent],
+  [homoSapiensOriginsContent, migrationsAncientDnaContent, sahulCrossingContent, manyBeginningsOfFarmingContent, farmingSettlementsContent, urukContent, earlyWritingSystemsContent, egyptNileStateContent, caralAndeanUrbanismContent, pyramidsPowerStateLaborContent, indusContent],
   [worldHistoryJourney],
   journeyInvitations,
 );

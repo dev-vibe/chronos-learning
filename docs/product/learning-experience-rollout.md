@@ -62,3 +62,7 @@ Owner review should decide whether the new orientation, evidence comparison, opt
 - No branch-protection-required status checks are configured on main (GitHub API returned Branch not protected). PR check results and direct preview URLs are recorded in the PR handoff. No deployment command is authorized or run; local previews require the local server to remain running.
 
 Actual learner comprehension, delayed recall/transfer, and independent age fit remain design hypotheses pending the observation program. Expansion of reviewed locator maps to Early Writing and Pyramids and companions beyond the two examples remains editorial work.
+
+## Owner correction — September 11, 2026
+
+The public lesson-companion experiment described above is retired by Carlin’s explicit direction. Its routes, Library invitation, authored guides, print styles and companion-specific checks are removed. The historical verification record above describes the earlier rollout, not the current UI. Do not expand those guides. Parent support instead means a parent account type with sign-in, verified child-account linking, and authorized views of the child’s progress and submitted assessments. The current PR removes the unwanted guides and updates PRD §11.9 / CHR-100; the account-linking feature itself remains planned and is not represented by a placeholder parent page.

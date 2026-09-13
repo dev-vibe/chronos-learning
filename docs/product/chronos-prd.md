@@ -78,7 +78,7 @@ The design challenge is not how to display the entire graph. It is how to reveal
 | Explorer learner (11–15) | Understand the story of history and pursue interesting subjects without getting lost. | Clear next action, vivid lessons, meaningful discoveries, limited choice at each moment. |
 | Independent learner (13+) | Follow deeper themes and compare developments across societies. | More optional depth, sources, cross-links, and synthesis. |
 | Adult/general learner | Build or repair historical context without a childish interface. | Shared structure with denser language, historiography, and source depth. |
-| Parent/educator | Understand lesson purpose and support historical discussion. | Public lesson companions and print; private studied-content/explanation access only with verified identity, relationship, consent and authorization. |
+| Parent account | Sign in, link a child’s account, and follow their learning. | View linked children’s journey/lesson progress and submitted assessment responses through authorized, revocable account relationships. |
 | Curriculum editor | Create reusable lessons and authored paths without duplicating content. | Structured node model, journey-entry framing, prerequisites, editorial workflow. |
 | Historical reviewer | Verify claims and visual details. | Source provenance, uncertainty annotations, visual briefs, review statuses. |
 
@@ -472,11 +472,13 @@ Cards should evoke the emotional appeal of premium collectible illustration with
 - Learner revises or explains a conclusion before completion.
 - An Enigma or Witness card may be revealed upon completion.
 
-## 11.9 Parent and educator companions
+## 11.9 Parent accounts and linked learners
 
-Provide a modest separate public experience with lesson purpose, discussion guidance, likely misconceptions, examples of sound explanations and printable material. It follows canonical Chronos historical content; adults may guide discussion without customizing canonical claims or importing institutional controls into the learner shell.
+Parents have their own account type and sign-in. A parent can link a child’s account through a verified relationship and select a linked child to view journey and lesson progress, completion history, and their submitted assessment responses. Show the question with the child’s response and submission context; completion records study and sincere attempts, not demonstrated mastery.
 
-Private studied-content and learner-explanation views require existing identity, verified adult-child account relationship, consent and authorization. If those relationships are missing, provide public companions and document the dependency; an adult route, role label or shared device never grants access to child data. Future curriculum mappings must identify framework/version and canonical content version, remain editorially reviewed, and make no unsupported coverage claims.
+Linking, access and unlinking must be authorized and revocable. A parent role, shared device, known email address or learner ID does not grant access to another account. Read access is restricted to linked children and enforced at the trusted data boundary. Parents do not submit or edit assessments on the child’s behalf through this view. Unsubmitted drafts remain private to the learner.
+
+This is an account and progress feature, not a public parent teaching guide. Do not create lesson-purpose companions, discussion scripts, model-answer handouts or a substitute informational parent page while linking is unavailable. The linked-parent feature remains planned until its identity, relationship and authorization implementation is complete. Future institutional roles must be separately scoped and preserve canonical editorial control.
 
 # 12. Data model
 
@@ -701,7 +703,7 @@ Useful source types (judge evidence and claim fit rather than affiliation):
 | FR-013 | Card detail shows depiction type, sources, and connections. | Must |
 | FR-014 | Investigation lessons can distinguish evidence and interpretation. | Should |
 | FR-015 | Learner can change audience depth without losing progress. | Should |
-| FR-016 | Parent/educator can use public lesson companions and print; private progress/explanation access requires verified account relationships, consent and authorization. | Must for companions; gated for private data |
+| FR-016 | Parents can sign in, link a child’s account, and view that child’s progress and submitted assessments through verified, revocable access. | Should; requires account-linking implementation |
 | FR-017 | Collection can show curated set completion. | Should |
 | FR-018 | Optional Atlas can arrange learned knowledge on maps/timelines. | Later |
 | FR-019 | Learner can search across journeys, lessons, cards, and entities. | Should |
@@ -763,7 +765,7 @@ Useful source types (judge evidence and claim fit rather than affiliation):
 ## 18.2 Phase 1 - foundational MVP
 
 - Home Continue experience with chapter context and optional authored retrieval.
-- Public parent/educator companions with lesson purpose, discussion, misconceptions, sound explanation examples and print, separate from learner controls.
+- Keep parent account and progress controls separate from learner controls; no public teaching companions.
 - Learn shell and journey switcher.
 - World Spine journey.
 - One complete Story Arc and one complete Idea Trail.
@@ -779,7 +781,7 @@ Useful source types (judge evidence and claim fit rather than affiliation):
 - Context-specific shared-lesson bridges.
 - Card sets and synthesis unlocks.
 - Audience-level content variants.
-- Private parent/educator progress views only after verified account relationships, consent and authorization; public companions are part of the foundation.
+- Parent account type, verified child-account linking, progress and submitted-assessment views, and revocation, with server-enforced authorization.
 - Expanded search and recommendation logic.
 - Evidence galleries and richer source interactions.
 
@@ -863,7 +865,7 @@ Useful source types (judge evidence and claim fit rather than affiliation):
 - Whether desktop global navigation uses a narrow icon rail or labeled sidebar.
 - Whether undiscovered cards appear as silhouettes, partial clues, or remain hidden.
 - How many World Spine lessons are appropriate for the first complete curriculum.
-- Which verified account relationships and consent lifecycle will support future private adult progress access; public lesson companions do not require that relationship or expose private data.
+- The verification and revocation flow for parent-child account linking, including how access is communicated to the learner.
 - Whether physical/printable card support is strategically valuable after digital validation.
 
 

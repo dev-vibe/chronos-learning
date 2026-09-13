@@ -1,0 +1,25 @@
+// A relationship diagram, not a plan or reconstruction of a particular drain.
+// Source: https://www.harappa.com/blog/mohenjo-daro-street-drains
+import { mkdir, writeFile } from 'node:fs/promises';
+import sharp from 'sharp';
+
+const svg = `<svg xmlns="http://www.w3.org/2000/svg" width="900" height="1080" viewBox="0 0 900 1080">
+<rect width="900" height="1080" fill="#f8f0e2"/>
+<defs><marker id="arrow" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="4" markerHeight="4" orient="auto-start-reverse"><path d="M0 0L10 5L0 10Z" fill="#26636b"/></marker></defs>
+<g fill="#fffaf1" stroke="#b48c57" stroke-width="3">
+<rect x="95" y="70" width="710" height="200" rx="24"/>
+<rect x="95" y="430" width="710" height="200" rx="24"/>
+<rect x="95" y="790" width="710" height="200" rx="24"/>
+</g>
+<g stroke="#26636b" stroke-width="12" marker-end="url(#arrow)"><path d="M450 290V402"/><path d="M450 650V762"/></g>
+<g font-family="Arial, sans-serif" font-size="48" fill="#183d49" text-anchor="middle">
+<text x="450" y="188">Household bathing area</text>
+<text x="450" y="548">Household drain</text>
+<text x="450" y="908">Street drain</text>
+</g>
+<g font-family="Arial, sans-serif" font-size="32" fill="#26636b"><text x="506" y="355">water flows</text><text x="506" y="715">water flows</text></g>
+</svg>`;
+await mkdir('docs/research/indus-media', { recursive: true });
+await writeFile('docs/research/indus-media/drainage-master.svg', svg);
+await sharp(Buffer.from(svg)).png().toFile('docs/research/indus-media/drainage-master.png');
+console.log('Rendered documented drainage relationships; no surveyed geometry or unsupported outfall.');

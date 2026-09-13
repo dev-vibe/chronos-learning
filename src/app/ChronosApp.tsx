@@ -24,7 +24,7 @@ import './app.css';
 
 type Navigate = (destination: string) => void;
 type DiscoveryAppProps = {
-  route: Exclude<ChronosRoute, { name: 'learn' | 'legacy' | 'audit' | 'educators' }>;
+  route: Exclude<ChronosRoute, { name: 'learn' | 'legacy' | 'audit' }>;
   content?: ChronosContentBundle;
   journeyGatewayFactory?: () => Promise<JourneyStateGateway>;
   progressGatewayFactory?: () => Promise<LearnProgressGateway>;
@@ -91,7 +91,6 @@ function LibraryPage({ content, state, summaries, onOpenWorldHistory }: { conten
     })}</div></section>
     {categories.filter((category) => catalog.groups[category].length > 0).map((category) => <section key={category} className="dashboard-section library-category"><h2>{categoryCopy[category].title}</h2><p>{categoryCopy[category].description}</p><div className="journey-grid">{catalog.groups[category].map((item) => <JourneyCard key={item.id} item={item} state={state.journeys[item.id]} progress={deriveJourneyProgress(content.journeys.find((journey) => journey.id === item.id)!, content.lessons, summaries)} />)}</div></section>)}
     <details className="library-plans"><summary>More paths and the World History plan</summary><p>More authored journeys are being prepared. These categories do not yet have an available journey:</p><ul>{categories.filter((category) => !catalog.groups[category].length).map((category) => <li key={category}><strong>{categoryCopy[category].title}</strong> — {categoryCopy[category].description}</li>)}</ul><a href="/library/journey.world-history">View the full World History plan</a></details>
-    <aside className="companion-invitation"><h2>Learning together</h2><p>Lesson purpose, discussion ideas, and printable companions for parents and educators.</p><a href="/educators">Open lesson companions <ChevronRight /></a></aside>
   </main>;
 }
 

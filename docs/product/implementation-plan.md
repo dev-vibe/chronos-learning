@@ -217,9 +217,9 @@ The [PRD](chronos-prd.md) defines the current 11–15/homeschool audience and ro
 
 - Extend the shared Learn shell with compact reviewed time/place orientation, inspectable evidence/comparisons, deliberate answer comparison, preserved drafts, warm next-action copy and responsive text size. Reopening still starts at the top; completion remains sincere attempts, not mastery.
 - Keep Continue dominant with chapter context and optional authored retrieval. Improve completion/card connections and available-subject Library discovery without exposing the graph or unfinished journeys.
-- Add separate public parent/educator companions and print now. Private progress/explanation access depends on verified identities, relationships, consent and authorization; do not infer access from a parent label or shared device. Curriculum mappings remain versioned and under canonical editorial control.
+- Parent support means a separate account type, sign-in, verified child-account linking, and authorized progress/submitted-assessment views. Track this under CHR-100; do not substitute public lesson companions.
 - Implement the [canonical production path](../content/lesson-creation-runbook.md), proportional research, cumulative blueprints, suitable media methods and early sampled [learner observation](../content/lesson-production/learner-observation.md). Preserve the active owner research checkpoint and lean publication playbook. Real sessions remain pending human participation.
-- Use additive optional authored fields where possible; progress/completion/account relationship changes need explicit domain review and committed migrations. Do not add a migration merely to store public companion text. Validate compatibility, existing progress and access boundaries proportionally.
+- Use additive optional authored fields where possible; progress/completion/account relationship changes need explicit domain review and committed migrations. Validate compatibility, existing progress and access boundaries proportionally.
 
 # Phase 1 - Core Platform and Data Model
 
@@ -1846,15 +1846,17 @@ CHR-100 \| Add parent and educator progress views
 
 **Outcome:** Summarize coherent learning without reducing the product to time-on-task or points.
 
-**Implementation notes:** Public lesson companions and print ship in the foundation; private studied-content and explanation views remain dependent on verified adult-child relationships, consent and authorization. Completion records study, not demonstrated mastery. Version future curriculum references without altering canonical historical content or adding institutional controls to the learner shell.
+**Implementation notes:** Implement a parent account type with sign-in, verified and revocable child-account linking, a linked-child selector, journey/lesson progress, and submitted assessment responses with their questions and submission context. Enforce access at the trusted data boundary. Parents cannot edit a child’s submissions; unsubmitted drafts remain private. Completion records study, not demonstrated mastery. Do not build public parent teaching guides.
 
 **Acceptance criteria**
 
-- Private learner explanations and progress are inaccessible without verified relationship, consent and authorization; public companion routes do not read child data.
+- A signed-in parent can link and unlink a child through the verified flow and read only that linked child’s progress and submitted assessments.
+
+- Unlinked, revoked and unrelated accounts cannot access learner records; test cross-account isolation.
 
 - Progress definitions are transparent.
 
-- Educator recommendations link to authored content.
+- The parent view shows the original assessment question and submitted response without claiming automated mastery or allowing parent edits.
 
 # Launch dependency chain
 

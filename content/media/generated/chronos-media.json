@@ -1547,6 +1547,299 @@
       }
     },
     {
+      "id": "media.indus.cities-locator-map",
+      "locator": {
+        "provider": "object-storage",
+        "bucket": "media-public",
+        "fallback": {
+          "path": "/images/optimized/indus/cities-locator-map.optimized.webp",
+          "width": 1600,
+          "height": 1365
+        },
+        "variants": [
+          {
+            "objectKey": "indus/media.indus.cities-locator-map/6d4f6ba3a13ddce6/optimized/ql-v1/480w-webp-lossless-58c275dbefe53dac.webp",
+            "mimeType": "image/webp",
+            "bytes": 16128,
+            "sha256": "58c275dbefe53dac3d1793aa7f92dad6d1b521e6ce37ccc0bc6609f7f5ed6dba",
+            "width": 480,
+            "height": 410,
+            "compression": {
+              "profile": "ql-v1",
+              "codec": "webp",
+              "encoder": "webp-lossless"
+            },
+            "fidelity": {
+              "mode": "pixel-exact",
+              "psnrDb": null,
+              "meanAbsoluteError": 0,
+              "maximumChannelDelta": 0
+            }
+          },
+          {
+            "objectKey": "indus/media.indus.cities-locator-map/6d4f6ba3a13ddce6/optimized/ql-v1/1600w-webp-lossless-cbe25db445391a3e.webp",
+            "mimeType": "image/webp",
+            "bytes": 28122,
+            "sha256": "cbe25db445391a3efdae1b51442973bde2647dde4cbcb258895cc4b589b6c414",
+            "width": 1600,
+            "height": 1365,
+            "compression": {
+              "profile": "ql-v1",
+              "codec": "webp",
+              "encoder": "webp-lossless"
+            },
+            "fidelity": {
+              "mode": "pixel-exact",
+              "psnrDb": null,
+              "meanAbsoluteError": 0,
+              "maximumChannelDelta": 0
+            }
+          }
+        ]
+      }
+    },
+    {
+      "id": "media.indus.reservoir",
+      "locator": {
+        "provider": "object-storage",
+        "bucket": "media-public",
+        "fallback": {
+          "path": "/images/optimized/indus/reservoir.optimized.jpg",
+          "width": 960,
+          "height": 638
+        },
+        "variants": [
+          {
+            "objectKey": "indus/media.indus.reservoir/53f452638d967e34/optimized/ql-v1/480w-webp-lossless-c383194a0543984a.webp",
+            "mimeType": "image/webp",
+            "bytes": 210186,
+            "sha256": "c383194a0543984aef769235f0ccefbbe4da66a44c4676538e86609388dbbf95",
+            "width": 480,
+            "height": 319,
+            "compression": {
+              "profile": "ql-v1",
+              "codec": "webp",
+              "encoder": "webp-lossless"
+            },
+            "fidelity": {
+              "mode": "pixel-exact",
+              "psnrDb": null,
+              "meanAbsoluteError": 0,
+              "maximumChannelDelta": 0
+            }
+          },
+          {
+            "objectKey": "indus/media.indus.reservoir/53f452638d967e34/optimized/ql-v1/960w-source-jpeg-53f452638d967e34.jpg",
+            "mimeType": "image/jpeg",
+            "bytes": 441755,
+            "sha256": "53f452638d967e34510e179fe0f589c47ed3c7e28f3f754bb174dd46b8b8a9c3",
+            "width": 960,
+            "height": 638,
+            "compression": {
+              "profile": "ql-v1",
+              "codec": "jpeg",
+              "encoder": "source-passthrough"
+            },
+            "fidelity": {
+              "mode": "pixel-exact",
+              "psnrDb": null,
+              "meanAbsoluteError": 0,
+              "maximumChannelDelta": 0
+            }
+          }
+        ]
+      }
+    },
+    {
+      "id": "media.indus.reservoir-reconstruction",
+      "locator": {
+        "provider": "object-storage",
+        "bucket": "media-public",
+        "fallback": {
+          "path": "/images/optimized/indus/reservoir-reconstruction.optimized.jpg",
+          "width": 960,
+          "height": 640
+        },
+        "variants": [
+          {
+            "objectKey": "indus/media.indus.reservoir-reconstruction/3aa5f6b34f19c849/optimized/ql-v1/480w-webp-lossless-b6e8bbd70e539abf.webp",
+            "mimeType": "image/webp",
+            "bytes": 227166,
+            "sha256": "b6e8bbd70e539abffe1a05fda5cb4ac45e4c1bc26afe55a80578f0365c531722",
+            "width": 480,
+            "height": 320,
+            "compression": {
+              "profile": "ql-v1",
+              "codec": "webp",
+              "encoder": "webp-lossless"
+            },
+            "fidelity": {
+              "mode": "pixel-exact",
+              "psnrDb": null,
+              "meanAbsoluteError": 0,
+              "maximumChannelDelta": 0
+            }
+          },
+          {
+            "objectKey": "indus/media.indus.reservoir-reconstruction/3aa5f6b34f19c849/optimized/ql-v1/960w-source-jpeg-3aa5f6b34f19c849.jpg",
+            "mimeType": "image/jpeg",
+            "bytes": 507318,
+            "sha256": "3aa5f6b34f19c84976c27cbfba979c846b1852f727d7695974e04c70794ef8a3",
+            "width": 960,
+            "height": 640,
+            "compression": {
+              "profile": "ql-v1",
+              "codec": "jpeg",
+              "encoder": "source-passthrough"
+            },
+            "fidelity": {
+              "mode": "pixel-exact",
+              "psnrDb": null,
+              "meanAbsoluteError": 0,
+              "maximumChannelDelta": 0
+            }
+          }
+        ]
+      }
+    },
+    {
+      "id": "media.indus.seal",
+      "locator": {
+        "provider": "object-storage",
+        "bucket": "media-public",
+        "fallback": {
+          "path": "/images/optimized/indus/seal.optimized.jpg",
+          "width": 389,
+          "height": 347
+        },
+        "variants": [
+          {
+            "objectKey": "indus/media.indus.seal/c23e2fc00e818178/optimized/ql-v1/389w-source-jpeg-c23e2fc00e818178.jpg",
+            "mimeType": "image/jpeg",
+            "bytes": 47385,
+            "sha256": "c23e2fc00e8181788ca702f9b726fdf077759ffe97f15aa1be01f7a96a5730e7",
+            "width": 389,
+            "height": 347,
+            "compression": {
+              "profile": "ql-v1",
+              "codec": "jpeg",
+              "encoder": "source-passthrough"
+            },
+            "fidelity": {
+              "mode": "pixel-exact",
+              "psnrDb": null,
+              "meanAbsoluteError": 0,
+              "maximumChannelDelta": 0
+            }
+          }
+        ]
+      }
+    },
+    {
+      "id": "media.indus.street-reconstruction",
+      "locator": {
+        "provider": "object-storage",
+        "bucket": "media-public",
+        "fallback": {
+          "path": "/images/optimized/indus/street-reconstruction.optimized.jpg",
+          "width": 960,
+          "height": 640
+        },
+        "variants": [
+          {
+            "objectKey": "indus/media.indus.street-reconstruction/0a4f953dd63417b6/optimized/ql-v1/480w-webp-lossless-dbd20eb6f9dce40b.webp",
+            "mimeType": "image/webp",
+            "bytes": 248750,
+            "sha256": "dbd20eb6f9dce40bc622e5a52bb0c0e8c550f15ef2f91f416003a2e357bb3b5a",
+            "width": 480,
+            "height": 320,
+            "compression": {
+              "profile": "ql-v1",
+              "codec": "webp",
+              "encoder": "webp-lossless"
+            },
+            "fidelity": {
+              "mode": "pixel-exact",
+              "psnrDb": null,
+              "meanAbsoluteError": 0,
+              "maximumChannelDelta": 0
+            }
+          },
+          {
+            "objectKey": "indus/media.indus.street-reconstruction/0a4f953dd63417b6/optimized/ql-v1/960w-source-jpeg-0a4f953dd63417b6.jpg",
+            "mimeType": "image/jpeg",
+            "bytes": 523289,
+            "sha256": "0a4f953dd63417b6e8ddc53f6bedb170f7ebd1c72c5a5600a5aaaae0bdb673ed",
+            "width": 960,
+            "height": 640,
+            "compression": {
+              "profile": "ql-v1",
+              "codec": "jpeg",
+              "encoder": "source-passthrough"
+            },
+            "fidelity": {
+              "mode": "pixel-exact",
+              "psnrDb": null,
+              "meanAbsoluteError": 0,
+              "maximumChannelDelta": 0
+            }
+          }
+        ]
+      }
+    },
+    {
+      "id": "media.indus.weights",
+      "locator": {
+        "provider": "object-storage",
+        "bucket": "media-public",
+        "fallback": {
+          "path": "/images/optimized/indus/weights.optimized.jpg",
+          "width": 960,
+          "height": 441
+        },
+        "variants": [
+          {
+            "objectKey": "indus/media.indus.weights/40211cf1c04af94c/optimized/ql-v1/480w-webp-lossless-b5f6fd50185b09df.webp",
+            "mimeType": "image/webp",
+            "bytes": 121968,
+            "sha256": "b5f6fd50185b09df15ad937d74f1986b8e9f209abb6762a64ae159021b52bca1",
+            "width": 480,
+            "height": 221,
+            "compression": {
+              "profile": "ql-v1",
+              "codec": "webp",
+              "encoder": "webp-lossless"
+            },
+            "fidelity": {
+              "mode": "pixel-exact",
+              "psnrDb": null,
+              "meanAbsoluteError": 0,
+              "maximumChannelDelta": 0
+            }
+          },
+          {
+            "objectKey": "indus/media.indus.weights/40211cf1c04af94c/optimized/ql-v1/960w-source-jpeg-40211cf1c04af94c.jpg",
+            "mimeType": "image/jpeg",
+            "bytes": 193190,
+            "sha256": "40211cf1c04af94c5d32853a7ddc9fb399da3612950d35db3475440bca35a4da",
+            "width": 960,
+            "height": 441,
+            "compression": {
+              "profile": "ql-v1",
+              "codec": "jpeg",
+              "encoder": "source-passthrough"
+            },
+            "fidelity": {
+              "mode": "pixel-exact",
+              "psnrDb": null,
+              "meanAbsoluteError": 0,
+              "maximumChannelDelta": 0
+            }
+          }
+        ]
+      }
+    },
+    {
       "id": "media.pyramids.giza-evidence-chain",
       "locator": {
         "provider": "object-storage",
