@@ -35,9 +35,9 @@ export const indusVisualModules: Record<string, LessonModule> = {
 export const indusSealCard: KnowledgeCard = {
   id: 'card.indus.stamp-seal', title: 'Indus Stamp Seal', category: 'artifact', cardClass: 'witness',
   date: { startYear: -2600, endYear: -1900, display: 'c. 2600–1900 BCE', approximate: true }, place: 'Indus region',
-  significance: 'A small object preserves organized communication even when its signs cannot be securely read.',
-  revealTitle: 'A witness in stone', revealBody: 'You connected city life to the things people built, measured and marked. This seal preserves a design whose message still needs evidence.',
+  significance: 'A buffalo in miniature, carved into a stone stamp small enough to hold in your palm.',
+  revealTitle: 'Carved to leave a mark', revealBody: 'Press a seal into soft clay, lift it away, and a raised copy of the design remains. Around four thousand years ago, someone chose this animal and these tiny signs to make a mark they could stamp again and again.',
   depictionLabel: 'Museum image of the seal design · Met 49.40.2',
-  facts: ['The seal is made from steatite, a soft stone, which was heated after carving.', 'It is about 3.8 centimetres across.', 'Its design includes an animal and a short row of signs without a securely established reading.'],
-  lessonIds: ['lesson.indus.cities-and-signs'], sourceIds: ['source.indus.met-seal', 'source.indus.rao-response'], mediaId: 'media.indus.seal', unlockLessonId: 'lesson.indus.cities-and-signs', recallPrompt: 'What can the seal show you before anyone translates its signs?',
+  facts: ['The seal is made from steatite, a soft stone, which was heated after carving.', 'It is about 3.8 centimetres across.', 'The buffalo’s sweeping horns sit just below a row of tiny signs.'],
+  lessonIds: ['lesson.indus.cities-and-signs'], sourceIds: ['source.indus.met-seal', 'source.indus.rao-response'], mediaId: 'media.indus.seal', unlockLessonId: 'lesson.indus.cities-and-signs', recallPrompt: 'How could someone use this carved stone to repeat the same design?',
 };
