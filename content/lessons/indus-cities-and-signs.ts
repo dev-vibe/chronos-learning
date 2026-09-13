@@ -108,7 +108,7 @@ const sections: Lesson['sections'] = [
 ];
 
 export const indusLesson: Lesson = {
-  id: 'lesson.indus.cities-and-signs', legacyAliases: ['indus_cities', 'indus_script'], status: 'draft',
+  id: 'lesson.indus.cities-and-signs', legacyAliases: ['indus_cities', 'indus_script'], status: 'published',
   title: 'Indus Cities and Undeciphered Signs', masthead: 'c. 2600–1900 BCE', place: 'Indus region · present-day Pakistan and India',
   chronology: { startYear: -2600, endYear: -1900, display: 'c. 2600–1900 BCE', approximate: true },
   significance: 'Water systems, shared weights and seals reveal how Indus communities organized city life—even though their inscriptions remain unread.',

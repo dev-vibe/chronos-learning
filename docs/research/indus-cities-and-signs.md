@@ -572,3 +572,10 @@ Historical checkpoint validation: prototype gate and content validation passed. 
 ## Final sign-off
 
 Research-direction response and actual learner-prototype approval recorded September 11. The approved claim wording is marked reviewed. Clear-rights media provenance and source-to-runtime fidelity accepted September 12; changed rendered media/card and final release checks are in progress. Publication is not authorized yet. No hosted data or publication state has changed.
+
+
+## Publication authorization — September 13, 2026
+
+Carlin approved the revised lesson and explicitly authorized publication with “please finish. i approve”, following the direct preview and publication question. The previous pending-review statements are historical checkpoints. Proceeding through the publication playbook; no repeated editorial review is required.
+
+Publication cutover: authored status is published and the active prototype review is unregistered. Content validation and all 61 targeted domain/content/lesson tests pass. The obsolete pyramids test assertion that Indus must remain unpublished was removed. The generated migration and rollback database test cover both required prompts, explicit completion, idempotency, and the single seal card. The inactive Chronos development project is being resumed for the authorized media/database cutover.

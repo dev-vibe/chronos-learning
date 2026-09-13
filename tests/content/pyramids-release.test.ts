@@ -46,13 +46,12 @@ describe('Pyramids, Builders, and Evidence publication', () => {
     }
   });
 
-  it('follows Caral while keeping the unfinished Indus lesson unpublished', () => {
+  it('follows Caral in the required chronological journey', () => {
     const journey = chronosContent.journeys.find((item) => item.id === 'journey.world-history')!;
     const entries = journey.chapters.slice().sort((a, b) => a.position - b.position)
       .flatMap((chapter) => chapter.entries.slice().sort((a, b) => a.position - b.position));
     const position = entries.findIndex((entry) => entry.lessonId === id);
     expect(entries[position - 1].lessonId).toBe('lesson.caral.andean-urbanism');
     expect(entries[position].required).toBe(true);
-    expect(chronosContent.lessons.find((lesson) => lesson.id === 'lesson.indus.cities-and-signs')?.status).not.toBe('published');
   });
 });
