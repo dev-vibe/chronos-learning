@@ -1,0 +1,31 @@
+{
+  "generatedAt": "2026-09-12",
+  "renderer": "Node v25.3.0; Sharp 0.35.3",
+  "dimensions": {
+    "width": 1600,
+    "height": 1365
+  },
+  "method": "Deterministic SVG from clipped geographic data; PNG raster export",
+  "artifacts": [
+    {
+      "path": "docs/research/indus-map-assets/indus-map-data.json",
+      "bytes": 9990,
+      "sha256": "6d22e2d84d0d346e5e3065332dfc51d663a882991d3ff71c53a831492d789e51"
+    },
+    {
+      "path": "docs/research/indus-map-assets/indus-map-master.svg",
+      "bytes": 4054,
+      "sha256": "8e2112b1d34f1f93a14a26b8bb3559a6005f13b71df09d5d6254a9d052d9dc4e"
+    },
+    {
+      "path": "docs/research/indus-map-assets/indus-map-master.png",
+      "bytes": 99911,
+      "sha256": "6d4f6ba3a13ddce6fc791c4b2377355d7f5c2fa19e0c6dbcfe9a25e4cc0443ca"
+    },
+    {
+      "path": "public/images/maps/indus-cities-locator.png",
+      "bytes": 99911,
+      "sha256": "6d4f6ba3a13ddce6fc791c4b2377355d7f5c2fa19e0c6dbcfe9a25e4cc0443ca"
+    }
+  ]
+}

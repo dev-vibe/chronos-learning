@@ -50,4 +50,16 @@ describe('prototype media intentions', () => {
     />);
     expect(screen.queryByRole('complementary')).toBeNull();
   });
+
+  it('keeps a finished visual review free of planning annotations while owner approval is pending', () => {
+    render(<PrototypeMediaIntentions
+      lesson={{ status: 'draft' }}
+      review={{ ...review, mediaIntentions: [
+        { ...review.mediaIntentions[0], status: 'ready', mediaId: 'media.fixture.evidence' },
+        { ...review.mediaIntentions[0], kind: 'reconstruction', status: 'not-needed' },
+      ] }}
+      sectionId="section.fixture.evidence"
+    />);
+    expect(screen.queryByRole('complementary')).toBeNull();
+  });
 });

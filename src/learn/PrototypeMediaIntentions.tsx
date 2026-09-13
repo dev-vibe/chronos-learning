@@ -20,7 +20,7 @@ export function PrototypeMediaIntentions({
   sectionId: string;
 }) {
   if (lesson.status !== 'draft' || !unlockPreviewLessonsEnabled() || !review || review.productReview.state === 'approved') return null;
-  const intentions = review.mediaIntentions.filter((intention) => intention.sectionId === sectionId);
+  const intentions = review.mediaIntentions.filter((intention) => intention.sectionId === sectionId && intention.status === 'planned');
   if (intentions.length === 0) return null;
 
   return <aside className="prototype-media-intentions" aria-label="Prototype media intentions" data-prototype-annotation-for={sectionId}>

@@ -303,6 +303,76 @@
       ]
     },
     {
+      "id": "media.indus.cities-locator-map",
+      "collection": "indus",
+      "sourcePath": "public/images/maps/indus-cities-locator.png",
+      "fallbackPath": "/images/optimized/indus/cities-locator-map.optimized.webp",
+      "preset": "picture",
+      "widths": [
+        480,
+        960,
+        1600
+      ]
+    },
+    {
+      "id": "media.indus.reservoir",
+      "collection": "indus",
+      "sourcePath": "public/images/indus/reservoir.jpg",
+      "fallbackPath": "/images/optimized/indus/reservoir.optimized.jpg",
+      "preset": "photo",
+      "widths": [
+        480,
+        960,
+        1600
+      ]
+    },
+    {
+      "id": "media.indus.reservoir-reconstruction",
+      "collection": "indus",
+      "sourcePath": "public/images/indus/reservoir-reconstruction.jpg",
+      "fallbackPath": "/images/optimized/indus/reservoir-reconstruction.optimized.jpg",
+      "preset": "photo",
+      "widths": [
+        480,
+        960
+      ]
+    },
+    {
+      "id": "media.indus.seal",
+      "collection": "indus",
+      "sourcePath": "public/images/indus/seal.jpg",
+      "fallbackPath": "/images/optimized/indus/seal.optimized.jpg",
+      "preset": "photo",
+      "widths": [
+        480,
+        960,
+        1600
+      ]
+    },
+    {
+      "id": "media.indus.street-reconstruction",
+      "collection": "indus",
+      "sourcePath": "public/images/indus/street-reconstruction.jpg",
+      "fallbackPath": "/images/optimized/indus/street-reconstruction.optimized.jpg",
+      "preset": "photo",
+      "widths": [
+        480,
+        960
+      ]
+    },
+    {
+      "id": "media.indus.weights",
+      "collection": "indus",
+      "sourcePath": "public/images/indus/weights.jpg",
+      "fallbackPath": "/images/optimized/indus/weights.optimized.jpg",
+      "preset": "photo",
+      "widths": [
+        480,
+        960,
+        1600
+      ]
+    },
+    {
       "id": "media.pyramids.giza-evidence-chain",
       "collection": "pyramids",
       "sourcePath": "public/images/evidence/pyramids-giza-evidence-chain.jpg",

@@ -6,7 +6,7 @@ Draft PR: [#41](https://github.com/dev-vibe/chronos-learning/pull/41)
 
 Lesson ID: `lesson.indus.cities-and-signs`
 
-Research-note identity/version: `indus-cities-and-signs-v2`, learner prototype, 2026-09-11
+Research-note identity/version: `indus-cities-and-signs-v3`, visual revision, 2026-09-12
 
 Production record version: 2
 
@@ -16,7 +16,7 @@ Journey/chapter/position: `journey.world-history` / `chapter.world-history.citie
 
 Required or optional: required World Spine lesson
 
-Queue status: `Researching` — prototype built; independent review still pending before the formal owner-approval handoff.
+Queue status: `Implementing` — owner approved the linked prototype; final media and release verification in progress.
 
 Accountable product/editorial reviewer: Carlin Aylsworth
 
@@ -281,29 +281,261 @@ Required sincere-attempt evidence: A supported selection about shared measures a
 | 6 | section.indus.changing-settlements | Changes after 1900 BCE | urban-transformation | Prose; no new visual required | Explain what the evidence supports. |
 | 7 | section.indus.understanding | Explain the evidence | Shared measures and water coordination | Two canonical prompts | Explicit completion; next published content only. |
 
-Seven required sections. No navigation section, duplicate headline or invented historical scene. Orientation dates use the shared app component; the locator is planned until approved media exists. The final required action remains separate from optional recall.
+Seven required sections. No navigation section, duplicate headline or invented historical scene. Orientation dates use the shared app component; the reviewed locator appears once in opening orientation. The final required action remains separate from optional recall.
 
 ## Media decisions
 
-| Intention | Placement | Teaching job | Method and rights | Prototype / final review |
+| Intention | Placement | Teaching job | Final method and rights | Status |
 | --- | --- | --- | --- | --- |
-| Required locator | Opening / cities-and-landscapes | Locate three city examples and varied setting | Reviewed geographic source and deterministic map; follow specialist runbook after approval. No border implying one state; no speculative river route. | Development annotation and native place text / pending |
-| Required drain and reservoir evidence | water-systems | Inspect a house-to-street connection and seasonal storage | Source-specific original photographs, licensed for intended distribution. Separate captions; do not imply same city or same scale. | Native descriptions and annotation / pending rights and final review |
-| Recommended core weights | weights-and-work | Inspect manufactured objects behind measured standards | Licensed original with identified excavation/context. Photograph alone does not measure mass; retain measurement source. | Native explanation and annotation / pending |
-| Required seal 49.40.2 | seals-and-signs | Distinguish visible image/signs from uncertain reading | Met public-domain original, direct use, preserve engraving; no generative restyling. Actual collection object not attributed to Harappa. | Native object description and annotation / pending acquisition and fidelity review |
-| Hero, video, extra diagram | None | No additional teaching job at this scope | Not needed; reserve space for locator and evidence | Explicit no-media decision |
+| Required locator | Opening orientation | Locate three city examples | Deterministic Natural Earth locator; checked site coordinates, modern coastline, no state boundary or invented routes | Ready; reference/final comparison passed |
+| Neighborhood reconstruction | Masthead and compact guide in water-systems | Follow bathing water from home to street and see maintenance | Generated composite of documented connections; native diagram retained only as a logical reference | Ready; revised owner look pending |
+| Reservoir comparison | water-systems | Picture seasonal storage and compare it with surviving form | AI-assisted adaptation beside Bhajish Bharathan’s original photograph; both CC BY-SA 4.0 | Ready; hypothetical water level and people labeled |
+| Core weights | weights-and-work | Inspect manufactured objects behind measured standards | Zunkir, Mohenjo-daro weights in Ashmolean, CC BY-SA 4.0; no mass inferred from size | Ready; modern arrangement labeled |
+| Required seal 49.40.2 | seals-and-signs and Witness card | Distinguish visible design from an uncertain reading | Met public-domain catalog image; presentation labeled as design, not asserted to be the stone surface | Ready; orientation and all visible signs retained |
+| Video and additional reconstructions | None | No additional teaching job | Street image is reused in the compact visual guide | No extra assets |
 
 ## Image lifecycle
 
-No final image has been acquired, generated, registered or accepted in this checkpoint. The visible reference/data-to-final lifecycle blocks will be added under this heading for each final asset after prototype approval. Source images consulted for research are not approved runtime assets.
+September 12 visual revision: Carlin found the initial final-media pass too boring and requested continued work. The approved text remains intact. Two richer reconstructions now replace the plain flowchart as the dominant visual experience: a lived-in neighborhood opens the lesson and its compact guide traces drainage; Dholavira’s basin is shown with hypothetical stored water beside the actual photograph. These changed surfaces await the owner’s renewed visual review. The documentary weights, seal image and geographic locator remain inspectable. No publication is authorized.
+
+Product owner approved the linked prototype with **“lgtm”** after the prior handoff disclosed the independent-review service limit. Production proceeded without claiming that failed review occurred. The following are media-production/fidelity records, not a repeated pedagogy score or publication authorization. Source and accepted images were inspected side by side in a local rendered lifecycle comparison on September 12. The initial 1600px photo candidate exceeded the shared derivative budget; 960px full-frame runtime sources passed without changing the ql-v1 limits. Original archival files are unchanged.
+
+### media.indus.cities-locator-map
+
+#### 1. Reasoning and source basis
+
+Locate three reviewed city positions. Full geographic brief, cross-checks and the rejected UNESCO Harappa coordinate are in [the map record](indus-locator-map.md). Modern land polygons do not reconstruct ancient coastlines or waterways.
+
+Origin: [source record](https://www.naturalearthdata.com/downloads/50m-physical-vectors/50m-land/). Creator/rights: Chronos original using Natural Earth public-domain geography. Accessed September 12, 2026. Attribution and license remain in the authored source/media records.
+
+#### 2. Reference image or reviewed data actually used
+
+Operation: deterministic/native/vector rendering
+Reviewed data/code paths and versions: scripts/media/indus-map.mjs; preserved v5.1.2 data crop and versioned output lineage in docs/research/indus-map-assets/
+
+![Reference for cities-locator-map](../../docs/research/indus-map-assets/indus-map-data-reference.png)
+
+#### 3. Generation or transformation
+
+No image generation. Reproducible transformation:
+
+```text
+node scripts/media/indus-map.mjs
+```
+
+Original/reference SHA-256: 0db710812fb8b376917749333cd395048ab372a2de14a150eba060194b8c69c8. Runtime source SHA-256: 6d4f6ba3a13ddce6fc791c4b2377355d7f5c2fa19e0c6dbcfe9a25e4cc0443ca. The shared builder records derivative checksums and measured ql-v1 fidelity in media/manifests/chronos-release.json. Source masters remain unchanged.
+
+#### 4. Accepted final image
+
+![Accepted cities-locator-map](../../public/images/maps/indus-cities-locator.png)
+
+Fidelity verdict: Site coordinates, north-up order and coastline geometry agree between reference/data rendering and final. Four labels remain distinct and uncropped. Root author also inspected the final.
+
+Reviewer/date/status: Codex, September 12, 2026, media provenance and source-to-runtime review accepted under the automated clear-rights policy. Final rendered lesson inspection and the accountable owner’s go-live decision remain separate.
+
+### Retired native flow reference — formerly media.indus.drainage
+
+#### 1. Reasoning and source basis
+
+Make the documented household-to-street connection visible. Replaces the planned drain photograph: Flickr 86275191 is CC BY-NC-ND 2.0; Wellcome azfraw3x is in copyright; ANU 2517d17b-cb26-48a9-b22a-c514de4be687 permits research only. None was redistributed. The alternative preserves the teaching job and avoids inventing architecture. Final owner review includes this method change.
+
+Origin: [source record](https://www.harappa.com/blog/mohenjo-daro-street-drains). Creator/rights: Chronos original deterministic diagram from cited relationship facts. Accessed September 12, 2026. Attribution and license remain in the authored source/media records.
+
+#### 2. Reference image or reviewed data actually used
+
+Operation: deterministic/native/vector rendering
+Reviewed data/code paths and versions: scripts/media/indus-drainage.mjs; Node/Sharp rendering, SVG master preserved
+
+![Reference for drainage](../../docs/research/indus-media/drainage-master.svg)
+
+#### 3. Generation or transformation
+
+No image generation. Reproducible transformation:
+
+```text
+node scripts/media/indus-drainage.mjs
+```
+
+Original/reference SHA-256: 4ca6e46881545ee9a4d62343a40fee5afd7945278e824877434770c5b4410cce. Runtime source SHA-256: 8e26eb8b88e12e480653806a9312c2b3c9649d10a4168475efd4455a30c592ef. The shared builder records derivative checksums and measured ql-v1 fidelity in media/manifests/chronos-release.json. Source masters remain unchanged.
+
+#### 4. Accepted final image
+
+![Retained logical reference](indus-media/drainage-master.png)
+
+Fidelity verdict: Three named stages and two water-flow arrows preserve the source-described relationship. No measured geometry, trap position or final outfall is invented. Native caption carries maintenance and scale limits.
+
+Reviewer/date/status: Codex, September 12, 2026, media provenance and source-to-runtime review accepted under the automated clear-rights policy. Final rendered lesson inspection and the accountable owner’s go-live decision remain separate.
+
+### media.indus.reservoir
+
+#### 1. Reasoning and source basis
+
+Inspect a real Dholavira reservoir, separately from Mohenjo-daro. Commons photographer record identifies ASI monument N-GJ-202; UNESCO supports the storage context. Basins, stone boundaries, people and conserved ruins remain visible. Resizing/compression only; derivative remains CC BY-SA 4.0.
+
+Origin: [source record](https://commons.wikimedia.org/wiki/File:Water_reservoir_at_Dholavira_site.jpg). Creator/rights: Bhajish Bharathan, May 27, 2017; CC BY-SA 4.0, https://creativecommons.org/licenses/by-sa/4.0/. Accessed September 12, 2026. Attribution and license remain in the authored source/media records.
+
+#### 2. Reference image or reviewed data actually used
+
+![Reference for reservoir](../../docs/research/indus-media/reservoir-original.jpg)
+
+#### 3. Generation or transformation
+
+No image generation. Reproducible transformation:
+
+```text
+node scripts/media/indus-photos.mjs
+sharp(original).resize({width:960,withoutEnlargement:true}).jpeg({quality:97,chromaSubsampling:"4:4:4"})
+```
+
+Original/reference SHA-256: 47889c1650bac316a2dbd4979f53a1e0ff977dd512ae3718ece5d05f273bd469. Runtime source SHA-256: 53f452638d967e34510e179fe0f589c47ed3c7e28f3f754bb174dd46b8b8a9c3. The shared builder records derivative checksums and measured ql-v1 fidelity in media/manifests/chronos-release.json. Source masters remain unchanged.
+
+#### 4. Accepted final image
+
+![Accepted reservoir](../../public/images/indus/reservoir.jpg)
+
+Fidelity verdict: Full frame and aspect ratio retained. No invented ancient water level, restored plumbing, recoloring or removed modern context.
+
+Reviewer/date/status: Codex, September 12, 2026, media provenance and source-to-runtime review accepted under the automated clear-rights policy. Final rendered lesson inspection and the accountable owner’s go-live decision remain separate.
+
+### media.indus.weights
+
+#### 1. Reasoning and source basis
+
+Inspect three manufactured cubical objects behind the measured-weight argument. Photographer identifies Mohenjo-daro and the Ashmolean collection, linking museum object 354846. Museum endpoint did not yield usable catalog text, so specific accession/masses are not added. The photo is a modern arrangement, not an excavated assemblage; measured standards still cite Kenoyer. Replaces the initially considered Delhi photo because this view is clearer and its site identity is explicit.
+
+Origin: [source record](https://commons.wikimedia.org/wiki/File:Cubical_weights_Mohenjodaro_Ashmolean.jpg). Creator/rights: Zunkir, August 23, 2022; CC BY-SA 4.0, https://creativecommons.org/licenses/by-sa/4.0/. Accessed September 12, 2026. Attribution and license remain in the authored source/media records.
+
+#### 2. Reference image or reviewed data actually used
+
+![Reference for weights](../../docs/research/indus-media/ashmolean-weights-original.jpg)
+
+#### 3. Generation or transformation
+
+No image generation. Reproducible transformation:
+
+```text
+node scripts/media/indus-photos.mjs
+sharp(original).resize({width:960,withoutEnlargement:true}).jpeg({quality:97,chromaSubsampling:"4:4:4"})
+```
+
+Original/reference SHA-256: 638cc9242c7096e239c74ec8c91fb23ab829aeaf5c58737991e213353d5436c5. Runtime source SHA-256: 40211cf1c04af94c5d32853a7ddc9fb399da3612950d35db3475440bca35a4da. The shared builder records derivative checksums and measured ql-v1 fidelity in media/manifests/chronos-release.json. Source masters remain unchanged.
+
+#### 4. Accepted final image
+
+![Accepted weights](../../public/images/indus/weights.jpg)
+
+Fidelity verdict: All three objects, their surface marks and display supports retained. No inferred mass ratios or measured scale added; CC BY-SA 4.0 retained.
+
+Reviewer/date/status: Codex, September 12, 2026, media provenance and source-to-runtime review accepted under the automated clear-rights policy. Final rendered lesson inspection and the accountable owner’s go-live decision remain separate.
+
+### media.indus.seal
+
+#### 1. Reasoning and source basis
+
+Inspect the catalog image of the engraved design; reuse it on the Witness card. Met API object 324063 confirms public-domain status and primary image https://images.metmuseum.org/CRDImages/an/original/ss49_40_2.jpg . The available image is 389 × 347. The record does not resolve whether the reproduced view is the seal or an impression, so learner labels say museum image of the design; no claim about surface depth, carving direction or a Harappa findspot is made.
+
+Origin: [source record](https://www.metmuseum.org/art/collection/search/324063). Creator/rights: The Metropolitan Museum of Art; Dodge Fund, 1949; object 49.40.2; explicit Public Domain / Open Access. Accessed September 12, 2026. Attribution and license remain in the authored source/media records.
+
+#### 2. Reference image or reviewed data actually used
+
+![Reference for seal](../../docs/research/indus-media/seal-original.jpg)
+
+#### 3. Generation or transformation
+
+No image generation. Reproducible transformation:
+
+```text
+node scripts/media/indus-photos.mjs
+sharp(original).resize({width:960,withoutEnlargement:true}).jpeg({quality:97,chromaSubsampling:"4:4:4"})
+No upscaling, mirroring, generative enhancement, or retouching.
+```
+
+Original/reference SHA-256: 1de39684d15e245eaaa5e8407bf9cf488e16e3896751098c2d5a0383ad3bf2ff. Runtime source SHA-256: c23e2fc00e8181788ca702f9b726fdf077759ffe97f15aa1be01f7a96a5730e7. The shared builder records derivative checksums and measured ql-v1 fidelity in media/manifests/chronos-release.json. Source masters remain unchanged.
+
+#### 4. Accepted final image
+
+![Accepted seal](../../public/images/indus/seal.jpg)
+
+Fidelity verdict: Animal, adjacent object and every visible sign retain their positions and forms. The image is used for design inspection only; original-object size comes from the object record. No speculative translation is added.
+
+Reviewer/date/status: Codex, September 12, 2026, media provenance and source-to-runtime review accepted under the automated clear-rights policy. Final rendered lesson inspection and the accountable owner’s go-live decision remain separate.
+
+### media.indus.street-reconstruction
+
+#### 1. Reasoning and source basis
+
+Make coordinated city life visible: a household bathing-floor outflow joins a shared street drain and maintenance continues after construction. Governing sources are [Harappa.com’s drainage description](https://www.harappa.com/blog/mohenjo-daro-street-drains), paragraphs 1–5 (baked brick, flat covers, wider stone covers, settling traps and cleaning deposits), and [UNESCO’s Brief Synthesis](https://whc.unesco.org/en/list/138/) (brick neighborhoods and intersecting streets), rechecked September 12. No protected site photograph was supplied or reproduced. People, clothing, tool, building elevations, exact layout, light and the depicted moment are illustrative. This is a composite relationship, not a surveyed house or a statement that drains were normally uncovered.
+
+#### 2. Reference image or reviewed data actually used
+
+The initial concept was generated from the factual brief, not from an archaeological photograph. The final edit used the initial Chronos concept as its edit target and the original native flow diagram as its relationship reference. The diagram governs connectivity only; it does not license precise dimensions or reconstructed architecture.
+
+![Logical relationship reference supplied to the final edit](indus-media/drainage-master.png)
+
+![Initial concept supplied as the edit target](indus-media/street-reconstruction-master.png)
+
+#### 3. Generation or transformation
+
+Built-in image generation; no CLI/API fallback. Exact concept and refinement prompts, input roles and output filenames: [generation prompts](indus-media/generation-prompts.md). The refinement replaced a visually ambiguous scoop with a plainly wooden one and retained the household-to-street junction. The actual archaeological material and maintenance claims come from the sources above, not from the generated person or tool.
+
+```text
+Built-in image generation: Street concept, then Street refinement (generation-prompts.md)
+node scripts/media/indus-reconstructions.mjs
+960px full-frame JPEG, quality 97, 4:4:4; no crop or upscaling
+npm run media:build
+```
+
+Reference SHA-256: 8e26eb8b88e12e480653806a9312c2b3c9649d10a4168475efd4455a30c592ef. Initial concept SHA-256: 1dd2cfd3a1345819f10f8dc644254a34ee9d38fa709df51bac906b1e25b5b855. Final generated master SHA-256: 7efc4b1342761713f94a8dde69e17fd3636d23a445fff40370d36e023eb57d73. Runtime source SHA-256: 0a4f953dd63417b6e8ddc53f6bedb170f7ebd1c72c5a5600a5aaaae0bdb673ed.
+
+#### 4. Accepted final image
+
+![Neighborhood reconstruction](../../public/images/indus/street-reconstruction.jpg)
+
+Fidelity verdict: the three-part drainage relationship survives as an explicit visible junction. Flat masonry covers remain along the lane; the open foreground is an explanatory exposure. No deciphered writing, named ruler, monument, modern pipe or unsupported citywide plan is introduced. The richer scene serves the same causal explanation; native caption and guide explicitly identify its imagined details. Source-to-final rendered inspection is recorded in the current revision check below.
+
+Reviewer/date/status: Codex, September 12, 2026. Historical/provenance author review accepted as a bounded reconstruction; owner visual review pending. Rights: Chronos original AI-assisted illustration.
+
+### media.indus.reservoir-reconstruction
+
+#### 1. Reasoning and source basis
+
+Make seasonal storage tangible while enabling direct comparison with surviving evidence. [UNESCO Dholavira](https://whc.unesco.org/en/list/1645/) supports seasonal streams, reservoirs and stone construction. The actual basin photograph is [Bhajish Bharathan’s 2017 image](https://commons.wikimedia.org/wiki/File:Water_reservoir_at_Dholavira_site.jpg), CC BY-SA 4.0. The reconstruction is an adaptation and retains [CC BY-SA 4.0](https://creativecommons.org/licenses/by-sa/4.0/). No new measured water level, precise historical restoration or governance model is claimed.
+
+#### 2. Reference image or reviewed data actually used
+
+This full original photograph was supplied directly as the structural reference, not as an atmosphere-only image. Its basin, retaining walls, stepped edge and raised ground governed the reconstruction.
+
+![Actual reservoir reference supplied to generation](indus-media/reservoir-original.jpg)
+
+#### 3. Generation or transformation
+
+Built-in image generation used the exact Reservoir reconstruction prompt in [generation prompts](indus-media/generation-prompts.md). The protected composition is reused under the photograph’s explicit adaptation license. Stored water, people, surface restoration and morning light are deliberately illustrative and labeled; the original remains alongside the adaptation in the lesson.
+
+```text
+Built-in image generation, reference: reservoir-original.jpg
+Prompt: Reservoir reconstruction (generation-prompts.md)
+node scripts/media/indus-reconstructions.mjs
+960px full-frame JPEG, quality 97, 4:4:4; no crop or upscaling
+npm run media:build
+```
+
+Reference SHA-256: 47889c1650bac316a2dbd4979f53a1e0ff977dd512ae3718ece5d05f273bd469. Final generated master SHA-256: 9fe8a3a54ace2c8e36711eb3f776897bda7f7135cbfde5cc98685d079f5111cb. Runtime source SHA-256: 3aa5f6b34f19c84976c27cbfba979c846b1852f727d7695974e04c70794ef8a3.
+
+#### 4. Accepted final image
+
+![Reservoir reconstruction](../../public/images/indus/reservoir-reconstruction.jpg)
+
+Fidelity verdict: the same broad basin and the visible wall/step relationships remain recognizable. The water surface does not imply a measured ancient level; people occupy the dry edge and no new monumental skyline, dam or pumping system is added. The scene is an illustration based on excavated form, not a recovered moment. Source-to-final rendered inspection is recorded in the current revision check below.
+
+Reviewer/date/status: Codex, September 12, 2026. Provenance accepted as a clearly labeled licensed adaptation; owner visual review pending. Attribution: Chronos AI-assisted adaptation of Bhajish Bharathan’s photograph, CC BY-SA 4.0.
 
 ## Knowledge Card decision
 
-Propose one Artifact / Witness card, `card.indus.stamp-seal`, with `unlockLessonId: lesson.indus.cities-and-signs`. Title: Indus Stamp Seal. Period: c. 2600–1900 BCE; place: Indus region. Use Met 49.40.2 as actual surviving evidence, with a matching source and honest collection context. Significance: a small object can preserve evidence of organized communication without giving us a translated message. Three proposed facts: steatite material; roughly four-centimetre size; engraved design with unread signs. Recall prompt: What can the seal show you before anyone translates its signs? Reuse its licensed evidence image instead of inventing another seal. Card and unlock are not yet implemented; owner approval of this choice is pending.
+Propose one Artifact / Witness card, `card.indus.stamp-seal`, with `unlockLessonId: lesson.indus.cities-and-signs`. Title: Indus Stamp Seal. Period: c. 2600–1900 BCE; place: Indus region. Use Met 49.40.2 as actual surviving evidence, with a matching source and honest collection context. Significance: a small object can preserve evidence of organized communication without giving us a translated message. Three proposed facts: steatite material; roughly four-centimetre size; engraved design with unread signs. Recall prompt: What can the seal show you before anyone translates its signs? Reuse its licensed evidence image instead of inventing another seal. The proposed card is now implemented in the unpublished lesson after owner prototype approval. It reuses the reviewed museum image of the design; no second illustration or published unlock has been added.
 
 ## Prompt rationale
 
-`prompt.indus.shared-standards` separates a measured pattern from emperor/equality/decipherment leaps. Each option has specific feedback in the updated shared renderer. `prompt.indus.water-and-work` asks for a causal explanation available from either city, plus a bounded uncertainty about authority. Its authored example is comparison support, not personalized grading. The shared deliberate comparison action preserves thinking time; the existing minimum length remains an internal attempt threshold. After final evidence modules exist, reuse their IDs in prompt evidence references rather than duplicate images.
+`prompt.indus.shared-standards` separates a measured pattern from emperor/equality/decipherment leaps. Each option has specific feedback in the updated shared renderer. `prompt.indus.water-and-work` asks for a causal explanation available from either city, plus a bounded uncertainty about authority. Its authored example is comparison support, not personalized grading. The shared deliberate comparison action preserves thinking time; the existing minimum length remains an internal attempt threshold. The selection keeps the weights nearby. The explanation references the reservoir comparison; the drainage alternative remains fully taught in the prose and compact guide. Both question wordings and sincere-attempt rules remain unchanged.
 
 ## Ages 11–15 transformations
 
@@ -311,13 +543,15 @@ Drafted for approximately age 12–13: open with household needs; limit the main
 
 ## Learner-prototype review
 
+The September 11 validation and author-pass table below describe the text-first prototype at that checkpoint. They are retained as history; the September 12 final-media review and final sign-off supersede their asset/card deferrals.
+
 Prototype URL: [Open the local Indus prototype](http://localhost:3000/learn/lesson.indus.cities-and-signs). Verified September 11 with `lesson:preview`; this needs the local preview server running on this computer. It is not a hosted preview. The ordinary production build keeps the draft unavailable. Prototype annotations describe planned images, not final learner content.
 Proxy type: independent AI editorial/learner proxy requested September 11, but the reviewer failed before reviewing because its service reported an account usage limit. No independent findings were produced; no actual adult or child participant is claimed. This remains an outstanding Stage 14B review, not an author self-approval or a request to approve publication.
 Quality-contract findings: author review below; independent review remains pending.
 Product/editorial reviewer: Carlin Aylsworth.
-Product review: pending; research-direction permission does not approve this prototype.
+Product review: approved by Carlin Aylsworth with “lgtm” on the linked prototype after the September 11 handoff. The prior independent AI attempt remained incomplete and is not retrospectively marked passed.
 Learner observation: pending human participation under the sampled program; not a per-lesson block.
-Validation: prototype gate and content validation passed. The full suite passed 178 of 179 tests; the remaining journey-order expectation was updated to include Indus and its three-test file then passed. `typecheck:chronos` passed after installing the worktree's lockfile dependencies (the original ancestor dependency tree lacked React types). Browser walkthrough confirmed rendering, deliberate feedback, sincere-attempt completion despite a wrong selection, a truthful no-card journey ending, and reopening at the top. Inspected desktop and mobile layouts in light/dark themes; no console errors were captured. These are local engineering checks, not learner observation or hosted progress validation.
+Historical checkpoint validation: prototype gate and content validation passed. The full suite passed 178 of 179 tests; the remaining journey-order expectation was updated to include Indus and its three-test file then passed. `typecheck:chronos` passed after installing the worktree's lockfile dependencies (the original ancestor dependency tree lacked React types). Browser walkthrough confirmed rendering, deliberate feedback, sincere-attempt completion despite a wrong selection, a truthful no-card journey ending, and reopening at the top. Inspected desktop and mobile layouts in light/dark themes; no console errors were captured. These are local engineering checks, not learner observation or hosted progress validation.
 
 ### Author quality-contract pass — Codex, September 11
 
@@ -337,4 +571,4 @@ Validation: prototype gate and content validation passed. The full suite passed 
 
 ## Final sign-off
 
-Research-direction response recorded September 11. Learner prototype approval, final visual rights/fidelity review, historical/editorial sign-off and publication are pending. No hosted data or publication state has changed.
+Research-direction response and actual learner-prototype approval recorded September 11. The approved claim wording is marked reviewed. Clear-rights media provenance and source-to-runtime fidelity accepted September 12; changed rendered media/card and final release checks are in progress. Publication is not authorized yet. No hosted data or publication state has changed.
