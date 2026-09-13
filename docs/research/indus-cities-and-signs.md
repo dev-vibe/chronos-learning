@@ -579,3 +579,13 @@ Research-direction response and actual learner-prototype approval recorded Septe
 Carlin approved the revised lesson and explicitly authorized publication with “please finish. i approve”, following the direct preview and publication question. The previous pending-review statements are historical checkpoints. Proceeding through the publication playbook; no repeated editorial review is required.
 
 Publication cutover: authored status is published and the active prototype review is unregistered. Content validation and all 61 targeted domain/content/lesson tests pass. The obsolete pyramids test assertion that Indus must remain unpublished was removed. The generated migration and rollback database test cover both required prompts, explicit completion, idempotency, and the single seal card. The inactive Chronos development project is being resumed for the authorized media/database cutover.
+
+## Go-live — September 13, 2026
+
+- [PR #41](https://github.com/dev-vibe/chronos-learning/pull/41) merged at 12:39 UTC as `3aafa09a9b46c20f1170bf876d9cf7d1f8988492` after the product owner's explicit publication approval.
+- Production deployment `dpl_9TsKniuGMjabJdbwjugfhiMAewGN` is Ready. [Live lesson](https://chronos-learning.vercel.app/learn/lesson.indus.cities-and-signs). The normal World History prerequisites remain enforced; audit access was used for the publication smoke.
+- The existing Chronos Supabase project was resumed from its inactive state. Committed migration `20260913122603_publish_cities_and_signs.sql` is applied. All 17 rollback database assertions passed, including missing/partial attempt rejection, explicit completion, idempotency, one seal card, and preservation of the prior lesson's progress. Synthetic test data was rolled back.
+- All six approved media assets were published through the existing media publisher. A separate verify-only pass confirmed the checksums of all 17 source and derivative objects remotely.
+- Content validation and 61 targeted domain/content/lesson tests passed. The Vercel preview build passed. This repository has no GitHub test workflow; no additional full-suite CI result is claimed.
+- Hosted guest smoke: both prompts accepted responses; explicit completion granted the Indus Stamp Seal; reopening retained completion and started at scroll position zero; no prototype-review notes appeared. Production route and final authored content were also verified.
+- Production queue is Complete. The requested teaching-companion removal is included. Parent-linked accounts, progress viewing, and assessment-submission review remain specified future work rather than an implemented account feature.
