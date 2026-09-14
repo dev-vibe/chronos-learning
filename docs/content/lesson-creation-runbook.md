@@ -29,7 +29,13 @@ On that request, the agent must perform this boot sequence without asking the us
 13. After approval, continue on the same issue, branch, and PR through Stages 15–18. Set the queue row to `Implementing`, then `Review`, and finally `Complete` only when the corresponding gates pass. A request to publish an already-approved lesson follows [`docs/content/lesson-publication.md`](lesson-publication.md); do not restart research or the quality contract.
 14. When the lesson becomes `Complete`, ensure the queue still has reviewed future candidates. If fewer than three candidates remain, flag curriculum-queue replenishment without inventing entries.
 
-The agent may ask an early question only when a missing decision materially changes lesson identity, curriculum order, audience, or scope and cannot be resolved from the queue, repository, PRD, or existing issue. Ordinary research and implementation choices belong to this runbook.
+The agent may ask an early question when a missing decision materially changes lesson identity, curriculum order, audience, or scope and cannot be resolved from the queue, repository, PRD, or existing issue, or when the model-routing fallback below requires a concrete task handoff. Ordinary research and implementation choices belong to this runbook.
+
+### Routine subtask routing
+
+Follow [the standing model-routing preference](../../AGENTS.md#model-routing-for-routine-subtasks): explicitly delegate bounded source discovery, passage retrieval, browser/live-lesson checks and mechanical verification to Sol (`gpt-5.6-sol`), or another available suitable cheaper model if Sol is unavailable, with the needed tools. Batch related work; retain historical synthesis, source-conflict judgments, pedagogy and final historical/visual judgment with the main agent and owner. Record the requested model, available execution metadata and returned evidence in the existing research/verification record, without introducing another checklist or repeating completed checks. Disclose unresolved routing uncertainty and use the human fallback rather than claiming a cheaper model ran.
+
+If suitable cheaper-model delegation is unavailable or cannot finish the step, ask Carlin to perform that specific step with an exact URL/command, short acceptance checklist and requested result. State the limitation and link to the standing preference. Keep it pending, continue independent work, and do not silently fall back to the main model without an explicit exception. This handoff neither waives source scrutiny nor substitutes for a pending owner approval.
 
 ### Mandatory recent-challenge research checkpoint
 
