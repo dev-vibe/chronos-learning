@@ -83,7 +83,7 @@ Evidence cards use the registered image dimensions: landscape images span the to
 
 Keep prose in reading order; use multi-column explanations only when comparison benefits. Captions and evidence labels must remain readable, with redundant badges removed while evidence/reconstruction distinctions remain clear. Simple text-size controls must reflow on narrow screens without horizontal reading scroll.
 
-Artifacts and maps can enlarge in an accessible viewer with keyboard/touch controls, focus containment and return, and text alternatives. Authored “Look here” notes and side-by-side comparisons use reviewed evidence. Keep relevant evidence available while answering. Compact opening maps/timelines disclose approximate dates, uncertain geography, deep-time units and any schematic scale; do not invent precision.
+Artifacts and maps can enlarge in an accessible viewer with keyboard/touch controls, focus containment and return, and text alternatives. Authored “Look here” notes and side-by-side comparisons use reviewed evidence. Keep relevant evidence available while answering. Opening maps must connect recognizable wider geography to the lesson places through their extent or a linked inset, with a visible native orientation sentence. Give maps enough width to read this connection without enlargement; do not squeeze them beside a timeline until labels become decoration. Maps/timelines disclose approximate dates, uncertain geography, deep-time units and any schematic scale; do not invent precision.
 
 Learner copy gives a warm next action. Keep internal terms such as “deterministic,” “reviewed path” and character thresholds out of ordinary instructions. Provenance remains inspectable in secondary surfaces.
 
@@ -102,7 +102,7 @@ Preserve the excitement of legacy lesson posters by decomposing them:
 - surviving object → separate museum-neutral Evidence module;
 - dense poster → optional Visual Field Guide or printable completion recap.
 
-Choose factual visual methods using the [canonical media policy](../content/lesson-creation-runbook.md#media-method-and-fidelity-policy): licensed evidence originals, reviewed native/vector or raster diagrams/maps/timelines, and generated reconstruction/atmosphere where useful. No generative restyling is required. Preserve source/data fidelity, rights, uncertainty and accessibility.
+Choose factual visual methods using the [canonical media policy](../content/lesson-creation-runbook.md#media-method-and-fidelity-policy): licensed evidence originals, reviewed native/vector or raster diagrams/timelines, source-faithful illustrated map edits, and generated reconstruction/atmosphere where useful. Lesson maps use the [early Egypt Nile map](../../public/images/places/egypt-nile-corridor-map.jpg) as the visual reference: warm ivory/ochre land, mineral-blue water, subdued lowlands, subtle painted terrain, and clear dark-blue labels. The real map is the geographic edit target; the Nile image supplies style only. Preserve source/data fidelity, rights, uncertainty and accessibility. Other evidence and diagrams do not require generative restyling.
 
 Generated art contains no titles or explanatory paragraphs. Native UI supplies caption, attribution, depiction label, hotspots, and educational text.
 
@@ -112,7 +112,8 @@ Generated art contains no titles or explanatory paragraphs. Native UI supplies c
 | --- | --- |
 | Cinematic scene with explicit caption | Evidence-based reconstruction |
 | Neutral museum surface | Artifact/site/source evidence |
-| Fine blue linework | Map, diagram, explanatory model |
+| Illustrated atlas with subtle terrain | Geographic map, edited faithfully from a real source |
+| Fine blue linework | Diagram or explanatory model |
 | Warm note surface | Curatorial interpretation |
 | Dashed/slate treatment | Uncertainty or contested claim |
 | Muted story accent | Myth, legend, or later tradition |

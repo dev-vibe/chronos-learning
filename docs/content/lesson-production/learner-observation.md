@@ -24,6 +24,7 @@ Include independent use and parent-supported use across the early rounds. They a
 | --- | --- | --- |
 | Starting context | Ask about prior familiarity and normal independent/parent-supported learning; avoid teaching the target idea. | Broad age band, familiarity and mode; no identifying details. |
 | Natural reading/use | Invite the learner to use the lesson. Let them choose pace, text size, inspection and hints. Do not explain controls unless they ask or need help to continue. | Where they hesitate, misread a label, lose sequence, fail to find evidence, or need help. Distinguish observation from inferred cause. |
+| Geographic orientation | With the opening map visible at its normal size, ask “Where is this compared with a place you recognize?” Let the learner point or explain before offering help. | Which continent, coastal shape, country or earlier lesson place they use; whether the context inset and local sites connect; any need to enlarge or receive outside explanation. Do not require memorized coordinates or treat this as a completion test. |
 | Parent-supported variant | Ask the adult to help as they normally would. Avoid scripting a model answer. | Who initiated assistance, what kind, and whether parent help repaired missing content or supported useful discussion. |
 | Understanding | “What was the main idea?” “Which evidence helps explain that?” “What can it not tell us?” “How does it connect to something earlier?” | Paraphrased evidence of understanding and uncertainty, misconceptions and assistance. Ask before showing an example answer. |
 | Interaction | Observe write → Compare your thinking → example/explanation → optional revision; inspect evidence, close viewer, complete and reopen. | Next-action clarity, mistaken personalized-evaluation expectations, focus/reflow or touch problems, draft loss. Completion is an interaction outcome, not mastery. |
@@ -75,6 +76,7 @@ De-identified decision / owner / affected review / follow-up question:
 | Question | Representative surface | Mode | Status |
 | --- | --- | --- | --- |
 | Do deep-time and approximate-place orientation help rather than imply precision? | Human Origins opening | Independent, then parent discussion | Pending human participation |
+| Can a learner locate the Indus cities relative to familiar wider geography before reading local site names? | Indus South Asia map and Africa–Asia inset | Independent, then parent discussion | Pending human participation; map revision responds to reported adult confusion, not an observed child test |
 | Can learners inspect evidence and return to their explanation without losing their place or draft? | Human Origins / Uruk evidence question | Independent; keyboard/touch as used | Pending human participation |
 | Is “Compare your thinking” understood as an example rather than personalized evaluation? | Published explanation prompts | Both modes, assistance recorded | Pending human participation |
 | Does an optional recall prompt help connect the earlier idea to later content? | Home / Knowledge Card / next lesson | Immediate then delayed | Pending human participation |

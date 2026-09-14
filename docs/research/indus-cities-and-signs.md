@@ -296,11 +296,27 @@ Seven required sections. No navigation section, duplicate headline or invented h
 
 ## Image lifecycle
 
+### Map orientation correction — September 13, 2026
+
+Carlin approved the rendered correction on September 13: “wow, this is perfect! i approve. please continue”. Content validation, scoped Chronos typecheck, 63 domain/content/lesson tests, the media build and remote object checksum verification passed. Desktop, phone and enlarged reading-text checks are recorded in the [map correction validation](indus-locator-map.md#correction-validation). The correction is proceeding through the normal PR/deployment path; the existing lesson publication, assessment and card configuration remain in force.
+
+Carlin requested the illustrated terrain style of the early Egypt Nile map and a clear way to locate the subject relative to familiar geography. The replacement map now shows South Asia, the Indian peninsula and surrounding seas, with an Africa–Asia inset marking the main map extent. The visible native sentence places the cities in present-day Pakistan and northwestern India, east of Africa and north of the Indian Ocean. This adds geographic scaffolding to the same lesson places; it does not change its completion or card model.
+
+The actual edit target is a georeferenced crop of Natural Earth's public-domain relief map, with source-plotted city coordinates, modern Indus geometry and a matching inset. The Nile map is a style reference only. The full source/rights/coordinate record, exact prompts, rejected first candidate and comparison verdict are in the [current map brief](indus-locator-map.md#current-revision--september-13-2026).
+
+![Geographic edit target](indus-map-assets/v2/indus-geographic-edit-target.png)
+
+![Accepted illustrated map](indus-map-assets/v2/indus-illustrated-master.png)
+
+Tool: OpenAI built-in image generation, September 13, 2026, model ID not exposed. Candidate one added unsupported secondary river lines; a targeted second edit removed them. Codex checked the final geography/labels against the source; all three markers are within 3.6 output pixels of their source-derived positions. See [full generation prompts](indus-map-assets/v2/generation-prompt.md), [input hashes and crop metadata](indus-map-assets/v2/reference-lineage.json), and [final hashes](indus-map-assets/v2/final-lineage.json). This is author/tool verification, not a fabricated learner observation.
+
+The map and lesson runbooks, map template, quality contract, PRD and design guidance now explicitly require recognizable wider-world context, a visible native orientation sentence, and the source-faithful illustrated Nile style. Broad maps receive full reading width; portrait maps retain their existing layout. This pass replaces Indus and establishes the standard; it does not claim that all older lesson maps have been retrofitted.
+
 September 12 visual revision: Carlin found the initial final-media pass too boring and requested continued work. The approved text remains intact. Two richer reconstructions now replace the plain flowchart as the dominant visual experience: a lived-in neighborhood opens the lesson and its compact guide traces drainage; Dholavira’s basin is shown with hypothetical stored water beside the actual photograph. These changed surfaces await the owner’s renewed visual review. The documentary weights, seal image and geographic locator remain inspectable. No publication is authorized.
 
 Product owner approved the linked prototype with **“lgtm”** after the prior handoff disclosed the independent-review service limit. Production proceeded without claiming that failed review occurred. The following are media-production/fidelity records, not a repeated pedagogy score or publication authorization. Source and accepted images were inspected side by side in a local rendered lifecycle comparison on September 12. The initial 1600px photo candidate exceeded the shared derivative budget; 960px full-frame runtime sources passed without changing the ql-v1 limits. Original archival files are unchanged.
 
-### media.indus.cities-locator-map
+### Archived version-one map — media.indus.cities-locator-map
 
 #### 1. Reasoning and source basis
 
@@ -327,7 +343,7 @@ Original/reference SHA-256: 0db710812fb8b376917749333cd395048ab372a2de14a150eba0
 
 #### 4. Accepted final image
 
-![Accepted cities-locator-map](../../public/images/maps/indus-cities-locator.png)
+![Version-one cities locator, superseded September 13](indus-map-assets/indus-map-master.png)
 
 Fidelity verdict: Site coordinates, north-up order and coastline geometry agree between reference/data rendering and final. Four labels remain distinct and uncropped. Root author also inspected the final.
 

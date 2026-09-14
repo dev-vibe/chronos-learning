@@ -305,13 +305,12 @@
     {
       "id": "media.indus.cities-locator-map",
       "collection": "indus",
-      "sourcePath": "public/images/maps/indus-cities-locator.png",
-      "fallbackPath": "/images/optimized/indus/cities-locator-map.optimized.webp",
-      "preset": "picture",
+      "sourcePath": "public/images/maps/indus-cities-locator.jpg",
+      "fallbackPath": "/images/optimized/indus/cities-locator-map.optimized.jpg",
+      "preset": "photo",
       "widths": [
         480,
-        960,
-        1600
+        1298
       ]
     },
     {

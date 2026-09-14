@@ -1795,18 +1795,18 @@
         "provider": "object-storage",
         "bucket": "media-public",
         "fallback": {
-          "path": "/images/optimized/indus/cities-locator-map.optimized.webp",
-          "width": 1600,
-          "height": 1365
+          "path": "/images/optimized/indus/cities-locator-map.optimized.jpg",
+          "width": 1298,
+          "height": 1212
         },
         "variants": [
           {
-            "objectKey": "indus/media.indus.cities-locator-map/6d4f6ba3a13ddce6/optimized/ql-v1/480w-webp-lossless-58c275dbefe53dac.webp",
+            "objectKey": "indus/media.indus.cities-locator-map/16604ea247007a5b/optimized/ql-v1/480w-webp-lossless-3a7155e41a1c0e69.webp",
             "mimeType": "image/webp",
-            "bytes": 16128,
-            "sha256": "58c275dbefe53dac3d1793aa7f92dad6d1b521e6ce37ccc0bc6609f7f5ed6dba",
+            "bytes": 304636,
+            "sha256": "3a7155e41a1c0e69e79c1d88a511f7c5c617b54b7c4907294e5faf77dad6678c",
             "width": 480,
-            "height": 410,
+            "height": 448,
             "compression": {
               "profile": "ql-v1",
               "codec": "webp",
@@ -1820,16 +1820,16 @@
             }
           },
           {
-            "objectKey": "indus/media.indus.cities-locator-map/6d4f6ba3a13ddce6/optimized/ql-v1/1600w-webp-lossless-cbe25db445391a3e.webp",
-            "mimeType": "image/webp",
-            "bytes": 28122,
-            "sha256": "cbe25db445391a3efdae1b51442973bde2647dde4cbcb258895cc4b589b6c414",
-            "width": 1600,
-            "height": 1365,
+            "objectKey": "indus/media.indus.cities-locator-map/16604ea247007a5b/optimized/ql-v1/1298w-source-jpeg-16604ea247007a5b.jpg",
+            "mimeType": "image/jpeg",
+            "bytes": 490416,
+            "sha256": "16604ea247007a5b5adb8f45b9ef3bc87377326150297dd01f80322139f40f0d",
+            "width": 1298,
+            "height": 1212,
             "compression": {
               "profile": "ql-v1",
-              "codec": "webp",
-              "encoder": "webp-lossless"
+              "codec": "jpeg",
+              "encoder": "source-passthrough"
             },
             "fidelity": {
               "mode": "pixel-exact",
@@ -1842,12 +1842,12 @@
       },
       "source": {
         "bucket": "media-source",
-        "objectKey": "indus/media.indus.cities-locator-map/6d4f6ba3a13ddce6fc791c4b2377355d7f5c2fa19e0c6dbcfe9a25e4cc0443ca/original.png",
-        "mimeType": "image/png",
-        "bytes": 99911,
-        "sha256": "6d4f6ba3a13ddce6fc791c4b2377355d7f5c2fa19e0c6dbcfe9a25e4cc0443ca",
-        "width": 1600,
-        "height": 1365
+        "objectKey": "indus/media.indus.cities-locator-map/16604ea247007a5b5adb8f45b9ef3bc87377326150297dd01f80322139f40f0d/original.jpg",
+        "mimeType": "image/jpeg",
+        "bytes": 490416,
+        "sha256": "16604ea247007a5b5adb8f45b9ef3bc87377326150297dd01f80322139f40f0d",
+        "width": 1298,
+        "height": 1212
       }
     },
     {

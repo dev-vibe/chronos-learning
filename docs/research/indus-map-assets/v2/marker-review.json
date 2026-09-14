@@ -1,0 +1,44 @@
+{
+  "method": "Red marker centroid within a 37px window around source-derived expected position; this verifies marker placement only, not coastline or terrain fidelity.",
+  "checks": [
+    {
+      "site": "Harappa",
+      "expected": [
+        527.9831333333333,
+        262.5013764705883
+      ],
+      "observed": [
+        527.8944444444444,
+        260.8611111111111
+      ],
+      "pixelDeviation": 1.6426613066951001,
+      "pixels": 180
+    },
+    {
+      "site": "Mohenjo-daro",
+      "expected": [
+        370.7250712250716,
+        380.3838235294118
+      ],
+      "observed": [
+        373.4360465116279,
+        378.1511627906977
+      ],
+      "pixelDeviation": 3.5120024172136697,
+      "pixels": 172
+    },
+    {
+      "site": "Dholavira",
+      "expected": [
+        439.7658206552709,
+        503.0367382352941
+      ],
+      "observed": [
+        439.6390532544379,
+        501.43195266272187
+      ],
+      "pixelDeviation": 1.6097846774801505,
+      "pixels": 169
+    }
+  ]
+}

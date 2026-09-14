@@ -1,5 +1,58 @@
 # Indus cities locator map
 
+## Current revision — September 13, 2026
+
+Carlin requested the early Egypt Nile map's illustrated, subtle-terrain style and reported that the original locator gave no recognizable wider-world context. This revision replaces that crop with South Asia and an Africa–Asia context inset. The geographic purpose remains locating the same three lesson cities; their identities, ordering, and progress configuration are unchanged. The version-one record below is archival and does not describe the current runtime image.
+
+### Orientation and composition
+
+- Main extent: 57–96° E, 4–38° N; north up. The complete Indian peninsula, Sri Lanka, Arabian Sea, Bay of Bengal, northern mountain belt, and three Indus cities remain visible.
+- Wider-world anchor: recognizable Africa and Asia, with a rectangle marking the exact main-map extent in an inset. The rectangle is a crop locator, not historical territory.
+- Context inset: 25° W–150° E, 40° S–70° N. Its separate projection preserves north-up continental relationships.
+- Visible native sentence: “These cities were in South Asia, in present-day Pakistan and northwestern India. The inset places this region east of Africa, on the northern side of the Indian Ocean.”
+- Local relationship: Harappa northeast of Mohenjo-daro; Dholavira southeast. No prior familiarity with those site names is assumed.
+- Exact labels: Harappa, Mohenjo-daro, Dholavira, Pakistan, India, Himalayas, Indus, Arabian Sea, Bay of Bengal, Indian Ocean, Africa, Asia.
+
+### Sources and geographic fidelity
+
+The primary image is [Natural Earth's 1:50m cross-blended shaded relief with water](https://www.naturalearthdata.com/downloads/50m-raster-data/50m-cross-blend-hypso/), HYP_50M_SR_W. [Public-domain terms](https://www.naturalearthdata.com/about/terms-of-use/) permit edits and redistribution. The downloaded archive's VERSION.txt says 2.0.0 while the current page lists 3.2.0; the exact raster hash and affine transform in [reference-lineage.json](indus-map-assets/v2/reference-lineage.json) identify the bytes actually used. Source raster and archive are retained in ignored `tmp/indus-map-v2`; the faithful geographic crops are committed.
+
+The source's georeferenced 1/30° pixels define the main crop and inset. `scripts/media/indus-map-reference.mjs` plots the previously checked UNESCO/Getty city coordinates and [Natural Earth's modern Indus river geometry](https://www.naturalearthdata.com/downloads/50m-physical-vectors/50m-rivers-lake-centerlines/), pinned to the v5.1.2 vector repository tag. It outputs research inputs only. This is source preparation, not final illustrative rendering. [BoH's CC0 South Asia relief map](https://commons.wikimedia.org/wiki/File:South_Asia_relief_map_blank.png), derived from maps-for-free.com, independently corroborates the peninsula, Sri Lanka, mountain belt and flanking seas. The site-coordinate cross-check and excluded UNESCO Harappa coordinate in the archived record remain applicable.
+
+Country labels, river course, coastlines, and relief locate the region today. No Bronze Age shoreline, river-channel reconstruction, vegetation distribution, or political border is asserted. The historical Nile map supplies brushwork and typography only; its geography is never used for South Asia.
+
+### Image lifecycle
+
+Method: OpenAI built-in image-generation edit, September 13, 2026; underlying model identifier not exposed. [Complete initial and correction prompts](indus-map-assets/v2/generation-prompt.md).
+
+Original geographic source crop:
+
+![Natural Earth relief crop](indus-map-assets/v2/south-asia-relief-source-crop.png)
+
+Actual edit target, including source-plotted city markers, river and wider locator:
+
+![Source map supplied to the image edit](indus-map-assets/v2/indus-geographic-edit-target.png)
+
+Accepted illustrated master:
+
+![Illustrated Indus locator with South Asia and Africa–Asia context](indus-map-assets/v2/indus-illustrated-master.png)
+
+Candidate one was rejected for added faint secondary river lines across the northern plains. A targeted second edit removed them while retaining the approved Indus. Both candidate and prompts are archived. The first service call had reached a usage limit; the same request succeeded after the reset.
+
+Codex comparison: all twelve labels are correctly spelled and associated with the intended places. Peninsula, Sri Lanka, flanking seas, northern relief, main river path, inset shape and crop rectangle remain consistent with the geographic target. An independent pixel centroid check places all three city dots within 3.6 pixels of source-derived positions in the 1298px-wide output, inside the source marker footprint at this regional scale. This limited quantitative check does not certify coastline/terrain fidelity; those were compared visually. [Marker review](indus-map-assets/v2/marker-review.json).
+
+Runtime source: `public/images/maps/indus-cities-locator.jpg`; stable media ID `media.indus.cities-locator-map`. The old deterministic PNG is removed from runtime and retained as the version-one research master. The shared media pipeline owns responsive derivatives and immutable object identities. Current hashes are recorded in `indus-map-assets/v2/final-lineage.json` and the release manifest.
+
+The shared opening renderer gives broad maps the full reading width and places the timeline below them. Portrait maps retain their existing layout. The native orientation sentence is visible at ordinary reading size, independently of enlargement and source details. The replacement and source lineage are a correction responding to Carlin's requested direction, not a new lesson, card or completion scheme.
+
+### Correction validation
+
+September 13, 2026: scoped Chronos typecheck, content validation and 63 domain/content/lesson tests passed, including the visible Indus orientation sentence and preserved portrait Nile layout. The shared media build passed; its generated manifest changes are confined to this map. The 480px derivative is pixel-exact WebP (304,636 bytes); the full 1298px JPEG is source passthrough (490,416 bytes). All three immutable source/public objects were uploaded with the existing publisher and verified remotely by checksum.
+
+Codex inspected the actual lesson at 1440×1000 and 390×844, including dark and light presentation and largest desktop reading text. The phone map displayed at approximately 314px wide without horizontal overflow: the peninsula, India/Pakistan labels, seas, city dots and continent inset remain identifiable, with the location explanation in native reading text. Fine terrain detail remains available through enlargement. Desktop timeline labels wrap cleanly at largest text. No browser console errors were reported. This is an adult implementation check, not evidence from a child learner; the optional orientation observation remains pending. Theme, reading size and browser viewport were restored after inspection.
+
+## Archived version-one record
+
 Date: 2026-09-11
 
 Lesson ID: `lesson.indus.cities-and-signs`

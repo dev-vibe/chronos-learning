@@ -555,7 +555,7 @@ Authoring `purpose` stays imperative and internal (“Supply the species categor
 
 Each section must perform a distinct job. A common pattern is:
 
-1. **Masthead/orientation** — time, place, significance, depiction label.
+1. **Masthead/orientation** — time, place, significance, depiction label. Place the subject relative to recognizable wider geography before introducing unfamiliar local sites; follow the map runbook's context-to-detail requirement.
 2. **Opening question** — concrete puzzle or human problem.
 3. **Necessary context** — what the learner must know to reason further.
 4. **Mechanism or development** — how something worked or changed.
@@ -585,7 +585,7 @@ Use the smallest current module that expresses the teaching job:
 | `knowledge` | two to four parallel ideas, stages, features, contrasts, or consequences | unrelated fact tiles or decorative summaries |
 | `scene` | close reading of an approved reconstruction with two to four meaningful hotspots | presenting reconstruction as evidence or adding spectacle |
 | `evidence` | sustained attention to a surviving object/source and what it supports | generic illustration or claims the object cannot establish |
-| `historical-map` | a spatial relationship necessary to the lesson claim | “the topic has a place,” modern basemaps without historical work, or decorative geography |
+| `historical-map` | geographic orientation from recognizable wider context to lesson places; spatial relationships that support the explanation | isolated local dots without wider context, decorative geography, or unsupported historical borders/routes |
 | `prompt` | a canonical understanding prompt placed where requirements are satisfied | navigation, surveys, trivia, or fake participation |
 
 Titles: section `heading` owns orientation. For `knowledge` modules, the learner sees eyebrow + `body` as the lead into the item grid — do not invent a second grabber title for display. Module `title` on `evidence`, `scene`, and `historical-map` is a local cue only when needed (observe X; compare Y). Module `eyebrow` is a type/place label, not a slogan.
@@ -646,10 +646,10 @@ For every image or generated asset, follow the [media provenance research and ge
 | --- | --- | --- |
 | Inspect surviving evidence | Licensed original photograph, scan or object record; only permitted non-misleading crops/compression | The learner can inspect actual evidence; reconstruction cannot replace or masquerade as it. |
 | Explain factual geometry, process, chronology or comparison | Native/deterministic/vector or raster rendering from reviewed data and relationships | Preserve reviewed geometry, measurements, labels, order and uncertainty; retain code/data versions and text equivalents. |
-| Orient geographically | Reviewed geographic data or licensed map with source-specific historical interpretation | Use the [historical-map guidance](historical-map-production.md); no invented coordinates, borders, routes or precision. |
+| Orient geographically | Illustrated atlas edit of a real, rights-cleared source map; subtle terrain following the early Egypt Nile reference | Use the [historical-map guidance](historical-map-production.md). The learner must locate the subject relative to recognizable wider geography at embedded size. Preserve source geometry; no invented terrain, coordinates, borders, routes or precision. |
 | Reconstruct or set atmosphere | Image generation when the approved brief benefits from it | Explicit depiction label, source-supported real subjects, honest unknowns; no fabricated evidence or baked-in educational prose. |
 
-Raster publication remains appropriate for the current image pipeline. Vector sources/intermediates and accessible native diagrams are allowed. Export a raster derivative when ingestion requires it; do not apply generative transformation merely to harmonize style. Use typed native modules for new reusable forms, with responsive and accessibility coverage.
+Raster publication remains appropriate for the current image pipeline. Vector sources/intermediates and accessible native diagrams are allowed. Lesson maps follow the owner-selected illustrated edit standard above; deterministic tools prepare and verify their geographic source images. Other factual diagrams and evidence originals do not require generative restyling. Use typed native modules for new reusable forms, with responsive and accessibility coverage.
 
 For generated depictions of a specific real artifact, inscription, site, structure, excavation or survey, inspect and supply references of the actual subject. Record subject-to-reference mapping, provenance, permitted transformation, complete prompt and rejected candidates. Similar objects and style references cannot supply missing historical details. Generic atmospheric reconstruction must state what is generalized or unknown and cannot invent identifiable artifacts or measured evidence.
 
