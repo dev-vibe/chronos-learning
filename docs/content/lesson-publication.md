@@ -4,6 +4,12 @@ Status: canonical go-live path after the product owner has already approved the 
 
 This is a mechanical cutover, not a second research, design, or platform-discovery project. If the user says “publish it,” “take it through publication,” or equivalent, read this file and execute it. Do not restart Stages 0–15.
 
+## Routine verification model
+
+Carlin's standing preference is cheaper-model execution for suitable routine subtasks. Explicitly delegate the bounded hosted lesson smoke check and collection of mechanical test/build/media/deployment results to Sol (`gpt-5.6-sol`), or another available suitable cheaper model if Sol is unavailable, with the necessary tools/access. An inherited main-model subagent is not a cheaper-model handoff. Record the requested model and available execution metadata; disclose unresolved routing uncertainty and use the human fallback rather than claiming a cheaper model ran. Batch related checks and request the exact route/deployment, observed behavior, command outcomes and remaining gaps; review the report without repeating successful checks by default. Keep release decisions and substantive diagnosis with the main agent. This does not expand authorization for production mutations or require a new user-owned task.
+
+If suitable cheaper-model delegation is unavailable, lacks access, fails or cannot satisfy the check, ask Carlin to do that step. Provide the exact lesson URL or command and a short checklist of the result to report; explain the limitation and link [the standing preference](../../AGENTS.md#model-routing-for-routine-subtasks). Leave the check pending, continue independent work, and do not silently use the main model or claim verification. Carlin can explicitly authorize an exception. No extra platform discovery or repeated publication review is required to apply this rule.
+
 ## What publication actually is
 
 The learner-facing lesson already exists. Publication does three things:
