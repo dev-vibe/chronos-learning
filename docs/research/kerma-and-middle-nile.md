@@ -3,7 +3,7 @@
 Issue: [ASH-101](https://linear.app/ashs-workshop/issue/ASH-101/research-and-publish-kerma-and-the-middle-nile)
 Draft PR: [#47](https://github.com/dev-vibe/chronos-learning/pull/47)
 Lesson ID: `lesson.nubia.kerma-and-nile-world`
-Research-note identity/version: `ash-101-research-v1`
+Research-note identity/version: `ash-101-prototype-v2`
 Production record version: 2
 Journey/chapter/position: World History / Cities, States, and Bronze Age Networks / canonical position 17
 Required or optional: required
@@ -16,7 +16,7 @@ Started: 2026-09-14
 
 ## Work boundary and selection
 
-This increment researches the approved Kerma node through the Stage 3B research-direction checkpoint. It does not yet select learner claims, settle the learning model, draft sections or prompts, plan final media or a card, or change the Learn shell, publication configuration or hosted data. The research note is the review surface until a learner prototype exists. Existing uncommitted work in the main pyramids checkout is preserved in place.
+Carlin approved the revised Stage 3B research direction on September 14, 2026 ("apporved", following the audience-fit self-review). This increment now builds the complete unpublished Learn-shell prototype through Stages 4–14B. That response approves research direction, including the concrete audience framing; it is not prototype or publication approval. Final assets, unlocks and publication remain pending their later gates. Existing uncommitted work in the main pyramids checkout is preserved in place.
 
 Production order 90 is the next eligible Ready entry after Indus. The Nile dependency is published and recorded Complete in the queue; `content/lessons/egypt-nile-state.ts` carries its published lesson. Indus PR #41 is merged and its September 13 publication is recorded on main and ASH-100. Sahul's old Review row was reconciled using merged PR #35, ASH-109 Done, and `docs/research/crossing-to-sahul.md` (publication migration applied and media checksums verified September 4). This is reconciliation of recorded release evidence, not a fresh hosted completion test or new publication approval. The operational queue is distinct from older readiness labels in the canonical roster.
 
@@ -152,8 +152,8 @@ The research originally proposed **How did Kerma become a powerful Nile kingdom,
 **Recommendation:** proceed on this bounded direction. If a direct Sobeknakht quotation or detailed coalition becomes central, recover and review the full edition first; the current packet does not close that source gap. The analogous condition applies to the abstract-only pastoral model and untranslated Sudanese thesis.
 
 Packet shared: 2026-09-14, [research checkpoint in draft PR #47](https://github.com/dev-vibe/chronos-learning/pull/47), initial commit `f8e7133`.
-Product-owner response: **consideration underway; permission to build remains pending**. Carlin requested an audience-fit self-sanity check after receiving this packet. The requested review and revisions are recorded below; that request is not treated as approval to begin the prototype.
-Follow-up research/disposition: audience-fit revisions proposed without changing the historical evidence assessment; further owner corrections or permission to proceed remain pending. Any change to the historical model returns to the affected audit rows.
+Product-owner response: **approved September 14, 2026**, after the audience-fit self-review below. Carlin replied "apporved" to the revised research direction. Stage 4 onward is authorized; prototype and publication approval remain separate.
+Follow-up research/disposition: apply the audience-fit revisions without changing the historical evidence assessment. Retrieve a precise local pottery object record for the concrete encounter and verify the short geographic/conquest wording. These are bounded support refinements, not a new historical model.
 
 ### Audience-fit self-review — September 14, 2026
 
@@ -177,10 +177,183 @@ Requested by Carlin after the Stage 3B handoff. Reviewer: main Codex agent, eval
 
 **Remaining uncertainty:** without actual prose, evidence presentation and learner observation, age fit and pacing are untested. The later prototype must earn curiosity through historically supported detail and clear causal connections. It must not invent a named resident, testimony or scene details to manufacture engagement. No new media plan, storyboard, learner prompt or prototype has been created during this self-review.
 
-### Verification and current status
+### Earlier research-only verification
 
 Only this research note and the production queue change in this increment. Sol's read-only mechanical review on September 14 found 19 source-ledger IDs, 18 used in the audit and zero unresolved suffix references. Ledger URLs match its retrieved report and access-depth statements match the actual full, selected-passage and abstract-only retrievals. It confirmed exactly these two changed files and the pending owner gate; `git diff --check` exited 0 for the tracked queue (only an LF-to-CRLF advisory). Its bibliographic correction to Reisner's Parts I–III / Harvard African Studies 5 was applied. The final `git diff --cached --check` covered both staged documents and exited 0 with no diagnostics. Runtime tests, browser review and prototype gates are not applicable because no learner implementation exists. Historical synthesis is a main-agent assessment of the retrieved material, not independent historian sign-off or owner approval.
 
-## Subsequent production stages
+## Claim ledger
 
-Stages 4–18 remain pending. No learner claim ledger, storyboard, prose, prompts, media/card plan or prototype exists. No images have been accepted, so an image lifecycle is not yet applicable. The next owner decision will concern the completed research-direction packet; the separate learner-prototype and publication approvals remain later gates.
+Selected after the September 14 research-direction approval and before prose drafting. Source suffixes below expand to `source.kerma.*`. Main agent is the editorial reviewer; close passage retrieval is by Sol as identified in the source ledger. None is an independent human historian sign-off.
+
+| Claim ID and wording | Kind | Certainty | Sources | Counterevidence/limits | Missing perspective | Learner treatment | Review |
+| --- | --- | --- | --- | --- | --- | --- | --- |
+| `claim.kerma.beaker` — British Museum EA81931 is a handmade Kerma-period pottery beaker from the Northern Dongola Reach, dated 1750–1450 BCE; incomplete with reconstruction, 99 mm tall, flaring profile, red-brown body, dark rim/interior and irregular exterior band. | observation | high | beaker | Findspot is regional, not Kerma city; no maker/workshop attribution. It spans the rounded endpoint. | Maker unnamed. | Concrete description, distinguish repairs; no technique beyond handmaking inferred from color. | Editorially reviewed |
+| `claim.kerma.location` — Kerma is in present-day Sudan, in northeastern Africa, south of Egypt along the Nile. | observation | high | mission-history; isotopes-2008 | Modern countries orient; no modern border projected onto antiquity. | Regional identities were not modern nationalities. | State directly. | Editorially reviewed |
+| `claim.kerma.period` — The lesson uses c. 2500–1500 BCE as a rounded frame for the Kerma kingdom; archaeological phases have more detailed boundaries. | interpretation | high | mission-history | Not a single dynasty's exact birth/death dates; overlaps Egypt/Indus. | A pottery phase is not a person's experience. | Rounded dates only. | Editorially reviewed |
+| `claim.kerma.local-city` — Excavated houses, streets, defenses, workshops and buildings interpreted as administrative/royal show Kerma as a local urban capital, not an Egyptian colonial foundation. | interpretation | high | city-project; mission-research; isotopes-2008 | Functions combine form/context; project accounts overlap. Egyptian contacts and later conquest remain. | Domestic remains lack named inhabitants. | Describe concrete remains before political interpretation. | Editorially reviewed |
+| `claim.kerma.food` — Cattle remains, cereals including barley and wheat, and excavated bakeries attest food production at Kerma. | observation | high | isotopes-2008 | No total harvest, household ration, universal diet or cattle-only economy. | Uneven sample/preservation, elite diets not everyone. | State directly. | Editorially reviewed |
+| `claim.kerma.work-and-support` — Food production and storage supported people doing other work; building substantial city defenses and monuments required organized labor and supplies. | interpretation | moderate | city-project; isotopes-2008; mass-burials | An enabling relationship, not sufficient cause of a kingdom or known tax/pay system. | No account of every worker's obligations or choices. | Explain mechanism using food/building; distinguish from a recovered transaction. | Editorially reviewed |
+| `claim.kerma.metalworking` — Metal objects and production waste support skilled local work including deliberate copper alloying and recycling. | interpretation | high | metallurgy; city-project | Precise ore sources/routes and direction of technical transfer unresolved. | Named makers/apprentices not recovered. | Explain mixing metals plainly, no chemical-method detour. | Editorially reviewed |
+| `claim.kerma.unequal-power` — Royal/administrative buildings and much larger richly supplied burials support concentrated authority and unequal access to labor and wealth. | interpretation | high | mass-burials; city-project | Monumental investment does not recover every institution or consent. | Elite burial survival privileges rulers over workers. | Non-graphic comparison of scale/resources, no burial-death count. | Editorially reviewed |
+| `claim.kerma.connections` — Kerma participated in exchange with other regions and had changing relations, including rivalry, with Egypt. | interpretation | high | mission-history; metallurgy; mass-burials | Do not identify a unique trade route from matching metal; no fixed alliance map. | Egyptian texts are external self-representation. | Explain independent neighbors can exchange and compete. | Editorially reviewed |
+| `claim.kerma.sennuwy` — Egyptian statue MFA 14.720 was found in Kerma tomb K III; its presence shows movement but cannot alone prove Egyptian rule. | observation | high | sennuwy; reisner-context | Find context/manufacture are known; exact transport remains unresolved. | Neither named Egyptian subject nor museum possession identifies tomb inhabitants. | One brief example; no second close-reading exercise. | Editorially reviewed |
+| `claim.kerma.conquest` — Egyptian conquest around the end of the lesson period ended Kerma's political independence and brought destruction to the city; this is not evidence that all its inhabitants disappeared. | interpretation | high | mission-history | Rounded endpoint, not instant erasure of community/practices; exact reign detail omitted. | Continued lives less prominent than royal campaigns. | Brief non-graphic ending acknowledges violent destruction and distinguishes kingdom from population. | Editorially reviewed |
+
+## Central claim support
+
+| Claim ID | Source ID | Locator | Review |
+| --- | --- | --- | --- |
+| claim.kerma.beaker | source.kerma.beaker | object EA81931, registration 2010,1001.115; description, production date, technique, dimensions, condition, findspot R25 context 137 and displayed collection photograph | Sol retrieval/image inspection and main claim assessment, 2026-09-14, close-reviewed |
+| claim.kerma.location | source.kerma.isotopes-2008 | p. 377, site and historical context | Sol passage retrieval/main assessment, 2026-09-14, close-reviewed |
+| claim.kerma.period | source.kerma.mission-history | passage Birth of the Kingdom of Kerma, ceramic phase table | Sol passage retrieval/main assessment, 2026-09-14, close-reviewed |
+| claim.kerma.local-city | source.kerma.city-project | section La ville de Kerma, excavated streets, housing, defenses and activity areas | Sol passage retrieval/main assessment, 2026-09-14, close-reviewed |
+| claim.kerma.local-city | source.kerma.isotopes-2008 | p. 377, indigenous roots and earlier colony interpretation | Sol passage retrieval/main assessment, 2026-09-14, close-reviewed |
+| claim.kerma.food | source.kerma.isotopes-2008 | p. 378, cattle, bakery and botanical remains; pp. 384–385 sampling limits | Sol passage retrieval/main assessment, 2026-09-14, close-reviewed |
+| claim.kerma.work-and-support | source.kerma.city-project | section La ville de Kerma and section Les recherches en cours, built works, craft and food storage | Sol passage retrieval/main assessment, 2026-09-14, close-reviewed |
+| claim.kerma.work-and-support | source.kerma.mass-burials | pp. 719–720, concentrated construction and resources in city and cemetery | Sol passage retrieval/main assessment, 2026-09-14, close-reviewed |
+| claim.kerma.metalworking | source.kerma.metallurgy | Table 1 and sections 3.1–3.2, alloying/recycling and production residues; sections 4–5 supply alternatives | Sol passage retrieval/main assessment, 2026-09-14, close-reviewed |
+| claim.kerma.unequal-power | source.kerma.mass-burials | pp. 710–712 and 719–720, differentiated burial investment and comparison with city | Sol passage retrieval/main assessment, 2026-09-14, close-reviewed |
+| claim.kerma.connections | source.kerma.mission-history | passage Economic prosperity and passage Expansion of the kingdom | Sol passage retrieval/main assessment, 2026-09-14, close-reviewed |
+| claim.kerma.connections | source.kerma.metallurgy | section 4 and section 5, material connections with alternative supply/transfer explanations | Sol passage retrieval/main assessment, 2026-09-14, close-reviewed |
+| claim.kerma.sennuwy | source.kerma.sennuwy | object 14.720, Egyptian attribution and Kerma K III provenance | Sol passage retrieval/main assessment, 2026-09-14, close-reviewed |
+| claim.kerma.sennuwy | source.kerma.reisner-context | p. 138, statue context in K III | Sol passage retrieval/main assessment, 2026-09-14, close-reviewed |
+| claim.kerma.conquest | source.kerma.mission-history | passage end of the kingdom and final ceramic phases | Sol passage retrieval/main assessment, 2026-09-14, close-reviewed |
+
+## Content triage
+
+| Candidate idea | Treatment | Why | Destination |
+| --- | --- | --- | --- |
+| Geography and overlapping dates | Essential | Orient before unfamiliar people/places. | Opening |
+| Food, local craft and organized building | Essential | Concrete explanation of capacities supporting power. | Core |
+| One regional Kerma pottery object | Supporting | Give skilled production a memorable physical anchor. | Core, exact EA81931 record reviewed below |
+| Unequal labor/wealth | Essential | A kingdom was not simply a community of equal workers. | Core, non-graphic |
+| Contact and changing political relationships | Essential | Sharing a river does not mean sharing a government. | Core |
+| Sennuwy moved object | Supporting | A concise example of contact vs control. | One short paragraph; no competing evidence task |
+| Reisner, named phases, named Egyptian rulers | Deferred | Historiography/periodization adds little to the current learner explanation. | Research only |
+| Burial deaths, disputed causes/consent | Deferred | Resource inequality can be taught without an emotionally dominant account of deaths. | Research only; do not sanitize if later made essential |
+| DNA, cranial comparisons, isotope methods, Doukki Gel coalition | Deferred | Requires separate context and would obscure current question. | Possible future depth, not created |
+| Invented named resident, absolute borders, direct Sobeknakht quotation | Rejected for this version | Evidence cannot support proposed precision or voice. | Omit |
+
+## Learning blueprint
+
+Essential question: What made Kerma a powerful neighbor of Egypt?
+Durable understanding: Kerma's farmers, herders, craftspeople and builders sustained a kingdom with its own rulers, connected to Egypt and other communities.
+Supporting understandings: food supports specialized work; skilled local production belongs to Kerma's own history; organized work can concentrate resources unequally; exchange and political independence can coexist and relationships can change.
+Prerequisites: `lesson.egypt.nile-state` (river connections versus rule; organized work); city needs from `lesson.uruk.first-city`; observing objects in `lesson.indus.cities-and-signs`. No exact earlier dates or ruler names required.
+Misconceptions: all Nile history is Egyptian; imported objects prove foreign government; everyone benefits equally from organized work; conquest makes a population vanish; these societies flourished one after another with no overlap.
+Indispensable vocabulary: kingdom (territory and communities under a ruler); capital (center of government); craftspeople (skilled makers); pottery (fired clay objects); alloy (mixture of metals, only if needed); archaeologists (investigators of material remains). Prefer ordinary words over more terms.
+Evidence encounter: the reviewed Kerma-period beaker EA81931 from the wider Northern Dongola Reach, with complete native description until its licensed photograph is approved; observation of deliberate shaping/finish connects to skilled work, not maker identity or political constitution.
+Historical-thinking move: connect concrete material work to the capacities it supported, then distinguish contact from control.
+Retrieve: The Nile can connect communities, but ruling them requires organized work and authority (`lesson.egypt.nile-state`); prompt a brief mental callback without making recall a hurdle.
+Extend: Another kingdom along that river has its own local production and rulers; explain the people and supplies that help support its power.
+Revisit: Planned `lesson.mesopotamia.akkadian-empire` can distinguish controlling a region from trading with it; it is unpublished and no available-next link is promised.
+Reasoning progression: Earlier lessons separated an observation from an inference; here apply that scaffold with a familiar imported-object example and give more independent causal explanation of food/work/power. Later compare competing political explanations using several sources.
+Transfer plan: Defer unfamiliar-evidence transfer in this lesson to avoid another methods-heavy task after Pyramids/Indus. A later planned Akkad lesson should supply reviewed new evidence of control and exchange rather than reuse this statue; that is an editorial intention, not authored material.
+Completion versus mastery: Reading required sections and making two sincere attempts permits explicit preview completion. This records study, not historical accuracy or independent mastery. Actual learner explanation and later recall remain unobserved.
+Required sincere-attempt evidence: one supported selection distinguishing a local-production inference from an imported-object overclaim; one concise explanation connecting a kind of work to a kingdom's capacity, with a helpful optional starting cue. Both permit imperfect answers.
+
+## Section/component storyboard
+
+| Order | Section ID | Learner-facing heading | Authoring purpose | Claims/sources | Module | Media/action | Transition |
+| --- | --- | --- | --- | --- | --- | --- | --- |
+| 1 | section.kerma.nile-neighbors | Kerma on the Nile | Locate a city/kingdom and ask the concrete power question. | location, period, local-city | prose | Required orientation map intention; text already orients. | A city depends on food and work. |
+| 2 | section.kerma.food-and-building | Feeding and building the city | Explain food supply as a condition for other work and shared construction. | food, work-and-support, local-city | prose | No decorative scene required. | Skilled makers also contribute. |
+| 3 | section.kerma.skilled-makers | Kerma's skilled makers | Anchor local production in one object and workshop remains. | beaker; metalworking | two prose modules | Required evidence photograph intention; inspect object description. | Work supports people with unequal power. |
+| 4 | section.kerma.rulers-and-resources | Rulers and resources | Connect organized work with concentrated wealth and authority. | unequal-power, work-and-support | prose | No grave/body imagery. | Power also shapes external relations. |
+| 5 | section.kerma.egypt-and-change | A changing relationship with Egypt | Distinguish connection, rivalry and later conquest. | connections, sennuwy, conquest | prose | A brief imported-object example in text, not a second image task. | Explain what sustained Kerma. |
+| 6 | section.kerma.understanding | Explain Kerma's power | Use local evidence and connect work to capacity. | selected evidence + work claims | two prompts | Sincere attempt, feedback, explicit completion. | Journey ending honestly indicates unavailable next lesson. |
+
+## Media decisions
+
+| Intention ID | Section ID | Teaching question | Form | Evidence/claim basis | Depiction label | Accessible equivalent | Stage 14A treatment | Final review |
+| --- | --- | --- | --- | --- | --- | --- | --- | --- |
+| intention.kerma.orientation | section.kerma.nile-neighbors | Where is Kerma relative to Africa, Egypt and the Nile? | Required illustrated locator map, following map runbook | location; authoritative source map must be selected and reviewed before production | Geographic orientation; modern countries identify location, no ancient borders | Native sentence Africa → Sudan south of Egypt → Kerma on Nile; final map summary/alt must preserve it | Development-only intention, no fabricated map | Pending prototype approval, source-map/rights/geometry review and final visual review |
+| intention.kerma.beaker | section.kerma.skilled-makers | What can this Kerma-period vessel show about skilled work? | Required licensed original object photograph | British Museum EA81931; claim.kerma.beaker | Surviving evidence | Native description of shape, color and finish; final alt from actual photo | Development-only intention; source-based prose supports full reading | Pending prototype approval, license/source choice and final fidelity review |
+
+No atmosphere hero or video is necessary for this prototype. The concrete food/work explanation is clearer in native prose; adding unrelated scenes would increase visual claims and distract from the single object. Map must follow `docs/content/historical-map-production.md` before any final production; no map has yet been made. Map labels proposed for later source verification: Africa, Sudan, Egypt, Nile, Kerma. Do not draw a territorial extent or precise commodity route.
+
+### Selected object and chronology follow-up
+
+`source.kerma.beaker`: British Museum, [EA81931](https://www.britishmuseum.org/collection/object/Y_EA81931), registration 2010,1001.115; accessed 2026-09-14. Central supporting object record: handmade Kerma Classique beaker, 1750–1450 BCE, Northern Dongola Reach site R25 context 137 (older code KNE 137), type NDRS BK1.3; height 99 mm, diameter 128+ mm; incomplete with reconstruction. Record citation Welsby Sjöström 2001a p. 320 fig. 5.51. Donated by Sudan Archaeological Research Society following NCAM division of finds, 2010. Sol retrieved the complete official indexed fields; later direct HTML access returned 403. Sol inspected the associated official collection photograph in place: flaring profile, red-brown body, dark rim/interior, irregular dark band and visible reconstruction joins. The main agent selected the limited claim above. No analysis identifies its precise workshop, maker or manufacture in Kerma city; prose explicitly calls the findspot regional. It anchors the broader craft tradition, while metal-production waste supplies the separate evidence of work within the capital.
+
+Rights remain unresolved: the [museum image policy](https://www.britishmuseum.org/terms-use/copyright-and-permissions/images-and-photography) provides non-commercial licensing for specifically marked assets, but the object's own Use image panel was inaccessible. Do not assume that policy licenses this file or that non-commercial restrictions fit the product. Final production must establish suitable permission or choose another reviewed, suitably licensed real object and recheck affected prose/claim/media with the owner. No image has been acquired or redistributed. The final native caption must identify accession, regional findspot, approximate date and reconstruction; alt describes actual visible shape/finish, never a guessed firing recipe.
+
+Bounded chronology/geography recheck: mission History passage identifying the heart of Sudanese Nubia; location passage upstream/south of Third Cataract; table Classic Kerma 1750–1480 and Egyptian occupation 1480–1080; concluding capital/necropolis span c. 2500–1500 BCE. Thompson/Chaix/Richards pp. 376–377 and fig. 1 independently locate Kerma in Sudanese Nubia and give Classic Kerma to c. 1500 BCE. Dates are rounded in prose; no Nile-flow direction, modern coordinates or exact conquest year is asserted. The wider modern Africa/Egypt/Sudan orientation must also be checked against the authoritative source map before final map acceptance.
+
+## Image lifecycle
+
+No final images accepted or acquired. Map and object photograph are planned teaching deliverables, not deferred implementation shortcuts. Their full source/reference/final lifecycle blocks will be created after prototype approval, before media registration. Existing research links are not claims of redistribution permission.
+
+## Knowledge Card decision
+
+Decision: no card in this prototype. The single pottery encounter can anchor memory inside the lesson without also becoming a collectible. This avoids promising an unlock before its object/photo rights and role have been reviewed; lesson completion remains meaningful. No runtime card or unlock is registered. Reconsider only if the owner wants the reviewed pottery object as a durable collection anchor during prototype review.
+
+## Learner-prototype review
+
+Prototype lesson ID: `lesson.nubia.kerma-and-nile-world`
+Research-note identity/version: `ash-101-prototype-v2`
+Validation tier: high-risk
+Preview route: [local Learn-shell prototype](http://localhost:3000/learn/lesson.nubia.kerma-and-nile-world). Vite is running from the isolated worktree via `lesson:preview`; this is local, not a hosted publication preview.
+Deterministic prototype gate: pass, September 14, 2026; command and evidence below.
+
+### Product/editorial review
+
+Accountable reviewer: Carlin Aylsworth. State: pending. September 14 research-direction approval does not approve this prototype. Required final map and object photograph, no-card ending and the six-section/two-prompt experience are material prototype decisions.
+
+### Proxy review
+
+Independent raw-prototype review pending. Any AI proxy will be identified as AI, not the adult learner proxy required by Stage 14B. Actual adult review must remain pending until a human participates. Do not infer approval or age suitability from deterministic checks.
+
+### Author quality-contract review
+
+Reviewer: main Codex agent, September 14, 2026. Type: author self-review, not an independent adult/learner proxy. Reviewed the actual lesson prose, Sol's captured Learn-shell desktop light/dark layouts, and normal-size 390×844 skilled-maker/feedback viewports; responsive and interaction evidence is recorded separately below. This is one prototype quality-contract pass; affected corrections are recorded rather than restarting the workflow.
+
+| Quality area | Finding | Evidence and disposition |
+| --- | --- | --- |
+| Mental-model coherence | pass as a design hypothesis | Food supply → other work → organized construction/production → concentrated authority is explicit in the reading, not hidden in feedback. Independence and outside connections coexist. Conditions are not treated as a complete cause of state origins. |
+| Cumulative learning | pass | Opening recalls the Nile and explicitly says societies overlap; blueprint identifies Retrieve/Extend/Revisit and defers unfamiliar-evidence transfer with a reason. No unavailable next lesson is presented as authored. |
+| Narrative momentum | pass with final-media dependency | Six sections move from place to food/work, tangible craft, unequal power, changing neighbor, and explanation. The map and beaker image remain important final teaching deliverables, not decoration or optional cuts. |
+| Age-appropriate cognitive load | pass as a design hypothesis | Short paragraphs; kingdom/capital/craftspeople/pottery/alloy defined in use; rounded dates; one regional object description; detailed phases, DNA and coalition debates omitted. Reading ease and recall have not been observed with children. |
+| Heading voice | pass | All six headings name a historical subject or the explanation task; no metaphors, riddles or competing module titles. |
+| Evidence reasoning | revise, resolved in draft | EA81931 is regional, not proven city-made: prose and intention say so. Metal waste separately supports work at the capital. Prompt look-back links incorrectly targeted prose; removed because the optional feature only accepts actual inspectable evidence modules. The self-contained checks remain answerable from the reading. |
+| Historical proportionality | revise, resolved in draft | Initial conquest sentence sounded like a simple change of government. Revised to acknowledge violent conquest and city destruction around 1500 BCE, while rejecting population-erasure inference. Source: mission History conquest table/passage. Large burial resources explain inequality without graphic bodies, death counts or invented consent. |
+| Visual teaching value | safely deferred to approved final production | Required source-anchored map will locate Africa/Sudan/Egypt/Nile/Kerma. Required original beaker image will show shape and finish. Current dev-only annotations are clearly marked; native descriptions allow a complete raw reading. Neither absent final visual is claimed reviewed/approved. |
+| Next-action clarity | author inspection pass; behavior results below | Each prompt has its own Compare your thinking button. The ending visibly requires checks before explicit completion. No Knowledge Card distracts from the action; no unsupported next lesson is linked. |
+| Research integrity | pass for selected draft wording | Eleven registered claims have exact central support; inaccessible detailed textual/coalition evidence remains outside learner assertions. Observation and inference remain distinguishable. Independent human historian sign-off is not claimed. |
+| Rights/accessibility | final-media work pending | No final images distributed. EA81931 asset permission unresolved; must obtain suitable rights or review an alternate real object. Native prose is available in both themes. Full assistive-technology/real-learner certification is not claimed. |
+| Technical/data integrity | proportionate checks below | Typed content only; no new renderer, database schema, publication migration, analytics or learner-progress storage changes. Existing draft isolation and sincere-attempt controls must pass the browser check; hosted database/advisor checks are not part of this unpublished content increment. |
+
+Adult raw-prototype review remains the human Stage 14B requirement. The author review and Sol's scripted interactions cannot satisfy it. The owner should provide the actual lesson plus the quality contract to an adult reader, ask them to read and attempt the checks without the author's diagnosis, and return any point of confusion. Prototype approval and final asset work remain pending.
+
+### Routine validation and browser evidence
+
+Executor: explicitly routed `gpt-5.6-sol`, continuing `/root/kerma_sources`; same resolved child session and routing metadata described in Research execution. Date: 2026-09-14. The first follow-up hit a usage limit; Carlin asked to continue and the retry completed. No cost measurement is claimed. Main agent reviewed the reported results and actual screenshots without repeating successful mechanical checks.
+
+| Check | Result |
+| --- | --- |
+| `npm.cmd ci` | Pass in isolated worktree after approved retry for restricted cache access; lockfile unchanged. Existing dependency audit advisories are not introduced by this content change. |
+| `npm.cmd run lesson:gate -- --lesson lesson.nubia.kerma-and-nile-world --note docs/research/kerma-and-middle-nile.md --gate prototype` | Pass, exit 0 on final lesson copy and author-review record. First pass exposed unsupported prose evidence links and three locator markers; all corrected. |
+| `npm.cmd run validate:content` | Pass, exit 0. |
+| `npm.cmd run typecheck:chronos` | Pass, exit 0. |
+| `npm.cmd run test:domain` | Pass, 14 files / 63 tests. Existing stable journey-order fixture now includes the new draft entry; draft availability behavior remains separate. |
+| `npm.cmd run build` | Pass, 1,866 modules; Vite size advisory for a chunk over 500 kB, no build error. |
+| `git diff --check` | Pass; LF-to-CRLF notices only. Seven intended files, with temporary verification evidence ignored. |
+| `npm.cmd run lesson:preview -- --lesson lesson.nubia.kerma-and-nile-world` | Running at the direct local route above; Vite terminal session 1593. Production-preview process used for isolation check was stopped. |
+
+Initial parallel commands encountered a restricted Node user-info error; approved sequential retries produced the recorded outcomes. These access errors are distinguished from the actual content-reference failures, which were fixed rather than waived.
+
+Rendered checks: 1440×900 and 390×844, light and dark. Sol reported no horizontal overflow (`scrollWidth === clientWidth`), framework overlays, console errors or page errors. The development warning that Supabase is unconfigured is confined to the local preview; no hosted persistence or publication is claimed. Main visual review examined the full desktop light/dark captures and normal mobile skilled-maker and feedback viewports. Text, paragraph breaks and controls were legible at embedded mobile size. Existing sticky navigation and scroll behavior were preserved.
+
+Interaction evidence: a deliberately incorrect Egyptian-government selection and a sincere explanatory response each kept feedback hidden until **Compare your thinking**. Completion stayed disabled until both comparisons and then showed **Complete lesson**. Explicit completion persisted completed status and both prompt attempts in the isolated local preview, with `cardIds: []`; the UI showed **Lesson explored** and **You have reached the available lessons**. Reopening from scrollY 7352 returned to scrollY 0 with the lesson title visible. The journey rail exposed Kerma and its six sections; Akkad showed **Lesson in preparation**. No unpublished next lesson was made available.
+
+Draft isolation: the separately served local production build returned an HTTP 200 application page labeled **LESSON UNAVAILABLE** for the direct Kerma route and did not expose the draft title or prose. This checks application behavior, not a 404 status or a hosted deployment. The final conquest paragraph was confirmed verbatim in the running development preview after the editorial correction.
+
+Reading-size signal: 794 module-body words; 276 prompt-copy words including options/hints/feedback; 52 title/metadata words; 23 section-heading words—1,145 selected learner-facing words. This is not an age-fit score or a guarantee of reading time. Final images still need their caption/alt review.
+
+### Handoff state
+
+Stage 3B revised research direction: approved by Carlin on September 14. Complete typed prototype and proportionate automated/browser verification: done. Author quality-contract review: recorded, affected findings resolved. Adult raw-lesson proxy: pending human participation. Product prototype review: pending. Queue remains `Researching` because the adult pre-approval review has not occurred. Final media, image rights, card reconsideration if requested, implementation/release gates and publication: pending later authorization. No approval is manufactured from test results.
+
+### Learner observation
+
+Status: pending human participation. Selection reason: uncertain age fit and possible repetition of evidence-method framing after Pyramids/Indus. Independent or parent-supported use, immediate understanding, delayed recall and transfer have not been observed. Hypothesis: one local craft object and concrete food/work links make Kerma memorable without a catalogue of disputes. No child data recorded.
