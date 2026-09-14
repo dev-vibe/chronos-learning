@@ -1,6 +1,7 @@
 # Kerma and the Middle Nile research and editorial note
 
 Issue: [ASH-101](https://linear.app/ashs-workshop/issue/ASH-101/research-and-publish-kerma-and-the-middle-nile)
+Draft PR: [#47](https://github.com/dev-vibe/chronos-learning/pull/47)
 Lesson ID: `lesson.nubia.kerma-and-nile-world`
 Research-note identity/version: `ash-101-research-v1`
 Production record version: 2
@@ -150,13 +151,13 @@ The research changes the proposed question from a general evidence exercise into
 
 **Recommendation:** proceed on this bounded direction. If a direct Sobeknakht quotation or detailed coalition becomes central, recover and review the full edition first; the current packet does not close that source gap. The analogous condition applies to the abstract-only pastoral model and untranslated Sudanese thesis.
 
-Packet shared: 2026-09-14, this research note (draft PR link added at handoff).
+Packet shared: 2026-09-14, [research checkpoint in draft PR #47](https://github.com/dev-vibe/chronos-learning/pull/47), initial commit `f8e7133`.
 Product-owner response: **pending**. “Please continue” resumed research before this packet existed; it is not approval of these findings.
 Follow-up research/disposition: pending the owner's corrections or permission to proceed; any change to the historical model returns to the affected audit rows.
 
 ### Verification and current status
 
-Only this research note and the production queue change in this increment. Sol's read-only mechanical review on September 14 found 19 source-ledger IDs, 18 used in the audit and zero unresolved suffix references. Ledger URLs match its retrieved report and access-depth statements match the actual full, selected-passage and abstract-only retrievals. It confirmed exactly these two changed files and the pending owner gate; `git diff --check` exited 0 for the tracked queue (only an LF-to-CRLF advisory). Its bibliographic correction to Reisner's Parts I–III / Harvard African Studies 5 was applied. A final staged whitespace check also covers the newly added note. Runtime tests, browser review and prototype gates are not applicable because no learner implementation exists. Historical synthesis is a main-agent assessment of the retrieved material, not independent historian sign-off or owner approval.
+Only this research note and the production queue change in this increment. Sol's read-only mechanical review on September 14 found 19 source-ledger IDs, 18 used in the audit and zero unresolved suffix references. Ledger URLs match its retrieved report and access-depth statements match the actual full, selected-passage and abstract-only retrievals. It confirmed exactly these two changed files and the pending owner gate; `git diff --check` exited 0 for the tracked queue (only an LF-to-CRLF advisory). Its bibliographic correction to Reisner's Parts I–III / Harvard African Studies 5 was applied. The final `git diff --cached --check` covered both staged documents and exited 0 with no diagnostics. Runtime tests, browser review and prototype gates are not applicable because no learner implementation exists. Historical synthesis is a main-agent assessment of the retrieved material, not independent historian sign-off or owner approval.
 
 ## Subsequent production stages
 
