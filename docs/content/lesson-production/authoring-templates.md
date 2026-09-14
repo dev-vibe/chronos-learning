@@ -30,6 +30,8 @@ Why this is one lesson:
 Non-goals/deferred material:
 Bridge from previous lesson:
 Bridge to next lesson:
+Geographic orientation: recognizable wider-world anchor → region → lesson places:
+Visible native orientation sentence and intended map size:
 
 ## Research questions
 

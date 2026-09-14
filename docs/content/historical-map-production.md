@@ -1,6 +1,8 @@
 # Historical lesson map production runbook
 
-Use this runbook when a lesson needs a designed historical map rather than a modern interactive map. The result may be a licensed original, deterministic/native/vector diagram or raster illustration; its geography must come from real, reviewed references or geographic data. Generation is optional, never a geographic source.
+Use this runbook for every lesson map, including compact opening locators. The standard presentation is an illustrated atlas map with subtle terrain, generated as a faithful edit of a real, rights-cleared geographic source image. The approved visual reference is the [early Egypt Nile map](../../public/images/places/egypt-nile-corridor-map.jpg). Geographic truth comes from the source, never from generation. Deterministic rendering remains useful for preparing and verifying source maps, plotting reviewed coordinates, and accessible overlays; it is not the default final visual treatment.
+
+This standard applies to new and revised maps throughout Chronos. Existing maps require an explicit retrofit scope; recording the standard does not mean the older catalogue has been restyled. Direct inspection of a historical map as an evidence object remains an evidence module using the original, not a restyled locator.
 
 This workflow applies the visual-brief, provenance, rights, review, and publication requirements in the Chronos PRD to the specific work of producing a historical lesson map.
 
@@ -21,6 +23,18 @@ Reference maps and research crops are research inputs. Do not place them in publ
 
 Start with the spatial idea the learner should understand. Keep the map bounded to that purpose instead of asking for a general map of an entire civilization.
 
+### Orientation before local detail
+
+The learner must be able to answer **“Where in the world is this, relative to something I recognize?”** before comparing unfamiliar sites. Correct dots in an anonymous crop fail this requirement.
+
+Build a visible chain from **world or continent → recognizable region → lesson places**. Use a wider extent, a clearly linked locator inset, or paired context/detail maps. Include at least one recognizable continental/coastal shape and a named geographic anchor; a previously studied place can strengthen the connection but must not be the only anchor. An unfamiliar sea name, country names only in metadata, or three local site labels are insufficient.
+
+Choose enough surrounding geography to recognize the place. A close crop may clarify a river corridor but still need a wider locator. Inset outlines must match the main map's actual geographic extent; distinguish a view rectangle from territorial boundaries. Do not assume that “north of Harappa” helps someone who cannot locate Harappa.
+
+Write one or two plain native sentences beside the map that make the same connection. For example: “These cities were in South Asia, in present-day Pakistan and northwestern India. The inset places this region east of Africa, on the northern side of the Indian Ocean.” Modern names can help orientation when labeled as modern; do not impose modern borders on an ancient state.
+
+Review at the actual embedded size. Core orientation cannot depend on opening a modal, hover, source details, or reading alt text. If an inset or label becomes unreadable, increase the available width, simplify the labels, or separate the context and detail views. Enlargement is for closer inspection, not for discovering which continent the lesson occupies.
+
 Record:
 
 - lesson ID and intended module ID;
@@ -30,6 +44,9 @@ Record:
 - required locations and geographic features;
 - which labels or short spatial annotations must appear;
 - expected desktop and mobile presentation.
+- wider-world anchor and the visible context-to-detail chain;
+- exact native orientation sentence and where it appears;
+- the unfamiliar geography the learner is not expected to know already.
 
 ## 2. Research the geography
 
@@ -60,15 +77,17 @@ When suitable sources disagree, record the disagreement and use a deliberately a
 
 ## 4. Select a method and prepare the brief
 
-Prefer deterministic/native/vector or raster methods when they reliably preserve reviewed geometry, location, measurements and labels. Keep source data/version, coordinate system and any projection/generalization decisions with the brief; do not invent coordinates to fill gaps. A compact locator may use a broad approximate region and textual summary instead of a falsely precise point. Modern coastlines are modern orientation, not a claim about prehistoric geography.
+Prepare the real geographic source image before generation. Use a licensed map or render reviewed geographic data into a source image with the intended crop, terrain, labels, site markers, and context inset. Keep source data/version, coordinate system and any projection/generalization decisions with the brief; do not invent coordinates to fill gaps. Supply an actual relief reference when terrain is requested: mountains and river valleys are geography, not decoration for a model to invent. A compact locator may use a broad approximate region instead of a falsely precise point. Modern coastlines are modern orientation, not a claim about prehistoric geography.
 
 For timelines paired with maps, retain authored chronology and units. Show meaningful overlap only when intervals support it; avoid converting deep-time or approximate dates into exact events. Use an explicitly schematic scale when a linear scale would make recent events unreadable, with an equivalent textual chronology. Do not combine different date conventions silently.
 
 Record transformation/code paths and a rendered reference/data view for deterministic fidelity review. Use the same geographic, rights, label, accessibility and reference-versus-final checks as for raster output. If the current media pipeline requires raster, export a raster derivative; vector sources and accessible native UI are permitted.
 
-### Optional image-generation brief
+### Required illustrated edit brief
 
-Image generation changes the visual treatment, not the researched geography. Provide the selected map reference image to the generation tool and make the verified relationships explicit in the prompt.
+Image generation changes the visual treatment, not the researched geography. Provide the prepared geographic source image as the edit target and the Nile map as a separately identified style reference. Lock the crop, projection, coastline, relief placement, river paths, marker positions, inset extent, and label associations. A style reference never supplies missing geographic facts. Match the Nile map's restrained brushwork, warm ivory/ochre land, mineral-blue water, muted lowlands, legible lettering, and subtle terrain; do not copy its Egyptian geography.
+
+If generation is unavailable, preserve the reference and prompt, report the block, and continue independent work. Do not silently deliver a flat diagram as the requested illustrated final. An alternative final method requires an explicit owner decision.
 
 Use this prompt structure:
 
@@ -79,10 +98,11 @@ LESSON AND PURPOSE:
 - Subject: [specific place, route, landscape, or event]
 - Period: [narrow date or range]
 - Teaching goal: [spatial relationship the learner should understand]
+- Wider-world anchor: [recognizable geography and context-to-detail relationship]
 
 GEOGRAPHIC REFERENCE:
 - Treat the attached real map as the geographic source.
-- Preserve its relative placement, orientation, and broad land/water relationships.
+- Preserve its crop, projection, coastlines, terrain placement, river paths, site markers, and context inset.
 - Do not use the reference's graphic style unless separately permitted.
 
 VERIFIED FEATURES:
@@ -100,6 +120,7 @@ CHRONOS STYLE:
 - warm parchment or ivory ground;
 - restrained ochre, sand, mineral blue, blue-green, and terracotta;
 - subtle paper and topographic texture;
+- use the approved Nile map as a style reference only;
 - elegant editorial historical-atlas character;
 - calm, clear, and approachable for ages 11-15;
 - simple composition with generous negative space.
@@ -133,6 +154,9 @@ Reject any draft that:
 - contains an unrequested or misspelled label;
 - copies protected expressive details from a reference map;
 - becomes noisy, game-like, photorealistic, or difficult to read at lesson size.
+- leaves the learner unable to place the subject relative to recognizable wider geography;
+- makes the locator rectangle look like a civilization's territory;
+- invents terrain or secondary waterways to make the illustration look richer.
 
 Record rejected drafts and the reason for rejection in the research note. Historical review must check geography and labels; visual review must check clarity, hierarchy, and fit with the lesson design.
 
@@ -162,6 +186,8 @@ Inspect the real lesson, not only the source image.
 
 - Confirm the complete map is visible without `object-fit: cover` cropping.
 - Check that the focus place is visually obvious and every required label remains legible.
+- Without opening the viewer, identify the continent/recognizable region and explain where the lesson sites fit. Record the actual visible anchors and native sentence; “accurate coordinates” alone is not a pass.
+- Compare the result with the Nile style reference for subtle illustrated terrain, and with the geographic source independently for fidelity. Neither aesthetic success nor geographic accuracy compensates for failed orientation.
 - Verify desktop, tablet, and narrow mobile widths in light and dark themes.
 - Confirm no horizontal scrolling, overlap, missing asset, decode failure, or console error.
 - Check that captions and uncertainty language remain visible and concise.

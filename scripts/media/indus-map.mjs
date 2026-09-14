@@ -1,4 +1,6 @@
-// Reproducible geographic locator. Run from any cwd: node scripts/media/indus-map.mjs
+// Archived version-one geographic locator; not the current illustrated asset.
+// Current reference preparation: scripts/media/indus-map-reference.mjs.
+// Run only to reproduce the original research record, not to publish the map.
 import { mkdir, readFile, writeFile } from 'node:fs/promises';
 import { createHash } from 'node:crypto';
 import { dirname, resolve } from 'node:path';

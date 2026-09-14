@@ -12,6 +12,8 @@ export function LessonOrientation({ lesson, journey }: { lesson: Lesson; journey
   const mapModule = orientationMapForLesson(lesson);
   const map = mapModule?.type === 'historical-map' ? mapModule : undefined;
   const media = chronosContent.media.find((asset) => asset.id === (map?.mediaId ?? lesson.heroMediaId) && asset.depictionMode === 'map');
+  const mapDimensions = media?.locator.provider === 'object-storage' ? media.locator.fallback : media?.locator;
+  const broadMap = mapDimensions && mapDimensions.width >= mapDimensions.height * 0.9;
   const chapter = journey.chapters.find((entry) => entry.entries.some((item) => item.lessonId === lesson.id));
   const relatedIds = [connection?.retrieve?.lessonId, connection?.revisit?.lessonId];
   // An overlap from this authored chapter is useful even when it is not the next lesson.
@@ -26,15 +28,15 @@ export function LessonOrientation({ lesson, journey }: { lesson: Lesson; journey
   const periods = orientationPeriods(lesson, peers);
   return <aside className="lesson-orientation" aria-label="Time and place">
     <div className="orientation-heading"><strong>Time and place</strong><span>{chapter?.title}</span></div>
-    <div className={media ? 'orientation-layout' : 'orientation-layout orientation-layout--text'}>
+    <div className={media ? `orientation-layout${broadMap ? ' orientation-layout--wide-map' : ''}` : 'orientation-layout orientation-layout--text'}>
       <div className="orientation-place">
-        {media && <div className="orientation-map"><ResponsiveMedia media={media} alt={media.alt} sizes="(max-width: 700px) calc(100vw - 64px), (max-width: 1100px) 55vw, 620px" loading="lazy" /><EvidenceViewer className="orientation-enlarge" media={media} title={`Locator: ${lesson.place}`} summary={map?.accessibleSummary ?? media.alt}>
+        {media && <div className="orientation-map"><ResponsiveMedia media={media} alt={media.alt} sizes={broadMap ? '(max-width: 800px) calc(100vw - 64px), 800px' : '(max-width: 700px) calc(100vw - 64px), (max-width: 1100px) 55vw, 620px'} loading="lazy" /><EvidenceViewer className="orientation-enlarge" media={media} title={`Locator: ${lesson.place}`} summary={map?.accessibleSummary ?? media.alt}>
           {map && <><p>{map.body}</p><p>{map.coordinateNote}</p>{map.lookHere && <ul>{map.lookHere.map(item => <li key={item.label}><strong>{item.label}</strong> {item.detail}</li>)}</ul>}</>}
           <p>{map?.uncertaintyNote ?? lesson.heroCaption}</p><p>{media.rightsLabel}</p>
           <ul>{(map?.sourceIds ?? media.sourceIds).map(id => chronosContent.sources.find(source => source.id === id)).filter(Boolean).map(source => <li key={source!.id}><a href={source!.url}>{source!.title}</a></li>)}</ul>
         </EvidenceViewer></div>}
         <p><strong>{lesson.place}</strong></p>
-        {map ? <p className="orientation-note">{map.modernContext}. {map.compactLabel}</p> : media ? <p className="orientation-note">{media.depictionLabel}</p> : <p className="orientation-note">The place name gives the lesson’s geographic focus; it does not mark exact boundaries.</p>}
+        {map ? <><p className="orientation-context">{map.modernContext}</p><p className="orientation-note">{map.compactLabel}</p></> : media ? <p className="orientation-note">{media.depictionLabel}</p> : <p className="orientation-note">The place name gives the lesson’s geographic focus; it does not mark exact boundaries.</p>}
       </div>
       <div className="orientation-time">
         <p className="orientation-time-heading">When these lessons take place</p>

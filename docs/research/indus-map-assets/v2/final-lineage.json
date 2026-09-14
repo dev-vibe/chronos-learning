@@ -1,0 +1,34 @@
+{
+  "date": "2026-09-13",
+  "tool": "OpenAI built-in image generation; model identifier not exposed",
+  "files": [
+    {
+      "path": "docs/research/indus-map-assets/v2/indus-geographic-edit-target.png",
+      "sha256": "274d41f9fd88e7f4b0be3cc5ae3179a5cdd5fce074f7fdbeda8ccca9452c0c66",
+      "bytes": 5014089,
+      "width": 1600,
+      "height": 1494
+    },
+    {
+      "path": "docs/research/indus-map-assets/v2/indus-illustrated-candidate-1.png",
+      "sha256": "0b0d6c68017155ebcd57813452dc15231eda0081802cd1ea8e432b987e8696db",
+      "bytes": 2947220,
+      "width": 1298,
+      "height": 1212
+    },
+    {
+      "path": "docs/research/indus-map-assets/v2/indus-illustrated-master.png",
+      "sha256": "dfd6fd1233bc7fd7325e8d168aaa70c2e802de886cf81b7096ef773ecb89fbb0",
+      "bytes": 2672144,
+      "width": 1298,
+      "height": 1212
+    },
+    {
+      "path": "public/images/maps/indus-cities-locator.jpg",
+      "sha256": "16604ea247007a5b5adb8f45b9ef3bc87377326150297dd01f80322139f40f0d",
+      "bytes": 490416,
+      "width": 1298,
+      "height": 1212
+    }
+  ]
+}

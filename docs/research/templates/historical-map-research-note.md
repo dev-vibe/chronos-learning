@@ -13,6 +13,11 @@ Depiction status: `evidence-based reconstruction | symbolic illustration | other
 - Focus place or route:
 - Spatial relationship the learner should understand:
 - Required labels or annotations:
+- Recognizable wider-world anchor:
+- Visible world/continent → region → lesson-place relationship:
+- Context inset extent and exact relationship to the main crop, if used:
+- Native orientation sentence and on-page placement:
+- Prior geographic knowledge assumed (do not assume local site familiarity):
 
 ## Selected geographic reference
 
@@ -73,6 +78,8 @@ Record meaningful source disagreements and the learner-facing language used to a
 - Generation date:
 - Complete prompt location or prompt text:
 - Geographic reference inputs:
+- Geographic edit target with locked crop/projection/terrain/markers/inset:
+- Nile map style reference (style only, never geographic evidence):
 - Style references and permitted use:
 - Final master path:
 - Optimized runtime path or object identity:
@@ -93,6 +100,10 @@ Record meaningful source disagreements and the learner-facing language used to a
 ## Final review
 
 - [ ] The real reference, not generated output, is the geographic source.
+- [ ] The learner can locate the subject relative to recognizable wider geography without opening a viewer.
+- [ ] The visible native orientation sentence communicates the same relationship.
+- [ ] The illustrated treatment follows the Nile reference with subtle terrain and preserves source geometry.
+- [ ] Any locator rectangle matches the main crop and cannot be mistaken for historical territory.
 - [ ] Every required place and label was checked against authoritative evidence.
 - [ ] Approximate features do not imply exact reconstruction.
 - [ ] Reference-map rights and runtime-asset rights are recorded separately.
