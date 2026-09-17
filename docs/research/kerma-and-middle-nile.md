@@ -564,7 +564,18 @@ Status: pending human participation. Selection reason: uncertain age fit and pos
 | Research direction | Approved by Carlin Aylsworth on September 14, 2026 |
 | Learner prototype | Approved by Carlin Aylsworth on September 14, 2026 |
 | Sources, claims and uncertainty | Reviewed for the implemented lesson wording |
-| Media and provenance | Four final assets implemented with visible lifecycle records; final rendered owner review pending |
+| Media and provenance | Four final assets implemented with visible lifecycle records; approved for publication by Carlin Aylsworth on September 17, 2026 |
 | Knowledge Card | No-card ending approved with the prototype |
 | Implementation | Deterministic implementation gate, content validation, domain tests and Chronos typecheck passed on September 16, 2026 |
-| Publication | Pending explicit product-owner authorization; lesson remains `draft` and unavailable in production |
+| Publication | Explicitly authorized by Carlin Aylsworth on September 17, 2026; cutover in progress |
+
+## Publication authorization and cutover — September 17, 2026
+
+Carlin responded **“nice. publish!”** after the final four-image review handoff. This explicitly authorizes the Kerma publication cutover.
+
+- `lesson:prepare-publication` generated migration `20260917112038_publish_kerma_and_nile_world.sql` and database test `015_kerma_and_nile_world.sql`, set the authored lesson to `published`, and unregistered its development-only prototype record.
+- The generated unregistration exposed a nested-inline-record bug in `prototype-registry.ts`; the malformed output was corrected, the parser received regression coverage, and the lesson received the learning-connection record required of published content.
+- Content validation and all 63 domain/content/lesson tests pass after those corrections.
+- The migration was applied to the linked Chronos development database and recorded in migration history. All 17 rollback assertions pass, including two required attempts, explicit idempotent completion, the no-card response, and preservation of earlier progress.
+- All 11 source and delivery objects for the four Kerma media assets were uploaded through the canonical publisher and passed a separate remote checksum-verification run.
+- Hosted branch smoke, PR checks, merge, production deployment verification and final queue closeout remain pending.

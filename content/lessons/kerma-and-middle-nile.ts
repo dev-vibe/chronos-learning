@@ -98,7 +98,7 @@ const sections: Lesson['sections'] = [
 ];
 
 export const kermaLesson: Lesson = {
-  id: 'lesson.nubia.kerma-and-nile-world', legacyAliases: ['kerma'], status: 'draft',
+  id: 'lesson.nubia.kerma-and-nile-world', legacyAliases: ['kerma'], status: 'published',
   title: 'Kerma and the Middle Nile', masthead: 'c. 2500–1500 BCE', place: 'Middle Nile · present-day Sudan',
   chronology: { startYear: -2500, endYear: -1500, display: 'c. 2500–1500 BCE', approximate: true },
   significance: 'Food, skilled work and organized labor helped sustain Kerma, a kingdom with its own rulers and changing connections with Egypt.',

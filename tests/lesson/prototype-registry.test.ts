@@ -36,11 +36,16 @@ export const chronosPrototypeReviews: readonly LessonPrototypeReview[] = [pyrami
     const source = `export const chronosPrototypeReviews: readonly LessonPrototypeReview[] = [{
   lessonId: 'lesson.egypt.pyramids-and-state-labor',
   researchNotePath: 'docs/research/pyramids-power-and-state-labor.md',
+  mediaIntentions: [
+    { sectionId: 'section.pyramids.giza', kind: 'map', status: 'ready' },
+  ],
+  productReview: { state: 'approved', reviewedBy: 'Carlin Aylsworth' },
 }];
 `;
     const { next } = unregisterPrototypeReview(source, 'lesson.egypt.pyramids-and-state-labor');
     expect(next).toContain('= [];');
     expect(next).not.toContain('lesson.egypt.pyramids-and-state-labor');
+    expect(next).not.toContain('mediaIntentions');
   });
 
   it('is a no-op when the lesson is already unregistered', () => {

@@ -18,8 +18,43 @@ function removeIdentifierFromRegistry(source: string, identifier: string): strin
 }
 
 function removeInlineReview(source: string, lessonId: string): string {
-  const expression = new RegExp(`\\s*\\{[^}]*lessonId:\\s*['"]${lessonId.replaceAll('.', '\\.')}['"][\\s\\S]*?\\},?`, 'm');
-  return source.replace(expression, '').replace(/,(\s*)\]/, '$1]');
+  const lessonMatch = lessonIdExpression(lessonId).exec(source);
+  if (!lessonMatch || lessonMatch.index === undefined) return source;
+
+  const objectStart = source.lastIndexOf('{', lessonMatch.index);
+  if (objectStart < 0) return source;
+
+  let depth = 0;
+  let quote: "'" | '"' | '`' | undefined;
+  let escaped = false;
+  let objectEnd = -1;
+  for (let index = objectStart; index < source.length; index += 1) {
+    const character = source[index];
+    if (quote) {
+      if (escaped) escaped = false;
+      else if (character === '\\') escaped = true;
+      else if (character === quote) quote = undefined;
+      continue;
+    }
+    if (character === "'" || character === '"' || character === '`') {
+      quote = character;
+      continue;
+    }
+    if (character === '{') depth += 1;
+    if (character === '}' && --depth === 0) {
+      objectEnd = index + 1;
+      break;
+    }
+  }
+  if (objectEnd < 0) return source;
+
+  const trailingComma = source.slice(objectEnd).match(/^\s*,/);
+  const removeEnd = trailingComma ? objectEnd + trailingComma[0].length : objectEnd;
+  return source
+    .slice(0, objectStart)
+    .concat(source.slice(removeEnd))
+    .replace(/(export const chronosPrototypeReviews: readonly LessonPrototypeReview\[\] = \[)\s*(\];)/, '$1$2')
+    .replace(/,(\s*)\]/, '$1]');
 }
 
 export function unregisterPrototypeReview(
