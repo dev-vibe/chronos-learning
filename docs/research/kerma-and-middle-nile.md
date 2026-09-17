@@ -554,7 +554,8 @@ Status: pending human participation. Selection reason: uncertain age fit and pos
 - `npm.cmd run typecheck:chronos`: pass.
 - Release gate: pass after adding the fail-closed sign-off record below.
 - `git diff --check`: pass; Windows line-ending notices only.
-- Final local rendered check of the four new visual placements: pending the bounded browser run. This check does not repeat the prototype quality-contract review.
+- Final local rendered check: pass. An explicitly routed Sol browser run inspected desktop (approximately 1440×900) and mobile (390×844). The map, Western Deffufa, beaker and Sennuwy images all loaded in their intended sections; captions and attributions were visible, aspect ratios remained intact, photographs stayed recognizable, and no horizontal overflow, page error or console error was observed. The main agent separately confirmed four complete images with nonzero natural dimensions at 1920×1080 and 390×844 and no error overlay. This bounded check did not repeat the prototype quality-contract review.
+- The Vercel branch deployment passed. [Hosted Kerma review preview](https://chronos-learning-git-codex-ash-101-ke-fede14-dev-vibes-projects.vercel.app/audit?on&next=%2Flearn%2Flesson.nubia.kerma-and-nile-world) requires authorized Vercel preview access; the local visual check above is the verified rendering evidence.
 
 ## Sign-off status
 
