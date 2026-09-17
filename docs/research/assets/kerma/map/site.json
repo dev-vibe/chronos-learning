@@ -1,0 +1,24 @@
+{
+  "name": "Kerma",
+  "latitude": 19.6008027777778,
+  "longitude": 30.4097305555556,
+  "coordinateText": "N19 36 2.89 E30 24 35.03",
+  "authority": "UNESCO World Heritage Centre Tentative List 6594, submitted by the Sudanese National Commission for Education, Science and Culture on 2022-02-01",
+  "url": "https://whc.unesco.org/en/tentativelists/6594/",
+  "locator": "Coordinates field, lines 56-74 in the retrieved page",
+  "rights": "Coordinate fact transcribed for verification; UNESCO page is reference-only and no site-image reuse is claimed",
+  "crosscheck": {
+    "authority": "Trismegistos Places, TM Geo 3456",
+    "latitude": 19.600802,
+    "longitude": 30.409731,
+    "url": "https://www.trismegistos.org/place/3456",
+    "locator": "Search-indexed Kerma place header reports 19.600802, 30.409731; direct page returned HTTP 403 and no GeoJSON was inspected",
+    "rights": "Indexed coordinate fact only; possible shared upstream lineage is unknown, and no independent survey or precision claim is made"
+  },
+  "relativeCrosscheck": {
+    "authority": "A. H. Thompson, L. Chaix and M. P. Richards, Journal of Archaeological Science 35 (2008), 376-387",
+    "url": "https://kerma.ch/documents/Publications_PDF/Chaix_Thompson_2007_Isotopeskerma.pdf",
+    "locator": "Article p. 377, site-location paragraph: south of the Third Cataract and approximately 6 km east of the Nile",
+    "rights": "Reference-only research article; geographic relationship transcribed, Figure 1 not redistributed"
+  }
+}

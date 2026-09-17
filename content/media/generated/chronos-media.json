@@ -1840,6 +1840,198 @@
       }
     },
     {
+      "id": "media.kerma.met-beaker",
+      "locator": {
+        "provider": "object-storage",
+        "bucket": "media-public",
+        "fallback": {
+          "path": "/images/optimized/kerma/met-beaker.optimized.webp",
+          "width": 1600,
+          "height": 1499
+        },
+        "variants": [
+          {
+            "objectKey": "kerma/media.kerma.met-beaker/75fd3d8b0894be69/optimized/ql-v1/960w-webp-q94-16f4aad69fd6e596.webp",
+            "mimeType": "image/webp",
+            "bytes": 132554,
+            "sha256": "16f4aad69fd6e5969e8ac5868672086740b139952e8571763b57ccc157dfb36b",
+            "width": 960,
+            "height": 899,
+            "compression": {
+              "profile": "ql-v1",
+              "codec": "webp",
+              "encoder": "webp-lossy",
+              "quality": 94
+            },
+            "fidelity": {
+              "mode": "measured-quasi-lossless",
+              "psnrDb": 45.99,
+              "meanAbsoluteError": 0.715,
+              "maximumChannelDelta": 14
+            }
+          },
+          {
+            "objectKey": "kerma/media.kerma.met-beaker/75fd3d8b0894be69/optimized/ql-v1/1600w-webp-q92-c2c865db2d8a6bb7.webp",
+            "mimeType": "image/webp",
+            "bytes": 304594,
+            "sha256": "c2c865db2d8a6bb769190327bb59759d56b89c9417cf8000ddfbac0a6db28f3a",
+            "width": 1600,
+            "height": 1499,
+            "compression": {
+              "profile": "ql-v1",
+              "codec": "webp",
+              "encoder": "webp-lossy",
+              "quality": 92
+            },
+            "fidelity": {
+              "mode": "measured-quasi-lossless",
+              "psnrDb": 45.32,
+              "meanAbsoluteError": 0.757,
+              "maximumChannelDelta": 15
+            }
+          }
+        ]
+      }
+    },
+    {
+      "id": "media.kerma.nile-locator",
+      "locator": {
+        "provider": "object-storage",
+        "bucket": "media-public",
+        "fallback": {
+          "path": "/images/optimized/kerma/nile-locator.optimized.jpg",
+          "width": 1327,
+          "height": 1186
+        },
+        "variants": [
+          {
+            "objectKey": "kerma/media.kerma.nile-locator/d0e4886f3bd1abb6/optimized/ql-v1/480w-webp-lossless-626ddec003554fef.webp",
+            "mimeType": "image/webp",
+            "bytes": 285302,
+            "sha256": "626ddec003554fefaace188982131b44f9a66e2920e7e64d270b92cac9da5951",
+            "width": 480,
+            "height": 429,
+            "compression": {
+              "profile": "ql-v1",
+              "codec": "webp",
+              "encoder": "webp-lossless"
+            },
+            "fidelity": {
+              "mode": "pixel-exact",
+              "psnrDb": null,
+              "meanAbsoluteError": 0,
+              "maximumChannelDelta": 0
+            }
+          },
+          {
+            "objectKey": "kerma/media.kerma.nile-locator/d0e4886f3bd1abb6/optimized/ql-v1/1327w-source-jpeg-d0e4886f3bd1abb6.jpg",
+            "mimeType": "image/jpeg",
+            "bytes": 563125,
+            "sha256": "d0e4886f3bd1abb6d6ed43e85bf905668bf5c714b7a7a588a807ab3ddf2f5a2a",
+            "width": 1327,
+            "height": 1186,
+            "compression": {
+              "profile": "ql-v1",
+              "codec": "jpeg",
+              "encoder": "source-passthrough"
+            },
+            "fidelity": {
+              "mode": "pixel-exact",
+              "psnrDb": null,
+              "meanAbsoluteError": 0,
+              "maximumChannelDelta": 0
+            }
+          }
+        ]
+      }
+    },
+    {
+      "id": "media.kerma.sennuwy",
+      "locator": {
+        "provider": "object-storage",
+        "bucket": "media-public",
+        "fallback": {
+          "path": "/images/optimized/kerma/sennuwy.optimized.webp",
+          "width": 800,
+          "height": 2146
+        },
+        "variants": [
+          {
+            "objectKey": "kerma/media.kerma.sennuwy/b1ddccfc81c70c47/optimized/ql-v1/800w-webp-q94-6ef4c881feca2319.webp",
+            "mimeType": "image/webp",
+            "bytes": 366456,
+            "sha256": "6ef4c881feca2319e2073de7d8d6552b6d4ccdbed1094fc32ed62a2d4c8cd218",
+            "width": 800,
+            "height": 2146,
+            "compression": {
+              "profile": "ql-v1",
+              "codec": "webp",
+              "encoder": "webp-lossy",
+              "quality": 94
+            },
+            "fidelity": {
+              "mode": "measured-quasi-lossless",
+              "psnrDb": 45.19,
+              "meanAbsoluteError": 0.905,
+              "maximumChannelDelta": 11
+            }
+          }
+        ]
+      }
+    },
+    {
+      "id": "media.kerma.western-deffufa",
+      "locator": {
+        "provider": "object-storage",
+        "bucket": "media-public",
+        "fallback": {
+          "path": "/images/optimized/kerma/western-deffufa.optimized.jpg",
+          "width": 1600,
+          "height": 1067
+        },
+        "variants": [
+          {
+            "objectKey": "kerma/media.kerma.western-deffufa/903b20b09047e33a/optimized/ql-v1/480w-webp-lossless-baa1678e3e773ee0.webp",
+            "mimeType": "image/webp",
+            "bytes": 222098,
+            "sha256": "baa1678e3e773ee086749ef4b3fa29bd346f914e7374944191222da99721f5d2",
+            "width": 480,
+            "height": 320,
+            "compression": {
+              "profile": "ql-v1",
+              "codec": "webp",
+              "encoder": "webp-lossless"
+            },
+            "fidelity": {
+              "mode": "pixel-exact",
+              "psnrDb": null,
+              "meanAbsoluteError": 0,
+              "maximumChannelDelta": 0
+            }
+          },
+          {
+            "objectKey": "kerma/media.kerma.western-deffufa/903b20b09047e33a/optimized/ql-v1/1600w-source-jpeg-903b20b09047e33a.jpg",
+            "mimeType": "image/jpeg",
+            "bytes": 783005,
+            "sha256": "903b20b09047e33a8c35e33cfa43fa8891e20d45ec89d31c11c3dc3d39372991",
+            "width": 1600,
+            "height": 1067,
+            "compression": {
+              "profile": "ql-v1",
+              "codec": "jpeg",
+              "encoder": "source-passthrough"
+            },
+            "fidelity": {
+              "mode": "pixel-exact",
+              "psnrDb": null,
+              "meanAbsoluteError": 0,
+              "maximumChannelDelta": 0
+            }
+          }
+        ]
+      }
+    },
+    {
       "id": "media.pyramids.giza-evidence-chain",
       "locator": {
         "provider": "object-storage",

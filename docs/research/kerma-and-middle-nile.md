@@ -3,11 +3,11 @@
 Issue: [ASH-101](https://linear.app/ashs-workshop/issue/ASH-101/research-and-publish-kerma-and-the-middle-nile)
 Draft PR: [#47](https://github.com/dev-vibe/chronos-learning/pull/47)
 Lesson ID: `lesson.nubia.kerma-and-nile-world`
-Research-note identity/version: `ash-101-prototype-v2`
+Research-note identity/version: `ash-101-implementation-v3`
 Production record version: 2
 Journey/chapter/position: World History / Cities, States, and Bronze Age Networks / canonical position 17
 Required or optional: required
-Queue status: Researching
+Queue status: Implementing
 Accountable reviewer: Carlin Aylsworth
 Validation tier: high-risk (cross-cultural attribution, Egyptian textual perspective, funerary violence and disputed political reconstruction)
 Branch: `codex/ash-101-kerma-and-middle-nile`
@@ -16,7 +16,7 @@ Started: 2026-09-14
 
 ## Work boundary and selection
 
-Carlin approved the revised Stage 3B research direction on September 14, 2026 ("apporved", following the audience-fit self-review). This increment now builds the complete unpublished Learn-shell prototype through Stages 4–14B. That response approves research direction, including the concrete audience framing; it is not prototype or publication approval. Final assets, unlocks and publication remain pending their later gates. Existing uncommitted work in the main pyramids checkout is preserved in place.
+Carlin approved the revised Stage 3B direction and, after inspecting the running prototype, said “looks good” and “please continue” on September 14. The approved map and licensed evidence photograph are now integrated. This is unpublished implementation for final review, not publication authorization. Existing uncommitted work in the main pyramids checkout remains untouched.
 
 Production order 90 is the next eligible Ready entry after Indus. The Nile dependency is published and recorded Complete in the queue; `content/lessons/egypt-nile-state.ts` carries its published lesson. Indus PR #41 is merged and its September 13 publication is recorded on main and ASH-100. Sahul's old Review row was reconciled using merged PR #35, ASH-109 Done, and `docs/research/crossing-to-sahul.md` (publication migration applied and media checksums verified September 4). This is reconciliation of recorded release evidence, not a fresh hosted completion test or new publication approval. The operational queue is distinct from older readiness labels in the canonical roster.
 
@@ -187,7 +187,8 @@ Selected after the September 14 research-direction approval and before prose dra
 
 | Claim ID and wording | Kind | Certainty | Sources | Counterevidence/limits | Missing perspective | Learner treatment | Review |
 | --- | --- | --- | --- | --- | --- | --- | --- |
-| `claim.kerma.beaker` — British Museum EA81931 is a handmade Kerma-period pottery beaker from the Northern Dongola Reach, dated 1750–1450 BCE; incomplete with reconstruction, 99 mm tall, flaring profile, red-brown body, dark rim/interior and irregular exterior band. | observation | high | beaker | Findspot is regional, not Kerma city; no maker/workshop attribution. It spans the rounded endpoint. | Maker unnamed. | Concrete description, distinguish repairs; no technique beyond handmaking inferred from color. | Editorially reviewed |
+| `claim.kerma.met-beaker` — Met 20.2.45 is a handmade Classic Kerma beaker, ca. 1802–1640 BCE, 10.8 cm tall, found at Abydos Tomb 525 in Egypt; flaring form, dark upper body/interior, red lower body and irregular pale band. | observation | high | met-beaker | Findspot is Egypt, not Kerma; no exact workshop or transport route identified. | Maker unnamed. | Concrete observation of skill; no inferred ethnicity or restoration history. | Editorially reviewed September 15 |
+| `claim.kerma.locator-geography` — modern geography places Kerma beside the Nile in Sudan south of Egypt; Africa inset marks the enlarged view. | observation | high | map-site; map-relief; map-river; isotopes-2008 | Representative point, generalized present-day river, no ancient channel or vegetation reconstruction. | Not a political boundary. | Native orientation and uncertainty text. | Editorially reviewed September 15 |
 | `claim.kerma.location` — Kerma is in present-day Sudan, in northeastern Africa, south of Egypt along the Nile. | observation | high | mission-history; isotopes-2008 | Modern countries orient; no modern border projected onto antiquity. | Regional identities were not modern nationalities. | State directly. | Editorially reviewed |
 | `claim.kerma.period` — The lesson uses c. 2500–1500 BCE as a rounded frame for the Kerma kingdom; archaeological phases have more detailed boundaries. | interpretation | high | mission-history | Not a single dynasty's exact birth/death dates; overlaps Egypt/Indus. | A pottery phase is not a person's experience. | Rounded dates only. | Editorially reviewed |
 | `claim.kerma.local-city` — Excavated houses, streets, defenses, workshops and buildings interpreted as administrative/royal show Kerma as a local urban capital, not an Egyptian colonial foundation. | interpretation | high | city-project; mission-research; isotopes-2008 | Functions combine form/context; project accounts overlap. Egyptian contacts and later conquest remain. | Domestic remains lack named inhabitants. | Describe concrete remains before political interpretation. | Editorially reviewed |
@@ -203,7 +204,13 @@ Selected after the September 14 research-direction approval and before prose dra
 
 | Claim ID | Source ID | Locator | Review |
 | --- | --- | --- | --- |
-| claim.kerma.beaker | source.kerma.beaker | object EA81931, registration 2010,1001.115; description, production date, technique, dimensions, condition, findspot R25 context 137 and displayed collection photograph | Sol retrieval/image inspection and main claim assessment, 2026-09-14, close-reviewed |
+| claim.kerma.deffufa | source.kerma.map-site | passage Description, Tentative List 6594: capital remains around Western Deffufa; large mud-brick temple, repeatedly transformed; Authenticity and conservation/restoration passages | Sol retrieval/main historical and visual assessment, 2026-09-16, close-reviewed |
+| claim.kerma.deffufa | source.kerma.deffufa-photo | object Western_Deffufa_-_Kerma.jpg, Walter Callens, 2009-03-26; Commons Summary and Licensing fields | Sol retrieval/main original and derivative inspection, 2026-09-16, close-reviewed |
+| claim.kerma.met-beaker | source.kerma.met-beaker | object 545772 / 20.2.45, description, date, medium, dimensions, geography and excavation fields; original DP354726 photograph | Sol retrieval, main full original/crop inspection and assessment, 2026-09-15, close-reviewed |
+| claim.kerma.locator-geography | source.kerma.map-site | passage Coordinates field, Tentative List 6594, submitted 2022-02-01; N19 36 2.89 E30 24 35.03 | Sol retrieval/main geographic assessment, 2026-09-15, close-reviewed |
+| claim.kerma.locator-geography | source.kerma.map-river | object ne_50m_rivers_lake_centerlines.geojson v5.1.2: Nile, El Bahr el Abyad, El Bahr el Azraq, Rosetta Branch, Damietta Branch features including lake centerlines | Sol extraction/main source-to-final comparison, 2026-09-15, close-reviewed |
+| claim.kerma.locator-geography | source.kerma.map-relief | object HYP_50M_SR_W georeferenced TIFF, main 15–45 E / 9–34 N crop and full-Africa inset; exact data hashes below | Sol retrieval/main source-to-final comparison, 2026-09-15, close-reviewed |
+| claim.kerma.locator-geography | source.kerma.isotopes-2008 | p. 377 location paragraph and fig. 1; south of Third Cataract, approximately 6 km east of Nile | Sol retrieval/main broad-location cross-check, 2026-09-15, close-reviewed |
 | claim.kerma.location | source.kerma.isotopes-2008 | p. 377, site and historical context | Sol passage retrieval/main assessment, 2026-09-14, close-reviewed |
 | claim.kerma.period | source.kerma.mission-history | passage Birth of the Kingdom of Kerma, ceramic phase table | Sol passage retrieval/main assessment, 2026-09-14, close-reviewed |
 | claim.kerma.local-city | source.kerma.city-project | section La ville de Kerma, excavated streets, housing, defenses and activity areas | Sol passage retrieval/main assessment, 2026-09-14, close-reviewed |
@@ -225,10 +232,10 @@ Selected after the September 14 research-direction approval and before prose dra
 | --- | --- | --- | --- |
 | Geography and overlapping dates | Essential | Orient before unfamiliar people/places. | Opening |
 | Food, local craft and organized building | Essential | Concrete explanation of capacities supporting power. | Core |
-| One regional Kerma pottery object | Supporting | Give skilled production a memorable physical anchor. | Core, exact EA81931 record reviewed below |
+| One regional Kerma pottery object | Supporting | Give skilled production a memorable physical anchor. | Core, Met 20.2.45; rights-driven substitution recorded below |
 | Unequal labor/wealth | Essential | A kingdom was not simply a community of equal workers. | Core, non-graphic |
 | Contact and changing political relationships | Essential | Sharing a river does not mean sharing a government. | Core |
-| Sennuwy moved object | Supporting | A concise example of contact vs control. | One short paragraph; no competing evidence task |
+| Sennuwy moved object | Supporting | A concise example of contact vs control. | One short paragraph and the owner-requested original photograph; no additional question |
 | Reisner, named phases, named Egyptian rulers | Deferred | Historiography/periodization adds little to the current learner explanation. | Research only |
 | Burial deaths, disputed causes/consent | Deferred | Resource inequality can be taught without an emotionally dominant account of deaths. | Research only; do not sanitize if later made essential |
 | DNA, cranial comparisons, isotope methods, Doukki Gel coalition | Deferred | Requires separate context and would obscure current question. | Possible future depth, not created |
@@ -242,7 +249,7 @@ Supporting understandings: food supports specialized work; skilled local product
 Prerequisites: `lesson.egypt.nile-state` (river connections versus rule; organized work); city needs from `lesson.uruk.first-city`; observing objects in `lesson.indus.cities-and-signs`. No exact earlier dates or ruler names required.
 Misconceptions: all Nile history is Egyptian; imported objects prove foreign government; everyone benefits equally from organized work; conquest makes a population vanish; these societies flourished one after another with no overlap.
 Indispensable vocabulary: kingdom (territory and communities under a ruler); capital (center of government); craftspeople (skilled makers); pottery (fired clay objects); alloy (mixture of metals, only if needed); archaeologists (investigators of material remains). Prefer ordinary words over more terms.
-Evidence encounter: the reviewed Kerma-period beaker EA81931 from the wider Northern Dongola Reach, with complete native description until its licensed photograph is approved; observation of deliberate shaping/finish connects to skilled work, not maker identity or political constitution.
+Evidence encounter: Met 20.2.45, a Classic Kerma-style beaker found in Egypt, shown in a licensed original photograph. Observe shape and finish as skilled work; do not attribute it to a known workshop or infer its route to Egypt.
 Historical-thinking move: connect concrete material work to the capacities it supported, then distinguish contact from control.
 Retrieve: The Nile can connect communities, but ruling them requires organized work and authority (`lesson.egypt.nile-state`); prompt a brief mental callback without making recall a hurdle.
 Extend: Another kingdom along that river has its own local production and rulers; explain the people and supplies that help support its power.
@@ -256,33 +263,207 @@ Required sincere-attempt evidence: one supported selection distinguishing a loca
 
 | Order | Section ID | Learner-facing heading | Authoring purpose | Claims/sources | Module | Media/action | Transition |
 | --- | --- | --- | --- | --- | --- | --- | --- |
-| 1 | section.kerma.nile-neighbors | Kerma on the Nile | Locate a city/kingdom and ask the concrete power question. | location, period, local-city | prose | Required orientation map intention; text already orients. | A city depends on food and work. |
-| 2 | section.kerma.food-and-building | Feeding and building the city | Explain food supply as a condition for other work and shared construction. | food, work-and-support, local-city | prose | No decorative scene required. | Skilled makers also contribute. |
-| 3 | section.kerma.skilled-makers | Kerma's skilled makers | Anchor local production in one object and workshop remains. | beaker; metalworking | two prose modules | Required evidence photograph intention; inspect object description. | Work supports people with unequal power. |
+| 1 | section.kerma.nile-neighbors | Kerma on the Nile | Locate a city/kingdom and ask the concrete power question. | location, period, local-city | prose | Reviewed illustrated orientation map in Time and place; native text orients. | A city depends on food and work. |
+| 2 | section.kerma.food-and-building | Feeding and building the city | Explain food supply as a condition for other work and shared construction. | food, work-and-support, local-city | prose | Original site photograph makes brick building concrete. | Skilled makers also contribute. |
+| 3 | section.kerma.skilled-makers | Kerma's skilled makers | Anchor local production in one object and workshop remains. | met-beaker; metalworking | prose and evidence photograph | Inspect the surviving vessel, then distinguish actual production waste within Kerma. | Work supports people with unequal power. |
 | 4 | section.kerma.rulers-and-resources | Rulers and resources | Connect organized work with concentrated wealth and authority. | unequal-power, work-and-support | prose | No grave/body imagery. | Power also shapes external relations. |
-| 5 | section.kerma.egypt-and-change | A changing relationship with Egypt | Distinguish connection, rivalry and later conquest. | connections, sennuwy, conquest | prose | A brief imported-object example in text, not a second image task. | Explain what sustained Kerma. |
+| 5 | section.kerma.egypt-and-change | A changing relationship with Egypt | Distinguish connection, rivalry and later conquest. | connections, sennuwy, conquest | prose | Original Sennuwy photograph supports the brief imported-object example; no additional question. | Explain what sustained Kerma. |
 | 6 | section.kerma.understanding | Explain Kerma's power | Use local evidence and connect work to capacity. | selected evidence + work claims | two prompts | Sincere attempt, feedback, explicit completion. | Journey ending honestly indicates unavailable next lesson. |
 
 ## Media decisions
 
+### Owner-requested visual expansion — September 16, 2026
+
+After seeing the integrated map and beaker, Carlin said “love it. more images please”, then asked to continue. This explicitly authorizes additional lesson visuals. Preserve the approved question, six-section structure, two prompts and no-card ending. Select two complementary evidence views: the surviving city architecture to make organized building concrete, and the actual Egyptian statue already discussed in the contact-versus-rule passage. Use licensed original photographs where available; assess actual records, rights and visible details before registration. Do not turn the additions into another long evidence-method exercise. No new publication authorization is inferred. Final checks will cover all newly integrated images together because the previous validation was interrupted by the routine agent's usage limit.
+
 | Intention ID | Section ID | Teaching question | Form | Evidence/claim basis | Depiction label | Accessible equivalent | Stage 14A treatment | Final review |
 | --- | --- | --- | --- | --- | --- | --- | --- | --- |
-| intention.kerma.orientation | section.kerma.nile-neighbors | Where is Kerma relative to Africa, Egypt and the Nile? | Required illustrated locator map, following map runbook | location; authoritative source map must be selected and reviewed before production | Geographic orientation; modern countries identify location, no ancient borders | Native sentence Africa → Sudan south of Egypt → Kerma on Nile; final map summary/alt must preserve it | Development-only intention, no fabricated map | Pending prototype approval, source-map/rights/geometry review and final visual review |
-| intention.kerma.beaker | section.kerma.skilled-makers | What can this Kerma-period vessel show about skilled work? | Required licensed original object photograph | British Museum EA81931; claim.kerma.beaker | Surviving evidence | Native description of shape, color and finish; final alt from actual photo | Development-only intention; source-based prose supports full reading | Pending prototype approval, license/source choice and final fidelity review |
+| intention.kerma.orientation | section.kerma.nile-neighbors | Where is Kerma relative to Africa, Egypt and the Nile? | Illustrated locator | Natural Earth geography, UNESCO site point, archaeological broad-position check | Modern geographic orientation, no ancient borders | Native modernContext, summary and alt | Approved prototype intention | Ready: media.kerma.nile-locator; source/final review below |
+| intention.kerma.deffufa | section.kerma.food-and-building | What did organized building work produce at Kerma? | Licensed original site photograph | UNESCO site description; claim.kerma.deffufa and claim.kerma.work-and-support | Surviving monument, modern conserved site | Native description, conservation qualification and alt | Added after owner requested more images | Ready: media.kerma.western-deffufa; rights/fidelity review below |
+| intention.kerma.beaker | section.kerma.skilled-makers | What can this vessel show about skilled work? | Licensed original photograph | Met 20.2.45; claim.kerma.met-beaker | Surviving vessel, modern museum photograph | Native shape/color description, accession, date, findspot and scale | Approved prototype intention | Ready: media.kerma.met-beaker; rights/fidelity review below |
+| intention.kerma.sennuwy | section.kerma.egypt-and-change | What does an Egyptian-made object at Kerma show—and not prove? | Licensed original museum photograph | MFA conservation record, Reisner find context; claim.kerma.sennuwy | Surviving Egyptian statue, modern museum display | Native object description, find-context limit, reassembly note and alt | Added after owner requested more images | Ready: media.kerma.sennuwy; rights/fidelity review below |
 
-No atmosphere hero or video is necessary for this prototype. The concrete food/work explanation is clearer in native prose; adding unrelated scenes would increase visual claims and distract from the single object. Map must follow `docs/content/historical-map-production.md` before any final production; no map has yet been made. Map labels proposed for later source verification: Africa, Sudan, Egypt, Nile, Kerma. Do not draw a territorial extent or precise commodity route.
+No atmosphere hero or video is necessary for this prototype. The concrete food/work explanation is clearer in native prose; adding unrelated scenes would increase visual claims and distract from the single object. Map follows the historical-map runbook. Final source-verified labels: Mediterranean Sea, Egypt, Nile, Sudan, Kerma, Africa. No territorial extent or commodity route is drawn.
 
-### Selected object and chronology follow-up
+### Prototype object choice — superseded September 15
 
 `source.kerma.beaker`: British Museum, [EA81931](https://www.britishmuseum.org/collection/object/Y_EA81931), registration 2010,1001.115; accessed 2026-09-14. Central supporting object record: handmade Kerma Classique beaker, 1750–1450 BCE, Northern Dongola Reach site R25 context 137 (older code KNE 137), type NDRS BK1.3; height 99 mm, diameter 128+ mm; incomplete with reconstruction. Record citation Welsby Sjöström 2001a p. 320 fig. 5.51. Donated by Sudan Archaeological Research Society following NCAM division of finds, 2010. Sol retrieved the complete official indexed fields; later direct HTML access returned 403. Sol inspected the associated official collection photograph in place: flaring profile, red-brown body, dark rim/interior, irregular dark band and visible reconstruction joins. The main agent selected the limited claim above. No analysis identifies its precise workshop, maker or manufacture in Kerma city; prose explicitly calls the findspot regional. It anchors the broader craft tradition, while metal-production waste supplies the separate evidence of work within the capital.
 
-Rights remain unresolved: the [museum image policy](https://www.britishmuseum.org/terms-use/copyright-and-permissions/images-and-photography) provides non-commercial licensing for specifically marked assets, but the object's own Use image panel was inaccessible. Do not assume that policy licenses this file or that non-commercial restrictions fit the product. Final production must establish suitable permission or choose another reviewed, suitably licensed real object and recheck affected prose/claim/media with the owner. No image has been acquired or redistributed. The final native caption must identify accession, regional findspot, approximate date and reconstruction; alt describes actual visible shape/finish, never a guessed firing recipe.
+The following is the earlier prototype decision, retained as history; Met 20.2.45 now replaces EA81931 in all runtime claims, text and media. EA81931 rights remained unresolved: the [museum image policy](https://www.britishmuseum.org/terms-use/copyright-and-permissions/images-and-photography) provides non-commercial licensing for specifically marked assets, but the object's own Use image panel was inaccessible. Do not assume that policy licenses this file or that non-commercial restrictions fit the product. This candidate was replaced by the Met object below; no British Museum image is redistributed. The final caption identifies the replacement accession, Egyptian findspot and scale. No reconstruction claim transfers between objects.
 
 Bounded chronology/geography recheck: mission History passage identifying the heart of Sudanese Nubia; location passage upstream/south of Third Cataract; table Classic Kerma 1750–1480 and Egyptian occupation 1480–1080; concluding capital/necropolis span c. 2500–1500 BCE. Thompson/Chaix/Richards pp. 376–377 and fig. 1 independently locate Kerma in Sudanese Nubia and give Classic Kerma to c. 1500 BCE. Dates are rounded in prose; no Nile-flow direction, modern coordinates or exact conquest year is asserted. The wider modern Africa/Egypt/Sudan orientation must also be checked against the authoritative source map before final map acceptance.
 
 ## Image lifecycle
 
-No final images accepted or acquired. Map and object photograph are planned teaching deliverables, not deferred implementation shortcuts. Their full source/reference/final lifecycle blocks will be created after prototype approval, before media registration. Existing research links are not claims of redistribution permission.
+The original map and beaker visual jobs are complete; two additional original photographs below implement the subsequent owner request. Main-agent selection and rights review are not a claim that Carlin separately selected the exact photograph. September 15's rights-driven substitution uses a different stable source/claim/media identity for Met 20.2.45 and updates all learner object facts. The original British Museum candidate is not redistributed. No card, prompt semantics, publication status or lesson unlock changed.
+
+### media.kerma.met-beaker
+
+#### 1. Reasoning and source basis
+
+The learner can inspect deliberate shape and finish in an actual surviving vessel. The [Met object record](https://www.metmuseum.org/art/collection/search/545772), its [API record](https://collectionapi.metmuseum.org/public/collection/v1/objects/545772) and [Open Access policy](https://www.metmuseum.org/hubs/open-access) identify object 545772 / accession 20.2.45 as Public Domain and its image as CC0. Credit: The Metropolitan Museum of Art, Rogers Fund, 1920. Original photograph: https://images.metmuseum.org/CRDImages/eg/original/DP354726.jpg. Retrieved September 15, 2026.
+
+Close-reviewed fields: Classic Kerma Beaker; ca. 1802–1640 BCE; handmade pottery; height 10.8 cm, diameter 14.2 cm; Egypt, Abydos, Tomb 525, Garstang 1908. The findspot is not the city of manufacture. Exact maker, workshop, transport route and tomb occupant identity are not established. The record's tentative glaze-like explanation is not turned into a certain technical claim. Photo-visible damage does not establish restoration history.
+
+#### 2. Reference image actually used
+
+![Met original photograph, uncropped](assets/kerma/met-20-2-45-classic-kerma-beaker-original.jpg)
+
+Original: 3047×3855, 1,338,855 bytes. SHA-256: d431616fafed338c71a537958fc1539f6a5e07afc8c94ca44970bb6ef738a858. No generation and no museum-object substitution inside the photograph.
+
+#### 3. Generation or transformation
+
+Operation: licensed-original background crop and responsive delivery. Exact transformation:
+
+```text
+Read the unchanged DP354726.jpg original with Sharp.
+Extract { left: 0, top: 1000, width: 3047, height: 2855 }.
+Resize to width 1600 with aspect ratio preserved; JPEG quality 94.
+Do not retouch, recolor, reconstruct, remove damage or change the object.
+Write public/images/objects/kerma-met-20-2-45-beaker.jpg.
+Build responsive derivatives through the existing ql-v1 media pipeline.
+```
+
+Runtime source: 1600×1499, 498,199 bytes. SHA-256: 75fd3d8b0894be695d71929afb88510f8e0e19ab0246a0d2016b5818542b2eda. The generated media manifest retains derivative hashes, dimensions and quality metrics.
+
+#### 4. Accepted final image
+
+![Accepted beaker photograph](../../public/images/objects/kerma-met-20-2-45-beaker.jpg)
+
+Fidelity verdict: accepted. Main agent viewed the full original and runtime crop: the whole vessel, rim chips/crack, pale band, surface wear, shape and shadow remain; only empty background was removed. Alt and native caption describe this specific vessel and explicitly locate the findspot in Egypt. Reviewer/date/status: main Codex agent / 2026-09-15 / approved for unpublished implementation. Final owner review and publication remain separate.
+
+### media.kerma.nile-locator
+
+#### 1. Reasoning and source basis
+
+Map brief: locate Kerma within Africa, then Sudan south of Egypt along the Nile, during a lesson about c. 2500–1500 BCE. Modern geography supplies orientation, not ancient river channels, vegetation or political boundaries. North is up; main extent W15/E45/S9/N34, equirectangular with aspect approximating standard parallel 21.5° N. Full-Africa inset W−20/E55/S−36/N38 includes a rectangle identifying the main view only. Required labels, each once: Mediterranean Sea, Egypt, Nile, Sudan, Kerma, Africa. No additional cities, roads, routes, borders or historical paragraphs.
+
+Primary map/data: [Natural Earth shaded relief](https://www.naturalearthdata.com/downloads/50m-raster-data/50m-cross-blend-hypso/) HYP_50M_SR_W; [rivers and lake centerlines](https://www.naturalearthdata.com/downloads/50m-physical-vectors/50m-rivers-lake-centerlines/) v5.1.2. Both are [public domain](https://www.naturalearthdata.com/about/terms-of-use/). Raster website labels v3.2.0 while archive VERSION says 2.0.0; exact TIFF SHA-256 925ec796d213adf3036db5e316d2a17ebbadf9f03f29fb20d320b340944293d5 controls reproducibility. World file is recorded in reference-lineage.json. River GeoJSON SHA-256 f286e0ce978fde999ca2d7a78c764be08542e19b63cded52b05c12d5173ccc51, tag v5.1.2; include Nile, El Bahr el Abyad, El Bahr el Azraq, Rosetta Branch and Damietta Branch, with their connecting lake centerlines. Modern canals omitted.
+
+Site point: [UNESCO Tentative List 6594](https://whc.unesco.org/en/tentativelists/6594/), Sudan submission dated 2022-02-01, Coordinates field N19 36 2.89 E30 24 35.03 = 19.6008027777778 N, 30.4097305555556 E. This is representative, not a surveyed footprint. [Thompson, Chaix and Richards 2008](https://kerma.ch/documents/Publications_PDF/Chaix_Thompson_2007_Isotopeskerma.pdf), p. 377 and fig. 1 independently check the broad Nile setting south of the Third Cataract, approximately 6 km east of the Nile. Paper/UNESCO imagery is not redistributed. Indexed Trismegistos coordinates agree but possible shared upstream lineage is unknown; its direct page returned 403, so it is not a second independent precision survey.
+
+#### 2. Reference image actually used
+
+![Geographic edit target](assets/kerma/map/kerma-geographic-edit-target.png)
+
+Reviewed data/code paths and versions: scripts/media/kerma-map-reference.mjs; assets/kerma/map/site.json, nile-river-data.json and reference-lineage.json, retained relief crops. Target 1600×1430; SHA-256 70821f5b51b886b24490c1f40a147ebda513bbc9a055bdab5eb76fac6587125a. Main rejected the initial incomplete river filtering, then reviewed the corrected connected Nile, delta and Blue/White branches before generation.
+
+![Nile illustration used only for style](../../public/images/places/egypt-nile-corridor-map.jpg)
+
+Style input SHA-256 3cf6202cd83caebb7cce0d3a88e26feaf33aea984561307f7e57d757b1ee6618. Existing Chronos Nile illustration, lineage in [Nile map record](the-nile-and-an-early-egyptian-state-map.md), after [Jeff Dahl's Egypt map](https://commons.wikimedia.org/wiki/File:Ancient_Egypt_main_map.png). Style only; no Egypt-specific geographic features or sites copied. Attribution: Chronos illustrated edit; Natural Earth contributors, Public Domain; Nile style reference after Jeff Dahl, CC BY-SA 3.0. The new illustration is distributed under [CC BY-SA 3.0](https://creativecommons.org/licenses/by-sa/3.0/).
+
+#### 3. Generation or transformation
+
+Operation: illustrated image edit of the geographic target, with the existing Nile map as separate style input. Built-in image_gen tool, 2026-09-15; tool did not expose a model/version. One generated candidate; no rejected generated iterations. Exact prompt, also retained in assets/kerma/map/generation-prompt.md:
+
+```text
+Create one illustrated historical-atlas locator for a Chronos lesson, preserving the first input map's geography exactly.
+
+LESSON AND PURPOSE
+Kerma and the Middle Nile, c. 2500–1500 BCE. The learner must recognize Africa, then locate Kerma in present-day Sudan south of Egypt along the Nile. This is MODERN GEOGRAPHIC ORIENTATION, not a reconstruction of Bronze Age river channels, vegetation or borders.
+
+INPUT ROLES
+1. kerma-geographic-edit-target.png is the geographic source and sole composition/geometry authority. It was rendered from the public-domain Natural Earth georeferenced relief and river data, with a UNESCO-verified Kerma point. Preserve its full 1600×1430 canvas ratio, crop, projection, coastline shapes, exact river centerlines, subtle relief locations, Kerma marker and label associations, and inset placement/extent. Do not crop or reorganize it.
+2. egypt-nile-corridor-map.jpg is a STYLE reference only. Borrow its restrained illustrated-atlas brushwork, warm ivory/ochre terrain, mineral-blue water, soft paper texture, understated relief, and legible dark-blue serif lettering. Do not copy its geography, labels, exaggerated narrow crop, settlements, green river strip or other content into this map.
+
+LOCKED GEOGRAPHY AND LAYOUT
+Main view is 15–45 degrees east, 9–34 degrees north. North remains up. The Mediterranean coast is at the top, Red Sea at right, Nile in the center-right. Preserve the Nile's large bend in Sudan and all source river segments exactly. Do not straighten the bend, move the river, or add tributaries or distributaries absent from the target.
+Kerma is the single terracotta dot at the source position, near 19.600803 N, 30.409731 E. Keep its center in precisely the same relative canvas position and preserve its association with the Kerma label. It is a representative place marker, not a city footprint. Do not add other cities or dots.
+The whole-Africa inset stays at the lower left with the same complete recognizable continental outline. Preserve its rectangular view box EXACTLY: the box identifies the main map's crop, not a political territory. Do not fill a kingdom, add borders, decorative arrows, compass or legend. Keep the inset geographically recognizable and the Africa label legible when the full image is displayed at about 330 pixels wide.
+Relief must be a restrained simplification of actual source relief. Do not invent mountains, fertile strips, settlements, roads, vegetation bands or dramatic terrain. Preserve coastal and river relationships even where the source is sparse. No satellite-photo or GIS visual treatment in the final.
+
+ONLY THESE EXACT LABELS, EACH ONCE, IN THE TARGET'S POSITIONS
+Mediterranean Sea
+Egypt
+Nile
+Sudan
+Kerma
+Africa
+
+Keep each label's source association, approximate size and position. Replace the heavy white text outlines with subtle pale contrast only if needed for readability. Do not introduce any extra word, date, heading, educational paragraph, caption, watermark, logo or UI. Modern-country context and uncertainty will be native application text.
+
+OUTPUT
+One complete raster map in the exact source aspect ratio, detailed enough for desktop and clearly readable on mobile. The task changes visual treatment only: no changed geometry, source-feature positions or factual content. Make the result calm, warm, clear and suitable for ages 11–15.
+```
+
+Generated master retained as assets/kerma/map/kerma-illustrated-master.png, 1327×1186. SHA-256 b9222fcbcf9d68605f1285730d392f355a13fca49e5a2ef5d8b3dba13f1bf43d. Runtime encoding is JPEG quality 94 at unchanged dimensions; no post-generation geometry manipulation. Runtime source SHA-256 d0e4886f3bd1abb6d6ed43e85bf905668bf5c714b7a7a588a807ab3ddf2f5a2a. Responsive derivative choices and ql-v1 metrics are retained in the generated media manifest.
+
+#### 4. Accepted final image
+
+![Accepted illustrated locator](../../public/images/places/kerma-nile-locator.jpg)
+
+Fidelity verdict: accepted for broad orientation. Main inspected geographic target and generated final; Sol checked normalized positions. Kerma's marker remains approximately (0.514, 0.577) of the canvas; Nile bend, delta and southern confluence topology, coasts and inset view box agree at this illustration scale. Exactly six approved labels, no extra settlements or boundaries. Brushwork changes appearance and minor line thickness, not the taught spatial relationships. Native modernContext explains Africa → Sudan south of Egypt → inset; accessibleSummary and uncertainty distinguish modern geography from antiquity. Reviewer/date/status: main Codex agent / 2026-09-15 / approved for unpublished implementation; embedded-size inspection recorded in final verification below.
+
+
+
+### media.kerma.western-deffufa
+
+#### 1. Reasoning and source basis
+
+The Sudanese National Commission’s [UNESCO description](https://whc.unesco.org/en/tentativelists/6594/) identifies the city remains around the Western Deffufa and calls it a substantial mud-brick temple, repeatedly transformed. Its conservation/restoration passages qualify the present appearance. The new claim describes the monument and its interpreted function, not an exact single construction phase. Existing work-and-support claims explain the brickmaking, transport and supplies as an enabling relationship, not a recovered payroll. No UNESCO photograph is copied.
+
+Rights: [https://commons.wikimedia.org/wiki/File:Western_Deffufa_-_Kerma.jpg](https://commons.wikimedia.org/wiki/File:Western_Deffufa_-_Kerma.jpg), photograph by Walter Callens, 2009-03-26; [CC BY 2.0](https://creativecommons.org/licenses/by/2.0/). Commons records the Flickr origin and FlickreviewR verification of this specific license on 2012-04-24. The grant permits redistribution and adaptation with attribution and a change notice. Accessed2026-09-16. Attribution in the lesson names the photographer, year, license and changes; its source link leads to the image-specific record and license. Main-agent selection and rights review follow Carlin’s request for additional images, not a claim that the owner selected this exact file.
+
+#### 2. Reference image actually used
+
+![Western Deffufa at Kerma — unchanged original](assets/kerma/wikimedia-western-deffufa-walter-callens-original.jpg)
+
+Original download: https://upload.wikimedia.org/wikipedia/commons/e/e0/Western_Deffufa_-_Kerma.jpg. Original 3504×2336, 6,050,285bytes. SHA-256: f6e5045b12191e39c0c9a797fe5ce80456a0438ecaed136d8263ae99d696ac47. Sol retrieved the source/rights fields and inspected the image; main reviewed the original against the intended caption.
+
+#### 3. Generation or transformation
+
+Operation: licensed original photograph; no generation. Exact transformation:
+
+```text
+Read the unchanged Walter Callens original. Preserve the complete frame.
+Resize with Sharp to width1600, preserving aspect ratio; JPEG quality94.
+No cropping, retouching, recoloring or reconstruction.
+Write public/images/places/kerma-western-deffufa.jpg.
+Use the existing ql-v1 pipeline for delivery variants at widths480 and1600.
+```
+
+Runtime source 1600×1067, 783,005bytes. SHA-256: 903b20b09047e33a8c35e33cfa43fa8891e20d45ec89d31c11c3dc3d39372991. Generated runtime/release manifests record the selected delivery derivatives and quality metrics.
+
+#### 4. Accepted final image
+
+![Western Deffufa at Kerma — accepted photograph](../../public/images/places/kerma-western-deffufa.jpg)
+
+Fidelity verdict: Full frame, wall geometry, surviving brick textures, foreground wall lines and modern conservation surfaces preserved. The native caption says this is the conserved surviving site, not the complete ancient building. It gives organized building a concrete material example. Reviewer/date/status: main Codex agent /2026-09-16/approved for unpublished implementation. Embedded-size checks are recorded with the final verification below.
+
+### media.kerma.sennuwy
+
+#### 1. Reasoning and source basis
+
+The [MFA conservation account](https://www.mfa.org/collections/conservation/feature_ladysennuwy) identifies an Egyptian granodiorite statue moved south in antiquity and found in a ruler’s burial complex at Kerma, excavated in1914; it describes cracks, fissures and conservation/reassembly. The [direct object record](https://collections.mfa.org/objects/141967/statue-of-lady-sennuwy) was bot-blocked in this retrieval, so close-review claims rely on the accessible institutional conservation account and the earlier reviewed Reisner context. Commons identifies accession14.720. No husband’s identity, exact transfer date, motive, route or portrayal of a Kerma ruler is added. This photograph makes the already-authored Sennuwy example visible.
+
+Rights: [https://commons.wikimedia.org/wiki/File:Testupload_Boston_Museum_of_Fine_Arts_Egyptology_348.JPG](https://commons.wikimedia.org/wiki/File:Testupload_Boston_Museum_of_Fine_Arts_Egyptology_348.JPG), photograph by Marcus Cyron, 2012-07-21; [CC BY 3.0](https://creativecommons.org/licenses/by/3.0/). Commons identifies this as the photographer’s own work under CC BY 3.0. The currently downloaded original was losslessly orientation-normalized by Rotatebot. The license applies to Cyron’s photograph; no ownership or reuse grant for a separate MFA photograph is inferred. Accessed2026-09-16. Attribution in the lesson names the photographer, year, license and changes; its source link leads to the image-specific record and license. Main-agent selection and rights review follow Carlin’s request for additional images, not a claim that the owner selected this exact file.
+
+#### 2. Reference image actually used
+
+![Statue of Lady Sennuwy, MFA 14.720 — unchanged original](assets/kerma/wikimedia-lady-sennuwy-marcus-cyron-original.jpg)
+
+Original download: https://upload.wikimedia.org/wikipedia/commons/d/d9/Testupload_Boston_Museum_of_Fine_Arts_Egyptology_348.JPG. Original 2592×3872, 4,520,444bytes. SHA-256: 3d31c21026826b95804fdcb4e7cc6c761d0584d5a13f942bb204f16f877cab16. Sol retrieved the source/rights fields and inspected the image; main reviewed the original against the intended caption.
+
+#### 3. Generation or transformation
+
+Operation: licensed original photograph; no generation. Exact transformation:
+
+```text
+Read the unchanged Marcus Cyron original.
+Extract {left:600, top:600, width:1220, height:3272}; retain the source image’s bottom edge.
+Resize with Sharp to width800, preserving aspect ratio; JPEG quality94.
+No retouching, recoloring, repair or invented inscriptions.
+Write public/images/objects/kerma-sennuwy.jpg.
+Use the existing ql-v1 pipeline for delivery variants at widths480 and800.
+```
+
+Runtime source 800×2146, 448,483bytes. SHA-256: b1ddccfc81c70c474bd734fa5d5c3b6e5c7199e4527d41c87e432f7e1ce1671b. Generated runtime/release manifests record the selected delivery derivatives and quality metrics.
+
+#### 4. Accepted final image
+
+![Statue of Lady Sennuwy, MFA 14.720 — accepted photograph](../../public/images/objects/kerma-sennuwy.jpg)
+
+Fidelity verdict: Visible seated figure, wig, hands, feet, fractures and inscribed base retained. The crop removes much surrounding gallery display; the source photograph itself does not show the whole lower support block. Modern gallery fragments remain background, not excavation evidence. Initial crop ended22pixels above the source bottom; final crop retains that edge. The native caption identifies Egyptian manufacture, modern museum display, reassembly and the uncertain journey to Kerma. Reviewer/date/status: main Codex agent /2026-09-16/approved for unpublished implementation. Embedded-size checks are recorded with the final verification below.
 
 ## Knowledge Card decision
 
@@ -291,14 +472,14 @@ Decision: no card in this prototype. The single pottery encounter can anchor mem
 ## Learner-prototype review
 
 Prototype lesson ID: `lesson.nubia.kerma-and-nile-world`
-Research-note identity/version: `ash-101-prototype-v2`
+Research-note identity/version: `ash-101-implementation-v3`
 Validation tier: high-risk
 Preview route: [local Learn-shell prototype](http://localhost:3000/learn/lesson.nubia.kerma-and-nile-world). Vite is running from the isolated worktree via `lesson:preview`; this is local, not a hosted publication preview.
 Deterministic prototype gate: pass, September 14, 2026; command and evidence below.
 
 ### Product/editorial review
 
-Accountable reviewer: Carlin Aylsworth. State: pending. September 14 research-direction approval does not approve this prototype. Required final map and object photograph, no-card ending and the six-section/two-prompt experience are material prototype decisions.
+Accountable reviewer: Carlin Aylsworth. State: approved September 14 after direct prototype inspection (“looks good”, “please continue”). Final media and the rights-driven substitution are presented for final review; publication is not authorized.
 
 ### Proxy review
 
@@ -350,10 +531,39 @@ Draft isolation: the separately served local production build returned an HTTP 2
 
 Reading-size signal: 794 module-body words; 276 prompt-copy words including options/hints/feedback; 52 title/metadata words; 23 section-heading words—1,145 selected learner-facing words. This is not an age-fit score or a guarantee of reading time. Final images still need their caption/alt review.
 
-### Handoff state
+### Prototype checkpoint before subsequent owner approval
 
 Stage 3B revised research direction: approved by Carlin on September 14. Complete typed prototype and proportionate automated/browser verification: done. Author quality-contract review: recorded, affected findings resolved. Adult raw-lesson proxy: pending human participation. Product prototype review: pending. Queue remains `Researching` because the adult pre-approval review has not occurred. Final media, image rights, card reconsideration if requested, implementation/release gates and publication: pending later authorization. No approval is manufactured from test results.
+
+### Product-owner prototype approval — September 14, 2026
+
+Carlin inspected the live local prototype and replied **“looks good”**, followed by **“please continue”**. This direct owner review and continuation instruction authorizes Stage 15 final media and implementation. Product review is now `approved`; queue is `Implementing`. Prototype snapshot: `f1b34c4`. The approved plan includes the required orientation map, a suitably licensed real beaker photograph and the no-card ending. Publication remains a later explicit decision.
+
+No separate independent adult-proxy session or observed child result is claimed. The earlier procedural gap is retained honestly above; work proceeds on Carlin's subsequent direct review and explicit instruction rather than asking for repeated approval. Do not re-run research or the whole quality contract. Recheck only the final map/evidence surfaces and any rights-driven object-description changes.
 
 ### Learner observation
 
 Status: pending human participation. Selection reason: uncertain age fit and possible repetition of evidence-method framing after Pyramids/Indus. Independent or parent-supported use, immediate understanding, delayed recall and transfer have not been observed. Hypothesis: one local craft object and concrete food/work links make Kerma memorable without a catalogue of disputes. No child data recorded.
+
+## Final implementation verification — September 16, 2026
+
+- `npm.cmd run media:build`: pass. All four Kerma assets are present in the catalog and generated runtime/release manifests; the build retained the recorded pixel-exact or measured quasi-lossless delivery choices.
+- Implementation gate: pass. Registered claims, sources, media intentions, media assets and lifecycle records are coherent.
+- `npm.cmd run validate:content`: pass.
+- `npm.cmd run test:domain`: pass, 14 files and 63 tests.
+- `npm.cmd run typecheck:chronos`: pass.
+- Release gate: pass after adding the fail-closed sign-off record below.
+- `git diff --check`: pass; Windows line-ending notices only.
+- Final local rendered check of the four new visual placements: pending the bounded browser run. This check does not repeat the prototype quality-contract review.
+
+## Sign-off status
+
+| Gate | Status |
+| --- | --- |
+| Research direction | Approved by Carlin Aylsworth on September 14, 2026 |
+| Learner prototype | Approved by Carlin Aylsworth on September 14, 2026 |
+| Sources, claims and uncertainty | Reviewed for the implemented lesson wording |
+| Media and provenance | Four final assets implemented with visible lifecycle records; final rendered owner review pending |
+| Knowledge Card | No-card ending approved with the prototype |
+| Implementation | Deterministic implementation gate, content validation, domain tests and Chronos typecheck passed on September 16, 2026 |
+| Publication | Pending explicit product-owner authorization; lesson remains `draft` and unavailable in production |
