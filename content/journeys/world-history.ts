@@ -42,6 +42,7 @@ export const worldHistoryJourney: Journey = {
         { id: 'entry.world-history.caral-andean-urbanism', lessonId: 'lesson.caral.andean-urbanism', position: 3, required: true, framing: 'See how urban life took shape on Peru’s desert coast without pottery, metal, or writing' },
         { id: 'entry.world-history.pyramids-and-state-labor', lessonId: 'lesson.egypt.pyramids-and-state-labor', position: 4, required: true, framing: 'Test how dates, inscriptions, scans, objects, and ancient accounts support different parts of a monument’s history' },
         { id: 'entry.world-history.indus-cities-and-signs', lessonId: 'lesson.indus.cities-and-signs', position: 5, required: true, framing: 'Use water systems, shared measures and seals to explain urban coordination while the inscriptions remain unread' },
+        { id: 'entry.world-history.kerma-and-nile-world', lessonId: 'lesson.nubia.kerma-and-nile-world', position: 6, required: true, framing: 'Return to the Nile and see how food, skilled work and organized labor supported Kerma’s own kingdom' },
       ],
     },
   ],

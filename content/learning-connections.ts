@@ -71,4 +71,9 @@ export const learningConnectionsByLessonId: Record<string, LearningConnection> =
     extend: 'Keep date, builder, use, and purpose separate as you compare surviving traces.',
     reasoningSkill: 'Evaluate an attribution using context and multiple kinds of evidence.',
   },
+  'lesson.nubia.kerma-and-nile-world': {
+    retrieve: { lessonId: 'lesson.egypt.nile-state', prompt: 'How could organizing food and work support political power along the Nile?' },
+    extend: 'Follow food, skilled work, buildings and traveling objects to understand Kerma as a powerful kingdom with changing ties to Egypt.',
+    reasoningSkill: 'Distinguish evidence of local production from evidence that an object moved between communities.',
+  },
 };

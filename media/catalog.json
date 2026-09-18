@@ -372,6 +372,51 @@
       ]
     },
     {
+      "id": "media.kerma.met-beaker",
+      "collection": "kerma",
+      "sourcePath": "public/images/objects/kerma-met-20-2-45-beaker.jpg",
+      "fallbackPath": "/images/optimized/kerma/met-beaker.optimized.webp",
+      "preset": "photo",
+      "widths": [
+        480,
+        960,
+        1600
+      ]
+    },
+    {
+      "id": "media.kerma.nile-locator",
+      "collection": "kerma",
+      "sourcePath": "public/images/places/kerma-nile-locator.jpg",
+      "fallbackPath": "/images/optimized/kerma/nile-locator.optimized.jpg",
+      "preset": "photo",
+      "widths": [
+        480,
+        1327
+      ]
+    },
+    {
+      "id": "media.kerma.sennuwy",
+      "collection": "kerma",
+      "sourcePath": "public/images/objects/kerma-sennuwy.jpg",
+      "fallbackPath": "/images/optimized/kerma/sennuwy.optimized.webp",
+      "preset": "photo",
+      "widths": [
+        480,
+        800
+      ]
+    },
+    {
+      "id": "media.kerma.western-deffufa",
+      "collection": "kerma",
+      "sourcePath": "public/images/places/kerma-western-deffufa.jpg",
+      "fallbackPath": "/images/optimized/kerma/western-deffufa.optimized.jpg",
+      "preset": "photo",
+      "widths": [
+        480,
+        1600
+      ]
+    },
+    {
       "id": "media.pyramids.giza-evidence-chain",
       "collection": "pyramids",
       "sourcePath": "public/images/evidence/pyramids-giza-evidence-chain.jpg",
