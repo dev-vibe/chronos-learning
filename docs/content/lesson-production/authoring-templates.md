@@ -17,6 +17,18 @@ Queue status:
 Accountable reviewer:
 Validation tier: reference | high-risk | ordinary
 
+## Owner-facing lesson direction brief (Stage 3B)
+
+Recommended direction: <one sentence; explain why this serves the learner>
+
+| Provisional teaching beat | General learner message and purpose | Possible visual job (or why none helps) | Material uncertainty / risk |
+| --- | --- | --- | --- |
+
+What to leave out or defer:
+Consequential owner judgment(s):
+Detailed research packet: <link to the sections below>
+Decision status: pending | responded with date/link
+
 ## Node proposal
 
 Essential question:

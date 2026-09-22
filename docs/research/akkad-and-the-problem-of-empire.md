@@ -9,6 +9,21 @@ Queue status: Researching
 Accountable product/editorial reviewer: Carlin Aylsworth
 Validation tier: high-risk historical interpretation (imperial violence, extent of control, royal claims, contested chronology and collapse)
 
+## Owner-facing lesson direction brief — provisional
+
+**Recommended direction:** For learners around 12–13, make empire a practical historical problem: Akkadian rulers could win cities, but maintaining power across different communities required people, resources and local relationships. The surviving evidence lets us examine some of those efforts without pretending control was uniform.
+
+| Provisional teaching beat | General learner message and purpose | Possible visual job | Material uncertainty / risk |
+| --- | --- | --- | --- |
+| What changed | Sargon and his successors claimed victories beyond one city. Open with the difference between winning and governing, so “empire” names a problem rather than a trophy. | A restrained regional locator could orient learners to southern Mesopotamia and the places discussed, without a precise capital dot or solid empire border. | Royal texts are claims; exact reach and the location of Akkade remain uncertain. |
+| How power traveled | Officials, provisioning and ties with local elites show ways rule might last after a campaign. Two regional cases can reveal different arrangements. | Let learners inspect or compare context-rich evidence from Leilan and Urkesh if suitable rights and legible images are available; a simple relationship diagram may serve better than an invented scene. | Presence, alliance and direct provincial rule are different inferences; do not flatten them. |
+| How rulers wanted power seen | A royal monument can show the scale and hierarchy rulers projected while learners ask what an image cannot tell them about actual rule. | Naram-Sin's surviving stele is a strong candidate for close looking, subject to image rights and careful captioning. | Its original text is damaged, and the stone's later removal/re-inscription must remain distinct from its first use. |
+| Where power met limits | Regions did not share one clearly documented ending. A concise finish can connect imperial reach to political change and possible environmental stress without a single-cause collapse story. | A place-based comparison of regional evidence could show uneven change if the dates and data support it; avoid a dramatic one-arrow collapse graphic. | Northern aridity evidence and continuity at other sites do not yield one empire-wide cause. |
+
+**Leave out or defer:** a ruler-by-ruler sequence, a literal Sargon birth story, a precise capital location or continuous border, detailed Enheduanna authorship, and a definitive drought explanation. A named non-king actor may enter the core only if the evidence clarifies the central question rather than adding a disconnected biography.
+
+**Consequential owner judgment:** Does the practical “winning versus holding power” direction fit the audience and the World Spine? Is a particular regional or non-king perspective essential to this lesson's core? Source-by-source disputes and final visual methods remain editorial work after this direction is considered. **Decision status:** pending. The detailed evidence and challenges follow below.
+
 ## Work boundary and selection
 
 Kerma, production order 90, is Complete: its PR merged and the queue records publication and the verified four-image lesson. No other lesson row is active. Akkad is the first eligible Ready row, production order 100 and World History position 18. Its production dependency, the merged and verified Early Writing Systems lesson, is satisfied. The existing ASH-102 issue is reused. This work takes place in a fresh worktree from current remote main and preserves other checkouts.
@@ -116,4 +131,4 @@ Comparative analysis is used as a test, not a verdict by analogy. Drennan/Peters
 
 **Judgments requested from Carlin:** (1) keep the concrete “how power worked and where it failed” direction, or refocus on the “first empire” definition; (2) prioritize a non-king actor/region within the small core lesson, or reserve it for later depth; (3) flag any consequential source/evidence class or age-sensitivity issue this packet missed. The stage gate needs the owner's consideration before claim selection, blueprint, prose, prompts, media planning, or prototype work.
 
-Packet shared: [research packet on the Akkad branch](https://github.com/dev-vibe/chronos-learning/blob/codex/ash-102-akkad-and-empire/docs/research/akkad-and-the-problem-of-empire.md). Product-owner response: pending. Follow-up research and disposition: pending response.
+Packet shared: [research packet on the Akkad branch](https://github.com/dev-vibe/chronos-learning/blob/codex/ash-102-akkad-and-empire/docs/research/akkad-and-the-problem-of-empire.md). Product-owner process feedback, 2026-09-22: make the handoff a concise, actionable picture of the prospective lesson rather than requiring the full packet as primary reading; every lesson should try for visual interest without compromising its point. The brief and production guidance were updated accordingly. Product-owner response on Akkad's historical direction: pending. Follow-up research and disposition: pending direction response.

@@ -162,7 +162,7 @@ The specialist runbooks own their details. This document decides when they are n
 - Related lessons and optional journeys are navigation, not instructional sections or completion requirements.
 - A reconstruction is never presented as direct evidence. Uncertainty is never hidden merely to make prose cleaner.
 - Knowledge Cards are deterministic memory anchors, not loot. A lesson may have no card if no honest, useful memory object exists.
-- Media is selected because it teaches. A lesson has no image, map, audio, or video quota.
+- Every lesson gets an explicit visual-interest pass: look for a compelling, historically responsible way to show evidence, place, change, comparison, or a scene that helps the learner enter the subject. Media is selected because it teaches. A lesson has no image, map, audio, or video quota; record why text is clearer if no meaningful visual survives the pass.
 - Select media methods by teaching purpose and fidelity using Stage 10. Licensed originals, native/vector and raster factual visuals, and generated reconstruction have distinct appropriate roles.
 - Never let visual polish alter reviewed geometry, measurements, labels, relationships, subject details, or uncertainty. Generation is not required for stylistic consistency.
 - Each section has one learner-facing title (`heading`). The heading names the subject or teaching job in ordinary words. It orients; it is not a joke, metaphor, riddle, or magazine punchline. Interest comes from the history, not from the title.
@@ -362,7 +362,9 @@ Complete the audit with a coverage statement listing the search window, terminol
 
 ## Stage 3B — Present the research-direction checkpoint
 
-Write the audit into the lesson's research note and share a concise analytical packet with the product owner before building the lesson. The packet must identify:
+Write the audit into the lesson's research note. Lead the owner handoff with a short, self-contained **lesson direction brief**; link the detailed research packet as supporting evidence, not as the owner's primary reading task. The brief recommends one direction and lists roughly three to five provisional teaching beats. For each beat, state the historical point, the general learner-facing message, a possible visual job or reason a visual would distract, and the material uncertainty or risk. A beat is an editorial possibility, not an approved section heading, selected claim, storyboard row, or media commitment. Include what would be left out, what the team recommends, and only the consequential judgments the owner needs to make. Make the brief readable without opening the full packet or decoding source IDs.
+
+The underlying analytical packet must still identify:
 
 1. the inherited baseline account;
 2. the strongest evidence supporting it;
@@ -374,7 +376,7 @@ Write the audit into the lesson's research note and share a concise analytical p
 8. how the findings could change the essential question, central argument, main-lesson highlights, Story Arc depth, or Investigation design;
 9. the specific judgments or further research questions for the product owner.
 
-Stop after sharing the packet. Keep the queue row `Researching`. Do not begin Stage 4, settle the durable understanding, select claims for learner treatment, storyboard sections, draft prose or prompts, plan final media or a card, or build the Learn-shell prototype until the product owner has considered the findings and responded. Record that response and any requested follow-up research in the note. If the response exposes a missing evidence class or materially changes the historical model, repeat Stages 3A–3B.
+Stop after sharing the brief and linked packet. Keep the queue row `Researching`. Do not begin Stage 4, settle the durable understanding, select claims for learner treatment, storyboard sections, draft prose or prompts, plan final media or a card, or build the Learn-shell prototype until the product owner has considered the findings and responded. Record that response and any requested follow-up research in the note. If the response exposes a missing evidence class or materially changes the historical model, repeat Stages 3A–3B.
 
 ## Stage 4 — Build the claim ledger before drafting prose
 
