@@ -17,17 +17,21 @@ Queue status:
 Accountable reviewer:
 Validation tier: reference | high-risk | ordinary
 
-## Owner-facing lesson direction brief (Stage 3B)
+## Owner decision card (Stage 3B)
 
-Recommended direction: <one sentence; explain why this serves the learner>
+Recommended focus: <one short sentence>
+Reply `all yes` or give numbered `yes / change / no` responses; a change needs only a few words.
 
-| Provisional teaching beat | General learner message and purpose | Possible visual job (or why none helps) | Material uncertainty / risk |
-| --- | --- | --- | --- |
+| # | Provisional teaching beat — one-sentence message | Visual that might help (or none) |
+| --- | --- | --- |
+| 1 | | |
+| 2 | | |
+| 3 | | |
+| 4 | | |
+| 5 | | |
 
-What to leave out or defer:
-Consequential owner judgment(s):
-Detailed research packet: <link to the sections below>
-Decision status: pending | responded with date/link
+Material decision-changing caveat, if any: <one sentence; otherwise omit>
+Optional explanation and [research packet](#recent-challenge-audit-stages-3a3b) follow. Decision status: pending | responded with date/link.
 
 ## Node proposal
 

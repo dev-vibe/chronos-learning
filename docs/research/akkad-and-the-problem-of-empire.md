@@ -1,5 +1,23 @@
 # Akkad and the Problem of Empire — research-direction record
 
+## Owner decision card
+
+**Recommended focus:** How Akkadian rulers won cities and tried to keep power across them.
+
+Reply **`all yes`** or mark any row **`change: ...`** or **`no`**. These are proposed beats, not final sections or image commitments.
+
+| # | What the lesson would do | Visual that might help |
+| --- | --- | --- |
+| 1 | **Conquest:** rulers claimed victories beyond one city; set up the difference between winning and governing. | Simple regional locator. |
+| 2 | **Holding power:** show officials, supplies and local ties, with different arrangements at Leilan and Urkesh. | Site evidence or a clear relationship diagram. |
+| 3 | **Royal image:** inspect how a ruler projected authority, then ask what that image cannot prove. | Naram-Sin's surviving stele. |
+| 4 | **People beyond the ruler:** include a named non-ruler if her evidence clarifies how power worked. | Enheduanna disk or Urkesh sealings, if useful and permitted. |
+| 5 | **Limits and ending:** show uneven regional change, without claiming one drought ended rule everywhere. | Small place-by-place comparison. |
+
+Leave out a ruler list, exact empire border or capital dot, literal Sargon birth story and single-cause collapse. Detailed reasoning and sources follow for optional review.
+
+## Optional detail and evidence
+
 Issue: [ASH-102](https://linear.app/ashs-workshop/issue/ASH-102/research-and-publish-akkad-and-the-problem-of-empire)
 Lesson ID: `lesson.mesopotamia.akkadian-empire`
 Branch: `codex/ash-102-akkad-and-empire`
@@ -9,7 +27,7 @@ Queue status: Researching
 Accountable product/editorial reviewer: Carlin Aylsworth
 Validation tier: high-risk historical interpretation (imperial violence, extent of control, royal claims, contested chronology and collapse)
 
-## Owner-facing lesson direction brief — provisional
+### Expanded direction rationale — provisional
 
 **Recommended direction:** For learners around 12–13, make empire a practical historical problem: Akkadian rulers could win cities, but maintaining power across different communities required people, resources and local relationships. The surviving evidence lets us examine some of those efforts without pretending control was uniform.
 
@@ -131,4 +149,4 @@ Comparative analysis is used as a test, not a verdict by analogy. Drennan/Peters
 
 **Judgments requested from Carlin:** (1) keep the concrete “how power worked and where it failed” direction, or refocus on the “first empire” definition; (2) prioritize a non-king actor/region within the small core lesson, or reserve it for later depth; (3) flag any consequential source/evidence class or age-sensitivity issue this packet missed. The stage gate needs the owner's consideration before claim selection, blueprint, prose, prompts, media planning, or prototype work.
 
-Packet shared: [research packet on the Akkad branch](https://github.com/dev-vibe/chronos-learning/blob/codex/ash-102-akkad-and-empire/docs/research/akkad-and-the-problem-of-empire.md). Product-owner process feedback, 2026-09-22: make the handoff a concise, actionable picture of the prospective lesson rather than requiring the full packet as primary reading; every lesson should try for visual interest without compromising its point. The brief and production guidance were updated accordingly. Product-owner response on Akkad's historical direction: pending. Follow-up research and disposition: pending direction response.
+Packet shared: [Akkad owner decision card and supporting packet](https://github.com/dev-vibe/chronos-learning/blob/codex/ash-102-akkad-and-empire/docs/research/akkad-and-the-problem-of-empire.md). Product-owner process feedback, 2026-09-22: make the handoff a concise, actionable picture of the prospective lesson rather than requiring the full packet as primary reading; every lesson should try for visual interest without compromising its point; use a quick numbered yes/change/no decision document. The card and production guidance were updated accordingly. Product-owner response on Akkad's historical direction: pending. Follow-up research and disposition: pending direction response.
