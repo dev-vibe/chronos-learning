@@ -24,7 +24,7 @@ Production record version: 2
 Branch: `codex/ash-102-akkad-and-empire`
 Base: `origin/main` at `f6f37d2c0dd76a7b81861cfad5f49f2821c12391`
 Started: 2026-09-22
-Queue status: Implementing
+Queue status: Review
 Accountable product/editorial reviewer: Carlin Aylsworth
 Validation tier: high-risk historical interpretation (imperial violence, extent of control, royal claims, contested chronology and collapse)
 
@@ -398,12 +398,16 @@ A bounded routine verification was requested from `gpt-5.6-sol`; the child's loc
 
 The same worker checked the [current hosted branch preview](https://chronos-learning-git-codex-ash-102-ak-4fbae2-dev-vibes-projects.vercel.app/audit?on&next=%2Flearn%2Flesson.mesopotamia.akkadian-empire) at commit `5a113dd`: Vercel deployment `9WtRLVfvdRHKVTHPmi8AE7sV3M54` is `READY` and its GitHub check is successful. Unauthenticated requests redirect to Vercel sign-in, so this does not claim an authenticated hosted lesson walkthrough. The local route was the browser-smoked lesson.
 
+## Independent adult learner-proxy review — 2026-09-23
+
+Reviewer identifier: **Adult proxy 1**, a neutral alias for the independent adult reader reported by Carlin; no personal name was supplied. Carlin confirmed that another adult independently read and completed the current Akkad lesson and reported **“no issues found.”** This is owner-relayed feedback, not a direct observation log. No specific hesitation, misunderstanding, decorative visual, prompt mismatch, or next-action problem was reported, so there is no finding to revise or defer. The proxy requirement is recorded as met on that limited evidence. It does not demonstrate age suitability, retention, or mastery; those remain questions for the separate sampled learner-observation program.
+
 ## Final sign-off
 
 - **Research and historical integrity:** central sources and recent challenges were close-reviewed in the claim ledger; Carlin considered and approved the research direction before learner drafting. No separate specialist historian review is claimed.
 - **Learner prototype and owner editorial response:** Carlin approved the seven-section prototype on 2026-09-22, then accepted the three-image presentation after the map color correction on 2026-09-22–23. This records the viewed draft, not publication authorization.
 - **Media rights and fidelity:** the three accepted assets have source-to-final comparisons, permitted redistribution or original deterministic lineage, and accessible/native context in the image lifecycle above. The modern seal impression is explicitly separate from the Urkesh evidence.
 - **Prompts and completion:** two required sincere-attempt prompts lead to explicit completion; the lesson remains unpublished and fail-closed outside development preview.
-- **Independent adult learner-proxy review:** pending. No reviewer, observation, or disposition has been supplied; this cannot be inferred from the owner's positive visual response or the worker's mobile smoke.
+- **Independent adult learner-proxy review:** complete on Carlin's report from Adult proxy 1; no issues reported. The reviewer used a neutral alias and no detailed observation log was supplied. No proxy finding is blocking Review; no age-fit result is claimed.
 - **Technical validation:** implementation and release gates, content validation and 63 domain tests passed on 2026-09-23. The release gate first identified the missing sign-off section; it passed after this truthful pending-status record was added. A structural gate pass does not clear the pending human review.
-- **Publication:** pending explicit product-owner go-live authorization. The publication playbook, media upload, migration, merge and production verification have not run; queue status remains `Implementing`.
+- **Publication:** pending explicit product-owner go-live authorization. The publication playbook, media upload, migration, merge and production verification have not run; queue status is `Review`.
