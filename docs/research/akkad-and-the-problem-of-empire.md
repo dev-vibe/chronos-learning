@@ -280,6 +280,8 @@ Prototype: [Akkad in the Learn shell](http://localhost:3000/learn/lesson.mesopot
 
 **Map color revision, 2026-09-22:** Carlin asked for more color and visual energy without losing geographic truth. The pale first map was replaced by the documented ochre-and-mineral-blue treatment below. The current and prior lineage records have identical raster/river source hashes, bounds, inset, site coordinates, and approved labels. In the local Learn shell, the new palette was inspected at the embedded size and in the enlarged viewer; labels, distinct northern points, wider-world inset and uncertainty text remained clear. The 480-pixel responsive derivative was inspected separately: the three site names, rivers and sea anchors remain legible. A separate narrow mobile browser-layout check remains to be done; no learner age-fit observation is claimed.
 
+**Owner visual response, 2026-09-22–23:** While viewing the Akkad lesson in the Learn shell, Carlin said “wow, this is really good” and identified the map's color as the only requested improvement. After the revised map appeared in the same lesson, Carlin said “much better” and asked to make its look the standard for future maps. This accepts the revised map direction and the viewed three-image presentation for the unpublished lesson. It does not supply the missing independent adult learner-proxy evidence or explicitly authorize publication. The remaining work is a narrow mobile check, Stage 16 validation, proxy finding/disposition, and publication decision.
+
 ## Image lifecycle
 
 ### media.akkad.naram-sin-stele — surviving royal art
@@ -315,7 +317,7 @@ Keep the relative positions, size hierarchy, complete stone outline, later inscr
 
 ![Faithfully resized final photograph of the Naram-Sin victory stele](../../public/images/akkad/naram-sin-stele.jpg)
 
-Fidelity verdict: accepted by the main agent for the unpublished implementation. The ruler remains large and high, soldiers and defeated figures remain visible below, and the later inscription remains visible at upper right. Full-frame details, breaks, and surface wear are unchanged. Alt text and native caption preserve the distinction between carved royal message, surviving object, and later inscription. Reviewer/date/status: main Codex agent / 2026-09-22 / approved for unpublished implementation. Product-owner review of the actual in-lesson image remains pending; this acceptance is not publication approval.
+Fidelity verdict: accepted by the main agent for the unpublished implementation. The ruler remains large and high, soldiers and defeated figures remain visible below, and the later inscription remains visible at upper right. Full-frame details, breaks, and surface wear are unchanged. Alt text and native caption preserve the distinction between carved royal message, surviving object, and later inscription. Reviewer/date/status: main Codex agent / 2026-09-22 / approved for unpublished implementation. Carlin's subsequent in-lesson visual response is recorded above; this acceptance is not publication approval.
 
 ### media.akkad.locator — modern geography for orientation
 
@@ -356,7 +358,7 @@ The recolored base is `assets/akkad/map/akkad-atlas-base.png`, SHA-256 `11eca791
 
 ![Accepted Akkad regional locator](../../public/images/akkad/akkad-locator.jpg)
 
-Fidelity verdict: accepted by the main agent for unpublished implementation on 2026-09-22. Source and styled images were compared side by side: coastline, relief, river paths, point coordinates and inset extent remain fixed; the difference is palette and graphic hierarchy. The JPEG retains the labeled PNG's relationships. Each site label is separate and legible, including the two northern points. The Mediterranean, Persian Gulf and inset supply orientation. The modern geographic base cannot establish ancient imperial extent or river position. Reviewer/date/status: main Codex agent / 2026-09-22 / approved for unpublished implementation. Embedded desktop and the 480-pixel derivative were checked; a separate narrow mobile browser check and owner visual review remain. This is not publication approval.
+Fidelity verdict: accepted by the main agent for unpublished implementation on 2026-09-22. Source and styled images were compared side by side: coastline, relief, river paths, point coordinates and inset extent remain fixed; the difference is palette and graphic hierarchy. The JPEG retains the labeled PNG's relationships. Each site label is separate and legible, including the two northern points. The Mediterranean, Persian Gulf and inset supply orientation. The modern geographic base cannot establish ancient imperial extent or river position. Reviewer/date/status: main Codex agent / 2026-09-22 / approved for unpublished implementation. Embedded desktop and the 480-pixel derivative were checked; Carlin subsequently accepted the revised map and a narrow mobile browser check passed, as recorded above and below. This is not publication approval.
 
 ### media.akkad.seal-example — how a seal makes an impression
 
@@ -388,4 +390,18 @@ Build responsive derivatives through the ql-v1 media pipeline.
 
 ![Unaltered Met cylinder seal and modern impression in the lesson catalog](../../public/images/akkad/met-cylinder-seal-example.jpg)
 
-Fidelity verdict: source and runtime copy are byte-identical; the real object and modern impression remain separate and visible. Reviewer/date/status: main Codex agent / 2026-09-22 / approved for unpublished implementation. The image's in-lesson label must make its comparative—not Urkesh-specific—role unmistakable; owner visual review remains pending.
+Fidelity verdict: source and runtime copy are byte-identical; the real object and modern impression remain separate and visible. Reviewer/date/status: main Codex agent / 2026-09-22 / approved for unpublished implementation. The in-lesson label makes its comparative—not Urkesh-specific—role explicit; Carlin's subsequent visual response is recorded above.
+
+## Stage 16 implementation consistency — 2026-09-23
+
+A bounded routine verification was requested from `gpt-5.6-sol`; the worker's runtime model identifier was not exposed, so routing is recorded as requested rather than independently confirmed. The worker ran the implementation gate, `validate:content`, and `test:domain`: all passed (14 test files, 63 tests). At 390×844 on the local lesson route, it observed the locator at 328×246 with legible site, river, sea and inset labels; all three images loaded at valid intrinsic dimensions; lesson prose, checks and completion stayed within the viewport; document and scroll width were both 390 pixels; and no browser console or uncaught page errors appeared. The closed journey drawer accounted for offscreen elements. The repository's installed Playwright 1.61.1 was used because `agent-browser` was unavailable. This is a technical/mobile check, not an adult learner-proxy review or a claim about age fit.
+
+## Final sign-off
+
+- **Research and historical integrity:** central sources and recent challenges were close-reviewed in the claim ledger; Carlin considered and approved the research direction before learner drafting. No separate specialist historian review is claimed.
+- **Learner prototype and owner editorial response:** Carlin approved the seven-section prototype on 2026-09-22, then accepted the three-image presentation after the map color correction on 2026-09-22–23. This records the viewed draft, not publication authorization.
+- **Media rights and fidelity:** the three accepted assets have source-to-final comparisons, permitted redistribution or original deterministic lineage, and accessible/native context in the image lifecycle above. The modern seal impression is explicitly separate from the Urkesh evidence.
+- **Prompts and completion:** two required sincere-attempt prompts lead to explicit completion; the lesson remains unpublished and fail-closed outside development preview.
+- **Independent adult learner-proxy review:** pending. No reviewer, observation, or disposition has been supplied; this cannot be inferred from the owner's positive visual response or the worker's mobile smoke.
+- **Technical validation:** implementation and release gates, content validation and 63 domain tests passed on 2026-09-23. The release gate first identified the missing sign-off section; it passed after this truthful pending-status record was added. A structural gate pass does not clear the pending human review.
+- **Publication:** pending explicit product-owner go-live authorization. The publication playbook, media upload, migration, merge and production verification have not run; queue status remains `Implementing`.
