@@ -6,9 +6,9 @@ This is a mechanical cutover, not a second research, design, or platform-discove
 
 ## Routine verification model
 
-Carlin's standing preference is cheaper-model execution for suitable routine subtasks. Explicitly delegate the bounded hosted lesson smoke check and collection of mechanical test/build/media/deployment results to Sol (`gpt-5.6-sol`), or another available suitable cheaper model if Sol is unavailable, with the necessary tools/access. An inherited main-model subagent is not a cheaper-model handoff. Record the requested model and available execution metadata; disclose unresolved routing uncertainty and use the human fallback rather than claiming a cheaper model ran. Batch related checks and request the exact route/deployment, observed behavior, command outcomes and remaining gaps; review the report without repeating successful checks by default. Keep release decisions and substantive diagnosis with the main agent. This does not expand authorization for production mutations or require a new user-owned task.
+Carlin's standing preference is cheaper-model execution for suitable routine subtasks. Explicitly delegate collection of mechanical test/build/media/deployment results to Sol (`gpt-5.6-sol`), or another available suitable cheaper model if Sol is unavailable, with the necessary tools/access. An inherited main-model subagent is not a cheaper-model handoff. Record the requested model and available execution metadata; disclose unresolved routing uncertainty and use the human fallback rather than claiming a cheaper model ran. Batch related checks and request exact command outcomes, object checksums, deployment status and remaining gaps; review the report without repeating successful checks by default. Keep release decisions and substantive diagnosis with the main agent. This does not expand authorization for production mutations or require a new user-owned task.
 
-If suitable cheaper-model delegation is unavailable, lacks access, fails or cannot satisfy the check, ask Carlin to do that step. Provide the exact lesson URL or command and a short checklist of the result to report; explain the limitation and link [the standing preference](../../AGENTS.md#model-routing-for-routine-subtasks). Leave the check pending, continue independent work, and do not silently use the main model or claim verification. Carlin can explicitly authorize an exception. No extra platform discovery or repeated publication review is required to apply this rule.
+The product owner performs the hosted lesson's visual and interactive check. Do not open the lesson in a browser, capture screenshots, or delegate that check to an AI agent during publication. Give the owner the exact hosted lesson URL and the short checklist in step 5, then record only what the owner reports. If suitable cheaper-model delegation for a mechanical check is unavailable, lacks access, fails or cannot satisfy it, ask Carlin to do that specific mechanical step with the exact command and result needed; explain the limitation and link [the standing preference](../../AGENTS.md#model-routing-for-routine-subtasks). Leave that check pending, continue independent work, and do not silently use the main model or claim verification. No extra platform discovery or repeated publication review is required to apply this rule.
 
 ## What publication actually is
 
@@ -16,7 +16,7 @@ The learner-facing lesson already exists. Publication does three things:
 
 1. Tell the app the lesson is live (`status: "published"`).
 2. Tell the database how completion works (one committed migration).
-3. Make sure this lesson’s approved images are in Storage, then smoke the hosted preview.
+3. Make sure this lesson’s approved images are in Storage, then have the owner check the hosted lesson.
 
 That is the whole job. CI on the PR is the full test/build suite. The product owner’s earlier approval is the editorial review.
 
@@ -33,7 +33,7 @@ Do not:
 - run `npm run media:build` unless this lesson’s staged objects are actually missing;
 - run `npm test`, `npm run typecheck`, or `npm run build` locally unless CI failed;
 - merge `main` unless git reports a conflict;
-- capture a desktop/mobile/light/dark screenshot matrix of every image;
+- perform or delegate the hosted lesson's visual or interactive check, or capture a screenshot matrix;
 - write a custom uploader, PowerShell sidecar, or new storage architecture.
 
 If a hosted command fails, fix that command. Do not invent a parallel pipeline.
@@ -89,9 +89,9 @@ Existing Storage objects are immutable. The publisher verifies checksums and doe
 
 Apply the new migration to the Chronos development project. Do not create dashboard-only rows. Do not rewrite an already-applied migration; add a follow-up only if a real correction is required.
 
-### 5. Smoke the hosted preview once
+### 5. Push and hand off the hosted preview
 
-Open the current branch preview at `/learn/<lesson-id>` (audit unlock if needed). Confirm:
+Push the branch and update the PR with the preview link. Let CI run the full suite. After the branch preview is deployed, give the product owner a clickable direct link to `/learn/<lesson-id>` (with audit unlock parameters if needed). Ask the owner to check once and report whether:
 
 - the lesson opens at the top;
 - both required prompts accept a sincere attempt;
@@ -99,13 +99,11 @@ Open the current branch preview at `/learn/<lesson-id>` (audit unlock if needed)
 - reopening the lesson starts at the top again;
 - draft-only “Prototype review / Not learner content” notes are gone.
 
-One pass is enough. Do not recapture every viewport and theme.
+The product owner may use whichever viewport and theme they judge useful. Do not perform an agent browser check, infer a pass from HTTP status or deployment readiness, or claim the owner checked it until they report the result. Record any finding and fix it before merge; one owner pass is enough when no correction is needed.
 
-### 6. Push and hand off
+### 6. Merge and verify production
 
-Push the branch. Update the PR with the preview link. Set the queue row to `Review` until merge, then `Complete` after the production deployment is live. Include the direct lesson preview link in the final response.
-
-Merge through the normal PR path after review. Do not treat merge itself as a research step.
+After the owner reports a pass and CI is green, merge through the normal PR path and verify the production deployment is live. Keep the queue row at `Review` until merge, then set it to `Complete` after deployment verification. Include the direct lesson link in the final response. Do not treat merge as a research step or perform an agent visual check of production.
 
 ## What “done” means
 
@@ -114,7 +112,7 @@ The lesson is published when:
 - authored `status` is `published`;
 - the committed migration is applied;
 - this lesson’s media objects verify remotely;
-- the hosted preview completes once;
+- the product owner reports that the hosted lesson check in step 5 passed;
 - CI is green;
 - the queue/research note record the go-live.
 

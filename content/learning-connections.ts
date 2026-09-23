@@ -79,7 +79,6 @@ export const learningConnectionsByLessonId: Record<string, LearningConnection> =
   'lesson.mesopotamia.akkadian-empire': {
     retrieve: { lessonId: 'lesson.nubia.kerma-and-nile-world', prompt: 'Why does an object from another kingdom not, by itself, prove political rule?' },
     extend: 'Compare a ruler’s victories and image with traces of administration and royal ties at two northern cities.',
-    revisit: { lessonId: 'lesson.bronze-age.exchange-networks', prompt: 'When does a connection between regions mean exchange, influence or rule?' },
     reasoningSkill: 'Test a royal claim against place-specific evidence and qualify what kind of political connection it supports.',
   },
 };

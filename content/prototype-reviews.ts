@@ -1,5 +1,4 @@
 import type { LessonPrototypeReview } from '../src/infrastructure/content/prototypeReview';
-import { akkadPrototypeReview } from './prototype-reviews/akkad-and-empire';
 
 /**
  * Development and authoring-only review metadata.
@@ -8,4 +7,4 @@ import { akkadPrototypeReview } from './prototype-reviews/akkad-and-empire';
  * imports it only in Vite development preview mode, while lesson gate scripts
  * import it directly for deterministic validation.
  */
-export const chronosPrototypeReviews: readonly LessonPrototypeReview[] = [akkadPrototypeReview];
+export const chronosPrototypeReviews: readonly LessonPrototypeReview[] = [];

@@ -116,7 +116,7 @@ const sections: Lesson['sections'] = [
 ];
 
 export const akkadLesson: Lesson = {
-  id: lessonId, legacyAliases: [], status: 'draft',
+  id: lessonId, legacyAliases: [], status: 'published',
   title: 'Akkad and the Problem of Empire', masthead: 'c. 2350–2150 BCE', place: 'Mesopotamia · present-day Iraq and neighboring regions',
   chronology: { startYear: -2350, endYear: -2150, display: 'c. 2350–2150 BCE', approximate: true },
   significance: 'Akkadian rulers claimed far-reaching victories, but keeping power across different cities depended on officials, supplies and local relationships.',

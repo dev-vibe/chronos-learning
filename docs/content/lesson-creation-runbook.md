@@ -897,7 +897,7 @@ Publication sequence:
 2. Run `npm run validate:content` and `npm run test:domain`.
 3. Publish only this lesson’s approved media assets. Do not rebuild the whole catalog.
 4. Apply the committed migration to the Chronos development project.
-5. Smoke the hosted preview once: sincere attempts, explicit completion, reopen at the top.
+5. Give the product owner the direct hosted preview for one human visual and interactive check: sincere attempts, explicit completion, reopen at the top, and removal of draft-only notes. Do not perform or delegate an agent browser check.
 6. Push the branch and let CI run the full suite. Update the Linear issue and PR with the preview link.
 7. Merge only after review; deploy through the normal release path.
 

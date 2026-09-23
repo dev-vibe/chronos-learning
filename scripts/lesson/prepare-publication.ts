@@ -100,7 +100,15 @@ async function applyPublishedStatus(targetLessonId: string): Promise<void> {
     if (!name.endsWith('.ts')) continue;
     const path = resolve(root, 'content/lessons', name);
     const source = await readFile(path, 'utf8');
-    if (!source.includes(`id: '${targetLessonId}'`) && !source.includes(`id: "${targetLessonId}"`)) continue;
+    const hasLiteralId = source.includes(`id: '${targetLessonId}'`) || source.includes(`id: "${targetLessonId}"`);
+    const hasLessonIdConstant = (
+      source.includes(`const lessonId = '${targetLessonId}'`) || source.includes(`const lessonId = "${targetLessonId}"`)
+    ) && /\bid:\s*lessonId\b/.test(source);
+    if (!hasLiteralId && !hasLessonIdConstant) continue;
+    const draftStatuses = [...source.matchAll(/\bstatus:\s*['"]draft['"]/g)];
+    if (draftStatuses.length > 1) {
+      throw new Error(`More than one draft status in content/lessons/${name}; refusing to flip an ambiguous file`);
+    }
     if (!/\bstatus:\s*'draft'/.test(source) && !/\bstatus:\s*"draft"/.test(source)) {
       console.log(`${path} is not an unpublished draft; leaving status unchanged.`);
       return;
