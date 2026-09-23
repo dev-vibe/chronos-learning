@@ -1,0 +1,8 @@
+{
+  "purpose": "Representative archaeological site points, not ancient political boundaries",
+  "sites": [
+    { "name": "Tell Leilan", "longitude": 41.505096, "latitude": 36.958877, "source": "https://oracc.museum.upenn.edu/geonames/cbd/qpn/T.html", "crossCheck": "https://leilan.yale.edu/resources/maps/maps-google-map-tell-leilan-excavation" },
+    { "name": "Urkesh", "longitude": 40.9977581282, "latitude": 37.0578401483, "source": "https://oracc.museum.upenn.edu/geonames/cbd/qpn/x000003150.html", "crossCheck": "https://www.getty.edu/vow/TGNFullDisplay?english=Y&find=rodi&nation=&place=island&subjectid=7032379" },
+    { "name": "Uruk", "longitude": 45.638752, "latitude": 31.32446, "source": "https://oracc.museum.upenn.edu/geonames/cbd/qpn/x000003180.html", "crossCheck": "https://whc.unesco.org/document/169030" }
+  ]
+}

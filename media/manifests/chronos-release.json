@@ -12,6 +12,191 @@
   },
   "assets": [
     {
+      "id": "media.akkad.locator",
+      "locator": {
+        "provider": "object-storage",
+        "bucket": "media-public",
+        "fallback": {
+          "path": "/images/optimized/akkad/akkad-locator.optimized.webp",
+          "width": 1600,
+          "height": 1200
+        },
+        "variants": [
+          {
+            "objectKey": "akkad/media.akkad.locator/11e8fc7cbdce6bc9/optimized/ql-v1/480w-webp-lossless-f5769d9cf8491295.webp",
+            "mimeType": "image/webp",
+            "bytes": 199162,
+            "sha256": "f5769d9cf8491295d3b6ab51af59dc487781e034fd95b8e6ce981db823b3af4e",
+            "width": 480,
+            "height": 360,
+            "compression": {
+              "profile": "ql-v1",
+              "codec": "webp",
+              "encoder": "webp-lossless"
+            },
+            "fidelity": {
+              "mode": "pixel-exact",
+              "psnrDb": null,
+              "meanAbsoluteError": 0,
+              "maximumChannelDelta": 0
+            }
+          },
+          {
+            "objectKey": "akkad/media.akkad.locator/11e8fc7cbdce6bc9/optimized/ql-v1/1600w-webp-q94-df230e92569b096f.webp",
+            "mimeType": "image/webp",
+            "bytes": 301998,
+            "sha256": "df230e92569b096ff506e3f0db6428174fd372cfdb35db83cb08527d47978675",
+            "width": 1600,
+            "height": 1200,
+            "compression": {
+              "profile": "ql-v1",
+              "codec": "webp",
+              "encoder": "webp-lossy",
+              "quality": 94
+            },
+            "fidelity": {
+              "mode": "measured-quasi-lossless",
+              "psnrDb": 46.37,
+              "meanAbsoluteError": 0.751,
+              "maximumChannelDelta": 12
+            }
+          }
+        ]
+      },
+      "source": {
+        "bucket": "media-source",
+        "objectKey": "akkad/media.akkad.locator/11e8fc7cbdce6bc959ea51ca1ac5e71d5596a34f294a5d4218789a4bb77db4a3/original.jpg",
+        "mimeType": "image/jpeg",
+        "bytes": 386650,
+        "sha256": "11e8fc7cbdce6bc959ea51ca1ac5e71d5596a34f294a5d4218789a4bb77db4a3",
+        "width": 1600,
+        "height": 1200
+      }
+    },
+    {
+      "id": "media.akkad.naram-sin-stele",
+      "locator": {
+        "provider": "object-storage",
+        "bucket": "media-public",
+        "fallback": {
+          "path": "/images/optimized/akkad/naram-sin-stele.optimized.jpg",
+          "width": 960,
+          "height": 1654
+        },
+        "variants": [
+          {
+            "objectKey": "akkad/media.akkad.naram-sin-stele/9efb76e1f4c25b6a/optimized/ql-v1/480w-webp-q96-8b34fcea178008cd.webp",
+            "mimeType": "image/webp",
+            "bytes": 171768,
+            "sha256": "8b34fcea178008cd9b9222a01aa97ce1518159caa34cfba27c673649cbde8253",
+            "width": 480,
+            "height": 827,
+            "compression": {
+              "profile": "ql-v1",
+              "codec": "webp",
+              "encoder": "webp-lossy",
+              "quality": 96
+            },
+            "fidelity": {
+              "mode": "measured-quasi-lossless",
+              "psnrDb": 45.81,
+              "meanAbsoluteError": 0.853,
+              "maximumChannelDelta": 8
+            }
+          },
+          {
+            "objectKey": "akkad/media.akkad.naram-sin-stele/9efb76e1f4c25b6a/optimized/ql-v1/960w-source-jpeg-9efb76e1f4c25b6a.jpg",
+            "mimeType": "image/jpeg",
+            "bytes": 506878,
+            "sha256": "9efb76e1f4c25b6ad272bbe6aeb9abae4d5b12db13d43d4cdb81b489cd617f0f",
+            "width": 960,
+            "height": 1654,
+            "compression": {
+              "profile": "ql-v1",
+              "codec": "jpeg",
+              "encoder": "source-passthrough"
+            },
+            "fidelity": {
+              "mode": "pixel-exact",
+              "psnrDb": null,
+              "meanAbsoluteError": 0,
+              "maximumChannelDelta": 0
+            }
+          }
+        ]
+      },
+      "source": {
+        "bucket": "media-source",
+        "objectKey": "akkad/media.akkad.naram-sin-stele/9efb76e1f4c25b6ad272bbe6aeb9abae4d5b12db13d43d4cdb81b489cd617f0f/original.jpg",
+        "mimeType": "image/jpeg",
+        "bytes": 506878,
+        "sha256": "9efb76e1f4c25b6ad272bbe6aeb9abae4d5b12db13d43d4cdb81b489cd617f0f",
+        "width": 960,
+        "height": 1654
+      }
+    },
+    {
+      "id": "media.akkad.seal-example",
+      "locator": {
+        "provider": "object-storage",
+        "bucket": "media-public",
+        "fallback": {
+          "path": "/images/optimized/akkad/seal-example.optimized.jpg",
+          "width": 1200,
+          "height": 857
+        },
+        "variants": [
+          {
+            "objectKey": "akkad/media.akkad.seal-example/dc48607970cde259/optimized/ql-v1/480w-webp-lossless-deac26cf333d865c.webp",
+            "mimeType": "image/webp",
+            "bytes": 58404,
+            "sha256": "deac26cf333d865c913d7628bed1966bce6f800c5a1dda9ca7064419bcfd3a86",
+            "width": 480,
+            "height": 343,
+            "compression": {
+              "profile": "ql-v1",
+              "codec": "webp",
+              "encoder": "webp-lossless"
+            },
+            "fidelity": {
+              "mode": "pixel-exact",
+              "psnrDb": null,
+              "meanAbsoluteError": 0,
+              "maximumChannelDelta": 0
+            }
+          },
+          {
+            "objectKey": "akkad/media.akkad.seal-example/dc48607970cde259/optimized/ql-v1/1200w-source-jpeg-dc48607970cde259.jpg",
+            "mimeType": "image/jpeg",
+            "bytes": 103113,
+            "sha256": "dc48607970cde259c3c875113391797ee1329a8cdaf14a111a79b40481070995",
+            "width": 1200,
+            "height": 857,
+            "compression": {
+              "profile": "ql-v1",
+              "codec": "jpeg",
+              "encoder": "source-passthrough"
+            },
+            "fidelity": {
+              "mode": "pixel-exact",
+              "psnrDb": null,
+              "meanAbsoluteError": 0,
+              "maximumChannelDelta": 0
+            }
+          }
+        ]
+      },
+      "source": {
+        "bucket": "media-source",
+        "objectKey": "akkad/media.akkad.seal-example/dc48607970cde259c3c875113391797ee1329a8cdaf14a111a79b40481070995/original.jpg",
+        "mimeType": "image/jpeg",
+        "bytes": 103113,
+        "sha256": "dc48607970cde259c3c875113391797ee1329a8cdaf14a111a79b40481070995",
+        "width": 1200,
+        "height": 857
+      }
+    },
+    {
       "id": "media.caral.excavated-shicra",
       "locator": {
         "provider": "object-storage",

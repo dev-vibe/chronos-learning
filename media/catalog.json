@@ -2,6 +2,41 @@
   "schemaVersion": 1,
   "assets": [
     {
+      "id": "media.akkad.locator",
+      "collection": "akkad",
+      "sourcePath": "public/images/akkad/akkad-locator.jpg",
+      "fallbackPath": "/images/optimized/akkad/akkad-locator.optimized.webp",
+      "preset": "picture",
+      "widths": [
+        480,
+        960,
+        1600
+      ]
+    },
+    {
+      "id": "media.akkad.naram-sin-stele",
+      "collection": "akkad",
+      "sourcePath": "public/images/akkad/naram-sin-stele.jpg",
+      "fallbackPath": "/images/optimized/akkad/naram-sin-stele.optimized.jpg",
+      "preset": "photo",
+      "widths": [
+        480,
+        960
+      ]
+    },
+    {
+      "id": "media.akkad.seal-example",
+      "collection": "akkad",
+      "sourcePath": "public/images/akkad/met-cylinder-seal-example.jpg",
+      "fallbackPath": "/images/optimized/akkad/seal-example.optimized.jpg",
+      "preset": "photo",
+      "widths": [
+        480,
+        960,
+        1200
+      ]
+    },
+    {
       "id": "media.caral.excavated-shicra",
       "collection": "caral",
       "sourcePath": "public/images/evidence/caral-excavated-shicra.jpg",

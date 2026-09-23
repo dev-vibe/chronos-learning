@@ -24,7 +24,7 @@ Production record version: 2
 Branch: `codex/ash-102-akkad-and-empire`
 Base: `origin/main` at `f6f37d2c0dd76a7b81861cfad5f49f2821c12391`
 Started: 2026-09-22
-Queue status: Researching
+Queue status: Implementing
 Accountable product/editorial reviewer: Carlin Aylsworth
 Validation tier: high-risk historical interpretation (imperial violence, extent of control, royal claims, contested chronology and collapse)
 
@@ -86,6 +86,8 @@ The source IDs below are research handles; registered lesson sources use `source
 | `source.akkad.sargon-inscription` — [CDLI/RIME composite P461926](https://cdli.earth/artifacts/461926) | Central; translated lines 59–116, 193–218 | Sargon claims Uruk's defeat, Lugalzagesi's capture, Upper-to-Lower-Sea dominion and Agade citizens exercising governorships. These are a ruler's assertions in a scholarly composite; no intact original image, findspot or single witness was provided. The words cannot themselves map continuous effective control. | Open text; image reuse not established. |
 | `akkad.cdli-sargon-retinue` — [CDLI/RIME composite P461937](https://cdli.earth/artifacts/461937) | Central; translated lines 60–133, 163–250 | Claims repeated battles, broken walls, distant boats and 5,400 people fed daily before the ruler. Concrete conquest, connection and provisioning language, but still royal representation reconstructed as a composite rather than a census or original find-context record. | Open text; image reuse not established. |
 | `source.akkad.louvre-stele` — [Louvre, Victory Stele of Naram-Sin, SB 4](https://collections.louvre.fr/en/ark:/53355/cl010123450) | Central material object; collection description, provenance, inscriptions and image | Surviving stone monument visually scales the ruler above soldiers and defeated Lullubi. Made at Sippar; found at Susa. Much original inscription is lost; a later Elamite inscription records its removal. Strong candidate to examine royal display and object afterlife, not a neutral account of a campaign or its original viewing setting. | Open record/image; redistribution rights not yet assessed. |
+| `source.akkad.stele-photo` — [Shonagon photograph of SB 4](https://commons.wikimedia.org/wiki/File:St%C3%A8le_de_Naram-Sin_-_Mus%C3%A9e_du_Louvre_Antiquit%C3%A9s_orientales_SB_4_;_AS_6065.jpg) | Stage 15 media; complete object photograph | Shows the surviving relief for close looking, while the Louvre record anchors object identity and history. | CC0 1.0; faithful resize approved for unpublished use. |
+| `source.akkad.met-seal-example` — [Met cylinder seal 1999.325.9](https://www.metmuseum.org/art/collection/search/327605) | Stage 15 comparative material; object photo and modern impression | Explains the physical difference between cylinder and clay impression. It is a different Akkadian-period object, with no Urkesh provenance or Tar’am-Agade name. | Met Open Access Public Domain; unchanged photo approved for unpublished use. |
 | `akkad.penn-enheduanna` — [Penn Museum, Enheduanna disk B16665](https://www.penn.museum/collections/object/293415); [Morgan exhibition transcription](https://www.themorgan.org/exhibitions/online/she-who-wrote/disk-enheduanna) | Central material alternative; object description, excavation location and reverse inscription | Found at Ur's Gipar/Ningal complex; its inscription identifies a priestess and Sargon's daughter. Direct evidence for a named elite woman in a dynastic religious office, not direct evidence of Sargon's policy motive, local reception or her authorship of every later-attributed hymn. | Open Penn record and object images; reuse not yet assessed. |
 | `source.akkad.leilan` — [Yale Tell Leilan, Akkadian palace](https://leilan.yale.edu/about-project/excavations/acropolis-northwest-akkadian-palace) | Qualifying central regional evidence; project account of four construction phases and an early schoolroom | Archaeological installation interpreted as imperial presence and training in script/administration; the project itself says the schoolroom *perhaps* served local officials. One site does not prove uniform rule elsewhere. | Open institutional account; imagery reference-only until rights review. |
 | `source.akkad.urkesh` — [Buccellati & Buccellati 2002, Tar’am-Agade at Urkesh](https://urkesh.org/attach/Buccellati%202002%20Taram%20Agade%20Daughter%20of%20Naram%20Sin.pdf); [excavation sealings](https://urkesh.org/929-seals.htm) | Qualifying regional evidence; seal impressions in local palace context | Naram-Sin's daughter appears in sealings alongside local designs and Hurrian inscriptions. Supports dynastic presence or alliance; excavators do not infer that direct annexation follows. A countercase to uniform provincial control and an important woman/periphery perspective. | Open excavation paper/context; images reference-only. |
@@ -163,6 +165,7 @@ Packet shared: [Akkad owner decision card and supporting packet](https://github.
 | `claim.akkad.leilan-administration` — Tell Leilan preserves an Akkadian-period fortified administrative building, grain-processing spaces, sealings and tablets. | observation | high | `source.akkad.leilan` | Excavation page is the project's interpretation of its contexts; this is one northern center. | People whose labor supplied the complex. | Use as a place-specific case of continuing presence. | Main agent close-reviewed 2026-09-22. |
 | `claim.akkad.leilan-work` — grain processing and records at Leilan show work and supplies behind distant rule. | interpretation | moderate | `source.akkad.leilan` | They do not reveal each person's obligation, compensation or consent. | Farmers, processors and laborers. | Explain the human work, without inventing individual biographies. | Main agent close-reviewed 2026-09-22. |
 | `claim.akkad.taram-sealings` — seal impressions used at Urkesh name Tar’am-Agade as Naram-Sin's daughter in a local palace context. | observation | high | `source.akkad.urkesh` | Exact office and relationship to the local ruler remain debated. | Local people not named by the sealings. | Name her as evidence of a dynastic tie, not a proven annexation. | Main agent close-reviewed 2026-09-22. |
+| `claim.akkad.seal-example` — the Met shows a different Akkadian-period cylinder seal next to a modern impression of its design. | observation | high | `source.akkad.met-seal-example` | Neither object comes from Urkesh or names Tar’am-Agade. | Actual Urkesh sealings are absent from the image. | Label as a material-process comparison, not direct case evidence. | Main agent close-reviewed 2026-09-22. |
 | `claim.akkad.urkesh-relationship` — the Urkesh finds support a tie to the Akkadian royal family but do not alone establish direct Akkadian government of the city. | interpretation | moderate | `source.akkad.urkesh` | Excavators favor a queen/possible marriage reading; priestess/direct-conquest alternative remains. | Hurrian court and residents. | Contrast with Leilan rather than label both provinces. | Main agent close-reviewed 2026-09-22. |
 | `claim.akkad.stele-image` — Naram-Sin's surviving victory stele depicts the ruler larger and above soldiers and defeated people. | observation | high | `source.akkad.louvre-stele` | The carved scene is royal representation, not an objective account of a battle. | Defeated Lullubi voices. | Close visual reading with age-sensitive language. | Main agent close-reviewed 2026-09-22. |
 | `claim.akkad.stele-afterlife` — the stele was made at Sippar, found at Susa, and carries a later Elamite inscription about its removal. | observation | high | `source.akkad.louvre-stele` | Much original text is lost; original viewing audience uncertain. | Those outside royal commemorative contexts. | Brief caption/note; distinguish its two historical moments. | Main agent close-reviewed 2026-09-22. |
@@ -178,6 +181,7 @@ Packet shared: [Akkad owner decision card and supporting packet](https://github.
 | `claim.akkad.leilan-administration` | `source.akkad.leilan` | section “Leilan IIb: The Akkadian Conquest” and “The Akkadian Palace,” paragraphs on sealings, ovens and tablet room | Main agent, 2026-09-22, close-reviewed. |
 | `claim.akkad.leilan-work` | `source.akkad.leilan` | section “The Akkadian Palace,” grain-processing and tablet-room paragraphs | Main agent, 2026-09-22, close-reviewed. |
 | `claim.akkad.taram-sealings` | `source.akkad.urkesh` | pp. 1–4, sealings discovery, palace context and alternative roles | Main agent, 2026-09-22, close-reviewed. |
+| `claim.akkad.seal-example` | `source.akkad.met-seal-example` | Met object 1999.325.9, catalog image and Open Access rights | Main agent, 2026-09-22, close-reviewed. |
 | `claim.akkad.urkesh-relationship` | `source.akkad.urkesh` | pp. 2–4, queen/marriage and priestess/direct-conquest alternatives | Main agent, 2026-09-22, close-reviewed. |
 | `claim.akkad.stele-image` | `source.akkad.louvre-stele` | object SB 4, Description/Features and collection image | Main agent, 2026-09-22, close-reviewed. |
 | `claim.akkad.stele-afterlife` | `source.akkad.louvre-stele` | object SB 4, Inscriptions and Places and dates | Main agent, 2026-09-22, close-reviewed. |
@@ -268,4 +272,116 @@ Prototype: [Akkad in the Learn shell](http://localhost:3000/learn/lesson.mesopot
 | Visual teaching value | revise | The stele is real surviving art with a concrete CC0 photograph candidate; the locator, site evidence and comparison are still media intentions. Do not claim the current prototype already contains those images. |
 | Next action | pass | Both sincere attempts make the explicit completion button available; merely reading or scrolling does not. |
 
-**Stage 14B status:** independent adult proxy review outstanding. The pending product-review record in `content/prototype-reviews/akkad-and-empire.ts` is preparation only. The queue remains `Researching`; no prototype approval or Stage 15 asset authorization has been inferred from the owner's Stage 3B direction response.
+**Stage 14B status:** Carlin replied “lgtm” to the direct Learn-shell prototype handoff on 2026-09-22. Record that as explicit owner approval of the draft and visual direction; begin Stage 15 and move the queue to `Implementing`. Independent adult proxy review was not obtained before that response, so it remains an open quality finding and must not be represented as completed or waived. Final image rights, fidelity, placement and publication still need separate review.
+
+**Stage 15 visual decisions:** The live draft now uses three images with distinct jobs: a modern geographic locator, the surviving Naram-Sin stele, and a different Akkadian-period cylinder seal beside its modern impression. The third image explains a seal impression; it does not illustrate Tar’am-Agade's actual find. The original Urkesh illustrations and Yale Leilan photographs have no confirmed reuse rights. A speculative Leilan reconstruction would add unsupported detail, and a synchronized regional-collapse diagram would overstate mismatched evidence. Those earlier intentions are recorded as `not-needed` in the prototype review rather than silently left as promised images. These choices are for the unpublished implementation and await final in-shell owner visual review.
+
+**Stage 15 in-shell check, 2026-09-22:** The local Learn preview rendered all three assets. The enlarged locator showed distinct Urkesh and Tell Leilan points with legible labels, a modern-geography disclosure, and no capital dot or empire border. The seal image and native caption made the different Met object and modern impression explicit. The stele's royal figure, soldiers and defeated people remained visible in the large portrait image; adjacent copy names the later inscription and the limits of royal art. The layout kept the questions and explicit completion action. This is an author visual check, not the outstanding independent adult proxy or owner's final media review.
+
+## Image lifecycle
+
+### media.akkad.naram-sin-stele — surviving royal art
+
+#### 1. Reasoning and source basis
+
+The real carved relief lets learners ask how Naram-Sin's court represented victory. It supports `claim.akkad.stele-image` and the object-history limit in `claim.akkad.stele-afterlife`. The [Louvre object record for SB 4](https://collections.louvre.fr/en/ark:/53355/cl010123450) identifies the surviving stele and its later movement and inscription. The photograph is evidence of the object's present visible surface, not a recording of the battle or proof of identical rule in every conquered city. The defeated figures are treated truthfully without spectacle.
+
+The selected [Wikimedia Commons file page](https://commons.wikimedia.org/wiki/File:St%C3%A8le_de_Naram-Sin_-_Mus%C3%A9e_du_Louvre_Antiquit%C3%A9s_orientales_SB_4_;_AS_6065.jpg) identifies the photograph as Shonagon's own work, 2022-09-27, under [CC0 1.0](https://creativecommons.org/publicdomain/zero/1.0/). No permission or attribution is legally required; credit is still given. Rights decision: **approved for redistribution and resizing**. Louvre's separate image rights are not inferred or reused.
+
+#### 2. Reference image actually used
+
+![Unchanged CC0 photograph of the Naram-Sin victory stele](assets/akkad/naram-sin-stele-shonagon-original.jpg)
+
+Reference: `docs/research/assets/akkad/naram-sin-stele-shonagon-original.jpg`, 2340×4032, 4,137,843 bytes, SHA-256 `63558d43f48881c9b9e99435afc22d7e63dadee53890948ad3750a578c9bc074`. Subject-to-reference mapping: one panel, the complete surviving stele SB 4 / AS 6065, photographed in the Louvre; no other real subject is composited or generated. The visible museum background is not ancient context. A second CC0 photograph by Gary Todd was inspected but rejected because its lower contrast makes the relief harder to read; it was not used as an edit input.
+
+#### 3. Generation or transformation
+
+**No generation.** Direct licensed-original use with a faithful resize/compression only. On 2026-09-22, Sharp read the unchanged JPEG, resized it to width 960 without enlargement, and wrote a JPEG at quality 94 with mozjpeg. There was no crop, retouch, recolor, reconstruction, inscription alteration or removal of damage. Source and output retain the full portrait composition and all carved relationships. A 1600-pixel delivery candidate was rejected because no ql-v1 derivative met both fidelity and byte limits; the full-resolution archival original remains available for inspection. The media pipeline produces 480- and 960-pixel derivatives and manifest hashes. Runtime source: `public/images/akkad/naram-sin-stele.jpg`, 960×1654, 506,878 bytes, SHA-256 `9efb76e1f4c25b6ad272bbe6aeb9abae4d5b12db13d43d4cdb81b489cd617f0f`.
+
+Exact transformation (Sharp, 2026-09-22):
+
+```text
+Input: docs/research/assets/akkad/naram-sin-stele-shonagon-original.jpg (SHA-256 63558d43f48881c9b9e99435afc22d7e63dadee53890948ad3750a578c9bc074).
+Resize to width 960 with aspect ratio preserved and without enlargement.
+Encode JPEG at quality 94 with mozjpeg.
+Output: public/images/akkad/naram-sin-stele.jpg.
+Do not crop, retouch, recolor, reconstruct, remove damage, alter inscriptions, or add content.
+Keep the relative positions, size hierarchy, complete stone outline, later inscription, and museum background as photographed.
+```
+
+#### 4. Accepted final image
+
+![Faithfully resized final photograph of the Naram-Sin victory stele](../../public/images/akkad/naram-sin-stele.jpg)
+
+Fidelity verdict: accepted by the main agent for the unpublished implementation. The ruler remains large and high, soldiers and defeated figures remain visible below, and the later inscription remains visible at upper right. Full-frame details, breaks, and surface wear are unchanged. Alt text and native caption preserve the distinction between carved royal message, surviving object, and later inscription. Reviewer/date/status: main Codex agent / 2026-09-22 / approved for unpublished implementation. Product-owner review of the actual in-lesson image remains pending; this acceptance is not publication approval.
+
+### media.akkad.locator — modern geography for orientation
+
+#### 1. Reasoning and source basis
+
+Learners need to see that Uruk in southern Mesopotamia is distant from Tell Leilan and Urkesh in the north, and to place the story within West Asia. The map supports the spatial part of `claim.akkad.winning-and-governing` and the limit in `claim.akkad.capital-location`. It shows **modern** terrain, generalized modern river courses, and representative archaeological-site points. It does not show an ancient border, ancient shoreline, a campaign route, or a guessed point for Agade. The lower-left inset places the main view within Europe, northern Africa and West Asia; its rectangle marks only the enlarged view.
+
+Primary geographic reference: [Natural Earth 1:50m cross-blended relief with water](https://www.naturalearthdata.com/downloads/50m-raster-data/50m-cross-blend-hypso/) and [1:50m rivers and lake centerlines](https://www.naturalearthdata.com/downloads/50m-physical-vectors/50m-rivers-lake-centerlines/), vector repository tag v5.1.2. [Natural Earth's terms](https://www.naturalearthdata.com/about/terms-of-use/) place the raster and vector data in the public domain and allow modification and redistribution. The exact data hashes, source URLs and projection/crop are in [reference-lineage.json](assets/akkad/map/reference-lineage.json). The geo-referenced raster is the coordinate authority, not the generated image or the existing Uruk/Nile aesthetic examples.
+
+Site cross-checks: [Oracc's Tell Leilan point](https://oracc.museum.upenn.edu/geonames/cbd/qpn/T.html) at 41.505096 E, 36.958877 N is checked against the [Yale excavation locator](https://leilan.yale.edu/resources/maps/maps-google-map-tell-leilan-excavation); [Oracc's Urkesh point](https://oracc.museum.upenn.edu/geonames/cbd/qpn/x000003150.html) at 40.997758 E, 37.057840 N is consistent with the [Getty Tell Mozan record](https://www.getty.edu/vow/TGNFullDisplay?english=Y&find=rodi&nation=&place=island&subjectid=7032379); [Oracc's Uruk point](https://oracc.museum.upenn.edu/geonames/cbd/qpn/x000003180.html) at 45.638752 E, 31.324460 N agrees with the [UNESCO nomination's central site point](https://whc.unesco.org/document/169030) to the map's scale. Points are representative, not settlement footprints. Oracc/Pleiades and Getty/UNESCO are cross-checks of site identity and general placement, not independent precision surveys. The map labels are exactly: Mediterranean Sea, Persian Gulf, Euphrates, Tigris, Urkesh, Tell Leilan, Uruk, Africa, West Asia.
+
+#### 2. Reference image or reviewed data actually used
+
+![Reviewed natural-terrain and river geographic reference with verified Akkad lesson site points](assets/akkad/map/akkad-geographic-reference.png)
+
+Reviewed data/code paths and versions: `scripts/media/akkad-map-reference.mjs`; `docs/research/assets/akkad/map/sites.json`, `selected-rivers.json`, and `reference-lineage.json`; Natural Earth HYP_50M_SR_W website version 3.2.0 (download ZIP SHA-256 `57d89405e8f7d1e5d1cca11701d394b3d45aea75b301a6992ad5571eff64527a`, TIFF SHA-256 `925ec796d213adf3036db5e316d2a17ebbadf9f03f29fb20d320b340944293d5`); Natural Earth river GeoJSON tag v5.1.2 SHA-256 `f286e0ce978fde999ca2d7a78c764be08542e19b63cded52b05c12d5173ccc51`. The 1600×1200 geographic-reference PNG SHA-256 is `980f02e2c323e8ec1b266e0cff134312fd99628cd8c50f470c6662b85fa52ea3`. Subject-to-reference mapping: terrain/coast/water from the raster; Tigris/Euphrates segments from the reviewed vector; three archaeological markers from the cited coordinate records; inset from the same raster. No other real subject is depicted. The existing [Nile map](../../public/images/places/egypt-nile-corridor-map.jpg) was inspected only for the calm atlas palette and hierarchy; none of its geography was copied.
+
+#### 3. Generation or transformation
+
+Operation: deterministic/native/vector rendering. **No generation.** The script crops the geo-referenced public-domain raster to 32–52 E and 27–42 N, keeps north up, scales it equirectangularly to 1600×1200, reduces saturation, adds a translucent warm tint, overlays only reviewed Natural Earth river polylines and the three coordinate-verified site markers, and embeds a wider-view raster inset spanning 10 W–75 E and 5 S–55 N. Native explanatory prose supplies the uncertainty boundary. The exact transformation is reproducible from the code and `reference-lineage.json`:
+
+```text
+Input raster: Natural Earth HYP_50M_SR_W.tif, 1:50m, public domain.
+Input rivers: Natural Earth ne_50m_rivers_lake_centerlines.geojson, tag v5.1.2.
+Input sites: docs/research/assets/akkad/map/sites.json, with cited coordinates.
+Crop 32–52 degrees east, 27–42 degrees north; north up; equirectangular 1600x1200.
+Select only the reviewed Euphrates, Tigris and Shatt al Arab named segments; draw their source polylines without smoothing or invented connectors.
+Draw only the three named site points, nine reviewed short labels, and a broader context inset whose rectangle denotes map extent.
+Apply saturation 0.62, brightness 1.08 and 0.21-opacity warm tint. Do not draw a border, route, Agade dot, ancient channel, or restored coastline.
+Encode the accepted map to JPEG quality 95 with mozjpeg, without cropping or altering relationships.
+```
+
+The accepted runtime source is `public/images/akkad/akkad-locator.jpg`, 1600×1200, 386,650 bytes, SHA-256 `11e8fc7cbdce6bc959ea51ca1ac5e71d5596a34f294a5d4218789a4bb77db4a3`.
+
+#### 4. Accepted final image
+
+![Accepted Akkad regional locator](../../public/images/akkad/akkad-locator.jpg)
+
+Fidelity verdict: accepted by the main agent for unpublished implementation on 2026-09-22. The JPEG retains the exact coastline, river, site-marker and inset relationships of the reviewed PNG. On the full-size map, each site label is separate and legible; the two northern site points remain distinct. The Mediterranean, Persian Gulf and wider inset supply orientation. The map's modern geographic base cannot establish an ancient imperial extent or ancient river position. Reviewer/date/status: main Codex agent / 2026-09-22 / approved for unpublished implementation. Embedded desktop/mobile legibility and owner visual review remain to be checked; this is not publication approval.
+
+### media.akkad.seal-example — how a seal makes an impression
+
+#### 1. Reasoning and source basis
+
+The Urkesh prose asks young learners to reason from seal impressions, a kind of evidence many will not have seen. A [Met Open Access object, 1999.325.9](https://www.metmuseum.org/art/collection/search/327605), shows an Akkadian-period lapis-lazuli cylinder seal beside a **modern impression** of its design. The image explains the physical process; it is **not** one of Tar’am-Agade's Urkesh sealings and supplies no evidence for her role or Urkesh's government. The actual Urkesh photographs/composite drawings have no confirmed redistribution grant, so they remain research references rather than copied lesson media. This substitution changes the visual teaching job from inspecting her find to understanding what an impression is; the learner caption must say so plainly.
+
+The Met marks this object and image Public Domain and permits unrestricted Open Access reuse. Credit: The Metropolitan Museum of Art, Gift of Nanette B. Kelekian in memory of Charles Dikran and Beatrice Kelekian, 1999. Rights decision: approved for direct redistribution, subject to preserving the object/modern-impression distinction. The page dates the Akkadian object approximately 2350–2150 BCE; it does not provide an excavation provenance connecting it to Urkesh.
+
+#### 2. Reference image actually used
+
+![Met cylinder seal and its modern impression, original photograph](assets/akkad/met-1999-325-9-cylinder-seal-original.jpg)
+
+Reference: `docs/research/assets/akkad/met-1999-325-9-cylinder-seal-original.jpg`, 1200×857, 103,113 bytes, SHA-256 `dc48607970cde259c3c875113391797ee1329a8cdaf14a111a79b40481070995`. Subject-to-reference mapping: the small dark object at left is Met 1999.325.9; the gray strip at right is the museum's modern impression of that same seal. No Urkesh object is pictured. The Met object page is the authority for identity, period, medium and rights.
+
+#### 3. Generation or transformation
+
+**No generation.** Direct use; copy the unchanged Met JPEG to `public/images/akkad/met-cylinder-seal-example.jpg`. No crop, resize, recolor, retouch, or reconstructed impression. Exact transformation:
+
+```text
+Input: docs/research/assets/akkad/met-1999-325-9-cylinder-seal-original.jpg, SHA-256 dc48607970cde259c3c875113391797ee1329a8cdaf14a111a79b40481070995.
+Copy the bytes without alteration to public/images/akkad/met-cylinder-seal-example.jpg.
+Preserve the left seal and right modern impression, their scale relationship, inscription and bird design.
+Do not relabel this as Tar’am-Agade's seal or as an ancient impression.
+Build responsive derivatives through the ql-v1 media pipeline.
+```
+
+#### 4. Accepted final image
+
+![Unaltered Met cylinder seal and modern impression in the lesson catalog](../../public/images/akkad/met-cylinder-seal-example.jpg)
+
+Fidelity verdict: source and runtime copy are byte-identical; the real object and modern impression remain separate and visible. Reviewer/date/status: main Codex agent / 2026-09-22 / approved for unpublished implementation. The image's in-lesson label must make its comparative—not Urkesh-specific—role unmistakable; owner visual review remains pending.
