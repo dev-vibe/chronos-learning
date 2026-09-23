@@ -278,6 +278,8 @@ Prototype: [Akkad in the Learn shell](http://localhost:3000/learn/lesson.mesopot
 
 **Stage 15 in-shell check, 2026-09-22:** The local Learn preview rendered all three assets. The enlarged locator showed distinct Urkesh and Tell Leilan points with legible labels, a modern-geography disclosure, and no capital dot or empire border. The seal image and native caption made the different Met object and modern impression explicit. The stele's royal figure, soldiers and defeated people remained visible in the large portrait image; adjacent copy names the later inscription and the limits of royal art. The layout kept the questions and explicit completion action. This is an author visual check, not the outstanding independent adult proxy or owner's final media review.
 
+**Map color revision, 2026-09-22:** Carlin asked for more color and visual energy without losing geographic truth. The pale first map was replaced by the documented ochre-and-mineral-blue treatment below. The current and prior lineage records have identical raster/river source hashes, bounds, inset, site coordinates, and approved labels. In the local Learn shell, the new palette was inspected at the embedded size and in the enlarged viewer; labels, distinct northern points, wider-world inset and uncertainty text remained clear. The 480-pixel responsive derivative was inspected separately: the three site names, rivers and sea anchors remain legible. A separate narrow mobile browser-layout check remains to be done; no learner age-fit observation is claimed.
+
 ## Image lifecycle
 
 ### media.akkad.naram-sin-stele — surviving royal art
@@ -327,13 +329,13 @@ Site cross-checks: [Oracc's Tell Leilan point](https://oracc.museum.upenn.edu/ge
 
 #### 2. Reference image or reviewed data actually used
 
-![Reviewed natural-terrain and river geographic reference with verified Akkad lesson site points](assets/akkad/map/akkad-geographic-reference.png)
+![Unrestyled Natural Earth geographic reference crop for the Akkad locator](assets/akkad/map/akkad-relief-reference.png)
 
-Reviewed data/code paths and versions: `scripts/media/akkad-map-reference.mjs`; `docs/research/assets/akkad/map/sites.json`, `selected-rivers.json`, and `reference-lineage.json`; Natural Earth HYP_50M_SR_W website version 3.2.0 (download ZIP SHA-256 `57d89405e8f7d1e5d1cca11701d394b3d45aea75b301a6992ad5571eff64527a`, TIFF SHA-256 `925ec796d213adf3036db5e316d2a17ebbadf9f03f29fb20d320b340944293d5`); Natural Earth river GeoJSON tag v5.1.2 SHA-256 `f286e0ce978fde999ca2d7a78c764be08542e19b63cded52b05c12d5173ccc51`. The 1600×1200 geographic-reference PNG SHA-256 is `980f02e2c323e8ec1b266e0cff134312fd99628cd8c50f470c6662b85fa52ea3`. Subject-to-reference mapping: terrain/coast/water from the raster; Tigris/Euphrates segments from the reviewed vector; three archaeological markers from the cited coordinate records; inset from the same raster. No other real subject is depicted. The existing [Nile map](../../public/images/places/egypt-nile-corridor-map.jpg) was inspected only for the calm atlas palette and hierarchy; none of its geography was copied.
+Reviewed data/code paths and versions: `scripts/media/akkad-map-reference.mjs`; `docs/research/assets/akkad/map/sites.json`, `selected-rivers.json`, and `reference-lineage.json`; Natural Earth HYP_50M_SR_W website version 3.2.0 (download ZIP SHA-256 `57d89405e8f7d1e5d1cca11701d394b3d45aea75b301a6992ad5571eff64527a`, TIFF SHA-256 `925ec796d213adf3036db5e316d2a17ebbadf9f03f29fb20d320b340944293d5`); Natural Earth river GeoJSON tag v5.1.2 SHA-256 `f286e0ce978fde999ca2d7a78c764be08542e19b63cded52b05c12d5173ccc51`. The unstyled 1600×1200 source crop SHA-256 is `3c19123349b41a6568d6dfabf818d5e5902999f70ed2f8d5444b1a80ed832d09`. Subject-to-reference mapping: terrain/coast/water from the raster; Tigris/Euphrates segments from the reviewed vector; three archaeological markers from the cited coordinate records; inset from the same raster. No other real subject is depicted. The existing [Nile map](../../public/images/places/egypt-nile-corridor-map.jpg) was inspected only for atlas character and hierarchy; none of its geography was copied.
 
 #### 3. Generation or transformation
 
-Operation: deterministic/native/vector rendering. **No generation.** The script crops the geo-referenced public-domain raster to 32–52 E and 27–42 N, keeps north up, scales it equirectangularly to 1600×1200, reduces saturation, adds a translucent warm tint, overlays only reviewed Natural Earth river polylines and the three coordinate-verified site markers, and embeds a wider-view raster inset spanning 10 W–75 E and 5 S–55 N. Native explanatory prose supplies the uncertainty boundary. The exact transformation is reproducible from the code and `reference-lineage.json`:
+Operation: deterministic atlas color treatment and native vector labels. **No generation.** After the owner asked for more color and energy, the initial pale candidate (prior commit `0e60b64`, map SHA-256 `980f02e2c323e8ec1b266e0cff134312fd99628cd8c50f470c6662b85fa52ea3`) was replaced because it looked washed out at embedded size. The revised script preserves the exact public-domain terrain pixels' geometry while mapping the source's blue-red water contrast to mineral blue and its relief luminance to warm ochre with fine decorative grain. It then overlays only reviewed Natural Earth river polylines and the same three coordinate-verified site markers, with stronger river, marker and label contrast. The wider-view inset still spans 10 W–75 E and 5 S–55 N. The recoloring does not encode ancient land use, political control, or reconstructed waterways. Native explanatory prose supplies the uncertainty boundary. The exact transformation is reproducible from the code and `reference-lineage.json`:
 
 ```text
 Input raster: Natural Earth HYP_50M_SR_W.tif, 1:50m, public domain.
@@ -342,17 +344,19 @@ Input sites: docs/research/assets/akkad/map/sites.json, with cited coordinates.
 Crop 32–52 degrees east, 27–42 degrees north; north up; equirectangular 1600x1200.
 Select only the reviewed Euphrates, Tigris and Shatt al Arab named segments; draw their source polylines without smoothing or invented connectors.
 Draw only the three named site points, nine reviewed short labels, and a broader context inset whose rectangle denotes map extent.
-Apply saturation 0.62, brightness 1.08 and 0.21-opacity warm tint. Do not draw a border, route, Agade dot, ancient channel, or restored coastline.
+Preserve the source coast and relief geometry. Classify source water by blue-red chroma; retain relief luminance in a warm-ochre land and mineral-blue sea palette with deterministic fine grain.
+Use terracotta site markers with cream halos, higher-contrast blue river strokes and cream-haloed ink labels. These are graphic emphasis, not additional geographic claims.
+Do not draw a border, route, Agade dot, ancient channel, or restored coastline.
 Encode the accepted map to JPEG quality 95 with mozjpeg, without cropping or altering relationships.
 ```
 
-The accepted runtime source is `public/images/akkad/akkad-locator.jpg`, 1600×1200, 386,650 bytes, SHA-256 `11e8fc7cbdce6bc959ea51ca1ac5e71d5596a34f294a5d4218789a4bb77db4a3`.
+The recolored base is `assets/akkad/map/akkad-atlas-base.png`, SHA-256 `11eca79163ba245cb7d8df2d6c4243716fcc9e9bc1922235be39165250c0b051`; the labeled 1600×1200 PNG is `assets/akkad/map/akkad-geographic-reference.png`, SHA-256 `e843cff9dce0f24c1435020eb3ac21c95e07ed18f2b38f529fa7ead11367cb41`. The accepted runtime source is `public/images/akkad/akkad-locator.jpg`, 1600×1200, 399,707 bytes, SHA-256 `a59d3919fe6a60d85273bf717d1fb1634e24f63aa34309af632afb68cf2854a4`.
 
 #### 4. Accepted final image
 
 ![Accepted Akkad regional locator](../../public/images/akkad/akkad-locator.jpg)
 
-Fidelity verdict: accepted by the main agent for unpublished implementation on 2026-09-22. The JPEG retains the exact coastline, river, site-marker and inset relationships of the reviewed PNG. On the full-size map, each site label is separate and legible; the two northern site points remain distinct. The Mediterranean, Persian Gulf and wider inset supply orientation. The map's modern geographic base cannot establish an ancient imperial extent or ancient river position. Reviewer/date/status: main Codex agent / 2026-09-22 / approved for unpublished implementation. Embedded desktop/mobile legibility and owner visual review remain to be checked; this is not publication approval.
+Fidelity verdict: accepted by the main agent for unpublished implementation on 2026-09-22. Source and styled images were compared side by side: coastline, relief, river paths, point coordinates and inset extent remain fixed; the difference is palette and graphic hierarchy. The JPEG retains the labeled PNG's relationships. Each site label is separate and legible, including the two northern points. The Mediterranean, Persian Gulf and inset supply orientation. The modern geographic base cannot establish ancient imperial extent or river position. Reviewer/date/status: main Codex agent / 2026-09-22 / approved for unpublished implementation. Embedded desktop and the 480-pixel derivative were checked; a separate narrow mobile browser check and owner visual review remain. This is not publication approval.
 
 ### media.akkad.seal-example — how a seal makes an impression
 

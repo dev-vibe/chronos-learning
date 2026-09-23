@@ -1,5 +1,5 @@
 {
-  "method": "deterministic illustrated edit of georeferenced Natural Earth relief, reviewed rivers and site points; modern orientation only",
+  "method": "deterministic pixel palette edit of georeferenced Natural Earth relief, then reviewed river and site overlays; modern orientation only",
   "raster": {
     "url": "https://naturalearth.s3.amazonaws.com/50m_raster/HYP_50M_SR_W.zip",
     "zipSha256": "57d89405e8f7d1e5d1cca11701d394b3d45aea75b301a6992ad5571eff64527a",
@@ -59,6 +59,11 @@
     "width": 1600,
     "height": 1200
   },
+  "palette": {
+    "sourceCropSha256": "3c19123349b41a6568d6dfabf818d5e5902999f70ed2f8d5444b1a80ed832d09",
+    "coloredBaseSha256": "11eca79163ba245cb7d8df2d6c4243716fcc9e9bc1922235be39165250c0b051",
+    "description": "Source blue-red chroma determines water; source luminance retains relief. Land is warm ochre, water mineral blue, with deterministic fine grain. Geometry is unchanged."
+  },
   "projection": "equirectangular; modern geography; no ancient political border, ancient shoreline or Agade point",
   "approvedRasterLabels": [
     "Mediterranean Sea",
@@ -71,5 +76,5 @@
     "Africa",
     "West Asia"
   ],
-  "outputSha256": "980f02e2c323e8ec1b266e0cff134312fd99628cd8c50f470c6662b85fa52ea3"
+  "outputSha256": "e843cff9dce0f24c1435020eb3ac21c95e07ed18f2b38f529fa7ead11367cb41"
 }

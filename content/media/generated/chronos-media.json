@@ -23,10 +23,10 @@
         },
         "variants": [
           {
-            "objectKey": "akkad/media.akkad.locator/11e8fc7cbdce6bc9/optimized/ql-v1/480w-webp-lossless-f5769d9cf8491295.webp",
+            "objectKey": "akkad/media.akkad.locator/a59d3919fe6a60d8/optimized/ql-v1/480w-webp-lossless-9338221e04f334cf.webp",
             "mimeType": "image/webp",
-            "bytes": 199162,
-            "sha256": "f5769d9cf8491295d3b6ab51af59dc487781e034fd95b8e6ce981db823b3af4e",
+            "bytes": 187612,
+            "sha256": "9338221e04f334cf8df53c8bbe879ddf2aef99a7cc75ef5eac80a144c0351f70",
             "width": 480,
             "height": 360,
             "compression": {
@@ -42,10 +42,10 @@
             }
           },
           {
-            "objectKey": "akkad/media.akkad.locator/11e8fc7cbdce6bc9/optimized/ql-v1/1600w-webp-q94-df230e92569b096f.webp",
+            "objectKey": "akkad/media.akkad.locator/a59d3919fe6a60d8/optimized/ql-v1/1600w-webp-q94-8a7f1b4f1b8317b4.webp",
             "mimeType": "image/webp",
-            "bytes": 301998,
-            "sha256": "df230e92569b096ff506e3f0db6428174fd372cfdb35db83cb08527d47978675",
+            "bytes": 308834,
+            "sha256": "8a7f1b4f1b8317b428ab2385f15879ccea97a4be7d26049cdb239229761d722d",
             "width": 1600,
             "height": 1200,
             "compression": {
@@ -56,9 +56,9 @@
             },
             "fidelity": {
               "mode": "measured-quasi-lossless",
-              "psnrDb": 46.37,
-              "meanAbsoluteError": 0.751,
-              "maximumChannelDelta": 12
+              "psnrDb": 46.29,
+              "meanAbsoluteError": 0.757,
+              "maximumChannelDelta": 13
             }
           }
         ]
