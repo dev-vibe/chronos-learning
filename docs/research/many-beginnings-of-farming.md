@@ -790,7 +790,7 @@ Result: **Not yet conducted; no current gate is pending.** When the later family
 
 ## Voice revision
 
-Runbook: `docs/content/lesson-voice-revision-runbook.md` (branch `docs/lesson-voice-revision-runbook`; not yet on `main`). Branch: `revise/many-beginnings-of-farming-voice`. Started 2026-09-24. Status: **awaiting owner review**.
+Runbook: `docs/content/lesson-voice-revision-runbook.md` (branch `docs/lesson-voice-revision-runbook`; not yet on `main`). Branch: `revise/many-beginnings-of-farming-voice`. Started 2026-09-24. Status: **approved by the owner 2026-09-24; merge completes the revision**. PR: [#59](https://github.com/dev-vibe/chronos-learning/pull/59).
 
 ### Audit of the published version
 
@@ -841,4 +841,9 @@ Whole lesson: story spine `none`; memorable moments `one` (the wheat ear that wi
 
 ### Owner review
 
-- Pending.
+- Date: 2026-09-24.
+- PR: [#59](https://github.com/dev-vibe/chronos-learning/pull/59), branch preview [chronos-learning-git-revise-many-begi-4ec799-dev-vibes-projects.vercel.app](https://chronos-learning-git-revise-many-begi-4ec799-dev-vibes-projects.vercel.app/learn/lesson.farming.multiple-origins) (commit `d4a1bc4`).
+- Story spine: Kuk Swamp, from the 1969 tea-station drains that exposed its ancient ditches to the closing callback on the unnamed gardeners whose ditches the drains found again.
+- Memorable moments: the ancient ditches in the walls of the new drains; the wild wheat ear that falls apart and the smooth and rough scars; teosinte’s tiny 10–12-kernel ear behind maize; pearl millet imprints in Mali pottery.
+- Added claims: `claim.farming.multi.kuk-drains-find`, `kuk-mounds-ditches`, `kuk-starch-10000`, `teosinte-ancestor`, `balsas-xihuatoxtla`, `balsas-seasonal`, `millet-pottery-imprints`; sources `source.farming.golson-2017-kuk-intro`, `unesco-kuk`, `nsf-2009-balsas-maize`, `smithsonian-2009-balsas`, `uw-2015-teosinte`.
+- Owner decisions: none requested. Carlin Aylsworth reviewed the branch preview and approved the revision (“perfect approved”), 2026-09-24.
