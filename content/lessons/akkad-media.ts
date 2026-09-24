@@ -87,12 +87,12 @@ export const akkadSteleVisual: LessonModule = {
   type: 'evidence',
   title: 'Read the carved scene',
   artifactLabel: 'Victory Stele of Naram-Sin · Louvre SB 4',
-  body: 'Find the largest figure, then follow the soldiers and defeated people below him. The artist makes the ruler the center of a violent victory story. What can that arrangement tell you about his message? What can it not tell you about ruling a city afterward?',
+  body: 'Find the largest figure and his horned helmet, then follow the soldiers and defeated people below him up the mountain. The artist makes the ruler the center of a violent victory story. What does that arrangement tell you about his message? What can it not tell you about ruling a city afterward?',
   mediaId: 'media.akkad.naram-sin-stele',
   layout: 'stacked',
-  scaleNote: 'Modern photograph of the surviving stone. Much of its original Akkadian writing is lost. The column of writing at upper right was added after the stele was taken to Susa; it belongs to a later event.',
-  claimIds: ['claim.akkad.stele-image', 'claim.akkad.stele-afterlife'],
-  sourceIds: ['source.akkad.louvre-stele', 'source.akkad.stele-photo'],
+  scaleNote: 'Modern photograph of the surviving stone. Much of its original Akkadian writing is lost. The inscription carved on the mountain was added after the Elamite king Shutruk-Nahhunte took the stele to Susa; it belongs to a later event.',
+  claimIds: ['claim.akkad.stele-image', 'claim.akkad.stele-afterlife', 'claim.akkad.stele-booty', 'claim.akkad.horned-helmet'],
+  sourceIds: ['source.akkad.louvre-stele', 'source.akkad.stele-photo', 'source.akkad.smarthistory-stele'],
 };
 
 export const akkadSealExampleVisual: LessonModule = {
@@ -100,7 +100,7 @@ export const akkadSealExampleVisual: LessonModule = {
   type: 'evidence',
   title: 'How a cylinder seal leaves a mark',
   artifactLabel: 'A different Akkadian-period seal · Met 1999.325.9',
-  body: 'A cylinder seal is rolled across soft clay to leave a repeated design. This museum image places a real seal next to a modern impression made from it. It helps us picture what an impression is, but neither object came from Urkesh or names Tar’am-Agade.',
+  body: 'Tar’am-Agade’s seal worked like this one: roll the small carved cylinder across damp clay and its picture appears as a repeating band. Here a real Akkadian-period seal sits beside a modern impression made from it. Neither object came from Urkesh or names Tar’am-Agade.',
   mediaId: 'media.akkad.seal-example',
   layout: 'stacked',
   scaleNote: 'The gray strip is a modern impression of this Met seal. The sealings naming Tar’am-Agade were excavated at Urkesh; they are different objects.',
