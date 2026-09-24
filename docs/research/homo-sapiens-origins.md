@@ -560,7 +560,7 @@ Avoid: line or procession formation, crowd, close figure, detailed caveman appea
 
 ## Voice revision
 
-Runbook: `docs/content/lesson-voice-revision-runbook.md` (branch `docs/lesson-voice-revision-runbook`; not yet on `main`). Branch: `revise/homo-sapiens-origins-voice`. Started 2026-09-24. Status: **awaiting owner review**.
+Runbook: `docs/content/lesson-voice-revision-runbook.md` (branch `docs/lesson-voice-revision-runbook`; not yet on `main`). Branch: `revise/homo-sapiens-origins-voice`. Started 2026-09-24. Status: **approved by the owner 2026-09-24; merge completes the revision**. PR: [#56](https://github.com/dev-vibe/chronos-learning/pull/56).
 
 ### Audit of the published version
 
@@ -614,4 +614,9 @@ Whole lesson: story spine `partial` (Jebel Irhoud opens sections 1, 3 and 5 but 
 
 ### Owner review
 
-Pending.
+- Date: 2026-09-24.
+- PR: [#56](https://github.com/dev-vibe/chronos-learning/pull/56), branch preview [chronos-learning-hma2cwfbl-dev-vibes-projects.vercel.app](https://chronos-learning-hma2cwfbl-dev-vibes-projects.vercel.app/learn/lesson.humans.homo-sapiens-origins) (deployment `dpl_JAk7TTqs3QywLALeVB1kueCwaM2J`, commit `e15b2d4`).
+- Story spine: the Jebel Irhoud fossils, a skull in the wrong place, from the 1961 barite miners to the closing callback.
+- Memorable moments: the 40,000-year Neanderthal that became 315,000 years old; the modern face on a long, low braincase; Omo I's moving date and the Shala ash; Olorgesailie's obsidian and colour after hundreds of thousands of years of handaxes; Kabwe's quarried-away cave.
+- Added claims: `claim.humans.irhoud-first-reading`, `omo-age-history`, `omo-ash-match`, `olorgesailie-change`, and `kabwe-site-lost` brought into the module; sources `source.humans.wong-2017-sciam`, `smithsonian-omo-i`, `si-olorgesailie-2018`.
+- Owner decision: Carlin Aylsworth reviewed the branch preview and approved the revision without changes (“approved!”), 2026-09-24.
