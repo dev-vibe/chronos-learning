@@ -544,7 +544,7 @@ Current hosted review route: [Crossing to Sahul](https://chronos-learning-git-ca
 
 ## Voice revision
 
-Runbook: `docs/content/lesson-voice-revision-runbook.md` (branch `docs/lesson-voice-revision-runbook`; not yet on `main`). Branch: `revise/sahul-crossing-voice`. Started 2026-09-24. Status: **awaiting owner review**.
+Runbook: `docs/content/lesson-voice-revision-runbook.md` (from branch `docs/lesson-voice-revision-runbook`; this PR adds it to `main` with the revised length rule). Branch: `revise/sahul-crossing-voice`. Started 2026-09-24. Status: **awaiting owner review**.
 
 ### Audit of the published version
 
@@ -570,7 +570,7 @@ Whole lesson: story spine `none`; memorable moments `one` (the sand is dated, no
 
 - Prose, knowledge body and item text, and evidence caption rewritten. All IDs, headings, section order, prompts, options, answer logic, media, card and completion are unchanged. No module removed or reordered. Prompt explanations, card text and journey framing unchanged.
 - 3 sources and 11 claims added to the lesson module and to the ledgers above: `claim.humans.sahul.madjedbebe-dig`, `lowest-layer-finds`, `routes-and-longest-crossing`, `founding-population`, `drift-odds`, `earlier-dig-dispute`, `single-grain-dating`, `artefact-refits`, `grinding-stone-uses`, `early-plant-foods`, `spencer-gulf-story`; `source.humans.clarkson-2017-conversation`, `florin-2020-plant-foods`, `nunn-reid-2015-conversation`. Module `claimIds`/`sourceIds` updated to cover what each module now says.
-- Reading length: 1,029 → 1,256 words in learner-facing headings and modules (+22%, slightly over the ~20% guide). The added length is the dig story, the 1989 dispute and the ending callback; the recap opening, repeated hedges and summary ending were cut.
+- Reading length: 1,029 → 1,256 words in learner-facing headings and modules (+22%). The added length is the dig story, the 1989 dispute and the ending callback; the recap opening, repeated hedges and summary ending were cut. The runbook's earlier ~20% length cap was replaced in this PR by a no-fixed-limit rule (owner decision, 2026-09-24).
 
 ### Left out
 
