@@ -4,18 +4,16 @@ Chronos is being rebuilt inside this repository around one calm learning shell, 
 
 ## Required reading
 
-Before changing product behavior, data models, or UI, read:
+Before changing product behavior, data models, or UI (not lesson production), read:
 
 1. `docs/product/chronos-prd.md`
 2. `docs/product/implementation-plan.md`
 3. `docs/design/design-system.md`
 4. The active Linear epic in the [Chronos rebuild project](https://linear.app/ashs-workshop/project/chronos-guided-history-learning-rebuild-0fe768438099)
 
-For lesson creation or material lesson revision, follow `docs/content/lesson-creation-runbook.md` and `docs/content/lesson-production-queue.md`. They are the canonical process and ordered work source; do not rely on older informal runbooks. After the product owner has approved a lesson for publication, follow `docs/content/lesson-publication.md` and do not re-run research, the quality contract, or platform-skill discovery.
+For lesson creation, publication, revision or correction, read only `docs/content/lesson-creation-runbook.md` and `docs/content/lesson-production-queue.md`. The runbook is self-contained; the required reading above does not apply to lesson work.
 
 A user request equivalent to “Let's create the next Chronos lesson” is complete. Do not ask the user to supply a topic or repeat the workflow. Run the boot sequence in the lesson creation runbook, continue an active queued lesson or select the first eligible Ready lesson, and proceed through its built-in research/editorial approval gate.
-
-Every lesson-review handoff must include a clickable, direct link to the current lesson preview in the final user-facing response. Repeat it after every revision, including small copy fixes; an earlier message, PR link, source-file link, or app homepage is not a substitute. Follow the runbook's preview-link handoff contract for deployment/access caveats.
 
 For UI work, inspect the images in `docs/design/references/`. They express visual intent, hierarchy, and product personality. Rebuild them with real responsive components and accessible native text; do not embed screenshots or imitate generated text errors.
 
@@ -53,7 +51,7 @@ Do not expand the old monolithic `App.tsx`, XP/level system, rarity/stats model,
 
 ## Model routing for routine subtasks
 
-Carlin's standing preference is to delegate suitable routine work to a cheaper model instead of spending the main reasoning model on it. This explicitly authorizes bounded subagents, not new user-owned tasks.
+Carlin's standing preference is to delegate suitable routine work to a cheaper model instead of spending the main reasoning model on it. This explicitly authorizes bounded subagents, not new user-owned tasks. It does not apply to lesson production, which follows the runbook's owner touchpoints instead.
 
 - Use Sol (`gpt-5.6-sol`), or another available suitable cheaper model if Sol is unavailable, for routine source discovery, fetching passages and citation metadata, live-lesson/browser smoke checks, link or asset checks, and collecting test/build/deployment results. Batch related checks into one bounded assignment with exact inputs and acceptance criteria.
 - Select the model explicitly using the delegation tool. An agent that merely inherits the main model does not satisfy this preference. Only use a model/tool combination actually available in the session; naming Sol or Grok in a prompt does not route execution to it. Do not install or configure a new provider implicitly.

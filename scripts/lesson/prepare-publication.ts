@@ -175,4 +175,4 @@ if (applyStatus) {
 
 console.log('\nNext steps:');
 for (const step of publicationNextSteps(plan)) console.log(`- ${step}`);
-console.log('- Follow docs/content/lesson-publication.md. Do not rediscover platform skills.');
+console.log('- Follow Stage 18 of docs/content/lesson-creation-runbook.md. Do not rediscover platform skills.');

@@ -13,7 +13,6 @@ Research-note identity/version:
 Production record version: 2
 Journey/chapter/position:
 Required or optional:
-Queue status:
 Accountable reviewer:
 Validation tier: reference | high-risk | ordinary
 
@@ -129,6 +128,8 @@ Reasoning progression: <prior scaffold → current move → next increase in ind
 Transfer plan: <reviewed unfamiliar evidence here or at a named later occasion; justify deferral>
 Completion versus mastery: <sincere attempts record study; what observation could show independent understanding>
 Required sincere-attempt evidence:
+Story spine: <person, object, place or puzzle followed from opening to end>
+Memorable moments: <two to four true, specific details or stories a learner would retell>
 
 ## Section/component storyboard
 
@@ -262,21 +263,25 @@ Deterministic prototype gate: pass | fail
 | Intention ID | Section ID | Annotation shown | Review state | Disposition |
 | --- | --- | --- | --- | --- |
 
-### Proxy review
+### Author quality check (Stage 14B)
 
-Reviewer/date:
-Raw prototype supplied without intended diagnosis: yes | no
+Checked by/date:
 
-| Quality area | Pass/revise/blocking/N/A | Evidence from prototype | Disposition |
+| Question area | Pass/revise/blocking/N/A | Evidence from prototype | Disposition |
 | --- | --- | --- | --- |
-| Mental-model coherence | | | |
-| Narrative momentum | | | |
-| Age-appropriate cognitive load | | | |
-| Heading voice | | | |
+| Mental model | | | |
+| Cumulative learning | | | |
+| Momentum | | | |
+| Cognitive load | | | |
+| Headings | | | |
 | Evidence reasoning | | | |
-| Historical proportionality | | | |
-| Visual teaching value | | | |
-| Next-action clarity | | | |
+| Proportionality | | | |
+| Visual value | | | |
+| Story | | | |
+| Next action | | | |
+| Research integrity | | | |
+| Rights, media and accessibility | | | |
+| Technical integrity | | | |
 
 ### Product/editorial review
 
@@ -285,28 +290,6 @@ State: pending | changes requested | approved
 Material decisions:
 Blocking findings:
 Explicit safe deferrals:
-
-### Learner observation
-
-Use `docs/content/lesson-production/learner-observation.md`; no real participation is implied by this template.
-
-Status: pending human participation | observed
-Session record (restricted; no identifying child data in Git):
-Selection reason: representative lesson | new interaction | uncertain age fit
-Mode: independent | parent-supported
-Immediate understanding evidence:
-Delayed recall/transfer evidence:
-Design hypotheses still untested:
-Changes and next observation:
-
-### Earlier-risk comparison
-
-Confusing prose found earlier:
-Weak transitions found earlier:
-Cognitive overload found earlier:
-Decorative media found earlier:
-Prompt mismatch found earlier:
-Unclear action hierarchy found earlier:
 ```
 
 ## Final sign-off
@@ -314,16 +297,9 @@ Unclear action hierarchy found earlier:
 ```markdown
 ## Final sign-off
 
-- [ ] Research integrity
-- [ ] Recent-challenge research checkpoint considered by product owner before lesson build-out
-- [ ] Historical/editorial review
-- [ ] Ages 11–15 learning/editorial design review
-- [ ] Learner-prototype checkpoint approved
-- [ ] Visual/media/map/video review as applicable
-- [ ] Rights/provenance review
-- [ ] Knowledge Card review or explicit no-card decision
-- [ ] Prompt/completion review
-- [ ] Deterministic implementation and release gates
-- [ ] Publication playbook (`docs/content/lesson-publication.md`)
-- [ ] Product owner approval to publish
+Research checkpoint response (owner touchpoint 1): <date / link>
+Prototype approval (owner touchpoint 2): <date / link>
+Implementation and release gates: pass <date>
+Publication: migration `<name>` applied; <n> media objects checksum-verified
+Owner hosted check (owner touchpoint 3): pass <date>
 ```
