@@ -12,6 +12,164 @@
   },
   "assets": [
     {
+      "id": "media.akkad.locator",
+      "locator": {
+        "provider": "object-storage",
+        "bucket": "media-public",
+        "fallback": {
+          "path": "/images/optimized/akkad/akkad-locator.optimized.webp",
+          "width": 1600,
+          "height": 1200
+        },
+        "variants": [
+          {
+            "objectKey": "akkad/media.akkad.locator/a59d3919fe6a60d8/optimized/ql-v1/480w-webp-lossless-9338221e04f334cf.webp",
+            "mimeType": "image/webp",
+            "bytes": 187612,
+            "sha256": "9338221e04f334cf8df53c8bbe879ddf2aef99a7cc75ef5eac80a144c0351f70",
+            "width": 480,
+            "height": 360,
+            "compression": {
+              "profile": "ql-v1",
+              "codec": "webp",
+              "encoder": "webp-lossless"
+            },
+            "fidelity": {
+              "mode": "pixel-exact",
+              "psnrDb": null,
+              "meanAbsoluteError": 0,
+              "maximumChannelDelta": 0
+            }
+          },
+          {
+            "objectKey": "akkad/media.akkad.locator/a59d3919fe6a60d8/optimized/ql-v1/1600w-webp-q94-8a7f1b4f1b8317b4.webp",
+            "mimeType": "image/webp",
+            "bytes": 308834,
+            "sha256": "8a7f1b4f1b8317b428ab2385f15879ccea97a4be7d26049cdb239229761d722d",
+            "width": 1600,
+            "height": 1200,
+            "compression": {
+              "profile": "ql-v1",
+              "codec": "webp",
+              "encoder": "webp-lossy",
+              "quality": 94
+            },
+            "fidelity": {
+              "mode": "measured-quasi-lossless",
+              "psnrDb": 46.29,
+              "meanAbsoluteError": 0.757,
+              "maximumChannelDelta": 13
+            }
+          }
+        ]
+      }
+    },
+    {
+      "id": "media.akkad.naram-sin-stele",
+      "locator": {
+        "provider": "object-storage",
+        "bucket": "media-public",
+        "fallback": {
+          "path": "/images/optimized/akkad/naram-sin-stele.optimized.jpg",
+          "width": 960,
+          "height": 1654
+        },
+        "variants": [
+          {
+            "objectKey": "akkad/media.akkad.naram-sin-stele/9efb76e1f4c25b6a/optimized/ql-v1/480w-webp-q96-8b34fcea178008cd.webp",
+            "mimeType": "image/webp",
+            "bytes": 171768,
+            "sha256": "8b34fcea178008cd9b9222a01aa97ce1518159caa34cfba27c673649cbde8253",
+            "width": 480,
+            "height": 827,
+            "compression": {
+              "profile": "ql-v1",
+              "codec": "webp",
+              "encoder": "webp-lossy",
+              "quality": 96
+            },
+            "fidelity": {
+              "mode": "measured-quasi-lossless",
+              "psnrDb": 45.81,
+              "meanAbsoluteError": 0.853,
+              "maximumChannelDelta": 8
+            }
+          },
+          {
+            "objectKey": "akkad/media.akkad.naram-sin-stele/9efb76e1f4c25b6a/optimized/ql-v1/960w-source-jpeg-9efb76e1f4c25b6a.jpg",
+            "mimeType": "image/jpeg",
+            "bytes": 506878,
+            "sha256": "9efb76e1f4c25b6ad272bbe6aeb9abae4d5b12db13d43d4cdb81b489cd617f0f",
+            "width": 960,
+            "height": 1654,
+            "compression": {
+              "profile": "ql-v1",
+              "codec": "jpeg",
+              "encoder": "source-passthrough"
+            },
+            "fidelity": {
+              "mode": "pixel-exact",
+              "psnrDb": null,
+              "meanAbsoluteError": 0,
+              "maximumChannelDelta": 0
+            }
+          }
+        ]
+      }
+    },
+    {
+      "id": "media.akkad.seal-example",
+      "locator": {
+        "provider": "object-storage",
+        "bucket": "media-public",
+        "fallback": {
+          "path": "/images/optimized/akkad/seal-example.optimized.jpg",
+          "width": 1200,
+          "height": 857
+        },
+        "variants": [
+          {
+            "objectKey": "akkad/media.akkad.seal-example/dc48607970cde259/optimized/ql-v1/480w-webp-lossless-deac26cf333d865c.webp",
+            "mimeType": "image/webp",
+            "bytes": 58404,
+            "sha256": "deac26cf333d865c913d7628bed1966bce6f800c5a1dda9ca7064419bcfd3a86",
+            "width": 480,
+            "height": 343,
+            "compression": {
+              "profile": "ql-v1",
+              "codec": "webp",
+              "encoder": "webp-lossless"
+            },
+            "fidelity": {
+              "mode": "pixel-exact",
+              "psnrDb": null,
+              "meanAbsoluteError": 0,
+              "maximumChannelDelta": 0
+            }
+          },
+          {
+            "objectKey": "akkad/media.akkad.seal-example/dc48607970cde259/optimized/ql-v1/1200w-source-jpeg-dc48607970cde259.jpg",
+            "mimeType": "image/jpeg",
+            "bytes": 103113,
+            "sha256": "dc48607970cde259c3c875113391797ee1329a8cdaf14a111a79b40481070995",
+            "width": 1200,
+            "height": 857,
+            "compression": {
+              "profile": "ql-v1",
+              "codec": "jpeg",
+              "encoder": "source-passthrough"
+            },
+            "fidelity": {
+              "mode": "pixel-exact",
+              "psnrDb": null,
+              "meanAbsoluteError": 0,
+              "maximumChannelDelta": 0
+            }
+          }
+        ]
+      }
+    },
+    {
       "id": "media.caral.excavated-shicra",
       "locator": {
         "provider": "object-storage",

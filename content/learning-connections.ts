@@ -76,4 +76,9 @@ export const learningConnectionsByLessonId: Record<string, LearningConnection> =
     extend: 'Follow food, skilled work, buildings and traveling objects to understand Kerma as a powerful kingdom with changing ties to Egypt.',
     reasoningSkill: 'Distinguish evidence of local production from evidence that an object moved between communities.',
   },
+  'lesson.mesopotamia.akkadian-empire': {
+    retrieve: { lessonId: 'lesson.nubia.kerma-and-nile-world', prompt: 'Why does an object from another kingdom not, by itself, prove political rule?' },
+    extend: 'Compare a ruler’s victories and image with traces of administration and royal ties at two northern cities.',
+    reasoningSkill: 'Test a royal claim against place-specific evidence and qualify what kind of political connection it supports.',
+  },
 };

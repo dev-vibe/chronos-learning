@@ -45,6 +45,7 @@ Record the reviewed source data, precise passages/figures/objects or geographic 
 
 ### Additional requirements for historical maps
 
+- Follow the [historical-map production runbook](../content/historical-map-production.md). Use the Akkad locator as the default visual benchmark for color, contrast, and hierarchy; adapt its look to the lesson without copying its geography.
 - Select one authoritative real map as the primary geographic reference and use at least one independent cross-check. Generated output is never a geographic source.
 - Use inspectable, fit-for-purpose maps or geographic data from heritage bodies, excavation projects, museums, universities, scholarship or licensed geographic datasets. Institutional affiliation alone does not establish accuracy.
 - Record what each reference contributes, its license or reference-only status, and where suitable sources disagree.

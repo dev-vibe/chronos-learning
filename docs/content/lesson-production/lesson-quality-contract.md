@@ -66,7 +66,7 @@ Record concrete evidence from the rendered lesson for every finding. Mark each f
 - Judge the visual at its exact section location: it must clarify evidence, geography, sequence, scale, comparison, technique, or uncertainty rather than decorate a pause in prose.
 - Provide an accessible equivalent and preserve essential depiction/evidence labels in the learner experience.
 - Follow the specialist historical-map, provenance/generation, and media-publishing runbooks for geographic truth, rights, method/data lineage, responsive derivatives, and rollback.
-- For maps, ask “Where in the world is this relative to something recognizable?” at the actual embedded size. Require a visible wider-world anchor, a clear context-to-detail relationship, and a native orientation sentence. Accurate local dots or a country name hidden in source details do not pass. Check the illustrated Nile-map style and source fidelity separately from this orientation test.
+- For maps, ask “Where in the world is this relative to something recognizable?” at the actual embedded size. Require a visible wider-world anchor, a clear context-to-detail relationship, and a native orientation sentence. Accurate local dots or a country name hidden in source details do not pass. Check the Akkad-inspired visual energy and hierarchy, source fidelity, and orientation separately.
 
 ### Next-action clarity
 
@@ -87,7 +87,7 @@ Record concrete evidence from the rendered lesson for every finding. Mark each f
 ### Rights, media, and accessibility
 
 - Confirm redistribution rights, source files, checksums, derivatives, manifests, provenance, and review status.
-- Apply the runbook's [media method and fidelity policy](../lesson-creation-runbook.md#media-method-and-fidelity-policy): licensed originals for direct evidence; native/vector or raster factual diagrams with reviewed geometry/data; source-faithful illustrated edits for lesson maps following the Nile standard; generated reconstruction where appropriate. Other evidence and diagrams do not require generative restyling.
+- Apply the runbook's [media method and fidelity policy](../lesson-creation-runbook.md#media-method-and-fidelity-policy): licensed originals for direct evidence; native/vector or raster factual diagrams with reviewed geometry/data; source-faithful lesson maps following the Akkad visual standard through deterministic rendering or illustrated editing; generated reconstruction where appropriate. Other evidence and diagrams do not require generative restyling.
 - Verify source/data-versus-final fidelity and accessible equivalents for every method; preserve reviewed measurements, relationships, labels and uncertainty.
 - Require actual visual references for every depicted real subject, including every artifact, manuscript, inscription, structure, excavation, and survey panel in a composite. For generated depictions, verify the subject-to-reference mapping and that every reference was supplied to the edit tool; text citations and style/layout references do not establish subject coverage.
 - Compare each depicted subject with its reference and reject invented or altered physical details, inscriptions, wall relationships, stratigraphy, and measurement patterns. Missing references or failed subject fidelity block acceptance in both style-only and adapted compositions, regardless of illustrative or reconstruction labels. Source the missing evidence, omit the subject, or use native text.

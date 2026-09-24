@@ -320,7 +320,7 @@ export function publicationNextSteps(plan: LessonPublicationPlan): string[] {
     'npm run test:domain',
     mediaPublishCommand(plan),
     'Apply the committed publication migration to the Chronos development project.',
-    `Smoke the hosted preview at /learn/${plan.lessonId}: two sincere attempts, explicit completion, reopen at the top.`,
     'Push the branch. Let CI run the full suite. Do not re-run npm test or npm run build locally unless CI fails.',
+    `Give the product owner the direct hosted preview for /learn/${plan.lessonId}; the owner checks sincere attempts, explicit completion, reopen at the top, and removal of draft-only notes.`,
   ];
 }

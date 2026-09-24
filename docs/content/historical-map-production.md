@@ -1,6 +1,6 @@
 # Historical lesson map production runbook
 
-Use this runbook for every lesson map, including compact opening locators. The standard presentation is an illustrated atlas map with subtle terrain, generated as a faithful edit of a real, rights-cleared geographic source image. The approved visual reference is the [early Egypt Nile map](../../public/images/places/egypt-nile-corridor-map.jpg). Geographic truth comes from the source, never from generation. Deterministic rendering remains useful for preparing and verifying source maps, plotting reviewed coordinates, and accessible overlays; it is not the default final visual treatment.
+Use this runbook for every lesson map, including compact opening locators. The standard presentation is a lively, legible historical atlas map anchored in a real, rights-cleared geographic source or reviewed geographic data. The approved visual reference is the [Akkad locator](../../public/images/akkad/akkad-locator.jpg): warm golden terrain, clear blue water and rivers, terracotta site markers, strong label contrast, and a restrained paper-and-relief texture. Use its visual energy and hierarchy as the default, adapting the palette to the subject and teaching purpose. Geographic truth comes from the sources, never from the style reference or generation. A deterministic recolor/render or a faithful illustrated edit can produce the final map; choose the method that best preserves reviewed geography and remains readable at lesson size.
 
 This standard applies to new and revised maps throughout Chronos. Existing maps require an explicit retrofit scope; recording the standard does not mean the older catalogue has been restyled. Direct inspection of a historical map as an evidence object remains an evidence module using the original, not a restyled locator.
 
@@ -77,19 +77,19 @@ When suitable sources disagree, record the disagreement and use a deliberately a
 
 ## 4. Select a method and prepare the brief
 
-Prepare the real geographic source image before generation. Use a licensed map or render reviewed geographic data into a source image with the intended crop, terrain, labels, site markers, and context inset. Keep source data/version, coordinate system and any projection/generalization decisions with the brief; do not invent coordinates to fill gaps. Supply an actual relief reference when terrain is requested: mountains and river valleys are geography, not decoration for a model to invent. A compact locator may use a broad approximate region instead of a falsely precise point. Modern coastlines are modern orientation, not a claim about prehistoric geography.
+Prepare the real geographic source before styling. Use a licensed map or render reviewed geographic data into a reference image with the intended crop, terrain, labels, site markers, and context inset. Keep source data/version, coordinate system and any projection/generalization decisions with the brief; do not invent coordinates to fill gaps. Supply an actual relief reference when terrain is requested: mountains and river valleys are geography, not decoration. A compact locator may use a broad approximate region instead of a falsely precise point. Modern coastlines are modern orientation, not a claim about prehistoric geography.
 
 For timelines paired with maps, retain authored chronology and units. Show meaningful overlap only when intervals support it; avoid converting deep-time or approximate dates into exact events. Use an explicitly schematic scale when a linear scale would make recent events unreadable, with an equivalent textual chronology. Do not combine different date conventions silently.
 
 Record transformation/code paths and a rendered reference/data view for deterministic fidelity review. Use the same geographic, rights, label, accessibility and reference-versus-final checks as for raster output. If the current media pipeline requires raster, export a raster derivative; vector sources and accessible native UI are permitted.
 
-### Required illustrated edit brief
+### Visual treatment and illustrated edit brief
 
-Image generation changes the visual treatment, not the researched geography. Provide the prepared geographic source image as the edit target and the Nile map as a separately identified style reference. Lock the crop, projection, coastline, relief placement, river paths, marker positions, inset extent, and label associations. A style reference never supplies missing geographic facts. Match the Nile map's restrained brushwork, warm ivory/ochre land, mineral-blue water, muted lowlands, legible lettering, and subtle terrain; do not copy its Egyptian geography.
+Use the Akkad locator as the approved visual benchmark, not as a geographic source. Its color gives the map energy for young learners while the blue waterways, terracotta markers, pale label outlines, and clear wider-world inset keep the spatial lesson easy to follow. Preserve enough light/dark contrast to distinguish land, water, relief, markers, and text at the actual embedded size. Add texture and color without inventing terrain, obscuring a river, implying an unsupported border, or turning a locator into a game map. The [Akkad geographic reference](../research/assets/akkad/map/akkad-geographic-reference.png) and [rendering script](../../scripts/media/akkad-map-reference.mjs) show one accepted deterministic treatment; they are examples, not geographic inputs for another lesson or a palette to copy mechanically.
 
-If generation is unavailable, preserve the reference and prompt, report the block, and continue independent work. Do not silently deliver a flat diagram as the requested illustrated final. An alternative final method requires an explicit owner decision.
+For a deterministic final, retain the reviewed geometry and labels through the color/texture transformation and compare source and final side by side. For an image-generated edit, provide the prepared geographic source image as the edit target and the Akkad locator as a separately identified style reference. Lock the crop, projection, coastline, relief placement, river paths, marker positions, inset extent, and label associations. Generation changes the visual treatment, not the researched geography; a style reference never supplies missing geographic facts. If a chosen method cannot meet those constraints, switch methods and record why.
 
-Use this prompt structure:
+When using image generation, use this prompt structure:
 
 ```text
 Create a single historical map illustration for a Chronos lesson.
@@ -117,10 +117,10 @@ REQUIRED LABELS:
 - [complete, verified list with exact spelling]
 
 CHRONOS STYLE:
-- warm parchment or ivory ground;
-- restrained ochre, sand, mineral blue, blue-green, and terracotta;
-- subtle paper and topographic texture;
-- use the approved Nile map as a style reference only;
+- warm golden or parchment-toned land, with clear blue water and rivers;
+- purposeful ochre, blue-green, and terracotta accents with enough contrast to read at lesson size;
+- restrained paper and source-faithful topographic texture;
+- use the approved Akkad locator as a style reference only;
 - elegant editorial historical-atlas character;
 - calm, clear, and approachable for ages 11-15;
 - simple composition with generous negative space.
@@ -187,7 +187,7 @@ Inspect the real lesson, not only the source image.
 - Confirm the complete map is visible without `object-fit: cover` cropping.
 - Check that the focus place is visually obvious and every required label remains legible.
 - Without opening the viewer, identify the continent/recognizable region and explain where the lesson sites fit. Record the actual visible anchors and native sentence; “accurate coordinates” alone is not a pass.
-- Compare the result with the Nile style reference for subtle illustrated terrain, and with the geographic source independently for fidelity. Neither aesthetic success nor geographic accuracy compensates for failed orientation.
+- Compare the result with the Akkad visual reference for energy, hierarchy, contrast, and restrained terrain treatment, and with the geographic source independently for fidelity. Neither aesthetic success nor geographic accuracy compensates for failed orientation.
 - Verify desktop, tablet, and narrow mobile widths in light and dark themes.
 - Confirm no horizontal scrolling, overlap, missing asset, decode failure, or console error.
 - Check that captions and uncertainty language remain visible and concise.

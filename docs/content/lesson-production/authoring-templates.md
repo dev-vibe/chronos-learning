@@ -17,6 +17,22 @@ Queue status:
 Accountable reviewer:
 Validation tier: reference | high-risk | ordinary
 
+## Owner decision card (Stage 3B)
+
+Recommended focus: <one short sentence>
+Reply `all yes` or give numbered `yes / change / no` responses; a change needs only a few words.
+
+| # | Provisional teaching beat — one-sentence message | Visual that might help (or none) |
+| --- | --- | --- |
+| 1 | | |
+| 2 | | |
+| 3 | | |
+| 4 | | |
+| 5 | | |
+
+Material decision-changing caveat, if any: <one sentence; otherwise omit>
+Optional explanation and [research packet](#recent-challenge-audit-stages-3a3b) follow. Decision status: pending | responded with date/link.
+
 ## Node proposal
 
 Essential question:

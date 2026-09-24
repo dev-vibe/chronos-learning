@@ -162,7 +162,7 @@ The specialist runbooks own their details. This document decides when they are n
 - Related lessons and optional journeys are navigation, not instructional sections or completion requirements.
 - A reconstruction is never presented as direct evidence. Uncertainty is never hidden merely to make prose cleaner.
 - Knowledge Cards are deterministic memory anchors, not loot. A lesson may have no card if no honest, useful memory object exists.
-- Media is selected because it teaches. A lesson has no image, map, audio, or video quota.
+- Every lesson gets an explicit visual-interest pass: look for a compelling, historically responsible way to show evidence, place, change, comparison, or a scene that helps the learner enter the subject. Media is selected because it teaches. A lesson has no image, map, audio, or video quota; record why text is clearer if no meaningful visual survives the pass.
 - Select media methods by teaching purpose and fidelity using Stage 10. Licensed originals, native/vector and raster factual visuals, and generated reconstruction have distinct appropriate roles.
 - Never let visual polish alter reviewed geometry, measurements, labels, relationships, subject details, or uncertainty. Generation is not required for stylistic consistency.
 - Each section has one learner-facing title (`heading`). The heading names the subject or teaching job in ordinary words. It orients; it is not a joke, metaphor, riddle, or magazine punchline. Interest comes from the history, not from the title.
@@ -362,7 +362,9 @@ Complete the audit with a coverage statement listing the search window, terminol
 
 ## Stage 3B — Present the research-direction checkpoint
 
-Write the audit into the lesson's research note and share a concise analytical packet with the product owner before building the lesson. The packet must identify:
+Write the audit into the lesson's research note. Lead both the note and the actual user-facing handoff with a **one-screen decision card**, not an explanatory essay or a link the owner must open. Give a recommended focus and roughly three to five numbered provisional teaching beats. Each row uses plain language to say what the beat would teach and, in a few words, what visual might help or why none would. Offer `yes / change / no` for each row and accept a response such as `all yes` or `1 yes; 2 change: ...`. Keep source IDs, caveats, and argumentation in the linked research packet unless one uncertainty would materially change the owner's decision. The owner should be able to respond from the handoff message alone. These beats are editorial possibilities, not approved section headings, selected claims, storyboard rows, or media commitments. Put optional explanation and the detailed packet below the card; do not ask the owner to parse them for routine approval.
+
+The underlying analytical packet must still identify:
 
 1. the inherited baseline account;
 2. the strongest evidence supporting it;
@@ -374,7 +376,7 @@ Write the audit into the lesson's research note and share a concise analytical p
 8. how the findings could change the essential question, central argument, main-lesson highlights, Story Arc depth, or Investigation design;
 9. the specific judgments or further research questions for the product owner.
 
-Stop after sharing the packet. Keep the queue row `Researching`. Do not begin Stage 4, settle the durable understanding, select claims for learner treatment, storyboard sections, draft prose or prompts, plan final media or a card, or build the Learn-shell prototype until the product owner has considered the findings and responded. Record that response and any requested follow-up research in the note. If the response exposes a missing evidence class or materially changes the historical model, repeat Stages 3A–3B.
+Stop after sharing the decision card and linked packet. Keep the queue row `Researching`. Do not begin Stage 4, settle the durable understanding, select claims for learner treatment, storyboard sections, draft prose or prompts, plan final media or a card, or build the Learn-shell prototype until the product owner has considered the findings and responded. Record that response and any requested follow-up research in the note. If the response exposes a missing evidence class or materially changes the historical model, repeat Stages 3A–3B.
 
 ## Stage 4 — Build the claim ledger before drafting prose
 
@@ -652,10 +654,10 @@ For every image or generated asset, follow the [media provenance research and ge
 | --- | --- | --- |
 | Inspect surviving evidence | Licensed original photograph, scan or object record; only permitted non-misleading crops/compression | The learner can inspect actual evidence; reconstruction cannot replace or masquerade as it. |
 | Explain factual geometry, process, chronology or comparison | Native/deterministic/vector or raster rendering from reviewed data and relationships | Preserve reviewed geometry, measurements, labels, order and uncertainty; retain code/data versions and text equivalents. |
-| Orient geographically | Illustrated atlas edit of a real, rights-cleared source map; subtle terrain following the early Egypt Nile reference | Use the [historical-map guidance](historical-map-production.md). The learner must locate the subject relative to recognizable wider geography at embedded size. Preserve source geometry; no invented terrain, coordinates, borders, routes or precision. |
+| Orient geographically | Source-faithful historical atlas map, rendered deterministically or as an illustrated edit; use the colorful Akkad locator as the visual benchmark | Use the [historical-map guidance](historical-map-production.md). The learner must locate the subject relative to recognizable wider geography at embedded size. Preserve source geometry; no invented terrain, coordinates, borders, routes or precision. |
 | Reconstruct or set atmosphere | Image generation when the approved brief benefits from it | Explicit depiction label, source-supported real subjects, honest unknowns; no fabricated evidence or baked-in educational prose. |
 
-Raster publication remains appropriate for the current image pipeline. Vector sources/intermediates and accessible native diagrams are allowed. Lesson maps follow the owner-selected illustrated edit standard above; deterministic tools prepare and verify their geographic source images. Other factual diagrams and evidence originals do not require generative restyling. Use typed native modules for new reusable forms, with responsive and accessibility coverage.
+Raster publication remains appropriate for the current image pipeline. Vector sources/intermediates and accessible native diagrams are allowed. Lesson maps follow the owner-selected Akkad visual standard; choose deterministic rendering or a faithful illustrated edit according to geographic fidelity and legibility. Other factual diagrams and evidence originals do not require generative restyling. Use typed native modules for new reusable forms, with responsive and accessibility coverage.
 
 For generated depictions of a specific real artifact, inscription, site, structure, excavation or survey, inspect and supply references of the actual subject. Record subject-to-reference mapping, provenance, permitted transformation, complete prompt and rejected candidates. Similar objects and style references cannot supply missing historical details. Generic atmospheric reconstruction must state what is generalized or unknown and cannot invent identifiable artifacts or measured evidence.
 
@@ -895,7 +897,7 @@ Publication sequence:
 2. Run `npm run validate:content` and `npm run test:domain`.
 3. Publish only this lesson’s approved media assets. Do not rebuild the whole catalog.
 4. Apply the committed migration to the Chronos development project.
-5. Smoke the hosted preview once: sincere attempts, explicit completion, reopen at the top.
+5. Give the product owner the direct hosted preview for one human visual and interactive check: sincere attempts, explicit completion, reopen at the top, and removal of draft-only notes. Do not perform or delegate an agent browser check.
 6. Push the branch and let CI run the full suite. Update the Linear issue and PR with the preview link.
 7. Merge only after review; deploy through the normal release path.
 
