@@ -544,7 +544,7 @@ Current hosted review route: [Crossing to Sahul](https://chronos-learning-git-ca
 
 ## Voice revision
 
-Runbook: `docs/content/lesson-voice-revision-runbook.md` (from branch `docs/lesson-voice-revision-runbook`; this PR adds it to `main` with the revised length rule). Branch: `revise/sahul-crossing-voice`. Started 2026-09-24. Status: **awaiting owner review**.
+Runbook: `docs/content/lesson-voice-revision-runbook.md` (from branch `docs/lesson-voice-revision-runbook`; this PR adds it to `main` with the revised length rule). Branch: `revise/sahul-crossing-voice`. Started 2026-09-24. Status: **approved by the owner 2026-09-24; merge completes the revision**. PR: [#58](https://github.com/dev-vibe/chronos-learning/pull/58).
 
 ### Audit of the published version
 
@@ -591,3 +591,12 @@ Whole lesson: story spine `none`; memorable moments `one` (the sand is dated, no
 | Headings | pass | All headings already name their subjects; none changed (`Sahul in the Ice Age` is also pinned by `tests/learn/sahul-preview.test.tsx`). |
 
 `npm run validate:content` passed; `npm run test:domain` passed (14 files, 63 tests); `tests/learn/sahul-preview.test.tsx` passed. `tests/learn/multi-lesson.test.tsx` has one failure (“resolves the published writing lesson…”) that also fails on unmodified `main`; it does not touch this lesson.
+
+### Owner review
+
+- Date: 2026-09-24.
+- PR: [#58](https://github.com/dev-vibe/chronos-learning/pull/58), branch preview [chronos-learning-git-revise-sahul-cro-a93a9a-dev-vibes-projects.vercel.app](https://chronos-learning-git-revise-sahul-cro-a93a9a-dev-vibes-projects.vercel.app/learn/lesson.humans.sahul-crossing).
+- Story spine: the Madjedbebe rock shelter on Mirarr Country, from the 2012 and 2015 dig to the closing callback on the charred meals in its earliest layers and the sand still being argued over.
+- Memorable moments: grinding stones, ochre “crayons” and ground-edge hatchets from a dig under Mirarr control; one crossing close to 100 km and at least about 1,300 founders; drift odds under 5% that change when travellers head for land; the 1989 dispute, grain-by-grain dating and refitting stones; Narrangga stories of Spencer Gulf before the sea came in (labelled later tradition); charred pandanus shells and tuber peelings.
+- Added claims: `claim.humans.sahul.madjedbebe-dig`, `lowest-layer-finds`, `routes-and-longest-crossing`, `founding-population`, `drift-odds`, `earlier-dig-dispute`, `single-grain-dating`, `artefact-refits`, `grinding-stone-uses`, `early-plant-foods`, `spencer-gulf-story`; sources `source.humans.clarkson-2017-conversation`, `florin-2020-plant-foods`, `nunn-reid-2015-conversation`.
+- Owner decisions: during review Carlin replaced the runbook's ~20% length cap with a no-fixed-limit rule (second commit in this PR). Carlin Aylsworth then reviewed the branch preview and approved the revision (“looks great!”), 2026-09-24.
