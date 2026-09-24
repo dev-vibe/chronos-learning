@@ -11,7 +11,7 @@ Before changing product behavior, data models, or UI (not lesson production), re
 3. `docs/design/design-system.md`
 4. The active Linear epic in the [Chronos rebuild project](https://linear.app/ashs-workshop/project/chronos-guided-history-learning-rebuild-0fe768438099)
 
-For lesson creation, publication, revision or correction, read only `docs/content/lesson-creation-runbook.md` and `docs/content/lesson-production-queue.md`. The runbook is self-contained; the required reading above does not apply to lesson work.
+For lesson creation, publication, revision or correction, read only `docs/content/lesson-creation-runbook.md` and `docs/content/lesson-production-queue.md`. The runbook is self-contained; the required reading above does not apply to lesson work. To rewrite a published lesson's voice and story without changing what it teaches, follow `docs/content/lesson-voice-revision-runbook.md`.
 
 A user request equivalent to “Let's create the next Chronos lesson” is complete. Do not ask the user to supply a topic or repeat the workflow. Run the boot sequence in the lesson creation runbook, continue an active queued lesson or select the first eligible Ready lesson, and proceed through its built-in research/editorial approval gate.
 
