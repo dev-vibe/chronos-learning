@@ -147,6 +147,33 @@ export const migrationsAncientDnaSources: Source[] = [
     licenseOrUse: 'Open primary research cited for the Denisova Cave coordinate and preservation context',
     reviewStatus: 'reviewed',
   },
+  {
+    id: 'source.humans.trinkaus-zilhao-2007-oase-discovery',
+    title: 'Oase Cave: The Discovery of Europe’s Oldest Modern Humans',
+    url: 'https://www.world-archaeology.com/features/oase-cavethe-discovery-of-europes-oldest-modern-humans/',
+    publisher: 'Erik Trinkaus and João Zilhão, Current World Archaeology 24 (2007)',
+    accessedOn: '2026-09-24',
+    licenseOrUse: 'Excavators’ own account cited for the February 2002 discovery by Pro Acva cavers near Anina, the 30 m pit and crawl passage, galleries of animal bones sealed for at least 17,000 years, the jaw lying on the cave surface, and the name Cave with Bones; paraphrase only, no images',
+    reviewStatus: 'reviewed',
+  },
+  {
+    id: 'source.humans.natgeo-2021-harbin',
+    title: '‘Dragon Man’ skull may be new species, shaking up human family tree',
+    url: 'https://www.nationalgeographic.com/science/article/dragon-man-fossil-skull-may-represent-new-human-species-in-china',
+    publisher: 'Maya Wei-Haas, National Geographic (25 June 2021)',
+    accessedOn: '2026-09-24',
+    licenseOrUse: 'Science journalism cited only for the reported find story of the Harbin skull (bridge worker, river mud, abandoned well, grandchildren, 2018 retrieval, donation to Hebei GEO University); the account is labelled as a later report, not verified evidence; paraphrase only, no images',
+    reviewStatus: 'reviewed',
+  },
+  {
+    id: 'source.humans.nhm-2021-harbin',
+    title: 'Ancient skull from China could be new species, Dragon Man',
+    url: 'https://www.nhm.ac.uk/discover/news/2021/june/ancient-skull-from-china-could-be-new-species-dragon-man.html',
+    publisher: 'Natural History Museum, London (25 June 2021)',
+    accessedOn: '2026-09-24',
+    licenseOrUse: 'Museum news item (a co-author’s institution) cited for the skull being reportedly discovered in 1933 when a bridge was built over the Songhua River in Harbin; paraphrase only, no images',
+    reviewStatus: 'reviewed',
+  },
 ];
 
 export const migrationsAncientDnaClaims: Claim[] = [
@@ -262,6 +289,62 @@ export const migrationsAncientDnaClaims: Claim[] = [
     sourceIds: ['source.humans.sumer-2024-admixture', 'source.humans.orlando-2021-adna'],
     reviewStatus: 'reviewed',
   },
+  {
+    id: 'claim.humans.oase-cave-find',
+    statement: 'In February 2002, cavers exploring near Anina in southwestern Romania climbed a 30 m pit, dug a passage just large enough to crawl through, and reached galleries littered with the bones of bears, goats, wolves and other animals that had been blocked off for at least 17,000 years; a complete human lower jaw lay on the cave surface. The cave became known as Peștera cu Oase, the Cave with Bones.',
+    kind: 'observation',
+    certainty: 'high',
+    sourceIds: ['source.humans.trinkaus-zilhao-2007-oase-discovery'],
+    reviewStatus: 'editorial-review-required',
+  },
+  {
+    id: 'claim.humans.oase-neanderthal-share',
+    statement: 'Oase 1, a 37,000–42,000-year-old modern human, has about 6–9% Neanderthal-derived DNA, more than any modern human sequenced up to 2015, including three Neanderthal segments over 50 centimorgans long.',
+    kind: 'observation',
+    certainty: 'high',
+    sourceIds: ['source.humans.fu-2015-oase'],
+    reviewStatus: 'editorial-review-required',
+  },
+  {
+    id: 'claim.humans.early-lineages-faded',
+    statement: 'Several early Eurasian Homo sapiens lineages, including the populations of Oase 1 and of Ranis and Zlatý kůň, contributed little or no known ancestry to later sampled populations.',
+    kind: 'interpretation',
+    certainty: 'high',
+    sourceIds: ['source.humans.sumer-2024-admixture', 'source.humans.fu-2015-oase'],
+    reviewStatus: 'editorial-review-required',
+  },
+  {
+    id: 'claim.humans.ranis-zlaty-kun-relatives',
+    statement: 'The Zlatý kůň individual in Czechia was a fifth- or sixth-degree relative of two individuals from Ranis in Germany, about 230 km away; they belonged to the same small, isolated population, and their genomes show Neanderthal ancestry only from the shared admixture event, unlike nearly contemporaneous people from Bacho Kiro.',
+    kind: 'observation',
+    certainty: 'high',
+    sourceIds: ['source.humans.sumer-2024-admixture'],
+    reviewStatus: 'editorial-review-required',
+  },
+  {
+    id: 'claim.humans.denisova-fingertip',
+    statement: 'The first Denisovan genome came from a small fragment of a fingertip bone (distal manual phalanx) of a juvenile, excavated in 2008 from Denisova Cave in the Altai Mountains of southern Siberia.',
+    kind: 'observation',
+    certainty: 'high',
+    sourceIds: ['source.humans.reich-2010-denisova', 'source.humans.denisova-project'],
+    reviewStatus: 'editorial-review-required',
+  },
+  {
+    id: 'claim.humans.harbin-find-story',
+    statement: 'According to the account reported in 2021, a worker helping build a bridge over the Songhua River near Harbin in 1933 found the skull in the river mud and hid it in an abandoned well; before his death he told his grandchildren, who retrieved it in 2018.',
+    kind: 'later-tradition',
+    certainty: 'moderate',
+    sourceIds: ['source.humans.natgeo-2021-harbin', 'source.humans.nhm-2021-harbin'],
+    reviewStatus: 'editorial-review-required',
+  },
+  {
+    id: 'claim.humans.harbin-denisovan-link',
+    statement: 'In 2025, mitochondrial DNA recovered from dental calculus and ancient proteins linked the more than 146,000-year-old Harbin cranium to a Denisovan population.',
+    kind: 'interpretation',
+    certainty: 'high',
+    sourceIds: ['source.humans.zhang-2025-harbin-mtdna', 'source.humans.welker-2025-harbin-proteome'],
+    reviewStatus: 'editorial-review-required',
+  },
 ];
 
 export const migrationsAncientDnaMedia: MediaAsset[] = [
@@ -371,24 +454,22 @@ export const migrationsAncientDnaLesson: Lesson = {
         {
           id: 'module.humans.movement-opening',
           type: 'prose',
-          body: `The last lesson followed our species’ deep roots across Africa. Now follow some of those connected groups beyond the continent.
+          body: `In February 2002, cave explorers near Anina in southwestern Romania climbed a 30-meter shaft and dug a passage just wide enough to crawl through. Beyond it lay galleries littered with the bones of bears, goats and wolves and, on the floor among them, a complete human lower jaw. The place became known as Peștera cu Oase: the Cave with Bones.
 
-This was not one crowd leaving on one day. Homo sapiens groups moved at different times. Some early branches seem to have ended or mixed into other groups. A later expansion, beginning roughly 50,000 years ago, left most of the ancestry carried by people outside Africa today.
-
-Movement did not lead into an empty world.`,
-          claimIds: ['claim.humans.dispersals-repeated', 'claim.humans.major-expansion-fifty-ka'],
-          sourceIds: ['source.humans.hallett-2025-niche', 'source.humans.sumer-2024-admixture'],
+Like Jebel Irhoud in the last lesson, it was found by people looking for something else. The jaw, Oase 1, belonged to a Homo sapiens who lived about 40,000 years ago. How did one of us get there? Not in one crowd on one day. And the land they reached was not empty.`,
+          claimIds: ['claim.humans.oase-cave-find', 'claim.humans.oase-neanderthal-share', 'claim.humans.dispersals-repeated', 'claim.humans.major-expansion-fifty-ka'],
+          sourceIds: ['source.humans.trinkaus-zilhao-2007-oase-discovery', 'source.humans.fu-2015-oase', 'source.humans.hallett-2025-niche', 'source.humans.sumer-2024-admixture'],
         },
         {
           id: 'module.humans.branches-not-ladder',
           type: 'knowledge',
           eyebrow: 'A branching story',
           title: 'Several movements, many outcomes',
-          body: 'The evidence works better as a family tree with crossing branches than as a line of people marching toward the present.',
+          body: `The evidence looks less like a march toward the present than a family tree whose branches split, cross and sometimes end.`,
           items: [
-            { label: 'Earlier movements', detail: 'Some Homo sapiens groups reached places beyond Africa earlier, but they left little known ancestry in later sampled people.' },
-            { label: 'A major expansion', detail: 'Many living people outside Africa trace most of their ancestry to groups that expanded about 50,000 years ago.' },
-            { label: 'No finish line', detail: 'A branch that left fewer descendants was not less human or less successful in its own time.' },
+            { label: 'Earlier movements', detail: 'Some groups moved beyond Africa earlier but left little known ancestry in later people.' },
+            { label: 'A major expansion', detail: 'Most ancestry of people outside Africa today traces to an expansion that began about 50,000 years ago.' },
+            { label: 'No finish line', detail: 'A branch that left few descendants was not a failure. Its people were as human as anyone alive today.' },
           ],
           claimIds: ['claim.humans.dispersals-repeated', 'claim.humans.major-expansion-fifty-ka'],
           sourceIds: ['source.humans.hallett-2025-niche', 'source.humans.sumer-2024-admixture'],
@@ -403,17 +484,17 @@ Movement did not lead into an empty world.`,
         {
           id: 'module.humans.other-populations',
           type: 'prose',
-          body: `Neanderthals already lived across much of western Eurasia. Farther east, groups researchers call Denisovans also lived in Asia. They were related human populations, not lower steps on a ladder.
+          body: `When Oase 1’s ancestors reached Europe, Neanderthals already lived across much of western Eurasia. Farther east lived people researchers call Denisovans. Both were related human populations, not lower steps on a ladder.
 
-The known evidence does not map every territory or path Homo sapiens took. It comes from a few places where remains survived and scientists recovered useful DNA. Cool caves and cold ground preserve DNA better than hot, wet places. That makes the known sample uneven.`,
-          claimIds: ['claim.humans.other-populations-eurasia', 'claim.humans.adna-preservation-biased', 'claim.humans.map-is-sample'],
-          sourceIds: ['source.humans.green-2010-neanderthal', 'source.humans.reich-2010-denisova', 'source.humans.orlando-2021-adna'],
+What survives is bone, and inside a few lucky bones, DNA. The Oase galleries had been sealed off for at least 17,000 years, and sheltered caves and cold ground keep DNA far better than hot, wet places. So the six sites on the map above mark where remains happened to survive and be studied, not a route or everywhere people lived.`,
+          claimIds: ['claim.humans.other-populations-eurasia', 'claim.humans.oase-cave-find', 'claim.humans.adna-preservation-biased', 'claim.humans.map-is-sample'],
+          sourceIds: ['source.humans.green-2010-neanderthal', 'source.humans.reich-2010-denisova', 'source.humans.trinkaus-zilhao-2007-oase-discovery', 'source.humans.orlando-2021-adna', 'source.humans.sumer-2024-admixture'],
         },
       ],
     },
     {
       id: 'section.humans.dna-keeps-traces',
-      heading: 'An encounter written in long pieces',
+      heading: 'A Neanderthal ancestor in one person’s DNA',
       purpose: 'Use segment length to make one ancient encounter concrete',
       modules: [
         {
@@ -421,20 +502,20 @@ The known evidence does not map every territory or path Homo sapiens took. It co
           type: 'evidence',
           title: 'Long pieces point to a recent ancestor',
           artifactLabel: 'Explanatory diagram · inherited DNA',
-          body: `The top row shows one long inherited segment. The lower row shows how inherited material can be split into shorter pieces after many generations.
+          body: `Each time DNA passes from parent to child, it is reshuffled, so a stretch inherited from one ancestor tends to be cut shorter. The top row shows one long inherited segment; the lower row, that material after many generations.
 
-Oase 1 lived in what is now Romania about 40,000 years ago. Their genome held unusually long Neanderthal segments. The best explanation is a Neanderthal ancestor only four to six generations earlier. DNA cannot tell us what those people called each other or how they understood their family.`,
+Read in 2015, Oase 1’s genome was about 6 to 9 percent Neanderthal, more than any modern human sequenced up to then. Three Neanderthal stretches were exceptionally long, so they had not been cut many times. The best explanation is a Neanderthal ancestor only four to six generations back: a great-great-grandparent, or a generation or two further.`,
           mediaId: 'media.humans.inherited-segments-diagram',
-          claimIds: ['claim.humans.long-segments-recent', 'claim.humans.oase-recent-ancestor', 'claim.humans.adna-inference-limited'],
+          claimIds: ['claim.humans.long-segments-recent', 'claim.humans.oase-neanderthal-share', 'claim.humans.oase-recent-ancestor'],
           sourceIds: ['source.humans.fu-2015-oase', 'source.humans.sumer-2024-admixture'],
         },
         {
           id: 'module.humans.oase-lineage',
           type: 'prose',
-          body: `Oase 1’s lineage seems to have contributed little ancestry to later Europeans. That does not make the person unimportant. Their DNA still records a meeting that would otherwise be almost invisible.
+          body: `There the DNA stops. It cannot say how the two groups met, what language anyone spoke, or what they called each other. Oase 1’s population also left little ancestry in later Europeans. Yet without one jaw on a cave floor, this meeting would be almost invisible.
 
-One person also cannot stand for every group. Other genomes tell a wider story.`,
-          claimIds: ['claim.humans.oase-recent-ancestor', 'claim.humans.additional-encounters'],
+But one person cannot stand for every group. Other genomes tell a wider story.`,
+          claimIds: ['claim.humans.oase-recent-ancestor', 'claim.humans.adna-inference-limited', 'claim.humans.early-lineages-faded', 'claim.humans.additional-encounters'],
           sourceIds: ['source.humans.fu-2015-oase', 'source.humans.sumer-2024-admixture'],
         },
         {
@@ -456,23 +537,21 @@ One person also cannot stand for every group. Other genomes tell a wider story.`
           type: 'knowledge',
           eyebrow: 'What many genomes share',
           title: 'The meetings did not all happen at once',
-          body: 'Researchers compare both how much Neanderthal DNA remains and how long its pieces are.',
+          body: `About 45,000 years ago, a person at Zlatý kůň in Czechia and two people at Ranis in Germany, 230 kilometers apart, were distant cousins in one small, isolated group. Their genomes help separate two kinds of meeting.`,
           items: [
-            { label: 'A shared event', detail: 'Genomes point to one period of interbreeding about 45,000–49,000 years ago in the ancestry shared by sampled people outside Africa.' },
-            { label: 'Other encounters', detail: 'Oase 1 and several people from Bacho Kiro had additional Neanderthal ancestors much closer to their own lifetimes.' },
-            { label: 'No pure groups', detail: 'People kept moving and mixing. Later movement back into Africa also carried some Neanderthal-related ancestry with it.' },
+            { label: 'A shared event', detail: 'Their Neanderthal DNA comes from one period of interbreeding, about 45,000–49,000 years ago, shared by all non-Africans sequenced so far.' },
+            { label: 'Other encounters', detail: 'They show nothing more recent. But Oase 1 and several people from Bacho Kiro Cave in Bulgaria had extra Neanderthal ancestors much closer to their own lifetimes.' },
+            { label: 'No pure groups', detail: 'People kept moving and mixing. Later movement back into Africa carried some Neanderthal-related ancestry there too.' },
           ],
-          claimIds: ['claim.humans.shared-neanderthal-encounter', 'claim.humans.additional-encounters', 'claim.humans.ancestry-not-purity'],
+          claimIds: ['claim.humans.ranis-zlaty-kun-relatives', 'claim.humans.shared-neanderthal-encounter', 'claim.humans.additional-encounters', 'claim.humans.ancestry-not-purity'],
           sourceIds: ['source.humans.sumer-2024-admixture', 'source.humans.fu-2015-oase', 'source.humans.chen-2020-backmigration'],
         },
         {
           id: 'module.humans.ancestry-is-not-identity',
           type: 'prose',
-          body: `A small ancestry percentage is not a purity score. It does not make someone “part Neanderthal” in culture or identity. It describes parts of a genome, compared with a small set of ancient reference genomes.
-
-Ancestry is evidence about biological relationships. It is not a ranking of people.`,
-          claimIds: ['claim.humans.ancestry-not-purity', 'claim.humans.adna-inference-limited'],
-          sourceIds: ['source.humans.green-2010-neanderthal', 'source.humans.chen-2020-backmigration', 'source.humans.alpaslan-roodenberg-2021-ethics'],
+          body: `That shared encounter is the main reason many people outside Africa today carry a small share of Neanderthal DNA. The share is not a purity score, and it does not make anyone “part Neanderthal” in culture or identity. It describes stretches of a genome, compared with a few ancient reference genomes: evidence about who had children with whom, not a ranking of people.`,
+          claimIds: ['claim.humans.shared-neanderthal-encounter', 'claim.humans.ancestry-not-purity', 'claim.humans.adna-inference-limited'],
+          sourceIds: ['source.humans.sumer-2024-admixture', 'source.humans.green-2010-neanderthal', 'source.humans.chen-2020-backmigration', 'source.humans.alpaslan-roodenberg-2021-ethics'],
         },
       ],
     },
@@ -484,13 +563,15 @@ Ancestry is evidence about biological relationships. It is not a ranking of peop
         {
           id: 'module.humans.denisovan-discovery',
           type: 'prose',
-          body: `In 2008, researchers found a tiny finger-bone fragment in Denisova Cave in Siberia. Its DNA did not match Homo sapiens or Neanderthals. It revealed another related human population, now called Denisovans after the cave.
+          body: `In 2008, excavators in Denisova Cave in Siberia found a small piece of bone from the tip of a child’s finger. Its DNA matched neither Homo sapiens nor Neanderthals. It came from another related population, now called Denisovans after the cave. Nobody knows what they called themselves.
 
-The name is modern. We do not know what these people called themselves. For years, Denisovans were known mostly from teeth, small bone fragments, and DNA. In 2025, proteins and mitochondrial DNA linked the nearly complete Harbin cranium to a Denisovan population, giving researchers their first strong view of one Denisovan skull. Even so, one skull cannot show what all Denisovans looked like, and details such as skin and hair remain uncertain.`,
-          claimIds: ['claim.humans.denisovans-known-genetically', 'claim.humans.adna-inference-limited'],
+For years, Denisovans were a genome with almost no body. As the story was later told, a worker building a bridge near Harbin, in northeast China, found a skull in the river mud in 1933 and hid it in an abandoned well. Before he died, he told his grandchildren, who retrieved it in 2018. In 2025, proteins and DNA from the hardened plaque on its teeth linked the skull, more than 146,000 years old, to a Denisovan population. It is the first nearly complete skull known to be Denisovan, but one skull cannot show what all Denisovans looked like.`,
+          claimIds: ['claim.humans.denisova-fingertip', 'claim.humans.denisovans-known-genetically', 'claim.humans.harbin-find-story', 'claim.humans.harbin-denisovan-link', 'claim.humans.adna-inference-limited'],
           sourceIds: [
             'source.humans.reich-2010-denisova',
             'source.humans.denisova-project',
+            'source.humans.natgeo-2021-harbin',
+            'source.humans.nhm-2021-harbin',
             'source.humans.zhang-2025-harbin-mtdna',
             'source.humans.welker-2025-harbin-proteome',
           ],
@@ -513,28 +594,26 @@ The name is modern. We do not know what these people called themselves. For year
     },
     {
       id: 'section.humans.dna-limits',
-      heading: 'Powerful evidence, narrow answers',
+      heading: 'What ancient DNA can and cannot tell us',
       purpose: 'End with preservation, ethics, and the limits of genetic inference',
       modules: [
         {
           id: 'module.humans.dna-limits',
           type: 'prose',
-          body: `Ancient DNA can reveal biological relatives and show that populations had children together. It can sometimes estimate when an encounter happened.
+          body: `Ancient DNA can find relatives, reveal populations nobody knew existed and estimate when meetings happened. But most ancient people left no readable DNA at all. Heat, water, time and microbes destroy it. Sampling can also damage human remains, so researchers must work carefully, follow local laws, and involve the communities connected to those remains.
 
-But most ancient people left no readable DNA. Heat, water, time, and microbes destroy it. Sampling can also damage human remains. Researchers must work with care, follow local laws, and involve people and communities connected to the remains.
-
-DNA cannot tell us a person’s language, feelings, name, or identity. It cannot map every journey. Used carefully, it adds one strong line of evidence beside fossils and archaeology—not a complete story by itself.
+DNA cannot give back a name, a language or an identity, or map every journey. It is one strong line of evidence beside fossils and archaeology, not the whole story. Oase 1’s genome shows a Neanderthal a few branches up one family tree. It cannot say how that family began.
 
 Some groups kept moving east. Reaching Sahul would require another kind of movement: crossing open water.`,
-          claimIds: ['claim.humans.adna-preservation-biased', 'claim.humans.adna-inference-limited', 'claim.humans.adna-ethical'],
-          sourceIds: ['source.humans.orlando-2021-adna', 'source.humans.alpaslan-roodenberg-2021-ethics'],
+          claimIds: ['claim.humans.oase-recent-ancestor', 'claim.humans.denisovans-known-genetically', 'claim.humans.adna-preservation-biased', 'claim.humans.adna-inference-limited', 'claim.humans.adna-ethical'],
+          sourceIds: ['source.humans.fu-2015-oase', 'source.humans.reich-2010-denisova', 'source.humans.orlando-2021-adna', 'source.humans.alpaslan-roodenberg-2021-ethics'],
         },
         {
           id: 'module.humans.adna-clean-room',
           type: 'evidence',
           title: 'Protecting a fragile signal',
           artifactLabel: 'Research process · ancient-DNA clean room',
-          body: 'Modern DNA from a researcher can overwhelm the small amount that survives in an ancient sample. Clean suits, gloves, filtered workspaces, sterilized tools, and careful pipetting help reduce contamination. The illustration preserves the equipment and working arrangement in the source photograph; it does not identify the sample being handled.',
+          body: `The DNA of the people handling an ancient bone can swamp the tiny amount that survives inside it. Clean suits, gloves, filtered workspaces, sterilized tools and careful pipetting help keep modern DNA out. The illustration follows a real clean-room photograph; it does not show which sample is being handled.`,
           mediaId: 'media.humans.adna-clean-room',
           claimIds: ['claim.humans.adna-preservation-biased', 'claim.humans.adna-inference-limited'],
           sourceIds: ['source.humans.eurekalert-adna-clean-room', 'source.humans.orlando-2021-adna'],

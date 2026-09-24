@@ -328,8 +328,12 @@ export function LearnApp({ lessonId, gatewayFactory = createProgressGateway }: {
     finally { setBusy(false); }
   };
 
-  const openingMapId = orientationMapForLesson(lesson)?.id;
-  const hero = lesson.heroMediaId ? mediaById.get(lesson.heroMediaId) : undefined;
+  const openingMap = orientationMapForLesson(lesson);
+  const openingMapId = openingMap?.id;
+  const heroMedia = lesson.heroMediaId ? mediaById.get(lesson.heroMediaId) : undefined;
+  // A map hero is already shown in "Time and place" when the lesson has no locator map of its own; do not show it twice.
+  const orientationMediaId = (openingMap?.type === 'historical-map' ? openingMap.mediaId : undefined) ?? lesson.heroMediaId;
+  const hero = heroMedia?.depictionMode === 'map' && heroMedia.id === orientationMediaId ? undefined : heroMedia;
   const configuredCards = cardsByLessonId.get(lesson.id) ?? [];
   const newlyAcquired = revealedCardIds.length > 0;
   const ownedCardIds = [...new Set([...(state.cardIds ?? []), ...(state.cardId ? [state.cardId] : [])])];
