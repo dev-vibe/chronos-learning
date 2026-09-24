@@ -113,7 +113,7 @@ Discovery, passage retrieval and a bounded URL/metadata check were explicitly ro
 - **Disciplines/evidence:** Assyriology/philology, archaeology and object history, iconography, legal history, material status and debt, comparative law, radiocarbon chronology, museum provenance; stele, excerpts, letters, transactions, copies and commentaries.
 - **Independent/claim-owner channels:** the independent eHammurabi edition and scholarly digital corpora were screened alongside institutional sources; hypotheses were not excluded because of publisher or institutional status. No unsupported popular claim is promoted to evidence.
 - **Inaccessible material:** full Barmash chapters, Roth PDF via institutional endpoint, Slanski PDF via main web reader, Ornan article body, and the full dating/comparative studies. The SOAS prologue is accessible. These remain research dependencies for any central claim relying on their detailed arguments. Museum images have not passed reuse-rights review.
-- **Known gaps:** systematic corpus comparison of judgments to provisions, non-English and Iraqi scholarly publication coverage, full original display context, exact social-status philology, broader household dossiers, alternative iconographic response to Ornan, and independent dated transmission chains. “All major challenges” means this auditable sweep, not certainty of exhaustive discovery.
+- **Known gaps:** systematic corpus comparison of judgments to provisions, non-English and Iraqi scholarly publication coverage, full original display context, exact social-status philology, broader household dossiers, alternative iconographic response to Ornan, and independent dated transmission chains. “All major challenges” methis is an auditable sweep, not a claim of exhaustive discovery.
 
 ### Research-direction packet and product-owner response
 
@@ -125,6 +125,6 @@ Discovery, passage retrieval and a bounded URL/metadata check were explicitly ro
 
 **Owner judgments needed:** Is the proposed object-plus-letter focus right for this World Spine position? Does the two-case status contrast carry enough value to include age-appropriately? Should later copying be a short ending or deferred depth? Is the unresolved public authority versus scribal-composition tension phrased usefully? A response of **all yes** or numbered changes is sufficient.
 
-Packet shared: pending branch push and handoff.
+Packet shared: [draft PR #51](https://github.com/dev-vibe/chronos-learning/pull/51) and ASH-105 comment, 2026-09-23.
 Product-owner response: pending. No Stage 4 claim selection, blueprint, storyboard, learner prose, prompts, final media plan, card decision or Learn-shell prototype has begun.
 Follow-up research and disposition: pending owner response.
