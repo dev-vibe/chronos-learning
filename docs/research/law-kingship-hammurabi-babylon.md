@@ -5,11 +5,11 @@ Lesson ID: lesson.mesopotamia.law-and-kingship
 Research-note identity/version: initial Stage 3B packet, 2026-09-23
 Production record version: 2
 Journey/chapter/position: required World History, canonical position 21; production order 130
-Queue status: Active (Stage 3B owner decision pending)
+Queue status: Active (Stage 14A prototype in progress)
 Branch/base: codex/ash-105-law-kingship-babylon from main 6b2e270
 Accountable reviewer: Carlin Aylsworth
 Validation tier: high-risk interpretation (royal ideology, legal practice, social rank, enslavement, bodily punishments)
-Research-direction decision: pending
+Research-direction decision: Carlin Aylsworth replied “all yes” on 2026-09-24 in the lesson-production task
 
 ## Owner decision card (Stage 3B)
 
@@ -27,7 +27,7 @@ Reply **all yes** or give numbered **yes / change / no** responses. These are pr
 
 **Decision-changing caveat:** An important scholarly argument sees the monument as a public appeal to justice, so “not a modern code” must not become “it had no legal authority.” Details and sources are in the [research packet](#recent-challenge-audit-stages-3a3b). Please judge the five-beat direction; source and visual selection follow only after this checkpoint.
 
-## Work boundary and node proposal
+## Node proposal
 
 Current main marks Pyramids, Sahul, Indus, Kerma and Akkad complete. Production orders 110 and 120 remain ineligible because their named dependencies, Wheels and Animals, are Planned. Order 130 is the lowest eligible Ready row and already has ASH-105. The existing Pyramids checkout has unrelated local changes and is untouched; this lesson uses an isolated worktree from current main. The branch queue row is Active; the Stage 3B owner decision is pending.
 
@@ -126,5 +126,143 @@ Discovery, passage retrieval and a bounded URL/metadata check were explicitly ro
 **Owner judgments needed:** Is the proposed object-plus-letter focus right for this World Spine position? Does the two-case status contrast carry enough value to include age-appropriately? Should later copying be a short ending or deferred depth? Is the unresolved public authority versus scribal-composition tension phrased usefully? A response of **all yes** or numbered changes is sufficient.
 
 Packet shared: [draft PR #51](https://github.com/dev-vibe/chronos-learning/pull/51) and ASH-105 comment, 2026-09-23.
-Product-owner response: pending. No Stage 4 claim selection, blueprint, storyboard, learner prose, prompts, final media plan, card decision or Learn-shell prototype has begun.
-Follow-up research and disposition: pending owner response.
+Product-owner response: **“all yes,” 2026-09-24**, in the lesson-production task. All five provisional beats are accepted as the direction for Stage 4 onward, not as pre-approved wording or images.
+Follow-up research and disposition: A bounded source-pass retrieval requested model `gpt-5.6-sol`; the delegation tool accepted the override but exposed no resolved runtime model/cost metadata. The pass checked Louvre SB 8, CDLI P249253 prologue column 1 lines 28–49 and reverse column XVII §§196–199, YBC 9959 translated lines 4–10, and Yale commentary P461271. It corrected the original packet in four ways: the letter records an **order**, not a demonstrated field return; the physical Louvre witness is P249253, distinct from the scholarly composite P464358/Q006387; the prologue’s SB 8 locator is column 1 rather than SOAS continuous numbering; and YBC 6516 is an Old Babylonian copy with no secure implication that it postdates Hammurabi. The first-millennium commentary supplies a securely later witness. The Louvre’s educational image terms may permit some credited use, but Chronos’ use case needs explicit rights fit review before an image enters the lesson.
+
+## Claim ledger
+
+The code registers the source-ledger research IDs with a `source.` prefix where names coincide. `source.hammurabi.cdli-stele` uses the physical witness P249253 from the ledger's `hammurabi.stele-text` row; `source.hammurabi.ehammurabi-198` uses `hammurabi.case-198`; `source.hammurabi.letter` and `source.hammurabi.commentary` use those matching research rows. The Louvre essay is an interpretive source, not independent physical corroboration of its own object record. Two interpretive claims retain editorial review before publication.
+
+| Claim ID and wording | Kind / certainty | Sources | Counterevidence and limits | Missing perspective | Learner treatment / review |
+| --- | --- | --- | --- | --- | --- |
+| `claim.hammurabi.stele-object` — basalt stele with relief and laws, made in Mesopotamia, found at Susa | observation / high | `source.hammurabi.louvre-object`, `source.hammurabi.cdli-stele` | Findspot is not original display setting; catalogues share the same object. | Original viewers | State directly; close-reviewed. |
+| `claim.hammurabi.relief-figures` — Hammurabi stands before seated Shamash | observation / high | `source.hammurabi.louvre-object` | How the current carving was made/reworked remains a specialist question. | Ancient viewers beyond the court | Describe observable figures; close-reviewed. |
+| `claim.hammurabi.royal-image` — the relief presents royal authority, not visible dictation | interpretation / high | `source.hammurabi.louvre-object`, `source.hammurabi.louvre-essay` | The image does not document a spoken exchange. | Ancient viewers beyond the court | Attribute interpretation; close-reviewed. |
+| `claim.hammurabi.justice-claim` — prologue claims protection against the strong | observation / high | `source.hammurabi.cdli-stele` | A king's promise does not document compliance. | Petitioners and subjects | Attribute to Hammurabi; close-reviewed. |
+| `claim.hammurabi.case-form` — conditional cases pair situations and outcomes | observation / high | `source.hammurabi.cdli-stele`, `source.hammurabi.louvre-essay` | Conditional form alone does not establish use in court. | People in actual disputes | State and qualify; close-reviewed. |
+| `claim.hammurabi.earlier-laws` — earlier collections make “first written laws” misleading | interpretation / high | `source.hammurabi.louvre-essay` | Earlier surviving collections are incomplete and vary in form. | Lost textual traditions | Brief correction; close-reviewed. |
+| `claim.hammurabi.different-remedies` — §§196 and 198 prescribe different eye-injury remedies by status | observation / high | `source.hammurabi.cdli-stele`, `source.hammurabi.ehammurabi-198` | Terms are not simple modern classes; these are prescriptions, not case outcomes. | Injured people, including those with few preserved records | Native-text contrast without graphic image; close-reviewed. |
+| `claim.hammurabi.status-limits` — textual inequality is clear, lived taxonomy and frequency are not | interpretation / moderate | `source.hammurabi.cdli-stele`, `source.hammurabi.ehammurabi-198`, `source.hammurabi.letter` | One letter is no population sample; further philology could refine terms. | Non-elite and enslaved people | Qualify at point of comparison; editorial review required. |
+| `claim.hammurabi.field-letter` — a shepherd's complaint drew an order to decide and return a field | observation / high | `source.hammurabi.letter` | The addressee's name and administrative context need no larger claim here. | Actual result, other litigants | Name Issinabu and paraphrase the order; close-reviewed. |
+| `claim.hammurabi.letter-limit` — the letter does not show execution or typicality | interpretation / high | `source.hammurabi.letter` | Another surviving record might document follow-through. | Issinabu after the letter | State explicitly; close-reviewed. |
+| `claim.hammurabi.later-study` — a first-millennium commentary works with the law text | observation / high | `source.hammurabi.commentary` | Later scholarship is not Hammurabi-era court evidence. | Readers outside scribal circles | Short afterlife beat; close-reviewed. |
+| `claim.hammurabi.practice-limit` — the three source types do not establish frequency of judicial use | interpretation / moderate | `source.hammurabi.cdli-stele`, `source.hammurabi.letter`, `source.hammurabi.commentary` | Public or normative force remains a serious possibility; absence of citations is not proof of no influence. | Most ordinary disputes | Present as an unresolved limit, not a verdict of no authority; editorial review required. |
+
+## Central claim support
+
+Each locator names the inspected object or passage and the specific feature relevant to the claim. This records source inspection, not product-owner historical sign-off.
+
+| Claim ID | Source ID | Locator | Review |
+| --- | --- | --- | --- |
+| `claim.hammurabi.stele-object` | `source.hammurabi.louvre-object` | object SB 8, Description/Features, Dimensions, Places and dates: basalt, relief, inscription and Susa findspot | Codex, 2026-09-24, close-reviewed |
+| `claim.hammurabi.relief-figures` | `source.hammurabi.louvre-object` | object SB 8, Description/Features: standing king before seated Shamash with ring and rod | Codex, 2026-09-24, close-reviewed |
+| `claim.hammurabi.royal-image` | `source.hammurabi.louvre-essay` | section “A monument of ancient law”: interpretation of the king, deity and legal authority | Codex, 2026-09-23, close-reviewed |
+| `claim.hammurabi.justice-claim` | `source.hammurabi.cdli-stele` | passage P249253 column 1 lines 28–49: king's justice claim and concern for the weak | Codex, 2026-09-24, close-reviewed |
+| `claim.hammurabi.case-form` | `source.hammurabi.cdli-stele` | passage P249253 reverse column XVII lines 45–65: four neighboring conditional cases | Codex, 2026-09-24, close-reviewed |
+| `claim.hammurabi.earlier-laws` | `source.hammurabi.louvre-essay` | section “A monument of ancient law”: earlier Mesopotamian written laws and the modern-code limit | Codex, 2026-09-23, close-reviewed |
+| `claim.hammurabi.different-remedies` | `source.hammurabi.cdli-stele` | passage P249253 reverse column XVII lines 45–49 (§196) and 54–59 (§198): eye injury and differing remedy | Codex, 2026-09-24, close-reviewed |
+| `claim.hammurabi.different-remedies` | `source.hammurabi.ehammurabi-198` | passage §198 translation and Bergmann p. 26 / Huehnergard p. 60 apparatus: silver remedy | Codex, 2026-09-24, close-reviewed |
+| `claim.hammurabi.field-letter` | `source.hammurabi.letter` | passage YBC 9959 / P293786 translated lines 4–10: Issinabu's report and royal instruction | Codex, 2026-09-24, close-reviewed |
+| `claim.hammurabi.letter-limit` | `source.hammurabi.letter` | passage YBC 9959 translated lines 4–10: instruction ends without documented return | Codex, 2026-09-24, close-reviewed |
+| `claim.hammurabi.later-study` | `source.hammurabi.commentary` | object BM 59739 / P461271, catalogue dating and obverse 2′–6′ / reverse 2′–6′ commentary on laws | Codex, 2026-09-24, close-reviewed |
+| `claim.hammurabi.practice-limit` | `source.hammurabi.cdli-stele` | passage P249253 prologue column 1 and injury cases reverse column XVII: prescriptions and royal voice | Codex, 2026-09-24, close-reviewed |
+| `claim.hammurabi.practice-limit` | `source.hammurabi.letter` | passage YBC 9959 translated lines 4–10: specific order without outcome or citation to stele | Codex, 2026-09-24, close-reviewed |
+
+## Content triage
+
+| Candidate idea | Decision | Why | Destination |
+| --- | --- | --- | --- |
+| Hammurabi's image and prologue | Essential | Establishes the royal justice claim and its author | Sections 1–2 |
+| Conditional form and earlier collections | Supporting | Makes the text readable and corrects the “first code” myth | Section 3 |
+| Neighboring injury cases | Essential | Tests the promise against visibly different written remedies | Section 4 |
+| Issinabu's field petition | Essential | Provides a named counterpoint from administration; order is distinct from outcome | Section 5 |
+| First-millennium commentary | Supporting | Shows a long afterlife without implying original judicial practice | Section 6 |
+| Exact social taxonomy of `awīlum` and `muškēnum` | Deferred | Current translation and social-history debates cannot be flattened into a tidy class chart | Investigation or specialist review |
+| All 282 cases, biblical borrowing, Elamite relief reworking and absolute chronology models | Deferred | Each deserves different sources and would dilute this evidence question | Separate depth or later lesson |
+| “First law code,” divine dictation, universal equal application or zero legal authority | Rejected | Unsupported absolutes in opposite directions | Explicitly avoided |
+
+## Learning blueprint
+
+Essential question: What can Hammurabi's law monument tell us about royal justice, and what must we learn from other records?
+Durable understanding: Hammurabi's stele makes a royal claim about justice and sets out unequal written remedies; a dispute letter and later commentary show other uses of writing but cannot turn the stone into a complete record of Babylonian courts.
+Supporting understandings: (1) The relief and prologue are a ruler's purposeful message. (2) A conditional case is a written prescription, not an observed outcome. (3) Neighboring injury cases differentiate legal standing. (4) A named shepherd's complaint drew a royal order without a preserved result. (5) Later study does not answer every question about earlier practice.
+Prerequisites: Mesopotamia as a region; rulers can claim authority; inscriptions reflect their makers' purposes; Akkad's distinction between victory claims and local administrative evidence (`lesson.mesopotamia.akkadian-empire`).
+Misconceptions: Hammurabi invented written law; Shamash visibly dictated the cases; “eye for an eye” applied equally; every judge applied every case; no courtroom ever used the text.
+Indispensable vocabulary: stele (carved standing stone), prologue (opening statement), conditional case (“if … then”), legal status (standing named in a rule), petition (request to an authority), commentary (later explanation of a text).
+Evidence encounter: Louvre SB 8 relief/prologue and §§196/198, compared with YBC 9959 translated lines 4–10.
+Historical-thinking move: Identify who produced each source, compare a stated ideal with differentiated written cases and one administrative order, then qualify what cannot be concluded.
+Retrieve: Reuse Akkad's distinction between a ruler's own claim and local evidence; earlier World Spine positions 19–20 remain unpublished and are not treated as completed prerequisites.
+Extend: Move from how rulers held power to how a later king represented just rule and how records of a particular request complicate that presentation.
+Revisit: A future law/state lesson can revisit prescription versus practice; this is an editorial intention, not a claim that an unpublished lesson is available.
+Reasoning progression: From observing a royal image and reading attributed words, to comparing neighboring provisions, to corroborating with a different document, to a qualified conclusion about practice. Later work can compare larger archives independently.
+Transfer plan: The unfamiliar field letter supplies a bounded transfer within the lesson: learners apply the source-versus-outcome distinction to a named request after reading the stele. It has enough context to make the move fair.
+Completion versus mastery: Two sincere attempts record that the lesson was studied; they do not certify independent historical judgment. Independent understanding would appear when a learner explains, without a prompt, why another written rule cannot by itself prove a real outcome.
+Required sincere-attempt evidence: One supported selection comparing source reach and one concise explanation connecting the justice promise to the unequal injury cases and their limit.
+
+## Section/component storyboard
+
+| Order | Section ID | Learner-facing heading | Authoring purpose (not shown) | Claims/sources | Module | Media/action | Transition |
+| --- | --- | --- | --- | --- | --- | --- | --- |
+| 1 | `section.hammurabi.babylon-and-stele` | Babylon and the law stele | Locate the object and pose what it can tell us | Stele object; Louvre/CDLI | Prose | Planned original stele view; description works alone | Read the king's own message |
+| 2 | `section.hammurabi.royal-claim` | The king's claim to justice | Attribute image and prologue | Royal image, justice claim; Louvre/CDLI | Prose | Inspect relief when rights resolved | Test the promise against text |
+| 3 | `section.hammurabi.written-cases` | Cases written on the stone | Explain conditional form and “first” limit | Case form, earlier laws; CDLI/Louvre | Prose | Native text | Read two cases closely |
+| 4 | `section.hammurabi.injury-and-status` | Different remedies for injuries | Compare unequal outcomes without modern class labels | Differing remedies, status limit; CDLI/eHammurabi | Prose + knowledge | Native two-case comparison | Seek evidence of a real request |
+| 5 | `section.hammurabi.field-letter` | A shepherd's field dispute | Follow Issinabu's petition and an order | Field letter, result limit; YBC 9959 | Prose | Planned tablet view if rights and legibility work | Reassess source reach |
+| 6 | `section.hammurabi.sources-and-practice` | What the stone and letter can tell us | Include later study, preserve legal-authority debate | Later study, practice limit; Yale/CDLI | Prose + knowledge | Four-part source-limit frame | Use the evidence |
+| 7 | `section.hammurabi.understanding` | Explain the evidence for royal justice | Elicit a qualified comparison | Central claims/sources | Two prompts | Sincere attempts, explicit completion in shell | Current journey continues after completion |
+
+Heading voice: titles name the object, source or teaching job directly. `purpose` is internal metadata and never learner-facing copy. The opening first gives present-day geographic context; a detailed map would add place labels without carrying this lesson's central inference, so no map is proposed.
+
+## Media decisions
+
+| Intention ID | Section ID | Teaching question | Form | Evidence/claim basis | Depiction label | Accessible equivalent | Stage 14A treatment | Final review |
+| --- | --- | --- | --- | --- | --- | --- | --- | --- |
+| `intent.hammurabi.stele` | `section.hammurabi.babylon-and-stele` | What part is royal image, and what part is text? | Original SB 8 photograph, required if rights permit; otherwise seek an approved licensed view before publication | Louvre SB 8, stele and relief claims | Surviving evidence | Native description of image, stone and inscription | Section-linked development annotation | Rights, attribution, mobile legibility and historical fidelity pending |
+| `intent.hammurabi.case-contrast` | `section.hammurabi.injury-and-status` | How do two neighboring written remedies differ? | Native-text knowledge comparison, no image | §§196/198 | Surviving text paraphrase | Same native text | Complete in prototype | Translation/status nuance needs editorial review |
+| `intent.hammurabi.letter` | `section.hammurabi.field-letter` | What does a particular dispute record look like? | Original YBC 9959 photograph, recommended if rights and legibility permit | Yale/CDLI tablet and translated lines | Surviving evidence | Native prose paraphrase naming petitioner, order and missing outcome | Section-linked development annotation | Rights, attribution and small-screen value pending |
+| `intent.hammurabi.map` | `section.hammurabi.babylon-and-stele` | Does spatial detail explain the source comparison? | No map | Modern Iraq/Iran place orientation in text | Not applicable | First paragraph and masthead | Native text | Reconsider only if review finds location confusing |
+| `intent.hammurabi.video` | none | Would motion or sound teach the distinction? | No video | Static objects and text are the evidence | Not applicable | Readable text | Not used | No video need |
+
+No image has been accepted or registered at prototype stage. The specialist image-provenance and publication processes apply before either proposed original can become a final asset. The Louvre terms identify a possible credited educational route, but Chronos' fit is not yet determined; the CDLI tablet image is likewise not cleared. No generated copy can substitute for surviving evidence. No visual quota is used to justify decorative art.
+
+## Knowledge Card decision
+
+Decision: one provisional card after prototype approval, subject to rights and visual review.
+Rationale: SB 8 is a durable physical anchor for the distinction between a royal ideal, written cases and actual practice; it is not a prize for reading more sections.
+Stable card ID, category, class, and unlock lesson if applicable: `card.hammurabi.law-stele`, artifact, witness, `lesson.mesopotamia.law-and-kingship`. This is a plan, not a registered or unlockable card in the draft.
+Understanding anchored: A surviving monument presents a king's idea of justice; other evidence is needed to infer how disputes were handled.
+Sources and visual brief: Louvre SB 8 object and CDLI witness; depict the actual stele only with rights and attribution settled. If no licensed legible image is obtained, revisit a no-card ending rather than inventing an artifact image.
+
+## Prompt rationale
+
+| Prompt ID | Required | Understanding/evidence assessed | Misconception exposed | Feedback job |
+| --- | --- | --- | --- | --- |
+| `prompt.hammurabi.sources` | yes | Distinguish public claim, specific royal order and missing outcomes | Every court followed every clause; no records of action survive | Explain what each source supports and where it stops |
+| `prompt.hammurabi.justice-and-status` | yes | Compare §§196/198 against prologue promise and distinguish text from result | “Eye for an eye” was equal for everyone | Name unequal remedies without pretending to know frequency |
+
+Both prompts use the same required flags that the Learn shell and publication preparation read. A sincere attempt, not a perfect response, is the completion condition. Free text is not proposed for general analytics.
+
+## Ages 11–15 transformations
+
+Initial drafting reference: roughly 12–13; age fit remains unobserved with learners.
+
+- A centuries-long Babylonian legal-history debate → one concrete stone, two nearby cases and one named shepherd's request; the larger debate is stated as a limit.
+- `awīlum` / `muškēnum` taxonomy → “different legal standing” with a note that exact modern labels are contested; no tidy three-class chart.
+- Bodily injury prescriptions → plain description of differing outcomes, with no graphic illustration or injury scene.
+- Royal ideology → “the king says” alongside what the image and text actually show; no divine-dictation scene.
+- Court practice → separate a recorded order from the unknown result and from claims about typicality.
+- Later reception → a short first-millennium commentary fact, not a causal claim connecting Babylonian and modern law.
+- Geographic load → Mesopotamia relative to present-day Iraq in the opening, Susa relative to present-day Iran, no invented route or boundary map.
+- Reading load → seven semantic sections with one main job each, two short prompts and explicit completion; indispensable terms are defined in use.
+
+## Image lifecycle
+
+No final image is accepted at Stage 14A. Prototype annotations identify intended evidence images; this section will receive visible reference-versus-final lifecycle blocks only for assets actually approved after the owner's prototype decision. No image is registered in the draft content bundle.
+
+## Learner-prototype review
+
+Prototype lesson ID: `lesson.mesopotamia.law-and-kingship`.
+Research-note identity/version: initial Stage 3B packet, extended for Stage 14A on 2026-09-24.
+Validation tier: high-risk.
+Product/editorial reviewer: Carlin Aylsworth; Stage 14B prototype decision pending.
+Learner observation: pending human participation; no age-fit result is claimed.
