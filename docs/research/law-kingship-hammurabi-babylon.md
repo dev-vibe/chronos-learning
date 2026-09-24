@@ -5,7 +5,7 @@ Lesson ID: lesson.mesopotamia.law-and-kingship
 Research-note identity/version: initial Stage 3B packet, 2026-09-23
 Production record version: 2
 Journey/chapter/position: required World History, canonical position 21; production order 130
-Queue status: Researching
+Queue status: Active (Stage 3B owner decision pending)
 Branch/base: codex/ash-105-law-kingship-babylon from main 6b2e270
 Accountable reviewer: Carlin Aylsworth
 Validation tier: high-risk interpretation (royal ideology, legal practice, social rank, enslavement, bodily punishments)
@@ -29,7 +29,7 @@ Reply **all yes** or give numbered **yes / change / no** responses. These are pr
 
 ## Work boundary and node proposal
 
-Current main marks Pyramids, Sahul, Indus, Kerma and Akkad complete. Production orders 110 and 120 remain ineligible because their named dependencies, Wheels and Animals, are Planned. Order 130 is the lowest eligible Ready row and already has ASH-105. The existing Pyramids checkout has unrelated local changes and is untouched; this lesson uses an isolated worktree from current main. The branch queue row is Researching.
+Current main marks Pyramids, Sahul, Indus, Kerma and Akkad complete. Production orders 110 and 120 remain ineligible because their named dependencies, Wheels and Animals, are Planned. Order 130 is the lowest eligible Ready row and already has ASH-105. The existing Pyramids checkout has unrelated local changes and is untouched; this lesson uses an isolated worktree from current main. The branch queue row is Active; the Stage 3B owner decision is pending.
 
 One required canonical lesson would examine Hammurabi's Old Babylonian Babylon in the eighteenth century BCE, with c. 1800–1600 BCE as the roster's broad contextual range. Its distinctive job is to ask how a royal law collection represents authority, social difference and justice, and how far such a monument can take us toward actual practice. The Akkad lesson is the curriculum prerequisite and position 18; positions 19–20 are intended canonical predecessors but unpublished. Position 22, Shang Power, Bronze, and Oracle Bones, follows in the roster. This research increment produces no learner-facing content, asset, migration, unlock, or runtime change.
 
@@ -113,7 +113,7 @@ Discovery, passage retrieval and a bounded URL/metadata check were explicitly ro
 - **Disciplines/evidence:** Assyriology/philology, archaeology and object history, iconography, legal history, material status and debt, comparative law, radiocarbon chronology, museum provenance; stele, excerpts, letters, transactions, copies and commentaries.
 - **Independent/claim-owner channels:** the independent eHammurabi edition and scholarly digital corpora were screened alongside institutional sources; hypotheses were not excluded because of publisher or institutional status. No unsupported popular claim is promoted to evidence.
 - **Inaccessible material:** full Barmash chapters, Roth PDF via institutional endpoint, Slanski PDF via main web reader, Ornan article body, and the full dating/comparative studies. The SOAS prologue is accessible. These remain research dependencies for any central claim relying on their detailed arguments. Museum images have not passed reuse-rights review.
-- **Known gaps:** systematic corpus comparison of judgments to provisions, non-English and Iraqi scholarly publication coverage, full original display context, exact social-status philology, broader household dossiers, alternative iconographic response to Ornan, and independent dated transmission chains. “All major challenges” methis is an auditable sweep, not a claim of exhaustive discovery.
+- **Known gaps:** systematic corpus comparison of judgments to provisions, non-English and Iraqi scholarly publication coverage, full original display context, exact social-status philology, broader household dossiers, alternative iconographic response to Ornan, and independent dated transmission chains. This is an auditable sweep, not a claim of exhaustive discovery.
 
 ### Research-direction packet and product-owner response
 
