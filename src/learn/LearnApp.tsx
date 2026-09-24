@@ -8,7 +8,6 @@ import { HistoricalMapModule } from './HistoricalMapModule';
 import { ResponsiveMedia } from './ResponsiveMedia';
 import { EvidenceModule } from './EvidenceModule';
 import { UnderstandingCheck } from './UnderstandingCheck';
-import { ReadingControls, useReadingSize } from './ReadingControls';
 import { EvidenceViewer } from './EvidenceViewer';
 import { completionKey, createProgressGateway, LocalPreviewGateway, type JourneyProgressSummary, type LearnProgressGateway, type LearnState } from './progress';
 import { useChronosTheme } from '../theme/useChronosTheme';
@@ -204,7 +203,6 @@ export function LearnApp({ lessonId, gatewayFactory = createProgressGateway }: {
   const state = currentProgress?.lessonId === lessonId ? currentProgress : null;
   const [drawer, setDrawer] = useState(false);
   const { theme, toggleTheme } = useChronosTheme();
-  const reading = useReadingSize();
   const [error, setError] = useState('');
   const [busy, setBusy] = useState(false);
   const [loadAttempt, setLoadAttempt] = useState(0);
@@ -341,7 +339,7 @@ export function LearnApp({ lessonId, gatewayFactory = createProgressGateway }: {
       ? (ownedCardIds.length ? ownedCardIds : configuredCards.map((card) => card.id))
       : [];
   const displayCards = displayCardIds.map((id) => cardById.get(id)).filter((card): card is KnowledgeCard => Boolean(card));
-  return <div className="learn-app" data-theme={theme} data-reading-size={reading.size}>
+  return <div className="learn-app" data-theme={theme}>
     <GlobalNavigation
       theme={theme}
       onTheme={toggleTheme}
@@ -352,7 +350,7 @@ export function LearnApp({ lessonId, gatewayFactory = createProgressGateway }: {
     <JourneyDrawer open={drawer} onClose={() => setDrawer(false)} onNavigate={navigate} lesson={lesson} journey={journey} summaries={journeySummaries} currentState={state} currentSectionId={state.resumeSectionId ?? lesson.sections[0].id} returnFocus={menuRef} />
     <header className="mobile-progress"><span className="mobile-progress-spacer" aria-hidden="true" /><div><strong>{lesson.title}</strong><span>{state.exploredSectionIds.length} of {lesson.sections.length} sections explored</span></div><button className="icon-button" onClick={toggleTheme} aria-label={'Use ' + (theme === 'light' ? 'dark' : 'light') + ' theme'}>{theme === 'light' ? <Moon /> : <Sun />}</button></header>
     <main className="lesson"><div className="lesson-toolbar"><JourneySwitcher currentJourneyId={journey.id} currentLessonId={lesson.id} /><span className="lesson-breadcrumb">{breadcrumbChapter} <ChevronRight /> {lesson.title}</span></div>
-      <article><ReadingControls size={reading.size} onChange={reading.change} /><header className="masthead"><div className="masthead-copy"><p className="eyebrow">{lesson.masthead} <span>·</span> {lesson.place}</p><h1>{lesson.title}</h1><p className="dek">{lesson.significance}</p></div>{hero && <figure className="hero"><div className={'hero-image hero-image-' + hero.depictionMode}><ResponsiveMedia className={`hero-media hero-${hero.depictionMode}`} media={hero} alt={hero.alt} sizes="(max-width: 800px) 100vw, 60vw" loading="eager" decoding="async" /><span className="depiction-label">{lesson.heroLabel}</span></div><figcaption><span>{hero.depictionLabel}</span><span>{lesson.heroCaption}</span></figcaption></figure>}</header>
+      <article><header className="masthead"><div className="masthead-copy"><p className="eyebrow">{lesson.masthead} <span>·</span> {lesson.place}</p><h1>{lesson.title}</h1><p className="dek">{lesson.significance}</p></div>{hero && <figure className="hero"><div className={'hero-image hero-image-' + hero.depictionMode}><ResponsiveMedia className={`hero-media hero-${hero.depictionMode}`} media={hero} alt={hero.alt} sizes="(max-width: 800px) 100vw, 60vw" loading="eager" decoding="async" /><span className="depiction-label">{lesson.heroLabel}</span></div><figcaption><span>{hero.depictionLabel}</span><span>{lesson.heroCaption}</span></figcaption></figure>}</header>
         <LessonOrientation lesson={lesson} journey={journey} />
         {lesson.sections.map((section) => <React.Fragment key={section.id}><Section section={section} state={state} onAttempt={attempt} openingMapId={openingMapId} /><PrototypeMediaIntentions lesson={lesson} review={prototypeReview} sectionId={section.id} /></React.Fragment>)}
         <section className="completion-panel" aria-labelledby="completion-title"><p className="eyebrow">Your next step</p><h2 id="completion-title">{state.status === 'completed' ? 'Lesson explored' : `Complete ${lesson.title}`}</h2>{state.status === 'completed' ? <><p className="completion-understanding">{lesson.learningOutcome ?? lesson.significance}</p>{displayCards.length > 0 && <div className="card-reveal-list">{displayCards.map((card, index) => <React.Fragment key={card.id}><KnowledgeCardReveal card={card} acquired={newlyAcquired} revealRef={newlyAcquired && index === 0 ? revealRef : undefined} /></React.Fragment>)}</div>}<div className="next-lesson-preview">{next && <><h3>Next: {next.lesson.title}</h3><p>{next.lesson.significance}</p></>}</div><div className="actions">{next ? <a className="primary" href={`/learn/${next.lesson.id}`}>Continue: {next.lesson.title} <ChevronRight /></a> : <span className="journey-end">You have reached the available lessons in this journey. Come back to explore them again.</span>}</div></> : <><p>Share your thinking in the checks above, then complete the lesson when you are ready.</p><button className="primary" disabled={!requirement.ready || busy} onClick={complete}>{busy ? 'Completing…' : requirement.ready ? 'Complete lesson' : 'Answer the checks above'}</button></>}{error && <p className="error" role="alert">{error} <button onClick={complete}>Retry</button></p>}</section>
