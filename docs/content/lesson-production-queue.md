@@ -26,7 +26,7 @@ Implementation order never overrides canonical Journey order. Completing a later
 6. Normally only one lesson is active. A second requires explicit parallel-ownership approval and must not create shared-runtime or migration conflicts.
 7. Create a per-lesson Linear issue only when the row becomes active.
 8. Update the row in the same lesson branch and PR as work advances.
-9. `Complete` means the lesson PR is approved and merged, publication/configuration is verified, and required queue/research documentation is current.
+9. Set `Complete` in the lesson's own PR, in its last commit before merge (after the owner's hosted check passes). Merging that PR completes the lesson. Never open a separate PR to record completion or verify production after merge.
 10. Keep at least three reviewed future candidates when possible. Queue curation is a product/curriculum decision, not automatic agent inference.
 
 ## Status vocabulary
@@ -40,7 +40,7 @@ Implementation order never overrides canonical Journey order. Completing a later
 | `Implementing` | The approved lesson plan is being implemented. |
 | `Review` | The lesson PR is awaiting or addressing final review. |
 | `Blocked` | A named decision, dependency, rights issue, or platform gap prevents work. |
-| `Complete` | Approved, merged, verified, and documented. |
+| `Complete` | Owner-checked and published; recorded in the lesson PR, which is merged. |
 
 ## Approved production runway
 
@@ -115,5 +115,5 @@ On September 9, 2026, Carlin explicitly requested the next eligible lesson on a 
 - [ ] Status follows the vocabulary above.
 - [ ] Active Linear issue and PR are linked when they exist.
 - [ ] Reordering or promotion to `Ready` has product/curriculum approval.
-- [ ] Completed work has merged and verified evidence.
+- [ ] `Complete` was recorded in the lesson's own PR, not a follow-up PR.
 - [ ] At least three future candidates remain, or the runway gap is explicitly flagged.

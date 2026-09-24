@@ -32,6 +32,6 @@ The [learner-observation program](../../../docs/content/lesson-production/learne
 
 ## Handoff and integrity
 
-Keep queue/Linear state truthful. Never approve on the owner's behalf, publish a draft, bypass rights or identity controls, expose private learner explanations, or alter another checkout. Gate scripts prove structure and references, not research quality or human approval.
+Keep queue/Linear state truthful. Record `Complete` in the lesson PR's final commit before merge; merge ends the process, so never open a closeout PR or verify production afterward. Never approve on the owner's behalf, publish a draft, bypass rights or identity controls, expose private learner explanations, or alter another checkout. Gate scripts prove structure and references, not research quality or human approval.
 
 Every lesson-review handoff includes the current direct lesson preview in the final response, including small corrections; follow the runbook's preview-link/access caveats. Link the single research note and image lifecycle when applicable, PR/issue, validation, actual approval state and remaining human decisions. Never call local checks learner validation or unpublished work published.

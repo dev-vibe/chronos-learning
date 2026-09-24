@@ -34,7 +34,8 @@ Do not:
 - run `npm test`, `npm run typecheck`, or `npm run build` locally unless CI failed;
 - merge `main` unless git reports a conflict;
 - perform or delegate the hosted lesson's visual or interactive check, or capture a screenshot matrix;
-- write a custom uploader, PowerShell sidecar, or new storage architecture.
+- write a custom uploader, PowerShell sidecar, or new storage architecture;
+- verify production after merge or open a follow-up PR just to record completion.
 
 If a hosted command fails, fix that command. Do not invent a parallel pipeline.
 
@@ -101,9 +102,11 @@ Push the branch and update the PR with the preview link. Let CI run the full sui
 
 The product owner may use whichever viewport and theme they judge useful. Do not perform an agent browser check, infer a pass from HTTP status or deployment readiness, or claim the owner checked it until they report the result. Record any finding and fix it before merge; one owner pass is enough when no correction is needed.
 
-### 6. Merge and verify production
+### 6. Record completion in the lesson PR, then merge
 
-After the owner reports a pass and CI is green, merge through the normal PR path and verify the production deployment is live. Keep the queue row at `Review` until merge, then set it to `Complete` after deployment verification. Include the direct lesson link in the final response. Do not treat merge as a research step or perform an agent visual check of production.
+After the owner reports a pass, make one final commit on the same branch: set the queue row to `Complete` and record the go-live in the research note (migration, media checksums, owner check, PR link). When CI is green on that commit, merge through the normal PR path and mark the Linear issue Done.
+
+Merge is the last step. By the time the PR merges, the lesson is complete. Do not verify the production deployment, update records after merge, or open a separate closeout PR. The owner's own look at production is outside this process. Include the direct lesson link in the final response.
 
 ## What “done” means
 
@@ -113,7 +116,7 @@ The lesson is published when:
 - the committed migration is applied;
 - this lesson’s media objects verify remotely;
 - the product owner reports that the hosted lesson check in step 5 passed;
-- CI is green;
-- the queue/research note record the go-live.
+- the queue row (`Complete`) and research note record the go-live in the lesson PR itself;
+- CI is green and that PR is merged.
 
 It is not done when an agent has re-derived the media pipeline, re-scored pedagogy, or produced a screenshot gallery.

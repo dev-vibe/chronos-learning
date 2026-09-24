@@ -26,8 +26,8 @@ On that request, the agent must perform this boot sequence without asking the us
 10. Execute Stages 0–3B and present the mandatory recent-challenge research packet. Keep the queue row `Researching` and stop before claim selection, learning design, learner prose, media planning, or prototype implementation. Continue only after the product owner has considered the packet and responded with corrections, priorities, or permission to proceed.
 11. Incorporate that response into the research note, then execute Stages 4–14B through the product-review request. Produce the durable research/editorial note, a complete unpublished typed lesson in the real Learn shell, and the learner-prototype decision packet.
 12. Commit and push the research and learner-prototype checkpoint, update Linear, set the queue row to `Awaiting approval`, and ask the user to approve only the material decisions identified by the runbook. Do not make the user repeat operational instructions.
-13. After approval, continue on the same issue, branch, and PR through Stages 15–18. Set the queue row to `Implementing`, then `Review`, and finally `Complete` only when the corresponding gates pass. A request to publish an already-approved lesson follows [`docs/content/lesson-publication.md`](lesson-publication.md); do not restart research or the quality contract.
-14. When the lesson becomes `Complete`, ensure the queue still has reviewed future candidates. If fewer than three candidates remain, flag curriculum-queue replenishment without inventing entries.
+13. After approval, continue on the same issue, branch, and PR through Stages 15–18. Set the queue row to `Implementing`, then `Review`, and finally `Complete` in the lesson PR's last commit before merge. Merging that PR completes the lesson; there is no post-merge closeout. A request to publish an already-approved lesson follows [`docs/content/lesson-publication.md`](lesson-publication.md); do not restart research or the quality contract.
+14. In that same final commit, ensure the queue still has reviewed future candidates. If fewer than three candidates remain, flag curriculum-queue replenishment without inventing entries.
 
 The agent may ask an early question when a missing decision materially changes lesson identity, curriculum order, audience, or scope and cannot be resolved from the queue, repository, PRD, or existing issue, or when the model-routing fallback below requires a concrete task handoff. Ordinary research and implementation choices belong to this runbook.
 
@@ -897,9 +897,9 @@ Publication sequence:
 2. Run `npm run validate:content` and `npm run test:domain`.
 3. Publish only this lesson’s approved media assets. Do not rebuild the whole catalog.
 4. Apply the committed migration to the Chronos development project.
-5. Give the product owner the direct hosted preview for one human visual and interactive check: sincere attempts, explicit completion, reopen at the top, and removal of draft-only notes. Do not perform or delegate an agent browser check.
-6. Push the branch and let CI run the full suite. Update the Linear issue and PR with the preview link.
-7. Merge only after review; deploy through the normal release path.
+5. Push the branch and let CI run the full suite. Update the Linear issue and PR with the preview link.
+6. Give the product owner the direct hosted preview for one human visual and interactive check: sincere attempts, explicit completion, reopen at the top, and removal of draft-only notes. Do not perform or delegate an agent browser check.
+7. After the owner's pass, set the queue row to `Complete` and record the go-live in the research note in the same PR. Merge when CI is green. Merge completes the lesson: no production verification, post-merge record update, or closeout PR.
 
 After release, monitor:
 
