@@ -128,6 +128,8 @@ Reasoning progression: <prior scaffold → current move → next increase in ind
 Transfer plan: <reviewed unfamiliar evidence here or at a named later occasion; justify deferral>
 Completion versus mastery: <sincere attempts record study; what observation could show independent understanding>
 Required sincere-attempt evidence:
+Story spine: <person, object, place or puzzle followed from opening to end>
+Memorable moments: <two to four true, specific details or stories a learner would retell>
 
 ## Section/component storyboard
 
@@ -275,6 +277,7 @@ Checked by/date:
 | Evidence reasoning | | | |
 | Proportionality | | | |
 | Visual value | | | |
+| Story | | | |
 | Next action | | | |
 | Research integrity | | | |
 | Rights, media and accessibility | | | |

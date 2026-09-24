@@ -9,7 +9,7 @@ A lesson may be small or ambitious, but no step may be skipped silently. If a st
 - **What it is:** a history-learning app. Underneath, a knowledge graph; in use, a guided journey; over time, a personal illustrated atlas. The World History Spine teaches chronological orientation; optional Story Arcs, Idea Trails and Investigations go deeper. A lesson exists once and can appear in several journeys with journey-specific framing; completing it anywhere completes it everywhere.
 - **Who it serves:** learners aged 11–15, mainly homeschooling. Draft for a roughly 12–13-year-old reader; adults should still find it credible. Parents follow progress from their own account, outside the learner shell.
 - **What a lesson must achieve:** the learner forms an accurate, memorable, evidence-aware mental model, can explain the central idea, and knows the next action. Shipping a page is not the goal.
-- **Tone:** warm, intelligent, calm and spacious, like an editorial history publication or a museum companion. Not a game, a terminal or a textbook dump. No mascots, loot, XP, streaks, timers or score spectacle.
+- **Tone:** warm, intelligent, calm and spacious, like an editorial history publication or a museum companion. Lessons are told as true stories: real people, places and objects, with stakes and surprises, told straight. Not a game, a terminal or a textbook dump. No mascots, loot, XP, streaks, timers or score spectacle.
 - **Shell:** every lesson renders in the same Learn shell: a journey rail plus one scrolling lesson of five to eight semantic sections, short understanding prompts and an explicit completion action. Reopening always starts at the top.
 - **Knowledge Cards:** deterministic memory anchors earned by completing a lesson. Never random, duplicated, ranked by rarity, or mandatory.
 - **Evidence honesty:** observation, interpretation, reconstruction, uncertainty and later tradition are always distinguished. Generated imagery is never presented as evidence.
@@ -181,7 +181,8 @@ Turn the essential question into a research plan. Include:
 - relevant comparative-analysis traditions and independent or claim-owner research that may not appear in ordinary academic review articles;
 - vocabulary requiring precise definitions;
 - visual evidence and likely media-rights constraints;
-- age-sensitive material such as violence, death, enslavement, religion, sexuality, or human remains.
+- age-sensitive material such as violence, death, enslavement, religion, sexuality, or human remains;
+- story material: named people and what they wanted, vivid true details, short quotable lines from sources, surprising numbers or scale, how the evidence was found, and the stories people told at the time or later (recorded as `later-tradition`).
 
 Write questions before answers. This reduces the risk of gathering only sources that support the first attractive narrative.
 
@@ -362,7 +363,7 @@ Do not pour the research file into the lesson. Triage every candidate idea:
 - **Supporting:** makes an essential idea intelligible, concrete, or memorable.
 - **Enrichment:** worthwhile but optional; possible knowledge block, later journey, card fact, or Deep Dive.
 - **Deferred:** belongs in another lesson or journey.
-- **Rejected:** misleading, redundant, weakly supported, age-inappropriate without educational value, or included only because it is colorful.
+- **Rejected:** misleading, redundant, weakly supported, age-inappropriate without educational value, or colorful but unsupported.
 
 Then test the proposed synthesis:
 
@@ -373,7 +374,7 @@ Then test the proposed synthesis:
 5. Does it avoid treating a society as uniform, timeless, isolated, uniquely primitive, or uniquely advanced?
 6. Does it avoid “first,” “invented,” “collapsed,” “discovered,” and “civilized” unless precisely defined and supported?
 7. Does it separate what happened from why historians think it happened?
-8. Is a fascinating detail earning its space by teaching, evidencing, or helping memory?
+8. Does the lesson keep its best true stories? A vivid, well-supported detail that makes an idea stick earns its space; cut color that is unsupported or teaches nothing.
 
 If the lesson cannot fit without rushing, split or narrow it. Do not solve scope problems with tiny text, accordions, or a longer page.
 
@@ -392,7 +393,9 @@ Record:
 - one concrete primary/evidence encounter;
 - one causal, comparative, spatial, chronological, or source-reasoning move;
 - the evidence of a sincere attempt that completion will require;
-- the natural bridge to the next required lesson.
+- the natural bridge to the next required lesson;
+- the story spine: the person, object, place or puzzle the lesson follows from opening to end, where the evidence allows;
+- two to four memorable moments: true, specific details or stories a learner would want to tell someone afterward.
 
 Prefer “Explain how clay records helped institutions coordinate goods, and name a limit of what the tablets reveal” over “Know about proto-cuneiform.”
 
@@ -422,8 +425,31 @@ Age adaptation changes explanation, pacing, assumptions, and support. It does no
 - Explain uncertainty in direct language: “The marks survive; the exact transaction does not.”
 - Preserve tradeoffs, power differences, missing voices, and unintended consequences.
 - Never make a culture exotic, childish, faceless, or a mere stepping stone toward the present.
-- Do not rely on gore, humiliation, sexualization, or sensational mystery to create interest.
+- Do not rely on gore, humiliation, sexualization, or manufactured mystery to create interest. A real open question is fair game; a fake one is not.
 - When difficult material is essential, describe it truthfully, proportionately, and without graphic decoration.
+
+### Voice and storytelling
+
+Accuracy is the floor, not the goal. A lesson that is correct but flat does not get read. Write the way a knowledgeable guide tells a story they love to someone they respect: vivid, direct and specific, never cute.
+
+Story tools (use the ones the evidence supports):
+
+- **Open on a moment.** Start with a person doing something, an object being found, or a puzzle, at a specific time and place. Zoom out to the system once the learner cares.
+- **Follow someone or something.** Where the evidence allows, carry one person, object or place through the lesson so the sections feel like chapters rather than topics.
+- **Give people wants and stakes.** Say what rulers, workers, families or traders were trying to do, and what could go wrong for them.
+- **Tell the stories people told.** Legends, boasts, curses, complaints and later retellings are strong material when labeled as what they are (“Later Mesopotamians told a story that…”). The gap between the legend and the evidence is often the best part of the lesson.
+- **Show the detective work.** How something was found, misread, dated or reinterpreted is a story. Uncertainty can be the hook (“Nobody can read this script yet”) rather than a disclaimer.
+- **Use the surprising true detail.** A number, a scale comparison, a sensory detail from the object, a short translated quote. One sharp specific beats three general sentences.
+- **Land the ending.** Close with a callback to the opening or a real open question, not a summary of the headings.
+
+Voice rules:
+
+- Vary sentence length. A run of short declarative sentences reads like a list; let a longer sentence carry the story forward.
+- State uncertainty once, clearly, where it matters, then keep going. Do not hedge every sentence.
+- Let the history make the moral point. Do not add asides telling the learner how to feel about it.
+- Use humor only when it comes from the history itself, such as a real complaint letter or a boast that backfired. No invented jokes, slang, pop-culture references, exclamation marks, or “Imagine you are…” openings used as filler.
+- Never talk down. Write for a curious, intelligent reader who lacks background, not ability.
+- Never invent dialogue, thoughts, feelings or scenes and present them as fact. A reconstructed scene must be labeled and built from evidence.
 
 ### Practical reading and pacing heuristics
 
@@ -497,7 +523,7 @@ Authoring `purpose` stays imperative and internal (“Supply the species categor
 Each section must perform a distinct job. A common pattern is:
 
 1. **Masthead/orientation** — time, place, significance, depiction label. Place the subject relative to recognizable wider geography before introducing unfamiliar local sites; follow the map runbook's context-to-detail requirement.
-2. **Opening question** — concrete puzzle or human problem.
+2. **Opening** — a moment, person, object or puzzle that makes the learner want the answer. The essential question grows out of it rather than being announced.
 3. **Necessary context** — what the learner must know to reason further.
 4. **Mechanism or development** — how something worked or changed.
 5. **Evidence encounter** — examine an object, source, map, or record.
@@ -760,6 +786,7 @@ Before involving the owner, check the rendered prototype yourself against the qu
 - **Evidence reasoning:** a concrete source, object, map or comparison to reason from; observation, inference, reconstruction and uncertainty distinguished at the point of use; prompts answerable from the lesson; feedback explains support and limits. Recurring labels stay plain: “Surviving evidence”, “What you can see”, “Who did the work”, “What we can know”.
 - **Proportionality:** emphasis and certainty match the evidence; no monocausal, deterministic or civilization-ranking story; people have specificity and agency; sensitive material is truthful and proportionate.
 - **Visual value:** every visual answers a named learner question at its exact position and has an accessible equivalent. Maps anchor the subject to recognizable wider geography at embedded size.
+- **Story:** name the two or three moments a 13-year-old would retell. Is there a story spine? Does any section read as a flat list of facts? Is the voice vivid and direct without being goofy or preachy?
 - **Next action:** the learner always knows what to read, inspect, answer or do; optional journeys stay subordinate and outside progress; sincere attempts unlock explicit completion; the post-completion action continues the journey.
 
 **Integrity**
