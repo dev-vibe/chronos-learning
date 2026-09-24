@@ -108,7 +108,7 @@ export const hammurabiLesson: Lesson = {
   id: lessonId, legacyAliases: ['hammurabi'], status: 'draft',
   title: 'Law, Kingship, and Hammurabi’s Babylon', masthead: 'Eighteenth century BCE', place: 'Babylon · Mesopotamia · present-day Iraq',
   chronology: { startYear: -1800, endYear: -1600, display: 'c. 1800–1600 BCE', approximate: true },
-  significance: 'Hammurabi’s law monument claimed just rule. Its written cases, a field-dispute letter and later commentary reveal different parts of the story—and leave real limits.',
+  significance: 'Hammurabi’s stone monument presents a promise of justice. Two unequal written remedies and a shepherd’s letter test what that promise can—and cannot—tell us.',
   learningOutcome: 'You compared a royal promise, unequal written cases and a specific petition to explain what surviving sources can and cannot tell us about justice.',
   sectionIdsRequired: sections.map((section) => section.id), sections,
   claimIds: hammurabiClaims.map((claim) => claim.id), sourceIds: hammurabiSources.map((source) => source.id), mediaIds: [], promptIds: hammurabiPrompts.map((prompt) => prompt.id),

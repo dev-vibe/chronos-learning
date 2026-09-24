@@ -266,3 +266,31 @@ Research-note identity/version: initial Stage 3B packet, extended for Stage 14A 
 Validation tier: high-risk.
 Product/editorial reviewer: Carlin Aylsworth; Stage 14B prototype decision pending.
 Learner observation: pending human participation; no age-fit result is claimed.
+
+### Author quality check — 2026-09-24
+
+Checked the actual Learn-shell route `/learn/lesson.mesopotamia.law-and-kingship` in local preview at desktop and 390 px phone widths, in light and dark themes. Both prompts accepted a sincere attempt and returned explanatory feedback; explicit completion became available afterward. Reloading reopened at the top. These are author checks, not learner observation or owner approval. The branch integrates main through `3eb1bf6`; the prior local full `npm run typecheck` shows longstanding legacy-source errors, while `npm run typecheck:chronos`, the prototype gate and all 63 domain/content/lesson tests pass. The full typecheck failure is outside the changed lesson paths and is not recorded as a passing check.
+
+| Quality area | Finding | Evidence from rendered prototype | Disposition |
+| --- | --- | --- | --- |
+| Mental model and cumulative learning | pass | Opening asks whether the stone can explain practice; §§196/198 and Issinabu's letter sharpen the answer; final source-limit frame states the qualified conclusion. Retrieves Akkad's royal-claim/local-evidence distinction. | Keep this object → cases → letter sequence. |
+| Narrative momentum and story | pass | Retellable moments are Hammurabi before Shamash, the different eye-injury remedies, and Issinabu's contested field. Each leads to the next question. | Keep the named petitioner's action and avoid a full list of laws. |
+| Age-appropriate cognitive load | pass | Seven sections, two required prompts, short paragraphs, no dense legal-status chart; specialist terms are defined in context. Injury is truthful without graphic depiction. | Age fit remains a hypothesis for later sampled learner observation. |
+| Heading voice | pass | All seven headings name the object, source, comparison or action in ordinary language. No metaphor heading or duplicate slogan stack appears. | None. |
+| Evidence reasoning and historical proportionality | pass with owner review pending | The relief and prologue are attributed, provisions are described as written outcomes, the letter as an order without a documented result, and later commentary as later use. The narrative avoids both guaranteed enforcement and zero authority. | Owner reviews the two moderate interpretive claims at the prototype checkpoint. |
+| Visual teaching value | pass for prototype; final assets pending | Section-linked annotations identify an actual SB 8 stele photograph and YBC 9959 tablet. Native text carries the lesson while image rights and legibility remain open. The two-case comparison is accessible native text. | Stage 15 resolves rights, checks reference-to-final fidelity at lesson size, and implements approved assets. No generated substitute for evidence. |
+| Navigation and next action | pass | The real shell shows journey context, prompts, feedback and an explicit completion button. Both attempts enabled completion; reopening began at the top. | Draft remains unavailable outside authoring/audit preview. |
+| Technical structure | pass for scoped checks | Prototype gate, content validation, Chronos typecheck and 63 domain/content/lesson tests pass. Stable IDs and claim/source references resolve. | CI will run broader checks; legacy full-typecheck errors are separately noted, not disguised. |
+
+### Product/editorial review
+
+State: **pending**. Carlin has approved the research beats only. The draft lesson, media choices and card have not been approved. A direct hosted prototype link and the few material choices will be provided in the owner handoff. No final media, unlock, migration or publication change has been made.
+
+### Earlier-risk comparison
+
+Confusing prose found earlier: the initial masthead summary was abstract; revised to name the monument, unequal written remedies and field letter.
+Weak transitions found earlier: none blocking; the final source-limit section explicitly returns to the opening question.
+Cognitive overload found earlier: the source packet's detailed status taxonomy was reduced to a caveated legal-standing comparison.
+Decorative media found earlier: none; visual intentions each serve an evidence-inspection job.
+Prompt mismatch found earlier: none; both prompts require the same source distinctions taught in the page.
+Unclear action hierarchy found earlier: none in the Learn shell; explicit completion follows two sincere attempts.
