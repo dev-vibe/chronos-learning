@@ -94,6 +94,33 @@ export const sahulCrossingSources: Source[] = [
     reviewStatus: 'reviewed',
   },
   {
+    id: 'source.humans.clarkson-2017-conversation',
+    title: 'Buried tools and pigments tell a new history of humans in Australia for 65,000 years',
+    url: 'https://theconversation.com/buried-tools-and-pigments-tell-a-new-history-of-humans-in-australia-for-65-000-years-81021',
+    publisher: 'Chris Clarkson, Ben Marwick, Lynley Wallis, Richard Fullagar and Zenobia Jacobs / The Conversation',
+    accessedOn: '2026-09-24',
+    licenseOrUse: 'Excavation team’s own public account, cited as a fact source for the dig history, agreement and dating procedure; text is not reproduced',
+    reviewStatus: 'reviewed',
+  },
+  {
+    id: 'source.humans.florin-2020-plant-foods',
+    title: 'The first Australian plant foods at Madjedbebe, 65,000–53,000 years ago',
+    url: 'https://doi.org/10.1038/s41467-020-14723-0',
+    publisher: 'Florin and colleagues / Nature Communications',
+    accessedOn: '2026-09-24',
+    licenseOrUse: 'CC BY 4.0 archaeobotanical study cited as a fact source; figures are not redistributed',
+    reviewStatus: 'reviewed',
+  },
+  {
+    id: 'source.humans.nunn-reid-2015-conversation',
+    title: 'Ancient Aboriginal stories preserve history of a rise in sea level',
+    url: 'https://theconversation.com/ancient-aboriginal-stories-preserve-history-of-a-rise-in-sea-level-36010',
+    publisher: 'Patrick Nunn and Nicholas Reid / The Conversation',
+    accessedOn: '2026-09-24',
+    licenseOrUse: 'Authors’ public account of later-tradition research, cited as a fact source; stories are paraphrased briefly, not reproduced',
+    reviewStatus: 'reviewed',
+  },
+  {
     id: 'source.humans.nunn-reid-2016-inundation',
     title: 'Aboriginal Memories of Inundation of the Australian Coast Dating from More than 7000 Years Ago',
     url: 'https://doi.org/10.1080/00049182.2015.1077539',
@@ -185,6 +212,94 @@ export const sahulCrossingClaims: Claim[] = [
     sourceIds: ['source.humans.nunn-reid-2016-inundation'],
     reviewStatus: 'reviewed',
   },
+  {
+    id: 'claim.humans.sahul.madjedbebe-dig',
+    statement: 'In 2012 and 2015 a team excavated the deep sandy floor of Madjedbebe, a rock shelter on Mirarr Country, under an agreement that gave Mirarr senior custodians ultimate control over the excavation.',
+    kind: 'observation',
+    certainty: 'high',
+    sourceIds: ['source.humans.clarkson-2017-conversation', 'source.humans.madjedbebe-grinding-stones-2022'],
+    reviewStatus: 'reviewed',
+  },
+  {
+    id: 'claim.humans.sahul.lowest-layer-finds',
+    statement: 'The lowest artefact layers at Madjedbebe include grinding stones, ochre “crayons” used to make pigment, and hatchet heads with ground edges.',
+    kind: 'observation',
+    certainty: 'high',
+    sourceIds: ['source.humans.clarkson-2017-madjedbebe', 'source.humans.clarkson-2017-conversation'],
+    reviewStatus: 'reviewed',
+  },
+  {
+    id: 'claim.humans.sahul.routes-and-longest-crossing',
+    statement: 'Routes to Sahul ran north through Sulawesi toward New Guinea or south through Timor toward northwestern Australia; each needed several sea crossings, at least one approaching 100 km, in voyages lasting days.',
+    kind: 'interpretation',
+    certainty: 'high',
+    sourceIds: ['source.humans.bird-2019-not-accident'],
+    reviewStatus: 'reviewed',
+  },
+  {
+    id: 'claim.humans.sahul.founding-population',
+    statement: 'One modelling estimate holds that at least about 1,300 founders were needed for Sahul’s population to avoid dying out, arriving in several coordinated voyages over a few centuries.',
+    kind: 'interpretation',
+    certainty: 'moderate',
+    sourceIds: ['source.humans.bird-2019-not-accident'],
+    reviewStatus: 'reviewed',
+  },
+  {
+    id: 'claim.humans.sahul.drift-odds',
+    statement: 'In voyage models, random drift gave less than a 5% chance of reaching Sahul unless at least 40 adults were washed off an island every 20 years; choosing when to leave and making minimal headway (0.5 knots) toward land greatly raised the chance of arrival.',
+    kind: 'interpretation',
+    certainty: 'moderate',
+    sourceIds: ['source.humans.bird-2019-not-accident'],
+    reviewStatus: 'reviewed',
+  },
+  {
+    id: 'claim.humans.sahul.earlier-dig-dispute',
+    statement: 'A small 1989 excavation at the site proposed human activity 60,000–50,000 years ago; critics argued that trampling or burrowing animals could have moved artefacts down into older layers of the sandy deposit.',
+    kind: 'observation',
+    certainty: 'high',
+    sourceIds: ['source.humans.clarkson-2017-conversation'],
+    reviewStatus: 'reviewed',
+  },
+  {
+    id: 'claim.humans.sahul.single-grain-dating',
+    statement: 'The later Madjedbebe team measured thousands of sand grains individually and had a second laboratory analyse some samples.',
+    kind: 'observation',
+    certainty: 'high',
+    sourceIds: ['source.humans.clarkson-2017-conversation'],
+    reviewStatus: 'reviewed',
+  },
+  {
+    id: 'claim.humans.sahul.artefact-refits',
+    statement: 'The excavation team argues that the Madjedbebe layers stayed in order, citing broken stone artefacts that fit back together.',
+    kind: 'interpretation',
+    certainty: 'moderate',
+    sourceIds: ['source.humans.clarkson-2017-madjedbebe'],
+    reviewStatus: 'reviewed',
+  },
+  {
+    id: 'claim.humans.sahul.grinding-stone-uses',
+    statement: 'Microscopic and chemical study shows the Madjedbebe grinding stones were used most often to process plants and next most often to process ochre pigment.',
+    kind: 'observation',
+    certainty: 'high',
+    sourceIds: ['source.humans.madjedbebe-grinding-stones-2022'],
+    reviewStatus: 'reviewed',
+  },
+  {
+    id: 'claim.humans.sahul.early-plant-foods',
+    statement: 'Charred remains from Madjedbebe’s earliest layers show people peeled and cooked roots and tubers and extracted pandanus kernels from their hard, fibrous drupes, a labour-intensive task with stone tools.',
+    kind: 'observation',
+    certainty: 'high',
+    sourceIds: ['source.humans.florin-2020-plant-foods'],
+    reviewStatus: 'reviewed',
+  },
+  {
+    id: 'claim.humans.sahul.spencer-gulf-story',
+    statement: 'Narrangga stories from Yorke Peninsula recall a time when Spencer Gulf was marshy country with freshwater lagoons until the sea came in; researchers argue the stories may be more than 9,000 years old.',
+    kind: 'later-tradition',
+    certainty: 'moderate',
+    sourceIds: ['source.humans.nunn-reid-2015-conversation', 'source.humans.nunn-reid-2016-inundation'],
+    reviewStatus: 'reviewed',
+  },
 ];
 
 export const sahulCrossingPrompts: UnderstandingPrompt[] = [
@@ -269,13 +384,25 @@ export const sahulCrossingLesson: Lesson = {
         {
           id: 'module.humans.sahul.opening',
           type: 'prose',
-          body: `On a map today, Australia, New Guinea, and Tasmania are separated by water. During the Ice Age, sea levels were lower. Land that is now underwater connected them into one huge landmass. Researchers call it Sahul.
+          body: `At the foot of a rocky outcrop in northern Australia, on the Country of the Mirarr people, is a rock shelter called Madjedbebe. In 2012 and 2015, archaeologists dug down through its deep, sandy floor, under an agreement that gave Mirarr senior custodians final control of the dig. In the lowest layers with artefacts, they found grinding stones, ochre “crayons” for making pigment, and stone hatchet heads with ground edges. The team dated those layers to about 65,000 years ago, a date still argued over.
 
-In the previous lesson, we followed groups of Homo sapiens moving beyond Africa. Some eventually reached the islands of Southeast Asia. To reach Sahul from there, they faced a different challenge: stretches of open sea.
+Whoever left those tools had ancestors who crossed the sea. During the Ice Age, lower seas joined Australia, New Guinea, and Tasmania into one landmass that researchers call Sahul. But Sahul was never joined to Asia by land.
 
-How did people make those journeys, and what traces of them can we still find?`,
-          claimIds: ['claim.humans.sahul.connected-landmass', 'claim.humans.sahul.no-land-bridge'],
-          sourceIds: ['source.humans.clarkson-2017-madjedbebe', 'source.humans.bird-2019-not-accident'],
+In the previous lesson, some groups of Homo sapiens kept moving east into the islands of Southeast Asia. From there, the only way on was across open water. How did people make that crossing, and when?`,
+          claimIds: [
+            'claim.humans.sahul.madjedbebe-dig',
+            'claim.humans.sahul.lowest-layer-finds',
+            'claim.humans.sahul.madjedbebe-window',
+            'claim.humans.sahul.connected-landmass',
+            'claim.humans.sahul.no-land-bridge',
+          ],
+          sourceIds: [
+            'source.humans.clarkson-2017-conversation',
+            'source.humans.madjedbebe-grinding-stones-2022',
+            'source.humans.clarkson-2017-madjedbebe',
+            'source.humans.veth-2025-madjedbebe-comment',
+            'source.humans.bird-2019-not-accident',
+          ],
         },
         {
           id: 'module.humans.sahul.three-names',
@@ -320,12 +447,15 @@ How did people make those journeys, and what traces of them can we still find?`,
         {
           id: 'module.humans.sahul.water-gap',
           type: 'prose',
-          body: `Lower seas exposed more land, but the deep channels through Wallacea and across to Sahul never dried out. People could travel through the islands, yet no route let them walk all the way.
+          body: `Even with the seas at their lowest, the deep channels of Wallacea never dried out. Travellers could follow a northern chain of islands, through Sulawesi toward New Guinea, or a southern chain through Timor toward northwestern Australia. Either way meant several sea crossings, and at least one stretch of open water came close to 100 kilometres: a voyage of days, not hours. That took a boat, a raft, or some other watercraft.
 
-At least one crossing involved tens of kilometres of open water. Reaching Sahul required some kind of watercraft: a boat, raft, or another way to carry people over the sea.
-
-The people who arrived went on to establish communities there. Explaining that takes more than showing that a single traveller could survive a lucky crossing. Enough people had to reach Sahul for a community to continue.`,
-          claimIds: ['claim.humans.sahul.no-land-bridge', 'claim.humans.sahul.planning-inferred'],
+A few people surviving a lucky crossing would not have been enough. For a community to last, enough people had to arrive. One study estimated that Sahul needed at least about 1,300 founders to avoid dying out, arriving in several voyages over a few centuries rather than all at once. The number depends on the model’s assumptions, but the pattern is clear: many people, more than one voyage.`,
+          claimIds: [
+            'claim.humans.sahul.no-land-bridge',
+            'claim.humans.sahul.routes-and-longest-crossing',
+            'claim.humans.sahul.founding-population',
+            'claim.humans.sahul.planning-inferred',
+          ],
           sourceIds: ['source.humans.kealy-2017-visibility', 'source.humans.bird-2019-not-accident', 'source.humans.bird-2018-timor-roti'],
         },
       ],
@@ -338,14 +468,12 @@ The people who arrived went on to establish communities there. Explaining that t
         {
           id: 'module.humans.sahul.planning',
           type: 'prose',
-          body: `No watercraft from these early journeys has been found. Materials such as wood and plant fibre decay, so we cannot examine a surviving boat to see how it worked.
+          body: `No boat or raft from these journeys has ever been found; wood and plant fibre rot away.
 
-Instead, researchers use computer models to test possible journeys. They include winds, currents, and how long travellers could survive without fresh water. They compare craft drifting at random with journeys in which people choose when to leave and travel toward land.
+Instead, researchers test journeys on computers. One team fed in winds, currents, and how long people could last without fresh water, then set virtual craft adrift from island shores. Drifting at random, the craft rarely reached Sahul: the chance stayed below 5 percent unless at least 40 adults were swept out to sea every 20 years. But when travellers chose when to leave and headed for land, even very slowly, at less than 1 kilometre an hour, their chances of arriving rose sharply.
 
-In these models, deliberate journeys make successful settlement much more likely. Accidental drift might bring some people ashore, but it is a weaker explanation for enough arrivals to establish a lasting community.
-
-The results depend on assumptions about the craft and the conditions at sea. They support the idea of planned travel, without showing exactly how any one journey happened.`,
-          claimIds: ['claim.humans.sahul.planning-inferred', 'claim.humans.sahul.no-surviving-craft'],
+The team concluded that by at least 50,000 years ago, people could plan and make open-sea voyages lasting several days. The model rests on assumptions about craft and weather, so it cannot show how any single voyage went. It does show that luck alone is a poor explanation.`,
+          claimIds: ['claim.humans.sahul.planning-inferred', 'claim.humans.sahul.no-surviving-craft', 'claim.humans.sahul.drift-odds'],
           sourceIds: ['source.humans.bird-2019-not-accident', 'source.humans.bird-2018-timor-roti'],
         },
         {
@@ -353,13 +481,13 @@ The results depend on assumptions about the craft and the conditions at sea. The
           type: 'knowledge',
           eyebrow: 'The journey',
           title: 'Decisions that could help a crossing succeed',
-          body: 'The models consider several conditions for successful settlement:',
+          body: 'In the models, three things made the difference:',
           items: [
             { label: 'When to leave', detail: 'Seasonal winds and currents could make a crossing easier or harder.' },
-            { label: 'Where to head', detail: 'Travelling toward land could improve the chance of reaching it before fresh water ran out.' },
+            { label: 'Where to head', detail: 'Even slow progress toward land improved the chance of reaching it before fresh water ran out.' },
             { label: 'Enough people arriving', detail: 'Enough people needed to arrive to establish a community, whether in one journey or several.' },
           ],
-          claimIds: ['claim.humans.sahul.planning-inferred', 'claim.humans.sahul.no-surviving-craft'],
+          claimIds: ['claim.humans.sahul.planning-inferred', 'claim.humans.sahul.no-surviving-craft', 'claim.humans.sahul.drift-odds'],
           sourceIds: ['source.humans.bird-2019-not-accident', 'source.humans.bird-2018-timor-roti'],
         },
       ],
@@ -372,24 +500,28 @@ The results depend on assumptions about the craft and the conditions at sea. The
         {
           id: 'module.humans.sahul.madjedbebe',
           type: 'prose',
-          body: `When did people reach Sahul? One important clue comes from Madjedbebe, a rock shelter on the land of the Mirarr people in northern Australia. Archaeologists have found stone tools, grinding stones, and ochre, a mineral used as a pigment, buried there.
+          body: `Back at Madjedbebe, the tools prove that people used the shelter. The harder question is when, and the shelter already had a history of argument. A small dig in 1989 suggested people had been there 60,000 to 50,000 years ago. Critics pointed at the sandy floor: trampling feet or burrowing animals, they argued, could have pushed artefacts down into older layers.
 
-The tools show that people used the shelter. To work out when, researchers tested the sand around them. A laboratory method estimates how long it has been since sand grains were last exposed to sunlight, before they were buried.
+So the new team dated the sand itself. A laboratory method estimates how long ago a sand grain last saw sunlight before it was buried, and the team measured thousands of grains one by one. Sand around the deepest tools came out at about 65,000 years old.
 
-Some of that sand was dated to about 65,000 years ago. If the tools were buried with it, people were using the shelter around that time. But if tools moved down from a younger layer, they could be younger than the sand now surrounding them.
-
-That is the central disagreement at Madjedbebe. The excavation team argues that the earliest tools belong to the old layers. Other researchers question whether movement within the sand makes the human occupation seem older than it was.`,
-          claimIds: ['claim.humans.sahul.osl-dates-sand', 'claim.humans.sahul.madjedbebe-window'],
-          sourceIds: ['source.humans.clarkson-2017-madjedbebe', 'source.humans.veth-2025-madjedbebe-comment'],
+That is the age of the sand, not the tools. If the tools were buried with it, people were in the shelter about 65,000 years ago. If they sank down from a younger layer, they could be far younger than the sand around them. The excavation team argues that the layers stayed in order, pointing to broken pieces of stone that fit back together. Other researchers still argue that movement in the sand could make the occupation look older than it was. The question is not settled.`,
+          claimIds: [
+            'claim.humans.sahul.earlier-dig-dispute',
+            'claim.humans.sahul.single-grain-dating',
+            'claim.humans.sahul.osl-dates-sand',
+            'claim.humans.sahul.madjedbebe-window',
+            'claim.humans.sahul.artefact-refits',
+          ],
+          sourceIds: ['source.humans.clarkson-2017-conversation', 'source.humans.clarkson-2017-madjedbebe', 'source.humans.veth-2025-madjedbebe-comment'],
         },
         {
           id: 'module.humans.sahul.stone-evidence',
           type: 'evidence',
           title: 'Stones recovered at Madjedbebe',
           artifactLabel: 'Grinding stones · 3-D scans',
-          body: 'Look at the hollow in stone a, at the top left, and the flatter surfaces on some of the other stones. These scans show objects recovered from the shelter. Each scale bar represents 2 centimetres. The stones come from different periods of use, so they are not all the same age. Their shapes alone cannot tell us when people used them; where they were found in the dated layers matters.',
+          body: 'Look at the hollow in stone a, at the top left, and the flatter surfaces on some of the other stones. Each scale bar represents 2 centimetres. Microscope studies show stones like these were used most often to grind plants, and next most often ochre. They come from different periods of use, so they are not all the same age. Their shapes alone cannot tell us when people used them; where they were found in the dated layers matters.',
           mediaId: 'media.humans.madjedbebe-grinding-stones',
-          claimIds: ['claim.humans.sahul.recovered-grinding-stones', 'claim.humans.sahul.osl-dates-sand', 'claim.humans.sahul.madjedbebe-window'],
+          claimIds: ['claim.humans.sahul.recovered-grinding-stones', 'claim.humans.sahul.grinding-stone-uses', 'claim.humans.sahul.osl-dates-sand', 'claim.humans.sahul.madjedbebe-window'],
           sourceIds: ['source.humans.madjedbebe-grinding-stones-2022', 'source.humans.clarkson-2017-madjedbebe'],
         },
         {
@@ -415,16 +547,19 @@ That is the central disagreement at Madjedbebe. The excavation team argues that 
         {
           id: 'module.humans.sahul.limits',
           type: 'prose',
-          body: `Tools and sand are part of a much larger history. As we saw in the previous lesson, DNA can also help researchers investigate the past. Comparisons of genetic patterns can support a broad estimate of when people settled Sahul. They cannot tell us the exact route taken by a particular group.
+          body: `Madjedbebe is one shelter. DNA, as in the previous lesson, looks across whole populations: genetic patterns support a broad window for when people settled Sahul, but cannot trace the route any group took across the sea.
 
-Some Aboriginal Australian communities also pass down stories about coastal land being covered by the sea. Researchers have linked some of these accounts to rising seas thousands of years after the first crossings. These are later traditions about changes to familiar country, rather than accounts of the original arrival.
+Much later, the sea came back. As ice sheets melted, rising water drowned Sahul’s low coasts, and some Aboriginal Australian communities tell stories about it. Narrangga stories from Yorke Peninsula in South Australia recall a time when Spencer Gulf was not sea at all, but marshy country dotted with freshwater lagoons, until the sea came in. Researchers argue these stories may be more than 9,000 years old. They are traditions about a changing Country long after the first crossings, not accounts of the arrival.
 
-Much remains unknown about the early journeys: the craft people built, the routes they took, and the choices they made along the way. But the achievement is clear. People crossed open water and established communities in Sahul tens of thousands of years before farming. The evidence points to travellers capable of planning and working together.`,
+The first travellers’ boats, routes and names are gone. But in Madjedbebe’s earliest layers lie charred scraps of meals: peelings from cooked roots and tubers, and the shells of pandanus nuts, whose kernels take hard work with stone tools to get out. Somewhere in these people’s past was a planned crossing of open sea. In Sahul, they had worked out how to eat well in a new land, tens of thousands of years before farming. The sand those meals were buried in is still being argued over.`,
           claimIds: [
             'claim.humans.sahul.present-by-50ka',
             'claim.humans.sahul.planning-inferred',
             'claim.humans.sahul.dna-window-not-route',
             'claim.humans.sahul.later-sea-stories',
+            'claim.humans.sahul.spencer-gulf-story',
+            'claim.humans.sahul.early-plant-foods',
+            'claim.humans.sahul.madjedbebe-window',
           ],
           sourceIds: [
             'source.humans.clarkson-2017-madjedbebe',
@@ -432,6 +567,9 @@ Much remains unknown about the early journeys: the craft people built, the route
             'source.humans.gandini-2025-long-chronology',
             'source.humans.pedro-2020-papuan-mtdna',
             'source.humans.nunn-reid-2016-inundation',
+            'source.humans.nunn-reid-2015-conversation',
+            'source.humans.florin-2020-plant-foods',
+            'source.humans.veth-2025-madjedbebe-comment',
           ],
         },
       ],
