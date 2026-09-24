@@ -144,7 +144,7 @@ h1,h2,h3{font-family:Newsreader,Georgia,serif;font-weight:500}
 .reading-controls button[aria-pressed=true]{border-color:var(--teal);background:var(--surface-2)}
 .learn-app{--reading-scale:1}.learn-app[data-reading-size=large]{--reading-scale:1.18}.learn-app[data-reading-size=largest]{--reading-scale:1.38}
 .lesson article .prose-module>p{font-size:calc(1.08rem * var(--reading-scale));line-height:1.75;max-width:70ch}
-.lesson article .knowledge-block dl{display:block}.lesson article .knowledge-block dl>div{padding:14px 0;grid-column:auto;border-bottom:1px solid var(--line)}
+.lesson article .knowledge-block dl{display:block}.lesson article .knowledge-block dl>div{padding:14px 20px;grid-column:auto;border-bottom:1px solid var(--line)}.lesson article .knowledge-block dl>div:last-child{border-bottom:0}@media(max-width:620px){.lesson article .knowledge-block dl>div{padding:12px 14px}}
 .lesson article .knowledge-block dd,.lesson article .module-heading p,.lesson article .evidence-module figcaption>p,.lesson article .historical-map-intro p,.lesson article .prompt label,.lesson article .prompt textarea,.lesson article .feedback,.lesson article .look-here,.lesson article .completion-understanding,.lesson article .next-lesson-preview p{font-size:calc(1rem * var(--reading-scale));line-height:1.65}
 .lesson article .knowledge-block dt{font-size:calc(1.1rem * var(--reading-scale));line-height:1.4}
 /* Keep labels above their values when an explanation shares a panel with a map. */
