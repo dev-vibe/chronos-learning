@@ -72,7 +72,7 @@ export const akkadLocatorVisual: LessonModule = {
   mediaId: 'media.akkad.locator',
   periodLabel: 'c. 2350–2150 BCE',
   focusPlace: 'Mesopotamia and neighboring regions',
-  modernContext: 'This map uses modern geography to locate sites in West Asia, including present-day Iraq and Syria. The inset shows the wider area beside Europe and Africa; its box marks the enlarged view, not an empire.',
+  modernContext: 'Present-day Iraq and northeastern Syria',
   accessibleSummary: 'Uruk is toward the south of the main map near the Persian Gulf. Tell Leilan and Urkesh are close together much farther north. The Mediterranean is to the west, and the Tigris and Euphrates run through the region. The small inset locates the view within West Asia beside Europe and northern Africa. There is no Akkadian border or dot for the still-unlocated city of Agade.',
   compactLabel: 'Modern site locations and generalized rivers · no empire boundary',
   coordinateNote: 'Natural Earth modern relief and river data; representative site points from Oracc/Pleiades, cross-checked with Yale, Getty and UNESCO. Points do not mark settlement extent.',
