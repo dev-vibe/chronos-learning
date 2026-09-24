@@ -336,7 +336,7 @@ Approve the six-section lesson centered on an evidence map and the Oase segment-
 
 ## Voice revision
 
-Runbook: `docs/content/lesson-voice-revision-runbook.md` (branch `docs/lesson-voice-revision-runbook`; not yet on `main`). Branch: `revise/migrations-and-interbreeding-voice`. Started 2026-09-24. Status: **awaiting owner review**.
+Runbook: `docs/content/lesson-voice-revision-runbook.md` (branch `docs/lesson-voice-revision-runbook`; not yet on `main`). Branch: `revise/migrations-and-interbreeding-voice`. Started 2026-09-24. Status: **approved by the owner 2026-09-24; merge completes the revision**. PR: [#57](https://github.com/dev-vibe/chronos-learning/pull/57).
 
 ### Audit of the published version
 
@@ -387,3 +387,12 @@ Whole lesson: story spine `none` (Oase 1 appears only in section 3); memorable m
 | Headings | pass | Two metaphor/slogan headings replaced with plain ones; the rest unchanged. |
 
 `npm run validate:content` passed; `npm run test:domain` passed (14 files, 63 tests). No test pinned the changed text.
+
+### Owner review
+
+- Date: 2026-09-24.
+- PR: [#57](https://github.com/dev-vibe/chronos-learning/pull/57), branch preview [chronos-learning-git-revise-migration-320f20-dev-vibes-projects.vercel.app](https://chronos-learning-git-revise-migration-320f20-dev-vibes-projects.vercel.app/learn/lesson.humans.migrations-and-interbreeding) (commits `83b30c9` and `8433dca`).
+- Story spine: the Oase 1 jaw from the Cave with Bones, from the 2002 cavers to the closing callback on what one genome can and cannot say.
+- Memorable moments: the jaw among bear bones in galleries sealed for at least 17,000 years; a Neanderthal ancestor four to six generations back; the Ranis and Zlatý kůň cousins 230 km apart; a population recognized from a child’s fingertip; the Harbin skull hidden in a well (labelled as a later account).
+- Added claims: `claim.humans.oase-cave-find`, `oase-neanderthal-share`, `early-lineages-faded`, `ranis-zlaty-kun-relatives`, `denisova-fingertip`, `harbin-find-story`, `harbin-denisovan-link`; sources `source.humans.trinkaus-zilhao-2007-oase-discovery`, `natgeo-2021-harbin`, `nhm-2021-harbin`.
+- Owner decisions: during review Carlin asked to remove the duplicate masthead map (fixed in `8433dca`, recorded under Changes). Carlin Aylsworth then reviewed the branch preview and approved the revision (“approved!”), 2026-09-24.
