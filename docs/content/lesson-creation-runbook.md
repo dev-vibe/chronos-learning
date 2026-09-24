@@ -82,6 +82,7 @@ Open these only when triggered. They own their details; this runbook decides whe
 - Historical maps: [`historical-map-production.md`](historical-map-production.md)
 - Image research, rights, provenance or generation: [`media-provenance-research-and-generation.md`](../prompts/media-provenance-research-and-generation.md)
 - Asset ingestion, responsive derivatives, publishing and rollback: [`media-publishing.md`](../architecture/media-publishing.md)
+- Rewriting an already-published lesson's voice and story without changing what it teaches: [`lesson-voice-revision-runbook.md`](lesson-voice-revision-runbook.md)
 - A new reusable lesson module or other platform change is not lesson work. Handle it separately under `AGENTS.md`.
 
 ## Non-negotiable product rules

@@ -12,6 +12,7 @@ The [lesson creation runbook](../../../docs/content/lesson-creation-runbook.md) 
 - **Create next / continue:** follow the runbook's invocation contract. Continue an `Active` row before selecting the first eligible `Ready` row.
 - **Publish an already-approved lesson:** go to runbook Stage 18. Do not repeat research, reviews or platform discovery.
 - **Material revision:** re-enter the earliest affected stage in the lesson's single research note. Repeat an owner touchpoint only if scope, central explanation, evidence, prompts, media job, completion or journey role changes.
+- **Voice or story revision of a published lesson** (same teaching, better telling): follow `docs/content/lesson-voice-revision-runbook.md` instead.
 - **Narrow correction:** use Stage 18's correction path.
 - **Changes to the production system itself:** stay within the user's authorized scope; do not start a queued lesson.
 
