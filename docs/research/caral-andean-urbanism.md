@@ -867,7 +867,7 @@ Release disposition: **COMPLETE.** [PR #26](https://github.com/dev-vibe/chronos-
 
 ## Voice revision
 
-Runbook: `docs/content/lesson-voice-revision-runbook.md`. Branch: `claude/compassionate-maxwell-v60st1` (the session's assigned branch, used in place of `revise/caral-andean-urbanism-voice`). Started 2026-09-25. Status: **awaiting owner review.** PR: [#62](https://github.com/dev-vibe/chronos-learning/pull/62).
+Runbook: `docs/content/lesson-voice-revision-runbook.md`. Branch: `claude/compassionate-maxwell-v60st1` (the session's assigned branch, used in place of `revise/caral-andean-urbanism-voice`). Started 2026-09-25. Status: **approved by the owner 2026-09-25; merge completes the revision**. PR: [#62](https://github.com/dev-vibe/chronos-learning/pull/62).
 
 ### Audit of the published version
 
@@ -917,3 +917,12 @@ Whole lesson: story spine `none`; memorable moments `one` (flutes: the instrumen
 | Headings | pass | Unchanged; all name the subject in plain words. |
 
 `npm run validate:content` passed; `npm run test:domain` passed (14 files, 63 tests). No test pinned the changed text. `tests/learn/multi-lesson.test.tsx` has one failure (“resolves the published writing lesson with ordered journey navigation”) that also fails on `main` without this change: its expected journey list stops at the pyramids lesson.
+
+### Owner review
+
+- Date: 2026-09-25.
+- PR: [#62](https://github.com/dev-vibe/chronos-learning/pull/62), branch preview [chronos-learning-git-claude-compassio-7a2501-dev-vibes-projects.vercel.app](https://chronos-learning-git-claude-compassio-7a2501-dev-vibes-projects.vercel.app/learn/lesson.caral.andean-urbanism) (commit `ab4df0c`).
+- Story spine: fiber, from the reed bags of stones whose fibers dated Caral, through cotton nets and dried anchovies, the bags used to bury old rooms under new ones, and the knotted cord on the twelfth step, to the closing callback on the bags that kept their date but not a single name.
+- Memorable moments: building begun about 2627 BCE, roughly when Egypt’s first pyramid was built; mounds that hold older versions of themselves inside; 32 small bone flutes painted red and black, whose songs are lost; the knotted cord on the twelfth step of the Gallery Pyramid stairway.
+- Added claims: `claim.caral.dating-published-2001`, `eighteen-supe-sites`, `first-pyramid-same-era`, `fisher-farmer-exchange`, `greater-pyramid-plaza`, `unequal-tables`, `human-hauling`, `burial-and-rebuilding`, `bone-flutes`, `quipu-twelfth-step`. No sources added. Correction: “bird-bone flutes” → “32 small bone flutes”.
+- Owner decisions: the first version relied on search excerpts because the session’s network blocked source sites; Carlin opened network access and asked for the revision to be redone from the actual sources, which this version is. The +27.5% length was flagged and accepted. Carlin Aylsworth reviewed the branch preview and approved the revision (“approved!”), 2026-09-25.
