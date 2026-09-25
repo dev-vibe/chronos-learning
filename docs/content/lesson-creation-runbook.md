@@ -11,7 +11,7 @@ A lesson may be small or ambitious, but no step may be skipped silently. If a st
 - **What a lesson must achieve:** the learner forms an accurate, memorable, evidence-aware mental model, can explain the central idea, and knows the next action. Shipping a page is not the goal.
 - **Tone:** warm, intelligent, calm and spacious, like an editorial history publication or a museum companion. Lessons are told as true stories: real people, places and objects, with stakes and surprises, told straight. Not a game, a terminal or a textbook dump. No mascots, loot, XP, streaks, timers or score spectacle.
 - **Shell:** every lesson renders in the same Learn shell: a journey rail plus one scrolling lesson of five to eight semantic sections, short understanding prompts and an explicit completion action. Reopening always starts at the top.
-- **Knowledge Cards:** deterministic memory anchors earned by completing a lesson. Never random, duplicated, ranked by rarity, or mandatory.
+- **Knowledge Cards:** deterministic memory anchors earned when a parent passes the learner's finished lesson. Never random, duplicated, ranked by rarity, or mandatory.
 - **Evidence honesty:** observation, interpretation, reconstruction, uncertainty and later tradition are always distinguished. Generated imagery is never presented as evidence.
 - **Where content lives:** the repository is canonical. Lesson modules live in `content/lessons/`, are registered in `content/chronos.ts` and are ordered in `content/journeys/`. The database holds only what publication and progress need: published lesson IDs, journey entries, completion rules, card unlocks and learner progress.
 - **Who decides:** Carlin is the product owner and the only approver. AI may research, draft and validate. It may not be the sole historical, rights or publication reviewer, and it never approves on the owner's behalf.
@@ -90,7 +90,7 @@ Open these only when triggered. They own their details; this runbook decides whe
 - One lesson has one stable identity even when reused in multiple journeys. Journey-specific framing belongs to `JourneyEntry`.
 - Lessons normally contain five to eight stable semantic sections. Use fewer or more only when the learning sequence genuinely requires it and document the exception.
 - Required lessons normally contain one to three required understanding prompts, usually two.
-- Completion requires a sincere attempt, not a perfect score, and only occurs through the explicit completion action.
+- Completion requires a sincere attempt, not a perfect score, and only occurs through the explicit completion action. Finishing sends the learner's answers to a linked parent; the parent's pass awards the lesson's cards.
 - Every lesson opens at the top. Explored-section state may inform progress UI but must not trigger a resume banner, automatic scrolling, or viewport restoration.
 - Related lessons and optional journeys are navigation, not instructional sections or completion requirements.
 - A reconstruction is never presented as direct evidence. Uncertainty is never hidden merely to make prose cleaner.
@@ -768,7 +768,7 @@ The prototype must:
 - contain the full intended reading experience and sincere-attempt prompts rather than lorem ipsum or synopsis copy;
 - show section-linked media intentions as development-only review annotations when final media does not yet exist;
 - include usable placeholder alternatives or accessible descriptions without implying that unreviewed media is final;
-- avoid final asset generation/acquisition, publication migrations, unlocks, approval-state changes, and hosted production changes.
+- avoid final asset generation/acquisition, publication, unlocks, approval-state changes, and hosted production changes.
 
 Run `npm run lesson:gate -- --lesson <lesson-id> --note <path> --gate prototype` when the command is available. Open the exact lesson with `npm run lesson:preview -- --lesson <lesson-id>` and review desktop/mobile and light/dark presentation. A missing command is an implementation blocker for this production-system version; do not silently replace the real-shell review with screenshots of another renderer.
 
@@ -828,7 +828,7 @@ Follow the existing bounded-module architecture:
 9. Add the module to the small `content/chronos.ts` aggregation boundary. Do not move authored content into the aggregator.
 10. Add or update the relevant journey entry in `content/journeys/`.
 11. Update the media catalog/manifests through the pipeline, never by hand-editing generated outputs. Follow the media publishing runbook's runtime-source prep before `media:add` / `media:build`.
-12. Do not hand-author the publication SQL. `npm run lesson:prepare-publication` writes the committed migration and database test at go-live from the authored lesson.
+12. Publishing needs no SQL. The database holds no lesson configuration; a lesson goes live when `status: 'published'` merges to main. The cards a pass awards come from each card's `unlockLessonId`.
 13. Keep unpublished or incomplete neighbors fail-closed and non-completable.
 14. Do not proceed to Stage 16 while an approved Recommended map or core evidence visual remains unimplemented without explicit deferral.
 15. Verify the selected media method and reviewed reference/data-to-final fidelity using Stage 10; generation is optional, provenance is required.
@@ -855,40 +855,39 @@ Observation with real learners is a separate, sampled product program run by the
 
 ## Stage 18 — Publish, then correct when needed
 
-Publication is a mechanical cutover. It marks the lesson `published`, commits one migration that tells the database how completion works, and uploads this lesson's approved media. The owner's prototype approval was the editorial review, and CI is the full test suite. Do not restart Stages 0–16.
+Publication is a repository change. Merging `status: 'published'` to main makes the lesson live; there is no migration or database step. The owner's prototype approval was the editorial review. Do not restart Stages 0–16.
 
 A request to publish an already-approved lesson (for example after a pause) starts here. Confirm the release gate passes first; if it fails, return to Stage 15.
 
 ### Publication procedure
 
-1. Generate the cutover files:
+1. Flip the lesson to published:
 
    ```text
-   npm run lesson:prepare-publication -- --lesson <lesson-id> --note <path> --issue <ASH-n> --write --apply-status
+   npm run lesson:prepare-publication -- --lesson <lesson-id> --note <path> --apply-status
    ```
 
-   This writes the migration and database test, flips `status` to `published`, and unregisters the lesson from `content/prototype-reviews.ts`, which removes the draft-only “Prototype review / Not learner content” notes. Keep the archived review file under `content/prototype-reviews/`. Add `--equivalent-alias <legacy-id>` only when the owner already approved completion transfer for that alias. Never hand-write the SQL.
-2. Validate with `npm run validate:content` and `npm run test:domain`. Do not run the full suite or a build locally unless CI fails.
-3. Upload this lesson's media only, using the `--asset` list the prepare command printed: `npm run media:publish -- --asset <id> --asset <id>`. Credentials come from the existing project env. If staged files under `tmp/chronos-media/` are missing, rebuild only this lesson's assets when `media:build` supports `--asset`; otherwise run `media:build` once. Storage objects are immutable, and the publisher verifies checksums.
-4. Apply the committed migration to the Chronos Supabase project. No dashboard-only rows; never rewrite an applied migration.
-5. Push, let CI run, and put the preview link in the PR.
-6. **Owner touchpoint 3.** Once the branch preview deploys, send the owner the direct link to `/learn/<lesson-id>` (with audit parameters if needed) and ask them to report whether:
+   This checks the release gate, sets `status` to `published`, unregisters the lesson from `content/prototype-reviews.ts` (removing the draft-only notes) and prints the media to upload. Keep the archived review file under `content/prototype-reviews/`.
+2. Validate with `npm run validate:content` and `npm run test:domain`.
+3. Upload this lesson's media only, using the printed command: `npm run media:publish -- --asset <id> --asset <id>`. Credentials come from the existing project env; storage objects are immutable.
+4. Push and put the preview link in the PR.
+5. **Owner touchpoint 3.** Send the owner the direct preview link to `/learn/<lesson-id>` and ask them to report whether:
    - the lesson opens at the top;
-   - both required prompts accept a sincere attempt;
-   - explicit completion works, including the card or no-card ending;
+   - each required prompt accepts a sincere attempt;
+   - finishing sends the answers for review, and a pass from `/review` shows the celebration with the card (or the no-card ending);
    - reopening the lesson starts at the top again;
    - the draft-only notes are gone.
 
    Do not open the lesson in a browser yourself, delegate the check, or infer a pass from deployment status. Fix any finding and send the link again.
-7. After the owner's pass, make the PR's final commit: set the queue row to `Complete` and fill the research note's `Final sign-off` section (migration name, media verified, owner check).
-8. When CI is green, merge. The lesson is complete. Do not verify production, update records after merge, or open a follow-up PR. The owner's own look at production is outside this process.
+6. After the owner's pass, make the final commit: set the queue row to `Complete` and fill the research note's `Final sign-off` (media verified, owner check).
+7. Merge. The lesson is live when main deploys. Do not verify production or open a follow-up PR.
 
-Do not re-read product docs or platform skills (Vercel, Supabase, browser automation), search changelogs, run advisors, repeat the quality review, rebuild the whole media catalog, merge `main` unless git reports a conflict, or write a custom uploader or storage path. If a command fails, fix that command rather than inventing a parallel pipeline.
+If a command fails, fix that command rather than inventing a parallel pipeline.
 
 ### Corrections after release
 
 1. Assess severity and learner harm. Unpublish immediately for a serious factual, rights, safety or provenance issue.
-2. Update the research note, claims and sources, content, media, tests and migration or configuration as needed, in one PR.
+2. Update the research note, claims and sources, content, media and tests as needed, in one PR. Unpublishing is setting `status` back to `draft`; learners' saved progress and cards are kept.
 3. Keep stable IDs when meaning is unchanged; create a new canonical lesson or a reviewed mapping when meaning changes materially.
 4. Send the owner the direct lesson preview link, following the preview-link contract, even for a one-line fix.
 
