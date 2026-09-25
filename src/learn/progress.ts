@@ -1,23 +1,42 @@
-import type { CompleteLessonResult, LessonProgress } from '../domains/contracts';
+import type { LessonProgress } from '../domains/contracts';
 import { isSupabaseConfigured, supabase } from '../../lib/supabase';
 import { chronosContent } from '../../content/chronos';
+import { resolveActiveLearner, type ActiveLearner, type LearnerView } from '../infrastructure/family/activeLearner';
 
 export type PromptResponses = Record<string, string>;
-export type LearnState = LessonProgress & { exploredSectionIds: string[]; responses: PromptResponses; cardIds?: string[]; cardId?: string; version: 1 };
+export type ReviewStatus = 'submitted' | 'returned' | 'passed';
+/** A parent's review of the learner's submitted answers for one lesson. */
+export type LessonReview = { status: ReviewStatus; round: number; submittedAt: string; reviewedAt?: string; feedback?: string; cardIds: string[]; passSeenAt?: string };
+/** Present only for signed-in learners; guests have no parent to review their work. */
+export type LearnAccount = { parentLinked: boolean; view?: LearnerView };
+export type LearnState = LessonProgress & { exploredSectionIds: string[]; responses: PromptResponses; cardIds?: string[]; cardId?: string; review?: LessonReview; account?: LearnAccount; version: 1 };
 export type JourneyProgressSummary = Pick<LessonProgress, 'lessonId' | 'status' | 'completedAt'>;
+export type PassNotice = { lessonId: string; cardIds: string[]; feedback?: string };
+export type ReturnedNotice = { lessonId: string; feedback: string };
+export type ReviewInbox = { passes: PassNotice[]; returned: ReturnedNotice[]; waitingForMyReview: number };
 export interface LearnProgressGateway {
   load(lessonId: string): Promise<LearnState>;
   loadJourneySummaries(lessonIds: readonly string[]): Promise<Record<string, JourneyProgressSummary>>;
   markSection(lessonId: string, sectionId: string): Promise<LearnState>;
   saveAttempt(lessonId: string, promptId: string, response: string): Promise<LearnState>;
-  complete(lessonId: string, idempotencyKey: string): Promise<CompleteLessonResult>;
+  /** Finish the lesson and send the learner's latest answers for review. */
+  submit(lessonId: string): Promise<LearnState>;
+  loadInbox(): Promise<ReviewInbox>;
+  acknowledgePass(lessonId: string): Promise<void>;
 }
 
 const key = (lessonId: string) => `chronos.learn.preview.v1:${lessonId}`;
 const empty = (lessonId: string): LearnState => ({ learnerId: 'anonymous-preview', lessonId, status: 'in-progress', attemptedPromptIds: [], exploredSectionIds: [], responses: {}, version: 1 });
-const requiredPrompts = (lessonId: string) => chronosContent.lessons.find((item) => item.id === lessonId)?.promptIds.filter((id) => chronosContent.prompts.find((prompt) => prompt.id === id)?.required) ?? [];
+export const requiredPromptIds = (lessonId: string) => chronosContent.lessons.find((item) => item.id === lessonId)?.promptIds.filter((id) => chronosContent.prompts.find((prompt) => prompt.id === id)?.required) ?? [];
 const currentSectionIds = (lessonId: string) => new Set(chronosContent.lessons.find((item) => item.id === lessonId)?.sections.map((section) => section.id) ?? []);
-const cardsForLesson = (lessonId: string) => chronosContent.cards.filter((card) => card.unlockLessonId === lessonId).map((card) => card.id);
+/** The cards a parent's pass grants, taken from the repository content bundle. */
+export const cardsForLesson = (lessonId: string) => chronosContent.cards.filter((card) => card.unlockLessonId === lessonId).map((card) => card.id);
+/** The answers sent for review: the learner's latest response to each of the lesson's prompts. */
+export const submissionAnswers = (lessonId: string, responses: PromptResponses): PromptResponses => {
+  const promptIds = chronosContent.lessons.find((item) => item.id === lessonId)?.promptIds ?? [];
+  return Object.fromEntries(promptIds.filter((id) => typeof responses[id] === 'string').map((id) => [id, responses[id]]));
+};
+const emptyInbox = (): ReviewInbox => ({ passes: [], returned: [], waitingForMyReview: 0 });
 
 export function normalizeLearnState(state: LearnState): LearnState {
   const validSections = currentSectionIds(state.lessonId);
@@ -58,35 +77,47 @@ export class LocalPreviewGateway implements LearnProgressGateway {
     if (!state.attemptedPromptIds.includes(promptId)) state.attemptedPromptIds.push(promptId);
     return this.write(state);
   }
-  async complete(lessonId: string, _idempotencyKey: string) {
+  /** Guests finish lessons in this browser only. Cards need a parent's pass, which needs an account. */
+  async submit(lessonId: string) {
     const state = this.read(lessonId);
-    if (state.status === 'completed') {
-      const cardIds = state.cardIds ?? (state.cardId ? [state.cardId] : []);
-      return { completion: 'already-completed', cardOwnership: cardIds.length ? 'already-owned' : 'not-configured', cardIds, ...(cardIds[0] ? { cardId: cardIds[0] } : {}) } as const;
-    }
-    if (!requiredPrompts(lessonId).every((id) => state.attemptedPromptIds.includes(id))) throw new Error('required prompt attempts missing');
-    const cardIds = cardsForLesson(lessonId);
-    state.status = 'completed'; state.completedAt = new Date().toISOString(); state.cardIds = cardIds; state.cardId = cardIds[0]; this.write(state);
-    return { completion: 'newly-completed', cardOwnership: cardIds.length ? 'newly-acquired' : 'not-configured', cardIds, ...(cardIds[0] ? { cardId: cardIds[0] } : {}) } as const;
+    if (state.status === 'completed') return state;
+    if (!requiredPromptIds(lessonId).every((id) => state.attemptedPromptIds.includes(id))) throw new Error('required prompt attempts missing');
+    state.status = 'completed'; state.completedAt = new Date().toISOString();
+    return this.write(state);
   }
+  async loadInbox() { return emptyInbox(); }
+  async acknowledgePass(_lessonId: string) {}
 }
 
 type SupabaseClient = typeof supabase;
-export const mapCompletionRpcResult = (data: unknown): CompleteLessonResult => {
-  const result = data as Partial<CompleteLessonResult> | null;
-  if (!result || !['newly-completed', 'already-completed'].includes(String(result.completion)) || !['newly-acquired', 'already-owned', 'not-configured'].includes(String(result.cardOwnership))) throw new Error('invalid completion result');
-  const cardIds = Array.isArray(result.cardIds) ? result.cardIds.filter((id): id is string => typeof id === 'string') : result.cardId ? [result.cardId] : [];
-  return { completion: result.completion!, cardOwnership: result.cardOwnership!, cardIds, ...(cardIds[0] ? { cardId: cardIds[0] } : {}) };
+const mapReview = (row: any): LessonReview | undefined => {
+  if (!row || !['submitted', 'returned', 'passed'].includes(row.status)) return undefined;
+  return {
+    status: row.status,
+    round: Number(row.round ?? 1),
+    submittedAt: String(row.submitted_at),
+    ...(row.reviewed_at ? { reviewedAt: String(row.reviewed_at) } : {}),
+    ...(row.feedback ? { feedback: String(row.feedback) } : {}),
+    cardIds: Array.isArray(row.card_ids) ? row.card_ids.map(String) : [],
+    ...(row.pass_seen_at ? { passSeenAt: String(row.pass_seen_at) } : {}),
+  };
 };
 
 export class SupabaseLearnGateway implements LearnProgressGateway {
-  constructor(private learnerId: string, private client: SupabaseClient = supabase) {}
+  private active: ActiveLearner;
+  /** `active` says whether this sign-in is acting as itself, a kid profile, or in parent view. */
+  constructor(private learnerId: string, private client: SupabaseClient = supabase, active?: ActiveLearner) {
+    this.active = active ?? { userId: learnerId, learnerId, view: 'self', profiles: [] };
+  }
   private async ensure(lessonId: string) {
-    const learner = await this.client.from('learners').upsert(
-      { id: this.learnerId },
-      { onConflict: 'id', ignoreDuplicates: true },
-    );
-    if (learner.error) throw learner.error;
+    // A kid profile's learner row already exists and belongs to the parent's sign-in.
+    if (this.learnerId === this.active.userId) {
+      const learner = await this.client.from('learners').upsert(
+        { id: this.learnerId },
+        { onConflict: 'id', ignoreDuplicates: true },
+      );
+      if (learner.error) throw learner.error;
+    }
 
     const progress = await this.client.from('lesson_progress').upsert(
       { learner_id: this.learnerId, lesson_id: lessonId },
@@ -96,14 +127,16 @@ export class SupabaseLearnGateway implements LearnProgressGateway {
   }
   async load(lessonId: string): Promise<LearnState> {
     await this.ensure(lessonId);
-    const [progressResult, resumeResult, exploredResult, attemptsResult, ownershipResult] = await Promise.all([
+    const [progressResult, resumeResult, exploredResult, attemptsResult, ownershipResult, submissionResult, parentsResult] = await Promise.all([
       this.client.from('lesson_progress').select('status,completed_at').eq('learner_id', this.learnerId).eq('lesson_id', lessonId).single(),
       this.client.from('section_resume_state').select('section_id').eq('learner_id', this.learnerId).eq('lesson_id', lessonId).maybeSingle(),
       this.client.from('lesson_section_exploration').select('section_id').eq('learner_id', this.learnerId).eq('lesson_id', lessonId),
-      this.client.from('understanding_prompt_attempts').select('prompt_id,response').eq('learner_id', this.learnerId).eq('lesson_id', lessonId),
+      this.client.from('understanding_prompt_attempts').select('prompt_id,response').eq('learner_id', this.learnerId).eq('lesson_id', lessonId).order('attempted_at', { ascending: true }),
       this.client.from('card_ownership').select('card_id').eq('learner_id', this.learnerId).eq('source_lesson_id', lessonId),
+      this.client.from('lesson_submissions').select('status,round,submitted_at,reviewed_at,feedback,card_ids,pass_seen_at').eq('learner_id', this.learnerId).eq('lesson_id', lessonId).maybeSingle(),
+      this.client.from('guardian_links').select('guardian_id').eq('learner_id', this.learnerId),
     ]);
-    const failed = [progressResult, resumeResult, exploredResult, attemptsResult, ownershipResult].find((result) => result.error);
+    const failed = [progressResult, resumeResult, exploredResult, attemptsResult, ownershipResult, submissionResult, parentsResult].find((result) => result.error);
     if (failed?.error) throw failed.error;
     const { data: progress } = progressResult;
     if (!progress) throw new Error('Lesson progress could not be loaded');
@@ -111,9 +144,11 @@ export class SupabaseLearnGateway implements LearnProgressGateway {
     const { data: explored } = exploredResult;
     const { data: attempts } = attemptsResult;
     const { data: ownership } = ownershipResult;
+    // Attempts arrive oldest first, so the latest response to each prompt wins.
     const responses = Object.fromEntries((attempts ?? []).map((item: any) => [item.prompt_id, String(item.response?.answer ?? item.response?.value ?? '')]));
     const cardIds = (ownership ?? []).map((item: any) => String(item.card_id));
-    return normalizeLearnState({ learnerId: this.learnerId, lessonId, status: progress.status === 'completed' ? 'completed' : 'in-progress', completedAt: progress.completed_at ?? undefined, resumeSectionId: resume?.section_id, attemptedPromptIds: Object.keys(responses), exploredSectionIds: (explored ?? []).map((item: any) => item.section_id), responses, cardIds, cardId: cardIds[0], version: 1 });
+    const review = mapReview(submissionResult.data);
+    return normalizeLearnState({ learnerId: this.learnerId, lessonId, status: progress.status === 'completed' ? 'completed' : 'in-progress', completedAt: progress.completed_at ?? undefined, resumeSectionId: resume?.section_id, attemptedPromptIds: Object.keys(responses), exploredSectionIds: (explored ?? []).map((item: any) => item.section_id), responses, cardIds, cardId: cardIds[0], ...(review ? { review } : {}), account: { parentLinked: (parentsResult.data ?? []).length > 0 || this.active.view === 'kid', view: this.active.view }, version: 1 });
   }
   async loadJourneySummaries(lessonIds: readonly string[]): Promise<Record<string, JourneyProgressSummary>> {
     const uniqueIds = [...new Set(lessonIds)];
@@ -147,19 +182,45 @@ export class SupabaseLearnGateway implements LearnProgressGateway {
     const { error } = await this.client.from('understanding_prompt_attempts').insert({ learner_id: this.learnerId, lesson_id: lessonId, prompt_id: promptId, response: { answer: response } });
     if (error) throw error; return this.load(lessonId);
   }
-  async complete(lessonId: string, idempotencyKey: string) {
-    const { data, error } = await this.client.rpc('complete_lesson_and_acquire_card', { p_lesson_id: lessonId, p_idempotency_key: idempotencyKey });
+  async submit(lessonId: string) {
+    const current = await this.load(lessonId);
+    const { error } = await this.client.rpc('submit_lesson', { p_lesson_id: lessonId, p_answers: submissionAnswers(lessonId, current.responses), p_learner_id: this.learnerId });
     if (error) throw error;
-    return mapCompletionRpcResult(data);
+    return this.load(lessonId);
+  }
+  async loadInbox(): Promise<ReviewInbox> {
+    const [mine, links] = await Promise.all([
+      this.client.from('lesson_submissions').select('lesson_id,status,feedback,card_ids,pass_seen_at').eq('learner_id', this.learnerId).in('status', ['passed', 'returned']),
+      this.client.from('guardian_links').select('learner_id').eq('guardian_id', this.learnerId),
+    ]);
+    if (mine.error) throw mine.error;
+    if (links.error) throw links.error;
+    const rows = (mine.data ?? []) as any[];
+    // Parent view also reviews the kid profiles on this sign-in.
+    const managedIds = this.active.view === 'parent' ? this.active.profiles.map((profile) => profile.id) : [];
+    const learnerIds = [...new Set([...((links.data ?? []) as any[]).map((row) => String(row.learner_id)), ...managedIds])];
+    let waitingForMyReview = 0;
+    if (learnerIds.length) {
+      const waiting = await this.client.from('lesson_submissions').select('lesson_id', { count: 'exact', head: true }).eq('status', 'submitted').in('learner_id', learnerIds);
+      if (waiting.error) throw waiting.error;
+      waitingForMyReview = waiting.count ?? 0;
+    }
+    return {
+      passes: rows.filter((row) => row.status === 'passed' && !row.pass_seen_at).map((row) => ({ lessonId: String(row.lesson_id), cardIds: (row.card_ids ?? []).map(String), ...(row.feedback ? { feedback: String(row.feedback) } : {}) })),
+      returned: rows.filter((row) => row.status === 'returned').map((row) => ({ lessonId: String(row.lesson_id), feedback: String(row.feedback ?? '') })),
+      waitingForMyReview,
+    };
+  }
+  async acknowledgePass(lessonId: string) {
+    const { error } = await this.client.rpc('acknowledge_pass', { p_lesson_id: lessonId, p_learner_id: this.learnerId });
+    if (error) throw error;
   }
 }
 
 export async function createProgressGateway(): Promise<LearnProgressGateway> {
   if (isSupabaseConfigured()) {
-    const { data } = await supabase.auth.getUser();
-    if (data.user) return new SupabaseLearnGateway(data.user.id);
+    const active = await resolveActiveLearner();
+    if (active) return new SupabaseLearnGateway(active.learnerId, supabase, active);
   }
   return new LocalPreviewGateway();
 }
-
-export const completionKey = (lessonId: string) => `${lessonId}:${crypto.randomUUID()}`;

@@ -573,7 +573,7 @@ export const homoSapiensOriginsMedia: MediaAsset[] = [
 
 export const homoSapiensOriginsPrompts: UnderstandingPrompt[] = [
   {
-    id: 'prompt.humans.best-supported-conclusion',
+    id: 'prompt.humans.best-supported-conclusion', bestOptionId: 'option.humans.connected-populations',
     lessonId: 'lesson.humans.homo-sapiens-origins',
     kind: 'supported-selection',
     hint: 'Compare the spread of the finds. Does the oldest find prove where the first people lived?',

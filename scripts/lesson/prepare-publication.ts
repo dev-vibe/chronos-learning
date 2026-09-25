@@ -1,31 +1,20 @@
-import { mkdir, readdir, readFile, writeFile } from 'node:fs/promises';
-import { dirname, resolve } from 'node:path';
+import { readdir, readFile, writeFile } from 'node:fs/promises';
+import { resolve } from 'node:path';
 import { chronosContent } from '../../content/chronos';
 import { chronosPrototypeReviews } from '../../content/prototype-reviews';
-import { argumentValue, argumentValues, hasFlag } from './arguments';
+import { argumentValue, hasFlag } from './arguments';
 import { validateLessonGate } from './gate-validation';
-import {
-  mediaPublishCommand,
-  planLessonPublication,
-  publicationNextSteps,
-  renderPublicationDatabaseTest,
-  renderPublicationMigration,
-} from './publication-plan';
+import { mediaPublishCommand, planLessonPublication, publicationNextSteps } from './publication-plan';
 import { unregisterPrototypeReview } from './prototype-registry';
 
 const args = process.argv.slice(2);
 const lessonId = argumentValue(args, 'lesson');
 const notePath = argumentValue(args, 'note');
-const issueId = argumentValue(args, 'issue');
-const snapshotVersion = argumentValue(args, 'snapshot');
-const keepUnpublishedId = argumentValue(args, 'keep-unpublished');
-const equivalentAliasIds = argumentValues(args, 'equivalent-alias');
-const writeFiles = hasFlag(args, 'write');
 const applyStatus = hasFlag(args, 'apply-status');
 const root = process.cwd();
 
 if (!lessonId) {
-  console.error('Usage: npm run lesson:prepare-publication -- --lesson <lesson-id> [--note <path>] [--issue ASH-n] [--equivalent-alias <id>] [--keep-unpublished <id>] [--write] [--apply-status]');
+  console.error('Usage: npm run lesson:prepare-publication -- --lesson <lesson-id> [--note <path>] [--apply-status]');
   process.exit(2);
 }
 
@@ -55,44 +44,14 @@ if (lesson.status === 'draft') {
   }
 }
 
-const plan = planLessonPublication(chronosContent, lessonId, {
-  issueId,
-  equivalentAliasIds,
-  keepUnpublishedId,
-  snapshotVersion,
-});
-const migrationSql = renderPublicationMigration(plan);
-const testSql = renderPublicationDatabaseTest(plan);
+const plan = planLessonPublication(chronosContent, lessonId);
 
 console.log(`Publication plan for ${plan.lessonId}`);
-console.log(`- snapshot: ${plan.snapshotVersion}`);
 console.log(`- journey entry ${plan.entryId} at position ${plan.journeyPosition}`);
 console.log(`- required prompts: ${plan.requiredPromptIds.join(', ') || '(none)'}`);
-console.log(`- cards: ${plan.cardIds.join(', ') || 'none'}`);
-console.log(`- aliases: ${plan.aliases.map((alias) => `${alias.legacyId}${alias.semanticallyEquivalent ? ' (equivalent)' : ''}`).join(', ') || 'none'}`);
+console.log(`- cards a parent's pass awards: ${plan.cardIds.join(', ') || 'none'}`);
 console.log(`- media: ${plan.mediaIds.join(', ') || 'none'}`);
 console.log(`- ${mediaPublishCommand(plan)}`);
-
-async function nextDatabaseTestName(slug: string): Promise<string> {
-  const testsDir = resolve(root, 'supabase/tests');
-  const names = await readdir(testsDir);
-  const next = names
-    .map((name) => Number.parseInt(name.slice(0, 3), 10))
-    .filter((value) => Number.isInteger(value))
-    .reduce((max, value) => Math.max(max, value), 0) + 1;
-  return `${String(next).padStart(3, '0')}_${slug}.sql`;
-}
-
-async function existingPublishMigration(slug: string): Promise<string | undefined> {
-  const names = await readdir(resolve(root, 'supabase/migrations'));
-  return names.find((name) => name.includes(`publish_${slug}`));
-}
-
-function timestamp(): string {
-  const now = new Date();
-  const stamp = now.toISOString().replace(/[-:TZ.]/g, '').slice(0, 14);
-  return stamp;
-}
 
 async function applyPublishedStatus(targetLessonId: string): Promise<void> {
   const files = await readdir(resolve(root, 'content/lessons'));
@@ -139,34 +98,7 @@ async function stripPrototypeReview(targetLessonId: string): Promise<void> {
   console.log('Unregistered prototype-review metadata. Archive files under content/prototype-reviews/ stay for provenance.');
 }
 
-if (writeFiles) {
-  const existing = await existingPublishMigration(plan.slug);
-  const migrationName = existing ?? `${timestamp()}_publish_${plan.slug}.sql`;
-  const migrationPath = resolve(root, 'supabase/migrations', migrationName);
-  if (!existing) await mkdir(dirname(migrationPath), { recursive: true });
-  if (existing) {
-    console.log(`A publish migration already exists at supabase/migrations/${existing}; not overwriting it.`);
-  } else {
-    await writeFile(migrationPath, migrationSql);
-    console.log(`Wrote supabase/migrations/${migrationName}`);
-  }
-
-  const testsDir = resolve(root, 'supabase/tests');
-  const existingTest = (await readdir(testsDir)).find((name) => name.includes(plan.slug));
-  if (existingTest) {
-    console.log(`A database test already exists at supabase/tests/${existingTest}; not overwriting it.`);
-  } else {
-    const testName = await nextDatabaseTestName(plan.slug);
-    await writeFile(resolve(testsDir, testName), testSql);
-    console.log(`Wrote supabase/tests/${testName}`);
-  }
-} else {
-  console.log('\nMigration SQL:\n');
-  console.log(migrationSql);
-  console.log('Database test SQL:\n');
-  console.log(testSql);
-  console.log('Pass --write to commit these files. Pass --apply-status to flip the authored lesson to published.');
-}
+if (!applyStatus) console.log('\nPass --apply-status to flip the authored lesson to published. No SQL is needed; publishing is a repository change.');
 
 if (applyStatus) {
   await applyPublishedStatus(lessonId);

@@ -338,7 +338,7 @@ export const manyBeginningsOfFarmingMedia: MediaAsset[] = [
 
 export const manyBeginningsOfFarmingPrompts: UnderstandingPrompt[] = [
   {
-    id: 'prompt.farming.multi.what-evidence-supports',
+    id: 'prompt.farming.multi.what-evidence-supports', bestOptionId: 'option.farming.multi.several-beginnings',
     lessonId: 'lesson.farming.multiple-origins',
     kind: 'supported-selection',
     question: 'Looking across Southwest Asia, China, New Guinea, Africa, and the Americas, which conclusion is best supported?',

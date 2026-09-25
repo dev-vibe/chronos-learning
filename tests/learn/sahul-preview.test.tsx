@@ -24,7 +24,9 @@ class PreviewGateway implements LearnProgressGateway {
   loadJourneySummaries = vi.fn(async (lessonIds: readonly string[]) => Object.fromEntries(lessonIds.map((lessonId) => [lessonId, { lessonId, status: 'in-progress' as const }])) as Record<string, JourneyProgressSummary>);
   markSection = vi.fn(async () => this.state);
   saveAttempt = vi.fn(async () => this.state);
-  complete = vi.fn(async () => ({ completion: 'newly-completed' as const, cardOwnership: 'not-configured' as const }));
+  submit = vi.fn(async () => this.state);
+  loadInbox = vi.fn(async () => ({ passes: [], returned: [], waitingForMyReview: 0 }));
+  acknowledgePass = vi.fn(async () => undefined);
 }
 
 beforeEach(() => {

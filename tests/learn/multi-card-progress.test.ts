@@ -1,5 +1,5 @@
 import { beforeEach, describe, expect, it, vi } from 'vitest';
-import { LocalPreviewGateway, mapCompletionRpcResult } from '../../src/learn/progress';
+import { cardsForLesson, LocalPreviewGateway, SupabaseLearnGateway, submissionAnswers } from '../../src/learn/progress';
 
 const values = new Map<string, string>();
 vi.stubGlobal('localStorage', {
@@ -7,53 +7,74 @@ vi.stubGlobal('localStorage', {
   setItem: (key: string, value: string) => values.set(key, value),
 });
 
-describe('Knowledge Card completion', () => {
+describe('parent review submissions', () => {
   beforeEach(() => values.clear());
 
-  it('grants the Neanderthal card only once', async () => {
+  it('takes the cards a pass grants from the content bundle', () => {
+    expect(cardsForLesson('lesson.humans.migrations-and-interbreeding')).toEqual(['card.people.neanderthals']);
+    expect(cardsForLesson('lesson.egypt.pyramids-and-state-labor')).toEqual([]);
+  });
+
+  it('sends only this lesson’s prompts, in authored order', () => {
+    expect(submissionAnswers('lesson.uruk.first-city', {
+      'prompt.uruk.opportunity-and-cost': 'Specialists, but unequal labor.',
+      'prompt.writing.administration-evidence': 'Wrong lesson',
+      'prompt.uruk.administration-evidence': 'option.uruk.tablets',
+    })).toEqual({
+      'prompt.uruk.administration-evidence': 'option.uruk.tablets',
+      'prompt.uruk.opportunity-and-cost': 'Specialists, but unequal labor.',
+    });
+  });
+
+  it('lets a guest finish only after both required attempts, and never grants a card locally', async () => {
     const gateway = new LocalPreviewGateway();
     const lessonId = 'lesson.humans.migrations-and-interbreeding';
+    await expect(gateway.submit(lessonId)).rejects.toThrow('required prompt attempts missing');
     await gateway.saveAttempt(lessonId, 'prompt.humans.long-segments-inference', 'option.humans.long-segments-recent');
+    await expect(gateway.submit(lessonId)).rejects.toThrow('required prompt attempts missing');
     await gateway.saveAttempt(lessonId, 'prompt.humans.adna-evidence-and-limit', 'DNA can show biological relatives, but it cannot tell us a person’s language.');
-
-    await expect(gateway.complete(lessonId, 'ancient-dna-first')).resolves.toMatchObject({
-      completion: 'newly-completed',
-      cardOwnership: 'newly-acquired',
-      cardIds: ['card.people.neanderthals'],
-      cardId: 'card.people.neanderthals',
-    });
-    await expect(gateway.complete(lessonId, 'ancient-dna-retry')).resolves.toMatchObject({
-      completion: 'already-completed',
-      cardOwnership: 'already-owned',
-      cardIds: ['card.people.neanderthals'],
-    });
+    const finished = await gateway.submit(lessonId);
+    expect(finished).toMatchObject({ status: 'completed', cardIds: [] });
+    expect(finished.review).toBeUndefined();
+    expect(finished.account).toBeUndefined();
+    expect(await gateway.submit(lessonId)).toMatchObject({ status: 'completed', completedAt: finished.completedAt });
+    expect(await gateway.loadInbox()).toEqual({ passes: [], returned: [], waitingForMyReview: 0 });
   });
 
-  it('maps the ordered multi-card RPC payload and preserves the first-card compatibility field', () => {
-    expect(mapCompletionRpcResult({
-      completion: 'newly-completed',
-      cardOwnership: 'newly-acquired',
-      cardIds: ['card.people.neanderthals', 'card.people.example-second'],
-    })).toEqual({
-      completion: 'newly-completed',
-      cardOwnership: 'newly-acquired',
-      cardIds: ['card.people.neanderthals', 'card.people.example-second'],
-      cardId: 'card.people.neanderthals',
-    });
+  it('submits the latest answers through the submit_lesson command', async () => {
+    const rpc = vi.fn(async () => ({ data: {}, error: null }));
+    const gateway = new SupabaseLearnGateway('11111111-1111-4111-a111-111111111111', { rpc } as any);
+    const state = { learnerId: 'x', lessonId: 'lesson.uruk.first-city', status: 'in-progress' as const, attemptedPromptIds: [], exploredSectionIds: [], responses: { 'prompt.uruk.administration-evidence': 'option.uruk.tablets' }, version: 1 as const };
+    vi.spyOn(gateway, 'load').mockResolvedValue(state);
+    await gateway.submit('lesson.uruk.first-city');
+    expect(rpc).toHaveBeenCalledWith('submit_lesson', { p_lesson_id: 'lesson.uruk.first-city', p_answers: { 'prompt.uruk.administration-evidence': 'option.uruk.tablets' }, p_learner_id: '11111111-1111-4111-a111-111111111111' });
+    await gateway.acknowledgePass('lesson.uruk.first-city');
+    expect(rpc).toHaveBeenLastCalledWith('acknowledge_pass', { p_lesson_id: 'lesson.uruk.first-city', p_learner_id: '11111111-1111-4111-a111-111111111111' });
   });
 
-  it('requires both Egypt attempts and completes idempotently without awarding a card', async () => {
-    const gateway = new LocalPreviewGateway();
-    const lessonId = 'lesson.egypt.pyramids-and-state-labor';
-    await expect(gateway.complete(lessonId, 'egypt-before-attempts')).rejects.toThrow('required prompt attempts missing');
-    await gateway.saveAttempt(lessonId, 'prompt.pyramids.context-and-phase', 'option.pyramids.strong-context-open-phases');
-    await expect(gateway.complete(lessonId, 'egypt-one-attempt')).rejects.toThrow('required prompt attempts missing');
-    await gateway.saveAttempt(lessonId, 'prompt.pyramids.build-evidence-chain', 'I would test more stones where walls meet to check whether old blocks were reused or an older building survives.');
-    await expect(gateway.complete(lessonId, 'egypt-complete')).resolves.toMatchObject({
-      completion: 'newly-completed', cardOwnership: 'not-configured', cardIds: [],
-    });
-    await expect(gateway.complete(lessonId, 'egypt-repeat')).resolves.toMatchObject({
-      completion: 'already-completed', cardOwnership: 'not-configured', cardIds: [],
+  it('acts for a kid profile on a shared account without creating a learner row', async () => {
+    const parentId = 'aaaaaaaa-aaaa-4aaa-aaaa-aaaaaaaaaaaa';
+    const upserts: string[] = [];
+    const chain = (data: unknown) => { const query: any = { select: () => query, eq: () => query, in: () => query, order: () => query, single: async () => ({ data, error: null }), maybeSingle: async () => ({ data, error: null }), then: (resolve: (value: unknown) => unknown) => Promise.resolve({ data, error: null }).then(resolve) }; return query; };
+    const client: any = { from: (table: string) => ({ upsert: async () => { upserts.push(table); return { error: null }; }, select: () => chain(table === 'lesson_progress' ? { status: 'in_progress', completed_at: null } : []) }) };
+    const gateway = new SupabaseLearnGateway('kid-sam', client, { userId: parentId, learnerId: 'kid-sam', view: 'kid', profiles: [{ id: 'kid-sam', displayName: 'Sam' }] });
+    const state = await gateway.load('lesson.uruk.first-city');
+    expect(upserts).toEqual(['lesson_progress']);
+    expect(state.account).toEqual({ parentLinked: true, view: 'kid' });
+  });
+
+  it('maps unseen passes and sent-back notes into the learner inbox', async () => {
+    const rows = [
+      { lesson_id: 'lesson.uruk.first-city', status: 'passed', feedback: 'Great!', card_ids: ['card.place.uruk'], pass_seen_at: null },
+      { lesson_id: 'lesson.writing.early-systems', status: 'passed', feedback: null, card_ids: [], pass_seen_at: '2026-09-01T00:00:00Z' },
+      { lesson_id: 'lesson.egypt.nile-state', status: 'returned', feedback: 'Add a detail.', card_ids: [], pass_seen_at: null },
+    ];
+    const chain = (data: unknown) => { const query: any = { select: () => query, eq: () => query, in: () => query, then: (resolve: (value: unknown) => unknown) => Promise.resolve({ data, error: null }).then(resolve) }; return query; };
+    const client: any = { from: (table: string) => chain(table === 'lesson_submissions' ? rows : []) };
+    expect(await new SupabaseLearnGateway('11111111-1111-4111-a111-111111111111', client).loadInbox()).toEqual({
+      passes: [{ lessonId: 'lesson.uruk.first-city', cardIds: ['card.place.uruk'], feedback: 'Great!' }],
+      returned: [{ lessonId: 'lesson.egypt.nile-state', feedback: 'Add a detail.' }],
+      waitingForMyReview: 0,
     });
   });
 });

@@ -279,7 +279,7 @@ export const earlyWritingMedia: MediaAsset[] = [
 
 export const earlyWritingPrompts: UnderstandingPrompt[] = [
   {
-    id: 'prompt.writing.administration-evidence',
+    id: 'prompt.writing.administration-evidence', bestOptionId: 'option.writing.tablet',
     lessonId: 'lesson.writing.early-systems',
     kind: 'supported-selection',
     question: 'Which surviving evidence best supports the use of proto-cuneiform for administration?',
