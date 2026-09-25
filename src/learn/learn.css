@@ -203,3 +203,10 @@ h1,h2,h3{font-family:Newsreader,Georgia,serif;font-weight:500}
 .feedback-retry strong{color:var(--bronze)}
 .feedback-more summary{cursor:pointer;color:var(--focus);font-size:.9em}
 .feedback-more p{margin:8px 0 0}
+/* A saved written answer collapses to read-only text with an Edit button. */
+.saved-answer{margin-top:14px;padding:14px 16px;border-left:3px solid #1f8a52;border-radius:4px 10px 10px 4px;background:color-mix(in srgb,#1f8a52 10%,var(--surface))}
+.saved-answer-label{display:flex;align-items:center;gap:7px;margin:0 0 8px;font-weight:700;color:#17703f}
+.learn-app[data-theme=dark] .saved-answer-label{color:#7fd9a4}
+.saved-answer-label svg{width:18px;height:18px}
+.saved-answer-text{margin:0 0 12px;font:400 calc(1.05rem * var(--reading-scale,1))/1.6 Newsreader,Georgia,serif;white-space:pre-wrap;color:var(--ink)}
+.prompt-actions .quiet-link{background:none;border:0;color:var(--focus);text-decoration:underline;cursor:pointer;font:inherit;min-height:44px}

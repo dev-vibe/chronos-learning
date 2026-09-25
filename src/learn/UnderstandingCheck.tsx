@@ -1,4 +1,4 @@
-import { useRef, useState, type ReactNode } from 'react';
+import { useEffect, useRef, useState, type ReactNode } from 'react';
 import { Check, CheckCircle2, RotateCcw } from 'lucide-react';
 import type { UnderstandingPrompt } from '../domains/contracts';
 
@@ -10,11 +10,17 @@ export const promptDraftKey = (learnerId: string, lessonId: string, promptId: st
 export function UnderstandingCheck({ prompt, answer, learnerId, evidence, onAttempt }: Props) {
   const key = promptDraftKey(learnerId, prompt.lessonId, prompt.id);
   const [draft, setDraft] = useState(() => { try { return sessionStorage.getItem(key) ?? answer; } catch { return answer; } });
-  const [compared, setCompared] = useState(Boolean(answer));
+  // A written answer with unsaved changes in this tab reopens in the editor.
+  const [compared, setCompared] = useState(() => Boolean(answer) && (prompt.kind !== 'concise-explanation' || draft === answer));
+  const [focusEditor, setFocusEditor] = useState(false);
+  // The last answer known to be saved: from progress, or from this component's own save.
+  const [savedText, setSavedText] = useState(answer);
+  useEffect(() => { if (answer) setSavedText(answer); }, [answer]);
   const [busy, setBusy] = useState(false);
   const [error, setError] = useState('');
   const [draftSaved, setDraftSaved] = useState(true);
   const input = useRef<HTMLTextAreaElement>(null);
+  useEffect(() => { if (focusEditor) { input.current?.focus(); setFocusEditor(false); } }, [focusEditor]);
   const write = (value: string) => {
     setDraft(value); setError('');
     try { sessionStorage.setItem(key, value); setDraftSaved(true); } catch { setDraftSaved(false); }
@@ -30,27 +36,45 @@ export function UnderstandingCheck({ prompt, answer, learnerId, evidence, onAtte
     setBusy(true); setError('');
     try {
       await onAttempt(prompt.id, value.trim());
+      setSavedText(value.trim());
       setCompared(true);
       // Keep the draft until another explicit submission, including optional revisions.
     } catch { setError('Your answer could not be saved. Keep this page open and try again.'); }
     finally { setBusy(false); }
   };
+  const essay = prompt.kind === 'concise-explanation';
+  // Once saved, a written answer collapses to read-only text with an Edit button.
+  const savedEssay = essay && compared && Boolean(savedText);
+  const edit = () => { setCompared(false); setFocusEditor(true); };
+  const cancel = () => { write(savedText); setCompared(true); };
   return <div className="prompt" id={`prompt-${prompt.id}`}>
-    {prompt.kind === 'concise-explanation'
+    {essay && !savedEssay
       ? <label htmlFor={prompt.id}><strong>{prompt.question}</strong></label>
       : <strong id={`${prompt.id}-question`}>{prompt.question}</strong>}
     {evidence && <details className="prompt-evidence"><summary>Keep the evidence nearby</summary><div>{evidence}</div></details>}
     {prompt.hint && <details className="prompt-hint"><summary>A hint</summary><p>{prompt.hint}</p></details>}
-    {prompt.kind === 'concise-explanation'
-      ? <textarea ref={input} id={prompt.id} value={draft} placeholder="Use an example from the lesson…" onChange={(event) => write(event.currentTarget.value)} aria-invalid={Boolean(error)} aria-describedby={`${prompt.id}-draft-note${error ? ` ${prompt.id}-error` : ''}`} />
-      : <div role="radiogroup" aria-labelledby={`${prompt.id}-question`}>{prompt.options.map((choice) => <label key={choice.id}><input type="radio" name={prompt.id} checked={draft === choice.id} onChange={() => { write(choice.id); setCompared(false); }} /><span>{choice.label}</span></label>)}</div>}
-    <div className="prompt-actions"><button type="button" className="secondary" disabled={busy} onClick={() => compare()}>{busy ? 'Saving…' : prompt.kind === 'concise-explanation' ? 'Save my answer' : 'Check my answer'}</button></div>
-    {prompt.kind === 'concise-explanation' && <small id={`${prompt.id}-draft-note`}>{draftSaved ? 'Your draft stays in this tab when you return. Save it when you are ready.' : 'This browser could not keep your draft. Keep this tab open until you save it.'}</small>}
-    {error && <p id={`${prompt.id}-error`} className="error" role="alert">{error}</p>}
-    {compared && (prompt.kind === 'supported-selection'
-      ? <SelectionFeedback prompt={prompt} answer={answer} />
+    {savedEssay
       // No model answer here: that would be the answer key. The parent sees it on Review.
-      : <div className="feedback feedback-saved" role="status"><strong><Check aria-hidden="true" /> Saved</strong><p>You can change it any time before you finish the lesson.</p><button type="button" className="secondary" onClick={() => { setCompared(false); input.current?.focus(); }}>Edit my answer</button></div>)}
+      ? <div className="saved-answer" role="status" aria-label="Your saved answer">
+          <p className="saved-answer-label"><Check aria-hidden="true" /> Saved</p>
+          <p className="saved-answer-text">{savedText}</p>
+          <button type="button" className="secondary" onClick={edit}>Edit my answer</button>
+        </div>
+      : essay
+        ? <>
+            <textarea ref={input} id={prompt.id} value={draft} placeholder="Use an example from the lesson…" onChange={(event) => write(event.currentTarget.value)} aria-invalid={Boolean(error)} aria-describedby={`${prompt.id}-draft-note${error ? ` ${prompt.id}-error` : ''}`} />
+            <div className="prompt-actions">
+              <button type="button" className="secondary" disabled={busy} onClick={() => compare()}>{busy ? 'Saving…' : 'Save my answer'}</button>
+              {savedText && <button type="button" className="quiet-link" disabled={busy} onClick={cancel}>Cancel</button>}
+            </div>
+            <small id={`${prompt.id}-draft-note`}>{draftSaved ? 'Your draft stays in this tab when you return. Save it when you are ready.' : 'This browser could not keep your draft. Keep this tab open until you save it.'}</small>
+          </>
+        : <>
+            <div role="radiogroup" aria-labelledby={`${prompt.id}-question`}>{prompt.options.map((choice) => <label key={choice.id}><input type="radio" name={prompt.id} checked={draft === choice.id} onChange={() => { write(choice.id); setCompared(false); }} /><span>{choice.label}</span></label>)}</div>
+            <div className="prompt-actions"><button type="button" className="secondary" disabled={busy} onClick={() => compare()}>{busy ? 'Saving…' : 'Check my answer'}</button></div>
+          </>}
+    {error && <p id={`${prompt.id}-error`} className="error" role="alert">{error}</p>}
+    {compared && prompt.kind === 'supported-selection' && <SelectionFeedback prompt={prompt} answer={answer} />}
   </div>;
 }
 

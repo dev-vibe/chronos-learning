@@ -45,12 +45,42 @@ it('keeps drafts through failed submission, and never shows the model answer', a
   expect(screen.queryByText(/correct|mastered|score/i)).toBeNull();
 });
 
-it('isolates draft visibility by learner identity and preserves saved explanations', () => {
+it('isolates draft visibility by learner identity and preserves saved explanations', async () => {
   sessionStorage.setItem(promptDraftKey('another-learner', prompt.lessonId, prompt.id), 'Private draft');
   render(<UnderstandingCheck prompt={prompt} answer="Previously saved explanation" learnerId="this-learner" onAttempt={vi.fn()} />);
-  expect((screen.getByRole('textbox') as HTMLTextAreaElement).value).toBe('Previously saved explanation');
+  expect(screen.queryByText('Private draft')).toBeNull();
+  expect(screen.getByText('Previously saved explanation')).toBeTruthy();
   expect(screen.getByText('Saved')).toBeTruthy();
   expect(screen.queryByText(prompt.explanation)).toBeNull();
+  await userEvent.click(screen.getByRole('button', { name: 'Edit my answer' }));
+  expect((screen.getByRole('textbox') as HTMLTextAreaElement).value).toBe('Previously saved explanation');
+});
+
+it('collapses a saved written answer, and edits or cancels in place', async () => {
+  const save = vi.fn(async () => undefined);
+  render(<UnderstandingCheck prompt={prompt} answer="" learnerId="learner-two" onAttempt={save} />);
+  fireEvent.change(screen.getByRole('textbox'), { target: { value: 'The marks keep a lasting record.' } });
+  await userEvent.click(screen.getByRole('button', { name: 'Save my answer' }));
+  expect(await screen.findByText('The marks keep a lasting record.')).toBeTruthy();
+  expect(screen.queryByRole('textbox')).toBeNull();
+  expect(screen.queryByRole('button', { name: 'Save my answer' })).toBeNull();
+  expect(screen.queryByText(/Your draft stays/)).toBeNull();
+  await userEvent.click(screen.getByRole('button', { name: 'Edit my answer' }));
+  const box = screen.getByRole('textbox') as HTMLTextAreaElement;
+  expect(document.activeElement).toBe(box);
+  fireEvent.change(box, { target: { value: 'A change I do not want.' } });
+  await userEvent.click(screen.getByRole('button', { name: 'Cancel' }));
+  expect(screen.getByText('The marks keep a lasting record.')).toBeTruthy();
+  await userEvent.click(screen.getByRole('button', { name: 'Edit my answer' }));
+  expect((screen.getByRole('textbox') as HTMLTextAreaElement).value).toBe('The marks keep a lasting record.');
+  expect(save).toHaveBeenCalledTimes(1);
+});
+
+it('reopens a written answer in the editor when this tab has unsaved changes', () => {
+  sessionStorage.setItem(promptDraftKey('learner-three', prompt.lessonId, prompt.id), 'Unsaved newer thinking');
+  render(<UnderstandingCheck prompt={prompt} answer="Older saved answer" learnerId="learner-three" onAttempt={vi.fn()} />);
+  expect((screen.getByRole('textbox') as HTMLTextAreaElement).value).toBe('Unsaved newer thinking');
+  expect(screen.getByRole('button', { name: 'Cancel' })).toBeTruthy();
 });
 
 it('uses authored choice feedback only after deliberate submission', async () => {
