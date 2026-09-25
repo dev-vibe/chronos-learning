@@ -193,3 +193,13 @@ h1,h2,h3{font-family:Newsreader,Georgia,serif;font-weight:500}
 .review-chip{display:inline-flex;align-items:center;gap:6px;margin-left:auto;padding:5px 12px;border-radius:999px;background:var(--bronze);color:#fff;font-size:.74rem;font-weight:600;text-decoration:none}
 .review-chip svg{width:14px}
 .prompt{scroll-margin-top:84px}
+/* Multiple-choice feedback says plainly whether the choice is the best-supported answer. */
+.prompt .feedback strong{display:flex;align-items:center;gap:8px;font-size:1rem}
+.prompt .feedback strong svg{flex:none;width:20px;height:20px}
+.feedback-correct{border-left-color:#1f8a52;background:color-mix(in srgb,#1f8a52 12%,var(--surface))}
+.feedback-correct strong{color:#17703f}
+.learn-app[data-theme=dark] .feedback-correct strong{color:#7fd9a4}
+.feedback-retry{border-left-color:var(--bronze);background:color-mix(in srgb,var(--bronze) 10%,var(--surface))}
+.feedback-retry strong{color:var(--bronze)}
+.feedback-more summary{cursor:pointer;color:var(--focus);font-size:.9em}
+.feedback-more p{margin:8px 0 0}

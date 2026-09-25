@@ -571,7 +571,7 @@ export const egyptNileStateMedia: MediaAsset[] = [
 
 export const egyptNileStatePrompts: UnderstandingPrompt[] = [
   {
-    id: 'prompt.egypt.palette-supported-claim',
+    id: 'prompt.egypt.palette-supported-claim', bestOptionId: 'option.egypt.palette-kingship-claim',
     lessonId: 'lesson.egypt.nile-state',
     kind: 'supported-selection',
     question: 'Which conclusion is best supported by the Narmer Palette itself?',

@@ -408,7 +408,7 @@ export const caralAndeanUrbanismMedia: MediaAsset[] = [
 
 export const caralAndeanUrbanismPrompts: UnderstandingPrompt[] = [
   {
-    id: 'prompt.caral.supported-model',
+    id: 'prompt.caral.supported-model', bestOptionId: 'option.caral.exchange-and-labor',
     lessonId: 'lesson.caral.andean-urbanism',
     kind: 'supported-selection',
     question: 'Which conclusion is best supported by Caral’s monuments and the cotton–fish evidence?',

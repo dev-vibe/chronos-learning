@@ -30,17 +30,18 @@ it('enlarges on demand, supports zoom, traps Tab, and returns focus after Escape
   expect(document.activeElement).toBe(trigger);
 });
 
-it('keeps drafts through failed submission, without treating examples as evaluation', async () => {
+it('keeps drafts through failed submission, and never shows the model answer', async () => {
   const save = vi.fn().mockRejectedValueOnce(new Error('offline')).mockResolvedValue(undefined);
   render(<UnderstandingCheck prompt={prompt} answer="" learnerId="learner-one" onAttempt={save} />);
   fireEvent.change(screen.getByRole('textbox'), { target: { value: 'The marks preserve a record.' } });
   expect(save).not.toHaveBeenCalled();
-  expect(screen.queryByText('An example explanation')).toBeNull();
-  await userEvent.click(screen.getByRole('button', { name: 'Compare your thinking' }));
+  expect(screen.queryByText(prompt.explanation)).toBeNull();
+  await userEvent.click(screen.getByRole('button', { name: 'Save my answer' }));
   expect((await screen.findByRole('alert')).textContent).toContain('could not be saved');
   expect(sessionStorage.getItem(promptDraftKey('learner-one', prompt.lessonId, prompt.id))).toBe('The marks preserve a record.');
-  await userEvent.click(screen.getByRole('button', { name: 'Compare your thinking' }));
-  expect(await screen.findByText('An example explanation')).toBeTruthy();
+  await userEvent.click(screen.getByRole('button', { name: 'Save my answer' }));
+  expect(await screen.findByText('Saved')).toBeTruthy();
+  expect(screen.queryByText(prompt.explanation)).toBeNull();
   expect(screen.queryByText(/correct|mastered|score/i)).toBeNull();
 });
 
@@ -48,26 +49,47 @@ it('isolates draft visibility by learner identity and preserves saved explanatio
   sessionStorage.setItem(promptDraftKey('another-learner', prompt.lessonId, prompt.id), 'Private draft');
   render(<UnderstandingCheck prompt={prompt} answer="Previously saved explanation" learnerId="this-learner" onAttempt={vi.fn()} />);
   expect((screen.getByRole('textbox') as HTMLTextAreaElement).value).toBe('Previously saved explanation');
-  expect(screen.getByText('An example explanation')).toBeTruthy();
+  expect(screen.getByText('Saved')).toBeTruthy();
+  expect(screen.queryByText(prompt.explanation)).toBeNull();
 });
 
 it('uses authored choice feedback only after deliberate submission', async () => {
-  const selection = { ...prompt, kind: 'supported-selection' as const, options: [{ id: 'choice.a', label: 'Marks', feedback: 'These marks show a durable record.' }, { id: 'choice.b', label: 'Color', feedback: 'Color alone cannot establish the purpose.' }] };
+  const selection = { ...prompt, kind: 'supported-selection' as const, bestOptionId: 'choice.a', options: [{ id: 'choice.a', label: 'Marks', feedback: 'Yes. These marks show a durable record.' }, { id: 'choice.b', label: 'Color', feedback: 'Color alone cannot establish the purpose.' }] };
   const save = vi.fn(async () => undefined);
   const view = render(<UnderstandingCheck prompt={selection} answer="" learnerId="test" onAttempt={save} />);
   await userEvent.click(screen.getByLabelText('Color'));
   expect(save).not.toHaveBeenCalled();
-  await userEvent.click(screen.getByRole('button', { name: 'Compare your thinking' }));
+  await userEvent.click(screen.getByRole('button', { name: 'Check my answer' }));
   view.rerender(<UnderstandingCheck prompt={selection} answer="choice.b" learnerId="test" onAttempt={save} />);
   expect(await screen.findByText('Color alone cannot establish the purpose.')).toBeTruthy();
 });
 
+it('says plainly when a choice is the best-supported answer, and invites a retry without revealing it when it is not', async () => {
+  const selection = { ...prompt, kind: 'supported-selection' as const, bestOptionId: 'choice.a', options: [{ id: 'choice.a', label: 'Marks', feedback: 'Yes. These marks show a durable record.' }, { id: 'choice.b', label: 'Color', feedback: 'Color alone cannot establish the purpose.' }] };
+  const save = vi.fn(async () => undefined);
+  const view = render(<UnderstandingCheck prompt={selection} answer="" learnerId="test" onAttempt={save} />);
+  await userEvent.click(screen.getByLabelText('Color'));
+  await userEvent.click(screen.getByRole('button', { name: 'Check my answer' }));
+  view.rerender(<UnderstandingCheck prompt={selection} answer="choice.b" learnerId="test" onAttempt={save} />);
+  expect(await screen.findByText(/Not quite. Try another answer./)).toBeTruthy();
+  expect(screen.queryByText(/best-supported answer/)).toBeNull();
+  expect(screen.queryByText(selection.explanation)).toBeNull();
+  expect(screen.queryByText('Marks', { selector: 'p, b' })).toBeNull();
+  await userEvent.click(screen.getByLabelText('Marks'));
+  expect(screen.queryByText(/Not quite/)).toBeNull();
+  await userEvent.click(screen.getByRole('button', { name: 'Check my answer' }));
+  view.rerender(<UnderstandingCheck prompt={selection} answer="choice.a" learnerId="test" onAttempt={save} />);
+  expect(await screen.findByText(/Yes! That’s the best-supported answer./)).toBeTruthy();
+  expect(screen.getByText('These marks show a durable record.')).toBeTruthy();
+  expect(save).toHaveBeenCalledTimes(2);
+});
+
 it('gives an actionable message for empty or obsolete choices without saving an attempt', async () => {
-  const selection = { ...prompt, kind: 'supported-selection' as const, options: [{ id: 'choice.a', label: 'Marks' }] };
+  const selection = { ...prompt, kind: 'supported-selection' as const, bestOptionId: 'choice.a', options: [{ id: 'choice.a', label: 'Marks' }] };
   const save = vi.fn();
   sessionStorage.setItem(promptDraftKey('test', prompt.lessonId, prompt.id), 'removed-choice');
   render(<UnderstandingCheck prompt={selection} answer="" learnerId="test" onAttempt={save} />);
-  await userEvent.click(screen.getByRole('button', { name: 'Compare your thinking' }));
+  await userEvent.click(screen.getByRole('button', { name: 'Check my answer' }));
   expect((await screen.findByRole('alert')).textContent).toContain('Choose an answer');
   expect(save).not.toHaveBeenCalled();
 });

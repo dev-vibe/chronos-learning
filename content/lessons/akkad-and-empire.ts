@@ -54,7 +54,7 @@ export const akkadClaims: Claim[] = [
 
 export const akkadPrompts: UnderstandingPrompt[] = [
   {
-    id: 'prompt.akkad.local-arrangements', lessonId, kind: 'supported-selection', required: true,
+    id: 'prompt.akkad.local-arrangements', bestOptionId: 'option.akkad.different-ties', lessonId, kind: 'supported-selection', required: true,
     question: 'At Leilan, archaeologists found a fortified administrative building with grain-processing rooms and tablets. At Urkesh, they found seal impressions naming a daughter of an Akkadian ruler. What is the strongest conclusion?',
     hint: 'Ask what the finds show at each place before deciding whether the two cities were governed in the same way.',
     explanation: 'Leilan has an Akkadian administrative building, with its ovens, tablets and an official’s sealings. The Urkesh sealings show a royal-family tie inside a local palace, but her exact role and the city’s political arrangement remain uncertain. Distant power could work through different local relationships.',

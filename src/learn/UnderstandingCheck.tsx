@@ -1,4 +1,5 @@
 import { useRef, useState, type ReactNode } from 'react';
+import { Check, CheckCircle2, RotateCcw } from 'lucide-react';
 import type { UnderstandingPrompt } from '../domains/contracts';
 
 type Props = { prompt: UnderstandingPrompt; answer: string; learnerId: string; evidence?: ReactNode; onAttempt(id: string, response: string): Promise<void> };
@@ -23,7 +24,7 @@ export function UnderstandingCheck({ prompt, answer, learnerId, evidence, onAtte
       setError('Add a little more about your thinking. Try including a detail from the lesson.'); input.current?.focus(); return;
     }
     if (prompt.kind === 'supported-selection' && !prompt.options.some((option) => option.id === value)) {
-      setError('Choose an answer, then compare your thinking with the evidence.'); return;
+      setError('Choose an answer, then check it.'); return;
     }
     if (!value.trim() || busy) return;
     setBusy(true); setError('');
@@ -31,10 +32,9 @@ export function UnderstandingCheck({ prompt, answer, learnerId, evidence, onAtte
       await onAttempt(prompt.id, value.trim());
       setCompared(true);
       // Keep the draft until another explicit submission, including optional revisions.
-    } catch { setError('Your answer could not be saved. Keep this page open and try Compare your thinking again.'); }
+    } catch { setError('Your answer could not be saved. Keep this page open and try again.'); }
     finally { setBusy(false); }
   };
-  const choiceFeedback = prompt.kind === 'supported-selection' ? prompt.options.find((option) => option.id === answer)?.feedback : undefined;
   return <div className="prompt" id={`prompt-${prompt.id}`}>
     {prompt.kind === 'concise-explanation'
       ? <label htmlFor={prompt.id}><strong>{prompt.question}</strong></label>
@@ -44,9 +44,33 @@ export function UnderstandingCheck({ prompt, answer, learnerId, evidence, onAtte
     {prompt.kind === 'concise-explanation'
       ? <textarea ref={input} id={prompt.id} value={draft} placeholder="Use an example from the lesson…" onChange={(event) => write(event.currentTarget.value)} aria-invalid={Boolean(error)} aria-describedby={`${prompt.id}-draft-note${error ? ` ${prompt.id}-error` : ''}`} />
       : <div role="radiogroup" aria-labelledby={`${prompt.id}-question`}>{prompt.options.map((choice) => <label key={choice.id}><input type="radio" name={prompt.id} checked={draft === choice.id} onChange={() => { write(choice.id); setCompared(false); }} /><span>{choice.label}</span></label>)}</div>}
-    <div className="prompt-actions"><button type="button" className="secondary" disabled={busy} onClick={() => compare()}>{busy ? 'Saving…' : 'Compare your thinking'}</button></div>
-    {prompt.kind === 'concise-explanation' && <small id={`${prompt.id}-draft-note`}>{draftSaved ? 'Your draft stays in this tab when you return. Share your thinking when you are ready.' : 'This browser could not keep your draft. Keep this tab open until you share your thinking.'}</small>}
+    <div className="prompt-actions"><button type="button" className="secondary" disabled={busy} onClick={() => compare()}>{busy ? 'Saving…' : prompt.kind === 'concise-explanation' ? 'Save my answer' : 'Check my answer'}</button></div>
+    {prompt.kind === 'concise-explanation' && <small id={`${prompt.id}-draft-note`}>{draftSaved ? 'Your draft stays in this tab when you return. Save it when you are ready.' : 'This browser could not keep your draft. Keep this tab open until you save it.'}</small>}
     {error && <p id={`${prompt.id}-error`} className="error" role="alert">{error}</p>}
-    {compared && <div className="feedback" role="status"><strong>{prompt.kind === 'concise-explanation' ? 'An example explanation' : 'Compare the evidence'}</strong><p>{choiceFeedback ?? prompt.explanation}</p><p>{prompt.kind === 'concise-explanation' ? 'Your explanation can use different words. What would you keep or add?' : 'Think about what supports this explanation.'}</p>{prompt.kind === 'concise-explanation' && <button type="button" className="secondary" onClick={() => { setCompared(false); input.current?.focus(); }}>Revise my thinking (optional)</button>}</div>}
+    {compared && (prompt.kind === 'supported-selection'
+      ? <SelectionFeedback prompt={prompt} answer={answer} />
+      // No model answer here: that would be the answer key. The parent sees it on Review.
+      : <div className="feedback feedback-saved" role="status"><strong><Check aria-hidden="true" /> Saved</strong><p>You can change it any time before you finish the lesson.</p><button type="button" className="secondary" onClick={() => { setCompared(false); input.current?.focus(); }}>Edit my answer</button></div>)}
+  </div>;
+}
+
+type SelectionPrompt = Extract<UnderstandingPrompt, { kind: 'supported-selection' }>;
+
+/** Says plainly whether the choice is the best-supported answer. The explanation appears only once it is. */
+function SelectionFeedback({ prompt, answer }: { prompt: SelectionPrompt; answer: string }) {
+  const chosen = prompt.options.find((option) => option.id === answer);
+  if (answer === prompt.bestOptionId) {
+    // Some authored feedback already opens with "Yes."; the heading says it.
+    const note = chosen?.feedback?.replace(/^Yes[.!]\s*/, '');
+    return <div className="feedback feedback-correct" role="status">
+      <strong><CheckCircle2 aria-hidden="true" /> Yes! That’s the best-supported answer.</strong>
+      <p>{note || prompt.explanation}</p>
+      {note && <details className="feedback-more"><summary>Why the other answers don’t fit</summary><p>{prompt.explanation}</p></details>}
+    </div>;
+  }
+  // Only the chosen option's own hint: never the right answer or the full explanation.
+  return <div className="feedback feedback-retry" role="status">
+    <strong><RotateCcw aria-hidden="true" /> Not quite. Try another answer.</strong>
+    <p>{chosen?.feedback ?? 'Look back at the evidence, then choose the answer it supports best.'}</p>
   </div>;
 }

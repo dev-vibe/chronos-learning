@@ -115,13 +115,13 @@ describe('multi-lesson Learn runtime', () => {
     await screen.findByRole('heading', { name: 'From Marks to Proto-Cuneiform' });
     await userEvent.click(screen.getByRole('radio', { name: /^A proto-cuneiform tablet combining numbers and signs for goods$/i }));
     expect(gateway.saveAttempt).not.toHaveBeenCalled();
-    await userEvent.click(screen.getAllByRole('button', { name: 'Compare your thinking' })[0]);
+    await userEvent.click(screen.getByRole('button', { name: 'Check my answer' }));
     const explanation = screen.getByRole('textbox', { name: /Explain one thing durable records made possible/ });
     await userEvent.type(explanation, 'Writing made allocations durable, but surviving administrative tablets omit many voices.');
     fireEvent.blur(explanation);
     expect(gateway.saveAttempt).toHaveBeenCalledTimes(1);
     expect(screen.getByRole('button', { name: 'Answer the checks above' }).hasAttribute('disabled')).toBe(true);
-    await userEvent.click(screen.getAllByRole('button', { name: 'Compare your thinking' })[1]);
+    await userEvent.click(screen.getByRole('button', { name: 'Save my answer' }));
     await waitFor(() => expect(screen.getByRole('button', { name: 'Finish and send for review' }).hasAttribute('disabled')).toBe(false));
     await userEvent.click(screen.getByRole('button', { name: 'Finish and send for review' }));
     expect(await screen.findByText('Waiting for review')).toBeTruthy();

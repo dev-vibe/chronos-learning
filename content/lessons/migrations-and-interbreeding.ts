@@ -396,7 +396,7 @@ export const migrationsAncientDnaMedia: MediaAsset[] = [
 
 export const migrationsAncientDnaPrompts: UnderstandingPrompt[] = [
   {
-    id: 'prompt.humans.long-segments-inference',
+    id: 'prompt.humans.long-segments-inference', bestOptionId: 'option.humans.recent-neanderthal-ancestor',
     lessonId: 'lesson.humans.migrations-and-interbreeding',
     kind: 'supported-selection',
     question: 'Oase 1 carried unusually long stretches of Neanderthal DNA. Which conclusion is best supported?',

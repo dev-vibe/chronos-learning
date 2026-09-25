@@ -419,6 +419,9 @@ function ReviewCard({ item, learner, gateway, onReviewed }: { item: ReviewItem; 
       return <li key={promptId}>
         <p className="review-question">{prompt?.question ?? promptId}</p>
         <p className="review-answer">{answerText(prompt, item.answers[promptId])}</p>
+        {prompt?.kind === 'supported-selection' && item.answers[promptId] && (item.answers[promptId] === prompt.bestOptionId
+          ? <p className="review-verdict review-verdict-best"><Check aria-hidden="true" /> Best-supported answer</p>
+          : <p className="review-verdict review-verdict-other">Not the best-supported answer</p>)}
         {prompt && <details className="review-guide"><summary><ChevronDown aria-hidden="true" /> What a strong answer covers</summary><p>{prompt.explanation}</p></details>}
       </li>;
     })}</ol>

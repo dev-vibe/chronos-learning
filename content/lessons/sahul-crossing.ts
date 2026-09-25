@@ -304,7 +304,7 @@ export const sahulCrossingClaims: Claim[] = [
 
 export const sahulCrossingPrompts: UnderstandingPrompt[] = [
   {
-    id: 'prompt.humans.sahul.sand-date-supports',
+    id: 'prompt.humans.sahul.sand-date-supports', bestOptionId: 'option.humans.sahul.sand-and-tools',
     lessonId: 'lesson.humans.sahul-crossing',
     kind: 'supported-selection',
     question: 'Sand around stone tools at Madjedbebe was dated to about 65,000 years ago. What must researchers check before using that date as evidence that people lived there then?',

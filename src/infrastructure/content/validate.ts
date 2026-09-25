@@ -155,6 +155,7 @@ export function validateContent(input: ContentBundle) {
     if (!prompt.explanation.trim()) errors.push(`${prompt.id}: missing prompt explanation`);
     if (!lessonIds.has(prompt.lessonId)) errors.push(`${prompt.id}: broken lesson reference ${prompt.lessonId}`);
     else if (!lessonById.get(prompt.lessonId).promptIds.includes(prompt.id)) errors.push(`${prompt.id}: not registered by lesson ${prompt.lessonId}`);
+    if (prompt.kind === 'supported-selection' && !prompt.options.some((option: { id: string }) => option.id === prompt.bestOptionId)) errors.push(`${prompt.id}: best answer ${prompt.bestOptionId} is not one of its options`);
   }
 
   const journeyById = new Map(journeys.map((journey) => [journey.id, journey]));

@@ -124,7 +124,7 @@ export const pyramidsPowerStateLaborMedia: MediaAsset[] = [
 
 export const pyramidsPowerStateLaborPrompts: UnderstandingPrompt[] = [
   {
-    id: 'prompt.pyramids.context-and-phase', lessonId: 'lesson.egypt.pyramids-and-state-labor', kind: 'supported-selection',
+    id: 'prompt.pyramids.context-and-phase', bestOptionId: 'option.pyramids.strong-context-open-phases', lessonId: 'lesson.egypt.pyramids-and-state-labor', kind: 'supported-selection',
     question: 'Which conclusion best fits the whole pattern of evidence at Giza?',
     explanation: 'Merer’s log, the nearby royal buildings, tests on ancient materials, and the workers’ town all point to major work at Giza during the Old Kingdom. Together, they still cannot tell us when every hidden space was built or what every chamber was first used for.',
     required: true,

@@ -81,3 +81,8 @@
 .kid-view-card .primary svg{width:18px}
 .kid-view-others{display:flex;flex-wrap:wrap;gap:8px;align-items:center}
 .kid-view-others .family-hint{margin:0 4px 0 0}
+.review-verdict{display:inline-flex;align-items:center;gap:6px;margin:6px 0 0;padding:3px 10px;border-radius:999px;font-size:.78rem;font-weight:700}
+.review-verdict svg{width:14px}
+.review-verdict-best{background:color-mix(in srgb,#1f8a52 14%,transparent);color:#17703f}
+.discovery-app[data-theme=dark] .review-verdict-best{color:#7fd9a4}
+.review-verdict-other{background:color-mix(in srgb,var(--bronze) 14%,transparent);color:var(--bronze)}

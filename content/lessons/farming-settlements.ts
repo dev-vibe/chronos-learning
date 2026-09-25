@@ -222,7 +222,7 @@ export const farmingSettlementsMedia: MediaAsset[] = [
 
 export const farmingSettlementsPrompts: UnderstandingPrompt[] = [
   {
-    id: 'prompt.farming.house-pattern',
+    id: 'prompt.farming.house-pattern', bestOptionId: 'option.farming.private-and-shared',
     lessonId: 'lesson.farming.settlements',
     kind: 'supported-selection',
     question: 'Storage bins and plant remains were concentrated inside side rooms, while entrance areas held animal displays and evidence linked to feasting. Which conclusion is best supported?',

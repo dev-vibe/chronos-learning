@@ -241,6 +241,7 @@ describe('Review page', () => {
     const card = screen.getByRole('article', { name: 'Uruk: Life in an Early City' });
     expect(within(card).getByText('Administrative tablets and cylinder seals')).toBeTruthy();
     expect(within(card).getByText('Temple workers were paid in grain rations.')).toBeTruthy();
+    expect(within(card).getByText('Best-supported answer')).toBeTruthy();
     await userEvent.click(within(card).getByRole('button', { name: 'Send back' }));
     expect(within(card).getByRole('alert').textContent).toContain('Add a note so Sam knows what to change');
     expect(gateway.review).not.toHaveBeenCalled();

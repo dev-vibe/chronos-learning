@@ -32,7 +32,7 @@ export const kermaClaims: Claim[] = [
 
 export const kermaPrompts: UnderstandingPrompt[] = [
   {
-    id: 'prompt.kerma.contact-and-rule', lessonId: 'lesson.nubia.kerma-and-nile-world', kind: 'supported-selection', required: true,
+    id: 'prompt.kerma.contact-and-rule', bestOptionId: 'option.kerma.local-and-connected', lessonId: 'lesson.nubia.kerma-and-nile-world', kind: 'supported-selection', required: true,
     question: 'At Kerma, archaeologists found metalworking waste and an Egyptian-made statue. Which explanation best fits those finds?',
     hint: 'Waste left from making metal objects tells us where work happened. A finished object can travel after it was made.',
     explanation: 'Production waste supports metalworking at Kerma. The Egyptian statue reached Kerma from elsewhere, but its journey is not fully known. Together these finds fit a community with local skills and outside connections; they do not by themselves name its rulers.',

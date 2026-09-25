@@ -35,7 +35,7 @@ export const indusClaims: Claim[] = [
 
 export const indusPrompts: UnderstandingPrompt[] = [
   {
-    id: 'prompt.indus.shared-standards', lessonId: 'lesson.indus.cities-and-signs', kind: 'supported-selection', required: true, evidenceModuleIds: ['module.indus.weights-evidence'],
+    id: 'prompt.indus.shared-standards', bestOptionId: 'option.indus.shared-measure', lessonId: 'lesson.indus.cities-and-signs', kind: 'supported-selection', required: true, evidenceModuleIds: ['module.indus.weights-evidence'],
     question: 'Stone weights from several Indus cities follow a shared system. Which conclusion is best supported by that pattern?',
     hint: 'Separate what people needed to agree on from who might have made that agreement.',
     explanation: 'The weights support a shared way of measuring quantities. That could help people coordinate exchange or collections. The objects alone do not name the people who set or enforced the standard.',
