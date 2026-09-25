@@ -77,7 +77,7 @@ describe('Uruk Learn progress boundary', () => {
 
     const loaded = await new SupabaseLearnGateway('11111111-1111-1111-1111-111111111111', client).load('lesson.uruk.first-city');
     expect(loaded.review).toEqual({ status: 'returned', round: 2, submittedAt: '2026-09-01T00:00:00Z', reviewedAt: '2026-09-02T00:00:00Z', feedback: 'Add a detail.', cardIds: [] });
-    expect(loaded.account).toEqual({ parentLinked: true });
+    expect(loaded.account).toEqual({ parentLinked: true, view: 'self' });
 
     expect(upserts).toEqual([
       {

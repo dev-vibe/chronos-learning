@@ -1,14 +1,17 @@
 import React, { useCallback, useEffect, useMemo, useState } from 'react';
-import { Check, ChevronDown, ClipboardCheck, KeyRound, LogOut, MessageSquareQuote, RefreshCw, UserRound, Users } from 'lucide-react';
+import { Check, ChevronDown, ClipboardCheck, KeyRound, Lock, LogOut, MessageSquareQuote, RefreshCw, ShieldCheck, UserRound, UserPlus, Users } from 'lucide-react';
 import { chronosContent } from '../../content/chronos';
 import type { UnderstandingPrompt } from '../domains/contracts';
 import { cardsForLesson } from '../learn/progress';
 import { useChronosTheme } from '../theme/useChronosTheme';
 import { GlobalNavigation } from './GlobalNavigation';
+import { ParentViewEntry, useActiveLearner } from './ProfileSwitcher';
+import { enterParentView, refreshActiveLearner, switchToKid, type ActiveLearner } from '../infrastructure/family/activeLearner';
 import {
   createFamilyGateway,
   familyErrorMessage,
   formatLinkCode,
+  type AccountSetup,
   type AccountSnapshot,
   type FamilyGateway,
   type FamilyMember,
@@ -31,12 +34,19 @@ const shortDate = (iso?: string) => {
 
 type Session = { userId: string; email?: string } | null;
 
-export function FamilyApp({ page, gateway: provided }: { page: 'account' | 'review'; gateway?: FamilyGateway }) {
+export function FamilyApp({ page, gateway: provided, activeLearner }: { page: 'account' | 'review'; gateway?: FamilyGateway; activeLearner?: ActiveLearner | null }) {
   const gateway = useMemo(() => provided ?? createFamilyGateway(), [provided]);
   const { theme, toggleTheme } = useChronosTheme();
+  const resolved = useActiveLearner();
+  const active = activeLearner !== undefined ? activeLearner : resolved;
   const [session, setSession] = useState<Session | undefined>(undefined);
-  const refreshSession = useCallback(() => gateway.session().then(setSession).catch(() => setSession(null)), [gateway]);
-  useEffect(() => { void refreshSession(); }, [refreshSession]);
+  const refreshSession = useCallback(() => { refreshActiveLearner(); return gateway.session().then(setSession).catch(() => setSession(null)); }, [gateway]);
+  useEffect(() => {
+    // Returning from Google sign-in: the account holder just signed in.
+    const params = new URLSearchParams(window.location.search);
+    if (params.has('signed-in')) { enterParentView(); window.history.replaceState(null, '', window.location.pathname); }
+    void refreshSession();
+  }, [refreshSession]);
   useEffect(() => { document.title = `${page === 'account' ? 'Account' : 'Review'} · Chronos`; }, [page]);
 
   return <div className="discovery-app" data-theme={theme}>
@@ -48,9 +58,11 @@ export function FamilyApp({ page, gateway: provided }: { page: 'account' | 'revi
           ? <header className="page-intro"><p className="label">Account</p><h1>Accounts aren’t set up here.</h1><p>This copy of Chronos has no database connected, so lessons are saved in this browser only.</p></header>
           : !session
             ? <SignIn gateway={gateway} onSignedIn={refreshSession} reviewing={page === 'review'} />
-            : page === 'account'
-              ? <AccountPage gateway={gateway} session={session} onSignedOut={refreshSession} />
-              : <ReviewPage gateway={gateway} />}
+            : active?.view === 'kid'
+              ? <KidViewPage gateway={gateway} active={active} reviewing={page === 'review'} />
+              : page === 'account'
+                ? <AccountPage gateway={gateway} session={session} onSignedOut={refreshSession} />
+                : <ReviewPage gateway={gateway} />}
     </main>
   </div>;
 }
@@ -96,33 +108,164 @@ function SignIn({ gateway, onSignedIn, reviewing }: { gateway: FamilyGateway; on
   </>;
 }
 
+function inferredSetup(account: AccountSnapshot): AccountSetup | undefined {
+  if (account.setup) return account.setup;
+  if (account.profiles.length) return 'shared';
+  if (account.learners.length) return 'separate';
+  if (account.parents.length) return 'learner';
+  return undefined;
+}
+
 function AccountPage({ gateway, session, onSignedOut }: { gateway: FamilyGateway; session: NonNullable<Session>; onSignedOut(): void }) {
   const [account, setAccount] = useState<AccountSnapshot>();
   const [waiting, setWaiting] = useState(0);
   const [error, setError] = useState('');
+  const [choosing, setChoosing] = useState(false);
   const load = useCallback(async () => {
     setError('');
     try {
       const loaded = await gateway.loadAccount();
       setAccount(loaded);
-      if (loaded.learners.length) setWaiting((await gateway.loadReviewQueue()).filter((item) => item.status === 'submitted').length);
+      if (loaded.learners.length || loaded.profiles.length) setWaiting((await gateway.loadReviewQueue()).filter((item) => item.status === 'submitted').length);
     } catch (caught) { setError(familyErrorMessage(caught, 'Your account couldn’t be loaded. Check your connection and retry.')); }
   }, [gateway]);
   useEffect(() => { void load(); }, [load]);
   const signOut = async () => { await gateway.signOut().catch(() => undefined); onSignedOut(); };
+  const choose = async (setup: AccountSetup) => {
+    setError('');
+    try { await gateway.saveSetup(setup); setChoosing(false); await load(); }
+    catch (caught) { setError(familyErrorMessage(caught, 'That choice couldn’t be saved. Please try again.')); }
+  };
 
   if (error && !account) return <><header className="page-intro"><p className="label">Account</p><h1>We couldn’t open your account.</h1><p>{error}</p></header><button className="primary" onClick={load}>Retry</button></>;
   if (!account) return <p className="family-loading" aria-busy="true">Opening your account…</p>;
-  const isParent = account.learners.length > 0;
-  const learnerCard = <LinkToParentCard key="learner" gateway={gateway} account={account} onChange={load} />;
-  const parentCard = <ReviewLearnersCard key="parent" gateway={gateway} account={account} waiting={waiting} onChange={load} />;
+  const setup = choosing ? undefined : inferredSetup(account);
+  const changed = () => { refreshActiveLearner(); return load(); };
+  const cards = setup === 'shared'
+    ? [<KidsOnAccountCard key="kids" gateway={gateway} account={account} waiting={waiting} onChange={changed} />, <ParentPinCard key="pin" gateway={gateway} account={account} onChange={load} />, <ReviewLearnersCard key="linked" gateway={gateway} account={account} waiting={0} onChange={load} secondary />]
+    : setup === 'separate'
+      ? [<ReviewLearnersCard key="linked" gateway={gateway} account={account} waiting={waiting} onChange={load} />]
+      : setup === 'learner'
+        ? [<LinkToParentCard key="learner" gateway={gateway} account={account} onChange={load} />]
+        : [];
   return <>
-    <header className="page-intro"><p className="label">Account</p><h1>Hi{account.displayName ? `, ${account.displayName}` : ''}.</h1><p>Signed in as {session.email ?? 'your account'}. <button className="quiet-link" onClick={signOut}><LogOut aria-hidden="true" /> Sign out</button></p></header>
+    <header className="page-intro"><p className="label">Account{setup === 'shared' ? ' · Parent view' : ''}</p><h1>Hi{account.displayName ? `, ${account.displayName}` : ''}.</h1><p>Signed in as {session.email ?? 'your account'}. <button className="quiet-link" onClick={signOut}><LogOut aria-hidden="true" /> Sign out</button></p></header>
     {error && <p className="error" role="alert">{error}</p>}
     <div className="family-grid">
       <DisplayNameCard gateway={gateway} account={account} onSaved={load} />
-      {isParent ? [parentCard, learnerCard] : [learnerCard, parentCard]}
+      {setup ? cards : <SetupChooser onChoose={choose} />}
     </div>
+    {setup && <p className="family-hint family-change-setup">Set up for a different situation? <button className="quiet-link" onClick={() => setChoosing(true)}>Change how this account is used</button></p>}
+  </>;
+}
+
+const setupChoices: Array<{ setup: AccountSetup; title: string; body: string; recommended?: boolean }> = [
+  { setup: 'separate', recommended: true, title: 'My kid will have their own sign-in', body: 'Best for most families. Each kid signs in on their own and gives you a code to link, so their progress and cards stay theirs.' },
+  { setup: 'shared', title: 'My kids will share this sign-in', body: 'For kids without their own email. Chronos opens as a kid, and a button in the menu switches kids or opens parent view. You can lock parent view with a PIN.' },
+  { setup: 'learner', title: 'Just me. I’m the learner.', body: 'Your parent can link to you later with a code from this page.' },
+];
+
+function SetupChooser({ onChoose }: { onChoose(setup: AccountSetup): void }) {
+  return <section className="family-card setup-card" aria-labelledby="setup-title">
+    <h2 id="setup-title"><Users aria-hidden="true" /> Who will use Chronos on this account?</h2>
+    <div className="setup-options">{setupChoices.map((choice) => <button key={choice.setup} type="button" className={`setup-option${choice.recommended ? ' recommended' : ''}`} onClick={() => onChoose(choice.setup)}>
+      <span className="setup-option-title">{choice.title}{choice.recommended && <span className="setup-badge">Recommended</span>}</span>
+      <span className="setup-option-body">{choice.body}</span>
+    </button>)}</div>
+  </section>;
+}
+
+function KidsOnAccountCard({ gateway, account, waiting, onChange }: { gateway: FamilyGateway; account: AccountSnapshot; waiting: number; onChange(): void }) {
+  const [name, setName] = useState('');
+  const [busy, setBusy] = useState(false);
+  const [error, setError] = useState('');
+  const [renaming, setRenaming] = useState<{ id: string; name: string }>();
+  const add = async (event: React.FormEvent) => {
+    event.preventDefault();
+    setBusy(true); setError('');
+    try { await gateway.addProfile(name); setName(''); onChange(); }
+    catch (caught) { setError(familyErrorMessage(caught, 'That kid couldn’t be added. Please try again.')); }
+    finally { setBusy(false); }
+  };
+  const rename = async (event: React.FormEvent) => {
+    event.preventDefault();
+    if (!renaming?.name.trim()) return;
+    try { await gateway.renameProfile(renaming.id, renaming.name); setRenaming(undefined); onChange(); }
+    catch (caught) { setError(familyErrorMessage(caught, 'That name couldn’t be saved. Please try again.')); }
+  };
+  const remove = async (kid: FamilyMember) => {
+    if (!window.confirm(`Remove ${nameOf(kid)}? Their progress, answers and cards on this account will be deleted.`)) return;
+    try { await gateway.removeProfile(kid.id); onChange(); }
+    catch (caught) { setError(familyErrorMessage(caught, 'That kid couldn’t be removed. Please try again.')); }
+  };
+  const first = account.profiles[0];
+  return <section className="family-card" aria-labelledby="kids-title">
+    <h2 id="kids-title"><Users aria-hidden="true" /> Kids on this account</h2>
+    {account.profiles.length
+      ? <>
+          <ul className="family-members">{account.profiles.map((kid) => <li key={kid.id}>
+            {renaming?.id === kid.id
+              ? <form className="family-rename" onSubmit={rename}><label className="sr-only" htmlFor={`rename-${kid.id}`}>New name for {nameOf(kid)}</label><input id={`rename-${kid.id}`} value={renaming.name} onChange={(event) => setRenaming({ id: kid.id, name: event.target.value })} maxLength={60} autoFocus /><button className="secondary">Save</button><button type="button" className="quiet-link" onClick={() => setRenaming(undefined)}>Cancel</button></form>
+              : <><span>{nameOf(kid)}</span><span className="family-member-actions"><button className="quiet-link" onClick={() => setRenaming({ id: kid.id, name: kid.displayName ?? '' })}>Rename</button><button className="quiet-link" onClick={() => remove(kid)}>Remove</button></span></>}
+          </li>)}</ul>
+          <div className="review-link-row">
+            <a className="primary review-link" href="/review"><ClipboardCheck aria-hidden="true" /> {waiting ? `Review work · ${waiting} waiting` : 'Open Review'}</a>
+            {first && <button className="secondary" onClick={() => switchToKid(first.id)}>Switch to {nameOf(first)}</button>}
+          </div>
+          <p className="family-hint">Chronos opens as a kid. To switch kids or come back to parent view, use the name button at the top of the menu.</p>
+        </>
+      : <p>Add each kid who will use this sign-in. They don’t need an email.</p>}
+    <form className="family-inline-form" onSubmit={add}>
+      <label htmlFor="kid-name">{account.profiles.length ? 'Add another kid' : 'Kid’s first name'}</label>
+      <input id="kid-name" value={name} onChange={(event) => { setName(event.target.value); setError(''); }} maxLength={60} autoComplete="off" required autoFocus={!account.profiles.length} />
+      <button className="secondary" disabled={busy || !name.trim()}><UserPlus aria-hidden="true" /> {busy ? 'Adding…' : 'Add kid'}</button>
+    </form>
+    {error && <p className="error" role="alert">{error}</p>}
+  </section>;
+}
+
+function ParentPinCard({ gateway, account, onChange }: { gateway: FamilyGateway; account: AccountSnapshot; onChange(): void }) {
+  const [editing, setEditing] = useState(false);
+  const [pin, setPin] = useState('');
+  const [busy, setBusy] = useState(false);
+  const [error, setError] = useState('');
+  const [notice, setNotice] = useState('');
+  const save = async (next: string | null) => {
+    setBusy(true); setError(''); setNotice('');
+    try { await gateway.setParentPin(next); setEditing(false); setPin(''); setNotice(next ? 'PIN saved.' : 'PIN turned off.'); onChange(); }
+    catch (caught) { setError(familyErrorMessage(caught, 'The PIN couldn’t be saved. Please try again.')); }
+    finally { setBusy(false); }
+  };
+  return <section className="family-card" aria-labelledby="pin-title">
+    <h2 id="pin-title"><Lock aria-hidden="true" /> Parent view PIN</h2>
+    <p>{account.parentPin ? 'On. Chronos asks for this PIN before opening parent view.' : 'Off. Anyone using this sign-in can open parent view. Add a PIN if you’d like to keep Review to yourself.'}</p>
+    {editing
+      ? <form className="family-inline-form" onSubmit={(event) => { event.preventDefault(); void save(pin); }}>
+          <label htmlFor="new-pin">New 4-digit PIN</label>
+          <input id="new-pin" className="pin-input" value={pin} onChange={(event) => setPin(event.target.value.replace(/\D/g, '').slice(0, 4))} inputMode="numeric" autoComplete="off" maxLength={4} autoFocus />
+          <button className="secondary" disabled={busy || pin.length !== 4}>{busy ? 'Saving…' : 'Save PIN'}</button>
+        </form>
+      : <div className="review-actions">
+          <button className="secondary" onClick={() => { setEditing(true); setNotice(''); }}>{account.parentPin ? 'Change PIN' : 'Add a PIN'}</button>
+          {account.parentPin && <button className="quiet-link" disabled={busy} onClick={() => save(null)}>Turn off the PIN</button>}
+        </div>}
+    {account.parentPin && <p className="family-hint">Forgot it? Sign out and sign back in. Signing in opens parent view, where you can change it.</p>}
+    {notice && <p className="family-success" role="status"><Check aria-hidden="true" /> {notice}</p>}
+    {error && <p className="error" role="alert">{error}</p>}
+  </section>;
+}
+
+/** On a shared account in kid view, account and review pages lead back to parent view. */
+function KidViewPage({ gateway, active, reviewing }: { gateway: FamilyGateway; active: ActiveLearner; reviewing: boolean }) {
+  const kid = active.profiles.find((profile) => profile.id === active.learnerId);
+  const others = active.profiles.filter((profile) => profile.id !== active.learnerId);
+  return <>
+    <header className="page-intro"><p className="label">{reviewing ? 'Review' : 'Account'}</p><h1>You’re using Chronos as {kid?.displayName ?? 'a kid'}.</h1><p>{reviewing ? 'Reviewing work happens in parent view.' : 'This sign-in belongs to your parent. Account settings are in parent view.'}</p></header>
+    <section className="family-card kid-view-card" aria-label="Switch profile">
+      <ParentViewEntry gateway={gateway} className="primary" label="Switch to parent view" onSwitch={() => { enterParentView(); window.location.reload(); }} />
+      {others.length > 0 && <div className="kid-view-others"><p className="family-hint">Or switch to:</p>{others.map((other) => <button key={other.id} className="secondary" onClick={() => switchToKid(other.id)}>{other.displayName}</button>)}</div>}
+      <a className="quiet-link" href="/home">Back to learning</a>
+    </section>
   </>;
 }
 
@@ -175,7 +318,7 @@ function LinkToParentCard({ gateway, account, onChange }: { gateway: FamilyGatew
   </section>;
 }
 
-function ReviewLearnersCard({ gateway, account, waiting, onChange }: { gateway: FamilyGateway; account: AccountSnapshot; waiting: number; onChange(): void }) {
+function ReviewLearnersCard({ gateway, account, waiting, onChange, secondary = false }: { gateway: FamilyGateway; account: AccountSnapshot; waiting: number; onChange(): void; secondary?: boolean }) {
   const [code, setCode] = useState('');
   const [busy, setBusy] = useState(false);
   const [error, setError] = useState('');
@@ -193,15 +336,15 @@ function ReviewLearnersCard({ gateway, account, waiting, onChange }: { gateway: 
   };
   const hasLearners = account.learners.length > 0;
   return <section className="family-card" aria-labelledby="review-learners-title">
-    <h2 id="review-learners-title"><Users aria-hidden="true" /> {hasLearners ? 'Learners you review' : 'Are you a parent?'}</h2>
+    <h2 id="review-learners-title"><KeyRound aria-hidden="true" /> {secondary ? 'Kids with their own sign-in' : hasLearners ? 'Kids you review' : 'Link your kid'}</h2>
     {hasLearners
       ? <>
           <ul className="family-members">{account.learners.map((learner) => <li key={learner.id}><span>{nameOf(learner)}</span><button className="quiet-link" onClick={() => unlink(learner)}>Unlink</button></li>)}</ul>
-          <a className="primary review-link" href="/review"><ClipboardCheck aria-hidden="true" /> {waiting ? `Review work · ${waiting} waiting` : 'Open Review'}</a>
+          {!secondary && <a className="primary review-link" href="/review"><ClipboardCheck aria-hidden="true" /> {waiting ? `Review work · ${waiting} waiting` : 'Open Review'}</a>}
         </>
-      : <p>Enter the code from your learner’s Account page to read their answers and pass their lessons.</p>}
+      : <p>{secondary ? 'If a kid has their own sign-in, enter the code from their Account page.' : 'Your kid creates their own account, chooses “Just me. I’m the learner.”, and reads you the code on their Account page. Enter it here.'}</p>}
     <form className="family-inline-form" onSubmit={link}>
-      <label htmlFor="learner-code">{hasLearners ? 'Link another learner' : 'Learner’s link code'}</label>
+      <label htmlFor="learner-code">{hasLearners ? 'Link another kid' : 'Kid’s link code'}</label>
       <input id="learner-code" value={code} onChange={(event) => setCode(event.target.value.toUpperCase())} placeholder="ABCD-EFGH" autoComplete="off" autoCapitalize="characters" spellCheck={false} maxLength={12} required />
       <button className="secondary" disabled={busy || code.replace(/[^A-Za-z0-9]/g, '').length < 8}>{busy ? 'Linking…' : 'Link'}</button>
     </form>
@@ -231,8 +374,9 @@ function ReviewPage({ gateway }: { gateway: FamilyGateway }) {
 
   if (error && !items) return <><header className="page-intro"><p className="label">Review</p><h1>We couldn’t open Review.</h1><p>{error}</p></header><button className="primary" onClick={load}>Retry</button></>;
   if (!account || !items) return <p className="family-loading" aria-busy="true">Opening Review…</p>;
-  if (!account.learners.length) return <header className="page-intro"><p className="label">Review</p><h1>No learners linked yet.</h1><p>Ask your learner for the code on their Account page, then enter it on <a href="/account">your Account page</a>.</p></header>;
-  const learnerById = new Map(account.learners.map((learner) => [learner.id, learner]));
+  const reviewable = [...account.learners, ...account.profiles];
+  if (!reviewable.length) return <header className="page-intro"><p className="label">Review</p><h1>No kids to review yet.</h1><p>Link a kid with their code, or add kids to this sign-in, on <a href="/account">your Account page</a>.</p></header>;
+  const learnerById = new Map(reviewable.map((learner) => [learner.id, learner]));
   const known = items.filter((item) => lessonById.has(item.lessonId) && learnerById.has(item.learnerId));
   const waiting = known.filter((item) => item.status === 'submitted').sort((left, right) => left.submittedAt.localeCompare(right.submittedAt));
   const reviewed = known.filter((item) => item.status !== 'submitted');

@@ -47,9 +47,20 @@ describe('parent review submissions', () => {
     const state = { learnerId: 'x', lessonId: 'lesson.uruk.first-city', status: 'in-progress' as const, attemptedPromptIds: [], exploredSectionIds: [], responses: { 'prompt.uruk.administration-evidence': 'option.uruk.tablets' }, version: 1 as const };
     vi.spyOn(gateway, 'load').mockResolvedValue(state);
     await gateway.submit('lesson.uruk.first-city');
-    expect(rpc).toHaveBeenCalledWith('submit_lesson', { p_lesson_id: 'lesson.uruk.first-city', p_answers: { 'prompt.uruk.administration-evidence': 'option.uruk.tablets' } });
+    expect(rpc).toHaveBeenCalledWith('submit_lesson', { p_lesson_id: 'lesson.uruk.first-city', p_answers: { 'prompt.uruk.administration-evidence': 'option.uruk.tablets' }, p_learner_id: '11111111-1111-4111-a111-111111111111' });
     await gateway.acknowledgePass('lesson.uruk.first-city');
-    expect(rpc).toHaveBeenLastCalledWith('acknowledge_pass', { p_lesson_id: 'lesson.uruk.first-city' });
+    expect(rpc).toHaveBeenLastCalledWith('acknowledge_pass', { p_lesson_id: 'lesson.uruk.first-city', p_learner_id: '11111111-1111-4111-a111-111111111111' });
+  });
+
+  it('acts for a kid profile on a shared account without creating a learner row', async () => {
+    const parentId = 'aaaaaaaa-aaaa-4aaa-aaaa-aaaaaaaaaaaa';
+    const upserts: string[] = [];
+    const chain = (data: unknown) => { const query: any = { select: () => query, eq: () => query, in: () => query, order: () => query, single: async () => ({ data, error: null }), maybeSingle: async () => ({ data, error: null }), then: (resolve: (value: unknown) => unknown) => Promise.resolve({ data, error: null }).then(resolve) }; return query; };
+    const client: any = { from: (table: string) => ({ upsert: async () => { upserts.push(table); return { error: null }; }, select: () => chain(table === 'lesson_progress' ? { status: 'in_progress', completed_at: null } : []) }) };
+    const gateway = new SupabaseLearnGateway('kid-sam', client, { userId: parentId, learnerId: 'kid-sam', view: 'kid', profiles: [{ id: 'kid-sam', displayName: 'Sam' }] });
+    const state = await gateway.load('lesson.uruk.first-city');
+    expect(upserts).toEqual(['lesson_progress']);
+    expect(state.account).toEqual({ parentLinked: true, view: 'kid' });
   });
 
   it('maps unseen passes and sent-back notes into the learner inbox', async () => {

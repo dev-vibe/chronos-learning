@@ -1,6 +1,7 @@
 import React from 'react';
 import { Compass, Home, Library, Moon, Search, Sun, UserRound } from 'lucide-react';
 import './global-navigation.css';
+import { ProfileSwitcher, useActiveLearner } from './ProfileSwitcher';
 
 export type GlobalDestination = 'home' | 'library' | 'search' | 'account';
 
@@ -28,7 +29,11 @@ export function GlobalNavigation({
   worldHistoryOpen = false,
   auditMode = false,
 }: GlobalNavigationProps) {
-  const links = destinations.map(({ id, label, href, icon: Icon }) => (
+  // On a shared account, the profile switcher takes the Account slot and is
+  // pinned near the top of the rail so it is always easy to find.
+  const learner = useActiveLearner();
+  const shared = learner && learner.profiles.length > 0 ? learner : null;
+  const links = destinations.filter(({ id }) => !shared || id !== 'account').map(({ id, label, href, icon: Icon }) => (
     <a
       key={id}
       href={href}
@@ -55,6 +60,7 @@ export function GlobalNavigation({
         <span aria-hidden="true">C</span>
         <strong>Chronos</strong>
       </a>
+      {shared && <ProfileSwitcher active={shared} variant="rail" />}
       <nav>{links[0]}{worldHistory}{links.slice(1)}</nav>
       {auditMode ? <a className="audit-nav" href="/audit">Audit on</a> : null}
       <button
@@ -65,6 +71,6 @@ export function GlobalNavigation({
         {theme === 'light' ? <Moon /> : <Sun />}
       </button>
     </aside>
-    <nav className={`mobile-nav${auditMode ? ' with-audit' : ''}`} aria-label="Chronos navigation">{links[0]}{worldHistory}{links.slice(1)}{auditMode ? <a className="audit-nav" href="/audit">Audit on</a> : null}</nav>
+    <nav className={`mobile-nav${auditMode ? ' with-audit' : ''}`} aria-label="Chronos navigation">{links[0]}{worldHistory}{links.slice(1)}{shared && <ProfileSwitcher active={shared} variant="tab" />}{auditMode ? <a className="audit-nav" href="/audit">Audit on</a> : null}</nav>
   </>;
 }

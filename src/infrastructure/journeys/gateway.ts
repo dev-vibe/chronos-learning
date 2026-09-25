@@ -2,6 +2,7 @@ import { chronosContent } from '../../../content/chronos';
 import type { Journey, Lesson } from '../../domains/contracts';
 import { createDefaultJourneyState, normalizeJourneyState, type LearnerJourneyState } from '../../domains/journeys/state';
 import { isSupabaseConfigured, supabase } from '../../../lib/supabase';
+import { resolveActiveLearner } from '../family/activeLearner';
 
 export type OwnedCardSummary = { cardId: string; acquiredAt: string };
 export type JourneyStateLoad = { state: LearnerJourneyState; staleJourneyIds: string[]; ownedCards: OwnedCardSummary[] };
@@ -46,8 +47,10 @@ export class LocalJourneyStateGateway implements JourneyStateGateway {
 
 type SupabaseClient = typeof supabase;
 export class SupabaseJourneyStateGateway implements JourneyStateGateway {
-  constructor(private learnerId: string, private client: SupabaseClient = supabase, private content: ContentBoundary = chronosContent) {}
+  /** `ownLearner` is false for a kid profile, whose learner row already exists. */
+  constructor(private learnerId: string, private client: SupabaseClient = supabase, private content: ContentBoundary = chronosContent, private ownLearner = true) {}
   private async ensureLearner() {
+    if (!this.ownLearner) return;
     const result = await this.client.from('learners').upsert({ id: this.learnerId }, { onConflict: 'id', ignoreDuplicates: true });
     if (result.error) throw result.error;
   }
@@ -95,8 +98,8 @@ export class SupabaseJourneyStateGateway implements JourneyStateGateway {
 
 export async function createJourneyStateGateway(): Promise<JourneyStateGateway> {
   if (isSupabaseConfigured()) {
-    const { data } = await supabase.auth.getUser();
-    if (data.user) return new SupabaseJourneyStateGateway(data.user.id);
+    const active = await resolveActiveLearner();
+    if (active) return new SupabaseJourneyStateGateway(active.learnerId, supabase, chronosContent, active.learnerId === active.userId);
   }
   return new LocalJourneyStateGateway();
 }

@@ -56,6 +56,7 @@ export function LessonReviewPanel({ lesson, state, prompts, configuredCards, own
   }
 
   if (!review) {
+    if (account.view === 'parent') return <section className="completion-panel" aria-labelledby="completion-title"><p className="eyebrow">Parent view</p><h2 id="completion-title">You’re in parent view</h2><p>Kids finish lessons from their own profile. Use the Parent view button in the menu to switch to a kid, or <a href="/review">review their work</a>.</p><NextLesson next={next} /></section>;
     return <section className="completion-panel" aria-labelledby="completion-title"><p className="eyebrow">Your next step</p><h2 id="completion-title">Finish {lesson.title}</h2><p>When you finish, your answers go to your parent. {rewardPhrase(configuredCards)}</p>{!account.parentLinked && <LinkParentNote />}<button className="primary" disabled={!ready || busy} onClick={onSubmit}>{busy ? 'Sending…' : ready ? 'Finish and send for review' : 'Answer the checks above'}</button>{errorLine}</section>;
   }
 

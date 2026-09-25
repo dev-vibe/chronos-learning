@@ -60,3 +60,24 @@
 .review-notice span{flex:1;line-height:1.4}
 .review-notice strong{font-weight:600}
 @media(max-width:760px){.family-grid{grid-template-columns:1fr}.family-card{padding:20px 16px}.reviewed-list li{grid-template-columns:auto 1fr}.reviewed-list li>span:last-child{grid-column:2}.review-actions>button{width:100%}}
+.setup-card{grid-column:1/-1}
+.setup-options{display:grid;gap:12px;margin-top:8px}
+.setup-option{display:grid;gap:6px;width:100%;padding:16px 18px;border:1px solid var(--line);border-radius:14px;background:var(--page);color:var(--ink);font:inherit;text-align:left;cursor:pointer}
+.setup-option:hover{border-color:var(--teal)}
+.setup-option:focus-visible{outline:3px solid var(--focus);outline-offset:2px}
+.setup-option.recommended{border:2px solid var(--teal);background:color-mix(in srgb,var(--teal) 7%,var(--surface))}
+.setup-option-title{display:flex;flex-wrap:wrap;align-items:center;gap:10px;font:500 1.3rem/1.2 Newsreader,Georgia,serif}
+.setup-option-body{color:var(--muted);font-size:.9rem;line-height:1.5}
+.setup-badge{padding:3px 10px;border-radius:999px;background:var(--teal);color:#fff;font:700 .68rem/1.4 Inter,system-ui,sans-serif;letter-spacing:.06em;text-transform:uppercase}
+.family-change-setup{margin-top:24px}
+.review-link-row{display:flex;flex-wrap:wrap;gap:10px;align-items:center;margin:6px 0 4px}
+.review-link-row .review-link{margin:0}
+.family-member-actions{display:inline-flex;gap:14px}
+.family-rename{display:flex;flex-wrap:wrap;gap:8px;align-items:center;width:100%}
+.family-rename input{flex:1;min-width:140px;min-height:40px;padding:6px 10px;border:1px solid var(--line);border-radius:9px;background:var(--page);color:var(--ink);font:inherit}
+.family-inline-form button svg{width:16px}
+.pin-input{font:600 1.3rem/1 ui-monospace,SFMono-Regular,Menlo,monospace!important;letter-spacing:.35em;max-width:160px}
+.kid-view-card{display:grid;gap:14px;justify-items:start;max-width:520px}
+.kid-view-card .primary svg{width:18px}
+.kid-view-others{display:flex;flex-wrap:wrap;gap:8px;align-items:center}
+.kid-view-others .family-hint{margin:0 4px 0 0}

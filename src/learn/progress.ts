@@ -1,13 +1,14 @@
 import type { LessonProgress } from '../domains/contracts';
 import { isSupabaseConfigured, supabase } from '../../lib/supabase';
 import { chronosContent } from '../../content/chronos';
+import { resolveActiveLearner, type ActiveLearner, type LearnerView } from '../infrastructure/family/activeLearner';
 
 export type PromptResponses = Record<string, string>;
 export type ReviewStatus = 'submitted' | 'returned' | 'passed';
 /** A parent's review of the learner's submitted answers for one lesson. */
 export type LessonReview = { status: ReviewStatus; round: number; submittedAt: string; reviewedAt?: string; feedback?: string; cardIds: string[]; passSeenAt?: string };
 /** Present only for signed-in learners; guests have no parent to review their work. */
-export type LearnAccount = { parentLinked: boolean };
+export type LearnAccount = { parentLinked: boolean; view?: LearnerView };
 export type LearnState = LessonProgress & { exploredSectionIds: string[]; responses: PromptResponses; cardIds?: string[]; cardId?: string; review?: LessonReview; account?: LearnAccount; version: 1 };
 export type JourneyProgressSummary = Pick<LessonProgress, 'lessonId' | 'status' | 'completedAt'>;
 export type PassNotice = { lessonId: string; cardIds: string[]; feedback?: string };
@@ -103,13 +104,20 @@ const mapReview = (row: any): LessonReview | undefined => {
 };
 
 export class SupabaseLearnGateway implements LearnProgressGateway {
-  constructor(private learnerId: string, private client: SupabaseClient = supabase) {}
+  private active: ActiveLearner;
+  /** `active` says whether this sign-in is acting as itself, a kid profile, or in parent view. */
+  constructor(private learnerId: string, private client: SupabaseClient = supabase, active?: ActiveLearner) {
+    this.active = active ?? { userId: learnerId, learnerId, view: 'self', profiles: [] };
+  }
   private async ensure(lessonId: string) {
-    const learner = await this.client.from('learners').upsert(
-      { id: this.learnerId },
-      { onConflict: 'id', ignoreDuplicates: true },
-    );
-    if (learner.error) throw learner.error;
+    // A kid profile's learner row already exists and belongs to the parent's sign-in.
+    if (this.learnerId === this.active.userId) {
+      const learner = await this.client.from('learners').upsert(
+        { id: this.learnerId },
+        { onConflict: 'id', ignoreDuplicates: true },
+      );
+      if (learner.error) throw learner.error;
+    }
 
     const progress = await this.client.from('lesson_progress').upsert(
       { learner_id: this.learnerId, lesson_id: lessonId },
@@ -140,7 +148,7 @@ export class SupabaseLearnGateway implements LearnProgressGateway {
     const responses = Object.fromEntries((attempts ?? []).map((item: any) => [item.prompt_id, String(item.response?.answer ?? item.response?.value ?? '')]));
     const cardIds = (ownership ?? []).map((item: any) => String(item.card_id));
     const review = mapReview(submissionResult.data);
-    return normalizeLearnState({ learnerId: this.learnerId, lessonId, status: progress.status === 'completed' ? 'completed' : 'in-progress', completedAt: progress.completed_at ?? undefined, resumeSectionId: resume?.section_id, attemptedPromptIds: Object.keys(responses), exploredSectionIds: (explored ?? []).map((item: any) => item.section_id), responses, cardIds, cardId: cardIds[0], ...(review ? { review } : {}), account: { parentLinked: (parentsResult.data ?? []).length > 0 }, version: 1 });
+    return normalizeLearnState({ learnerId: this.learnerId, lessonId, status: progress.status === 'completed' ? 'completed' : 'in-progress', completedAt: progress.completed_at ?? undefined, resumeSectionId: resume?.section_id, attemptedPromptIds: Object.keys(responses), exploredSectionIds: (explored ?? []).map((item: any) => item.section_id), responses, cardIds, cardId: cardIds[0], ...(review ? { review } : {}), account: { parentLinked: (parentsResult.data ?? []).length > 0 || this.active.view === 'kid', view: this.active.view }, version: 1 });
   }
   async loadJourneySummaries(lessonIds: readonly string[]): Promise<Record<string, JourneyProgressSummary>> {
     const uniqueIds = [...new Set(lessonIds)];
@@ -176,7 +184,7 @@ export class SupabaseLearnGateway implements LearnProgressGateway {
   }
   async submit(lessonId: string) {
     const current = await this.load(lessonId);
-    const { error } = await this.client.rpc('submit_lesson', { p_lesson_id: lessonId, p_answers: submissionAnswers(lessonId, current.responses) });
+    const { error } = await this.client.rpc('submit_lesson', { p_lesson_id: lessonId, p_answers: submissionAnswers(lessonId, current.responses), p_learner_id: this.learnerId });
     if (error) throw error;
     return this.load(lessonId);
   }
@@ -188,7 +196,9 @@ export class SupabaseLearnGateway implements LearnProgressGateway {
     if (mine.error) throw mine.error;
     if (links.error) throw links.error;
     const rows = (mine.data ?? []) as any[];
-    const learnerIds = ((links.data ?? []) as any[]).map((row) => String(row.learner_id));
+    // Parent view also reviews the kid profiles on this sign-in.
+    const managedIds = this.active.view === 'parent' ? this.active.profiles.map((profile) => profile.id) : [];
+    const learnerIds = [...new Set([...((links.data ?? []) as any[]).map((row) => String(row.learner_id)), ...managedIds])];
     let waitingForMyReview = 0;
     if (learnerIds.length) {
       const waiting = await this.client.from('lesson_submissions').select('lesson_id', { count: 'exact', head: true }).eq('status', 'submitted').in('learner_id', learnerIds);
@@ -202,15 +212,15 @@ export class SupabaseLearnGateway implements LearnProgressGateway {
     };
   }
   async acknowledgePass(lessonId: string) {
-    const { error } = await this.client.rpc('acknowledge_pass', { p_lesson_id: lessonId });
+    const { error } = await this.client.rpc('acknowledge_pass', { p_lesson_id: lessonId, p_learner_id: this.learnerId });
     if (error) throw error;
   }
 }
 
 export async function createProgressGateway(): Promise<LearnProgressGateway> {
   if (isSupabaseConfigured()) {
-    const { data } = await supabase.auth.getUser();
-    if (data.user) return new SupabaseLearnGateway(data.user.id);
+    const active = await resolveActiveLearner();
+    if (active) return new SupabaseLearnGateway(active.learnerId, supabase, active);
   }
   return new LocalPreviewGateway();
 }
