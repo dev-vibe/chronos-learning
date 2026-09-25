@@ -1,3 +1,4 @@
+-- Applied migration version: 20260925150036.
 -- Parent review replaces database-held lesson configuration.
 --
 -- Lessons, journeys, prompts and Knowledge Cards are defined only in the
