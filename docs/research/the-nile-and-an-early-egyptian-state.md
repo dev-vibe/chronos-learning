@@ -91,6 +91,10 @@ All learner-facing factual claims trace to the sources below. Search snippets, W
 | `source.egypt.herodotus-godley` | [Herodotus, *Histories* 2.99, trans. A. D. Godley (1920)](https://www.perseus.tufts.edu/hopper/text?doc=Perseus%3Atext%3A1999.01.0126%3Abook%3D2%3Achapter%3D99) | Primary later-tradition text, standard Loeb translation | priests told Herodotus that Min, the first king, dammed the Nile, made dry land and founded Memphis | later tradition written some 2,600 years after Narmer; not evidence for c. 3100 BCE events | CC BY-SA 3.0 US digital text; paraphrased | Voice revision 2026-09-25 |
 | `source.egypt.smith-herodotus` | [“Herodotus”, Smith, *Dictionary of Greek and Roman Biography and Mythology* (1867)](https://www.perseus.tufts.edu/hopper/text?doc=Perseus:text:1999.04.0104:entry=herodotus-bio-1) | Reference work | Herodotus born 484 BCE and alive after 431 BCE, so “the 400s BCE” | old reference; used only for the century | Public domain | Voice revision 2026-09-25 |
 | `source.egypt.waddell-manetho` | [W. G. Waddell, *Manetho* (Loeb Classical Library, 1940)](https://archive.org/details/manethowithengli00maneuoft) | Standard scholarly translation of the fragments | Manetho an Egyptian priest writing in Greek in the third century BCE (Introduction); Menes first king of Dynasty I, “carried off by a hippopotamus” (Fr. 6, Africanus, pp. 27–29; Fr. 7(a), Eusebius, p. 31) | Manetho survives only in later excerpts; the reign length differs between versions (62 and 60 years), so it is not used | Paraphrased | Voice revision 2026-09-25 |
+| `source.egypt.mcnamara-narmer-macehead` | [Liam McNamara, “Ashmolean Object in Focus: The Narmer Mace-Head”, *Nekhen News* 31 (2019), 10–11](https://www.hierakonpolis-online.org/files/hk_nn/nn-31-2019.pdf) | Ashmolean curator’s object study in the Hierakonpolis Expedition’s journal | find in the Main Deposit, 1897–99; limestone, H. 19.8 cm, 8 kg, AN1896–1908 E.3631; too heavy to wield, probably paraded in festivals; the enthroned king in the Red Crown on a stepped dais; figure in a palanquin; “oxen: 400,000; goats: 1,422,000” and “captives: 120,000”; readings as sed-festival, public appearance or symbolic wedding (pp. 10–11) | short object study | Research citation; images not redistributed | Voice revision 2026-09-25 |
+| `source.egypt.ashmolean-origins-gallery` | [Ashmolean Museum, Egypt at its Origins gallery](https://www.ashmolean.org/egypt-and-its-origins-gallery) | Custodian museum gallery text | the Narmer mace-head is displayed there; “these intricately carved objects were purely ceremonial” | gallery summary | Research citation | Voice revision 2026-09-25 |
+| `source.egypt.wilson-horned-beasts` | [Hilary Wilson, “Horned beasts: 2”, *The Past*](https://the-past.com/feature/hilary-wilson-on-horned-beasts-2/) | Egyptologist’s magazine feature | cross-check of the numbers 400,000 cattle, 1,422,000 goats, 120,000 captives; mace-head in the Ashmolean | calls the numbers “the spoils of his unification campaign”; that literal framing is not used | Research citation | Voice revision 2026-09-25 |
+| `source.egypt.commons-narmer-macehead-quibell` | [Wikimedia Commons, Narmer Macehead Quibell 1900](https://commons.wikimedia.org/wiki/File:Narmer_Macehead_Quibell_1900.jpg), from [J. E. Quibell, *Hierakonpolis I* (London, 1900), Heidelberg scan p. 0038](https://digi.ub.uni-heidelberg.de/diglit/quibell1900bd1/0038/image) | Excavator’s published plate: photographs and drawing | runtime evidence image of the whole mace-head scene | the drawing is Quibell’s reading of worn relief | Public domain (PD-1923, PD-old; Quibell died 1935); 2711 × 1698 scan | Rights reviewed 2026-09-25 |
 
 ### Source-balance result
 
@@ -130,6 +134,11 @@ The set combines peer-reviewed archaeology, specialist writing and artifact stud
 | `claim.egypt.narmer-sealing` | A mud jar sealing about 12 centimeters across that carries Narmer’s name was found in a tomb at Tarkhan, near the entrance to the Fayum, far downriver from Nekhen. | Observation | High | Met 12.187.42; Dahl map for the relative location | Says only that it sealed a jar; no claim about how it was stamped or what the jar held | Voice revision |
 | `claim.egypt.abydos-labels-find` | In 1988, a German Archaeological Institute team led by Günter Dreyer found well over a hundred small inscribed bone and ivory labels in Tomb U-j at Abydos; forty-three carry only numbers. | Observation | High | *The Past*; *Archaeology* 1999 | “Well over a hundred” because counts differ (about 150 to almost 200) | Voice revision |
 | `claim.egypt.abydos-label-size` | The Abydos labels measure about 2 by 1.5 centimeters and carry one to four signs each. | Observation | High | *Archaeology* 1999 | “About the size of a thumbnail” is the prose comparison | Voice revision |
+| `claim.egypt.macehead-find` | The Narmer mace-head, a carved limestone mace-head about 20 centimeters tall and weighing 8 kilograms, was found in the Main Deposit at Hierakonpolis in 1897–1899 and is now in the Ashmolean Museum, Oxford. | Observation | High | McNamara pp. 10–11 (object factfile); Ashmolean gallery | 19.8 cm rounded to “about 20” | Voice revision |
+| `claim.egypt.macehead-ceremonial` | The Narmer mace-head was too heavy to use as a weapon and was probably carried in festivals as a symbol of royal power. | Interpretation | High | McNamara p. 10; Ashmolean gallery (“purely ceremonial”) | “Probably” kept for the festival use | Voice revision |
+| `claim.egypt.macehead-scene` | The mace-head shows Narmer in the Red Crown enthroned under a canopy on a stepped platform, a figure in a carrying chair, and a count of 400,000 oxen, 1,422,000 goats, and 120,000 captives. | Observation | High | McNamara p. 10; Wilson; Quibell plate | Numbers given as carved, without saying what they counted | Voice revision |
+| `claim.egypt.macehead-readings` | Scholars have read the mace-head scene as a royal festival, a public appearance of the king, or a symbolic wedding. | Interpretation | Contested | McNamara p. 11 | Three readings listed; none endorsed | Voice revision |
+| `claim.egypt.macehead-numbers-claim` | The mace-head’s numbers are a royal claim carved on a ceremonial object; like the palette scenes, they cannot simply be taken as a literal record. | Interpretation | Medium | McNamara; Stevenson p. 5 (literal readings of ceremonial imagery) | Parallels the Palette’s evidence limit; no claim that the numbers are false | Voice revision |
 
 ## Content triage
 
@@ -534,6 +543,49 @@ Constraints: change only the size, shape, material, and cord attachment of the t
 - Comparison verdict — intentional changes: the two artifact references are transformed into an original, plausible working scene rather than copied; the exact people, architecture, vegetation, light, and moment are illustrative.
 - Comparison verdict — unsupported details checked: no text or pseudo-writing, oversized paper-like tags, ruler, throne, royal spectacle, pyramids, sphinxes, obelisks, monumental stone architecture, scrolls, books, chariots, horses, camels, armies, weapons, slave-chain imagery, later-period dress, logo, or watermark.
 
+### media.egypt.narmer-macehead — surviving evidence (added in the voice revision)
+
+#### 1. Reasoning and source basis
+
+- Teaching job: let learners see a second royal object from the same deposit, with its enthroned king and its enormous carved count, so the Palette’s evidence limit applies to numbers as well as scenes.
+- Governing claim IDs: `claim.egypt.macehead-find`, `claim.egypt.macehead-scene`, `claim.egypt.macehead-numbers-claim`.
+- Factual/historical sources: McNamara’s Ashmolean object study (*Nekhen News* 31, 2019), the Ashmolean gallery page, Wilson’s *The Past* feature, and Quibell’s 1900 excavation publication.
+- Why image instead of no media: the count is only memorable once the learner sees the ox, goat and captive with rows of signs under them, and the photographs show that the drawing records a real, worn object.
+- Depiction and uncertainty boundary: surviving evidence, in the excavator’s own photographs and drawing. The drawing is Quibell’s reading of worn relief; the native scale note says so.
+
+#### 2. Reference image actually used
+
+| Reference preview | Origin and permitted use |
+| --- | --- |
+| ![Quibell 1900 plate of the Narmer mace-head](references/egypt/narmer-macehead-quibell-1900-reference.jpg) | J. E. Quibell, *Hierakonpolis I* (1900).<br>Canonical origin: https://commons.wikimedia.org/wiki/File:Narmer_Macehead_Quibell_1900.jpg (scan of https://digi.ub.uni-heidelberg.de/diglit/quibell1900bd1/0038/image).<br>License: Public domain (PD-1923, PD-old; author died 1935).<br>Accessed: 2026-09-25. |
+
+- Repository research copy and SHA-256: `docs/research/references/egypt/narmer-macehead-quibell-1900-reference.jpg`; 2711 × 1698; `e2defb4092fc5908b819653fb57236c54cb648526e76fe5c66d6a0fb8755dc30`.
+- Edit mode: direct use with full-frame resize/compression only.
+- Visual relationship to preserve: the whole plate (both photograph rows and the complete drawing), orientation, grayscale tones, wear and the photographic seams.
+- Locked layout/detail invariants: no crop, retouching, recoloring, annotation, label or invented detail.
+- Details not to copy or infer: no Ashmolean photograph is used; no modern redrawing.
+
+#### 3. Generation or transformation
+
+- Operation: direct licensed use; full-frame resize from 2711 × 1698 to 1600 × 1002 and high-quality JPEG encoding for runtime delivery.
+- Tool/date: Sharp/MozJPEG quality 92, progressive, 2026-09-25; no generative model.
+- Complete transformation:
+
+```text
+Direct-use transformation only: resize the public-domain 2711×1698 scan of Quibell's 1900 plate proportionally to 1600 pixels wide and encode it as a quality-92 progressive MozJPEG. Preserve the full plate, orientation, tones, wear and seams. Do not crop, retouch, recolor, sharpen selectively, invent detail or add text.
+```
+
+- Candidate/rejection record: Commons alternatives were considered. A CC BY-SA 2.0 photograph (Heidi Kontkanen) shows only one side of the object. A CC0 640-pixel photograph is too small to read the count. A CC BY-SA 4.0 SVG redrawing was rejected in favor of the excavator’s original plate. Only the Quibell plate was converted.
+
+#### 4. Accepted final image
+
+- Runtime source path, dimensions and SHA-256: `public/images/evidence/egypt-narmer-macehead-quibell-1900.jpg`; 1600 × 1002; `5afba8166936ca5e25474794594815306888ccfdadeeddda103cecff023ddfeb`. Rollback copy and derivatives: see `media/manifests/chronos-release.json` (`media.egypt.narmer-macehead`).
+- Reviewer/date/status: Claude (voice revision) historical, rights and visual review / 2026-09-25 / accepted.
+- Fidelity verdict: every locked invariant retained; proportional downscale and compression only.
+- Lesson-size verdict: at 1600 pixels the drawing’s figures and number signs stay legible; the enlarge viewer serves the full runtime source.
+- Storage: public objects are not yet published. Until `npm run media:publish -- --asset media.egypt.narmer-macehead` and `npm run media:verify:remote -- --asset media.egypt.narmer-macehead` are run with the trusted storage credentials, the app shows the committed rollback copy.
+
+
 ## Sign-off status
 
 - [x] Work boundary, queue selection, and node proposal
@@ -585,7 +637,7 @@ Release disposition: **COMPLETE.** Carlin explicitly approved the final lesson o
 
 ## Voice revision
 
-Runbook: `docs/content/lesson-voice-revision-runbook.md`. Branch: `claude/egypt-nile-state-revision-ulzxs8` (the session’s assigned branch, used in place of `revise/egypt-nile-state-voice`). Started 2026-09-25. Status: **approved by the owner 2026-09-25; merge completes the revision**. PR: [#63](https://github.com/dev-vibe/chronos-learning/pull/63).
+Runbook: `docs/content/lesson-voice-revision-runbook.md`. Branch: `claude/egypt-nile-state-revision-ulzxs8` (the session’s assigned branch, used in place of `revise/egypt-nile-state-voice`). Started 2026-09-25. Status: **text approved by the owner 2026-09-25; the owner then asked for the Narmer mace-head with an image, which awaits review on the preview**. PR: [#63](https://github.com/dev-vibe/chronos-learning/pull/63).
 
 ### Audit of the published version
 
@@ -603,20 +655,20 @@ Whole lesson: story spine `none` (a sequence of topics); memorable moments: the 
 ### Story material
 
 - **Story spine:** the Narmer Palette. It is found at Nekhen in the opening; section 2 shows that Nekhen was already old; section 3 returns to the stone and its unused grinding circle; section 4 sets it against the later Menes legends; section 5 finds Narmer’s name on a humble jar sealing, and the ending contrasts the famous stone and the lump of mud with the unnamed people whose work kept the state running.
-- **Memorable moments:** (1) the Palette dug up at Nekhen in 1897–1899, now probably the most reproduced image from ancient Egypt after Tutankhamun’s mask, with a grinding circle for eye paint that ceremonial palettes never show traces of using; (2) the smiting pose still carved on the last temples ancient Egyptians built; (3) the later legends: priests telling Herodotus that the first king dammed the Nile to build Memphis, and Manetho’s founder Menes carried off by a hippopotamus, with Narmer in neither story; (4) Narmer’s name on a lump of mud that sealed a jar, and thumbnail-sized Abydos labels, forty-three of them carrying nothing but numbers.
+- **Memorable moments:** (1) the Palette dug up at Nekhen in 1897–1899, now probably the most reproduced image from ancient Egypt after Tutankhamun’s mask, with a grinding circle for eye paint that ceremonial palettes never show traces of using; (2) the smiting pose still carved on the last temples ancient Egyptians built; (3) the later legends: priests telling Herodotus that the first king dammed the Nile to build Memphis, and Manetho’s founder Menes carried off by a hippopotamus, with Narmer in neither story; (4) Narmer’s name on a lump of mud that sealed a jar, and thumbnail-sized Abydos labels, forty-three of them carrying nothing but numbers; (5) added at the owner’s request: the 8-kilogram Narmer mace-head from the same deposit, too heavy to fight with, carved with a count of 400,000 oxen, 1,422,000 goats and 120,000 captives.
 - **Supporting details:** Nekhen’s breweries (about 300 gallons a day, c. 3600 BCE) and the only known elephant burial; serpopards as Near Eastern motifs, linking back to the Uruk lesson.
-- **Sources of the material:** close re-reading of the registered Stevenson “Palettes” article (pp. 3–5), the Ministry object record and the Hierakonpolis Expedition page; targeted research for the Menes traditions (Herodotus 2.99; Waddell’s Manetho), the Narmer sealing (Met 12.187.42) and the Abydos label find (*The Past*; *Archaeology* 1999).
+- **Sources of the material:** close re-reading of the registered Stevenson “Palettes” article (pp. 3–5), the Ministry object record and the Hierakonpolis Expedition page; targeted research for the Menes traditions (Herodotus 2.99; Waddell’s Manetho), the Narmer sealing (Met 12.187.42), the Abydos label find (*The Past*; *Archaeology* 1999) and the Narmer mace-head (McNamara 2019; Ashmolean; Wilson; Quibell 1900).
 - **Later tradition used:** the Herodotus and Manetho stories, introduced as what “later Egyptians told” with their centuries given, and closed with the open question of whether Narmer was Menes. The Memphis paragraph refers back to them (“Later tradition, as you saw…”).
 
 ### Changes
 
 - Rewritten: all five prose bodies; the Palette evidence body; three knowledge leads; the scene body; one card fact (now names the finders). Two knowledge eyebrows changed from slogans to plain labels (“Read the river” → “Upper and Lower Egypt”; “Not one switch” → “How the state grew”). All IDs, headings, section order, prompts, options, answer logic, media, completion, journey framing and the other knowledge items are unchanged. No module removed or reordered. The map, the hotspots and the prompt explanations are unchanged.
-- 6 sources and 16 claims added (ledgers above). Module `claimIds`/`sourceIds` updated to cover what each module now says.
+- Added at the owner’s request after the first approval: a Narmer mace-head paragraph in `module.egypt.palette-interpretation`, a new evidence module `module.egypt.macehead-evidence` with a new image `media.egypt.narmer-macehead` (Quibell’s 1900 plate; lifecycle record above), and a new prose module `module.egypt.palette-later-stories` that now carries the literal-reading and Menes paragraphs so the image sits beside the paragraph that describes it. The owner confirmed that adding images is expected in a voice revision, and `docs/content/lesson-voice-revision-runbook.md` was updated to say so.
+- 10 sources and 21 claims added (ledgers above). Module `claimIds`/`sourceIds` updated to cover what each module now says.
 - Reading length: 1,426 → 1,879 words in learner-facing headings and modules (+32%). The growth is the find story, Nekhen before Narmer, the Menes legends and the sealing; the “imagine” opening, the method moral and the repeated “hundreds of kilometers” were cut.
 
 ### Left out
 
-- The Narmer Macehead (also from the Main Deposit) and its huge captive and livestock numbers: a strong boast, but another object would need an image and adds load.
 - Tomb U-j’s hundreds of imported wine jars (Penn Museum; McGovern et al. 2009): vivid, but it is a trade story and the primary article could not be opened in this session.
 - A count of Narmer inscriptions and a list of southern Levant finds (Arad, Tel Erani): the accessible catalog totals mix Narmer with other early kings, and the registered UCL Narmer page could not be re-opened (HTTP 403), so the lesson keeps the existing “several sites”.
 - Manetho’s reign length for Menes: the excerpts disagree (62 or 60 years).
@@ -630,7 +682,9 @@ Whole lesson: story spine `none` (a sequence of topics); memorable moments: the 
 | Story | pass | Opens on the 1897–1899 find at Nekhen; the essential question grows from it (“often said to show the moment Egypt became one kingdom… puts that idea to the test”). The Palette returns in every section, and the ending contrasts the stone and the sealing with the unnamed workers. Knowledge boxes keep their parallel items. |
 | Evidence reasoning | pass | The brewery figure is labelled as the excavators’ estimate; eye paint is “probably”; serpopards are what “scholars see”; the literal reading is dated and attributed; Herodotus and Manetho are labelled later tradition with their centuries, and Narmer–Menes stays an open question. Prompt 1’s “everyday grinding board” option is now directly answerable from section 3; prompt 2 is unchanged and answerable from sections 1, 3–4 and 5. |
 | Proportionality | pass | Violence stays unadorned (“rows of defeated enemies”); the smiting image is described as a claim about kingship, not celebrated; Lower Egypt keeps its own economies and links; workers close the lesson as the people the state depended on. |
-| Cognitive load | pass | New names: Quibell and Green (once), Tutankhamun, malachite, serpopards, Herodotus, Min, Manetho, Tarkhan; Menes was already present. Numbers: 1897–1899, 5,000, 3600, 300, 64, 25, 400s and 200s BCE, 12, 1988, 3250, 2 by 1.5, forty-three, each once. Section 4 is the densest (three paragraphs, one job each: the argument, the old reading, the later legend). “Fayum” was cut as an unexplained place name. |
+| Visual value | pass | The mace-head plate answers “what does the count look like?” exactly where the paragraph describes it; the body tells the learner what to find; the scale note gives size, location and the limit of the drawing; alt text describes the scene. |
+| Rights, media and accessibility | pass | Public domain (1900 publication, author died 1935); full plate, no crop or retouching; alt text, depiction label and rights label present. Storage publication is pending (see lifecycle record); the rollback copy serves until then. |
+| Cognitive load | pass | New names: Quibell and Green (once), Tutankhamun, malachite, serpopards, Herodotus, Min, Manetho, Tarkhan; Menes was already present. Numbers: 1897–1899, 5,000, 3600, 300, 64, 25, 400s and 200s BCE, 12, 1988, 3250, 2 by 1.5, forty-three, each once. Section 4 is the densest: the argument and the mace-head, the mace-head image, then the old reading and the later legend. Section 4 now adds the mace-head numbers, 20 centimeters and 8 kilograms; the image carries the count so the prose need not explain the number signs. “Fayum” was cut as an unexplained place name. |
 | Headings | pass | All headings already name their subjects in plain words; none changed. The two slogan eyebrows were replaced with plain labels. |
 
 `npm run validate:content` passed; `npm run test:domain` passed (14 files, 63 tests); `tests/learn`, `tests/content` and `tests/lesson` passed except “resolves the published writing lesson with ordered journey navigation” in `tests/learn/multi-lesson.test.tsx`, which fails identically on unmodified `main` and does not touch this lesson. `npm run typecheck` shows only the documented repository baseline; no diagnostic names this lesson.
@@ -644,4 +698,4 @@ The branch preview was loaded in headless Chromium on 2026-09-25 through the aud
 - Story spine: the Narmer Palette, from its discovery at Nekhen in 1897–1899 to Narmer’s name on a plain mud jar sealing and the unnamed workers who kept the state running.
 - Memorable moments: the Palette dug up at Nekhen, now probably the most reproduced image from ancient Egypt after Tutankhamun’s mask, with a grinding circle that ceremonial palettes show no traces of using; the smiting pose still carved on the last temples ancient Egyptians built; the later legends of the first king damming the Nile for Memphis (Herodotus) and Menes carried off by a hippopotamus (Manetho), with Narmer in neither; Narmer’s name on a mud jar sealing and the thumbnail-sized Abydos labels, forty-three of them carrying only numbers.
 - Added claims: `claim.egypt.palette-discovery`, `palette-most-reproduced`, `main-deposit-not-original`, `nekhen-brewery`, `nekhen-animal-burials`, `everyday-palettes`, `ceremonial-palette-count`, `grinding-circle-unused`, `serpopards`, `smiting-image-endured`, `literal-readings`, `herodotus-menes`, `manetho-menes`, `narmer-sealing`, `abydos-labels-find`, `abydos-label-size`. Sources added: `source.egypt.met-narmer-sealing`, `the-past-tomb-u-j`, `archaeology-abydos-glyphs`, `herodotus-godley`, `smith-herodotus`, `waddell-manetho`.
-- Owner decisions: none beyond approval. Carlin Aylsworth reviewed the branch preview and approved the revision (“great stuff. approved”), 2026-09-25.
+- Owner decisions: Carlin Aylsworth reviewed the branch preview and approved the text (“great stuff. approved”), 2026-09-25. Carlin then asked to include the Narmer mace-head, first left out, and confirmed that adding images is expected in voice revisions (“adding an image is fine and expected in the revisions”). That addition awaits review on the preview.
