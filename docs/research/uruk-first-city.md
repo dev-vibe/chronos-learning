@@ -43,7 +43,7 @@ All added claims are `reviewed` after close-reading on 2026-09-24.
 
 ## Voice revision
 
-Runbook: `docs/content/lesson-voice-revision-runbook.md`. Branch: `revise/uruk-first-city-voice`. Started 2026-09-24. Status: **awaiting owner review**.
+Runbook: `docs/content/lesson-voice-revision-runbook.md`. Branch: `revise/uruk-first-city-voice`. Started 2026-09-24. Status: **approved by the owner 2026-09-24; merge completes the revision**. PR: [#60](https://github.com/dev-vibe/chronos-learning/pull/60).
 
 ### Audit of the published version
 
@@ -98,3 +98,14 @@ Whole lesson: story spine `none`; memorable moments `none`; the opening did not 
 | Headings | pass | All headings already name their subjects in plain words; none changed. `The built city` is pinned by `tests/learn/LearnApp.test.tsx`. |
 
 `npm run validate:content` passed; `npm run test:domain` passed (14 files, 63 tests); `tests/learn/LearnApp.test.tsx` and `tests/learn/progress.test.ts` passed, including the two pinned Uruk phrases, which were kept. `tests/learn/multi-lesson.test.tsx` has one failure (“resolves the published writing lesson…”) that also fails on unmodified `main` and does not touch this lesson.
+
+The branch preview was loaded and read in a browser on 2026-09-24: all six sections, both prompts and the completion action render with the revised text.
+
+### Owner review
+
+- Date: 2026-09-24.
+- PR: [#60](https://github.com/dev-vibe/chronos-learning/pull/60), branch preview [chronos-learning-git-revise-uruk-firs-1dd558-dev-vibes-projects.vercel.app](https://chronos-learning-git-revise-uruk-firs-1dd558-dev-vibes-projects.vercel.app/learn/lesson.uruk.first-city).
+- Story spine: the beveled-rim bowl, from the 1,520 found in one test trench to the closing open question of what the bowls held.
+- Memorable moments: 1,520 cheap, uneven bowls in one trench, found by the thousands from southern Iraq to eastern Turkey and Iran; the “to eat” sign drawn as a head with the bowl at its mouth; a list of jobs first written at Uruk and still copied more than a thousand years later; the Epic of Gilgamesh’s invitation to check the wall’s kiln-fired brick, and the magnetometer survey finding fired brick in the wall faces (labelled later tradition, dated centuries after 3200 BCE).
+- Added claims: `claim.uruk.largest-settlement`, `population-estimate`, `bowl-mass-find`, `bowl-making`, `bowl-size`, `ration-hypothesis`, `ration-signs`, `bowl-debate`, `rations-recorded`, `professions-list`, `precincts`, `cone-mosaics`, `excavations`, `canals-magnetometry`, `wall-later`, `gilgamesh-wall-story`, `wall-fired-brick`; reused `claim.farming.private-storage`. Sources added: `source.uruk.perruchini-2023-brb-residues`, `source.met.beveled-rim-bowl`, `source.uruk.fassbinder-2019-magnetometry`, `source.uruk.michalowski-2003-lu-a`, `source.uruk.kovacs-gilgamesh`; `source.britannica.uruk` URL updated.
+- Owner decisions: the reconstruction and clay-envelope media observations above were reported and left for a separate material revision if wanted. Carlin Aylsworth reviewed the branch preview and approved the revision (“approved!”), 2026-09-24.
