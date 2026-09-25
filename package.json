@@ -9,6 +9,7 @@
     "preview": "vite preview",
     "typecheck": "tsc --noEmit",
     "validate:content": "tsx scripts/content/validate.ts",
+    "content:fingerprints": "tsx scripts/content/fingerprints.ts",
     "lesson:preview": "tsx scripts/lesson/preview.ts",
     "lesson:gate": "tsx scripts/lesson/gate.ts",
     "lesson:prepare-publication": "tsx scripts/lesson/prepare-publication.ts",

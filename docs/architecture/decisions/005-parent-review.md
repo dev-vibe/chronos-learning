@@ -28,3 +28,4 @@ Every publish, and every change to a lesson's required prompts or cards, needed 
 - Learner tables no longer reference `content_lessons`, `journeys`, `journey_entries` or `knowledge_cards`. Those tables, `card_unlocks`, `legacy_id_aliases`, `lesson_completion_configuration`, `lesson_required_prompts` and `completion_commands` remain in the database unused, and `complete_lesson_and_acquire_card` is closed to every role. They can be dropped in a later migration.
 - Guests can still finish lessons in their browser but cannot earn cards.
 - A parent's pass trusts the parent's browser to name the lesson's cards. That is acceptable because the parent is the reviewer; a learner cannot call the command for themselves.
+- Changing a lesson's prompts after learners have answered them follows [prompt-changes.md](../prompt-changes.md): a changed question gets a new prompt ID, and submissions keep a snapshot of the questions as the learner saw them.
