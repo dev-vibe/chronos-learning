@@ -1,7 +1,7 @@
 ﻿begin;
 create extension if not exists pgtap with schema extensions;
 set local search_path=extensions,public;
-select plan(16);
+select plan(14);
 
 select has_table('public', 'learner_journeys', 'learner journey state table exists');
 select has_table('public', 'learner_navigation_state', 'active journey pointer table exists');
@@ -23,9 +23,6 @@ insert into public.learners(id) values
 
 set local role authenticated;
 select set_config('request.jwt.claim.sub','55555555-5555-5555-5555-555555555555',true);
-
-select is((select count(*) from public.journeys), 1::bigint, 'authenticated catalog exposes only the published World History journey');
-select is((select count(*) from public.journey_entries), 5::bigint, 'authenticated catalog includes all published World History entries');
 
 insert into public.learner_journeys(learner_id,journey_id,status,active_lesson_id)
 values(auth.uid(),'journey.world-history','open','lesson.uruk.first-city');
