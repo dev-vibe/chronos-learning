@@ -4,10 +4,10 @@ import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest';
 import { cleanup, fireEvent, render, screen, waitFor, within } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import { LearnApp } from '../../src/learn/LearnApp';
-import type { JourneyProgressSummary, LearnProgressGateway, LearnState } from '../../src/learn/progress';
+import type { JourneyProgressSummary, LearnProgressGateway, LearnState, ReviewInbox } from '../../src/learn/progress';
 
 const emptyState = (lessonId: string): LearnState => ({
-  learnerId: 'multi-lesson-test', lessonId, status: 'in-progress', attemptedPromptIds: [], exploredSectionIds: [], responses: {}, version: 1,
+  learnerId: 'multi-lesson-test', lessonId, status: 'in-progress', attemptedPromptIds: [], exploredSectionIds: [], responses: {}, account: { parentLinked: true }, version: 1,
 });
 
 class MultiLessonGateway implements LearnProgressGateway {
@@ -34,19 +34,21 @@ class MultiLessonGateway implements LearnProgressGateway {
     this.states.set(lessonId, next);
     return next;
   });
-  complete = vi.fn(async (lessonId: string) => {
+  submit = vi.fn(async (lessonId: string) => {
     const state = this.states.get(lessonId)!;
-    if (state.status === 'completed') return { completion: 'already-completed', cardOwnership: 'already-owned', cardId: state.cardId } as const;
-    const cardId = lessonId === 'lesson.writing.early-systems'
-      ? 'card.artifact.proto-cuneiform-tablet'
-      : lessonId === 'lesson.egypt.nile-state'
-        ? 'card.artifact.narmer-palette'
-        : lessonId === 'lesson.caral.andean-urbanism'
-          ? 'card.place.caral'
-          : 'card.place.uruk';
-    this.states.set(lessonId, { ...state, status: 'completed', completedAt: new Date().toISOString(), cardId });
-    return { completion: 'newly-completed', cardOwnership: 'newly-acquired', cardId } as const;
+    const next: LearnState = { ...state, status: 'completed', completedAt: state.completedAt ?? new Date().toISOString(), review: { status: 'submitted', round: 1, submittedAt: '2026-09-25T00:00:00.000Z', cardIds: [] } };
+    this.states.set(lessonId, next);
+    return next;
   });
+  inbox: ReviewInbox = { passes: [], returned: [], waitingForMyReview: 0 };
+  loadInbox = vi.fn(async () => this.inbox);
+  acknowledgePass = vi.fn(async (lessonId: string) => { this.inbox = { ...this.inbox, passes: this.inbox.passes.filter((notice) => notice.lessonId !== lessonId) }; });
+  /** What the database does when a linked parent passes the lesson. */
+  pass(lessonId: string, cardIds: string[]) {
+    const state = this.states.get(lessonId)!;
+    this.states.set(lessonId, { ...state, cardIds, review: { ...state.review!, status: 'passed', reviewedAt: '2026-09-26T00:00:00.000Z', cardIds } });
+    this.inbox = { ...this.inbox, passes: [...this.inbox.passes, { lessonId, cardIds }] };
+  }
 }
 
 beforeEach(() => {
@@ -107,7 +109,7 @@ describe('multi-lesson Learn runtime', () => {
     ]);
   });
 
-  it('completes writing once, reveals its deterministic card once, and keeps Uruk isolated', async () => {
+  it('sends writing for review once, grants its card only on a parent pass, and keeps Uruk isolated', async () => {
     const gateway = new MultiLessonGateway();
     render(<LearnApp lessonId="lesson.writing.early-systems" gatewayFactory={async () => gateway} />);
     await screen.findByRole('heading', { name: 'From Marks to Proto-Cuneiform' });
@@ -120,19 +122,28 @@ describe('multi-lesson Learn runtime', () => {
     expect(gateway.saveAttempt).toHaveBeenCalledTimes(1);
     expect(screen.getByRole('button', { name: 'Answer the checks above' }).hasAttribute('disabled')).toBe(true);
     await userEvent.click(screen.getAllByRole('button', { name: 'Compare your thinking' })[1]);
-    await waitFor(() => expect(screen.getByRole('button', { name: 'Complete lesson' }).hasAttribute('disabled')).toBe(false));
-    await userEvent.click(screen.getByRole('button', { name: 'Complete lesson' }));
-    expect(await screen.findByText('Knowledge Card acquired')).toBeTruthy();
-    expect(document.querySelector('.card-class')?.textContent).toContain('Artifact');
-    expect(screen.getByRole('heading', { name: 'Proto-Cuneiform Tablet' })).toBeTruthy();
+    await waitFor(() => expect(screen.getByRole('button', { name: 'Finish and send for review' }).hasAttribute('disabled')).toBe(false));
+    await userEvent.click(screen.getByRole('button', { name: 'Finish and send for review' }));
+    expect(await screen.findByText('Waiting for review')).toBeTruthy();
+    expect(document.querySelector('.card-reveal')).toBeNull();
     expect(gateway.states.get('lesson.uruk.first-city')?.status).toBe('completed');
-    expect(gateway.complete).toHaveBeenCalledTimes(1);
+    expect(gateway.states.get('lesson.uruk.first-city')?.review).toBeUndefined();
+    expect(gateway.submit).toHaveBeenCalledTimes(1);
+
+    gateway.pass('lesson.writing.early-systems', ['card.artifact.proto-cuneiform-tablet']);
+    cleanup();
+    render(<LearnApp lessonId="lesson.writing.early-systems" gatewayFactory={async () => gateway} />);
+    const dialog = await screen.findByRole('dialog', { name: 'From Marks to Proto-Cuneiform' });
+    expect(within(dialog).getByRole('heading', { name: 'Proto-Cuneiform Tablet' })).toBeTruthy();
+    await userEvent.click(within(dialog).getByRole('button', { name: /Add it to my collection/ }));
+    await waitFor(() => expect(screen.queryByRole('dialog')).toBeNull());
+    expect(screen.getByText('In your Knowledge Cards')).toBeTruthy();
+    expect(document.querySelector('.card-class')?.textContent).toContain('Artifact');
 
     cleanup();
     render(<LearnApp lessonId="lesson.writing.early-systems" gatewayFactory={async () => gateway} />);
-    await screen.findByRole('heading', { name: 'From Marks to Proto-Cuneiform' });
-    expect(screen.queryByText('Knowledge Card acquired')).toBeNull();
-    expect(screen.getByText('In your Knowledge Cards')).toBeTruthy();
+    await screen.findByRole('heading', { name: 'Lesson passed' });
+    expect(screen.queryByRole('dialog')).toBeNull();
     expect(screen.getByRole('heading', { name: 'Proto-Cuneiform Tablet' })).toBeTruthy();
   });
 

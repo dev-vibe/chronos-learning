@@ -1,8 +1,8 @@
 import React from 'react';
-import { Compass, Home, Library, Moon, Search, Sun } from 'lucide-react';
+import { Compass, Home, Library, Moon, Search, Sun, UserRound } from 'lucide-react';
 import './global-navigation.css';
 
-export type GlobalDestination = 'home' | 'library' | 'search';
+export type GlobalDestination = 'home' | 'library' | 'search' | 'account';
 
 type GlobalNavigationProps = {
   active?: GlobalDestination;
@@ -17,6 +17,7 @@ const destinations = [
   { id: 'home' as const, label: 'Home', href: '/home', icon: Home },
   { id: 'library' as const, label: 'Library', href: '/library', icon: Library },
   { id: 'search' as const, label: 'Search', href: '/search', icon: Search },
+  { id: 'account' as const, label: 'Account', href: '/account', icon: UserRound },
 ];
 
 export function GlobalNavigation({

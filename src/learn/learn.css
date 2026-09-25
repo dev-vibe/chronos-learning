@@ -173,3 +173,23 @@ h1,h2,h3{font-family:Newsreader,Georgia,serif;font-weight:500}
 .prompt-evidence-image{margin:0}.prompt-evidence-image>div{position:relative}.prompt-evidence-image img{display:block;width:100%;height:auto;object-fit:contain}.prompt-evidence-image figcaption{padding:12px 0;font-size:calc(.92rem * var(--reading-scale));line-height:1.6}.prompt-evidence-image figcaption p{margin:6px 0}
 
 .evidence-image .evidence-enlarge{inset:12px 12px auto auto;width:44px;height:44px;padding:0;display:grid;place-items:center;border-radius:50%}.evidence-image .evidence-enlarge>span{display:none}
+/* Parent review states in the completion panel. */
+.completion-panel .eyebrow svg{width:15px;height:15px;vertical-align:-2px}
+.review-callout,.review-status{display:flex;gap:10px;align-items:flex-start;margin:16px 0;padding:12px 14px;border-radius:12px;background:var(--surface);border:1px solid var(--line);color:var(--ink)!important;font-size:.92rem;line-height:1.45}
+.review-callout svg,.review-status svg{flex:none;width:20px;height:20px;color:var(--teal);margin-top:1px}
+.review-callout a,.review-update a{color:var(--focus)}
+.parent-note{margin:18px 0;padding:16px 18px;border-left:4px solid var(--gold);border-radius:4px 12px 12px 4px;background:var(--surface)}
+.parent-note figcaption{display:flex;align-items:center;gap:7px;font-size:.72rem;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--bronze)}
+.parent-note figcaption svg{width:16px}
+.parent-note blockquote{margin:8px 0 0;font:400 1.15rem/1.5 Newsreader,Georgia,serif;white-space:pre-wrap}
+.review-prompt-links{margin:0 0 20px;padding-left:20px}
+.review-prompt-links li{margin:6px 0}
+.review-prompt-links a{color:var(--focus)}
+.review-update{font-size:.88rem}
+.quiet-link{background:none;border:0;padding:0;color:var(--focus);text-decoration:underline;cursor:pointer;font:inherit}
+.quiet-link:disabled{opacity:.6;cursor:default}
+.review-returned{border-color:var(--bronze)}
+.review-passed .eyebrow{color:var(--teal)}
+.review-chip{display:inline-flex;align-items:center;gap:6px;margin-left:auto;padding:5px 12px;border-radius:999px;background:var(--bronze);color:#fff;font-size:.74rem;font-weight:600;text-decoration:none}
+.review-chip svg{width:14px}
+.prompt{scroll-margin-top:84px}

@@ -1,0 +1,20 @@
+.pass-celebration-backdrop{position:fixed;inset:0;z-index:80;display:grid;place-items:center;padding:16px;background:color-mix(in srgb,var(--archive-2,#042c47) 72%,transparent);backdrop-filter:blur(3px);overflow-y:auto}
+.pass-celebration{position:relative;width:min(560px,100%);padding:36px 30px 28px;border:1px solid var(--gold);border-radius:22px;background:linear-gradient(160deg,var(--surface),var(--surface-2));color:var(--ink);text-align:center;box-shadow:0 30px 80px #0007;animation:pass-pop .45s cubic-bezier(.2,1.4,.4,1) both;overflow:hidden}
+.pass-celebration h2{font:500 clamp(2rem,6vw,2.7rem)/1.05 Newsreader,Georgia,serif;margin:6px 0 10px}
+.pass-celebration>p{color:var(--muted);line-height:1.5;margin:0 auto 14px;max-width:42ch}
+.pass-celebration-eyebrow{display:inline-flex!important;align-items:center;gap:8px;margin:0!important;padding:6px 14px;border-radius:999px;background:var(--gold);color:#1d1203!important;font-weight:700;letter-spacing:.08em;text-transform:uppercase;font-size:.8rem}
+.pass-celebration-eyebrow svg{width:18px;height:18px}
+.pass-celebration-note{margin:0 auto 18px;max-width:40ch;font:italic 400 1.1rem/1.45 Newsreader,Georgia,serif;color:var(--ink)}
+.pass-celebration-cards{display:flex;flex-wrap:wrap;justify-content:center;gap:16px;margin:8px 0 22px}
+.pass-celebration-card{width:min(260px,100%);animation:pass-card .7s .2s cubic-bezier(.2,1.2,.4,1) both}
+.pass-celebration-card .card-image{height:150px}.pass-celebration-card .card-body h3{font-size:1.7rem}
+.pass-celebration-button{min-width:220px}.pass-celebration-button svg{width:18px}
+.pass-celebration-more{font-size:.85rem;margin-top:12px!important}
+.pass-celebration-burst{position:absolute;inset:0;pointer-events:none}
+.pass-celebration-burst i{position:absolute;left:50%;top:18%;width:9px;height:14px;border-radius:2px;background:var(--gold);opacity:0;animation:pass-confetti 1.3s calc(var(--i) * 40ms) ease-out both;--angle:calc(var(--i) * 25.7deg)}
+.pass-celebration-burst i:nth-child(3n){background:var(--teal)}.pass-celebration-burst i:nth-child(3n+1){background:var(--bronze)}
+@keyframes pass-pop{from{transform:scale(.85);opacity:0}to{transform:none;opacity:1}}
+@keyframes pass-card{from{transform:rotateY(80deg) translateY(10px);opacity:0}to{transform:none;opacity:1}}
+@keyframes pass-confetti{0%{opacity:1;transform:translate(-50%,0) rotate(0)}100%{opacity:0;transform:translate(calc(-50% + cos(var(--angle)) * 240px),calc(sin(var(--angle)) * 200px + 120px)) rotate(540deg)}}
+@media(prefers-reduced-motion:reduce){.pass-celebration,.pass-celebration-card{animation:none}.pass-celebration-burst{display:none}}
+@media(max-width:620px){.pass-celebration{padding:28px 18px 22px}.pass-celebration-button{width:100%}}

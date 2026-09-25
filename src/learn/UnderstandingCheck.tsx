@@ -35,7 +35,7 @@ export function UnderstandingCheck({ prompt, answer, learnerId, evidence, onAtte
     finally { setBusy(false); }
   };
   const choiceFeedback = prompt.kind === 'supported-selection' ? prompt.options.find((option) => option.id === answer)?.feedback : undefined;
-  return <div className="prompt">
+  return <div className="prompt" id={`prompt-${prompt.id}`}>
     {prompt.kind === 'concise-explanation'
       ? <label htmlFor={prompt.id}><strong>{prompt.question}</strong></label>
       : <strong id={`${prompt.id}-question`}>{prompt.question}</strong>}

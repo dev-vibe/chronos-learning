@@ -1,5 +1,5 @@
 import React, { useEffect, useMemo, useRef, useState } from 'react';
-import { ArrowRight, Bookmark, Check, ChevronRight, Clock3, Compass, Search } from 'lucide-react';
+import { ArrowRight, Bookmark, Check, ChevronRight, ClipboardCheck, Clock3, Compass, MessageSquareQuote, Search } from 'lucide-react';
 import { chronosContent } from '../../content/chronos';
 import { learningConnectionsByLessonId } from '../../content/learning-connections';
 import { searchAliases } from '../../content/search/aliases';
@@ -11,7 +11,8 @@ import { resolveJourneyInvitation } from '../domains/journeys/invitations';
 import { createLocalSearchProvider, type SearchProvider, type SearchResult } from '../domains/search/search';
 import { knowledgeCardTypeLabel } from '../domains/knowledgeCards';
 import { isLessonOpenable, unlockPreviewLessonsEnabled } from '../config/runtimeFlags';
-import { createProgressGateway, type JourneyProgressSummary, type LearnProgressGateway } from '../learn/progress';
+import { createProgressGateway, type JourneyProgressSummary, type LearnProgressGateway, type ReviewInbox } from '../learn/progress';
+import { PassCelebration } from '../learn/PassCelebration';
 import { createJourneyDrawerState, JourneyDrawer } from '../learn/JourneyDrawer';
 import { ResponsiveMedia } from '../learn/ResponsiveMedia';
 import { WorldSpineOverview } from './WorldSpineOverview';
@@ -21,10 +22,11 @@ import type { ChronosRoute } from './routes';
 import { GlobalNavigation } from './GlobalNavigation';
 import '../learn/learn.css';
 import './app.css';
+import './family.css';
 
 type Navigate = (destination: string) => void;
 type DiscoveryAppProps = {
-  route: Exclude<ChronosRoute, { name: 'learn' | 'legacy' | 'audit' }>;
+  route: Exclude<ChronosRoute, { name: 'learn' | 'legacy' | 'audit' | 'account' | 'review' }>;
   content?: ChronosContentBundle;
   journeyGatewayFactory?: () => Promise<JourneyStateGateway>;
   progressGatewayFactory?: () => Promise<LearnProgressGateway>;
@@ -47,7 +49,17 @@ function JourneyCard({ item, state, progress }: { item: CatalogJourney; state?: 
   return <article className="journey-card"><p className="label">{kindLabel(item.kind)}</p><h3><a href={`/library/${item.id}`}>{item.title}</a></h3><p>{item.learnerPromise}</p><div className="journey-card-meta"><span>{item.period}</span><span>{item.lessonCount} {item.lessonCount === 1 ? 'lesson' : 'lessons'}</span><b>{progress.isCompleted ? 'Completed' : state?.status === 'saved' ? 'Saved' : state?.status === 'open' ? 'Open' : 'Available'}</b></div><ProgressLine progress={progress} /></article>;
 }
 
-function HomePage({ content, snapshot, summaries, onCommit }: { content: ChronosContentBundle; snapshot: JourneyStateLoad; summaries: Record<string, JourneyProgressSummary>; onCommit(next: LearnerJourneyState, destination?: string): void }) {
+function ReviewNotices({ content, inbox }: { content: ChronosContentBundle; inbox?: ReviewInbox }) {
+  if (!inbox) return null;
+  const returned = inbox.returned.map((notice) => ({ notice, lesson: content.lessons.find((lesson) => lesson.id === notice.lessonId) })).filter((item) => item.lesson);
+  if (!returned.length && !inbox.waitingForMyReview) return null;
+  return <div className="review-notices">
+    {returned.map(({ notice, lesson }) => <a key={notice.lessonId} className="review-notice" href={`/learn/${notice.lessonId}#completion-title`}><MessageSquareQuote aria-hidden="true" /><span><strong>{lesson!.title}</strong> was sent back with a note. Change your answers and send it again.</span><ChevronRight aria-hidden="true" /></a>)}
+    {inbox.waitingForMyReview > 0 && <a className="review-notice" href="/review"><ClipboardCheck aria-hidden="true" /><span><strong>{inbox.waitingForMyReview} {inbox.waitingForMyReview === 1 ? 'lesson is' : 'lessons are'} waiting for your review.</strong></span><ChevronRight aria-hidden="true" /></a>}
+  </div>;
+}
+
+function HomePage({ content, snapshot, summaries, inbox, onCommit }: { content: ChronosContentBundle; snapshot: JourneyStateLoad; summaries: Record<string, JourneyProgressSummary>; inbox?: ReviewInbox; onCommit(next: LearnerJourneyState, destination?: string): void }) {
   const catalog = createPublishedJourneyCatalog(content.journeys, content.lessons);
   const state = snapshot.state; const activeJourney = content.journeys.find((journey) => journey.id === state.activeJourneyId && journey.status === 'published');
   const record = activeJourney ? state.journeys[activeJourney.id] : undefined;
@@ -64,6 +76,7 @@ function HomePage({ content, snapshot, summaries, onCommit }: { content: Chronos
   if (!activeJourney || !record) return <Recovery title="Your next lesson is unavailable." body="Chronos could not find your active journey. Your saved completion remains intact." />;
   const activeProgress = deriveJourneyProgress(activeJourney, content.lessons, summaries);
   return <main className="discovery-main home-page"><header className="page-intro"><p className="label">Your learning</p><h1>Welcome back.</h1><p>One clear next step, with room to explore when you choose.</p></header>
+    <ReviewNotices content={content} inbox={inbox} />
     {snapshot.staleJourneyIds.length > 0 && <p className="quiet-notice" role="status">A saved journey is no longer published, so it has been removed from your visible list. Your lesson progress is unchanged.</p>}
     {activeLesson ? <section className="continue-card" aria-labelledby="continue-title"><div className="continue-copy"><p className="label">Continue · {activeJourney.title}</p><h2 id="continue-title">{activeLesson.title}</h2>{chapter && <p className="chapter-context">Chapter {chapter.position + 1} · {chapter.title}</p>}<p>{activeLesson.significance}</p><div className="continue-meta"><span>{activeLesson.masthead}</span><span>{activeLesson.place}</span></div><ProgressLine progress={activeProgress} /><a className="primary-action" href={`/learn/${activeLesson.id}`} onClick={(event) => { event.preventDefault(); onCommit(continueJourney(state, activeJourney, content.lessons, summaries), `/learn/${activeLesson.id}`); }}>Continue lesson <ArrowRight /></a></div>{hero && <div className="continue-image"><ResponsiveMedia media={hero} alt={hero.alt} sizes="(max-width: 720px) 100vw, 44vw" loading="eager" /><span>{hero.depictionLabel}</span></div>}</section> : <section className="continue-card continue-card-status" aria-labelledby="continue-title"><div className="continue-copy"><p className="label">{nextAction.kind === 'complete' ? 'Journey complete' : 'World History update'}</p><h2 id="continue-title">{nextAction.kind === 'complete' ? 'You have explored every published lesson.' : 'The next required lesson is not available yet.'}</h2><p>{nextAction.kind === 'complete' ? 'Your completed lessons remain open to revisit while the journey grows.' : 'Chronos will keep your progress safe and offer the next lesson when its curriculum prerequisites are ready.'}</p><ProgressLine progress={activeProgress} /><a className="primary-action" href={`/library/${activeJourney.id}`}>View journey <ArrowRight /></a></div></section>}
     {retrieveLesson && connection?.retrieve && <section className="home-revisit" aria-labelledby="revisit-title"><p className="label">Bring an earlier idea along · Optional</p><h2 id="revisit-title">{connection.retrieve.prompt}</h2><p>{connection.extend}</p><a href={`/learn/${retrieveLesson.id}`}>Revisit {retrieveLesson.title} <ChevronRight /></a></section>}
@@ -175,11 +188,11 @@ function resolveWorldHistoryDrawer(
 }
 
 export function DiscoveryApp({ route, content = chronosContent, journeyGatewayFactory = createJourneyStateGateway, progressGatewayFactory = createProgressGateway, searchProvider, navigate = (destination) => window.location.assign(destination) }: DiscoveryAppProps) {
-  const [snapshot, setSnapshot] = useState<JourneyStateLoad>(); const [summaries, setSummaries] = useState<Record<string, JourneyProgressSummary>>({}); const [loadError, setLoadError] = useState(''); const [actionError, setActionError] = useState(''); const [busy, setBusy] = useState(false); const [attempt, setAttempt] = useState(0); const [drawer, setDrawer] = useState(false); const gatewayRef = useRef<JourneyStateGateway | undefined>(undefined); const menuRef = useRef<HTMLElement>(null);
+  const [snapshot, setSnapshot] = useState<JourneyStateLoad>(); const [progressGateway, setProgressGateway] = useState<LearnProgressGateway>(); const [inbox, setInbox] = useState<ReviewInbox>(); const [summaries, setSummaries] = useState<Record<string, JourneyProgressSummary>>({}); const [loadError, setLoadError] = useState(''); const [actionError, setActionError] = useState(''); const [busy, setBusy] = useState(false); const [attempt, setAttempt] = useState(0); const [drawer, setDrawer] = useState(false); const gatewayRef = useRef<JourneyStateGateway | undefined>(undefined); const menuRef = useRef<HTMLElement>(null);
   const { theme, toggleTheme } = useChronosTheme();
   const provider = useMemo(() => searchProvider ?? createLocalSearchProvider(content, searchAliases), [content, searchProvider]);
   useEffect(() => { const onKey = (event: KeyboardEvent) => { if ((event.ctrlKey || event.metaKey) && event.key.toLowerCase() === 'k') { event.preventDefault(); window.location.assign('/search'); } }; window.addEventListener('keydown', onKey); return () => window.removeEventListener('keydown', onKey); }, []);
-  useEffect(() => { let current = true; setLoadError(''); Promise.all([journeyGatewayFactory(), progressGatewayFactory()]).then(async ([journeyGateway, progressGateway]) => { gatewayRef.current = journeyGateway; const openableIds = content.lessons.filter((lesson) => isLessonOpenable(lesson)).map((lesson) => lesson.id); const [loaded, progress] = await Promise.all([journeyGateway.load(), progressGateway.loadJourneySummaries(openableIds)]); if (current) { setSnapshot(loaded); setSummaries(progress); } }).catch(() => { if (current) setLoadError('Your navigation state could not be loaded. Check the connection and retry.'); }); return () => { current = false; }; }, [attempt, content, journeyGatewayFactory, progressGatewayFactory]);
+  useEffect(() => { let current = true; setLoadError(''); Promise.all([journeyGatewayFactory(), progressGatewayFactory()]).then(async ([journeyGateway, progressGateway]) => { gatewayRef.current = journeyGateway; const openableIds = content.lessons.filter((lesson) => isLessonOpenable(lesson)).map((lesson) => lesson.id); const [loaded, progress] = await Promise.all([journeyGateway.load(), progressGateway.loadJourneySummaries(openableIds)]); if (current) { setSnapshot(loaded); setSummaries(progress); setProgressGateway(progressGateway); } progressGateway.loadInbox().then((loadedInbox) => { if (current) setInbox(loadedInbox); }).catch(() => undefined); }).catch(() => { if (current) setLoadError('Your navigation state could not be loaded. Check the connection and retry.'); }); return () => { current = false; }; }, [attempt, content, journeyGatewayFactory, progressGatewayFactory]);
   const commit = async (next: LearnerJourneyState, destination?: string) => { if (!gatewayRef.current) return; setBusy(true); setActionError(''); try { const loaded = await gatewayRef.current.save(next); setSnapshot(loaded); if (destination) navigate(destination); } catch { setActionError('That journey action could not be saved. Your lesson completion is safe; please retry.'); } finally { setBusy(false); } };
   const drawerContext = resolveWorldHistoryDrawer(content, snapshot?.state, summaries);
   const openWorldHistory = (event: React.MouseEvent<HTMLButtonElement>) => {
@@ -209,5 +222,5 @@ export function DiscoveryApp({ route, content = chronosContent, journeyGatewayFa
   /> : null;
   if (loadError) return <div className="discovery-app" data-theme={theme}>{navigation}{worldHistoryDrawer}<Recovery title="We couldn’t open your journeys." body={loadError} retry={() => { setSnapshot(undefined); setAttempt((value) => value + 1); }} /></div>;
   if (!snapshot) return <div className="discovery-app" data-theme={theme}>{navigation}{worldHistoryDrawer}<main className="discovery-loading" aria-busy="true">Opening your Chronos library…</main></div>;
-  return <div className="discovery-app" data-theme={theme}>{navigation}{worldHistoryDrawer}{actionError && <div className="action-error" role="alert">{actionError}</div>}{route.name === 'home' && <HomePage content={content} snapshot={snapshot} summaries={summaries} onCommit={commit} />}{route.name === 'library' && <LibraryPage content={content} state={snapshot.state} summaries={summaries} onOpenWorldHistory={openWorldHistory} />}{route.name === 'journey' && <JourneyDetailPage journeyId={route.journeyId} content={content} state={snapshot.state} summaries={summaries} busy={busy} onCommit={commit} />}{route.name === 'search' && <SearchPage provider={provider} initialQuery={route.query} />}{route.name === 'not-found' && <Recovery title="That page isn’t in the archive." body="Check the address or return to a published Chronos destination." />}</div>;
+  return <div className="discovery-app" data-theme={theme}>{navigation}{worldHistoryDrawer}{actionError && <div className="action-error" role="alert">{actionError}</div>}{route.name === 'home' && <HomePage content={content} snapshot={snapshot} summaries={summaries} inbox={inbox} onCommit={commit} />}{route.name === 'library' && <LibraryPage content={content} state={snapshot.state} summaries={summaries} onOpenWorldHistory={openWorldHistory} />}{route.name === 'journey' && <JourneyDetailPage journeyId={route.journeyId} content={content} state={snapshot.state} summaries={summaries} busy={busy} onCommit={commit} />}{route.name === 'search' && <SearchPage provider={provider} initialQuery={route.query} />}{route.name === 'not-found' && <Recovery title="That page isn’t in the archive." body="Check the address or return to a published Chronos destination." />}{inbox && <PassCelebration gateway={progressGateway} passes={inbox.passes} />}</div>;
 }

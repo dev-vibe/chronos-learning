@@ -1,6 +1,6 @@
 import { beforeEach, describe, expect, it, vi } from 'vitest';
 import { chronosContent } from '../../content/chronos';
-import { LocalPreviewGateway, mapCompletionRpcResult, SupabaseLearnGateway } from '../../src/learn/progress';
+import { LocalPreviewGateway, SupabaseLearnGateway } from '../../src/learn/progress';
 import { canExplicitlyComplete } from '../../src/domains/contracts';
 
 const values = new Map<string, string>();
@@ -37,19 +37,19 @@ describe('Uruk Learn progress boundary', () => {
     expect(state.exploredSectionIds).toEqual(['section.uruk.the-built-city']);
   });
 
-  it('persists attempts and idempotently returns revisit completion states', async () => {
+  it('persists attempts and finishes idempotently', async () => {
     const gateway = new LocalPreviewGateway(); const lessonId = 'lesson.uruk.first-city';
     await gateway.saveAttempt(lessonId, 'prompt.uruk.administration-evidence', 'Administrative tablets and cylinder seals');
     await gateway.saveAttempt(lessonId, 'prompt.uruk.opportunity-and-cost', 'Specialized work was possible, but coordinated labor placed unequal burdens on people.');
     const state = await gateway.load(lessonId);
     expect(canExplicitlyComplete(chronosContent.lessons.find((lesson) => lesson.id === lessonId)!.promptIds, { lessonId, idempotencyKey: 'stable-key', explicitCompletion: true, attemptedPromptIds: state.attemptedPromptIds })).toBe(true);
-    expect(await gateway.complete(lessonId, 'stable-key')).toMatchObject({ completion: 'newly-completed', cardOwnership: 'newly-acquired', cardId: 'card.place.uruk' });
-    expect(await gateway.complete(lessonId, 'retry-key')).toMatchObject({ completion: 'already-completed', cardOwnership: 'already-owned' });
+    expect(await gateway.submit(lessonId)).toMatchObject({ status: 'completed', cardIds: [] });
+    expect(await gateway.submit(lessonId)).toMatchObject({ status: 'completed' });
   });
 
-  it('rejects local completion before required attempts', async () => {
+  it('rejects finishing before required attempts', async () => {
     const gateway = new LocalPreviewGateway();
-    await expect(gateway.complete('lesson.uruk.first-city', 'blocked-key')).rejects.toThrow('required prompt attempts missing');
+    await expect(gateway.submit('lesson.uruk.first-city')).rejects.toThrow('required prompt attempts missing');
   });
 
   it('bootstraps authenticated progress with the hardened insert-only contract', async () => {
@@ -58,6 +58,7 @@ describe('Uruk Learn progress boundary', () => {
       const chain: any = {
         select: () => chain,
         eq: () => chain,
+        order: () => chain,
         single: async () => ({ data, error: null }),
         maybeSingle: async () => ({ data, error: null }),
         then: (resolve: (value: unknown) => unknown) => Promise.resolve({ data, error: null }).then(resolve),
@@ -70,11 +71,13 @@ describe('Uruk Learn progress boundary', () => {
           upserts.push({ table, payload, options });
           return { error: null };
         },
-        select: () => query(table === 'lesson_progress' ? { status: 'in_progress', completed_at: null } : []),
+        select: () => query(table === 'lesson_progress' ? { status: 'in_progress', completed_at: null } : table === 'lesson_submissions' ? { status: 'returned', round: 2, submitted_at: '2026-09-01T00:00:00Z', reviewed_at: '2026-09-02T00:00:00Z', feedback: 'Add a detail.', card_ids: [], pass_seen_at: null } : table === 'guardian_links' ? [{ guardian_id: '22222222-2222-4222-a222-222222222222' }] : []),
       }),
     };
 
-    await new SupabaseLearnGateway('11111111-1111-1111-1111-111111111111', client).load('lesson.uruk.first-city');
+    const loaded = await new SupabaseLearnGateway('11111111-1111-1111-1111-111111111111', client).load('lesson.uruk.first-city');
+    expect(loaded.review).toEqual({ status: 'returned', round: 2, submittedAt: '2026-09-01T00:00:00Z', reviewedAt: '2026-09-02T00:00:00Z', feedback: 'Add a detail.', cardIds: [] });
+    expect(loaded.account).toEqual({ parentLinked: true });
 
     expect(upserts).toEqual([
       {
@@ -88,11 +91,6 @@ describe('Uruk Learn progress boundary', () => {
         options: { onConflict: 'learner_id,lesson_id', ignoreDuplicates: true },
       },
     ]);
-  });
-
-  it('maps the exact camelCase, hyphenated RPC payload contract', () => {
-    expect(mapCompletionRpcResult({ completion: 'already-completed', cardOwnership: 'already-owned', cardId: 'card.place.uruk' })).toEqual({ completion: 'already-completed', cardOwnership: 'already-owned', cardIds: ['card.place.uruk'], cardId: 'card.place.uruk' });
-    expect(mapCompletionRpcResult({ completion: 'newly-completed', cardOwnership: 'newly-acquired', cardId: 'card.place.uruk' })).toEqual({ completion: 'newly-completed', cardOwnership: 'newly-acquired', cardIds: ['card.place.uruk'], cardId: 'card.place.uruk' });
   });
 
   it('renders all canonical semantic sections and evidence metadata from the fixture', () => {
@@ -112,11 +110,10 @@ describe('multi-lesson local progress boundary', () => {
     const writingId = 'lesson.writing.early-systems';
     await gateway.markSection(writingId, 'section.writing.signs-change');
     await gateway.saveAttempt(writingId, 'prompt.writing.administration-evidence', 'option.writing.tablet');
-    await expect(gateway.complete(writingId, 'blocked')).rejects.toThrow('required prompt attempts missing');
+    await expect(gateway.submit(writingId)).rejects.toThrow('required prompt attempts missing');
     await gateway.saveAttempt(writingId, 'prompt.writing.possibility-and-limit', 'Writing made durable allocations possible, while surviving administrative records omit many voices.');
 
-    expect(await gateway.complete(writingId, 'first-key')).toMatchObject({ completion: 'newly-completed', cardOwnership: 'newly-acquired', cardId: 'card.artifact.proto-cuneiform-tablet' });
-    expect(await gateway.complete(writingId, 'second-key')).toMatchObject({ completion: 'already-completed', cardOwnership: 'already-owned', cardId: 'card.artifact.proto-cuneiform-tablet' });
+    expect(await gateway.submit(writingId)).toMatchObject({ status: 'completed' });
     expect(await gateway.load(writingId)).toMatchObject({ status: 'completed', resumeSectionId: 'section.writing.signs-change' });
     expect(await gateway.load('lesson.uruk.first-city')).toMatchObject({ status: 'in-progress', attemptedPromptIds: [], exploredSectionIds: [] });
   });

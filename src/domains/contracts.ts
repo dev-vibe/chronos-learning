@@ -103,7 +103,6 @@ export type Lesson = z.infer<typeof LessonSchema>; export type LessonSection = z
 export type LessonProgress = { learnerId:string; lessonId:string; status:'in-progress'|'completed'; resumeSectionId?:string; attemptedPromptIds:string[]; completedAt?:string };
 export type CardOwnership = { learnerId:string; cardId:string; acquiredAt:string };
 export type CompleteLessonCommand = { lessonId:string; idempotencyKey:string; explicitCompletion:true; attemptedPromptIds:string[]; rawScrollPosition?:number };
-export type CompleteLessonResult = { completion:'newly-completed'|'already-completed'; cardOwnership:'newly-acquired'|'already-owned'|'not-configured'; cardIds?:string[]; cardId?:string };
 
 export const compareHistoricalDates = (a: HistoricalDateRange, b: HistoricalDateRange) => a.startYear - b.startYear || a.endYear - b.endYear;
 export const canExplicitlyComplete = (requiredPromptIds:string[], command:CompleteLessonCommand) => command.explicitCompletion && requiredPromptIds.every((id) => command.attemptedPromptIds.includes(id));
