@@ -126,6 +126,8 @@ The set combines official heritage geography, the 2001/2004 dating papers, a 200
 | --- | --- | --- | --- | --- | --- | --- | --- |
 | `claim.caral.late-archaic-range`: A major preceramic monumental complex developed on Peru’s north-central coast between about 3000 and 1800 BCE. | interpretation | high | Nature 2004; UNESCO 1269 | Exact start/end of each site varies | Coastal and inland sites are not equally excavated | State with “about” | Reviewed |
 | `claim.caral.caral-dates`: Radiocarbon dates from plant fibers in Caral’s construction place monumental architecture around 2627 to 1977 BCE. | observation | high | Science 2001 | Later occupation and remodeling continued; range is calibrated | Workers who made the bags are unnamed | State as dated construction, not a founding day | Reviewed |
+| `claim.caral.dating-published-2001`: Ruth Shady Solís, Jonathan Haas, and Winifred Creamer published Caral’s radiocarbon dates in Science in 2001. | observation | high | Science 2001 (byline; *Science* 292 no. 5517, 27 April 2001, pp. 723–726) | Names the publishing authors, not the whole excavation team | Excavation workers and specialists outside the byline are unnamed | One sentence in the opening; added in the 2026-09-25 voice revision | Reviewed 2026-09-25 |
+| `claim.caral.eighteen-supe-sites`: Caral is one of 18 large preceramic sites in the Supe Valley. | observation | high | Science 2001 (abstract: “Caral is one of 18 large preceramic sites in the Supe valley”) | Site counts differ by survey and later work; the count is the Supe Valley only | Smaller settlements are under-described | One number in section 2, beside the existing regional-sites claim; added in the 2026-09-25 voice revision | Reviewed 2026-09-25 |
 | `claim.caral.inland-setting`: Caral occupies a dry desert terrace above the green Supe Valley about 23 km inland from the Pacific. | observation | high | Science 2001; UNESCO; Sandweiss 2009 | Ancient shoreline and river channels changed | Coastal communities are easy to treat as scenery | Teach inland-not-beach before the economy | Reviewed |
 | `claim.caral.regional-sites`: Caral is one of multiple large preceramic settlements in the Supe Valley and neighboring valleys. | observation | high | Science 2001; Nature 2004; UNESCO | Site counts and names differ by survey | Smaller settlements are under-described | Name the cluster; do not catalog every site | Reviewed |
 | `claim.caral.monumental-architecture`: Caral’s central zone includes six large platform mounds, sunken circular plazas, and residential architecture over about 65 hectares. | observation | high | Science 2001; UNESCO nomination | “Pyramid” is a later popular label for platform mounds | Interior rooms and exact functions are partly reconstructed | Observe mounds and plazas first | Reviewed |
@@ -854,3 +856,53 @@ Release disposition: **COMPLETE.** [PR #26](https://github.com/dev-vibe/chronos-
 - [x] Immutable media publication and remote byte verification
 - [x] Post-publication discovery, progression, Learn-shell, content, and build regression pass
 - [x] PR review and merge
+
+## Voice revision
+
+Runbook: `docs/content/lesson-voice-revision-runbook.md`. Branch: `claude/compassionate-maxwell-v60st1` (the session's assigned branch, used in place of `revise/caral-andean-urbanism-voice`). Started 2026-09-25. Status: **awaiting owner review.**
+
+### Audit of the published version
+
+| Section | What read flat |
+| --- | --- |
+| `section.caral.another-way` | Opened on the learner’s mental picture (“If you already have a picture of an early city…”) and a “Walk onto a dry terrace… around 2600 BCE” time-travel line instead of a real find or object. A run of short same-length sentences listed what was missing (“They did not find… They did not find…”). The question was announced (“This lesson asks…”) rather than grown from the evidence. The bags of stones and their dates, the lesson’s best detail, were held back to section 4. |
+| `section.caral.coast-and-valley` | Clear but told as a list of short declaratives (“The Pacific Ocean is west. The Andes rise east.”; “Cotton could become nets. Gourds could become floats…”). No specific number for how many centers shared the valley. The knowledge body was a methods instruction (“Hold these three relationships in view”). |
+| `section.caral.plaza` | Opened with an instruction (“Look for a circular hollow…”) and ended on a slogan-shaped line (“not a roll call of named rulers”). The 65-hectare figure had no scale a learner could picture. The observation box led with methods jargon (“An observation names what survives. An interpretation explains why it may matter.”). |
+| `section.caral.how-built` | Opened on a negative (“not poured like modern concrete”). The shicra bags and their dates were told as a fact rather than as the thing that dated the city. Ended on a summary line (“They solved different problems with different tools.”). The labor box body was general (“visible from far away”). |
+| `section.caral.what-it-can-prove` | Five paragraphs, each restating a limit, with doubled hedging (“That is important. It is not the same as proving… Absence of those remains is a limit of the evidence, not a complete social portrait.”). Opened with a thesis sentence (“That is the claim this lesson needs”). The ending named missing people in the abstract. |
+| `section.caral.world-check` | Prompts only; not changed. |
+
+Whole lesson: story spine `none`; memorable moments `one` (bird-bone flutes: the instruments survive, the songs do not); opening did not land (a mental picture and a time-travel line, then an announced question); ending did not land (a list of limits, then the summary box).
+
+### Story material
+
+- **Story spine:** fiber. The lesson opens on the stone-filled bags inside the mounds whose fibers dated the city; section 2 follows valley cotton into fishing nets and fish back up the valley; section 4 returns to the bags as both building method and evidence; section 5 meets the knotted cord; and the lesson closes on the bags again, whose fiber kept its date but not a single name.
+- **Memorable moments:** (1) the bags of stones inside the mounds, whose fibers never rotted and dated Caral to about 2627 BCE; (2) a net of valley cotton floated on gourds, and fish carried back inland from the coast; (3) bird-bone flutes in a sunken plaza: the instruments survive, the songs do not; (4) the knotted cord left as an offering, which may or may not be an early quipu.
+- **Sources of the material:** almost entirely the existing claim ledger (shicra, dates, cotton–fish exchange, quipu, evidence bias). New: the Science 2001 byline and abstract (authors and the 18-site count). The 65-hectare scale comparison is arithmetic on `claim.caral.monumental-architecture` (65 ha ÷ a 105 × 68 m pitch of 0.714 ha ≈ 91, given as “roughly the area of 90 soccer fields”).
+- **Later tradition used:** none. The quipu stays a later Andean recording tradition and a contested identification, as before.
+- **Research limits in this pass:** the session’s network blocked direct page fetches (UNESCO, PMC, Science, PUCP, Zona Caral). The two new claims rest on the Science 2001 byline and abstract as returned by web search from the Science, PubMed (11326098) and NASA ADS (2001Sci...292..723S) records; the article page itself was not opened. No other new facts were added.
+
+### Changes
+
+- Prose bodies in sections 1–5, the knowledge bodies of `module.caral.two-zones`, `module.caral.plaza-observe` and `module.caral.work-not-magic`, two `two-zones` item texts, the plaza evidence caption and the card reveal text were rewritten. All IDs, headings, module titles and eyebrows, section order, prompts, options, answer logic, prompt explanations, media, map text, scene hotspots, card facts and completion are unchanged. No module removed or reordered.
+- 2 claims added to the lesson module and this note’s claim ledger: `claim.caral.dating-published-2001`, `claim.caral.eighteen-supe-sites`. No sources added. Module `claimIds`/`sourceIds` updated to cover what each module now says (the opening now carries `shicra`, `caral-dates` and `monumental-architecture`; section 2 carries `late-archaic-range`; the section 5 prose carries the callback to `shicra`, `caral-dates` and `cotton-fish-exchange`).
+- Reading length: 1,297 → 1,542 words in the learner-facing headings, hero caption and module text (+18.9%). Cut: the “Walk onto a dry terrace” line, the announced lesson question, the “not poured like modern concrete” opening, the summary and slogan endings, and the doubled hedges in section 5.
+
+### Left out
+
+- **Egypt comparison.** Caral’s dated building overlaps the centuries of Egypt’s Old Kingdom pyramids, a strong hook, but no registered Caral source states it and the pyramids lesson treats Old Kingdom dates as a live question. Left out rather than dating Giza inside this lesson.
+- **Flute details.** Popular accounts give 32 flutes of condor and pelican bone and 37 cornets of deer and llama bone from the Amphitheater temple. The only sources reachable in this pass were magazine, travel and blog pages, not the excavators’ reports. The lesson keeps “bird-bone flutes”.
+- **Discovery story.** Paul Kosok’s 1948 visit and the start of Ruth Shady’s work in 1994 are reported in encyclopedia pages, which this note does not use as sources. Left out.
+- **Pre-existing gap noticed, not changed:** the flute sentence (section 4) has no claim of its own in the published lesson; the content triage lists it as enrichment without naming a source. It is kept word for word in meaning. A later correction could add a claim once the nomination file or a PEACS report can be opened.
+
+### Stage 14B check on the changed sections
+
+| Question | Finding | Evidence and disposition |
+| --- | --- | --- |
+| Story | pass | Opens on the stone-filled bags and their date; fiber returns in sections 2 (nets and floats), 4 (the bags as method and evidence) and 5 (the knotted cord), and the ending calls back to the bags. Retellable moments: bags that dated a city, cotton nets and fish moving between coast and valley, flutes without songs, the unreadable knotted cord. |
+| Evidence reasoning | pass | Every detail maps to a reviewed claim. Observation and interpretation stay separate in the plaza section (“The plaza survives. The gatherings held in it are harder to reach…”). The quipu, state, oldest-city and peace limits are each stated once, where they come up. Both prompts remain answerable from sections 1–5 unchanged. |
+| Proportionality | pass | Caral is still one of many early centers; “some of its neighbors were also early” keeps the oldest-city qualifier; independence from Egypt and Mesopotamia is stated without ranking. The ending names unnamed workers without inventing them. Ruth Shady Solís is named once, as an author of the dates, not as the memory object (content triage rejected an excavator biography). |
+| Cognitive load | pass | New names: Ruth Shady Solís, Jonathan Haas, Winifred Creamer (one sentence). New number: 18 sites. Dates kept to the same anchors (2627 BCE; 2627–1977 BCE; 3000–1800 BCE). Section 5 is still the densest, but it now runs as four short beats with one limit each. |
+| Headings | pass | Unchanged; all name the subject in plain words. |
+
+`npm run validate:content` passed; `npm run test:domain` passed (14 files, 63 tests). No test pinned the changed text. `tests/learn/multi-lesson.test.tsx` has one failure (“resolves the published writing lesson with ordered journey navigation”) that also fails on `main` without this change: its expected journey list stops at the pyramids lesson.
