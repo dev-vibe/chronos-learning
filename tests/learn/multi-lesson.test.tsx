@@ -101,6 +101,9 @@ describe('multi-lesson Learn runtime', () => {
       'lesson.egypt.nile-state',
       'lesson.caral.andean-urbanism',
       'lesson.egypt.pyramids-and-state-labor',
+      'lesson.indus.cities-and-signs',
+      'lesson.nubia.kerma-and-nile-world',
+      'lesson.mesopotamia.akkadian-empire',
     ]);
   });
 
