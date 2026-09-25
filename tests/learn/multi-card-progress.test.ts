@@ -47,7 +47,15 @@ describe('parent review submissions', () => {
     const state = { learnerId: 'x', lessonId: 'lesson.uruk.first-city', status: 'in-progress' as const, attemptedPromptIds: [], exploredSectionIds: [], responses: { 'prompt.uruk.administration-evidence': 'option.uruk.tablets' }, version: 1 as const };
     vi.spyOn(gateway, 'load').mockResolvedValue(state);
     await gateway.submit('lesson.uruk.first-city');
-    expect(rpc).toHaveBeenCalledWith('submit_lesson', { p_lesson_id: 'lesson.uruk.first-city', p_answers: { 'prompt.uruk.administration-evidence': 'option.uruk.tablets' }, p_learner_id: '11111111-1111-4111-a111-111111111111' });
+    expect(rpc).toHaveBeenCalledWith('submit_lesson', {
+      p_lesson_id: 'lesson.uruk.first-city',
+      p_answers: { 'prompt.uruk.administration-evidence': 'option.uruk.tablets' },
+      p_learner_id: '11111111-1111-4111-a111-111111111111',
+      p_questions: [
+        expect.objectContaining({ promptId: 'prompt.uruk.administration-evidence', answerLabel: 'Administrative tablets and cylinder seals', best: true }),
+        expect.objectContaining({ promptId: 'prompt.uruk.opportunity-and-cost', kind: 'concise-explanation' }),
+      ],
+    });
     await gateway.acknowledgePass('lesson.uruk.first-city');
     expect(rpc).toHaveBeenLastCalledWith('acknowledge_pass', { p_lesson_id: 'lesson.uruk.first-city', p_learner_id: '11111111-1111-4111-a111-111111111111' });
   });

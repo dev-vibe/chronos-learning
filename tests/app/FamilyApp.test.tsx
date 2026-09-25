@@ -269,3 +269,75 @@ describe('Review page', () => {
     expect(screen.getByText(/resubmitted/)).toBeTruthy();
   });
 });
+
+describe('Review after a lesson’s prompts change', () => {
+  const retired = 'prompt.uruk.old-evidence-question';
+  const parentWith = (item: ReviewItem) => {
+    const gateway = new FakeFamilyGateway();
+    gateway.user = { userId: parentId };
+    gateway.account = { userId: parentId, displayName: 'Mom', setup: 'separate', linkCode: 'HJKLMNPQ', parents: [], learners: [{ id: kidId, displayName: 'Sam' }], profiles: [], parentPin: false };
+    gateway.queue = [item];
+    return gateway;
+  };
+  const answerFor = (card: HTMLElement, question: string) => within(card).getByText(question).closest('li') as HTMLElement;
+
+  it('shows a retired question as the kid saw it, with their answer and verdict, and no false "No answer" for a question added later', async () => {
+    const gateway = parentWith({
+      ...waitingUruk(),
+      answers: { [retired]: 'option.uruk.old-seals', 'prompt.uruk.administration-evidence': 'option.uruk.tablets' },
+      questions: [
+        { promptId: retired, kind: 'supported-selection', question: 'Which object shows who sealed a jar?', required: true, answerLabel: 'A cylinder seal impression', best: true, explanation: 'Seal impressions name an office or person.' },
+        { promptId: 'prompt.uruk.administration-evidence', kind: 'supported-selection', question: 'Which evidence best supports organized administration at Uruk?', required: true, answerLabel: 'Administrative tablets and cylinder seals', best: true },
+      ],
+    });
+    render(<FamilyApp page="review" gateway={gateway} />);
+    const card = await screen.findByRole('article', { name: 'Uruk: Life in an Early City' });
+    const old = answerFor(card, 'Which object shows who sealed a jar?');
+    expect(within(old).getByText('A cylinder seal impression')).toBeTruthy();
+    expect(within(old).getByText('Best-supported answer')).toBeTruthy();
+    expect(within(old).getByText(/since changed in the lesson.*as Sam saw it/)).toBeTruthy();
+    expect(within(old).getByText('Seal impressions name an office or person.')).toBeTruthy();
+    // The lesson's written prompt was not part of this submission, so it is not listed as unanswered.
+    expect(within(card).queryByText(/Name one opportunity and one cost/)).toBeNull();
+    expect(within(card).queryByText('No answer')).toBeNull();
+    expect(card.querySelectorAll('.review-answers > li')).toHaveLength(2);
+  });
+
+  it('shows a question the kid saw but skipped as "No answer"', async () => {
+    const gateway = parentWith({
+      ...waitingUruk(),
+      answers: { 'prompt.uruk.administration-evidence': 'option.uruk.tablets' },
+      questions: [
+        { promptId: 'prompt.uruk.administration-evidence', kind: 'supported-selection', question: 'Which evidence best supports organized administration at Uruk?', required: true, answerLabel: 'Administrative tablets and cylinder seals', best: true },
+        { promptId: 'prompt.uruk.optional-extra', kind: 'concise-explanation', question: 'Anything else you noticed?', required: false },
+      ],
+    });
+    render(<FamilyApp page="review" gateway={gateway} />);
+    const card = await screen.findByRole('article', { name: 'Uruk: Life in an Early City' });
+    expect(within(answerFor(card, 'Anything else you noticed?')).getByText('No answer')).toBeTruthy();
+  });
+
+  it('judges a current question from the lesson itself, not from the snapshot the browser sent', async () => {
+    const gateway = parentWith({
+      ...waitingUruk(),
+      answers: { 'prompt.uruk.administration-evidence': 'option.uruk.reconstruction' },
+      questions: [{ promptId: 'prompt.uruk.administration-evidence', kind: 'supported-selection', question: 'Edited question', required: true, answerLabel: 'Edited label', best: true }],
+    });
+    render(<FamilyApp page="review" gateway={gateway} />);
+    const card = await screen.findByRole('article', { name: 'Uruk: Life in an Early City' });
+    const entry = answerFor(card, 'Which evidence best supports organized administration at Uruk?');
+    expect(within(entry).getByText('A reconstruction painting of the city')).toBeTruthy();
+    expect(within(entry).getByText('Not the best-supported answer')).toBeTruthy();
+    expect(within(card).queryByText('Edited question')).toBeNull();
+  });
+
+  it('keeps an older submission without a snapshot readable, including an answer to a question that has left the lesson', async () => {
+    const gateway = parentWith({ ...waitingUruk(), answers: { ...waitingUruk().answers, [retired]: 'Seals marked who closed the jar.' } });
+    render(<FamilyApp page="review" gateway={gateway} />);
+    const card = await screen.findByRole('article', { name: 'Uruk: Life in an Early City' });
+    expect(within(card).getByText('Administrative tablets and cylinder seals')).toBeTruthy();
+    expect(within(card).getByText('Temple workers were paid in grain rations.')).toBeTruthy();
+    const old = answerFor(card, 'A question that is no longer in this lesson');
+    expect(within(old).getByText('Seals marked who closed the jar.')).toBeTruthy();
+  });
+});

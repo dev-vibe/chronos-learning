@@ -43,6 +43,7 @@ Do not expand the old monolithic `App.tsx`, XP/level system, rarity/stats model,
 
 - PostgreSQL/Supabase is the durable learner-progress store. All schema changes are committed migrations; never make production-only dashboard changes.
 - Lessons, journeys, prompts and cards are defined only in the repository. The database holds learner state, parent links and reviews, never lesson configuration, so publishing, unpublishing or changing a lesson needs no migration.
+- A published prompt ID stands for one question. Changing a prompt's question, options, best answer, required flag or minimum length means a new ID and `npm run content:fingerprints`; finished lessons, passes and cards are never undone. See [`docs/architecture/prompt-changes.md`](docs/architecture/prompt-changes.md).
 - Supabase project: `Chronos`, ref `fghjnypxhnnutgsaqvvz`, region `ca-central-1`. Free is acceptable for development; upgrade before beta.
 - Keep domain rules outside route handlers and UI components.
 - Prefer typed module renderers over arbitrary HTML.

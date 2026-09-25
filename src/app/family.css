@@ -41,6 +41,7 @@
 .review-question{margin:0 0 6px;font-weight:600;line-height:1.4}
 .review-answer{margin:0;padding:12px 14px;border-radius:10px;background:var(--page);border:1px solid var(--line);font:400 1.08rem/1.55 Newsreader,Georgia,serif;white-space:pre-wrap}
 .no-answer{color:var(--muted)}
+.review-retired-note{margin:-2px 0 6px;font-size:.82rem;color:var(--muted)}
 .review-guide{margin-top:6px;font-size:.85rem;color:var(--muted)}
 .review-guide summary{display:inline-flex;align-items:center;gap:5px;cursor:pointer}
 .review-guide summary svg{width:14px}

@@ -20,7 +20,7 @@ select policies_are('public', 'guardian_links', array['guardian_links_delete','g
 select table_privs_are('public', 'lesson_submissions', 'authenticated', array['SELECT'], 'learners and parents only read submissions directly');
 select table_privs_are('public', 'lesson_submissions', 'anon', array[]::text[], 'anonymous users cannot read submissions');
 
-select function_privs_are('public', 'submit_lesson', array['text','jsonb','uuid'], 'authenticated', array['EXECUTE'], 'learners can submit');
+select function_privs_are('public', 'submit_lesson', array['text','jsonb','uuid','jsonb'], 'authenticated', array['EXECUTE'], 'learners can submit');
 select function_privs_are('public', 'review_submission', array['uuid','text','text','text','text[]'], 'authenticated', array['EXECUTE'], 'parents can review');
 select function_privs_are('public', 'review_submission', array['uuid','text','text','text','text[]'], 'anon', array[]::text[], 'anonymous users cannot review');
 select function_privs_are('public', 'link_learner', array['text'], 'anon', array[]::text[], 'anonymous users cannot link');

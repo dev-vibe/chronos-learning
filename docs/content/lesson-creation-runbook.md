@@ -867,7 +867,7 @@ A request to publish an already-approved lesson (for example after a pause) star
    npm run lesson:prepare-publication -- --lesson <lesson-id> --note <path> --apply-status
    ```
 
-   This checks the release gate, sets `status` to `published`, unregisters the lesson from `content/prototype-reviews.ts` (removing the draft-only notes) and prints the media to upload. Keep the archived review file under `content/prototype-reviews/`.
+   This checks the release gate, sets `status` to `published`, records the lesson's prompt fingerprints, unregisters the lesson from `content/prototype-reviews.ts` (removing the draft-only notes) and prints the media to upload. Keep the archived review file under `content/prototype-reviews/`.
 2. Validate with `npm run validate:content` and `npm run test:domain`.
 3. Upload this lesson's media only, using the printed command: `npm run media:publish -- --asset <id> --asset <id>`. Credentials come from the existing project env; storage objects are immutable.
 4. Push and put the preview link in the PR.
@@ -889,6 +889,7 @@ If a command fails, fix that command rather than inventing a parallel pipeline.
 1. Assess severity and learner harm. Unpublish immediately for a serious factual, rights, safety or provenance issue.
 2. Update the research note, claims and sources, content, media and tests as needed, in one PR. Unpublishing is setting `status` back to `draft`; learners' saved progress and cards are kept.
 3. Keep stable IDs when meaning is unchanged; create a new canonical lesson or a reviewed mapping when meaning changes materially.
+   To change a published prompt's question, options, best answer, required flag or minimum length, give it a new prompt ID and run `npm run content:fingerprints`; explanation, feedback and hint text may change under the same ID ([policy](../architecture/prompt-changes.md)).
 4. Send the owner the direct lesson preview link, following the preview-link contract, even for a one-line fix.
 
 Monitoring drop-off, misconceptions, media delivery and learner feedback after release is product work, not part of this workflow.
