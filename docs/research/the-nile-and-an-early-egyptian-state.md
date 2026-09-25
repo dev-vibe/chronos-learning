@@ -585,7 +585,7 @@ Release disposition: **COMPLETE.** Carlin explicitly approved the final lesson o
 
 ## Voice revision
 
-Runbook: `docs/content/lesson-voice-revision-runbook.md`. Branch: `claude/egypt-nile-state-revision-ulzxs8` (the session’s assigned branch, used in place of `revise/egypt-nile-state-voice`). Started 2026-09-25. Status: **awaiting owner review of the branch preview**.
+Runbook: `docs/content/lesson-voice-revision-runbook.md`. Branch: `claude/egypt-nile-state-revision-ulzxs8` (the session’s assigned branch, used in place of `revise/egypt-nile-state-voice`). Started 2026-09-25. Status: **approved by the owner 2026-09-25; merge completes the revision**. PR: [#63](https://github.com/dev-vibe/chronos-learning/pull/63).
 
 ### Audit of the published version
 
@@ -636,3 +636,12 @@ Whole lesson: story spine `none` (a sequence of topics); memorable moments: the 
 `npm run validate:content` passed; `npm run test:domain` passed (14 files, 63 tests); `tests/learn`, `tests/content` and `tests/lesson` passed except “resolves the published writing lesson with ordered journey navigation” in `tests/learn/multi-lesson.test.tsx`, which fails identically on unmodified `main` and does not touch this lesson. `npm run typecheck` shows only the documented repository baseline; no diagnostic names this lesson.
 
 The branch preview was loaded in headless Chromium on 2026-09-25 through the audit route at 390 × 844 and 1440 × 900. All six sections, both prompts and the completion action render with the revised text, with no horizontal overflow. The deployed bundle no longer contains the old opening.
+
+### Owner review
+
+- Date: 2026-09-25.
+- PR: [#63](https://github.com/dev-vibe/chronos-learning/pull/63), branch preview [chronos-learning-git-claude-egypt-nil-1a9251-dev-vibes-projects.vercel.app](https://chronos-learning-git-claude-egypt-nil-1a9251-dev-vibes-projects.vercel.app/audit?on&next=%2Flearn%2Flesson.egypt.nile-state).
+- Story spine: the Narmer Palette, from its discovery at Nekhen in 1897–1899 to Narmer’s name on a plain mud jar sealing and the unnamed workers who kept the state running.
+- Memorable moments: the Palette dug up at Nekhen, now probably the most reproduced image from ancient Egypt after Tutankhamun’s mask, with a grinding circle that ceremonial palettes show no traces of using; the smiting pose still carved on the last temples ancient Egyptians built; the later legends of the first king damming the Nile for Memphis (Herodotus) and Menes carried off by a hippopotamus (Manetho), with Narmer in neither; Narmer’s name on a mud jar sealing and the thumbnail-sized Abydos labels, forty-three of them carrying only numbers.
+- Added claims: `claim.egypt.palette-discovery`, `palette-most-reproduced`, `main-deposit-not-original`, `nekhen-brewery`, `nekhen-animal-burials`, `everyday-palettes`, `ceremonial-palette-count`, `grinding-circle-unused`, `serpopards`, `smiting-image-endured`, `literal-readings`, `herodotus-menes`, `manetho-menes`, `narmer-sealing`, `abydos-labels-find`, `abydos-label-size`. Sources added: `source.egypt.met-narmer-sealing`, `the-past-tomb-u-j`, `archaeology-abydos-glyphs`, `herodotus-godley`, `smith-herodotus`, `waddell-manetho`.
+- Owner decisions: none beyond approval. Carlin Aylsworth reviewed the branch preview and approved the revision (“great stuff. approved”), 2026-09-25.
