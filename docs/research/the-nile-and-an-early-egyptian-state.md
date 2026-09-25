@@ -634,3 +634,5 @@ Whole lesson: story spine `none` (a sequence of topics); memorable moments: the 
 | Headings | pass | All headings already name their subjects in plain words; none changed. The two slogan eyebrows were replaced with plain labels. |
 
 `npm run validate:content` passed; `npm run test:domain` passed (14 files, 63 tests); `tests/learn`, `tests/content` and `tests/lesson` passed except “resolves the published writing lesson with ordered journey navigation” in `tests/learn/multi-lesson.test.tsx`, which fails identically on unmodified `main` and does not touch this lesson. `npm run typecheck` shows only the documented repository baseline; no diagnostic names this lesson.
+
+The branch preview was loaded in headless Chromium on 2026-09-25 through the audit route at 390 × 844 and 1440 × 900. All six sections, both prompts and the completion action render with the revised text, with no horizontal overflow. The deployed bundle no longer contains the old opening.
