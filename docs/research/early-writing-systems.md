@@ -204,7 +204,7 @@ The lesson earns one deterministic Witness card: `card.artifact.proto-cuneiform-
 
 ## Voice revision
 
-Runbook: `docs/content/lesson-voice-revision-runbook.md`. Branch: `revise/early-writing-systems-voice`. Started 2026-09-24. Status: **awaiting owner review**.
+Runbook: `docs/content/lesson-voice-revision-runbook.md`. Branch: `revise/early-writing-systems-voice`. Started 2026-09-24. Status: **approved by the owner 2026-09-24; merge completes the revision**. PR: [#61](https://github.com/dev-vibe/chronos-learning/pull/61).
 
 ### Audit of the published version
 
@@ -260,4 +260,9 @@ Whole lesson: story spine `none` (a sequence of topics; the tablet appeared only
 
 ### Owner review
 
-Pending.
+- Date: 2026-09-24.
+- PR: [#61](https://github.com/dev-vibe/chronos-learning/pull/61), branch preview [chronos-learning-git-revise-early-wri-a2d0ed-dev-vibes-projects.vercel.app](https://chronos-learning-git-revise-early-wri-a2d0ed-dev-vibes-projects.vercel.app/learn/lesson.writing.early-systems).
+- Story spine: the Met proto-cuneiform tablet 1988.433.1, from the seal rolled across it before anyone wrote to the closing callback on the man and his dogs still crossing the clay.
+- Memorable moments: the seal went on first (a man guiding two dogs among boars in a reed marsh; the seal itself lost); one small round sign could mean ten pots of butter oil, about 150 liters of barley or about 6 hectares of field; the tablet has no verbs, so it never says who gave or received; virtually all of Uruk's 5,000 early tablets came from ancient rubbish heaps.
+- Added: source `source.cdli.englund-account-books`; claims `claim.writing.tablet-making`, `tablet-seal-scene`, `temple-grain-no-verbs`, `among-oldest`, `seal-uses`, `no-discontinuity`, `netted-vessel`, `number-values`, `school-lists`, `one-off-signs`, `wedges-and-sounds`, `dependent-laborers`, `uruk-rubbish`.
+- Owner decisions: Carlin Aylsworth reviewed the branch preview and approved the revision, including the three renamed headings and the removed Archive care box (“approved”), 2026-09-24. During review Carlin also agreed to follow-up platform work (repo-derived publication config, a prompt-change policy and a prompt-revision path), tracked outside this PR.
