@@ -98,16 +98,6 @@ describe('a finished learner after a required prompt is added or replaced', () =
     expect(gateway.submit).toHaveBeenCalledTimes(1);
   });
 
-  it('finished before parent review existed: shows the lesson as finished, never as unfinished', async () => {
-    await open(afterChange());
-    expect(screen.getByRole('heading', { name: 'Lesson finished' })).toBeTruthy();
-    expect(screen.queryByRole('heading', { name: /^Finish / })).toBeNull();
-    expect(screen.getByRole('button', { name: 'Answer the checks above to send' }).hasAttribute('disabled')).toBe(true);
-    expect(screen.getByRole('link', { name: /Continue: From Marks/ })).toBeTruthy();
-    await answerReplacement();
-    await waitFor(() => expect(screen.getByRole('button', { name: 'Send for review' }).hasAttribute('disabled')).toBe(false));
-  });
-
   it('guest who finished locally: stays finished with no finish button', async () => {
     const { account: _account, ...guest } = afterChange();
     await open(guest);
@@ -118,7 +108,7 @@ describe('a finished learner after a required prompt is added or replaced', () =
 });
 
 describe('progress gateways ignore attempts for prompts the lesson no longer has', () => {
-  it('guest progress: keeps a finished lesson finished and keeps the retired answer in storage', async () => {
+  it('guest progress: keeps a finished lesson finished and drops the retired answer', async () => {
     storage.set(`chronos.learn.preview.v1:${lessonId}`, JSON.stringify({
       learnerId: 'anonymous-preview', lessonId, status: 'completed', completedAt: '2026-09-01T00:00:00.000Z',
       attemptedPromptIds: [retired, choice], responses: { [retired]: 'An older answer', [choice]: 'option.uruk.tablets' },
@@ -133,7 +123,7 @@ describe('progress gateways ignore attempts for prompts the lesson no longer has
     expect(await gateway.loadJourneySummaries([lessonId])).toEqual({ [lessonId]: { lessonId, status: 'completed', completedAt: '2026-09-01T00:00:00.000Z' } });
     const saved = await gateway.saveAttempt(lessonId, replacement, 'Rations fed specialists, but the work was shared unequally.');
     expect(saved.attemptedPromptIds).toEqual([choice, replacement]);
-    expect(JSON.parse(storage.get(`chronos.learn.preview.v1:${lessonId}`)!).responses[retired]).toBe('An older answer');
+    expect(JSON.parse(storage.get(`chronos.learn.preview.v1:${lessonId}`)!).responses[retired]).toBeUndefined();
   });
 
   const fakeClient = (attempts: Array<{ prompt_id: string; response: unknown }>, rpc = vi.fn(async (_name: string, _args: unknown) => ({ data: null, error: null }))) => {

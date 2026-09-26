@@ -30,8 +30,8 @@ export type ReviewItem = {
   reviewedAt?: string;
   feedback?: string;
   answers: Record<string, string>;
-  /** The questions as the learner saw them when submitting. Absent for submissions made before snapshots existed. */
-  questions?: SubmittedQuestion[];
+  /** The questions as the learner saw them when submitting, in lesson order. */
+  questions: SubmittedQuestion[];
 };
 export type ReviewDecision = 'pass' | 'return';
 export type SignUpResult = 'signed-in' | 'confirm-email';
@@ -59,11 +59,6 @@ export interface FamilyGateway {
   loadReviewQueue(): Promise<ReviewItem[]>;
   review(learnerId: string, lessonId: string, decision: ReviewDecision, feedback: string, cardIds: string[]): Promise<void>;
 }
-
-const questionsOf = (value: unknown) => {
-  const questions = parseSubmittedQuestions(value);
-  return questions ? { questions } : {};
-};
 
 /** Show codes in two groups of four so they are easy to read aloud. */
 export const formatLinkCode = (code: string) => code.length === 8 ? `${code.slice(0, 4)}-${code.slice(4)}` : code;
@@ -237,7 +232,7 @@ export class SupabaseFamilyGateway implements FamilyGateway {
       ...(row.reviewed_at ? { reviewedAt: String(row.reviewed_at) } : {}),
       ...(row.feedback ? { feedback: String(row.feedback) } : {}),
       answers: Object.fromEntries(Object.entries(row.answers ?? {}).map(([key, value]) => [key, String(value)])),
-      ...questionsOf(row.questions),
+      questions: parseSubmittedQuestions(row.questions),
     }));
   }
   async review(learnerId: string, lessonId: string, decision: ReviewDecision, feedback: string, cardIds: string[]) {

@@ -1,7 +1,6 @@
 import React, { useCallback, useEffect, useMemo, useState } from 'react';
 import { Check, ChevronDown, ClipboardCheck, KeyRound, Lock, LogOut, MessageSquareQuote, RefreshCw, ShieldCheck, UserRound, UserPlus, Users } from 'lucide-react';
 import { chronosContent } from '../../content/chronos';
-import { reviewEntries } from '../domains/submissions';
 import { cardsForLesson } from '../learn/progress';
 import { useChronosTheme } from '../theme/useChronosTheme';
 import { GlobalNavigation } from './GlobalNavigation';
@@ -23,7 +22,6 @@ import './app.css';
 import './family.css';
 
 const lessonById = new Map(chronosContent.lessons.map((lesson) => [lesson.id, lesson]));
-const promptById = new Map(chronosContent.prompts.map((prompt) => [prompt.id, prompt]));
 const cardById = new Map(chronosContent.cards.map((card) => [card.id, card]));
 const nameOf = (member?: FamilyMember) => member?.displayName ?? 'Learner';
 const shortDate = (iso?: string) => {
@@ -408,14 +406,17 @@ function ReviewCard({ item, learner, gateway, onReviewed }: { item: ReviewItem; 
       <h3 id={`${noteId}-title`}><a href={`/learn/${lesson.id}`}>{lesson.title}</a></h3>
     </header>
     {item.round > 1 && item.feedback && <figure className="parent-note"><figcaption><MessageSquareQuote aria-hidden="true" /> Your last note</figcaption><blockquote>{item.feedback}</blockquote></figure>}
-    <ol className="review-answers">{reviewEntries(lesson.promptIds, promptById, item.answers, item.questions).map((entry) => <li key={entry.promptId} className={entry.retired ? 'review-answer-retired' : undefined}>
-      <p className="review-question">{entry.question}</p>
-      {entry.retired && <p className="review-retired-note">This question has since changed in the lesson. It is shown as {name} saw it.</p>}
-      <p className="review-answer">{entry.answer ?? <em className="no-answer">No answer</em>}</p>
-      {entry.verdict === 'best' && <p className="review-verdict review-verdict-best"><Check aria-hidden="true" /> Best-supported answer</p>}
-      {entry.verdict === 'other' && <p className="review-verdict review-verdict-other">Not the best-supported answer</p>}
-      {entry.explanation && <details className="review-guide"><summary><ChevronDown aria-hidden="true" /> What a strong answer covers</summary><p>{entry.explanation}</p></details>}
-    </li>)}</ol>
+    <ol className="review-answers">{item.questions.map((question) => {
+      const answer = question.kind === 'supported-selection' ? question.answerLabel : item.answers[question.promptId];
+      return <li key={question.promptId}>
+        <p className="review-question">{question.question}</p>
+        {!lesson.promptIds.includes(question.promptId) && <p className="review-retired-note">This question has since changed in the lesson. It is shown as {name} saw it.</p>}
+        <p className="review-answer">{answer || <em className="no-answer">No answer</em>}</p>
+        {question.best === true && <p className="review-verdict review-verdict-best"><Check aria-hidden="true" /> Best-supported answer</p>}
+        {question.best === false && <p className="review-verdict review-verdict-other">Not the best-supported answer</p>}
+        {question.explanation && <details className="review-guide"><summary><ChevronDown aria-hidden="true" /> What a strong answer covers</summary><p>{question.explanation}</p></details>}
+      </li>;
+    })}</ol>
     <label htmlFor={noteId} className="review-note-label">Note for {name} <span>(needed to send it back)</span></label>
     <textarea id={noteId} value={note} onChange={(event) => { setNote(event.target.value); setError(''); }} maxLength={2000} placeholder={`Nice work, or what ${name} should add…`} />
     <div className="review-actions">

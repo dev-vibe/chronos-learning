@@ -58,8 +58,6 @@ export function LessonReviewPanel({ lesson, state, prompts, configuredCards, own
 
   if (!review) {
     if (account.view === 'parent') return <section className="completion-panel" aria-labelledby="completion-title"><p className="eyebrow">Parent view</p><h2 id="completion-title">You’re in parent view</h2><p>Kids finish lessons from their own profile. Use the Parent view button in the menu to switch to a kid, or <a href="/review">review their work</a>.</p><NextLesson next={next} /></section>;
-    // Finished before parent review existed: the lesson stays finished; sending is how the cards are earned now.
-    if (state.status === 'completed') return <section className="completion-panel" aria-labelledby="completion-title"><p className="eyebrow">Your next step</p><h2 id="completion-title">Lesson finished</h2><p className="completion-understanding">{lesson.learningOutcome ?? lesson.significance}</p>{ownedList}<p>Send your answers to your parent. {rewardPhrase(configuredCards)}</p>{!account.parentLinked && <LinkParentNote />}<button className="primary" disabled={!ready || busy} onClick={onSubmit}>{busy ? 'Sending…' : ready ? 'Send for review' : 'Answer the checks above to send'}</button>{errorLine}<NextLesson next={next} /></section>;
     return <section className="completion-panel" aria-labelledby="completion-title"><p className="eyebrow">Your next step</p><h2 id="completion-title">Finish {lesson.title}</h2><p>When you finish, your answers go to your parent. {rewardPhrase(configuredCards)}</p>{!account.parentLinked && <LinkParentNote />}<button className="primary" disabled={!ready || busy} onClick={onSubmit}>{busy ? 'Sending…' : ready ? 'Finish and send for review' : 'Answer the checks above'}</button>{errorLine}</section>;
   }
 

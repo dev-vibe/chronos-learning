@@ -28,13 +28,12 @@ export interface LearnProgressGateway {
 
 const key = (lessonId: string) => `chronos.learn.preview.v1:${lessonId}`;
 const empty = (lessonId: string): LearnState => ({ learnerId: 'anonymous-preview', lessonId, status: 'in-progress', attemptedPromptIds: [], exploredSectionIds: [], responses: {}, version: 1 });
-/** The prompts the lesson has now. Attempts and answers for any other prompt ID belong to a question the lesson no longer asks. */
 export const lessonPromptIds = (lessonId: string): string[] => chronosContent.lessons.find((item) => item.id === lessonId)?.promptIds ?? [];
 export const requiredPromptIds = (lessonId: string) => lessonPromptIds(lessonId).filter((id) => chronosContent.prompts.find((prompt) => prompt.id === id)?.required);
 const currentSectionIds = (lessonId: string) => new Set(chronosContent.lessons.find((item) => item.id === lessonId)?.sections.map((section) => section.id) ?? []);
 /** The cards a parent's pass grants, taken from the repository content bundle. */
 export const cardsForLesson = (lessonId: string) => chronosContent.cards.filter((card) => card.unlockLessonId === lessonId).map((card) => card.id);
-/** The answers sent for review: the learner's latest response to each of the lesson's current prompts. Answers to retired prompts stay in the attempt history and are not sent. */
+/** The answers sent for review: the learner's latest response to each of the lesson's current prompts. */
 export const submissionAnswers = (lessonId: string, responses: PromptResponses): PromptResponses =>
   Object.fromEntries(lessonPromptIds(lessonId).filter((id) => typeof responses[id] === 'string').map((id) => [id, responses[id]]));
 /** The lesson's current questions as the learner sees them, stored with the submission so Review can show them after they change. */
@@ -42,27 +41,18 @@ export const submissionQuestions = (lessonId: string, answers: PromptResponses):
   const prompts = lessonPromptIds(lessonId).map((id) => chronosContent.prompts.find((prompt) => prompt.id === id)).filter((prompt): prompt is NonNullable<typeof prompt> => Boolean(prompt));
   return snapshotQuestions(prompts, answers);
 };
-/**
- * What the Learn page and its progress indicators see: only the lesson's current
- * prompts. Stored attempts for retired prompts are kept (in the database and in
- * this browser) but never count towards, or against, the current lesson.
- */
-export function withCurrentPrompts(state: LearnState): LearnState {
-  const current = new Set(lessonPromptIds(state.lessonId));
-  return {
-    ...state,
-    attemptedPromptIds: state.attemptedPromptIds.filter((id) => current.has(id)),
-    responses: Object.fromEntries(Object.entries(state.responses).filter(([id]) => current.has(id))),
-  };
-}
 const emptyInbox = (): ReviewInbox => ({ passes: [], returned: [], waitingForMyReview: 0 });
 
+/** Drops sections and prompts the lesson no longer has, so they never count towards or against it. */
 export function normalizeLearnState(state: LearnState): LearnState {
+  const currentPrompts = new Set(lessonPromptIds(state.lessonId));
+  const attemptedPromptIds = state.attemptedPromptIds.filter((id) => currentPrompts.has(id));
+  const responses = Object.fromEntries(Object.entries(state.responses).filter(([id]) => currentPrompts.has(id)));
   const validSections = currentSectionIds(state.lessonId);
   const resumeSectionId = state.resumeSectionId && validSections.has(state.resumeSectionId) ? state.resumeSectionId : undefined;
   const exploredSectionIds = [...new Set(state.exploredSectionIds.filter((sectionId) => validSections.has(sectionId)))];
   const cardIds = [...new Set([...(state.cardIds ?? []), ...(state.cardId ? [state.cardId] : [])])];
-  return { ...state, resumeSectionId, exploredSectionIds, cardIds, cardId: cardIds[0] };
+  return { ...state, attemptedPromptIds, responses, resumeSectionId, exploredSectionIds, cardIds, cardId: cardIds[0] };
 }
 
 export class LocalPreviewGateway implements LearnProgressGateway {
@@ -76,9 +66,8 @@ export class LocalPreviewGateway implements LearnProgressGateway {
       return normalized;
     } catch { return empty(lessonId); }
   }
-  // Stored state keeps every answer, including answers to retired prompts; callers see only the current prompts.
-  private write(state: LearnState) { localStorage.setItem(key(state.lessonId), JSON.stringify(state)); return withCurrentPrompts(state); }
-  async load(lessonId: string) { return withCurrentPrompts(this.read(lessonId)); }
+  private write(state: LearnState) { localStorage.setItem(key(state.lessonId), JSON.stringify(state)); return state; }
+  async load(lessonId: string) { return this.read(lessonId); }
   async loadJourneySummaries(lessonIds: readonly string[]) {
     return Object.fromEntries([...new Set(lessonIds)].map((lessonId) => {
       const state = this.read(lessonId);
@@ -101,7 +90,7 @@ export class LocalPreviewGateway implements LearnProgressGateway {
   async submit(lessonId: string) {
     const state = this.read(lessonId);
     // Finishing happens once. A prompt added or replaced later never un-finishes the lesson.
-    if (state.status === 'completed') return withCurrentPrompts(state);
+    if (state.status === 'completed') return state;
     if (!requiredPromptIds(lessonId).every((id) => state.attemptedPromptIds.includes(id))) throw new Error('required prompt attempts missing');
     state.status = 'completed'; state.completedAt = new Date().toISOString();
     return this.write(state);
@@ -169,7 +158,7 @@ export class SupabaseLearnGateway implements LearnProgressGateway {
     const responses = Object.fromEntries((attempts ?? []).map((item: any) => [item.prompt_id, String(item.response?.answer ?? item.response?.value ?? '')]));
     const cardIds = (ownership ?? []).map((item: any) => String(item.card_id));
     const review = mapReview(submissionResult.data);
-    return withCurrentPrompts(normalizeLearnState({ learnerId: this.learnerId, lessonId, status: progress.status === 'completed' ? 'completed' : 'in-progress', completedAt: progress.completed_at ?? undefined, resumeSectionId: resume?.section_id, attemptedPromptIds: Object.keys(responses), exploredSectionIds: (explored ?? []).map((item: any) => item.section_id), responses, cardIds, cardId: cardIds[0], ...(review ? { review } : {}), account: { parentLinked: (parentsResult.data ?? []).length > 0 || this.active.view === 'kid', view: this.active.view }, version: 1 }));
+    return normalizeLearnState({ learnerId: this.learnerId, lessonId, status: progress.status === 'completed' ? 'completed' : 'in-progress', completedAt: progress.completed_at ?? undefined, resumeSectionId: resume?.section_id, attemptedPromptIds: Object.keys(responses), exploredSectionIds: (explored ?? []).map((item: any) => item.section_id), responses, cardIds, cardId: cardIds[0], ...(review ? { review } : {}), account: { parentLinked: (parentsResult.data ?? []).length > 0 || this.active.view === 'kid', view: this.active.view }, version: 1 });
   }
   async loadJourneySummaries(lessonIds: readonly string[]): Promise<Record<string, JourneyProgressSummary>> {
     const uniqueIds = [...new Set(lessonIds)];
@@ -205,7 +194,6 @@ export class SupabaseLearnGateway implements LearnProgressGateway {
   }
   async submit(lessonId: string) {
     const current = await this.load(lessonId);
-    // `current` already holds only the lesson's current prompts.
     const answers = submissionAnswers(lessonId, current.responses);
     const { error } = await this.client.rpc('submit_lesson', { p_lesson_id: lessonId, p_answers: answers, p_learner_id: this.learnerId, p_questions: submissionQuestions(lessonId, answers) });
     if (error) throw error;

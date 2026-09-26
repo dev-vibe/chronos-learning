@@ -18,7 +18,7 @@ set local role authenticated;
 
 -- Anonymous calls are rejected.
 select set_config('request.jwt.claim.sub','',true);
-select throws_ok($$select public.submit_lesson('lesson.uruk.first-city','{}')$$, '28000', 'authentication required', 'submitting requires sign-in');
+select throws_ok($$select public.submit_lesson('lesson.uruk.first-city','{}','[]')$$, '28000', 'authentication required', 'submitting requires sign-in');
 
 -- The kid gets a stable link code.
 select set_config('request.jwt.claim.sub','11111111-1111-4111-a111-111111111111',true);
@@ -30,11 +30,11 @@ select isnt(public.learner_link_code(true), (select value from fixture where nam
 update fixture set value = public.learner_link_code() where name='code';
 
 -- Submitting finishes the lesson and waits for review.
-select is((public.submit_lesson('lesson.uruk.first-city','{"prompt.uruk.administration-evidence":"Tablets tracked grain."}')->>'status'), 'submitted', 'submission waits for review');
+select is((public.submit_lesson('lesson.uruk.first-city','{"prompt.uruk.administration-evidence":"Tablets tracked grain."}','[]')->>'status'), 'submitted', 'submission waits for review');
 select is((select status from public.lesson_progress where learner_id=auth.uid() and lesson_id='lesson.uruk.first-city'), 'completed', 'submitting finishes the lesson');
-select is((public.submit_lesson('lesson.uruk.first-city','{"prompt.uruk.administration-evidence":"Tablets tracked grain and beer."}')->>'round')::int, 1, 'editing while waiting keeps the round');
+select is((public.submit_lesson('lesson.uruk.first-city','{"prompt.uruk.administration-evidence":"Tablets tracked grain and beer."}','[]')->>'round')::int, 1, 'editing while waiting keeps the round');
 select is((select answers->>'prompt.uruk.administration-evidence' from public.lesson_submissions where learner_id=auth.uid()), 'Tablets tracked grain and beer.', 'the latest answers are kept');
-select throws_ok($$select public.submit_lesson('lesson.uruk.first-city','{"prompt.x":1}')$$, '22023', 'answers must map prompt ids to text', 'answers must be text');
+select throws_ok($$select public.submit_lesson('lesson.uruk.first-city','{"prompt.x":1}','[]')$$, '22023', 'answers must map prompt ids to text', 'answers must be text');
 
 -- The kid cannot review, grant cards or change status directly.
 select throws_ok($$select public.review_submission(auth.uid(),'lesson.uruk.first-city','pass')$$, '42501', 'not linked to this learner', 'a kid cannot pass their own work');
@@ -67,7 +67,7 @@ select throws_ok($$select public.review_submission('11111111-1111-4111-a111-1111
 
 select set_config('request.jwt.claim.sub','11111111-1111-4111-a111-111111111111',true);
 select is((select feedback from public.lesson_submissions where learner_id=auth.uid()), 'Add who did the work.', 'the kid sees the note');
-select is((public.submit_lesson('lesson.uruk.first-city','{"prompt.uruk.administration-evidence":"Temple workers were paid in grain."}')->>'round')::int, 2, 'resubmitting starts a new round');
+select is((public.submit_lesson('lesson.uruk.first-city','{"prompt.uruk.administration-evidence":"Temple workers were paid in grain."}','[]')->>'round')::int, 2, 'resubmitting starts a new round');
 select is((select feedback from public.lesson_submissions where learner_id=auth.uid()), 'Add who did the work.', 'the last note stays visible while waiting');
 
 -- Passing grants the cards exactly once.
@@ -83,11 +83,11 @@ select public.acknowledge_pass('lesson.uruk.first-city');
 update fixture set value = (select pass_seen_at::text from public.lesson_submissions where learner_id=auth.uid()) where name='code';
 select public.acknowledge_pass('lesson.uruk.first-city');
 select is((select pass_seen_at::text from public.lesson_submissions where learner_id=auth.uid()), (select value from fixture where name='code'), 'the celebration is shown once');
-select is((public.submit_lesson('lesson.uruk.first-city','{"prompt.uruk.administration-evidence":"Changed"}')->>'status'), 'passed', 'a passed lesson stays passed');
+select is((public.submit_lesson('lesson.uruk.first-city','{"prompt.uruk.administration-evidence":"Changed"}','[]')->>'status'), 'passed', 'a passed lesson stays passed');
 
 -- Another kid's work stays private from this kid.
 select set_config('request.jwt.claim.sub','44444444-4444-4444-a444-444444444444',true);
-select is((public.submit_lesson('lesson.writing.early-systems','{}')->>'status'), 'submitted', 'a second kid can submit');
+select is((public.submit_lesson('lesson.writing.early-systems','{}','[]')->>'status'), 'submitted', 'a second kid can submit');
 select set_config('request.jwt.claim.sub','11111111-1111-4111-a111-111111111111',true);
 select is((select count(*) from public.lesson_submissions), 1::bigint, 'kids only see their own submissions');
 
