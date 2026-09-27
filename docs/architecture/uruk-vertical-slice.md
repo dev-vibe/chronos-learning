@@ -1,6 +1,6 @@
 # Uruk first vertical slice
 
-Status: exact proposed scope for the first implementation after ASH-52. This document is a build contract, not an implementation in this branch.
+Status: exact proposed scope for the first implementation after ASH-52. This document is a build contract, not an implementation in this branch. Completion, prompt and card rules have since changed; see [ADR 005](decisions/005-parent-review.md) and [prompt changes](prompt-changes.md).
 
 ## Outcome
 

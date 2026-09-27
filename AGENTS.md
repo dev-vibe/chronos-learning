@@ -11,7 +11,7 @@ Before changing product behavior, data models, or UI (not lesson production), re
 3. `docs/design/design-system.md`
 4. The active Linear epic in the [Chronos rebuild project](https://linear.app/ashs-workshop/project/chronos-guided-history-learning-rebuild-0fe768438099)
 
-For lesson creation, publication, revision or correction, read only `docs/content/lesson-creation-runbook.md` and `docs/content/lesson-production-queue.md`. The runbook is self-contained; the required reading above does not apply to lesson work.
+For lesson creation, publication, revision or correction, read only `docs/content/lesson-creation-runbook.md` and `docs/content/lesson-production-queue.md`. The runbook is self-contained and routes a voice revision or a prompt revision of a published lesson to its own short runbook; the required reading above does not apply to lesson work.
 
 A user request equivalent to “Let's create the next Chronos lesson” is complete. Do not ask the user to supply a topic or repeat the workflow. Run the boot sequence in the lesson creation runbook, continue an active queued lesson or select the first eligible Ready lesson, and proceed through its built-in research/editorial approval gate.
 
@@ -43,7 +43,7 @@ Do not expand the old monolithic `App.tsx`, XP/level system, rarity/stats model,
 
 - PostgreSQL/Supabase is the durable learner-progress store. All schema changes are committed migrations; never make production-only dashboard changes.
 - Lessons, journeys, prompts and cards are defined only in the repository. The database holds learner state, parent links and reviews, never lesson configuration, so publishing, unpublishing or changing a lesson needs no migration.
-- A published prompt ID stands for one question. Changing a prompt's question, options, best answer, required flag or minimum length means a new ID and `npm run content:fingerprints`; finished lessons, passes and cards are never undone. See [`docs/architecture/prompt-changes.md`](docs/architecture/prompt-changes.md).
+- A published prompt ID stands for one question. Changing a prompt's question, options, best answer, required flag or minimum length means a new ID and `npm run content:fingerprints`; finished lessons, passes and cards are never undone. See [`docs/architecture/prompt-changes.md`](docs/architecture/prompt-changes.md); for a published lesson, follow [`docs/content/prompt-revision-runbook.md`](docs/content/prompt-revision-runbook.md).
 - Supabase project: `Chronos`, ref `fghjnypxhnnutgsaqvvz`, region `ca-central-1`. Free is acceptable for development; upgrade before beta.
 - Keep domain rules outside route handlers and UI components.
 - Prefer typed module renderers over arbitrary HTML.

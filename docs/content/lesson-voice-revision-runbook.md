@@ -6,7 +6,9 @@ Status: the process for rewriting an already-published lesson so it reads as a t
 
 Use this runbook when the lesson is published and the goal is voice, story, flow or memorable detail.
 
-Do not use it for a change to the essential question, durable understanding, central claims or their certainty, section order or teaching jobs, required prompts (IDs, options or answer logic), completion rules, the Knowledge Card, the teaching job of an existing image, or journey position. Those are material revisions and follow the creation runbook. If you discover mid-revision that one of them is needed, stop and tell the owner. Do not fold it into a voice revision.
+Do not use it for a change to the essential question, durable understanding, central claims or their certainty, section order or teaching jobs, a prompt's teaching job, adding or removing a prompt, completion rules, the Knowledge Card, the teaching job of an existing image, or journey position. Those are material revisions and follow the creation runbook. If you discover mid-revision that one of them is needed, stop and tell the owner. Do not fold it into a voice revision.
+
+Changing a prompt's question, options, best answer or answer logic while it keeps its teaching job is a [prompt revision](prompt-revision-runbook.md), not a material revision. If you find a prompt that needs one, tell the owner. When the owner asks for both, do them in one PR as that runbook describes.
 
 ## Invocation
 
@@ -46,13 +48,13 @@ Every new fact the learner will read needs a claim with kind, certainty and a re
 
 ## Step 3 — Rewrite
 
-**What may change:** prose `body` text; `knowledge` body and item text; evidence and scene captions and hotspot text; prompt feedback and explanation text; journey transition and bridge text; card reveal text and card facts, if accurate and sourced; and new images, each with the module that carries it (see **Add images** below).
+**What may change:** prose `body` text; `knowledge` body and item text; evidence and scene captions and hotspot text; prompt explanation, option feedback and hint text, and option order; journey transition and bridge text; card reveal text and card facts, if accurate and sourced; and new images, each with the module that carries it (see **Add images** below).
 
 **What stays:**
 
-- every existing ID: lesson, section, module, claim, source, prompt, option, card and media (new claims, sources, modules and media get new IDs);
+- every existing ID: lesson, section, module, claim, source, prompt, option, card and media (new claims, sources, modules and media get new IDs; a new prompt ID comes only from a prompt revision the owner asked for);
 - section order and each section's teaching job;
-- required prompts, their options and their answer logic;
+- every prompt's question, options, best answer, required flag and minimum length, which is what its ID stands for ([policy](../architecture/prompt-changes.md)); changing them is a prompt revision;
 - existing media assets and their teaching jobs, and completion behavior.
 
 **Add images** where they help the story. Adding an image is expected in a voice revision, not a material change. For each one:
@@ -89,7 +91,8 @@ Push, open the PR, and let CI run. Once the branch preview deploys, send the own
 - the old and new opening paragraph, side by side;
 - any claims or sources you added, one line each;
 - any images you added, with their source, license and where they appear;
-- anything you left out because the evidence was too thin.
+- anything you left out because the evidence was too thin;
+- if the PR also carries a prompt revision, that runbook's owner-check items.
 
 The owner reads the lesson on the preview. If they ask for changes, revise and send the link again.
 
