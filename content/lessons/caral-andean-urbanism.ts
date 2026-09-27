@@ -674,7 +674,7 @@ export const caralAndeanUrbanismCards: KnowledgeCard[] = [
     significance: 'An inland monumental center that shows urban life can grow from irrigation, coastal–inland exchange, and public architecture without pottery, metal, or writing.',
     revealTitle: 'A city without the usual checklist',
     revealBody: 'You earned this Place card by reading Caral from its mounds, its sunken plaza, and its nets and fish, without crowning it the first city, a peaceful empire, or the home of a decoded quipu.',
-    depictionLabel: 'Place-focused · surviving sunken plaza',
+    depictionLabel: 'Illustrated from surviving ruins · not a reconstructed city',
     facts: [
       'Sits about 23 kilometers inland on a dry desert terrace above the green Supe Valley',
       'Central zone of about 65 hectares with platform mounds and sunken circular plazas',
@@ -683,7 +683,7 @@ export const caralAndeanUrbanismCards: KnowledgeCard[] = [
     ],
     lessonIds: ['lesson.caral.andean-urbanism'],
     sourceIds: ['source.caral.commons-plaza', 'source.caral.shady-haas-creamer-2001', 'source.caral.unesco-1269', 'source.caral.sandweiss-2009'],
-    mediaId: 'media.caral.sunken-plaza',
+    mediaId: 'media.caral.site-hero',
     unlockLessonId: 'lesson.caral.andean-urbanism',
   },
 ];

@@ -689,6 +689,13 @@ Plan:
 - source list and visual brief;
 - deterministic `unlockLessonId`.
 
+**Card art is the lesson's most striking image of the card's subject.** A card is a prize the learner keeps, shown at trading-card size, so it should be the picture they would want to hold:
+
+- For a place, idea, event or people card, start from the hero or the lesson's most dramatic scene or reconstruction. Reuse it; the art box crops to a landscape frame, so check the subject survives the crop.
+- For an artifact card, use the best image of the object itself, shown whole.
+- A map, diagram or chart is card art only when the lesson has nothing more vivid. Record why in the card plan, and treat it as a gap worth a future image.
+- Keep the card's `depictionLabel` true to the image (reconstruction, illustration or surviving evidence).
+
 The reveal remains subordinate to lesson completion and the current journey’s next action.
 
 ## Stage 12 — Author understanding prompts and feedback

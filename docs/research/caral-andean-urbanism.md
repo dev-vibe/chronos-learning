@@ -646,6 +646,8 @@ No generation. Direct licensed use of the uncropped Commons photograph File:Alma
 
 ## Knowledge Card decision
 
+**Updated 2026-09-27:** the card art is now the lesson hero, `media.caral.site-hero` (illustrated from surviving ruins), instead of the plaza photograph, following runbook Stage 11's card-art rule. The plaza photograph stays in the lesson as evidence.
+
 Decision: **card** (approved 2026-08-19; implemented)
 
 Rationale: Caral is a durable place memory for an independent urban tradition. A person card would invent a ruler. An artifact card for the contested quipu would reward a claim the lesson refuses to settle. A place card can hold the plaza, the inland setting, and the no-checklist understanding.

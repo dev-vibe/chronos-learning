@@ -279,6 +279,8 @@ Mohammed Kamal's photograph of excavated Jebel Irhoud tools with a 1 cm scale ba
 
 #### Knowledge Card artwork
 
+**Updated 2026-09-27:** the card now uses the lesson hero, `media.humans.jebel-irhoud-landscape-reconstruction`, labeled as an evidence-based reconstruction. Cards moved to trading-card proportions and card art is now the lesson's most striking image of the subject (runbook Stage 11). `media.humans.africa-origins-card` stays in the lesson's media but is no longer the card art. The original note follows.
+
 `media.humans.africa-origins-card` · REQUIRED.
 
 The Knowledge Card frame is a landscape strip of roughly 1.6:1, not a portrait panel, so a crop of the portrait lesson map would have been cover-cropped into an unreadable band. The card art is therefore generated as its own 1600×1000 variant from the same script and the same verified coordinates: Africa centred, markers enlarged so they still read at about 314 px wide, and no text labels at all. Marker halo size encodes find precision on the lesson map only; the card has no caption to explain that encoding, so its markers are uniform.
