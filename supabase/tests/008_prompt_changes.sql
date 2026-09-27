@@ -1,7 +1,7 @@
 begin;
 create extension if not exists pgtap with schema extensions;
 set local search_path=extensions,public;
-select plan(19);
+select plan(18);
 
 -- Changing a lesson's prompts is a repository change. The database accepts
 -- answers under any prompt ids, keeps the questions the learner saw, and never
@@ -30,12 +30,11 @@ select throws_ok($$select public.submit_lesson('lesson.uruk.first-city','{}','[{
 -- Answers to prompts the lesson no longer has are accepted and kept with their questions.
 select is((public.submit_lesson(
   'lesson.uruk.first-city',
-  '{"prompt.uruk.retired-choice":"option.uruk.tablets"}',
-  '[{"promptId":"prompt.uruk.retired-choice","kind":"supported-selection","question":"Which evidence fits best?","required":true,"answerLabel":"Clay tablets","best":true}]'
+  '{"prompt.uruk.retired-question":"Scribes counted grain."}',
+  '[{"promptId":"prompt.uruk.retired-question","kind":"concise-explanation","question":"What did the tablets record?","required":true}]'
 )->>'status'), 'submitted', 'a submission with a retired prompt id is accepted');
-select is((select answers->>'prompt.uruk.retired-choice' from public.lesson_submissions where learner_id=auth.uid()), 'option.uruk.tablets', 'the answer is kept under its old id');
-select is((select questions->0->>'question' from public.lesson_submissions where learner_id=auth.uid()), 'Which evidence fits best?', 'the question text is kept');
-select is((select questions->0->>'answerLabel' from public.lesson_submissions where learner_id=auth.uid()), 'Clay tablets', 'the chosen label is kept');
+select is((select answers->>'prompt.uruk.retired-question' from public.lesson_submissions where learner_id=auth.uid()), 'Scribes counted grain.', 'the answer is kept under its old id');
+select is((select questions->0->>'question' from public.lesson_submissions where learner_id=auth.uid()), 'What did the tablets record?', 'the question text is kept');
 
 -- Sent back, then resubmitted with a different set of prompt ids.
 select set_config('request.jwt.claim.sub','52222222-2222-4222-a222-222222222222',true);

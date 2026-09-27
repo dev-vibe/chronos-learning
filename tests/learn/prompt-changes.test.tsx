@@ -89,9 +89,10 @@ describe('a finished learner after a required prompt is added or replaced', () =
     expect(screen.getByText(/The lesson stays finished while you work on it/)).toBeTruthy();
     const send = screen.getByRole('button', { name: 'Answer every check above to send it again' });
     expect(send.hasAttribute('disabled')).toBe(true);
+    // The multiple-choice check is done, so only the written question is listed.
     const items = document.querySelectorAll('.review-prompt-links li');
-    expect(items[0].textContent).not.toContain('not answered yet');
-    expect(items[1].textContent).toContain('not answered yet');
+    expect(items).toHaveLength(1);
+    expect(items[0].textContent).toContain('not answered yet');
     await answerReplacement();
     await waitFor(() => expect(screen.getByRole('button', { name: 'Send it again' }).hasAttribute('disabled')).toBe(false));
     await userEvent.click(screen.getByRole('button', { name: 'Send it again' }));
@@ -151,19 +152,18 @@ describe('progress gateways ignore attempts for prompts the lesson no longer has
     expect(loaded.responses).toEqual({ [choice]: 'option.uruk.tablets' });
   });
 
-  it('signed-in submit: sends only current answers, with the questions as the learner sees them', async () => {
+  it('signed-in submit: sends only the current written answers, with their questions', async () => {
     const { client, rpc } = fakeClient([
       { prompt_id: retired, response: { answer: 'An older answer' } },
-      { prompt_id: choice, response: { answer: 'option.uruk.reconstruction' } },
+      { prompt_id: choice, response: { answer: 'option.uruk.tablets' } },
+      { prompt_id: replacement, response: { answer: 'Rations fed specialists, but the work was shared unequally.' } },
     ]);
     await new SupabaseLearnGateway(learnerId, client).submit(lessonId);
-    expect(rpc).toHaveBeenCalledWith('submit_lesson', expect.objectContaining({ p_lesson_id: lessonId, p_learner_id: learnerId, p_answers: { [choice]: 'option.uruk.reconstruction' } }));
-    const questions = (rpc.mock.calls[0][1] as any).p_questions;
-    expect(questions).toEqual([
-      expect.objectContaining({ promptId: choice, kind: 'supported-selection', question: 'Which evidence best supports organized administration at Uruk?', required: true, answerLabel: 'A reconstruction painting of the city', best: false }),
-      expect.objectContaining({ promptId: replacement, kind: 'concise-explanation', required: true }),
-    ]);
-    expect(questions[1]).not.toHaveProperty('answerLabel');
-    expect(questions.map((question: any) => question.promptId)).not.toContain(retired);
+    expect(rpc).toHaveBeenCalledWith('submit_lesson', {
+      p_lesson_id: lessonId,
+      p_learner_id: learnerId,
+      p_answers: { [replacement]: 'Rations fed specialists, but the work was shared unequally.' },
+      p_questions: [expect.objectContaining({ promptId: replacement, kind: 'concise-explanation', required: true })],
+    });
   });
 });

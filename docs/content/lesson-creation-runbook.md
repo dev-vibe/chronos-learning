@@ -90,7 +90,7 @@ Open these only when triggered. They own their details; this runbook decides whe
 - One lesson has one stable identity even when reused in multiple journeys. Journey-specific framing belongs to `JourneyEntry`.
 - Lessons normally contain five to eight stable semantic sections. Use fewer or more only when the learning sequence genuinely requires it and document the exception.
 - Required lessons normally contain one to three required understanding prompts, usually two.
-- Completion requires a sincere attempt, not a perfect score, and only occurs through the explicit completion action. Finishing sends the learner's answers to a linked parent; the parent's pass awards the lesson's cards.
+- Completion requires the best-supported answer on each required multiple-choice check (learners retry until they find it) and a sincere written attempt, and only occurs through the explicit completion action. Finishing sends the learner's written answers to a linked parent; the parent's pass awards the lesson's cards.
 - Every lesson opens at the top. Explored-section state may inform progress UI but must not trigger a resume banner, automatic scrolling, or viewport restoration.
 - Related lessons and optional journeys are navigation, not instructional sections or completion requirements.
 - A reconstruction is never presented as direct evidence. Uncertainty is never hidden merely to make prose cleaner.
@@ -702,7 +702,7 @@ Normally use two required prompts:
 
 Prompt rules:
 
-- require a sincere attempt, not perfection;
+- a written prompt requires a sincere attempt, not perfection; a selection prompt is done once the learner picks the best-supported option, so its feedback must help them get there;
 - use stable prompt and option IDs;
 - test an essential understanding or historical-thinking move;
 - make distractors plausible misconceptions, not jokes or wording traps;

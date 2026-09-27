@@ -19,6 +19,6 @@ Builds on [ADR 005: Parent review](decisions/005-parent-review.md). Learners' an
 ## What learners and parents see
 
 - The Learn page only counts the lesson's current prompts. A finished, waiting or passed lesson stays that way; a new question is just another check to try.
-- Every send (first send, updated answers, send it again) needs the lesson's current required checks answered. A sent-back learner sees which question is still missing.
-- Each submission stores the questions as the learner saw them (`lesson_submissions.questions`), and Review shows those. A question the lesson has since replaced is marked as changed.
+- Every send (first send, updated answers, send it again) needs the lesson's current required checks done. A sent-back learner sees which question is still missing.
+- Only written answers go to the parent. Each submission stores the written questions as the learner saw them (`lesson_submissions.questions`), and Review shows those. A question the lesson has since replaced is marked as changed.
 - The questions come from the learner's browser, like the answers. As ADR 005 says, the parent is the check.

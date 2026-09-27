@@ -377,7 +377,7 @@ function ReviewPage({ gateway }: { gateway: FamilyGateway }) {
   const waiting = known.filter((item) => item.status === 'submitted').sort((left, right) => left.submittedAt.localeCompare(right.submittedAt));
   const reviewed = known.filter((item) => item.status !== 'submitted');
   return <>
-    <header className="page-intro"><p className="label">Review</p><h1>{waiting.length ? `${waiting.length} ${waiting.length === 1 ? 'lesson is' : 'lessons are'} waiting.` : 'All caught up.'}</h1><p>Read each answer. Pass the lesson to award its Knowledge Cards, or send it back with a note about what to change.</p></header>
+    <header className="page-intro"><p className="label">Review</p><h1>{waiting.length ? `${waiting.length} ${waiting.length === 1 ? 'lesson is' : 'lessons are'} waiting.` : 'All caught up.'}</h1><p>Read each written answer. Multiple-choice checks are already done: a kid finishes one by choosing the best-supported answer. Pass the lesson to award its Knowledge Cards, or send it back with a note about what to change.</p></header>
     <section aria-labelledby="waiting-title" className="review-list">
       <h2 id="waiting-title" className="sr-only">Waiting for review</h2>
       {waiting.map((item) => <ReviewCard key={`${item.learnerId}:${item.lessonId}`} item={item} learner={learnerById.get(item.learnerId)!} gateway={gateway} onReviewed={load} />)}
@@ -410,17 +410,14 @@ function ReviewCard({ item, learner, gateway, onReviewed }: { item: ReviewItem; 
       <h3 id={`${noteId}-title`}><a href={`/learn/${lesson.id}`}>{lesson.title}</a></h3>
     </header>
     {item.round > 1 && item.feedback && <figure className="parent-note"><figcaption><MessageSquareQuote aria-hidden="true" /> Your last note</figcaption><blockquote>{item.feedback}</blockquote></figure>}
-    <ol className="review-answers">{item.questions.map((question) => {
-      const answer = question.kind === 'supported-selection' ? question.answerLabel : item.answers[question.promptId];
-      return <li key={question.promptId}>
-        <p className="review-question">{question.question}</p>
-        {!lesson.promptIds.includes(question.promptId) && <p className="review-retired-note">This question has since changed in the lesson. It is shown as {name} saw it.</p>}
-        <p className="review-answer">{answer || <em className="no-answer">No answer</em>}</p>
-        {question.best === true && <p className="review-verdict review-verdict-best"><Check aria-hidden="true" /> Best-supported answer</p>}
-        {question.best === false && <p className="review-verdict review-verdict-other">Not the best-supported answer</p>}
-        {question.explanation && <details className="review-guide"><summary><ChevronDown aria-hidden="true" /> What a strong answer covers</summary><p>{question.explanation}</p></details>}
-      </li>;
-    })}</ol>
+    {item.questions.length === 0
+      ? <p className="family-hint">This lesson has no written answers to read. {name} finished its checks by choosing the best-supported answers.</p>
+      : <ol className="review-answers">{item.questions.map((question) => <li key={question.promptId}>
+          <p className="review-question">{question.question}</p>
+          {!lesson.promptIds.includes(question.promptId) && <p className="review-retired-note">This question has since changed in the lesson. It is shown as {name} saw it.</p>}
+          <p className="review-answer">{item.answers[question.promptId] || <em className="no-answer">No answer</em>}</p>
+          {question.explanation && <details className="review-guide"><summary><ChevronDown aria-hidden="true" /> What a strong answer covers</summary><p>{question.explanation}</p></details>}
+        </li>)}</ol>}
     <label htmlFor={noteId} className="review-note-label">Note for {name} <span>(needed to send it back)</span></label>
     <textarea id={noteId} value={note} onChange={(event) => { setNote(event.target.value); setError(''); }} maxLength={2000} placeholder={`Nice work, or what ${name} should add…`} />
     <div className="review-actions">

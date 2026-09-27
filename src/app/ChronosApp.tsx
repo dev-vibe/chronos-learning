@@ -54,7 +54,7 @@ function ReviewNotices({ content, inbox }: { content: ChronosContentBundle; inbo
   const returned = inbox.returned.map((notice) => ({ notice, lesson: content.lessons.find((lesson) => lesson.id === notice.lessonId) })).filter((item) => item.lesson);
   if (!returned.length && !inbox.waitingForMyReview) return null;
   return <div className="review-notices">
-    {returned.map(({ notice, lesson }) => <a key={notice.lessonId} className="review-notice" href={`/learn/${notice.lessonId}#completion-title`}><MessageSquareQuote aria-hidden="true" /><span><strong>{lesson!.title}</strong> was sent back with a note. Change your answers and send it again.</span><ChevronRight aria-hidden="true" /></a>)}
+    {returned.map(({ notice, lesson }) => <a key={notice.lessonId} className="review-notice" href={`/learn/${notice.lessonId}#completion-title`}><MessageSquareQuote aria-hidden="true" /><span><strong>{lesson!.title}</strong> was sent back with a note. Change your written answer and send it again.</span><ChevronRight aria-hidden="true" /></a>)}
     {inbox.waitingForMyReview > 0 && <a className="review-notice" href="/review"><ClipboardCheck aria-hidden="true" /><span><strong>{inbox.waitingForMyReview} {inbox.waitingForMyReview === 1 ? 'lesson is' : 'lessons are'} waiting for your review.</strong></span><ChevronRight aria-hidden="true" /></a>}
   </div>;
 }
