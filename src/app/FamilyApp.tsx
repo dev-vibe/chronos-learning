@@ -41,9 +41,13 @@ export function FamilyApp({ page, gateway: provided, activeLearner }: { page: 'a
   const refreshSession = useCallback(() => { refreshActiveLearner(); return gateway.session().then(setSession).catch(() => setSession(null)); }, [gateway]);
   useEffect(() => {
     // Returning from Google sign-in: the account holder just signed in.
-    const params = new URLSearchParams(window.location.search);
-    if (params.has('signed-in')) { enterParentView(); window.history.replaceState(null, '', window.location.pathname); }
-    void refreshSession();
+    // Supabase exchanges the `code` in this URL for a session after the page
+    // loads, so tidy the URL only once the session has been read.
+    const returning = new URLSearchParams(window.location.search).has('signed-in');
+    if (returning) enterParentView();
+    void refreshSession().finally(() => {
+      if (returning) window.history.replaceState(null, '', window.location.pathname);
+    });
   }, [refreshSession]);
   useEffect(() => { document.title = `${page === 'account' ? 'Account' : 'Review'} · Chronos`; }, [page]);
 

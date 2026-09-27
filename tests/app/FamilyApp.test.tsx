@@ -126,6 +126,21 @@ describe('Account page', () => {
   });
 });
 
+describe('Returning from Google sign-in', () => {
+  it('keeps the sign-in code in the address until the session has been read, then tidies it', async () => {
+    window.history.replaceState(null, '', '/account?signed-in=1&code=abc123');
+    const gateway = new FakeFamilyGateway();
+    let finish!: () => void;
+    gateway.session = vi.fn(() => new Promise((resolve) => { finish = () => { gateway.user = { userId: kidId }; resolve(gateway.user); }; }));
+    render(<FamilyApp page="account" gateway={gateway} />);
+    expect(window.location.search).toBe('?signed-in=1&code=abc123');
+    finish();
+    expect(await screen.findByRole('heading', { name: 'Hi, Sam.' })).toBeTruthy();
+    await waitFor(() => expect(window.location.search).toBe(''));
+    expect(window.location.pathname).toBe('/account');
+  });
+});
+
 describe('Account setup and shared accounts', () => {
   const newAccount = () => {
     const gateway = new FakeFamilyGateway();
