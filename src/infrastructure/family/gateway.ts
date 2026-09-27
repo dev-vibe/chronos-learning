@@ -1,5 +1,6 @@
 import { isSupabaseConfigured, supabase } from '../../../lib/supabase';
 import { enterParentView, forgetFamilyView } from './activeLearner';
+import { parseSubmittedQuestions, type SubmittedQuestion } from '../../domains/submissions';
 
 export type FamilyMember = { id: string; displayName?: string };
 /** separate: kids have their own sign-ins (recommended). shared: kid profiles on this sign-in. learner: just me. */
@@ -29,6 +30,8 @@ export type ReviewItem = {
   reviewedAt?: string;
   feedback?: string;
   answers: Record<string, string>;
+  /** The questions as the learner saw them when submitting, in lesson order. */
+  questions: SubmittedQuestion[];
 };
 export type ReviewDecision = 'pass' | 'return';
 export type SignUpResult = 'signed-in' | 'confirm-email';
@@ -216,7 +219,7 @@ export class SupabaseFamilyGateway implements FamilyGateway {
     if (!learnerIds.length) return [];
     const { data, error } = await this.client
       .from('lesson_submissions')
-      .select('learner_id,lesson_id,status,round,submitted_at,reviewed_at,feedback,answers')
+      .select('learner_id,lesson_id,status,round,submitted_at,reviewed_at,feedback,answers,questions')
       .in('learner_id', learnerIds)
       .order('submitted_at', { ascending: false });
     if (error) throw error;
@@ -229,6 +232,7 @@ export class SupabaseFamilyGateway implements FamilyGateway {
       ...(row.reviewed_at ? { reviewedAt: String(row.reviewed_at) } : {}),
       ...(row.feedback ? { feedback: String(row.feedback) } : {}),
       answers: Object.fromEntries(Object.entries(row.answers ?? {}).map(([key, value]) => [key, String(value)])),
+      questions: parseSubmittedQuestions(row.questions),
     }));
   }
   async review(learnerId: string, lessonId: string, decision: ReviewDecision, feedback: string, cardIds: string[]) {

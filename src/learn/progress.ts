@@ -2,6 +2,8 @@ import type { LessonProgress } from '../domains/contracts';
 import { isSupabaseConfigured, supabase } from '../../lib/supabase';
 import { chronosContent } from '../../content/chronos';
 import { resolveActiveLearner, type ActiveLearner, type LearnerView } from '../infrastructure/family/activeLearner';
+import { snapshotQuestions, writtenPrompts, type SubmittedQuestion } from '../domains/submissions';
+import { isPromptAnswered } from './prompt-requirements';
 
 export type PromptResponses = Record<string, string>;
 export type ReviewStatus = 'submitted' | 'returned' | 'passed';
@@ -27,23 +29,31 @@ export interface LearnProgressGateway {
 
 const key = (lessonId: string) => `chronos.learn.preview.v1:${lessonId}`;
 const empty = (lessonId: string): LearnState => ({ learnerId: 'anonymous-preview', lessonId, status: 'in-progress', attemptedPromptIds: [], exploredSectionIds: [], responses: {}, version: 1 });
-export const requiredPromptIds = (lessonId: string) => chronosContent.lessons.find((item) => item.id === lessonId)?.promptIds.filter((id) => chronosContent.prompts.find((prompt) => prompt.id === id)?.required) ?? [];
+export const lessonPromptIds = (lessonId: string): string[] => chronosContent.lessons.find((item) => item.id === lessonId)?.promptIds ?? [];
 const currentSectionIds = (lessonId: string) => new Set(chronosContent.lessons.find((item) => item.id === lessonId)?.sections.map((section) => section.id) ?? []);
 /** The cards a parent's pass grants, taken from the repository content bundle. */
 export const cardsForLesson = (lessonId: string) => chronosContent.cards.filter((card) => card.unlockLessonId === lessonId).map((card) => card.id);
-/** The answers sent for review: the learner's latest response to each of the lesson's prompts. */
-export const submissionAnswers = (lessonId: string, responses: PromptResponses): PromptResponses => {
-  const promptIds = chronosContent.lessons.find((item) => item.id === lessonId)?.promptIds ?? [];
-  return Object.fromEntries(promptIds.filter((id) => typeof responses[id] === 'string').map((id) => [id, responses[id]]));
-};
+const lessonPrompts = (lessonId: string) => lessonPromptIds(lessonId).map((id) => chronosContent.prompts.find((prompt) => prompt.id === id)).filter((prompt): prompt is NonNullable<typeof prompt> => Boolean(prompt));
+/** What goes to the parent: the lesson's written answers. Multiple-choice checks are finished once answered correctly. */
+export const submissionAnswers = (lessonId: string, responses: PromptResponses): PromptResponses =>
+  Object.fromEntries(writtenPrompts(lessonPrompts(lessonId)).filter((prompt) => typeof responses[prompt.id] === 'string').map((prompt) => [prompt.id, responses[prompt.id]]));
+/** The written questions as the learner sees them, stored with the answers so Review can show them after they change. */
+export const submissionQuestions = (lessonId: string): SubmittedQuestion[] => snapshotQuestions(lessonPrompts(lessonId));
+/** Whether every required check is done: the best answer picked, or a written answer saved. */
+export const requiredChecksDone = (lessonId: string, responses: PromptResponses) =>
+  lessonPrompts(lessonId).filter((prompt) => prompt.required).every((prompt) => isPromptAnswered(prompt, responses[prompt.id]));
 const emptyInbox = (): ReviewInbox => ({ passes: [], returned: [], waitingForMyReview: 0 });
 
+/** Drops sections and prompts the lesson no longer has, so they never count towards or against it. */
 export function normalizeLearnState(state: LearnState): LearnState {
+  const currentPrompts = new Set(lessonPromptIds(state.lessonId));
+  const attemptedPromptIds = state.attemptedPromptIds.filter((id) => currentPrompts.has(id));
+  const responses = Object.fromEntries(Object.entries(state.responses).filter(([id]) => currentPrompts.has(id)));
   const validSections = currentSectionIds(state.lessonId);
   const resumeSectionId = state.resumeSectionId && validSections.has(state.resumeSectionId) ? state.resumeSectionId : undefined;
   const exploredSectionIds = [...new Set(state.exploredSectionIds.filter((sectionId) => validSections.has(sectionId)))];
   const cardIds = [...new Set([...(state.cardIds ?? []), ...(state.cardId ? [state.cardId] : [])])];
-  return { ...state, resumeSectionId, exploredSectionIds, cardIds, cardId: cardIds[0] };
+  return { ...state, attemptedPromptIds, responses, resumeSectionId, exploredSectionIds, cardIds, cardId: cardIds[0] };
 }
 
 export class LocalPreviewGateway implements LearnProgressGateway {
@@ -80,8 +90,9 @@ export class LocalPreviewGateway implements LearnProgressGateway {
   /** Guests finish lessons in this browser only. Cards need a parent's pass, which needs an account. */
   async submit(lessonId: string) {
     const state = this.read(lessonId);
+    // Finishing happens once. A prompt added or replaced later never un-finishes the lesson.
     if (state.status === 'completed') return state;
-    if (!requiredPromptIds(lessonId).every((id) => state.attemptedPromptIds.includes(id))) throw new Error('required prompt attempts missing');
+    if (!requiredChecksDone(lessonId, state.responses)) throw new Error('required prompt attempts missing');
     state.status = 'completed'; state.completedAt = new Date().toISOString();
     return this.write(state);
   }
@@ -184,7 +195,8 @@ export class SupabaseLearnGateway implements LearnProgressGateway {
   }
   async submit(lessonId: string) {
     const current = await this.load(lessonId);
-    const { error } = await this.client.rpc('submit_lesson', { p_lesson_id: lessonId, p_answers: submissionAnswers(lessonId, current.responses), p_learner_id: this.learnerId });
+    const answers = submissionAnswers(lessonId, current.responses);
+    const { error } = await this.client.rpc('submit_lesson', { p_lesson_id: lessonId, p_answers: answers, p_learner_id: this.learnerId, p_questions: submissionQuestions(lessonId) });
     if (error) throw error;
     return this.load(lessonId);
   }

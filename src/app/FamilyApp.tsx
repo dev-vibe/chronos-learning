@@ -1,7 +1,6 @@
 import React, { useCallback, useEffect, useMemo, useState } from 'react';
 import { Check, ChevronDown, ClipboardCheck, KeyRound, Lock, LogOut, MessageSquareQuote, RefreshCw, ShieldCheck, UserRound, UserPlus, Users } from 'lucide-react';
 import { chronosContent } from '../../content/chronos';
-import type { UnderstandingPrompt } from '../domains/contracts';
 import { cardsForLesson } from '../learn/progress';
 import { useChronosTheme } from '../theme/useChronosTheme';
 import { GlobalNavigation } from './GlobalNavigation';
@@ -23,7 +22,6 @@ import './app.css';
 import './family.css';
 
 const lessonById = new Map(chronosContent.lessons.map((lesson) => [lesson.id, lesson]));
-const promptById = new Map(chronosContent.prompts.map((prompt) => [prompt.id, prompt]));
 const cardById = new Map(chronosContent.cards.map((card) => [card.id, card]));
 const nameOf = (member?: FamilyMember) => member?.displayName ?? 'Learner';
 const shortDate = (iso?: string) => {
@@ -43,9 +41,13 @@ export function FamilyApp({ page, gateway: provided, activeLearner }: { page: 'a
   const refreshSession = useCallback(() => { refreshActiveLearner(); return gateway.session().then(setSession).catch(() => setSession(null)); }, [gateway]);
   useEffect(() => {
     // Returning from Google sign-in: the account holder just signed in.
-    const params = new URLSearchParams(window.location.search);
-    if (params.has('signed-in')) { enterParentView(); window.history.replaceState(null, '', window.location.pathname); }
-    void refreshSession();
+    // Supabase exchanges the `code` in this URL for a session after the page
+    // loads, so tidy the URL only once the session has been read.
+    const returning = new URLSearchParams(window.location.search).has('signed-in');
+    if (returning) enterParentView();
+    void refreshSession().finally(() => {
+      if (returning) window.history.replaceState(null, '', window.location.pathname);
+    });
   }, [refreshSession]);
   useEffect(() => { document.title = `${page === 'account' ? 'Account' : 'Review'} · Chronos`; }, [page]);
 
@@ -353,12 +355,6 @@ function ReviewLearnersCard({ gateway, account, waiting, onChange, secondary = f
   </section>;
 }
 
-function answerText(prompt: UnderstandingPrompt | undefined, answer: string | undefined) {
-  if (!answer) return <em className="no-answer">No answer</em>;
-  if (prompt?.kind === 'supported-selection') return prompt.options.find((option) => option.id === answer)?.label ?? answer;
-  return answer;
-}
-
 function ReviewPage({ gateway }: { gateway: FamilyGateway }) {
   const [account, setAccount] = useState<AccountSnapshot>();
   const [items, setItems] = useState<ReviewItem[]>();
@@ -381,7 +377,7 @@ function ReviewPage({ gateway }: { gateway: FamilyGateway }) {
   const waiting = known.filter((item) => item.status === 'submitted').sort((left, right) => left.submittedAt.localeCompare(right.submittedAt));
   const reviewed = known.filter((item) => item.status !== 'submitted');
   return <>
-    <header className="page-intro"><p className="label">Review</p><h1>{waiting.length ? `${waiting.length} ${waiting.length === 1 ? 'lesson is' : 'lessons are'} waiting.` : 'All caught up.'}</h1><p>Read each answer. Pass the lesson to award its Knowledge Cards, or send it back with a note about what to change.</p></header>
+    <header className="page-intro"><p className="label">Review</p><h1>{waiting.length ? `${waiting.length} ${waiting.length === 1 ? 'lesson is' : 'lessons are'} waiting.` : 'All caught up.'}</h1><p>Read each written answer. Multiple-choice checks are already done: a kid finishes one by choosing the best-supported answer. Pass the lesson to award its Knowledge Cards, or send it back with a note about what to change.</p></header>
     <section aria-labelledby="waiting-title" className="review-list">
       <h2 id="waiting-title" className="sr-only">Waiting for review</h2>
       {waiting.map((item) => <ReviewCard key={`${item.learnerId}:${item.lessonId}`} item={item} learner={learnerById.get(item.learnerId)!} gateway={gateway} onReviewed={load} />)}
@@ -414,17 +410,14 @@ function ReviewCard({ item, learner, gateway, onReviewed }: { item: ReviewItem; 
       <h3 id={`${noteId}-title`}><a href={`/learn/${lesson.id}`}>{lesson.title}</a></h3>
     </header>
     {item.round > 1 && item.feedback && <figure className="parent-note"><figcaption><MessageSquareQuote aria-hidden="true" /> Your last note</figcaption><blockquote>{item.feedback}</blockquote></figure>}
-    <ol className="review-answers">{lesson.promptIds.map((promptId) => {
-      const prompt = promptById.get(promptId);
-      return <li key={promptId}>
-        <p className="review-question">{prompt?.question ?? promptId}</p>
-        <p className="review-answer">{answerText(prompt, item.answers[promptId])}</p>
-        {prompt?.kind === 'supported-selection' && item.answers[promptId] && (item.answers[promptId] === prompt.bestOptionId
-          ? <p className="review-verdict review-verdict-best"><Check aria-hidden="true" /> Best-supported answer</p>
-          : <p className="review-verdict review-verdict-other">Not the best-supported answer</p>)}
-        {prompt && <details className="review-guide"><summary><ChevronDown aria-hidden="true" /> What a strong answer covers</summary><p>{prompt.explanation}</p></details>}
-      </li>;
-    })}</ol>
+    {item.questions.length === 0
+      ? <p className="family-hint">This lesson has no written answers to read. {name} finished its checks by choosing the best-supported answers.</p>
+      : <ol className="review-answers">{item.questions.map((question) => <li key={question.promptId}>
+          <p className="review-question">{question.question}</p>
+          {!lesson.promptIds.includes(question.promptId) && <p className="review-retired-note">This question has since changed in the lesson. It is shown as {name} saw it.</p>}
+          <p className="review-answer">{item.answers[question.promptId] || <em className="no-answer">No answer</em>}</p>
+          {question.explanation && <details className="review-guide"><summary><ChevronDown aria-hidden="true" /> What a strong answer covers</summary><p>{question.explanation}</p></details>}
+        </li>)}</ol>}
     <label htmlFor={noteId} className="review-note-label">Note for {name} <span>(needed to send it back)</span></label>
     <textarea id={noteId} value={note} onChange={(event) => { setNote(event.target.value); setError(''); }} maxLength={2000} placeholder={`Nice work, or what ${name} should add…`} />
     <div className="review-actions">

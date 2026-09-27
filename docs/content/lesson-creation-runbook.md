@@ -90,7 +90,7 @@ Open these only when triggered. They own their details; this runbook decides whe
 - One lesson has one stable identity even when reused in multiple journeys. Journey-specific framing belongs to `JourneyEntry`.
 - Lessons normally contain five to eight stable semantic sections. Use fewer or more only when the learning sequence genuinely requires it and document the exception.
 - Required lessons normally contain one to three required understanding prompts, usually two.
-- Completion requires a sincere attempt, not a perfect score, and only occurs through the explicit completion action. Finishing sends the learner's answers to a linked parent; the parent's pass awards the lesson's cards.
+- Completion requires the best-supported answer on each required multiple-choice check (learners retry until they find it) and a sincere written attempt, and only occurs through the explicit completion action. Finishing sends the learner's written answers to a linked parent; the parent's pass awards the lesson's cards.
 - Every lesson opens at the top. Explored-section state may inform progress UI but must not trigger a resume banner, automatic scrolling, or viewport restoration.
 - Related lessons and optional journeys are navigation, not instructional sections or completion requirements.
 - A reconstruction is never presented as direct evidence. Uncertainty is never hidden merely to make prose cleaner.
@@ -689,6 +689,13 @@ Plan:
 - source list and visual brief;
 - deterministic `unlockLessonId`.
 
+**Card art is the lesson's most striking image of the card's subject.** A card is a prize the learner keeps, shown at trading-card size, so it should be the picture they would want to hold:
+
+- For a place, idea, event or people card, start from the hero or the lesson's most dramatic scene or reconstruction. Reuse it; the art box crops to a landscape frame, so check the subject survives the crop.
+- For an artifact card, use the best image of the object itself, shown whole.
+- A map, diagram or chart is card art only when the lesson has nothing more vivid. Record why in the card plan, and treat it as a gap worth a future image.
+- Keep the card's `depictionLabel` true to the image (reconstruction, illustration or surviving evidence).
+
 The reveal remains subordinate to lesson completion and the current journey’s next action.
 
 ## Stage 12 — Author understanding prompts and feedback
@@ -702,7 +709,7 @@ Normally use two required prompts:
 
 Prompt rules:
 
-- require a sincere attempt, not perfection;
+- a written prompt requires a sincere attempt, not perfection; a selection prompt is done once the learner picks the best-supported option, so its feedback must help them get there;
 - use stable prompt and option IDs;
 - test an essential understanding or historical-thinking move;
 - make distractors plausible misconceptions, not jokes or wording traps;
@@ -867,7 +874,7 @@ A request to publish an already-approved lesson (for example after a pause) star
    npm run lesson:prepare-publication -- --lesson <lesson-id> --note <path> --apply-status
    ```
 
-   This checks the release gate, sets `status` to `published`, unregisters the lesson from `content/prototype-reviews.ts` (removing the draft-only notes) and prints the media to upload. Keep the archived review file under `content/prototype-reviews/`.
+   This checks the release gate, sets `status` to `published`, records the lesson's prompt fingerprints, unregisters the lesson from `content/prototype-reviews.ts` (removing the draft-only notes) and prints the media to upload. Keep the archived review file under `content/prototype-reviews/`.
 2. Validate with `npm run validate:content` and `npm run test:domain`.
 3. Upload this lesson's media only, using the printed command: `npm run media:publish -- --asset <id> --asset <id>`. Credentials come from the existing project env; storage objects are immutable.
 4. Push and put the preview link in the PR.
@@ -889,6 +896,7 @@ If a command fails, fix that command rather than inventing a parallel pipeline.
 1. Assess severity and learner harm. Unpublish immediately for a serious factual, rights, safety or provenance issue.
 2. Update the research note, claims and sources, content, media and tests as needed, in one PR. Unpublishing is setting `status` back to `draft`; learners' saved progress and cards are kept.
 3. Keep stable IDs when meaning is unchanged; create a new canonical lesson or a reviewed mapping when meaning changes materially.
+   To change a published prompt's question, options, best answer, required flag or minimum length, give it a new prompt ID and run `npm run content:fingerprints`; explanation, feedback and hint text may change under the same ID ([policy](../architecture/prompt-changes.md)).
 4. Send the owner the direct lesson preview link, following the preview-link contract, even for a one-line fix.
 
 Monitoring drop-off, misconceptions, media delivery and learner feedback after release is product work, not part of this workflow.

@@ -25,7 +25,7 @@ select throws_ok($$select public.add_learner_profile('   ')$$, '22023', 'a name 
 insert into public.lesson_progress(learner_id,lesson_id) values ((select value from fixture where name='sam')::uuid,'lesson.uruk.first-city');
 insert into public.understanding_prompt_attempts(learner_id,lesson_id,prompt_id,response)
 values ((select value from fixture where name='sam')::uuid,'lesson.uruk.first-city','prompt.uruk.administration-evidence','{"answer":"option.uruk.tablets"}');
-select is((public.submit_lesson('lesson.uruk.first-city','{"prompt.uruk.administration-evidence":"option.uruk.tablets"}',(select value from fixture where name='sam')::uuid)->>'status'), 'submitted', 'a kid profile submits through the shared sign-in');
+select is((public.submit_lesson('lesson.uruk.first-city','{"prompt.uruk.administration-evidence":"option.uruk.tablets"}','[]',(select value from fixture where name='sam')::uuid)->>'status'), 'submitted', 'a kid profile submits through the shared sign-in');
 select is((select count(*) from public.lesson_submissions where learner_id=auth.uid()), 0::bigint, 'the submission belongs to the kid, not the parent');
 select is((select count(*) from public.lesson_progress where learner_id=(select value from fixture where name='alex')::uuid), 0::bigint, 'siblings keep separate progress');
 
@@ -41,7 +41,7 @@ select throws_ok($$select public.review_submission(auth.uid(),'lesson.uruk.first
 select set_config('request.jwt.claim.sub','bbbbbbbb-bbbb-4bbb-abbb-bbbbbbbbbbbb',true);
 select is((select count(*) from public.learners where id=(select value from fixture where name='sam')::uuid), 0::bigint, 'a stranger cannot see a kid profile');
 select is((select count(*) from public.lesson_submissions), 0::bigint, 'a stranger cannot see a kid''s work');
-select throws_ok(format('select public.submit_lesson(%L,%L::jsonb,%L::uuid)', 'lesson.uruk.first-city', '{}', (select value from fixture where name='sam')), '42501', 'not allowed to act for this learner', 'a stranger cannot submit as a kid');
+select throws_ok(format('select public.submit_lesson(%L,%L::jsonb,''[]''::jsonb,%L::uuid)', 'lesson.uruk.first-city', '{}', (select value from fixture where name='sam')), '42501', 'not allowed to act for this learner', 'a stranger cannot submit as a kid');
 select throws_ok(format('insert into public.lesson_progress(learner_id,lesson_id) values (%L::uuid,%L)', (select value from fixture where name='sam'), 'lesson.writing.early-systems'), '42501', null, 'a stranger cannot write a kid''s progress');
 select throws_ok(format('select public.remove_learner_profile(%L::uuid)', (select value from fixture where name='sam')), '22023', 'profile not found', 'a stranger cannot remove a kid profile');
 select throws_ok(format('select public.review_submission(%L::uuid,%L,%L)', (select value from fixture where name='sam'), 'lesson.uruk.first-city', 'return'), '42501', 'not linked to this learner', 'a stranger cannot review a kid');

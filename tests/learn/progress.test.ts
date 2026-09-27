@@ -39,7 +39,7 @@ describe('Uruk Learn progress boundary', () => {
 
   it('persists attempts and finishes idempotently', async () => {
     const gateway = new LocalPreviewGateway(); const lessonId = 'lesson.uruk.first-city';
-    await gateway.saveAttempt(lessonId, 'prompt.uruk.administration-evidence', 'Administrative tablets and cylinder seals');
+    await gateway.saveAttempt(lessonId, 'prompt.uruk.administration-evidence', 'option.uruk.tablets');
     await gateway.saveAttempt(lessonId, 'prompt.uruk.opportunity-and-cost', 'Specialized work was possible, but coordinated labor placed unequal burdens on people.');
     const state = await gateway.load(lessonId);
     expect(canExplicitlyComplete(chronosContent.lessons.find((lesson) => lesson.id === lessonId)!.promptIds, { lessonId, idempotencyKey: 'stable-key', explicitCompletion: true, attemptedPromptIds: state.attemptedPromptIds })).toBe(true);

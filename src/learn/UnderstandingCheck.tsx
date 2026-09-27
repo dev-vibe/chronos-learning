@@ -2,16 +2,24 @@ import { useEffect, useRef, useState, type ReactNode } from 'react';
 import { Check, CheckCircle2, RotateCcw } from 'lucide-react';
 import type { UnderstandingPrompt } from '../domains/contracts';
 
-type Props = { prompt: UnderstandingPrompt; answer: string; learnerId: string; evidence?: ReactNode; onAttempt(id: string, response: string): Promise<void> };
+type Props = {
+  prompt: UnderstandingPrompt;
+  answer: string;
+  learnerId: string;
+  evidence?: ReactNode;
+  /** A parent sent the lesson back: open a written answer for editing, filled with what was sent. */
+  reopen?: boolean;
+  onAttempt(id: string, response: string): Promise<void>;
+};
 
 // Tab-scoped, identity-scoped drafts are deliberately separate from submitted progress.
 export const promptDraftKey = (learnerId: string, lessonId: string, promptId: string) => `chronos.prompt-draft.v1:${learnerId}:${lessonId}:${promptId}`;
 
-export function UnderstandingCheck({ prompt, answer, learnerId, evidence, onAttempt }: Props) {
+export function UnderstandingCheck({ prompt, answer, learnerId, evidence, reopen = false, onAttempt }: Props) {
   const key = promptDraftKey(learnerId, prompt.lessonId, prompt.id);
   const [draft, setDraft] = useState(() => { try { return sessionStorage.getItem(key) ?? answer; } catch { return answer; } });
   // A written answer with unsaved changes in this tab reopens in the editor.
-  const [compared, setCompared] = useState(() => Boolean(answer) && (prompt.kind !== 'concise-explanation' || draft === answer));
+  const [compared, setCompared] = useState(() => Boolean(answer) && (prompt.kind !== 'concise-explanation' || (!reopen && draft === answer)));
   const [focusEditor, setFocusEditor] = useState(false);
   // The last answer known to be saved: from progress, or from this component's own save.
   const [savedText, setSavedText] = useState(answer);

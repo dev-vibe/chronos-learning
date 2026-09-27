@@ -7,7 +7,7 @@ import type { LessonPrototypeReview } from '../infrastructure/content/prototypeR
 import { HistoricalMapModule } from './HistoricalMapModule';
 import { ResponsiveMedia } from './ResponsiveMedia';
 import { EvidenceModule } from './EvidenceModule';
-import { UnderstandingCheck } from './UnderstandingCheck';
+import { promptDraftKey, UnderstandingCheck } from './UnderstandingCheck';
 import { EvidenceViewer } from './EvidenceViewer';
 import { createProgressGateway, LocalPreviewGateway, type JourneyProgressSummary, type LearnProgressGateway, type LearnState } from './progress';
 import { LessonReviewPanel } from './LessonReviewPanel';
@@ -67,7 +67,9 @@ function Module({ module, state, onAttempt }: ModuleProps) {
   const answer = state.responses[prompt.id] ?? '';
   const lesson = lessonById.get(prompt.lessonId);
   const evidence = (prompt.evidenceModuleIds ?? []).flatMap((id) => lesson?.sections.flatMap((section) => section.modules).filter((candidate) => candidate.id === id && (candidate.type === 'evidence' || candidate.type === 'historical-map')) ?? []);
-  return <UnderstandingCheck key={`${state.learnerId}:${prompt.id}`} prompt={prompt} answer={answer} learnerId={state.learnerId} onAttempt={onAttempt} evidence={evidence.length ? evidence.map((item) => {
+  // Sent back: written answers open for editing, filled with what was sent.
+  const reopen = state.review?.status === 'returned';
+  return <UnderstandingCheck key={`${state.learnerId}:${prompt.id}:${reopen ? 'reopened' : 'open'}`} prompt={prompt} answer={answer} learnerId={state.learnerId} reopen={reopen} onAttempt={onAttempt} evidence={evidence.length ? evidence.map((item) => {
     if (item.type !== 'evidence' && item.type !== 'historical-map') return null;
     const media = mediaById.get(item.mediaId)!;
     return <figure key={item.id} className="prompt-evidence-image"><div><ResponsiveMedia media={media} alt={media.alt} sizes="(max-width: 800px) 100vw, 700px" loading="lazy" /><EvidenceViewer media={media} title={item.title} summary={item.type === 'historical-map' ? item.accessibleSummary : item.body} /></div><figcaption><strong>{item.title}</strong><p>{item.type === 'historical-map' ? item.accessibleSummary : item.body}</p><small>{media.depictionLabel}</small></figcaption></figure>;
@@ -270,7 +272,7 @@ export function LearnApp({ lessonId, gatewayFactory = createProgressGateway }: {
   }, [lessonId, Boolean(state)]);
 
   const navigate = (id: string) => { const target = document.getElementById(id); if (!target) return; target.scrollIntoView({ behavior: matchMedia('(prefers-reduced-motion: reduce)').matches ? 'auto' : 'smooth', block: 'start' }); target.focus({ preventScroll: true }); };
-  const requirement = useMemo(() => derivePromptRequirementState(lesson?.promptIds ?? [], promptById, state?.attemptedPromptIds ?? []), [lesson, state?.attemptedPromptIds]);
+  const requirement = useMemo(() => derivePromptRequirementState(lesson?.promptIds ?? [], promptById, state?.responses ?? {}), [lesson, state?.responses]);
   const worldSpineAccess = useMemo(() => journey?.kind === 'world-history'
     ? resolveWorldSpineAccess(worldSpineRoadmap, chronosContent.lessons, journeySummaries, lessonId)
     : { accessible: true }, [journey?.kind, journeySummaries, lessonId]);
@@ -305,6 +307,16 @@ export function LearnApp({ lessonId, gatewayFactory = createProgressGateway }: {
   const submit = async () => {
     setBusy(true); setError('');
     try {
+      // Save written answers that were changed but not saved yet, so what is sent is what is on screen.
+      for (const prompt of lesson.promptIds.map((id) => promptById.get(id))) {
+        if (prompt?.kind !== 'concise-explanation') continue;
+        let draft: string | null = null;
+        try { draft = sessionStorage.getItem(promptDraftKey(state.learnerId, lessonId, prompt.id)); } catch { /* no drafts in this browser */ }
+        const text = draft?.trim() ?? '';
+        if (!text || text === (state.responses[prompt.id] ?? '')) continue;
+        if (text.length < prompt.minimumResponseLength) { setError(`Add a little more to “${prompt.question}” before sending.`); return; }
+        setCurrentProgress(await gatewayRef.current.saveAttempt(lessonId, prompt.id, text));
+      }
       setCurrentProgress(await gatewayRef.current.submit(lessonId));
     } catch { setError('Your answers could not be sent. They are still saved here; please retry.'); }
     finally { setBusy(false); }
@@ -337,7 +349,7 @@ export function LearnApp({ lessonId, gatewayFactory = createProgressGateway }: {
       <article><header className="masthead"><div className="masthead-copy"><p className="eyebrow">{lesson.masthead} <span>·</span> {lesson.place}</p><h1>{lesson.title}</h1><p className="dek">{lesson.significance}</p></div>{hero && <figure className="hero"><div className={'hero-image hero-image-' + hero.depictionMode}><ResponsiveMedia className={`hero-media hero-${hero.depictionMode}`} media={hero} alt={hero.alt} sizes="(max-width: 800px) 100vw, 60vw" loading="eager" decoding="async" /><span className="depiction-label">{lesson.heroLabel}</span></div><figcaption><span>{hero.depictionLabel}</span><span>{lesson.heroCaption}</span></figcaption></figure>}</header>
         <LessonOrientation lesson={lesson} journey={journey} />
         {lesson.sections.map((section) => <React.Fragment key={section.id}><Section section={section} state={state} onAttempt={attempt} openingMapId={openingMapId} /><PrototypeMediaIntentions lesson={lesson} review={prototypeReview} sectionId={section.id} /></React.Fragment>)}
-        <LessonReviewPanel lesson={lesson} state={state} prompts={lessonPrompts} configuredCards={configuredCards} ownedCards={ownedCards} next={next?.lesson} ready={requirement.ready} busy={busy} error={error} onSubmit={submit} />
+        <LessonReviewPanel lesson={lesson} state={state} prompts={lessonPrompts} configuredCards={configuredCards} ownedCards={ownedCards} next={next?.lesson} ready={requirement.ready} answeredIds={requirement.answeredIds} busy={busy} error={error} onSubmit={submit} />
       </article>
     </main>
     <PassCelebration gateway={celebrationGateway} onAcknowledged={reloadAfterPass} />

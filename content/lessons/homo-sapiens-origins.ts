@@ -974,7 +974,7 @@ export const homoSapiensOriginsCards: KnowledgeCard[] = [
     significance: 'Fossils, stone tools, and DNA all point the same way: our species began among many connected groups spread across Africa — with no single birthplace to name.',
     revealTitle: 'No single birthplace',
     revealBody: 'You put fossil, tool, and DNA evidence together, worked out what the spread of finds supports, and named what it still cannot settle.',
-    depictionLabel: 'Evidence locations · modern coasts for orientation',
+    depictionLabel: 'Evidence-based reconstruction · Jebel Irhoud, about 315,000 years ago',
     facts: [
       'Oldest known fossils of our species: Jebel Irhoud, Morocco, about 315,000 years ago',
       'Comparable finds in South Africa and Ethiopia span more than 150,000 years',
@@ -989,7 +989,7 @@ export const homoSapiensOriginsCards: KnowledgeCard[] = [
       'source.humans.bergstrom-2021-ancestry',
       'source.humans.ragsdale-2023-stem',
     ],
-    mediaId: 'media.humans.africa-origins-card',
+    mediaId: 'media.humans.jebel-irhoud-landscape-reconstruction',
     unlockLessonId: 'lesson.humans.homo-sapiens-origins',
     recallPrompt: 'What does a modern-looking face with a long, low braincase suggest? What can one find not settle?',
     connections: [{ lessonId: 'lesson.humans.migrations-and-interbreeding', label: 'Fossils and ancient DNA', reason: 'Compare how a different kind of evidence adds to our account of ancient people.' }],

@@ -49,7 +49,8 @@ const waitingUruk = (): ReviewItem => ({
   status: 'submitted',
   round: 1,
   submittedAt: '2026-09-25T00:00:00.000Z',
-  answers: { 'prompt.uruk.administration-evidence': 'option.uruk.tablets', 'prompt.uruk.opportunity-and-cost': 'Temple workers were paid in grain rations.' },
+  answers: { 'prompt.uruk.opportunity-and-cost': 'Temple workers were paid in grain rations.' },
+  questions: [{ promptId: 'prompt.uruk.opportunity-and-cost', kind: 'concise-explanation', question: 'Name one opportunity and one cost or challenge of life in Uruk, using lesson evidence.', required: true, explanation: 'Extra food could support specialized work.' }],
 });
 
 const originalLocation = window.location;
@@ -119,6 +120,21 @@ describe('Account page', () => {
     expect(await screen.findByText('Linked to Sam.')).toBeTruthy();
     expect(await screen.findByRole('heading', { name: 'Kids you review' })).toBeTruthy();
     expect(screen.getByRole('link', { name: /Open Review/ }).getAttribute('href')).toBe('/review');
+  });
+});
+
+describe('Returning from Google sign-in', () => {
+  it('keeps the sign-in code in the address until the session has been read, then tidies it', async () => {
+    window.history.replaceState(null, '', '/account?signed-in=1&code=abc123');
+    const gateway = new FakeFamilyGateway();
+    let finish!: () => void;
+    gateway.session = vi.fn(() => new Promise((resolve) => { finish = () => { gateway.user = { userId: kidId }; resolve(gateway.user); }; }));
+    render(<FamilyApp page="account" gateway={gateway} />);
+    expect(window.location.search).toBe('?signed-in=1&code=abc123');
+    finish();
+    expect(await screen.findByRole('heading', { name: 'Hi, Sam.' })).toBeTruthy();
+    await waitFor(() => expect(window.location.search).toBe(''));
+    expect(window.location.pathname).toBe('/account');
   });
 });
 
@@ -239,9 +255,10 @@ describe('Review page', () => {
     render(<FamilyApp page="review" gateway={gateway} />);
     expect(await screen.findByRole('heading', { name: '1 lesson is waiting.' })).toBeTruthy();
     const card = screen.getByRole('article', { name: 'Uruk: Life in an Early City' });
-    expect(within(card).getByText('Administrative tablets and cylinder seals')).toBeTruthy();
     expect(within(card).getByText('Temple workers were paid in grain rations.')).toBeTruthy();
-    expect(within(card).getByText('Best-supported answer')).toBeTruthy();
+    expect(within(card).getByText('Extra food could support specialized work.')).toBeTruthy();
+    // Multiple choice is finished by the kid choosing the best-supported answer, so it isn't reviewed.
+    expect(within(card).queryByText(/Which evidence best supports/)).toBeNull();
     await userEvent.click(within(card).getByRole('button', { name: 'Send back' }));
     expect(within(card).getByRole('alert').textContent).toContain('Add a note so Sam knows what to change');
     expect(gateway.review).not.toHaveBeenCalled();
@@ -267,5 +284,31 @@ describe('Review page', () => {
     render(<FamilyApp page="review" gateway={gateway} />);
     expect(await screen.findByText('Your last note')).toBeTruthy();
     expect(screen.getByText(/resubmitted/)).toBeTruthy();
+  });
+});
+
+describe('Review after a lesson’s prompts change', () => {
+  it('shows each written question as the kid saw it, including one the lesson has since replaced', async () => {
+    const gateway = new FakeFamilyGateway();
+    gateway.user = { userId: parentId };
+    gateway.account = { userId: parentId, displayName: 'Mom', setup: 'separate', linkCode: 'HJKLMNPQ', parents: [], learners: [{ id: kidId, displayName: 'Sam' }], profiles: [], parentPin: false };
+    gateway.queue = [{
+      ...waitingUruk(),
+      answers: { 'prompt.uruk.retired': 'Seals showed who closed the jar.' },
+      questions: [
+        { promptId: 'prompt.uruk.retired', kind: 'concise-explanation', question: 'What could a seal tell a scribe?', required: true, explanation: 'Seal impressions name an office or person.' },
+        { promptId: 'prompt.uruk.optional', kind: 'concise-explanation', question: 'Anything else you noticed?', required: false },
+      ],
+    }];
+    render(<FamilyApp page="review" gateway={gateway} />);
+    const card = await screen.findByRole('article', { name: 'Uruk: Life in an Early City' });
+    const items = card.querySelectorAll('.review-answers > li');
+    expect(items).toHaveLength(2);
+    expect(within(items[0] as HTMLElement).getByText('What could a seal tell a scribe?')).toBeTruthy();
+    expect(within(items[0] as HTMLElement).getByText('Seals showed who closed the jar.')).toBeTruthy();
+    expect(within(items[0] as HTMLElement).getByText(/since changed in the lesson.*as Sam saw it/)).toBeTruthy();
+    expect(within(items[1] as HTMLElement).getByText('No answer')).toBeTruthy();
+    // The lesson's current written prompt wasn't in this submission, so it isn't listed.
+    expect(within(card).queryByText(/Name one opportunity/)).toBeNull();
   });
 });

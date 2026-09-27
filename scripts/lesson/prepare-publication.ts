@@ -6,6 +6,7 @@ import { argumentValue, hasFlag } from './arguments';
 import { validateLessonGate } from './gate-validation';
 import { mediaPublishCommand, planLessonPublication, publicationNextSteps } from './publication-plan';
 import { unregisterPrototypeReview } from './prototype-registry';
+import { PROMPT_FINGERPRINTS_PATH, regeneratePromptFingerprints } from '../../src/infrastructure/content/promptFingerprints';
 
 const args = process.argv.slice(2);
 const lessonId = argumentValue(args, 'lesson');
@@ -100,8 +101,20 @@ async function stripPrototypeReview(targetLessonId: string): Promise<void> {
 
 if (!applyStatus) console.log('\nPass --apply-status to flip the authored lesson to published. No SQL is needed; publishing is a repository change.');
 
+/** Records the newly published lesson's prompts so later changes to them are caught (docs/architecture/prompt-changes.md). */
+async function recordPromptFingerprints(targetLessonId: string): Promise<void> {
+  const path = resolve(root, PROMPT_FINGERPRINTS_PATH);
+  const recorded = JSON.parse(await readFile(path, 'utf8'));
+  const lessons = chronosContent.lessons.map((item) => item.id === targetLessonId ? { ...item, status: 'published' as const } : item);
+  const { file, errors } = regeneratePromptFingerprints(chronosContent.prompts, lessons, recorded);
+  if (errors.length) throw new Error(`Prompt fingerprints were not updated:\n${errors.map((error) => `- ${error}`).join('\n')}`);
+  await writeFile(path, JSON.stringify(file, null, 2) + '\n');
+  console.log(`Recorded ${targetLessonId}'s prompt fingerprints in ${PROMPT_FINGERPRINTS_PATH}.`);
+}
+
 if (applyStatus) {
   await applyPublishedStatus(lessonId);
+  await recordPromptFingerprints(lessonId);
   await stripPrototypeReview(lessonId);
 }
 

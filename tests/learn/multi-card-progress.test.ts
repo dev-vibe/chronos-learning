@@ -15,24 +15,24 @@ describe('parent review submissions', () => {
     expect(cardsForLesson('lesson.egypt.pyramids-and-state-labor')).toEqual([]);
   });
 
-  it('sends only this lesson’s prompts, in authored order', () => {
+  it('sends only this lesson’s written answers', () => {
     expect(submissionAnswers('lesson.uruk.first-city', {
       'prompt.uruk.opportunity-and-cost': 'Specialists, but unequal labor.',
-      'prompt.writing.administration-evidence': 'Wrong lesson',
+      'prompt.writing.possibility-and-limit': 'Wrong lesson',
       'prompt.uruk.administration-evidence': 'option.uruk.tablets',
     })).toEqual({
-      'prompt.uruk.administration-evidence': 'option.uruk.tablets',
       'prompt.uruk.opportunity-and-cost': 'Specialists, but unequal labor.',
     });
   });
 
-  it('lets a guest finish only after both required attempts, and never grants a card locally', async () => {
+  it('lets a guest finish only after the best answer and a written answer, and never grants a card locally', async () => {
     const gateway = new LocalPreviewGateway();
     const lessonId = 'lesson.humans.migrations-and-interbreeding';
     await expect(gateway.submit(lessonId)).rejects.toThrow('required prompt attempts missing');
+    await gateway.saveAttempt(lessonId, 'prompt.humans.adna-evidence-and-limit', 'DNA can show biological relatives, but it cannot tell us a person’s language.');
     await gateway.saveAttempt(lessonId, 'prompt.humans.long-segments-inference', 'option.humans.long-segments-recent');
     await expect(gateway.submit(lessonId)).rejects.toThrow('required prompt attempts missing');
-    await gateway.saveAttempt(lessonId, 'prompt.humans.adna-evidence-and-limit', 'DNA can show biological relatives, but it cannot tell us a person’s language.');
+    await gateway.saveAttempt(lessonId, 'prompt.humans.long-segments-inference', 'option.humans.recent-neanderthal-ancestor');
     const finished = await gateway.submit(lessonId);
     expect(finished).toMatchObject({ status: 'completed', cardIds: [] });
     expect(finished.review).toBeUndefined();
@@ -44,10 +44,15 @@ describe('parent review submissions', () => {
   it('submits the latest answers through the submit_lesson command', async () => {
     const rpc = vi.fn(async () => ({ data: {}, error: null }));
     const gateway = new SupabaseLearnGateway('11111111-1111-4111-a111-111111111111', { rpc } as any);
-    const state = { learnerId: 'x', lessonId: 'lesson.uruk.first-city', status: 'in-progress' as const, attemptedPromptIds: [], exploredSectionIds: [], responses: { 'prompt.uruk.administration-evidence': 'option.uruk.tablets' }, version: 1 as const };
+    const state = { learnerId: 'x', lessonId: 'lesson.uruk.first-city', status: 'in-progress' as const, attemptedPromptIds: [], exploredSectionIds: [], responses: { 'prompt.uruk.administration-evidence': 'option.uruk.tablets', 'prompt.uruk.opportunity-and-cost': 'Specialists, but unequal labor.' }, version: 1 as const };
     vi.spyOn(gateway, 'load').mockResolvedValue(state);
     await gateway.submit('lesson.uruk.first-city');
-    expect(rpc).toHaveBeenCalledWith('submit_lesson', { p_lesson_id: 'lesson.uruk.first-city', p_answers: { 'prompt.uruk.administration-evidence': 'option.uruk.tablets' }, p_learner_id: '11111111-1111-4111-a111-111111111111' });
+    expect(rpc).toHaveBeenCalledWith('submit_lesson', {
+      p_lesson_id: 'lesson.uruk.first-city',
+      p_answers: { 'prompt.uruk.opportunity-and-cost': 'Specialists, but unequal labor.' },
+      p_learner_id: '11111111-1111-4111-a111-111111111111',
+      p_questions: [expect.objectContaining({ promptId: 'prompt.uruk.opportunity-and-cost', kind: 'concise-explanation', question: expect.stringMatching(/opportunity and one cost/) })],
+    });
     await gateway.acknowledgePass('lesson.uruk.first-city');
     expect(rpc).toHaveBeenLastCalledWith('acknowledge_pass', { p_lesson_id: 'lesson.uruk.first-city', p_learner_id: '11111111-1111-4111-a111-111111111111' });
   });

@@ -38,7 +38,7 @@ it('validates the typed Caral historical map and generated raster asset', () => 
     category: 'place',
     cardClass: 'foundation',
     unlockLessonId: 'lesson.caral.andean-urbanism',
-    mediaId: 'media.caral.sunken-plaza',
+    mediaId: 'media.caral.site-hero',
   });
   expect(lesson.mediaIds).toEqual(expect.arrayContaining([
     'media.caral.supe-valley-map',

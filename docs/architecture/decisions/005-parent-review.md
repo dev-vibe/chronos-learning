@@ -12,8 +12,8 @@ Every publish, and every change to a lesson's required prompts or cards, needed 
 ## Decision
 
 - Lessons, journeys, prompts and Knowledge Cards live only in the repository. A lesson is live when `status: 'published'` merges to main.
-- A learner finishes a lesson by submitting their latest answers (`submit_lesson`). The lesson counts as finished immediately so the journey continues.
-- A linked parent reads the answers on `/review` and passes the lesson (`review_submission`, which grants the lesson's cards as listed in the content bundle) or sends it back with a required note. The learner revises and resubmits from the lesson page.
+- A learner finishes a lesson by submitting their latest written answers (`submit_lesson`). A multiple-choice check is done once the learner picks the best-supported answer, so it is not sent for review. The lesson counts as finished immediately so the journey continues.
+- A linked parent reads the written answers on `/review` and passes the lesson (`review_submission`, which grants the lesson's cards as listed in the content bundle) or sends it back with a required note. The learner's written answers open for editing on the lesson page, filled with what was sent, and they resubmit from there.
 - Setup offers two family arrangements, recommending the first:
   - **Separate sign-ins.** Each kid has an account and the parent links by entering the kid's single-use code (`learner_link_code`, `link_learner`). Links can be removed from either side.
   - **Shared sign-in**, for kids without their own email. The parent's sign-in holds a profile per kid (`add_learner_profile`, `remove_learner_profile`). Each profile is its own learner, so progress, submissions and cards stay separate. `can_act_as()` opens a learner's rows to whoever may act as that learner, and the commands take the acting profile.
@@ -28,3 +28,4 @@ Every publish, and every change to a lesson's required prompts or cards, needed 
 - Learner tables no longer reference `content_lessons`, `journeys`, `journey_entries` or `knowledge_cards`. Those tables, `card_unlocks`, `legacy_id_aliases`, `lesson_completion_configuration`, `lesson_required_prompts` and `completion_commands` remain in the database unused, and `complete_lesson_and_acquire_card` is closed to every role. They can be dropped in a later migration.
 - Guests can still finish lessons in their browser but cannot earn cards.
 - A parent's pass trusts the parent's browser to name the lesson's cards. That is acceptable because the parent is the reviewer; a learner cannot call the command for themselves.
+- Changing a lesson's prompts after learners have answered them follows [prompt-changes.md](../prompt-changes.md): a changed question gets a new prompt ID, and submissions keep a snapshot of the questions as the learner saw them.
