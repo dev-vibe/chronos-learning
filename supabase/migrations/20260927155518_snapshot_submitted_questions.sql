@@ -1,4 +1,4 @@
--- Applied migration version: pending (rename this file to the version the hosted project records).
+-- Applied migration version: 20260927155518.
 -- Each submission keeps the lesson's questions as the learner saw them.
 --
 -- A changed question gets a new prompt ID and the old one leaves the
