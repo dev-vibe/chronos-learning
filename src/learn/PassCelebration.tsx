@@ -34,7 +34,8 @@ export function PassCelebration({ gateway, passes, onAcknowledged }: { gateway?:
   useEffect(() => {
     if (!current) return;
     const previous = document.activeElement as HTMLElement | null;
-    buttonRef.current?.focus();
+    // Focus the button without scrolling to it, so the dialog opens at its top.
+    buttonRef.current?.focus({ preventScroll: true });
     return () => previous?.focus?.();
   }, [current?.lessonId]);
 
