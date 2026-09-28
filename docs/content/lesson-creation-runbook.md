@@ -86,11 +86,8 @@ Open these only when triggered. They own their details; this runbook decides whe
 
 ## Changing a published lesson
 
-Pick the lightest path that fits:
-
-- **Voice revision** (same teaching, better telling: prose, feedback, captions, card text, added images): the [voice revision runbook](lesson-voice-revision-runbook.md).
-- **Prompt revision** (a prompt's question, options, best answer or answer logic changes, but it keeps its teaching job): the [prompt revision runbook](prompt-revision-runbook.md). It can share a PR with a voice revision when the owner asks for both.
-- **Material revision:** a change to the essential question, durable understanding, central claims or their certainty, section order or teaching jobs, a prompt's teaching job, adding or removing a prompt, completion rules, the Knowledge Card, the teaching job of an existing image, or journey position. Re-enter the earliest affected stage in the lesson's research note.
+- **Revision:** any request to revise, redo or improve a published lesson, or one of its prompts or its card, follows the [lesson revision runbook](lesson-voice-revision-runbook.md). Its audit decides whether the telling, each prompt and the card need work, and it does them in one PR with one owner check. A prompt whose question, options, best answer or answer logic changes gets a new ID through the [prompt revision runbook](prompt-revision-runbook.md), which the revision runbook calls.
+- **Material revision:** a change to the essential question, durable understanding, central claims or their certainty, section order or teaching jobs, a prompt's teaching job, adding or removing a prompt, completion rules, the card's subject or adding or removing a card, the teaching job of an existing image, or journey position. Re-enter the earliest affected stage in the lesson's research note.
 - **Correction** (an error or harm in the published lesson): [Stage 18's correction path](#corrections-after-release).
 
 ## Non-negotiable product rules

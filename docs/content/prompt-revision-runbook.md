@@ -1,23 +1,22 @@
 # Chronos prompt revision runbook
 
-Status: the process for replacing an understanding prompt in a published lesson with a better one that does the same teaching job. A prompt revision changes how the lesson checks understanding, not what it teaches. It follows the [prompt-change policy](../architecture/prompt-changes.md). Read this file and **Stage 12** of the [lesson creation runbook](lesson-creation-runbook.md#stage-12--author-understanding-prompts-and-feedback); nothing else is required reading.
+Status: the steps for replacing an understanding prompt in a published lesson with a better one that does the same teaching job. The [lesson revision runbook](lesson-voice-revision-runbook.md) calls these steps when its audit marks a prompt `replace`, or when the owner asks only to improve a prompt. A prompt revision changes how the lesson checks understanding, not what it teaches. It follows the [prompt-change policy](../architecture/prompt-changes.md). Read this file and **Stage 12** of the [lesson creation runbook](lesson-creation-runbook.md#stage-12--author-understanding-prompts-and-feedback); nothing else is required reading.
 
 ## When to use it
 
-Use this runbook for any published prompt, required or optional, whose identity would change. A prompt's identity is its lesson, kind, question text, options (ids and labels), `bestOptionId`, `required` flag and `minimumResponseLength`. Typical requests: “improve the X prompt”, “this question is too generic”, “rebuild the evidence check around the tablet”.
+Use this runbook for any published prompt, required or optional, whose identity would change. A prompt's identity is its lesson, kind, question text, options (ids and labels), `bestOptionId`, `required` flag and `minimumResponseLength`. It is usually reached from a lesson revision (“revise the X lesson”) or a request such as “improve the X prompt” or “this question is too generic”.
 
 It applies when the new prompt keeps the old one's teaching job: it still checks the same part of the durable understanding, and the lesson still has one to three required prompts. The new prompt may change its question, options, best answer, kind (multiple choice or written), required flag or minimum length.
 
 Do not use it for:
 
 - **a change to the essential question, durable understanding or a prompt's teaching job, or adding or removing a prompt.** Those are material revisions and follow the creation runbook. Stop and tell the owner.
-- **text-only changes to explanation, option feedback, hint or option order.** Those keep the ID. Make them in a [voice revision](lesson-voice-revision-runbook.md) or a [correction](lesson-creation-runbook.md#corrections-after-release).
+- **text-only changes to explanation, option feedback, hint or option order.** Those keep the ID. Make them in a [lesson revision](lesson-voice-revision-runbook.md) or a [correction](lesson-creation-runbook.md#corrections-after-release).
 
 ## Invocation
 
-1. Fetch `dev-vibe/chronos-learning` and create a branch from the latest `main` named `revise/<lesson-slug>-prompt`.
-2. Revise the prompt the owner names. One lesson per branch and PR; it may replace more than one of that lesson's prompts. There is no Linear issue and no queue change; the research note and the PR are the record.
-3. **With a voice revision.** When the owner asks for both, do them in one branch (`revise/<lesson-slug>-voice`) and one PR. Follow both runbooks, keep a `## Voice revision` and a `## Prompt revision` section in the research note, and send one owner packet that covers both. Do not start a prompt revision from inside a voice revision without the owner's request.
+1. **Inside a lesson revision:** work in that branch and PR. Run steps 1–6 below for each prompt the audit marked `replace`, and send the owner-check items with the revision's one owner packet.
+2. **On its own** (“improve the X prompt”): fetch `dev-vibe/chronos-learning`, create a branch from the latest `main` named `revise/<lesson-slug>`, and run every step below. One lesson per branch and PR; it may replace more than one of that lesson's prompts. There is no Linear issue and no queue change; the research note and the PR are the record.
 
 ## Read
 
@@ -28,12 +27,12 @@ Do not use it for:
 ## Steps
 
 1. **Draft** the new prompt under Stage 12: same teaching job, plausible wrong options that reveal real misconceptions, a `bestOptionId` for multiple choice, a hint, feedback for each wrong option, and an explanation.
-2. **Check it against the lesson as it stands.** For every option, the best answer and every piece of feedback, name the section (or module) that supports it. If something needs a fact the lesson does not teach, rewrite the prompt; the lesson text changes only in a voice revision the owner asked for. Read each wrong option's feedback on its own and confirm it points back to the evidence without giving away the answer.
+2. **Check it against the lesson as it stands.** For every option, the best answer and every piece of feedback, name the section (or module) that supports it. If something needs a fact the lesson does not teach, rewrite the prompt. Inside a lesson revision, check against the revised text, which may add the sourced fact; on its own, the lesson text does not change. Read each wrong option's feedback on its own and confirm it points back to the evidence without giving away the answer.
 3. **Replace the prompt.** Give it a new, descriptive prompt ID and new option IDs, and never reuse a retired ID (retired IDs are marked in `content/published-prompt-fingerprints.json`). Replace the old prompt in the lesson's `promptIds`, in its `prompt` module (`promptId`) and in the prompts array, and delete the old prompt. Search `tests/` for the old prompt and option IDs and point each reference at the new ones.
 4. **Record fingerprints:** `npm run content:fingerprints`. It adds the new prompt and marks the old one retired.
 5. **Validate:** `npm run validate:content` and `npm run test:domain`. Never edit a test to hide an ID or behavior change. No migration and no lesson gates.
 6. **Record it** in the research note under `## Prompt revision` (add a dated entry if the section exists): the old and new IDs, why the prompt changed, and the support map from step 2.
-7. **Open one PR** and let CI run.
+7. **Open one PR** and let CI run (on its own only; inside a revision, the revision opens it).
 8. **Owner check** (the only touchpoint), below.
 9. **Finish in the same PR.** After approval, the final commit adds the date, PR link and the owner's approval to the `## Prompt revision` entry. Merge when CI is green. Merging publishes the new prompt; there is no database step, post-merge check or follow-up PR.
 
