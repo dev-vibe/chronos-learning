@@ -1,0 +1,26 @@
+{
+  "name": "chronos-image-mcp",
+  "private": true,
+  "version": "0.1.0",
+  "type": "module",
+  "description": "Remote MCP connector that lets Claude generate and edit images through the OpenAI Images API.",
+  "scripts": {
+    "start": "tsx src/server.ts",
+    "dev": "tsx watch src/server.ts",
+    "typecheck": "tsc --noEmit",
+    "test": "tsx --test test/*.test.ts"
+  },
+  "engines": {
+    "node": ">=20"
+  },
+  "dependencies": {
+    "@modelcontextprotocol/sdk": "^1.20.0",
+    "sharp": "^0.34.0",
+    "tsx": "^4.20.3",
+    "zod": "^3.24.2"
+  },
+  "devDependencies": {
+    "@types/node": "^22.14.0",
+    "typescript": "~5.8.2"
+  }
+}
