@@ -2,7 +2,7 @@ import { mkdir, readFile, writeFile } from 'node:fs/promises';
 import { basename, dirname, extname, resolve } from 'node:path';
 import process from 'node:process';
 
-// Generate or edit an image with the OpenAI Images API. Needs OPENAI_API_KEY in the environment.
+// Generate or edit an image with the OpenAI Images API. Needs OPENAI_API_KEY in the environment or in the gitignored repo-root .env.
 // Output goes under tmp/chronos-media/generated/ (gitignored) with a provenance sidecar; review it,
 // then move accepted art under public/ and register it with `npm run media:add`.
 
@@ -15,8 +15,11 @@ const prompt = one('--prompt');
 const promptFile = one('--prompt-file');
 const text = prompt ?? (promptFile ? await readFile(promptFile, 'utf8') : undefined);
 if (!text?.trim()) throw new Error('Missing --prompt or --prompt-file.\n' + usage);
+if (!process.env.OPENAI_API_KEY) {
+  try { process.loadEnvFile('.env'); } catch { /* no .env file */ }
+}
 const key = process.env.OPENAI_API_KEY;
-if (!key) throw new Error('OPENAI_API_KEY is not set. Add it as an environment secret for this Claude Code environment.');
+if (!key) throw new Error('OPENAI_API_KEY is not set. Put OPENAI_API_KEY=... in the gitignored .env file at the repo root, or export it in your shell.');
 
 const tier = one('--tier') ?? 'reference';
 if (tier !== 'reference' && tier !== 'draft') throw new Error('--tier must be reference or draft');
