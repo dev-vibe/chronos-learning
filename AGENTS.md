@@ -17,6 +17,8 @@ A user request equivalent to “Let's create the next Chronos lesson” is compl
 
 For UI work, inspect the images in `docs/design/references/`. They express visual intent, hierarchy, and product personality. Rebuild them with real responsive components and accessible native text; do not embed screenshots or imitate generated text errors.
 
+For generated raster art, run `npm run media:generate -- --prompt "..." [--ref file.png] [--tier reference|draft] [--size 1536x1024]`. It calls the OpenAI Images API with `OPENAI_API_KEY` (an environment secret; never ask for it in chat), writes the image and a provenance sidecar to `tmp/chronos-media/generated/`, and leaves review, placement under `public/`, and `npm run media:add` to you. Model names default to `gpt-image-2.5-sunburst` (reference) and `gpt-image-2.5-flare` (draft); override with `IMAGE_MODEL_REFERENCE` / `IMAGE_MODEL_DRAFT` if the API rejects them.
+
 For generated historical maps, follow `docs/content/historical-map-production.md`. A real authoritative map must anchor the geography; generated output is never the geographic source.
 
 ## Product invariants

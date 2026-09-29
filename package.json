@@ -14,6 +14,7 @@
     "lesson:gate": "tsx scripts/lesson/gate.ts",
     "lesson:prepare-publication": "tsx scripts/lesson/prepare-publication.ts",
     "media:add": "tsx scripts/media/add.ts",
+    "media:generate": "tsx scripts/media/image-gen.ts",
     "media:build": "tsx scripts/media/build.ts",
     "media:verify": "tsx scripts/media/build.ts --check",
     "media:ingest-sources": "npm run media:verify && tsx scripts/media/publish.ts --sources-only",
