@@ -279,24 +279,28 @@ export const earlyWritingMedia: MediaAsset[] = [
 
 export const earlyWritingPrompts: UnderstandingPrompt[] = [
   {
-    id: 'prompt.writing.administration-evidence', bestOptionId: 'option.writing.tablet',
+    id: 'prompt.writing.what-tablet-shows', bestOptionId: 'option.writing.records-amounts',
     lessonId: 'lesson.writing.early-systems',
     kind: 'supported-selection',
-    question: 'Which surviving evidence best supports the use of proto-cuneiform for administration?',
-    explanation: 'A tablet with numbers and signs for goods is direct surviving evidence of record-making. Calling it one exact transaction is a scholarly reading. A modern reconstruction or a much later story is not direct evidence for this early practice.',
+    evidenceModuleIds: ['module.writing.tablet-evidence'],
+    question: 'The Met tablet is divided into boxes holding signs for goods and round pressed-in marks for numbers. It has no verbs. Which statement is best supported by this tablet?',
+    hint: 'Look at what the tablet shows: boxes, signs for goods, and marks for numbers. Then ask what it never says.',
+    explanation: 'The tablet shows that someone recorded amounts of goods on clay, in a form another person could pick up and check later. With no verbs, it does not say who gave or received the goods, or why. It also does not mean that everyone could read it or that scholars can read every sign.',
     required: true,
     options: [
-      { id: 'option.writing.tablet', label: 'A proto-cuneiform tablet combining numbers and signs for goods' },
-      { id: 'option.writing.reconstruction', label: 'A modern painting of a scribe at work' },
-      { id: 'option.writing.later-story', label: 'A literary story copied many centuries later' },
+      { id: 'option.writing.records-amounts', label: 'Someone recorded amounts of goods on clay, but the tablet does not tell the whole story of the exchange.', feedback: 'Yes. The boxes, signs for goods and number marks show a record of amounts, and the missing verbs leave the exchange itself unknown.' },
+      { id: 'option.writing.tablet-is-sentence', label: 'The tablet is a sentence that says who gave grain to whom, and why.', feedback: 'Reread “The tablet up close.” Does the tablet have any words that say who gave, who received, or why?' },
+      { id: 'option.writing.everyone-could-read', label: 'Any person in Uruk could read the tablet and check the count.', feedback: 'Reread “What records show — and leave out.” What did reading and writing these signs take?' },
+      { id: 'option.writing.all-signs-read', label: 'Scholars today can read every sign on early tablets like this one.', feedback: 'Reread “A record is not yet a sentence.” What does it say about how many early signs are still not understood?' },
     ],
   },
   {
-    id: 'prompt.writing.possibility-and-limit',
+    id: 'prompt.writing.records-and-gaps',
     lessonId: 'lesson.writing.early-systems',
     kind: 'concise-explanation',
-    question: 'Explain one thing durable records made possible and one limit of what surviving proto-cuneiform tablets can tell historians.',
-    explanation: 'A strong answer links records to a real job, such as counting grain, sharing it out, or checking one account against another long after the moment had passed. Then it names a limit: the Met tablet has no verbs, so it never says who gave or received the grain; many signs are still not understood; and the workers whose rations were counted left no words of their own.',
+    question: '(1) Name one job a clay record could do that memory alone could not. (2) Name one thing the surviving tablets still don’t tell us.',
+    hint: 'Look back at “Count, identify, and check” for part 1 and at “A record is not yet a sentence” for part 2.',
+    explanation: 'A strong answer covers both parts. (1) It names a real job a record did, such as counting grain, sharing it out, tracking who owed work, or checking one account against another long after the moment had passed. (2) It names something the tablets leave out: the Met tablet has no verbs, so it never says who gave or received the grain; many signs are still not understood; and the workers whose rations were counted left no words of their own.',
     required: true,
     minimumResponseLength: 30,
   },
@@ -469,14 +473,14 @@ export const earlyWritingLesson: Lesson = {
         {
           id: 'module.writing.prompt-evidence',
           type: 'prompt',
-          promptId: 'prompt.writing.administration-evidence',
+          promptId: 'prompt.writing.what-tablet-shows',
           claimIds: [],
           sourceIds: [],
         },
         {
           id: 'module.writing.prompt-limit',
           type: 'prompt',
-          promptId: 'prompt.writing.possibility-and-limit',
+          promptId: 'prompt.writing.records-and-gaps',
           claimIds: [],
           sourceIds: [],
         },
@@ -487,8 +491,8 @@ export const earlyWritingLesson: Lesson = {
   sourceIds: earlyWritingSources.map((source) => source.id),
   mediaIds: ['media.writing.proto-cuneiform-tablet'],
   promptIds: [
-    'prompt.writing.administration-evidence',
-    'prompt.writing.possibility-and-limit',
+    'prompt.writing.what-tablet-shows',
+    'prompt.writing.records-and-gaps',
   ],
 };
 
