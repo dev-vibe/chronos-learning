@@ -400,21 +400,23 @@ export const migrationsAncientDnaPrompts: UnderstandingPrompt[] = [
     lessonId: 'lesson.humans.migrations-and-interbreeding',
     kind: 'supported-selection',
     question: 'Oase 1 carried unusually long stretches of Neanderthal DNA. Which conclusion is best supported?',
+    hint: 'Think about what happens to a stretch of inherited DNA each time it passes from parent to child.',
     explanation: 'Long pieces have had fewer generations to be broken apart. They support a recent Neanderthal ancestor. They cannot tell us Oase 1’s language, identity, or the history of every group.',
     required: true,
     options: [
-      { id: 'option.humans.recent-neanderthal-ancestor', label: 'One of Oase 1’s recent ancestors was Neanderthal.' },
-      { id: 'option.humans.oase-was-neanderthal', label: 'Oase 1 was a Neanderthal rather than Homo sapiens.' },
-      { id: 'option.humans.dna-reveals-language', label: 'The DNA tells us which language Oase 1 spoke.' },
-      { id: 'option.humans.all-encounters-same', label: 'Every Homo sapiens group had the same encounter at the same time.' },
+      { id: 'option.humans.recent-neanderthal-ancestor', label: 'One of Oase 1’s recent ancestors was Neanderthal.', feedback: 'Yes. A long stretch has had few generations to be cut apart, so it points to a Neanderthal ancestor not long before Oase 1.' },
+      { id: 'option.humans.oase-was-neanderthal', label: 'Oase 1 was a Neanderthal rather than Homo sapiens.', feedback: 'Reread “A Neanderthal ancestor in one person’s DNA.” Does a stretch of Neanderthal DNA make the person who carries it a Neanderthal?' },
+      { id: 'option.humans.dna-reveals-language', label: 'The DNA tells us which language Oase 1 spoke.', feedback: 'Reread the end of “A Neanderthal ancestor in one person’s DNA.” What does it say DNA can and cannot tell us about how people met and what they spoke?' },
+      { id: 'option.humans.all-encounters-same', label: 'Every Homo sapiens group had the same encounter at the same time.', feedback: 'Reread “One shared encounter—and others.” How does Oase 1’s Neanderthal ancestry compare with the encounter that all non-Africans share?' },
     ],
   },
   {
-    id: 'prompt.humans.adna-evidence-and-limit',
+    id: 'prompt.humans.adna-encounter',
     lessonId: 'lesson.humans.migrations-and-interbreeding',
     kind: 'concise-explanation',
-    question: 'Use one example to explain what ancient DNA reveals about an encounter. Then name one thing DNA cannot tell us by itself.',
-    explanation: 'A strong answer can use Oase 1, the shared Neanderthal encounter, or Denisovan-related ancestry. Limits include exact routes, language, culture, motives, identity, and people whose DNA has not survived.',
+    question: 'Choose one example from the lesson. (1) What does ancient DNA reveal about an encounter between groups? (2) What else would you want to know about the people involved, and what kind of evidence might help?',
+    hint: 'Choose one example from the lesson, such as Oase 1, the people at Zlatý kůň and Ranis, or the finger bone from Denisova Cave. For part 2, look back at “What ancient DNA can and cannot tell us”: what do fossils and archaeology add?',
+    explanation: 'A strong answer can use Oase 1, the shared Neanderthal encounter, or Denisovan-related ancestry. For part 2, it asks about something DNA leaves to other evidence, such as their language, way of life, names or exact routes, and points to fossils, tools or other archaeology.',
     required: true,
     minimumResponseLength: 30,
   },
@@ -621,7 +623,7 @@ Some groups kept moving east. Reaching Sahul would require another kind of movem
         {
           id: 'module.humans.prompt-adna-limit',
           type: 'prompt',
-          promptId: 'prompt.humans.adna-evidence-and-limit',
+          promptId: 'prompt.humans.adna-encounter',
           claimIds: [],
           sourceIds: [],
         },
@@ -636,7 +638,7 @@ Some groups kept moving east. Reaching Sahul would require another kind of movem
     'media.humans.inherited-segments-diagram',
     'media.humans.neanderthals-card',
   ],
-  promptIds: ['prompt.humans.long-segments-inference', 'prompt.humans.adna-evidence-and-limit'],
+  promptIds: ['prompt.humans.long-segments-inference', 'prompt.humans.adna-encounter'],
 };
 
 export const migrationsAncientDnaCards: KnowledgeCard[] = [

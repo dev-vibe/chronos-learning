@@ -10,7 +10,7 @@ describe('lesson publication plan', () => {
       entryId: 'entry.world-history.multiple-origins',
       journeyPosition: 3,
       required: true,
-      requiredPromptIds: ['prompt.farming.multi.what-evidence-supports', 'prompt.farming.multi.explain-independent'],
+      requiredPromptIds: ['prompt.farming.multi.what-regions-show', 'prompt.farming.multi.one-region-evidence'],
       cardIds: [],
     });
   });

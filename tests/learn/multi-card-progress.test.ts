@@ -18,7 +18,7 @@ describe('parent review submissions', () => {
   it('sends only this lesson’s written answers', () => {
     expect(submissionAnswers('lesson.uruk.first-city', {
       'prompt.uruk.opportunity-and-cost': 'Specialists, but unequal labor.',
-      'prompt.writing.possibility-and-limit': 'Wrong lesson',
+      'prompt.writing.records-and-gaps': 'Wrong lesson',
       'prompt.uruk.administration-evidence': 'option.uruk.tablets',
     })).toEqual({
       'prompt.uruk.opportunity-and-cost': 'Specialists, but unequal labor.',
@@ -29,7 +29,7 @@ describe('parent review submissions', () => {
     const gateway = new LocalPreviewGateway();
     const lessonId = 'lesson.humans.migrations-and-interbreeding';
     await expect(gateway.submit(lessonId)).rejects.toThrow('required prompt attempts missing');
-    await gateway.saveAttempt(lessonId, 'prompt.humans.adna-evidence-and-limit', 'DNA can show biological relatives, but it cannot tell us a person’s language.');
+    await gateway.saveAttempt(lessonId, 'prompt.humans.adna-encounter', 'DNA can show biological relatives, but it cannot tell us a person’s language.');
     await gateway.saveAttempt(lessonId, 'prompt.humans.long-segments-inference', 'option.humans.long-segments-recent');
     await expect(gateway.submit(lessonId)).rejects.toThrow('required prompt attempts missing');
     await gateway.saveAttempt(lessonId, 'prompt.humans.long-segments-inference', 'option.humans.recent-neanderthal-ancestor');

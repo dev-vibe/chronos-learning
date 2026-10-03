@@ -279,24 +279,28 @@ export const earlyWritingMedia: MediaAsset[] = [
 
 export const earlyWritingPrompts: UnderstandingPrompt[] = [
   {
-    id: 'prompt.writing.administration-evidence', bestOptionId: 'option.writing.tablet',
+    id: 'prompt.writing.what-tablet-shows', bestOptionId: 'option.writing.counted-goods',
     lessonId: 'lesson.writing.early-systems',
     kind: 'supported-selection',
-    question: 'Which surviving evidence best supports the use of proto-cuneiform for administration?',
-    explanation: 'A tablet with numbers and signs for goods is direct surviving evidence of record-making. Calling it one exact transaction is a scholarly reading. A modern reconstruction or a much later story is not direct evidence for this early practice.',
+    evidenceModuleIds: ['module.writing.tablet-evidence'],
+    question: 'The Met tablet is divided into boxes holding signs for goods and round pressed-in marks for numbers, with a seal rolled across it. It has no verbs. Which statement does this tablet support best?',
+    hint: 'Start with what is on the clay: boxes, signs for goods, marks for numbers. What job were marks like these for?',
+    explanation: 'The tablet shows that someone recorded amounts of goods on clay, in a form another person could pick up and check later. With no verbs, it does not say who gave or received the goods, or why. Its number marks and boxes make it an account, not a practice word list; reading it took training; and like most tablets it was made for checking at the time, not as a message to the future.',
     required: true,
     options: [
-      { id: 'option.writing.tablet', label: 'A proto-cuneiform tablet combining numbers and signs for goods' },
-      { id: 'option.writing.reconstruction', label: 'A modern painting of a scribe at work' },
-      { id: 'option.writing.later-story', label: 'A literary story copied many centuries later' },
+      { id: 'option.writing.counted-goods', label: 'Someone counted goods, but the tablet never says who gave them or why.', feedback: 'Yes. The boxes, signs for goods and number marks show a record of amounts, and the missing verbs leave the exchange itself unknown.' },
+      { id: 'option.writing.practice-list', label: 'It is a word list that a student copied out as writing practice.', feedback: 'Reread “A record is not yet a sentence.” Some early tablets were practice word lists. What on this tablet shows something being counted?' },
+      { id: 'option.writing.most-could-read', label: 'Most people in Uruk could read it and check the count themselves.', feedback: 'Reread “What records show — and leave out.” What did reading and writing these signs take?' },
+      { id: 'option.writing.message-to-future', label: 'It was made so people in the future would know about life in Uruk.', feedback: 'Reread “When memory is not enough” and the end of “What records show — and leave out.” Who needed to check a record like this, and what happened to most tablets once they were used?' },
     ],
   },
   {
-    id: 'prompt.writing.possibility-and-limit',
+    id: 'prompt.writing.records-and-gaps',
     lessonId: 'lesson.writing.early-systems',
     kind: 'concise-explanation',
-    question: 'Explain one thing durable records made possible and one limit of what surviving proto-cuneiform tablets can tell historians.',
-    explanation: 'A strong answer links records to a real job, such as counting grain, sharing it out, or checking one account against another long after the moment had passed. Then it names a limit: the Met tablet has no verbs, so it never says who gave or received the grain; many signs are still not understood; and the workers whose rations were counted left no words of their own.',
+    question: '(1) Name one job a clay record could do that memory alone could not. (2) Imagine you could ask one of the workers counted on these tablets a question. What would you ask?',
+    hint: 'Look back at “Count, identify, and check” for part 1 and at “What records show — and leave out” for part 2: what would you want to hear in the workers’ own words?',
+    explanation: 'A strong answer covers both parts. (1) It names a real job a record did, such as counting grain, sharing it out, tracking who owed work, or checking one account against another long after the moment had passed. (2) It asks about something the tablets leave out, such as what the workers thought of their rations, who decided the amounts, why the grain was given, or how they came to be working for the temple. The Met tablet has no verbs, and the workers left no words of their own.',
     required: true,
     minimumResponseLength: 30,
   },
@@ -469,14 +473,14 @@ export const earlyWritingLesson: Lesson = {
         {
           id: 'module.writing.prompt-evidence',
           type: 'prompt',
-          promptId: 'prompt.writing.administration-evidence',
+          promptId: 'prompt.writing.what-tablet-shows',
           claimIds: [],
           sourceIds: [],
         },
         {
           id: 'module.writing.prompt-limit',
           type: 'prompt',
-          promptId: 'prompt.writing.possibility-and-limit',
+          promptId: 'prompt.writing.records-and-gaps',
           claimIds: [],
           sourceIds: [],
         },
@@ -487,8 +491,8 @@ export const earlyWritingLesson: Lesson = {
   sourceIds: earlyWritingSources.map((source) => source.id),
   mediaIds: ['media.writing.proto-cuneiform-tablet'],
   promptIds: [
-    'prompt.writing.administration-evidence',
-    'prompt.writing.possibility-and-limit',
+    'prompt.writing.what-tablet-shows',
+    'prompt.writing.records-and-gaps',
   ],
 };
 

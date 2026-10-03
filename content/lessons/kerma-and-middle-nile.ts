@@ -45,7 +45,7 @@ export const kermaPrompts: UnderstandingPrompt[] = [
   {
     id: 'prompt.kerma.work-and-power', lessonId: 'lesson.nubia.kerma-and-nile-world', kind: 'concise-explanation', required: true, minimumResponseLength: 20,
     question: 'Choose farmers, herders, craftspeople or builders. Explain how their work helped support Kerma’s power. Connect the work to something the kingdom could do.',
-    hint: 'You could start: “Farmers helped support building work because…” Use a connection explained in the lesson.',
+    hint: 'Pick one group and look back at “Feeding and building the city” or “Kerma’s skilled makers.” What could the kingdom do because of that group’s work?',
     explanation: 'For example: farmers grew grain that could feed people working on large buildings. Supplying food helped make organized building possible. Builders then created defenses or places used by rulers. Other answers can explain how skilled makers supplied useful or valued goods. The kingdom depended on many people’s work, even though its wealth and authority were shared unequally.',
   },
 ];

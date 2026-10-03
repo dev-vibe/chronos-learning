@@ -39,8 +39,8 @@ export const indusSealCard: KnowledgeCard = {
   id: 'card.indus.stamp-seal', title: 'Indus Stamp Seal', category: 'artifact', cardClass: 'witness',
   date: { startYear: -2600, endYear: -1900, display: 'c. 2600–1900 BCE', approximate: true }, place: 'Indus region',
   significance: 'A buffalo in miniature, carved into a stone stamp small enough to hold in your palm.',
-  revealTitle: 'Carved to leave a mark', revealBody: 'Press a seal into soft clay, lift it away, and a raised copy of the design remains. Around four thousand years ago, someone chose this animal and these tiny signs to make a mark they could stamp again and again.',
+  revealTitle: 'Carved to leave a mark', revealBody: 'Press a seal into soft clay, lift it away, and a raised copy of the design remains. Around four thousand years ago, someone chose this animal and these tiny signs to make a mark they could stamp again and again. We can see the mark. Nobody can yet read it.',
   depictionLabel: 'Museum image of the seal design · Met 49.40.2',
-  facts: ['The seal is made from steatite, a soft stone, which was heated after carving.', 'It is about 3.8 centimetres across.', 'The buffalo’s sweeping horns sit just below a row of tiny signs.'],
+  facts: ['The seal is made from steatite, a soft stone, which was heated after carving.', 'It is about 3.8 centimetres across.', 'The buffalo’s sweeping horns sit just below a row of tiny signs.', 'The museum’s title ends with a question mark: curators are not sure the object in front of the buffalo is an incense burner.', 'No one has a securely established reading for the signs.'],
   lessonIds: ['lesson.indus.cities-and-signs'], sourceIds: ['source.indus.met-seal', 'source.indus.rao-response'], mediaId: 'media.indus.seal', unlockLessonId: 'lesson.indus.cities-and-signs', recallPrompt: 'How could someone use this carved stone to repeat the same design?',
 };

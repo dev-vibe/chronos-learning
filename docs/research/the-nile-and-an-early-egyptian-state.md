@@ -702,3 +702,58 @@ The branch preview was loaded in headless Chromium on 2026-09-25 through the aud
 - Owner decisions: Carlin Aylsworth reviewed the branch preview and approved the text (“great stuff. approved”), 2026-09-25. Carlin then asked to include the Narmer mace-head, first left out, and confirmed that adding images is expected in voice revisions (“adding an image is fine and expected in the revisions”). Carlin reviewed the mace-head addition on the branch preview and approved it (“approved”), 2026-09-25.
 
 After the mace-head addition, the preview was loaded again on 2026-09-25 at 390 × 844 and 1440 × 900. All six sections render, and the mace-head plate loads (from the committed rollback copy, since the Storage objects are not yet published) directly after the paragraph that describes it. There is no horizontal overflow. `npm run media:verify` passed (52 assets, 113 derivatives). The full test suite has two failures, both of which fail identically on unmodified `main`: the multi-lesson writing-lesson test and `tests/discovery/world-spine.test.ts` (“keeps unfinished roadmap nodes visible but non-navigable”).
+
+## Prompt revision
+
+### 2026-10-03 — both understanding prompts replaced after an age-fit audit of every lesson's prompts
+
+Branch `revise/egypt-nile-prompts`. Part of the assessment audit that followed the Indus review (prompt readability check in `docs/content/prompt-revision-runbook.md`, PR #68). Same teaching jobs, same kinds, same required flags. `prompt.egypt.palette-supported-claim` and `prompt.egypt.evidence-and-limit` are retired in `content/published-prompt-fingerprints.json`.
+
+**Why they changed.** Prompt 1 had no hint or feedback, and two options carried wording tells (“certainly”, “every community … without resistance”) that let a learner rule them out without reading the lesson. Prompt 2 asked how a piece of evidence “helps explain state formation” and what it “can not prove by itself”, two abstract phrases in one sentence, with no hint.
+
+#### `prompt.egypt.palette-supported-claim` → `prompt.egypt.palette-royal-message`
+
+| | Old | New |
+| --- | --- | --- |
+| Question | “Which conclusion is best supported by the Narmer Palette itself?” | “On the Narmer Palette, the king wears a different crown on each face, is far bigger than everyone around him, and raises a mace over a kneeling enemy. Which statement is best supported by the Palette itself?” |
+| Evidence module | none | `module.egypt.palette-evidence` |
+| Hint | none | “Look at what the carving shows: the crowns, the size of the king, the raised mace. Then ask who the Palette was made for and whose thoughts it leaves out.” |
+| Best option | `option.egypt.palette-kingship-claim`: Narmer’s image connected kingship with force, order, and rule over different regions. | `option.egypt.royal-message`: The Palette shows Narmer as a king who commands force and rules over different parts of Egypt. |
+| Wrong options | one battle “certainly” unified every part of Egypt; every community accepted Narmer’s rule without resistance; farmers used it as an everyday grinding board (no feedback) | `one-battle`, `everyone-agreed`, `daily-grinding-board`, with the tell words removed. Each has feedback that points to a section and asks a question. |
+
+Support map: best answer, “Read the Narmer Palette” (`module.egypt.palette-observations`) and “What the Palette can prove”; `one-battle`, “What the Palette can prove” (later stories, few specialists accept literal readings); `everyone-agreed`, “What the Palette can prove” (cannot recover the thoughts of captives, farmers, boat crews); `daily-grinding-board`, “Read the Narmer Palette” (size; ceremonial palettes show no traces of grinding).
+
+#### `prompt.egypt.evidence-and-limit` → `prompt.egypt.source-and-gap`
+
+| | Old | New |
+| --- | --- | --- |
+| Question | “Choose the Nile corridor, the Narmer Palette, or the early labels. How does that evidence help explain state formation, and what can it not prove by itself?” | “Choose one: the Nile river, the Narmer Palette, or the small labels from the Abydos tomb. (1) What did it help early Egyptian rulers do? (2) Name one thing it does not tell us.” |
+| Hint | none | “Look back at ‘The Nile corridor,’ ‘What the Palette can prove’ or ‘How administration worked,’ whichever matches your choice.” |
+| Required / minimum length | yes / 30 | yes / 30 |
+
+The three choices are kept. Explanation (shown to the parent on Review as “What a strong answer covers”): part 1 per choice (the river carried people, goods and messages; the Palette presented the king as commander and ruler of regions; the labels and sealings tracked goods and showed who controlled them); part 2 a limit (which parts of the Palette are events or symbols, what workers and captives thought, who wrote the labels, the first moment of a state). Support map: “The Nile corridor”, “What the Palette can prove”, “How administration worked”.
+
+`npm run content:fingerprints`, `npm run validate:content`, `npm run test:domain` and `npm run typecheck:chronos` passed; no test named the old prompt or option IDs. The publication migration still names the old IDs; it is history and is not edited.
+
+**What learners will see.** Finished lessons, and lessons waiting for or passed by a parent, stay as they are. A learner still working through the lesson, or one whose lesson was sent back, must answer both new required prompts before finishing. Parents see the written question as the learner saw it; an old submission is marked as changed.
+
+Owner approval: pending.
+
+### 2026-10-03 — review follow-up on PR #74
+
+Changes made in review, before merge; fingerprints regenerated from `main`. The entry above says the tell words were removed, but `everyone-agreed` still read “People all along the Nile” and `daily-grinding-board` “every day”, and the best option was the longest.
+
+| Option | Draft label | Final label |
+| --- | --- | --- |
+| `royal-message` (best) | The Palette shows Narmer as a king who commands force and rules over different parts of Egypt. | The Palette presents Narmer as a strong king who rules different parts of Egypt. |
+| `everyone-agreed` | People all along the Nile agreed that Narmer should be their king. | People along the Nile were glad to accept Narmer as their king. |
+| `daily-grinding-board` | Farmers used the Palette every day to grind eye paint. | Farmers used the Palette as an ordinary tool for grinding eye paint. |
+
+### 2026-10-03 — written prompt reworded positively (before merge)
+
+Owner feedback on PR #74: the “name one thing it does not tell us” part is a negatively posed question. Part 2 now asks the limit as an open question. `prompt.egypt.source-and-gap` is not yet published, so it keeps its ID and the fingerprints were regenerated from `main`.
+
+| | Before | After |
+| --- | --- | --- |
+| Question | “Choose one: the Nile river, the Narmer Palette, or the small labels from the Abydos tomb. (1) What did it help early Egyptian rulers do? (2) Name one thing it does not tell us.” | “Choose one: the Nile river, the Narmer Palette, or the small labels from the Abydos tomb. (1) What did it help early Egyptian rulers do? (2) What is one question about it that historians are still trying to answer?” |
+| Hint | “Look back at “The Nile corridor,” “What the Palette can prove” or “How administration worked,” whichever matches your choice.” | “Look back at “The Nile corridor,” “What the Palette can prove” or “How administration worked,” whichever matches your choice.” |

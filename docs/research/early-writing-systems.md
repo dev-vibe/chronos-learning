@@ -266,3 +266,63 @@ Whole lesson: story spine `none` (a sequence of topics; the tablet appeared only
 - Memorable moments: the seal went on first (a man guiding two dogs among boars in a reed marsh; the seal itself lost); one small round sign could mean ten pots of butter oil, about 150 liters of barley or about 6 hectares of field; the tablet has no verbs, so it never says who gave or received; virtually all of Uruk's 5,000 early tablets came from ancient rubbish heaps.
 - Added: source `source.cdli.englund-account-books`; claims `claim.writing.tablet-making`, `tablet-seal-scene`, `temple-grain-no-verbs`, `among-oldest`, `seal-uses`, `no-discontinuity`, `netted-vessel`, `number-values`, `school-lists`, `one-off-signs`, `wedges-and-sounds`, `dependent-laborers`, `uruk-rubbish`.
 - Owner decisions: Carlin Aylsworth reviewed the branch preview and approved the revision, including the three renamed headings and the removed Archive care box (“approved”), 2026-09-24. During review Carlin also agreed to follow-up platform work (repo-derived publication config, a prompt-change policy and a prompt-revision path), tracked outside this PR.
+
+## Prompt revision
+
+### 2026-10-03 — both understanding prompts replaced after an age-fit audit of every lesson's prompts
+
+Branch `revise/early-writing-prompts`. Part of the assessment audit that followed the Indus review (prompt readability check in `docs/content/prompt-revision-runbook.md`, PR #68). Same teaching jobs, same kinds, same required flags. `prompt.writing.administration-evidence` and `prompt.writing.possibility-and-limit` are retired in `content/published-prompt-fingerprints.json`.
+
+**Why they changed.** Prompt 1 offered one real tablet against a modern painting and a much later story, so the answer was visible without reading the lesson, and it had no hint and no feedback. Prompt 2 asked a learner to explain a possibility and a limit of “surviving proto-cuneiform tablets” in one sentence, with no hint and no pointer to where either part is taught.
+
+#### `prompt.writing.administration-evidence` → `prompt.writing.what-tablet-shows`
+
+| | Old | New |
+| --- | --- | --- |
+| Question | “Which surviving evidence best supports the use of proto-cuneiform for administration?” | “The Met tablet is divided into boxes holding signs for goods and round pressed-in marks for numbers. It has no verbs. Which statement is best supported by this tablet?” |
+| Evidence module | none | `module.writing.tablet-evidence` |
+| Hint | none | “Look at what the tablet shows: boxes, signs for goods, and marks for numbers. Then ask what it never says.” |
+| Best option | `option.writing.tablet`: A proto-cuneiform tablet combining numbers and signs for goods | `option.writing.records-amounts`: Someone recorded amounts of goods on clay, but the tablet does not tell the whole story of the exchange. |
+| Wrong options | a modern painting of a scribe; a literary story copied centuries later (no feedback) | `tablet-is-sentence` (says who gave to whom and why); `everyone-could-read`; `all-signs-read`. Each has feedback that points to a section and asks a question. |
+
+Support map: best answer, “The tablet up close” (`module.writing.tablet-evidence`) and “Count, identify, and check”; `tablet-is-sentence`, “The tablet up close” (no verbs); `everyone-could-read`, “What records show — and leave out” (reading took training); `all-signs-read`, “A record is not yet a sentence” (many signs not understood).
+
+#### `prompt.writing.possibility-and-limit` → `prompt.writing.records-and-gaps`
+
+| | Old | New |
+| --- | --- | --- |
+| Question | “Explain one thing durable records made possible and one limit of what surviving proto-cuneiform tablets can tell historians.” | “(1) Name one job a clay record could do that memory alone could not. (2) Name one thing the surviving tablets still don’t tell us.” |
+| Hint | none | “Look back at ‘Count, identify, and check’ for part 1 and at ‘A record is not yet a sentence’ for part 2.” |
+| Required / minimum length | yes / 30 | yes / 30 |
+
+Explanation (shown to the parent on Review as “What a strong answer covers”): part 1, a real job (counting, sharing out, tracking work owed, checking one account against another); part 2, something the tablets leave out (no verbs, signs still not understood, the workers’ own words). Support map: part 1, “Count, identify, and check” and “What records show — and leave out”; part 2, “The tablet up close”, “A record is not yet a sentence” and “What records show — and leave out”.
+
+`npm run content:fingerprints`, `npm run validate:content`, `npm run test:domain` and `npm run typecheck:chronos` passed. `tests/learn/progress.test.ts` and `tests/learn/multi-card-progress.test.ts` named the old prompt and option IDs; they now name the new ones. The publication migration still names the old IDs; it is history and is not edited.
+
+**What learners will see.** Finished lessons, and lessons waiting for or passed by a parent, stay as they are. A learner still working through the lesson, or one whose lesson was sent back, must answer both new required prompts before finishing. Parents see the written question as the learner saw it; an old submission is marked as changed.
+
+Owner approval: pending.
+
+### 2026-10-03 — review follow-up on PR #74
+
+Changes made in review, before merge; fingerprints regenerated from `main`.
+
+`prompt.writing.what-tablet-shows`: the draft’s best option was the only hedged one and by far the longest (104 characters against 61–67), and two wrong options carried absolute words (“Any person”, “every sign”), so a learner could pick it without the lesson. The “sentence” option was also ruled out by the stem itself (“It has no verbs”). The options are now four real readings of an early tablet, of similar length:
+
+| Option | Label | Supported by |
+| --- | --- | --- |
+| `counted-goods` (best) | Someone counted goods, but the tablet never says who gave them or why. | “The tablet up close” |
+| `practice-list` | It is a word list that a student copied out as writing practice. | “A record is not yet a sentence” (word lists were exercises; this tablet has number marks) |
+| `most-could-read` | Most people in Uruk could read it and check the count themselves. | “What records show — and leave out” (reading took training) |
+| `message-to-future` | It was made so people in the future would know about life in Uruk. | “When memory is not enough”; “What records show — and leave out” (“made for an office, not for us”; most were thrown away) |
+
+The stem adds the rolled seal; the hint now asks what job the marks were for instead of pointing at what the tablet “never says”. `tests/learn/multi-lesson.test.tsx` still clicked the retired option label and named the retired written question, so `npm test` failed (it is outside `test:domain`); it now uses the new ones.
+
+### 2026-10-03 — written prompt reworded positively (before merge)
+
+Owner feedback on PR #74: the “name one thing it does not tell us” part is a negatively posed question. Part 2 now asks the limit as an open question. `prompt.writing.records-and-gaps` is not yet published, so it keeps its ID and the fingerprints were regenerated from `main`.
+
+| | Before | After |
+| --- | --- | --- |
+| Question | “(1) Name one job a clay record could do that memory alone could not. (2) Name one thing the surviving tablets still don’t tell us.” | “(1) Name one job a clay record could do that memory alone could not. (2) Imagine you could ask one of the workers counted on these tablets a question. What would you ask?” |
+| Hint | “Look back at “Count, identify, and check” for part 1 and at “A record is not yet a sentence” for part 2.” | “Look back at “Count, identify, and check” for part 1 and at “What records show — and leave out” for part 2: what would you want to hear in the workers’ own words?” |

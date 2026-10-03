@@ -109,3 +109,16 @@ The branch preview was loaded and read in a browser on 2026-09-24: all six secti
 - Memorable moments: 1,520 cheap, uneven bowls in one trench, found by the thousands from southern Iraq to eastern Turkey and Iran; the “to eat” sign drawn as a head with the bowl at its mouth; a list of jobs first written at Uruk and still copied more than a thousand years later; the Epic of Gilgamesh’s invitation to check the wall’s kiln-fired brick, and the magnetometer survey finding fired brick in the wall faces (labelled later tradition, dated centuries after 3200 BCE).
 - Added claims: `claim.uruk.largest-settlement`, `population-estimate`, `bowl-mass-find`, `bowl-making`, `bowl-size`, `ration-hypothesis`, `ration-signs`, `bowl-debate`, `rations-recorded`, `professions-list`, `precincts`, `cone-mosaics`, `excavations`, `canals-magnetometry`, `wall-later`, `gilgamesh-wall-story`, `wall-fired-brick`; reused `claim.farming.private-storage`. Sources added: `source.uruk.perruchini-2023-brb-residues`, `source.met.beveled-rim-bowl`, `source.uruk.fassbinder-2019-magnetometry`, `source.uruk.michalowski-2003-lu-a`, `source.uruk.kovacs-gilgamesh`; `source.britannica.uruk` URL updated.
 - Owner decisions: the reconstruction and clay-envelope media observations above were reported and left for a separate material revision if wanted. Carlin Aylsworth reviewed the branch preview and approved the revision (“approved!”), 2026-09-24.
+
+## Prompt revision
+
+### 2026-10-03 — hints and option feedback (text only, same prompt IDs)
+
+Part of the assessment audit that followed the Indus review (prompt readability check in `docs/content/prompt-revision-runbook.md`). The audit kept every prompt's question and options as they were, so no prompt ID changed and no fingerprint changed; only hints and option feedback, which the prompt-change policy allows under the same ID. Hints and feedback now point back to a section and ask a question instead of stating the answer; every selection option has feedback.
+
+- `prompt.uruk.administration-evidence`: hint unchanged. The three options had no feedback; the right answer's feedback now confirms why, and the two wrong answers point to “What makes a city?” and “Evidence and reconstruction” with a question.
+- `prompt.uruk.opportunity-and-cost`: no hint before. New hint points to “Water, food, and labor” and “The built city” and asks for one benefit, one cost and a detail for each.
+
+**What learners will see.** Nothing is re-asked. Learners see the new hint, and after a wrong pick the new feedback, the next time they open the prompt. Finished lessons and parent reviews are unaffected.
+
+Owner approval: pending.

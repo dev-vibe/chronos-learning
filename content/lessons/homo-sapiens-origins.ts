@@ -576,7 +576,7 @@ export const homoSapiensOriginsPrompts: UnderstandingPrompt[] = [
     id: 'prompt.humans.best-supported-conclusion', bestOptionId: 'option.humans.connected-populations',
     lessonId: 'lesson.humans.homo-sapiens-origins',
     kind: 'supported-selection',
-    hint: 'Compare the spread of the finds. Does the oldest find prove where the first people lived?',
+    hint: 'Compare where the finds were made and how far apart they are. Which statement could explain all three?',
     evidenceModuleIds: ['module.humans.africa-evidence-map'],
     question: 'Fossils of early Homo sapiens have been found in Morocco from about 315,000 years ago, in South Africa from about 259,000 years ago, and in Ethiopia from at least 233,000 years ago. They are thousands of kilometres apart, and they do not all share the same mix of features. Which conclusion does this set of finds best support?',
     explanation: 'The finds are spread across Africa, cover more than 150,000 years and mix features in different ways, which fits groups that were sometimes apart and sometimes in contact. One valley cannot explain finds that far apart. Different mixes of features do not make separate species either, because these groups kept exchanging genes. And “oldest known” is not the same as “first”: Jebel Irhoud is only the oldest evidence found so far, and it turned up by accident in a mine. The next dig could be older and somewhere else. This evidence rules out a simple one-place story without swapping in a different single place.',
@@ -584,34 +584,30 @@ export const homoSapiensOriginsPrompts: UnderstandingPrompt[] = [
     options: [
       {
         id: 'option.humans.connected-populations',
-        feedback: 'The spread and different mixes of features fit connected populations across Africa. That does not identify one exact birthplace.',
-        label: 'Our species took shape among populations living in many parts of Africa that were sometimes separated and sometimes in contact.',
+        label: 'Our species took shape among populations living in many parts of Africa that were sometimes separated and sometimes in contact.', feedback: 'Yes. Finds this far apart, with different mixes of features, fit connected populations across Africa, though they do not point to one exact birthplace.',
       },
       {
         id: 'option.humans.one-valley',
-        feedback: 'A single eastern valley does not account for this spread of finds. Compare Morocco and South Africa as well as Ethiopia.',
-        label: 'Our species began in one valley in eastern Africa and spread out from there.',
+        label: 'Our species began in one valley in eastern Africa and spread out from there.', feedback: 'Look at the three places in the question. Could one valley in eastern Africa explain a fossil in Morocco and one in South Africa as well as one in Ethiopia?',
       },
       {
         id: 'option.humans.separate-species',
-        feedback: 'Different mixes of features alone do not establish separate species. This lesson also considers evidence for contact between populations.',
-        label: 'Each region of Africa evolved its own separate human species.',
+        label: 'Each region of Africa evolved its own separate human species.', feedback: 'Reread “Connected, not sealed off.” What does the lesson say about contact between populations in Africa?',
       },
       {
         id: 'option.humans.morocco-first',
-        feedback: 'Oldest found so far does not mean first ever. An older fossil might survive somewhere researchers have not yet found it.',
-        label: 'The Morocco fossils are the first members of our species, so our species began in Morocco.',
+        label: 'The Morocco fossils are the first members of our species, so our species began in Morocco.', feedback: 'Reread “Evidence across a continent.” Does the oldest fossil found so far have to be the first member of our species?',
       },
     ],
   },
   {
-    id: 'prompt.humans.evidence-and-limit',
+    id: 'prompt.humans.face-and-braincase',
     lessonId: 'lesson.humans.homo-sapiens-origins',
     kind: 'concise-explanation',
-    hint: 'Compare the face with the back of the skull. Then consider how much a few fossils from one site can tell us.',
+    hint: 'Compare the face with the back of the skull. For part 2, look back at the end of “Read the skull” and at “Connected, not sealed off.”',
     evidenceModuleIds: ['module.humans.irhoud-cranium'],
-    question: 'The Jebel Irhoud fossils have a face much like ours but a long, low braincase. What does that mix suggest about how our species’ features appeared? Name one thing this evidence cannot tell us.',
-    explanation: 'The face looks much like ours while the braincase is long and low, which suggests these features appeared at different times rather than all at once. A few fossils from one site cannot tell us exactly where all the changes happened, or describe every population in Africa.',
+    question: 'The Jebel Irhoud fossils have a face much like ours but a long, low braincase. (1) What does that mix suggest about how our species’ features appeared? (2) What would researchers want to find next to learn more, and where would they look?',
+    explanation: 'The face looks much like ours while the braincase is long and low, which suggests these features appeared at different times rather than all at once. For part 2, a strong answer asks for more fossils, from other times or other parts of Africa (for example West and Central Africa, which have barely been studied), to learn where and when the other changes happened. One site cannot settle that on its own.',
     required: true,
     minimumResponseLength: 20,
   },
@@ -939,7 +935,7 @@ export const homoSapiensOriginsLesson: Lesson = {
         {
           id: 'module.humans.prompt-evidence-and-limit',
           type: 'prompt',
-          promptId: 'prompt.humans.evidence-and-limit',
+          promptId: 'prompt.humans.face-and-braincase',
           claimIds: [],
           sourceIds: [],
         },
@@ -955,7 +951,7 @@ export const homoSapiensOriginsLesson: Lesson = {
     'media.humans.africa-evidence-map',
     'media.humans.africa-origins-card',
   ],
-  promptIds: ['prompt.humans.best-supported-conclusion', 'prompt.humans.evidence-and-limit'],
+  promptIds: ['prompt.humans.best-supported-conclusion', 'prompt.humans.face-and-braincase'],
 };
 
 export const homoSapiensOriginsCards: KnowledgeCard[] = [

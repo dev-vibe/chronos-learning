@@ -396,3 +396,31 @@ Whole lesson: story spine `none` (Oase 1 appears only in section 3); memorable m
 - Memorable moments: the jaw among bear bones in galleries sealed for at least 17,000 years; a Neanderthal ancestor four to six generations back; the Ranis and Zlatý kůň cousins 230 km apart; a population recognized from a child’s fingertip; the Harbin skull hidden in a well (labelled as a later account).
 - Added claims: `claim.humans.oase-cave-find`, `oase-neanderthal-share`, `early-lineages-faded`, `ranis-zlaty-kun-relatives`, `denisova-fingertip`, `harbin-find-story`, `harbin-denisovan-link`; sources `source.humans.trinkaus-zilhao-2007-oase-discovery`, `natgeo-2021-harbin`, `nhm-2021-harbin`.
 - Owner decisions: during review Carlin asked to remove the duplicate masthead map (fixed in `8433dca`, recorded under Changes). Carlin Aylsworth then reviewed the branch preview and approved the revision (“approved!”), 2026-09-24.
+
+## Prompt revision
+
+### 2026-10-03 — hints and option feedback (text only, same prompt IDs)
+
+Part of the assessment audit that followed the Indus review (prompt readability check in `docs/content/prompt-revision-runbook.md`). The audit kept every prompt's question and options as they were, so no prompt ID changed and no fingerprint changed; only hints and option feedback, which the prompt-change policy allows under the same ID. Hints and feedback now point back to a section and ask a question instead of stating the answer; every selection option has feedback.
+
+- `prompt.humans.long-segments-inference`: no hint and no option feedback before. New hint: “Think about what happens to a stretch of inherited DNA each time it passes from parent to child.” Every option now has feedback; wrong answers point to “A Neanderthal ancestor in one person’s DNA” or “One shared encounter—and others” with a question.
+- `prompt.humans.adna-evidence-and-limit`: no hint before. New hint names three examples from the lesson (Oase 1; the people at Zlatý kůň and Ranis; the finger bone from Denisova Cave) and points to “What ancient DNA can and cannot tell us” for the limit.
+
+**What learners will see.** Nothing is re-asked. Learners see the new hint, and after a wrong pick the new feedback, the next time they open the prompt. Finished lessons and parent reviews are unaffected.
+
+Owner approval: pending.
+
+## Prompt revision (positive wording)
+
+### 2026-10-03 — written prompt replaced: limit asked as an open question
+
+Part of PR #74 (assessment audit). Owner feedback: the “name one thing it does not tell us” pattern is a negatively posed question, and a 12-year-old has to work out what is missing before they can think about it. Same teaching job (what the evidence shows and what it leaves open), same kind, required flag and minimum length. `prompt.humans.adna-evidence-and-limit` is retired in `content/published-prompt-fingerprints.json`; the new ID is `prompt.humans.adna-encounter`. `tests/content/migrations-ancient-dna.test.ts` and `tests/learn/multi-card-progress.test.ts` named the old ID; they now name the new one.
+
+| | Old | New |
+| --- | --- | --- |
+| Question | “Use one example to explain what ancient DNA reveals about an encounter. Then name one thing DNA cannot tell us by itself.” | “Choose one example from the lesson. (1) What does ancient DNA reveal about an encounter between groups? (2) What else would you want to know about the people involved, and what kind of evidence might help?” |
+| Hint | “Choose one example from the lesson, such as Oase 1, the people at Zlatý kůň and Ranis, or the finger bone from Denisova Cave. For the limit, look back at “What ancient DNA can and cannot tell us.”” | “Choose one example from the lesson, such as Oase 1, the people at Zlatý kůň and Ranis, or the finger bone from Denisova Cave. For part 2, look back at “What ancient DNA can and cannot tell us”: what do fossils and archaeology add?” |
+
+The explanation (shown to the parent on Review) now describes a strong part 2 as a question or next step the lesson supports, not a list of limits. **What learners will see:** finished, waiting and passed lessons stay as they are; a learner still working through the lesson, or one sent back, answers the new required prompt before finishing.
+
+Owner approval: pending.

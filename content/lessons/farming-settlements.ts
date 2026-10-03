@@ -226,24 +226,25 @@ export const farmingSettlementsPrompts: UnderstandingPrompt[] = [
     lessonId: 'lesson.farming.settlements',
     kind: 'supported-selection',
     question: 'Storage bins and plant remains were concentrated inside side rooms, while entrance areas held animal displays and evidence linked to feasting. Which conclusion is best supported?',
+    hint: 'Ask where the bins and plant remains were found, and where the animal displays and feasting evidence were found. What does each location suggest?',
     explanation: 'The layout supports private household storage beside more visible shared activity. It does not prove that every household was equal, that a ruler controlled all food, or that the reconstruction shows one exact event.',
     required: true,
     options: [
       {
         id: 'option.farming.private-and-shared',
-        label: 'Households kept some food in private interior stores while some activities brought people together near more visible spaces.',
+        label: 'Households kept some food in private interior stores while some activities brought people together near more visible spaces.', feedback: 'Yes. Stores inside side rooms and feasting near entrances fit private household food alongside shared, more visible occasions.',
       },
       {
         id: 'option.farming.perfect-equality',
-        label: 'Every household owned exactly the same amount of food and held the same status.',
+        label: 'Every household owned exactly the same amount of food and held the same status.', feedback: 'Reread “Private stores and shared occasions.” Does the layout of bins and rooms tell you how much food each household owned or what its status was?',
       },
       {
         id: 'option.farming.central-ruler',
-        label: 'A ruler collected every household’s grain in one central palace store.',
+        label: 'A ruler collected every household’s grain in one central palace store.', feedback: 'Reread “Private stores and shared occasions.” Where were the bins found, in one central store or inside houses?',
       },
       {
         id: 'option.farming.exact-scene',
-        label: 'The reconstructed diagram records the exact people and actions of one feast.',
+        label: 'The reconstructed diagram records the exact people and actions of one feast.', feedback: 'Reread “Read the house.” What does the lesson say follows the evidence, and what is reconstructed?',
       },
     ],
   },
@@ -252,6 +253,7 @@ export const farmingSettlementsPrompts: UnderstandingPrompt[] = [
     lessonId: 'lesson.farming.settlements',
     kind: 'concise-explanation',
     question: 'How could staying in one dense settlement create both an advantage and a problem? Use one detail from the houses, stored food, work, or health evidence.',
+    hint: 'Look back at “The bargain of staying.” Pick one advantage and one problem, and say how they connect.',
     explanation: 'An explanation could link an advantage — food kept for later, sturdy homes, or nearby neighbors — to a problem such as repetitive work, crowding and illness, tension around private stores, or coordinating wall-to-wall households.',
     required: true,
     minimumResponseLength: 20,

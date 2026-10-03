@@ -109,9 +109,9 @@ describe('multi-lesson local progress boundary', () => {
     const gateway = new LocalPreviewGateway();
     const writingId = 'lesson.writing.early-systems';
     await gateway.markSection(writingId, 'section.writing.signs-change');
-    await gateway.saveAttempt(writingId, 'prompt.writing.administration-evidence', 'option.writing.tablet');
+    await gateway.saveAttempt(writingId, 'prompt.writing.what-tablet-shows', 'option.writing.counted-goods');
     await expect(gateway.submit(writingId)).rejects.toThrow('required prompt attempts missing');
-    await gateway.saveAttempt(writingId, 'prompt.writing.possibility-and-limit', 'Writing made durable allocations possible, while surviving administrative records omit many voices.');
+    await gateway.saveAttempt(writingId, 'prompt.writing.records-and-gaps', 'Writing made durable allocations possible, while surviving administrative records omit many voices.');
 
     expect(await gateway.submit(writingId)).toMatchObject({ status: 'completed' });
     expect(await gateway.load(writingId)).toMatchObject({ status: 'completed', resumeSectionId: 'section.writing.signs-change' });

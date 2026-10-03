@@ -192,6 +192,9 @@ The earlier S01–S20 ledger records discovery depth honestly. Abstract-only or 
 | `source.indus.green-governance` | S04 | Qualifying / central interpretation | Section “What is The Evidence For Governance in The Indus Civilization?”, shared standards and collective works. Separate cooperative model from political equality. |
 | `source.indus.harp-settlement` | [HARP, Changing Settlement at Harappa](https://www.harappa.com/slide/changing-settlement-harappa) | Central supporting | Full periodized settlement caption, Periods 3–5. Harappa contraction is not a population census or universal regional chronology. |
 | `source.indus.kenoyer-tradition` | [Kenoyer 2006, Cultures and Societies of the Indus Tradition](https://www.harappa.com/sites/default/files/pdf/CulturesSocietiesIndusTrad.pdf) | Central supporting | Table 1 (PDF p. 6); Localization Era passage (PDF p. 9). Use period convention and continuing skills only; older linguistic/religious correlations are outside this lesson. |
+| `source.indus.iln-marshall` | [Harappa.com, first images of the announcement in the Illustrated London News](https://www.harappa.com/blog/first-images-announcement-illustrated-london-news) | Central supporting | Voice revision. Date (September 20, 1924), the 400-mile distance, the “hardly further than the third century before Christ” sentence and the note that the first age estimate was off by one or two thousand years. Page quotes the paper; the original issue was not seen. |
+| `source.indus.sayce-letter` | [Harappa.com, Prof. A. H. Sayce letter](https://www.harappa.com/slide/prof-ah-sayce-remarkable-discoveries-india) | Central supporting (attributed argument) | Voice revision. Letter of September 27, 1924: “practically identical” and “might have come from the same hand”; Susa tablets dated 2600–2300 BCE. This is Sayce’s 1924 judgment; no modern assessment of the comparison was verified, so the lesson attributes it to him and does not adopt it as a finding. |
+| `source.indus.dholavira-bisht` | [R. S. Bisht, Excavations at Dholavira 1989–2005 (ASI, 2015)](https://ancientportsantiques.com/wp-content/uploads/Documents/PLACES/IndOc-Gulf/Dholavira-Bisht2015.pdf) | Central supporting / excavator interpretation | Voice revision. pp. 112 and 228–231: ten large signs, gypsum inlays, found lying in the western chamber of the north gate; wooden frame since decayed, matching the 3.5 m passage; “exact meaning … not known”. Display above the doorway is the excavators’ inference. Rebus readings in the report are not used. |
 
 All above accessed and close-reviewed by Codex on 2026-09-11. Citation-only use except the proposed Met open-access image; no media rights are inferred from a source’s availability. Other final visuals require separate licensed originals or reviewed deterministic output after prototype approval.
 
@@ -213,6 +216,20 @@ The authored module is the exact wording/reference source of truth. Every row re
 | `claim.indus.undeciphered-signs` — Indus inscriptions have no securely established reading; statistical regularities alone neither translate them nor settle whether they encode speech. | interpretation | high | 'source.indus.rao-response', 'source.indus.met-seal' | Scope and inference limits retained in wording and close-review table | Explain in context | Codex research review; owner pending |
 | `claim.indus.coordination-and-rule` — Shared standards and large communal works support organized cooperation; they do not by themselves identify rulers, political institutions or equal access. | interpretation | moderate | 'source.indus.green-governance', 'source.indus.dholavira' | Scope and inference limits retained in wording and close-review table | Explain in context | Codex research review; owner pending |
 | `claim.indus.urban-transformation` — After about 1900 BCE, settlement at Harappa contracted; wider changes in urban organization coexisted with continuing farming and craft traditions. | interpretation | high | 'source.indus.harp-settlement', 'source.indus.kenoyer-tradition' | Scope and inference limits retained in wording and close-review table | Explain in context | Codex research review; owner pending |
+| `claim.indus.trap-sand-heaps` — Excavators describe “little heaps of greenish-gray sand” beside the settling pools and traps of Indus street drains and read them as evidence that the traps were cleaned out periodically. | interpretation | moderate | 'source.indus.street-drains' | The source does not say where the heaps were found; the lesson attributes the reading to excavators and does not place the heaps at a particular spot. | Voice revision, explain in context | Claude research review, 2026-10-02; owner pending |
+| `claim.indus.drain-construction` — Mohenjo-daro street drains were made of baked brick with specially shaped corner bricks and mud mortar; most were covered with flat baked bricks, wider ones with limestone blocks, and a layer of mud. | observation | high | 'source.indus.street-drains', 'source.indus.moenjodaro' | Synthesis from Wheeler and Possehl; not a newly inspected excavation archive. | Voice revision, explain in context | Claude research review, 2026-10-02; owner pending |
+| `claim.indus.drain-reuse` — Possehl observes that Mohenjo-daro drains were reused over time by raising their walls with more bricks, and describes one drain at the end of First Street that was 2 meters deep in places. | observation | high | 'source.indus.street-drains' | One drain, “in places”; not a typical depth. | Voice revision, explain in context | Claude research review, 2026-10-02; owner pending |
+| `claim.indus.dholavira-setting` — Dholavira stood on the arid island of Khadir in Gujarat; two seasonal streams supplied the walled city, a series of reservoirs lay east and south of the citadel, and stone masonry with mud-brick cores was a main building method. | observation | high | 'source.indus.dholavira' | UNESCO summary; the reservoirs’ exact capacity and organizers are not given. | Voice revision, explain in context | Claude research review, 2026-10-02; owner pending |
+| `claim.indus.weight-numbers` — The smallest Indus weights are under one gram (about 0.86 g); the first seven weights double in the ratio 1:2:4:8:16:32:64; the most common weight is the 16th ratio, about 13.7 g. | observation | high | 'source.indus.measuring', 'source.indus.harp-weights' | Kenoyer notes exceptions to the pattern; table 9.3 gives 13.86 g for one 16th-ratio sample, so “about” is kept. The separate figure for the largest weight was not used (the HARP caption and the table do not obviously agree). | Voice revision, explain in context | Claude research review, 2026-10-02; owner pending |
+| `claim.indus.weights-taxation-argument` — Kenoyer notes that most scholars assume Indus weights served everyday market exchange, argues that the small number of weights relative to city size makes this probably invalid, and judges taxation or tithing much more probable, citing the highest concentration of weights at gateways and craft areas. | interpretation | moderate | 'source.indus.measuring' | One scholar’s argument; the lesson names him and says it is an interpretation, not a recorded transaction. | Voice revision, explain in context | Claude research review, 2026-10-02; owner pending |
+| `claim.indus.dholavira-materials` — Dholavira preserves bead-processing workshops and objects made of copper, shell, stone, terracotta, gold and ivory. | observation | high | 'source.indus.dholavira' | UNESCO list of manufactured goods; no counts or find spots. | Voice revision, explain in context | Claude research review, 2026-10-02; owner pending |
+| `claim.indus.discovery-1924` — On September 20, 1924, John Marshall announced in the Illustrated London News the discovery of ruined cities at Harappa and Mohenjo-daro, about 400 miles apart, writing that knowledge of Indian antiquities went back hardly further than the third century BCE; the cities’ true age proved to be one or two thousand years off the first estimate. | observation | high | 'source.indus.iln-marshall' | Secondary page quoting the paper. The lesson says “one or two thousand years older than first thought”, following the page and the 2600–1900 BCE convention. | Voice revision, explain in context | Claude research review, 2026-10-02; owner pending |
+| `claim.indus.sayce-comparison` — In a letter published September 27, 1924, A. H. Sayce judged the Harappa and Mohenjo-daro seals “practically identical” with Proto-Elamite tablets from Susa dated about 2600–2300 BCE, and argued that this showed contact between Susa and northwestern India in the third millennium BCE. | observation | high | 'source.indus.sayce-letter' | Records what Sayce wrote. His comparison is a 1924 first judgment; the lesson says “On Sayce’s argument” and does not present the match as a modern finding. | Voice revision, explain in context | Claude research review, 2026-10-02; owner pending |
+| `claim.indus.dholavira-signboard-find` — At Dholavira, ten unusually large signs, cut as gypsum inlays, were found lying in the western chamber of the north gate. | observation | high | 'source.indus.dholavira-bisht' | Excavation report by the excavator; no second excavation team. | Voice revision, explain in context | Claude research review, 2026-10-02; owner pending |
+| `claim.indus.dholavira-signboard-display` — The excavators infer that the gypsum signs were inlaid on a wooden board, since decayed, matching the 3.5-meter width of the north gate’s central passage and fixed above its doorway to be visible from afar; the inscription’s meaning is unknown. | interpretation | moderate | 'source.indus.dholavira-bisht' | Hanging position is inference (“could have been fitted”, “most probably”); the lesson says “The excavators think” and “If so”. | Voice revision, explain in context | Claude research review, 2026-10-02; owner pending |
+| `claim.indus.dholavira-layout` — Dholavira’s walled city had a fortified citadel, a fortified Middle Town and a Lower Town; UNESCO’s description reads this layout as reflecting a stratified social order. | interpretation | moderate | 'source.indus.dholavira' | “Stratified social order” is UNESCO’s inference from layout, not a recovered institution. | Voice revision, explain in context | Claude research review, 2026-10-02; owner pending |
+| `claim.indus.green-argument` — Adam Green argues that Indus shared standards and communal works fit organized cooperation among groups rather than rule by a political elite. | interpretation | moderate | 'source.indus.green-governance' | One author’s model, named as such; not an independent excavation dataset. | Voice revision, explain in context | Claude research review, 2026-10-02; owner pending |
+| `claim.indus.harappa-sequence` — Harappa’s earliest settlement dates to about 3300 BCE; by the end of the Harappan period, 2600–1900 BCE, most of the excavated plan was in use; after about 1900 BCE settlement retracted to Mound AB, Harappa Town and the northwest corner of Mound E, and continued to about 1300 BCE. | observation | high | 'source.indus.harp-settlement' | Excavation-project plan periods; not a population census or a region-wide chronology. | Voice revision, explain in context | Claude research review, 2026-10-02; owner pending |
 
 ## Central claim support
 
@@ -236,6 +253,22 @@ The authored module is the exact wording/reference source of truth. Every row re
 | claim.indus.coordination-and-rule | source.indus.dholavira | Section Brief synthesis, differentiated residential areas | Codex, 2026-09-11, close-reviewed |
 | claim.indus.urban-transformation | source.indus.harp-settlement | Passage Periods 4–5, reduced occupied area | Codex, 2026-09-11, close-reviewed |
 | claim.indus.urban-transformation | source.indus.kenoyer-tradition | Passage Localization Era, PDF p. 9, continuing farming and craft techniques | Codex, 2026-09-11, close-reviewed |
+| claim.indus.trap-sand-heaps | source.indus.street-drains | Paragraph on settling pools and traps: “little heaps of greenish-gray sand that we frequently find alongside them”; scope of “we” not stated | Claude, 2026-10-02, close-reviewed |
+| claim.indus.drain-construction | source.indus.street-drains | Paragraphs on baked-brick construction, mud mortar, covers (flat bricks, limestone blocks, mud layer) | Claude, 2026-10-02, close-reviewed |
+| claim.indus.drain-construction | source.indus.moenjodaro | Brief synthesis, street layout and sanitation paragraph | Claude, 2026-10-02, close-reviewed |
+| claim.indus.drain-reuse | source.indus.street-drains | Paragraph citing Possehl: reuse by raising walls; First Street drain 2 meters deep in places | Claude, 2026-10-02, close-reviewed |
+| claim.indus.dholavira-setting | source.indus.dholavira | Description and Brief synthesis: arid island of Khadir, two seasonal streams, reservoirs east and south of the Citadel, stone masonry with mud-brick cores | Claude, 2026-10-02, close-reviewed |
+| claim.indus.weight-numbers | source.indus.measuring | p. 117 and table 9.3: first seven weights 1:2:4:8:16:32:64; most common weight the 16th ratio, ~13.7 g | Claude, 2026-10-02, close-reviewed |
+| claim.indus.weight-numbers | source.indus.harp-weights | Caption: smallest weight 0.856 g; standard binary system used across settlements | Claude, 2026-10-02, close-reviewed |
+| claim.indus.weights-taxation-argument | source.indus.measuring | p. 117: most scholars assume market exchange; “relatively few weights given the size of the cities”; “much more probable … taxation or tithing”; gateway and craft-area concentration | Claude, 2026-10-02, close-reviewed |
+| claim.indus.dholavira-materials | source.indus.dholavira | Description: bead-processing workshops; copper, shell, stone, jewellery, terracotta, gold, ivory | Claude, 2026-10-02, close-reviewed |
+| claim.indus.discovery-1924 | source.indus.iln-marshall | Page quoting the September 20, 1924 article: mounds at Harappa and Mohenjo-daro, ~400 miles apart; “hardly further than the third century before Christ”; note on age estimate off by one or two thousand years | Claude, 2026-10-02, close-reviewed |
+| claim.indus.sayce-comparison | source.indus.sayce-letter | Letter of September 27, 1924: “practically identical”, “might have come from the same hand”, tablets dated 2600–2300 BCE, “intercourse between Susa and the North-West of India” | Claude, 2026-10-02, close-reviewed |
+| claim.indus.dholavira-signboard-find | source.indus.dholavira-bisht | p. 228: 10 large letters, gypsum inlays, found lying in the western chamber of the north gate | Claude, 2026-10-02, close-reviewed |
+| claim.indus.dholavira-signboard-display | source.indus.dholavira-bisht | p. 228: 3.5 m central passage matches inscription plus frame; p. 112: inlaid on a wooden board since decayed; “exact meaning … not known” | Claude, 2026-10-02, close-reviewed |
+| claim.indus.dholavira-layout | source.indus.dholavira | Brief synthesis: fortified castle, Middle Town, Lower Town; “a stratified social order” | Claude, 2026-10-02, close-reviewed |
+| claim.indus.green-argument | source.indus.green-governance | Section on evidence for governance and the article’s title and framing (egalitarian cities, public goods without rulers) | Claude, 2026-10-02, close-reviewed |
+| claim.indus.harappa-sequence | source.indus.harp-settlement | Caption: Period 1 c. 3300–2800 BCE through Periods 4–5 c. 1900–1300 BCE | Claude, 2026-10-02, close-reviewed |
 
 ## Content triage
 
@@ -609,3 +642,166 @@ Publication cutover: authored status is published and the active prototype revie
 ## Card voice correction — September 13, 2026
 
 Carlin identified the seal card's abstract significance and cautionary tone as uninviting and requested an interesting collectible description, with a city reconstruction as an alternative if the seal could not carry it. This narrow editorial correction brings forward the existing object's buffalo, miniature carving, palm-sized scale, and repeatable clay impression. It replaces the admonitory reveal and recall wording with the physical action of stamping. The Met object record and the lesson's existing stamp-seal explanation support this wording; no translation, owner identity, or specific historical transaction is asserted. The existing lesson still explains the undeciphered signs. The card retains its identity, image, provenance, and unlock behavior.
+
+
+## Voice revision
+
+Runbook: `docs/content/lesson-voice-revision-runbook.md`. Branch: `revise/indus-cities-and-signs-voice`. Started 2026-10-02. Status: **awaiting owner review**.
+
+### Audit of the published version
+
+| Section | What read flat |
+| --- | --- |
+| `section.indus.cities-and-landscapes` | Opened on an announced question (“How did people solve those problems in the Indus region?”) after a general list of what a city needs; no moment, object or place. |
+| `section.indus.water-systems` | Drains described in general terms (“Brick channels”, “traps”) where the source gives baked brick, limestone covers, a 2-meter-deep drain and heaps of greenish-gray sand; ends on a summary sentence (“City life depended on repeated maintenance…”). Reservoir paragraph gives no place on the map or construction detail. |
+| `section.indus.weights-and-work` | Weights never given a number; the one real scholarly argument (market versus taxation) reduced to a rhetorical question. Crafts paragraph is a list of generic nouns and ends on a transition formula (“Seals offer another way…”). |
+| `section.indus.seals-and-signs` | Long, generic seal description with no story of how the seals were first understood; the best signs object (Dholavira’s gate signboard) is absent; a rare hedge-pair (“may have been merchants, but…”). |
+| `section.indus.organizing-cities` | Moralizing aside (“We should not supply an Egyptian-style ruler…”), a second “Nor should we…”; no named scholar or concrete site. |
+| `section.indus.changing-settlements` | General sentences (“later occupation covered less ground”) where the settlement caption gives periods; summary ending (“The cities leave us more than a mystery…”). |
+| `section.indus.understanding` | Prompt explanations accurate but general. |
+
+Whole lesson: story spine `none` (a sequence of evidence types); memorable moments `none` a 13-year-old would retell; opening did not land (announced question); ending did not land (summary).
+
+**Prompts.**
+
+| Prompt | Verdict | Finding |
+| --- | --- | --- |
+| `prompt.indus.shared-standards` | `replace` | The question already says the weights “follow a shared system”, and the best answer (“a common way to measure quantities”) restates it, so the check rewards recognition, not reasoning. Two wrong-option feedbacks give the answer away (“A weight measures a quantity”; “Recognizing a measurement system…”). Fixing the question changes the prompt's identity, so it is replaced; the teaching job (what a measured standard supports and what it does not) is unchanged. |
+| `prompt.indus.water-and-work` | `replace` (owner feedback, 2026-10-03) | First audited as `keep`: grounded in the lesson's evidence and fair in what it expects. The owner then found the question hard to answer, and the audit agrees: three tasks in three sentences (choose a system, explain dependence, say what “the surviving system leave[s] uncertain about who organized the work”), the last of them an abstract question about the limits of evidence, in wording the lesson never uses. A 12–15-year-old has to translate it before answering. Replaced by `prompt.indus.water-needs-many-hands`: two plain parts and the lesson's own phrase, “who was in charge”. |
+
+**Card.** `card.indus.stamp-seal`: `refresh` (text and facts; art `keep`). The facts carried nothing of the lesson's spine (a seal whose signs nobody can read) and had three entries of five allowed. Art stays the Met catalog image, the best image of the object itself (Stage 11); `depictionLabel` is unchanged and still true.
+
+### Story material
+
+- **Story spine:** the work behind the cities and the names nobody can read. The lesson follows what people did (cleaned drains, weighed goods, pressed seals, hung a sign over a gate) while the writing that might name them stays unread; the ending calls back to the sand beside the drain.
+- **Memorable moments:** (1) excavators describe “little heaps of greenish-gray sand” beside drain traps, read as leftovers of cleaning; (2) a week after Marshall announced the lost cities in 1924, Sayce wrote that the seals “might have come from the same hand” as dated tablets from Susa, which put the cities in early Mesopotamia’s centuries; (3) at Dholavira, ten unusually large gypsum signs lay fallen in the north gate, probably once fixed above the doorway where they could be seen from afar, and nobody can read them; (4) Kenoyer’s argument that there are too few weights for a market, so the weights probably served taxation or tithing.
+- **Sources of the material:** the registered Mohenjo-daro drains page, Kenoyer 2010, the HARP weights, seals and settlement captions and the UNESCO Dholavira record, all re-read for detail; targeted research for two stories (Harappa.com’s pages for Marshall’s announcement and Sayce’s letter, and Bisht 2015 for the signboard).
+- **Legend used:** none. Sayce’s 1924 comparison is a historical argument, labeled as his.
+
+### Changes
+
+- Prose bodies in nine modules rewritten; `prompt.indus.shared-standards` replaced by `prompt.indus.what-weights-show` and `prompt.indus.water-and-work` replaced by `prompt.indus.water-needs-many-hands` (see **Prompt revision** below); the card's reveal text and facts refreshed. Lesson, section, module, claim, source, media and card IDs, section order, headings, media, captions and completion are unchanged. No test text changed.
+- Module `claimIds` and `sourceIds` updated to cover what each module now says; both check modules gained the new claims they cite.
+- 14 claims and 3 sources added (claim ledger, central claim support and source close-review tables above): `trap-sand-heaps`, `drain-construction`, `drain-reuse`, `dholavira-setting`, `weight-numbers`, `weights-taxation-argument`, `dholavira-materials`, `discovery-1924`, `sayce-comparison`, `dholavira-signboard-find`, `dholavira-signboard-display`, `dholavira-layout`, `green-argument`, `harappa-sequence`; sources `iln-marshall`, `sayce-letter`, `dholavira-bisht`.
+- Reading length: 985 → 1,375 words in the prose modules (+40%). The growth is the two added stories and the specific detail; the summary sentences, the opening list of city needs and the moralizing asides were cut. Evidence-module captions and scene hotspots were not changed.
+- **Images:** none added. A photograph of the Dholavira signboard would serve moment (3), but no clearly licensed original was found in this pass (Harappa.com photographs are copyrighted and the Commons category could not be opened from this session), so none was added. A follow-up image pass can add one under the Stage 10 rights path.
+
+### Left out
+
+- Marshall’s Schliemann comparison and “on the threshold” line: sourced and vivid, left out for length.
+- The Met seal’s acquisition record (Montgomery district of the Punjab, acquired by John H. Marshall): used in a draft, then cut for length; the record does not say this is the archaeologist, so it also needs a further check.
+- The largest weight (Kenoyer: 10,865 g at Mohenjo-daro): the HARP caption’s “largest” and Kenoyer’s do not obviously agree; left out until reconciled.
+- Mohenjo-daro’s modern name and its translation; the railway-ballast story at Harappa: not close-read in this pass.
+- Rebus readings of the Dholavira signboard in the Bisht report: left out; they are readings, not evidence, and would blur the “nobody can read it” hook.
+- Linear measures (foot and cubit) in Kenoyer 2010: context unclear without the full table.
+
+### Stage 14B check on the changed sections
+
+| Question | Finding | Evidence and disposition |
+| --- | --- | --- |
+| Story | pass | Spine and four moments above. The opening starts on the sand heaps and ends on the unreadable writing; the ending calls back to the sand and the signs. No section reads as a flat list; each paragraph has a concrete object or place. |
+| Evidence reasoning | pass | Sayce’s comparison is attributed (“On Sayce’s argument”); Kenoyer’s taxation view is named and called an interpretation; the signboard’s hanging place is “The excavators think… If so”; “possibly merchants” is quoted and then questioned; the Met seal keeps its question mark. Both prompts remain answerable from the lesson. |
+| Proportionality | pass | The authority question keeps Green’s cooperation reading and the UNESCO stratification reading; neither a king nor equality is asserted; the decline section keeps “the site was not empty”. |
+| Cognitive load | revise (accepted) | New names: Marshall, Sayce, Susa (glossed “ancient city”), Assyriologist (glossed), Kenoyer (introduced as an archaeologist), Green. Length is +40%, with two added stories; paragraphs stay short. Owner may ask for trimming. |
+| Headings | pass | Headings unchanged; they are plain-word headings and no second title was added. |
+| Visual value | not applicable | No image added or changed; see Changes. |
+| Rights, media and accessibility | not applicable | No media change. |
+
+`npm run validate:content` passed; `npm run test:domain` passed (16 files, 84 tests); `npm run typecheck:chronos` passed; `npm run content:fingerprints` registered the new prompt and retired the old one. No test pinned the changed text or either prompt ID.
+
+### Card revision
+
+Old reveal: “Press a seal into soft clay, lift it away, and a raised copy of the design remains. Around four thousand years ago, someone chose this animal and these tiny signs to make a mark they could stamp again and again.”
+New reveal: the same, plus “We can see the mark. Nobody can yet read it.”
+
+Facts (three before, five now; the first three are unchanged): added “The museum’s title ends with a question mark: curators are not sure the object in front of the buffalo is an incense burner” (`claim.indus.seal-object`, Met object 49.40.2 title) and “No one has a securely established reading for the signs” (`claim.indus.undeciphered-signs`). Subject, class, ID, art, depiction label, recall prompt and unlock are unchanged; learners who own the card see the new text.
+
+### Owner review
+
+Pending.
+
+
+## Prompt revision
+
+### 2026-10-02 — `prompt.indus.shared-standards` → `prompt.indus.what-weights-show`
+
+Part of the voice revision on `revise/indus-cities-and-signs-voice` (PR #67). Same teaching job: what a measured standard supports and what it does not (a shared standard is not an emperor, equal wealth or a decipherment). Same kind (supported selection), required flag and evidence module (`module.indus.weights-evidence`). `prompt.indus.shared-standards` is retired in `content/published-prompt-fingerprints.json`.
+
+**Why it changed.** The old question handed over its answer (see the audit above), and two wrong-option feedbacks restated it.
+
+**Old.** Question: “Stone weights from several Indus cities follow a shared system. Which conclusion is best supported by that pattern?” Hint: “Separate what people needed to agree on from who might have made that agreement.” Best: `option.indus.shared-measure`.
+
+| Old option | Feedback |
+| --- | --- |
+| People in different places used a common way to measure quantities. (best) | Yes. Repeated measurements across sites support a shared standard, even though individual weights vary. |
+| One emperor personally controlled trade in every city. | A common standard does not identify an emperor. Different political arrangements could produce or maintain shared measures. |
+| Every household owned the same amount of valuable goods. | A weight measures a quantity. It does not tell us how wealth was divided between households. |
+| Researchers can now translate the signs on Indus seals. | Recognizing a measurement system does not provide sound values or meanings for the separate sign system. |
+
+**New.** Question: “Excavators have measured weights from Harappa and other Indus sites. The first seven units double each time, and real stones vary a little. Which statement goes only as far as that evidence can take it?” Hint: “Sort the statements by what the weights can show directly and what would need other evidence.” Best: `option.indus.same-units`. Required: yes (unchanged).
+
+| New option | Feedback | Section that supports it |
+| --- | --- | --- |
+| `option.indus.same-units`: People at different sites weighed goods by the same units, so an agreement about quantity reached beyond any single city. (best) | Yes. Weights from different sites fit the same series of units, even though individual stones vary a little. | “Shared measures and skilled work” (`module.indus.weights`; `claim.indus.shared-weights`, `claim.indus.weight-numbers`) |
+| `option.indus.ruler-ordered-weights`: One ruler ordered every weight made and controlled all trade from a single capital. | Reread “Who organized the cities?” What do researchers say shared standards and public works can and cannot show about who held authority? | “Who organized the cities?” (`claim.indus.coordination-and-rule`) |
+| `option.indus.households-equal`: Every household owned the same amount of goods, because everyone weighed with the same stones. | Think about what a weight records. Does anything in the lesson show how goods were divided between households? | “Shared measures and skilled work” (a weight records a quantity) and “Who organized the cities?” (equal access is not identified) |
+| `option.indus.signs-read`: Researchers can read the signs on Indus seals, because the weights and the signs belong to one system. | Reread “Seals and undeciphered signs.” What would a convincing reading have to explain, and do weights supply it? | “Seals and undeciphered signs” (`module.indus.sign-limits`; `claim.indus.undeciphered-signs`) |
+
+Explanation (shown after the right pick): “The weights show that people at different sites used the same units in a doubling series, so an agreement about quantity reached beyond any single city. That could help people coordinate exchange or collections. The weights alone do not name the people who set or enforced the standard, say how goods were divided among households, or give any meaning to the signs on seals.”
+
+Each wrong option's feedback points to a section and a question without stating the answer. `npm run content:fingerprints`, `npm run validate:content` and `npm run test:domain` passed; no test referenced the old prompt or option IDs. The 2026-09-13 publication migration still names the old IDs; it is history and is not edited.
+
+**What learners will see.** Finished lessons, and lessons waiting for or passed by a parent, stay as they are; for them the new question is just another check to try. The prompt is required, so a learner still working through the lesson, or one whose lesson was sent back, must pick the best-supported answer on the new question before finishing. Parents see written questions only; this prompt is a selection, so Review is unaffected.
+
+Owner approval: pending.
+
+### 2026-10-03 — `prompt.indus.water-and-work` → `prompt.indus.water-needs-many-hands`
+
+Same teaching job: how organized work kept a water system running, and what the evidence leaves open about who directed it. Same kind (written explanation), required flag and minimum length (20). The evidence module stays `module.indus.reservoir-evidence` (only `evidence` modules can be inspectable evidence for a prompt; the drainage scene is a `scene`). `prompt.indus.water-and-work` is retired in `content/published-prompt-fingerprints.json`.
+
+**Why it changed.** The owner could not answer the old question easily and doubted a 12–15-year-old could. The audit agrees (see the audit table above). It was also the only written prompt that asked for “what the evidence leaves uncertain” about an abstract noun (“who organized”).
+
+| | Old | New |
+| --- | --- | --- |
+| Question | “Choose Mohenjo-daro’s drains or Dholavira’s reservoirs. Explain how that water system depended on people working together. What does the surviving system leave uncertain about who organized the work?” | “Choose one: the drains of Mohenjo-daro or the reservoirs of Dholavira. (1) Why could one family not have built it and kept it working alone? (2) Name one thing we still don’t know about who was in charge of the work.” |
+| Hint | “Think about the connection between a household and a larger system, or between collecting water and keeping it available.” | “Think about what happens after the drain or reservoir is built. For part 2, remember what the lesson says about rulers and neighborhood groups.” |
+| Required / minimum length | yes / 20 | yes / 20 |
+
+Explanation (shown to the parent on Review as “What a strong answer covers”): covers both parts, with the upkeep evidence (settling traps emptied again and again; drains raised with more bricks; Dholavira's reservoirs) and an unknown such as whether a ruler, a neighborhood group or another institution directed the work.
+
+**Support map.** Part 1: “Water for city life” (`module.indus.drains`, `module.indus.reservoirs`; `claim.indus.household-drainage`, `claim.indus.trap-sand-heaps`, `claim.indus.drain-reuse`, `claim.indus.water-storage`). Part 2: “Who organized the cities?” (`claim.indus.coordination-and-rule`, `claim.indus.green-argument`, `claim.indus.dholavira-layout`). Every part of a strong answer is taught in those sections.
+
+**What learners will see.** Finished lessons, and lessons waiting for or passed by a parent, stay as they are. A learner still working through the lesson, or one whose lesson was sent back, writes an answer to the new question before finishing. Parents see the written question as the learner saw it; an old submission is marked as changed.
+
+Owner approval: pending.
+
+### 2026-10-03 — review follow-up on PR #74
+
+Changes made in review, before merge. The new prompt IDs were not yet published, so their labels were edited in place and the fingerprints regenerated from `main`.
+
+**Lesson text.**
+
+- The Sayce paragraph is cut. As written, it gave Sayce’s 1924 dates for the Susa tablets (2600–2300 BCE) as plain fact and left his “practically identical … from the same hand” comparison uncorrected. Proto-Elamite tablets are now dated much earlier (about 3100–2900 BCE), and the comparison is not accepted, but no registered source says so, so a learner would come away with a false link. `claim.indus.sayce-comparison` and `source.indus.sayce-letter` are removed; the ledger rows above are history.
+- Marshall’s announcement stays, shortened, and now ties to the section: the cities proved more than two thousand years older than the third century BCE (`claim.indus.urban-period`), and no one could read the seals’ signs then or now (`claim.indus.undeciphered-signs`). `claim.indus.discovery-1924` drops “one or two thousand years off the first estimate”, which is the Harappa.com editor’s comment, not Marshall’s, and Marshall gave no estimate. The 400-mile distance is cut from the prose (the lesson otherwise uses metric units).
+- “The question mark in its title” → “The word ‘tentatively’”: the lesson never shows the Met title, so the learner had no question mark to look at. The card fact keeps it.
+- “Mound AB, Harappa Town and one corner of Mound E” → “only a few parts of the old city”: three unexplained site names for one point.
+
+**`prompt.indus.what-weights-show`.** The draft broke the PR’s own Stage 12 rule: the best option was the longest, and two wrong options carried absolute words (“every”, “all”). Question now ends “Which statement do the weights support best?” (“goes only as far as that evidence can take it” is the abstract phrasing the runbook now bans).
+
+| Option | Draft label | Final label |
+| --- | --- | --- |
+| `same-units` (best) | People at different sites weighed goods by the same units, so an agreement about quantity reached beyond any single city. | People in different Indus cities measured goods with the same set of units. |
+| `ruler-ordered-weights` | One ruler ordered every weight made and controlled all trade from a single capital. | A single ruler had the weights made and ran trade from one capital city. |
+| `households-equal` | Every household owned the same amount of goods, because everyone weighed with the same stones. | Households owned similar amounts of goods, since they used the same weights. |
+| `signs-read` | Researchers can read the signs on Indus seals, because the weights and the signs belong to one system. | Comparing the weights helped researchers work out what the seal signs say. |
+
+**`prompt.indus.water-needs-many-hands`.** Hint part 2 was “remember what the lesson says about rulers and neighborhood groups”: that is the model answer, and the revised lesson no longer mentions neighborhood groups. Now: “For part 2, look back at ‘Who organized the cities?’”
+
+### 2026-10-03 — written prompt reworded positively (before merge)
+
+Owner feedback on PR #74: the “name one thing it does not tell us” part is a negatively posed question. Part 2 now asks the limit as an open question. `prompt.indus.water-needs-many-hands` is not yet published, so it keeps its ID and the fingerprints were regenerated from `main`.
+
+| | Before | After |
+| --- | --- | --- |
+| Question | “Choose one: the drains of Mohenjo-daro or the reservoirs of Dholavira. (1) Why could one family not have built it and kept it working alone? (2) Name one thing we still don’t know about who was in charge of the work.” | “Choose one: the drains of Mohenjo-daro or the reservoirs of Dholavira. (1) Why did it take many people, not just one family, to build it and keep it working? (2) Researchers still debate who was in charge of work like this. What is one idea they have?” |
+| Hint | “For part 1, think about what had to keep happening after the drain or reservoir was built. For part 2, look back at “Who organized the cities?”” | “For part 1, think about what had to keep happening after the drain or reservoir was built. For part 2, look back at “Who organized the cities?”” |

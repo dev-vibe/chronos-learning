@@ -600,3 +600,31 @@ Whole lesson: story spine `none`; memorable moments `one` (the sand is dated, no
 - Memorable moments: grinding stones, ochre “crayons” and ground-edge hatchets from a dig under Mirarr control; one crossing close to 100 km and at least about 1,300 founders; drift odds under 5% that change when travellers head for land; the 1989 dispute, grain-by-grain dating and refitting stones; Narrangga stories of Spencer Gulf before the sea came in (labelled later tradition); charred pandanus shells and tuber peelings.
 - Added claims: `claim.humans.sahul.madjedbebe-dig`, `lowest-layer-finds`, `routes-and-longest-crossing`, `founding-population`, `drift-odds`, `earlier-dig-dispute`, `single-grain-dating`, `artefact-refits`, `grinding-stone-uses`, `early-plant-foods`, `spencer-gulf-story`; sources `source.humans.clarkson-2017-conversation`, `florin-2020-plant-foods`, `nunn-reid-2015-conversation`.
 - Owner decisions: during review Carlin replaced the runbook's ~20% length cap with a no-fixed-limit rule (second commit in this PR). Carlin Aylsworth then reviewed the branch preview and approved the revision (“looks great!”), 2026-09-24.
+
+## Prompt revision
+
+### 2026-10-03 — hints and option feedback (text only, same prompt IDs)
+
+Part of the assessment audit that followed the Indus review (prompt readability check in `docs/content/prompt-revision-runbook.md`). The audit kept every prompt's question and options as they were, so no prompt ID changed and no fingerprint changed; only hints and option feedback, which the prompt-change policy allows under the same ID. Hints and feedback now point back to a section and ask a question instead of stating the answer; every selection option has feedback.
+
+- `prompt.humans.sahul.sand-date-supports`: no hint and no option feedback before. New hint: “Ask what the sand date measures, and what would have to be true for the tools to be that old too.” Every option has feedback; wrong answers point to “Dating the earliest settlements” with a question.
+- `prompt.humans.sahul.planning-and-limit`: no hint before. New hint points to “Planning a sea crossing” for the example and to “Reaching Sahul by sea” and “What other evidence can tell us” for what is unknown.
+
+**What learners will see.** Nothing is re-asked. Learners see the new hint, and after a wrong pick the new feedback, the next time they open the prompt. Finished lessons and parent reviews are unaffected.
+
+Owner approval: pending.
+
+## Prompt revision (positive wording)
+
+### 2026-10-03 — written prompt replaced: limit asked as an open question
+
+Part of PR #74 (assessment audit). Owner feedback: the “name one thing it does not tell us” pattern is a negatively posed question, and a 12-year-old has to work out what is missing before they can think about it. Same teaching job (what the evidence shows and what it leaves open), same kind, required flag and minimum length. `prompt.humans.sahul.planning-and-limit` is retired in `content/published-prompt-fingerprints.json`; the new ID is `prompt.humans.sahul.planned-voyages`. No test named the old ID.
+
+| | Old | New |
+| --- | --- | --- |
+| Question | “Why do researchers think people planned their sea journeys to Sahul? Use an example from the lesson, then name one detail of the journeys that remains unknown.” | “(1) Why do researchers think people planned their sea journeys to Sahul? Use an example from the lesson. (2) What is one thing about the journeys that researchers are still trying to find out?” |
+| Hint | “For the example, look back at “Planning a sea crossing.” For what is unknown, look at “Reaching Sahul by sea” and “What other evidence can tell us.”” | “For the example, look back at “Planning a sea crossing.” For part 2, look at “Reaching Sahul by sea” and “What other evidence can tell us.”” |
+
+The explanation (shown to the parent on Review) now describes a strong part 2 as a question or next step the lesson supports, not a list of limits. **What learners will see:** finished, waiting and passed lessons stay as they are; a learner still working through the lesson, or one sent back, answers the new required prompt before finishing.
+
+Owner approval: pending.

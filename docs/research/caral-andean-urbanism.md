@@ -928,3 +928,64 @@ Whole lesson: story spine `none`; memorable moments `one` (flutes: the instrumen
 - Memorable moments: building begun about 2627 BCE, roughly when Egypt’s first pyramid was built; mounds that hold older versions of themselves inside; 32 small bone flutes painted red and black, whose songs are lost; the knotted cord on the twelfth step of the Gallery Pyramid stairway.
 - Added claims: `claim.caral.dating-published-2001`, `eighteen-supe-sites`, `first-pyramid-same-era`, `fisher-farmer-exchange`, `greater-pyramid-plaza`, `unequal-tables`, `human-hauling`, `burial-and-rebuilding`, `bone-flutes`, `quipu-twelfth-step`. No sources added. Correction: “bird-bone flutes” → “32 small bone flutes”.
 - Owner decisions: the first version relied on search excerpts because the session’s network blocked source sites; Carlin opened network access and asked for the revision to be redone from the actual sources, which this version is. The +27.5% length was flagged and accepted. Carlin Aylsworth reviewed the branch preview and approved the revision (“approved!”), 2026-09-25.
+
+## Prompt revision
+
+### 2026-10-03 — both understanding prompts replaced after an age-fit audit of every lesson's prompts
+
+Branch `revise/caral-prompts`. Part of the assessment audit that followed the Indus review (prompt readability check in `docs/content/prompt-revision-runbook.md`, PR #68). Same teaching jobs, same kinds, same required flags. `prompt.caral.supported-model` and `prompt.caral.evidence-and-limit` are retired in `content/published-prompt-fingerprints.json`.
+
+**Why they changed.** Prompt 1 named “the cotton–fish evidence” in its stem without saying what it was, so a learner had to decode what the question meant before reasoning; its best answer joined two ideas, and it had no hint or feedback. Prompt 2 asked how a clue “helps explain urban life” and what it “can not prove by itself”: two abstract phrases in one sentence, with no hint.
+
+#### `prompt.caral.supported-model` → `prompt.caral.what-the-mounds-show`
+
+| | Old | New |
+| --- | --- | --- |
+| Question | “Which conclusion is best supported by Caral’s monuments and the cotton–fish evidence?” | “Caral has six huge platform mounds and a sunken plaza. Excavators found no pottery, no metal tools, and no writing like cuneiform. Which statement is best supported by that evidence?” |
+| Evidence module | none | `module.caral.plaza-evidence` |
+| Hint | none | “Start with what Caral has and what it lacks. Then pick the statement that stays inside that evidence.” |
+| Best option | `option.caral.exchange-and-labor`: Inland farming and coastal fishing were connected, and people organized large public building projects without pottery. (two claims) | `option.caral.built-without-writing`: People at Caral built large public buildings without pottery, metal tools, or writing. (one claim) |
+| Wrong options | copied Egypt; no writing means no city; missing fortifications prove a peaceful empire (no feedback) | `copied-egypt`; `no-writing-no-city`; `peaceful-empire`. Each has feedback that points to a section and asks a question. |
+
+Support map: best answer, the opening, “A sunken plaza and a platform mound” and “How the monuments were built”; `copied-egypt`, the opening (Caral about 2627 BCE, roughly when Egypt’s first pyramid was built) and “What this case can prove” (own path); `no-writing-no-city`, “Another way to build a city”; `peaceful-empire`, “What this case can prove” (missing fortifications prove nothing; neighbors may have been equals).
+
+#### `prompt.caral.evidence-and-limit` → `prompt.caral.one-clue-and-gap`
+
+| | Old | New |
+| --- | --- | --- |
+| Question | “Choose the sunken plaza, the cotton–fish exchange, or the missing pottery. How does that evidence help explain urban life at Caral, and what can it not prove by itself?” | “Choose one: the sunken plaza, the cotton–fish exchange, or the missing pottery. (1) What does it tell us about life at Caral? (2) Name one thing it does not tell us.” |
+| Hint | none | “Look back at ‘A sunken plaza and a platform mound,’ ‘Coast and valley together,’ or ‘How the monuments were built,’ whichever matches your choice.” |
+| Required / minimum length | yes / 30 | yes / 30 |
+
+The three choices are kept. Explanation (shown to the parent on Review as “What a strong answer covers”): part 1 per choice (a built gathering space; coast and valley supplying each other; people meeting their needs with gourds, baskets, fiber and stone); part 2 a limit (what happened at gatherings, who organized the work, what ordinary builders thought, whether Caral ruled its neighbors). Support map: the three sections named in the hint, plus “What this case can prove”.
+
+`npm run content:fingerprints`, `npm run validate:content`, `npm run test:domain` and `npm run typecheck:chronos` passed; no test named the old prompt or option IDs. The publication migration still names the old IDs; it is history and is not edited.
+
+**What learners will see.** Finished lessons, and lessons waiting for or passed by a parent, stay as they are. A learner still working through the lesson, or one whose lesson was sent back, must answer both new required prompts before finishing. Parents see the written question as the learner saw it; an old submission is marked as changed.
+
+Owner approval: pending.
+
+### 2026-10-03 — review follow-up on PR #74
+
+Changes made in review, before merge; fingerprints regenerated from `main`.
+
+`prompt.caral.what-the-mounds-show` is replaced, before publication, by `prompt.caral.coast-valley-and-mounds`. The draft’s stem copied the opening’s sentence (“six huge platform mounds … no pottery, no metal tools, and no writing like cuneiform”) and its best option restated that sentence, so it tested matching words, not reasoning. It also dropped the coast–valley exchange, half of the old prompt’s teaching job. Three of its option IDs (`copied-egypt`, `no-writing-no-city`, `peaceful-empire`) were IDs of the retired prompt, which the runbook forbids.
+
+| | Final |
+| --- | --- |
+| Question | “Inland at Caral, people grew cotton and gourds and raised six huge platform mounds. On the coast, fishers caught anchovies with cotton nets, and anchovy and shellfish remains turn up at inland sites. Excavators found no pottery. Which statement does this evidence support best?” |
+| Evidence modules | `module.caral.supe-map`, `module.caral.plaza-evidence` |
+| Hint | “Start with what moved between the coast and the valley. Then think about what people built, even without pottery.” |
+| Best | `option.caral.relied-on-each-other`: Farmers and fishers relied on each other and built a city without pottery. (Two claims, both the point: the old prompt’s teaching job.) |
+| Wrong | `copied-pyramid-idea`: Caral’s builders copied the idea of pyramids from Egypt, which built them at the same time. `only-a-village`: Without pottery, Caral was a large village rather than a real city. `peaceful-capital`: No fortifications were found, so Caral was a peaceful empire ruling its neighbors. Feedback as in the draft. |
+
+Support map: best, “Coast and valley together” (`module.caral.geography`, `claim.caral.cotton-fish-exchange`, `claim.caral.fisher-farmer-exchange`) and “How the monuments were built”; the wrong options as in the draft.
+
+### 2026-10-03 — written prompt reworded positively (before merge)
+
+Owner feedback on PR #74: the “name one thing it does not tell us” part is a negatively posed question. Part 2 now asks the limit as an open question. `prompt.caral.one-clue-and-gap` is not yet published, so it keeps its ID and the fingerprints were regenerated from `main`.
+
+| | Before | After |
+| --- | --- | --- |
+| Question | “Choose one: the sunken plaza, the cotton–fish exchange, or the missing pottery. (1) What does it tell us about life at Caral? (2) Name one thing it does not tell us.” | “Choose one: the sunken plaza, the cotton–fish exchange, or the missing pottery. (1) What does it tell us about life at Caral? (2) What is one question about the people of Caral that researchers are still trying to answer?” |
+| Hint | “Look back at “A sunken plaza and a platform mound,” “Coast and valley together,” or “How the monuments were built,” whichever matches your choice.” | “Look back at “A sunken plaza and a platform mound,” “Coast and valley together,” or “How the monuments were built,” whichever matches your choice.” |

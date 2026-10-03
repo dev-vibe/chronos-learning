@@ -622,3 +622,31 @@ Whole lesson: story spine `partial` (Jebel Irhoud opens sections 1, 3 and 5 but 
 - Memorable moments: the 40,000-year Neanderthal that became 315,000 years old; the modern face on a long, low braincase; Omo I's moving date and the Shala ash; Olorgesailie's obsidian and colour after hundreds of thousands of years of handaxes; Kabwe's quarried-away cave.
 - Added claims: `claim.humans.irhoud-first-reading`, `omo-age-history`, `omo-ash-match`, `olorgesailie-change`, and `kabwe-site-lost` brought into the module; sources `source.humans.wong-2017-sciam`, `smithsonian-omo-i`, `si-olorgesailie-2018`.
 - Owner decision: Carlin Aylsworth reviewed the branch preview and approved the revision without changes (“approved!”), 2026-09-24.
+
+## Prompt revision
+
+### 2026-10-03 — hints and option feedback (text only, same prompt IDs)
+
+Part of the assessment audit that followed the Indus review (prompt readability check in `docs/content/prompt-revision-runbook.md`). The audit kept every prompt's question and options as they were, so no prompt ID changed and no fingerprint changed; only hints and option feedback, which the prompt-change policy allows under the same ID. Hints and feedback now point back to a section and ask a question instead of stating the answer; every selection option has feedback.
+
+- `prompt.humans.best-supported-conclusion`: the old hint (“Compare the spread of the finds. Does the oldest find prove where the first people lived?”) gave away why one wrong option fails. New hint: “Compare where the finds were made and how far apart they are. Which statement could explain all three?” The best answer's feedback now confirms the reasoning, and each wrong answer's feedback points to the finds in the question or to “Connected, not sealed off” / “Evidence across a continent” with a question instead of stating the reason.
+- `prompt.humans.evidence-and-limit`: unchanged (the hint already points at the evidence and the limit).
+
+**What learners will see.** Nothing is re-asked. Learners see the new hint, and after a wrong pick the new feedback, the next time they open the prompt. Finished lessons and parent reviews are unaffected.
+
+Owner approval: pending.
+
+## Prompt revision (positive wording)
+
+### 2026-10-03 — written prompt replaced: limit asked as an open question
+
+Part of PR #74 (assessment audit). Owner feedback: the “name one thing it does not tell us” pattern is a negatively posed question, and a 12-year-old has to work out what is missing before they can think about it. Same teaching job (what the evidence shows and what it leaves open), same kind, required flag and minimum length. `prompt.humans.evidence-and-limit` is retired in `content/published-prompt-fingerprints.json`; the new ID is `prompt.humans.face-and-braincase`. `tests/content/validation.test.ts` named the old ID; it now names the new one.
+
+| | Old | New |
+| --- | --- | --- |
+| Question | “The Jebel Irhoud fossils have a face much like ours but a long, low braincase. What does that mix suggest about how our species’ features appeared? Name one thing this evidence cannot tell us.” | “The Jebel Irhoud fossils have a face much like ours but a long, low braincase. (1) What does that mix suggest about how our species’ features appeared? (2) What would researchers want to find next to learn more, and where would they look?” |
+| Hint | “Compare the face with the back of the skull. Then consider how much a few fossils from one site can tell us.” | “Compare the face with the back of the skull. For part 2, look back at the end of “Read the skull” and at “Connected, not sealed off.”” |
+
+The explanation (shown to the parent on Review) now describes a strong part 2 as a question or next step the lesson supports, not a list of limits. **What learners will see:** finished, waiting and passed lessons stay as they are; a learner still working through the lesson, or one sent back, answers the new required prompt before finishing.
+
+Owner approval: pending.
