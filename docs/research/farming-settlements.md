@@ -300,7 +300,7 @@ Production prose, final generation/acquisition, media ingestion, corrective publ
 
 ## Voice revision
 
-Runbook: `docs/content/lesson-voice-revision-runbook.md`. Branch: `revise/farming-settlements`. Started 2026-10-03. Status: **awaiting owner review**.
+Runbook: `docs/content/lesson-voice-revision-runbook.md`. Branch: `revise/farming-settlements`. Started 2026-10-03. PR: [#75](https://github.com/dev-vibe/chronos-learning/pull/75). Status: **approved by the owner 2026-10-03; merged with PR #75**.
 
 ### Audit of the published version
 
@@ -375,7 +375,7 @@ Facts (four before, five now; the first is unchanged): old “Dense mudbrick hou
 
 ### Owner review
 
-Pending.
+Reviewed on the Vercel preview of PR #75. Ash (Carlin Aylsworth) approved the revision on 2026-10-03 (“gtg please merge/finish”) with no changes requested. The review covered the rewritten telling, the new `prompt.farming.what-the-house-shows`, the refreshed Çatalhöyük card and the source and claim additions. The evidence caveats stay as recorded above: the full texts of Bogaard 2009 and Larsen 2019 were not read, so claims resting on them keep their stated certainty.
 
 ## Prompt revision
 
@@ -415,4 +415,4 @@ Old options for reference: `option.farming.perfect-equality`, `option.farming.ce
 
 **What learners will see.** Finished lessons, and lessons waiting for or passed by a parent, stay as they are; for them the new question is just another check to try. The prompt is required, so a learner still working through the lesson, or one whose lesson was sent back, must pick the best-supported answer on the new question before finishing. Parents see written questions only; this prompt is a selection, so Review is unaffected.
 
-Owner approval: pending.
+Owner approval: approved 2026-10-03 with PR #75.
