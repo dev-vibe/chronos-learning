@@ -24,10 +24,10 @@ export const kermaMedia: MediaAsset[] = [
 export const kermaVisualModules: Record<string, LessonModule> = {
   deffufa: {
     id: 'module.kerma.deffufa-evidence', type: 'evidence', title: 'Building with mud brick', artifactLabel: 'Western Deffufa · Kerma city',
-    body: 'This large mud-brick monument, known as the Western Deffufa, stands above the surrounding ruins. Archaeologists identify it as a temple. Producing and carrying bricks, bringing workers together and supplying them with food made building on this scale possible.',
+    body: 'This large mud-brick temple is the Western Deffufa, and it still stands about 18 meters high above the ruins around it. (Deffufa is a Nubian word for a large mud-brick structure made by people.) Every brick had to be made, carried and set, by workers who had to be fed. Bringing them together and supplying them made building on this scale possible.',
     mediaId: 'media.kerma.western-deffufa', layout: 'stacked',
     scaleNote: 'A modern photograph of the surviving site, which has received conservation and restoration. It does not show the complete ancient building.',
-    claimIds: ['claim.kerma.deffufa', 'claim.kerma.work-and-support'], sourceIds: ['source.kerma.map-site', 'source.kerma.deffufa-photo', 'source.kerma.city-project'],
+    claimIds: ['claim.kerma.deffufa', 'claim.kerma.deffufa-size', 'claim.kerma.work-and-support'], sourceIds: ['source.kerma.map-site', 'source.kerma.deffufa-photo', 'source.kerma.city-project'],
   },
   sennuwy: {
     id: 'module.kerma.sennuwy-evidence', type: 'evidence', title: 'An Egyptian sculpture at Kerma', artifactLabel: 'Lady Sennuwy · MFA Boston 14.720',
