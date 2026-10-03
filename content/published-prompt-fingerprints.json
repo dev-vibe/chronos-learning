@@ -19,11 +19,21 @@
     },
     "prompt.egypt.evidence-and-limit": {
       "lessonId": "lesson.egypt.nile-state",
-      "fingerprint": "cb38be423238cdeb5861f2475a9be41506f62093cb8509b0db8d7f8eaae6215e"
+      "fingerprint": "cb38be423238cdeb5861f2475a9be41506f62093cb8509b0db8d7f8eaae6215e",
+      "retired": true
+    },
+    "prompt.egypt.palette-royal-message": {
+      "lessonId": "lesson.egypt.nile-state",
+      "fingerprint": "6a00f5f355b5367b926dfcf8321fc70539a38730cc04f70c3b1cad810a7e3756"
     },
     "prompt.egypt.palette-supported-claim": {
       "lessonId": "lesson.egypt.nile-state",
-      "fingerprint": "607c0577c0e7c53d2760e28ea0cf244607b4a71b4e7c6c1361b83140249d5d82"
+      "fingerprint": "607c0577c0e7c53d2760e28ea0cf244607b4a71b4e7c6c1361b83140249d5d82",
+      "retired": true
+    },
+    "prompt.egypt.source-and-gap": {
+      "lessonId": "lesson.egypt.nile-state",
+      "fingerprint": "ba0b55a530ddc8f028a31c9cbd67de86ad9f7827a502985d5223d6287d14a973"
     },
     "prompt.farming.house-pattern": {
       "lessonId": "lesson.farming.settlements",
