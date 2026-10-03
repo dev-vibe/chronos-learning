@@ -52,7 +52,8 @@
     },
     "prompt.farming.house-pattern": {
       "lessonId": "lesson.farming.settlements",
-      "fingerprint": "80c2896d9d20969f71c674eb0f4d5ff121bd268d1086f92f78ec602a4f1c79fe"
+      "fingerprint": "80c2896d9d20969f71c674eb0f4d5ff121bd268d1086f92f78ec602a4f1c79fe",
+      "retired": true
     },
     "prompt.farming.multi.explain-independent": {
       "lessonId": "lesson.farming.multiple-origins",
@@ -75,6 +76,10 @@
     "prompt.farming.opportunity-and-cost": {
       "lessonId": "lesson.farming.settlements",
       "fingerprint": "c95bcdf26755e577b7cdf9ff513dca983206647485d3049b93558b60d2fa6415"
+    },
+    "prompt.farming.what-the-house-shows": {
+      "lessonId": "lesson.farming.settlements",
+      "fingerprint": "d99247607ad722ea87125a77e8781202cbf43f9f0007da785bde4fc724e276ab"
     },
     "prompt.humans.adna-encounter": {
       "lessonId": "lesson.humans.migrations-and-interbreeding",
