@@ -796,3 +796,12 @@ Changes made in review, before merge. The new prompt IDs were not yet published,
 | `signs-read` | Researchers can read the signs on Indus seals, because the weights and the signs belong to one system. | Comparing the weights helped researchers work out what the seal signs say. |
 
 **`prompt.indus.water-needs-many-hands`.** Hint part 2 was “remember what the lesson says about rulers and neighborhood groups”: that is the model answer, and the revised lesson no longer mentions neighborhood groups. Now: “For part 2, look back at ‘Who organized the cities?’”
+
+### 2026-10-03 — written prompt reworded positively (before merge)
+
+Owner feedback on PR #74: the “name one thing it does not tell us” part is a negatively posed question. Part 2 now asks the limit as an open question. `prompt.indus.water-needs-many-hands` is not yet published, so it keeps its ID and the fingerprints were regenerated from `main`.
+
+| | Before | After |
+| --- | --- | --- |
+| Question | “Choose one: the drains of Mohenjo-daro or the reservoirs of Dholavira. (1) Why could one family not have built it and kept it working alone? (2) Name one thing we still don’t know about who was in charge of the work.” | “Choose one: the drains of Mohenjo-daro or the reservoirs of Dholavira. (1) Why did it take many people, not just one family, to build it and keep it working? (2) Researchers still debate who was in charge of work like this. What is one idea they have?” |
+| Hint | “For part 1, think about what had to keep happening after the drain or reservoir was built. For part 2, look back at “Who organized the cities?”” | “For part 1, think about what had to keep happening after the drain or reservoir was built. For part 2, look back at “Who organized the cities?”” |

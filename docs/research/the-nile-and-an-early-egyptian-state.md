@@ -748,3 +748,12 @@ Changes made in review, before merge; fingerprints regenerated from `main`. The 
 | `royal-message` (best) | The Palette shows Narmer as a king who commands force and rules over different parts of Egypt. | The Palette presents Narmer as a strong king who rules different parts of Egypt. |
 | `everyone-agreed` | People all along the Nile agreed that Narmer should be their king. | People along the Nile were glad to accept Narmer as their king. |
 | `daily-grinding-board` | Farmers used the Palette every day to grind eye paint. | Farmers used the Palette as an ordinary tool for grinding eye paint. |
+
+### 2026-10-03 — written prompt reworded positively (before merge)
+
+Owner feedback on PR #74: the “name one thing it does not tell us” part is a negatively posed question. Part 2 now asks the limit as an open question. `prompt.egypt.source-and-gap` is not yet published, so it keeps its ID and the fingerprints were regenerated from `main`.
+
+| | Before | After |
+| --- | --- | --- |
+| Question | “Choose one: the Nile river, the Narmer Palette, or the small labels from the Abydos tomb. (1) What did it help early Egyptian rulers do? (2) Name one thing it does not tell us.” | “Choose one: the Nile river, the Narmer Palette, or the small labels from the Abydos tomb. (1) What did it help early Egyptian rulers do? (2) What is one question about it that historians are still trying to answer?” |
+| Hint | “Look back at “The Nile corridor,” “What the Palette can prove” or “How administration worked,” whichever matches your choice.” | “Look back at “The Nile corridor,” “What the Palette can prove” or “How administration worked,” whichever matches your choice.” |

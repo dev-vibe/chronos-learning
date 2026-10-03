@@ -980,3 +980,12 @@ Changes made in review, before merge; fingerprints regenerated from `main`.
 | Wrong | `copied-pyramid-idea`: Caral’s builders copied the idea of pyramids from Egypt, which built them at the same time. `only-a-village`: Without pottery, Caral was a large village rather than a real city. `peaceful-capital`: No fortifications were found, so Caral was a peaceful empire ruling its neighbors. Feedback as in the draft. |
 
 Support map: best, “Coast and valley together” (`module.caral.geography`, `claim.caral.cotton-fish-exchange`, `claim.caral.fisher-farmer-exchange`) and “How the monuments were built”; the wrong options as in the draft.
+
+### 2026-10-03 — written prompt reworded positively (before merge)
+
+Owner feedback on PR #74: the “name one thing it does not tell us” part is a negatively posed question. Part 2 now asks the limit as an open question. `prompt.caral.one-clue-and-gap` is not yet published, so it keeps its ID and the fingerprints were regenerated from `main`.
+
+| | Before | After |
+| --- | --- | --- |
+| Question | “Choose one: the sunken plaza, the cotton–fish exchange, or the missing pottery. (1) What does it tell us about life at Caral? (2) Name one thing it does not tell us.” | “Choose one: the sunken plaza, the cotton–fish exchange, or the missing pottery. (1) What does it tell us about life at Caral? (2) What is one question about the people of Caral that researchers are still trying to answer?” |
+| Hint | “Look back at “A sunken plaza and a platform mound,” “Coast and valley together,” or “How the monuments were built,” whichever matches your choice.” | “Look back at “A sunken plaza and a platform mound,” “Coast and valley together,” or “How the monuments were built,” whichever matches your choice.” |

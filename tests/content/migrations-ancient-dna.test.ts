@@ -11,7 +11,7 @@ describe('Migrations, Encounters, and Ancient DNA content', () => {
       title: 'Migrations, Encounters, and Ancient DNA',
       heroMediaId: 'media.humans.migrations-hero-map',
       mediaIds: expect.arrayContaining(['media.humans.migrations-hero-map', 'media.humans.adna-clean-room']),
-      promptIds: ['prompt.humans.long-segments-inference', 'prompt.humans.adna-evidence-and-limit'],
+      promptIds: ['prompt.humans.long-segments-inference', 'prompt.humans.adna-encounter'],
     });
     expect(lesson?.sections).toHaveLength(6);
     expect(lesson?.sections.flatMap((section) => section.modules).every((module) => LessonModuleSchema.safeParse(module).success)).toBe(true);

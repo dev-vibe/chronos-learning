@@ -99,7 +99,7 @@ it('publishes World History lessons only in authored journey order', () => {
   expect(chronosContent.lessons.find((lesson) => lesson.id === 'lesson.humans.homo-sapiens-origins')).toMatchObject({
     status: 'published',
     heroMediaId: 'media.humans.jebel-irhoud-landscape-reconstruction',
-    promptIds: ['prompt.humans.best-supported-conclusion', 'prompt.humans.evidence-and-limit'],
+    promptIds: ['prompt.humans.best-supported-conclusion', 'prompt.humans.face-and-braincase'],
     sectionIdsRequired: [
       'section.humans.skull-in-the-wrong-place',
       'section.humans.what-counts-as-us',

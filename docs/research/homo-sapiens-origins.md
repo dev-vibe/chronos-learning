@@ -635,3 +635,18 @@ Part of the assessment audit that followed the Indus review (prompt readability 
 **What learners will see.** Nothing is re-asked. Learners see the new hint, and after a wrong pick the new feedback, the next time they open the prompt. Finished lessons and parent reviews are unaffected.
 
 Owner approval: pending.
+
+## Prompt revision (positive wording)
+
+### 2026-10-03 — written prompt replaced: limit asked as an open question
+
+Part of PR #74 (assessment audit). Owner feedback: the “name one thing it does not tell us” pattern is a negatively posed question, and a 12-year-old has to work out what is missing before they can think about it. Same teaching job (what the evidence shows and what it leaves open), same kind, required flag and minimum length. `prompt.humans.evidence-and-limit` is retired in `content/published-prompt-fingerprints.json`; the new ID is `prompt.humans.face-and-braincase`. `tests/content/validation.test.ts` named the old ID; it now names the new one.
+
+| | Old | New |
+| --- | --- | --- |
+| Question | “The Jebel Irhoud fossils have a face much like ours but a long, low braincase. What does that mix suggest about how our species’ features appeared? Name one thing this evidence cannot tell us.” | “The Jebel Irhoud fossils have a face much like ours but a long, low braincase. (1) What does that mix suggest about how our species’ features appeared? (2) What would researchers want to find next to learn more, and where would they look?” |
+| Hint | “Compare the face with the back of the skull. Then consider how much a few fossils from one site can tell us.” | “Compare the face with the back of the skull. For part 2, look back at the end of “Read the skull” and at “Connected, not sealed off.”” |
+
+The explanation (shown to the parent on Review) now describes a strong part 2 as a question or next step the lesson supports, not a list of limits. **What learners will see:** finished, waiting and passed lessons stay as they are; a learner still working through the lesson, or one sent back, answers the new required prompt before finishing.
+
+Owner approval: pending.

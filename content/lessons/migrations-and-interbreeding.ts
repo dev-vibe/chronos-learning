@@ -411,12 +411,12 @@ export const migrationsAncientDnaPrompts: UnderstandingPrompt[] = [
     ],
   },
   {
-    id: 'prompt.humans.adna-evidence-and-limit',
+    id: 'prompt.humans.adna-encounter',
     lessonId: 'lesson.humans.migrations-and-interbreeding',
     kind: 'concise-explanation',
-    question: 'Use one example to explain what ancient DNA reveals about an encounter. Then name one thing DNA cannot tell us by itself.',
-    hint: 'Choose one example from the lesson, such as Oase 1, the people at Zlatý kůň and Ranis, or the finger bone from Denisova Cave. For the limit, look back at “What ancient DNA can and cannot tell us.”',
-    explanation: 'A strong answer can use Oase 1, the shared Neanderthal encounter, or Denisovan-related ancestry. Limits include exact routes, language, culture, motives, identity, and people whose DNA has not survived.',
+    question: 'Choose one example from the lesson. (1) What does ancient DNA reveal about an encounter between groups? (2) What else would you want to know about the people involved, and what kind of evidence might help?',
+    hint: 'Choose one example from the lesson, such as Oase 1, the people at Zlatý kůň and Ranis, or the finger bone from Denisova Cave. For part 2, look back at “What ancient DNA can and cannot tell us”: what do fossils and archaeology add?',
+    explanation: 'A strong answer can use Oase 1, the shared Neanderthal encounter, or Denisovan-related ancestry. For part 2, it asks about something DNA leaves to other evidence, such as their language, way of life, names or exact routes, and points to fossils, tools or other archaeology.',
     required: true,
     minimumResponseLength: 30,
   },
@@ -623,7 +623,7 @@ Some groups kept moving east. Reaching Sahul would require another kind of movem
         {
           id: 'module.humans.prompt-adna-limit',
           type: 'prompt',
-          promptId: 'prompt.humans.adna-evidence-and-limit',
+          promptId: 'prompt.humans.adna-encounter',
           claimIds: [],
           sourceIds: [],
         },
@@ -638,7 +638,7 @@ Some groups kept moving east. Reaching Sahul would require another kind of movem
     'media.humans.inherited-segments-diagram',
     'media.humans.neanderthals-card',
   ],
-  promptIds: ['prompt.humans.long-segments-inference', 'prompt.humans.adna-evidence-and-limit'],
+  promptIds: ['prompt.humans.long-segments-inference', 'prompt.humans.adna-encounter'],
 };
 
 export const migrationsAncientDnaCards: KnowledgeCard[] = [

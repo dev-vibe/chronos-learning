@@ -29,7 +29,7 @@ describe('parent review submissions', () => {
     const gateway = new LocalPreviewGateway();
     const lessonId = 'lesson.humans.migrations-and-interbreeding';
     await expect(gateway.submit(lessonId)).rejects.toThrow('required prompt attempts missing');
-    await gateway.saveAttempt(lessonId, 'prompt.humans.adna-evidence-and-limit', 'DNA can show biological relatives, but it cannot tell us a person’s language.');
+    await gateway.saveAttempt(lessonId, 'prompt.humans.adna-encounter', 'DNA can show biological relatives, but it cannot tell us a person’s language.');
     await gateway.saveAttempt(lessonId, 'prompt.humans.long-segments-inference', 'option.humans.long-segments-recent');
     await expect(gateway.submit(lessonId)).rejects.toThrow('required prompt attempts missing');
     await gateway.saveAttempt(lessonId, 'prompt.humans.long-segments-inference', 'option.humans.recent-neanderthal-ancestor');

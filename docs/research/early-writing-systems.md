@@ -317,3 +317,12 @@ Changes made in review, before merge; fingerprints regenerated from `main`.
 | `message-to-future` | It was made so people in the future would know about life in Uruk. | “When memory is not enough”; “What records show — and leave out” (“made for an office, not for us”; most were thrown away) |
 
 The stem adds the rolled seal; the hint now asks what job the marks were for instead of pointing at what the tablet “never says”. `tests/learn/multi-lesson.test.tsx` still clicked the retired option label and named the retired written question, so `npm test` failed (it is outside `test:domain`); it now uses the new ones.
+
+### 2026-10-03 — written prompt reworded positively (before merge)
+
+Owner feedback on PR #74: the “name one thing it does not tell us” part is a negatively posed question. Part 2 now asks the limit as an open question. `prompt.writing.records-and-gaps` is not yet published, so it keeps its ID and the fingerprints were regenerated from `main`.
+
+| | Before | After |
+| --- | --- | --- |
+| Question | “(1) Name one job a clay record could do that memory alone could not. (2) Name one thing the surviving tablets still don’t tell us.” | “(1) Name one job a clay record could do that memory alone could not. (2) Imagine you could ask one of the workers counted on these tablets a question. What would you ask?” |
+| Hint | “Look back at “Count, identify, and check” for part 1 and at “A record is not yet a sentence” for part 2.” | “Look back at “Count, identify, and check” for part 1 and at “What records show — and leave out” for part 2: what would you want to hear in the workers’ own words?” |

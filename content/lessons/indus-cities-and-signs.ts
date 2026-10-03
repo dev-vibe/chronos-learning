@@ -63,9 +63,9 @@ export const indusPrompts: UnderstandingPrompt[] = [
   },
   {
     id: 'prompt.indus.water-needs-many-hands', lessonId: 'lesson.indus.cities-and-signs', kind: 'concise-explanation', required: true, evidenceModuleIds: ['module.indus.reservoir-evidence'], minimumResponseLength: 20,
-    question: 'Choose one: the drains of Mohenjo-daro or the reservoirs of Dholavira. (1) Why could one family not have built it and kept it working alone? (2) Name one thing we still don’t know about who was in charge of the work.',
+    question: 'Choose one: the drains of Mohenjo-daro or the reservoirs of Dholavira. (1) Why did it take many people, not just one family, to build it and keep it working? (2) Researchers still debate who was in charge of work like this. What is one idea they have?',
     hint: 'For part 1, think about what had to keep happening after the drain or reservoir was built. For part 2, look back at “Who organized the cities?”',
-    explanation: 'A strong answer covers both parts. (1) It picks one system and shows that it reached beyond a single household or needed ongoing work. Mohenjo-daro: a household drain joined a street drain; the settling traps had to be emptied again and again, and excavators read the heaps of greenish-gray sand beside such traps as the leftovers; old drains were reused by raising their walls with more bricks. Dholavira: gathering seasonal water in reservoirs took planned construction and upkeep. (2) It names something still unknown, such as whether a ruler, a neighborhood group or another institution directed the work.',
+    explanation: 'A strong answer covers both parts. (1) It picks one system and shows that it reached beyond a single household or needed ongoing work. Mohenjo-daro: a household drain joined a street drain; the settling traps had to be emptied again and again, and excavators read the heaps of greenish-gray sand beside such traps as the leftovers; old drains were reused by raising their walls with more bricks. Dholavira: gathering seasonal water in reservoirs took planned construction and upkeep. (2) It gives one idea from the lesson: groups cooperating without rulers (Adam Green’s reading), or leaders in a ranked society, which some see in Dholavira’s fortified citadel, Middle Town and Lower Town. A strong answer may add that the evidence has not settled which is right.',
   },
 ];
 

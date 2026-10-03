@@ -601,13 +601,13 @@ export const homoSapiensOriginsPrompts: UnderstandingPrompt[] = [
     ],
   },
   {
-    id: 'prompt.humans.evidence-and-limit',
+    id: 'prompt.humans.face-and-braincase',
     lessonId: 'lesson.humans.homo-sapiens-origins',
     kind: 'concise-explanation',
-    hint: 'Compare the face with the back of the skull. Then consider how much a few fossils from one site can tell us.',
+    hint: 'Compare the face with the back of the skull. For part 2, look back at the end of “Read the skull” and at “Connected, not sealed off.”',
     evidenceModuleIds: ['module.humans.irhoud-cranium'],
-    question: 'The Jebel Irhoud fossils have a face much like ours but a long, low braincase. What does that mix suggest about how our species’ features appeared? Name one thing this evidence cannot tell us.',
-    explanation: 'The face looks much like ours while the braincase is long and low, which suggests these features appeared at different times rather than all at once. A few fossils from one site cannot tell us exactly where all the changes happened, or describe every population in Africa.',
+    question: 'The Jebel Irhoud fossils have a face much like ours but a long, low braincase. (1) What does that mix suggest about how our species’ features appeared? (2) What would researchers want to find next to learn more, and where would they look?',
+    explanation: 'The face looks much like ours while the braincase is long and low, which suggests these features appeared at different times rather than all at once. For part 2, a strong answer asks for more fossils, from other times or other parts of Africa (for example West and Central Africa, which have barely been studied), to learn where and when the other changes happened. One site cannot settle that on its own.',
     required: true,
     minimumResponseLength: 20,
   },
@@ -935,7 +935,7 @@ export const homoSapiensOriginsLesson: Lesson = {
         {
           id: 'module.humans.prompt-evidence-and-limit',
           type: 'prompt',
-          promptId: 'prompt.humans.evidence-and-limit',
+          promptId: 'prompt.humans.face-and-braincase',
           claimIds: [],
           sourceIds: [],
         },
@@ -951,7 +951,7 @@ export const homoSapiensOriginsLesson: Lesson = {
     'media.humans.africa-evidence-map',
     'media.humans.africa-origins-card',
   ],
-  promptIds: ['prompt.humans.best-supported-conclusion', 'prompt.humans.evidence-and-limit'],
+  promptIds: ['prompt.humans.best-supported-conclusion', 'prompt.humans.face-and-braincase'],
 };
 
 export const homoSapiensOriginsCards: KnowledgeCard[] = [

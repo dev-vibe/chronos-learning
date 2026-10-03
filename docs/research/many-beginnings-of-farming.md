@@ -899,3 +899,12 @@ Changes made in review, before merge; fingerprints regenerated from `main`.
 | `only-grain` | Only grain crops count as farming, so the gardens at Kuk do not belong in this story. | Growing taro and bananas is gardening, not farming, so Kuk does not count. |
 
 `option.farming.multi.villages-first` was an option ID of the retired prompt; the runbook says never reuse a retired ID, so it is renamed.
+
+### 2026-10-03 — written prompt reworded positively (before merge)
+
+Owner feedback on PR #74: the “name one thing it does not tell us” part is a negatively posed question. Part 2 now asks the limit as an open question. `prompt.farming.multi.one-region-evidence` is not yet published, so it keeps its ID and the fingerprints were regenerated from `main`.
+
+| | Before | After |
+| --- | --- | --- |
+| Question | “Choose one region: Southwest Asia, China, New Guinea, Africa, or the Americas. (1) Name one crop or clue that shows people there worked out farming with their own local plants. (2) Name one thing that crop or clue still does not tell us.” | “Choose one region: Southwest Asia, China, New Guinea, Africa, or the Americas. (1) Name one crop or clue that shows people there worked out farming with their own local plants. (2) What is one question about those early farmers that researchers are still trying to answer?” |
+| Hint | “Look back at “Several regions, different pathways” and “Different plants leave different clues.” Each clue answers one question and leaves another open.” | “Look back at “Several regions, different pathways” and “Different plants leave different clues.” Each clue answers one question and raises another.” |

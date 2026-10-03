@@ -25,7 +25,7 @@
     },
     "prompt.caral.one-clue-and-gap": {
       "lessonId": "lesson.caral.andean-urbanism",
-      "fingerprint": "9b328713df189820d9deba69847f9f06c9519ecbdb8b4095a6d90bb53ec81b2d"
+      "fingerprint": "668f1b728db1e851e026158f79553f0cf97c173c6446cb56cf63a013a6431ea3"
     },
     "prompt.caral.supported-model": {
       "lessonId": "lesson.caral.andean-urbanism",
@@ -48,7 +48,7 @@
     },
     "prompt.egypt.source-and-gap": {
       "lessonId": "lesson.egypt.nile-state",
-      "fingerprint": "ba0b55a530ddc8f028a31c9cbd67de86ad9f7827a502985d5223d6287d14a973"
+      "fingerprint": "4157b639d9db3d4df0b6ee9c596ffb6f54b192255a9f0bd5f502e2d707828ff9"
     },
     "prompt.farming.house-pattern": {
       "lessonId": "lesson.farming.settlements",
@@ -61,7 +61,7 @@
     },
     "prompt.farming.multi.one-region-evidence": {
       "lessonId": "lesson.farming.multiple-origins",
-      "fingerprint": "136c1e8ccd53e03899148e9896a81d2a00829b84d0bc6ed6b1723ce36f7a9d0f"
+      "fingerprint": "4944fff9face4b9fc5a6c55a2d57950a4997331975ba26a5822604de0e82b0af"
     },
     "prompt.farming.multi.what-evidence-supports": {
       "lessonId": "lesson.farming.multiple-origins",
@@ -76,9 +76,14 @@
       "lessonId": "lesson.farming.settlements",
       "fingerprint": "c95bcdf26755e577b7cdf9ff513dca983206647485d3049b93558b60d2fa6415"
     },
+    "prompt.humans.adna-encounter": {
+      "lessonId": "lesson.humans.migrations-and-interbreeding",
+      "fingerprint": "ffdc13b3b09125d39f49dddf88877be8c0d353aecb2c71f109fe799fc8280335"
+    },
     "prompt.humans.adna-evidence-and-limit": {
       "lessonId": "lesson.humans.migrations-and-interbreeding",
-      "fingerprint": "6c7996d512607d209d0805a42d0a5f45e7ba38f0f2742485536662381067dbc6"
+      "fingerprint": "6c7996d512607d209d0805a42d0a5f45e7ba38f0f2742485536662381067dbc6",
+      "retired": true
     },
     "prompt.humans.best-supported-conclusion": {
       "lessonId": "lesson.humans.homo-sapiens-origins",
@@ -86,15 +91,25 @@
     },
     "prompt.humans.evidence-and-limit": {
       "lessonId": "lesson.humans.homo-sapiens-origins",
-      "fingerprint": "e6e15235aeb5bbdc1f002475d0c72bac15f1ea44dade1328c31a48c28bc91c07"
+      "fingerprint": "e6e15235aeb5bbdc1f002475d0c72bac15f1ea44dade1328c31a48c28bc91c07",
+      "retired": true
+    },
+    "prompt.humans.face-and-braincase": {
+      "lessonId": "lesson.humans.homo-sapiens-origins",
+      "fingerprint": "c709f0f4240bcb9e17b6703dedf8494049912663624255cf43d9d75b49b06957"
     },
     "prompt.humans.long-segments-inference": {
       "lessonId": "lesson.humans.migrations-and-interbreeding",
       "fingerprint": "39bfcbee03d2f4c5e0b5a9e17166c4df40bd5e23e0cf1fd4822d0e05ada1744e"
     },
+    "prompt.humans.sahul.planned-voyages": {
+      "lessonId": "lesson.humans.sahul-crossing",
+      "fingerprint": "8bafa2a1997db2f5bb79d3dbafa43d861894560bb44b7e5387fd6c2e30bc89fb"
+    },
     "prompt.humans.sahul.planning-and-limit": {
       "lessonId": "lesson.humans.sahul-crossing",
-      "fingerprint": "e569d726e8d1db510eb82a9172cc3d43a7877f57c00aeecb466e6d62549ffdd6"
+      "fingerprint": "e569d726e8d1db510eb82a9172cc3d43a7877f57c00aeecb466e6d62549ffdd6",
+      "retired": true
     },
     "prompt.humans.sahul.sand-date-supports": {
       "lessonId": "lesson.humans.sahul-crossing",
@@ -112,7 +127,7 @@
     },
     "prompt.indus.water-needs-many-hands": {
       "lessonId": "lesson.indus.cities-and-signs",
-      "fingerprint": "2449d190f9022628d2369691ea0caf25491f494aa4c7b358b28f5fad0c9ef24f"
+      "fingerprint": "c0dfe85f1ca6172f2e7ba2f629d183a591abd7b9f71735cd4d78b85665a1904e"
     },
     "prompt.indus.what-weights-show": {
       "lessonId": "lesson.indus.cities-and-signs",
@@ -154,7 +169,7 @@
     },
     "prompt.writing.records-and-gaps": {
       "lessonId": "lesson.writing.early-systems",
-      "fingerprint": "a2b8b175fc642ce526c5ccc2c01694b64ab3dccf0cc8e65dfbdcef4b6c3b38c7"
+      "fingerprint": "97e4525aa57b7dc9c310d13c82f4f0ecbc9fae1c9be0bb14b14ed8fab3e85471"
     },
     "prompt.writing.what-tablet-shows": {
       "lessonId": "lesson.writing.early-systems",
