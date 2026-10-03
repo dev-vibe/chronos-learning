@@ -847,3 +847,38 @@ Whole lesson: story spine `none`; memorable moments `one` (the wheat ear that wi
 - Memorable moments: the ancient ditches in the walls of the new drains; the wild wheat ear that falls apart and the smooth and rough scars; teosinte’s tiny 10–12-kernel ear behind maize; pearl millet imprints in Mali pottery.
 - Added claims: `claim.farming.multi.kuk-drains-find`, `kuk-mounds-ditches`, `kuk-starch-10000`, `teosinte-ancestor`, `balsas-xihuatoxtla`, `balsas-seasonal`, `millet-pottery-imprints`; sources `source.farming.golson-2017-kuk-intro`, `unesco-kuk`, `nsf-2009-balsas-maize`, `smithsonian-2009-balsas`, `uw-2015-teosinte`.
 - Owner decisions: none requested. Carlin Aylsworth reviewed the branch preview and approved the revision (“perfect approved”), 2026-09-24.
+
+## Prompt revision
+
+### 2026-10-03 — both understanding prompts replaced after an age-fit audit of every lesson's prompts
+
+Branch `revise/many-beginnings-prompts`. Part of the assessment audit that followed the Indus review (the prompt readability check in `docs/content/prompt-revision-runbook.md`, PR #68). Same teaching jobs, same kinds, same required flags: prompt 1 checks the multi-region conclusion, prompt 2 asks for one region's evidence and a limit. `prompt.farming.multi.what-evidence-supports` and `prompt.farming.multi.explain-independent` are retired in `content/published-prompt-fingerprints.json`.
+
+**Why they changed.** Audit verdicts: prompt 1 had no hint and no feedback on wrong options, and its stem named five regions without giving the learner the clue to reason from. Prompt 2 asked what the clues “cannot prove by themselves”, an abstract phrasing a 12–15-year-old has to decode before answering, and packed an explanation and a limit into one sentence.
+
+#### `prompt.farming.multi.what-evidence-supports` → `prompt.farming.multi.what-regions-show`
+
+| | Old | New |
+| --- | --- | --- |
+| Question | “Looking across Southwest Asia, China, New Guinea, Africa, and the Americas, which conclusion is best supported?” | “In Southwest Asia, farmers worked with wheat and barley. At Kuk in New Guinea, gardeners worked with bananas, taro, and yams. Which statement does this pattern best support?” |
+| Hint | none | “Ask where each community got its plants, and what that suggests about where its ideas came from.” |
+| Best option | `option.farming.multi.several-beginnings`: Farming began independently in several regions with different crops. | `option.farming.multi.own-local-plants`: People in different places began farming on their own, with plants that grew near them. |
+| Wrong options | one beginning copied everywhere; villages always came first; evidence on only one continent. No feedback. | `copied-from-one-place`; `villages-first` (“Every community … had first built a permanent village”); `only-grain` (“Only grain crops count as farming”). Each has feedback that points back to a section and asks a question. |
+
+Support map: best answer, “Farming did not begin once” (`module.farming.multi.opening`, Kuk) and “Different regions, different crops” (`module.farming.multi.regional-pattern`); `copied-from-one-place`, the opening; `villages-first`, “Farming was not one lifestyle” (`module.farming.multi.many-lifeways`, Xihuatoxtla); `only-grain`, “Different plants leave different clues” (`module.farming.multi.kuk-close-read`). Old distractor “evidence on only one continent” was dropped because nothing in the lesson raises it, so a learner had no section to reread.
+
+#### `prompt.farming.multi.explain-independent` → `prompt.farming.multi.one-region-evidence`
+
+| | Old | New |
+| --- | --- | --- |
+| Question | “Choose one region. How do its crops or clues support an independent beginning of farming, and what can those clues not prove by themselves?” | “Choose one region: Southwest Asia, China, New Guinea, Africa, or the Americas. (1) Name one crop or clue from there that shows people farming. (2) Name one thing that crop or clue still does not tell us.” |
+| Hint | none | “Look back at ‘Different regions, different crops’ and ‘Different plants leave different clues.’ Each clue answers one question and leaves another open.” |
+| Required / minimum length | yes / 30 | yes / 30 |
+
+Explanation (shown to the parent on Review as “What a strong answer covers”): names a specific crop or clue from one region, then something it leaves open (wild or cultivated, who did the work, when, why, or whether people stayed in one place). Support map: part 1, “Different regions, different crops” and the wheat evidence; part 2, “Different plants leave different clues” (starch limit, ditch limit) and “Farming was not one lifestyle”.
+
+`npm run content:fingerprints`, `npm run validate:content`, `npm run test:domain` and `npm run typecheck:chronos` passed. `tests/lesson/publication-plan.test.ts` named the old prompt IDs; it now names the new ones. The 2026-08-16 publication migration still names the old IDs; it is history and is not edited.
+
+**What learners will see.** Finished lessons, and lessons waiting for or passed by a parent, stay as they are. A learner still working through the lesson, or one whose lesson was sent back, must answer both new required prompts before finishing. Parents see the written question as the learner saw it; an old submission is marked as changed.
+
+Owner approval: pending.

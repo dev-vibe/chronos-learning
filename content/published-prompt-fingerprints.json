@@ -31,11 +31,21 @@
     },
     "prompt.farming.multi.explain-independent": {
       "lessonId": "lesson.farming.multiple-origins",
-      "fingerprint": "7b75dbad13479619a7fb9a8c63b5f2770ce7fcc8ec0c5bdaadc93c33fa70b15b"
+      "fingerprint": "7b75dbad13479619a7fb9a8c63b5f2770ce7fcc8ec0c5bdaadc93c33fa70b15b",
+      "retired": true
+    },
+    "prompt.farming.multi.one-region-evidence": {
+      "lessonId": "lesson.farming.multiple-origins",
+      "fingerprint": "dac2aba3ac3f02159ff57bebd688b16b008fa9b238f2badb3ba3ce7c3206d8c3"
     },
     "prompt.farming.multi.what-evidence-supports": {
       "lessonId": "lesson.farming.multiple-origins",
-      "fingerprint": "dc8232b447f40cd0fe999f61ace8ea7598072146a730bdbf9ea3a74c35c1df8f"
+      "fingerprint": "dc8232b447f40cd0fe999f61ace8ea7598072146a730bdbf9ea3a74c35c1df8f",
+      "retired": true
+    },
+    "prompt.farming.multi.what-regions-show": {
+      "lessonId": "lesson.farming.multiple-origins",
+      "fingerprint": "cbdf8b35e11d8b704dfe665a0b61e84d8ff1b3f0d30a0088b7fb710fbf3de2c9"
     },
     "prompt.farming.opportunity-and-cost": {
       "lessonId": "lesson.farming.settlements",
