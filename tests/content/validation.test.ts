@@ -113,7 +113,7 @@ it('publishes World History lessons only in authored journey order', () => {
   expect(chronosContent.lessons.find((lesson) => lesson.id === 'lesson.farming.settlements')).toMatchObject({
     status: 'published',
     heroMediaId: 'media.farming.catalhoyuk-rooftops',
-    promptIds: ['prompt.farming.house-pattern', 'prompt.farming.opportunity-and-cost'],
+    promptIds: ['prompt.farming.what-the-house-shows', 'prompt.farming.opportunity-and-cost'],
     sectionIdsRequired: [
       'section.farming.enter-from-roof',
       'section.farming.slow-change',

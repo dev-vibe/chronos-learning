@@ -91,6 +91,7 @@ This increment designs one bounded Southwest Asian settlement case and its media
 | `source.farming.kuijt-goring-morris-2002` | [Kuijt and Goring-Morris, “Foraging, farming, and social complexity…,” *Journal of World Prehistory* 16 (2002)](https://doi.org/10.1023/A:1022973114090) | Peer-reviewed southern Levant synthesis | Gradual, regionally varied PPN social complexity; farming and settlement not a single switch | Older synthesis; southern Levant focus | Research orientation only | Reviewed 2026-07-21 |
 | `source.farming.bar-yosef-1986-jericho` | [Bar-Yosef, “The Walls of Jericho,” *Current Anthropology* 27 (1986)](https://doi.org/10.1086/203413) | Scholarly reinterpretation of Kenyon’s PPNA wall/tower | Tower/wall function is contested (defense is not the only or best reading) | Debate piece; use only to block fortress-first storytelling | Research citation | Reviewed 2026-07-21 |
 | `source.farming.nigro-2016-tell-es-sultan` | [Nigro, “Tell es-Sultan 2015,” *Near Eastern Archaeology* 79 (2016)](https://doi.org/10.5615/neareastarch.79.1.0004) | Current expedition synthesis | PPNA tower as major communal labor; early agricultural settlement at a spring; chronological outline | Interpretive claims about surplus silos/defense need cautious wording | Research citation | Reviewed 2026-07-21 |
+| `source.farming.britannica-aurochs` | [Encyclopaedia Britannica, “aurochs”](https://www.britannica.com/animal/aurochs) | Reference work | What an aurochs was (extinct wild ox from which cattle are probably descended) and its size (about 1.8 m at the shoulder) | General reference for a definition; the aurochs article treats Europe, and Anatolian animals are not described there | Reference citation; text not redistributed | Added in the voice revision, accessed 2026-10-03 |
 
 Research stopped when the gradual-adoption claim, Çatalhöyük storage/settlement mechanism, health-cost caution, and village-vs-city distinction were independently supported; remaining gaps (exact population counts, every household’s kinship, tower function) are teachable uncertainties rather than missing pillars.
 
@@ -108,6 +109,15 @@ Research stopped when the gradual-adoption claim, Çatalhöyük storage/settleme
 | `claim.farming.no-palace-equality`: Similar house sizes and lack of palaces do not prove perfect equality; private storage and social mechanisms already manage tension | Interpretation | Moderate | Bogaard 2009; UNESCO egalitarianism claim | Wealth differences can be subtle; burial under floors is not a simple status scoreboard | Qualify “egalitarian” popular claims | Editorial review required |
 | `claim.farming.jericho-labor`: Earlier Levantine settlements such as Tell es-Sultan show large communal constructions (tower/wall) whose exact purpose is debated | Observation/contested interpretation | Moderate | Nigro 2016; Bar-Yosef 1986 | Defense, ritual, flood control, and community symbol remain live options | Optional supporting comparison only | Editorial review required |
 | `claim.farming.case-not-global`: This lesson is a Southwest Asian case and does not establish a single worldwide origin of farming | Interpretation | High | Curriculum roster; Kuijt & Goring-Morris orientation | Popular “Fertile Crescent invented farming for humanity” story remains common | Explicit scope sentence early | Editorial review required |
+| `claim.farming.roof-ladder-entry`: At Çatalhöyük people moved around on the roofs and entered each house down a wooden ladder through an opening in the ceiling | Observation | High | CRP Architecture; UNESCO | Reconstruction of ladders is inferred from openings; wood does not survive | Opening; roof opening hotspot; knowledge item | Added in the voice revision |
+| `claim.farming.neighbors-via-roof`: The journal summary of Bogaard et al. 2009 pictures neighbors as always in and out of each others’ houses, in this case via the roof (an assumption in the summary, not a count) | Interpretation | Moderate | Bogaard 2009 (journal summary) | The summary says “it can be assumed”; no measure of visiting exists | Opening, quoted and attributed to “a summary of one study” | Added in the voice revision |
+| `claim.farming.boncuklu-ancestral`: Baird et al. argue that Boncuklu’s community, which combined some cultivation and sheep and goat herding with foraging for several centuries, was ancestral to Çatalhöyük East, where from 7100 BCE a modest involvement had become a major commitment to mixed farming; adoption had significant long-term social consequences for the adopting community | Interpretation | Moderate | Baird 2018 (abstract) | “Material continuities suggest” the ancestry; the abstract states the consequences for Boncuklu, not for every community | “No single day changed everything”, with the argument attributed to Baird’s team | Added in the voice revision |
+| `claim.farming.rebuilt-mounds`: Houses were continually infilled, often burnt and rebuilt, and the settlement’s layers form two mounds rising up to 20 meters above the Konya plain | Observation | High | CRP Architecture; UNESCO | UNESCO’s “two tells” includes the West Mound; the East Mound is the taller; UNESCO’s Neolithic dates (7400–6200 BCE) differ from the 7100–5950 BCE used here and are not used | Knowledge item “Homes piled up” | Added in the voice revision |
+| `claim.farming.bin-contents`: Families stored grain, fruit, nuts and condiments in bins deep inside the house, and displayed the heads and horns of aurochs near the entrance | Observation | High | Bogaard 2009 (journal summary) | One site’s sample; the summary, not the full article, was read | Side-room and entrance hotspots; “Private stores and shared occasions” | Added in the voice revision |
+| `claim.farming.aurochs`: The aurochs was an extinct wild ox from which cattle are probably descended, about 1.8 m (6 ft) high at the shoulder | Observation | High | Britannica | Britannica describes the animal in Europe; size varied by sex and region | Entrance-display hotspot (defines the term) | Added in the voice revision |
+| `claim.farming.full-larder`: The journal summary says the aurochs displays, besides a religious overtone, remembered feasts, “episodes of sharing that mitigated the provocations of a full larder” | Interpretation | Moderate | Bogaard 2009 (journal summary) | Religious and social readings overlap; frequency of feasts unknown | “Private stores and shared occasions”, quoted and attributed | Added in the voice revision |
+| `claim.farming.density-and-workload`: Larsen et al. found elevated exposure to disease and labor demands, tied to dependence on domesticated plant carbohydrates, growing population size and density fueled by elevated fertility, and increasing stresses from workload; Milner cautions against a one-direction decline reading | Interpretation | Moderate | Larsen 2019 (abstract); Milner 2019 | Abstract read, full text not read (see Voice revision); osteological paradox applies | Closing paragraph of “The bargain of staying” | Added in the voice revision |
+| `claim.farming.long-occupation`: Çatalhöyük East was occupied from about 7100 to 5950 BCE, a little over a thousand years | Observation | High | Larsen 2019 (abstract: 7100–5950 cal BCE); Bogaard 2017 | Dates are calibrated and approximate | Closing paragraph (“a little over a thousand years”) | Added in the voice revision |
 
 ## Content triage
 
@@ -288,6 +298,85 @@ Production prose, final generation/acquisition, media ingestion, corrective publ
 - [x] Revision 2 production content, final media, corrective migration, tests, and preview
 - [x] Structured learner walkthrough or documented reason deferred
 
+## Voice revision
+
+Runbook: `docs/content/lesson-voice-revision-runbook.md`. Branch: `revise/farming-settlements`. Started 2026-10-03. Status: **awaiting owner review**.
+
+### Audit of the published version
+
+| Section | What read flat |
+| --- | --- |
+| `section.farming.enter-from-roof` | Opened on an imagined walk (“Step onto a flat mudbrick roof”), then a general sentence (“Food, fuel, work, smoke, waste, and neighbors all had to fit that dense pattern”) where the source gives the wooden ladder through a ceiling opening, then an announced question (“How did storing food change life…?”), then a scope disclaimer as the last paragraph. |
+| `section.farming.slow-change` | Boncuklu and Pınarbaşı were named but not told: what Boncuklu’s people did, how long it lasted and the link to Çatalhöyük East (Baird’s “ancestral” argument) were all missing. Ended on a summary (“It was a long series of choices, skills, successes — and new dependencies”). |
+| `section.farming.wall-to-wall` | “Homes accumulated” is general where the sources give houses that were often burnt and rebuilt and mounds up to 20 m high. |
+| `section.farming.read-the-house` | Hotspots general (“animal heads and horns near more visible spots”); “aurochs” never named or explained; the entrance hotspot ended on a fragment (“— not every rule people followed”). |
+| `section.farming.private-and-shared` | Accurate and well limited, but it never gave the study’s own point (a full larder is a provocation, and the horns remember feasts that eased it). Its last line (“The bins survive; the conversations around them do not.”) works and is kept. |
+| `section.farming.bargain-of-staying` | A four-item list and nothing else: no story, health pressures in general words, and no ending. |
+| `section.farming.check-and-complete` | Prompt explanations accurate (see Prompts). |
+
+Whole lesson: story spine `none` (a sequence of topics); memorable moments `none` a 13-year-old would retell (the opening walk was imagined, not found); opening did not land (imagined scene plus announced question); ending did not land (a knowledge list).
+
+**Prompts.**
+
+| Prompt | Verdict | Finding |
+| --- | --- | --- |
+| `prompt.farming.house-pattern` | `replace` | Fails the Stage 12 option checks. The best option (124 characters) was the longest of four (the others ran 70 to 79), and the only one hedged (“some… some”); “every”, “exactly” and “exact” appeared only in wrong options. The fourth option (“the diagram records the exact people and actions of one feast”) tested the reconstruction label, not the house reading, and its feedback sent the learner to a different section. The stem’s “concentrated” and “linked to feasting”, and a closing “Which conclusion is best supported?”, are abstract for a 12-year-old. Same teaching job: read the bin-and-display pattern and go no further than it supports. Replaced by `prompt.farming.what-the-house-shows`. |
+| `prompt.farming.opportunity-and-cost` | `keep` | Written. Two plain tasks (an advantage and a problem, with one detail) in the lesson’s own words; hint (added 2026-10-03) gives the first step; a two-sentence answer is writable from the revised text (for example: food kept for later let a household plan ahead, but a full larder in a crowded settlement could cause tension with neighbors). The explanation stays accurate for the revised text. |
+
+**Card.** `card.place.catalhoyuk`: `refresh` (reveal text and facts; art `keep`). The reveal was an abstract sentence (“…to explain both the possibilities and pressures of staying in one place”) and the facts carried none of the lesson’s detail. Art stays the dedicated vertical settlement reconstruction, the most vivid image of the subject this lesson has (Stage 11); `depictionLabel` is unchanged and still true.
+
+### Story material
+
+- **Story spine:** food kept for later in a settlement with no streets. The lesson follows a household’s stored food from the roof ladder down to the bin in the side room, and asks what it meant to have a full larder when neighbors were a rooftop away. The ending calls back to the bins and horns.
+- **Memorable moments:** (1) Çatalhöyük had no streets: people crossed the roofs and climbed a wooden ladder through the ceiling, and a study’s summary pictures neighbors “always in and out of each others’ houses”; (2) foragers at Boncuklu spent centuries doing a little farming beside foraging, their neighbors at Pınarbaşı disregarded it, and Baird’s team argues Boncuklu’s community was ancestral to the much larger Çatalhöyük East by 7100 BCE; (3) “the provocations of a full larder”: bins of grain, fruit, nuts and condiments deep inside the house, aurochs horns near the door, and feasts that eased the tension; (4) houses burnt and rebuilt on the same ground until the layers made mounds up to 20 m high.
+- **Where the material came from:** the research note (Boncuklu/Pınarbaşı, the Bogaard pantry findings, the health caution) and re-reads of the registered sources: the Çatalhöyük Research Project Architecture page, the UNESCO listing, and the abstracts of Baird 2018 (Teesside repository copy), Bogaard 2009 (Cambridge page summary) and Larsen 2019 (two university repository copies). One targeted addition: Britannica’s “aurochs” entry, for the definition and size (new source).
+- **Legend used:** none.
+- **Evidence limits to know:** the full text of Bogaard 2009 (paywalled) and Larsen 2019 (the PubMed Central copy returned a challenge page and Europe PMC was rate-limited) was not read. The lesson therefore quotes only the journal summary of Bogaard and attributes it as “a summary of the study”, and takes the health findings only from Larsen’s abstract. Central support for the new claims still needs a close review of the full articles before anyone treats it as final.
+
+### Changes
+
+- Prose bodies in the opening and “No single day changed everything” rewritten; “Private stores and shared occasions” rewritten; the scene body and all four hotspots, and the “A neighborhood built wall to wall” knowledge items revised; a new closing prose module (`module.farming.bargain-closing`) added to “The bargain of staying” to carry the health findings and the ending; the card’s reveal and facts refreshed; `prompt.farming.house-pattern` replaced by `prompt.farming.what-the-house-shows`. Lesson, section, module (except the new one), claim, source, media and card IDs, section order, headings, media, captions and completion are unchanged. The existing `module.farming.bargain` knowledge module and the locator-map module are unchanged.
+- Module `claimIds` and `sourceIds` updated to cover what each module now says.
+- 9 claims and 1 source added: `roof-ladder-entry`, `neighbors-via-roof`, `boncuklu-ancestral`, `rebuilt-mounds`, `bin-contents`, `aurochs`, `full-larder`, `density-and-workload`, `long-occupation`; `source.farming.britannica-aurochs`.
+- Reading length (prose, knowledge and scene text, excluding the map): 631 → 998 words (+58%). Prose modules alone: 352 → 668. Growth is the Boncuklu story, the full-larder argument, the aurochs explanation and the closing paragraph; the announced question, the “Food, fuel, work, smoke, waste, and neighbors” line, the summary sentences and the opening scope disclaimer as a stand-alone paragraph were cut or folded in. Captions and the locator map were not changed.
+- **Images:** none added. The existing rooftop reconstruction, house diagram and locator map already carry the moments (1), (3) and the setting; no clearly licensed original photograph of the roofs, bins or aurochs horns was found in this pass.
+
+### Left out
+
+- Dental-cavity rates (10–13% of adult teeth), infections in up to a third of early remains, and the finding that later residents walked farther: they appear only in a university news release, not in a source I could read in full; not used.
+- Healed skull fractures and violence at Çatalhöyük: in the same news release; not needed and heavy for the age group.
+- “Replastered up to 450 times” (a figure I recalled): not found on the Architecture page or any source I read; not used.
+- UNESCO’s “18 levels of Neolithic occupation between 7400 and 6200 BC”: conflicts with the 7100–5950 BCE dates used here; not used.
+- The oven below the stairs and white plastered, painted walls (Architecture page): sourced but cut for length; burials beneath platforms (rejected in the first production).
+- The Antiquity summary’s “like a pueblo” comparison: a modern analogy the runbook says to avoid.
+- UNESCO’s “egalitarian ideals” wording: contested; the lesson keeps its qualification.
+
+### Stage 14B check on the changed sections
+
+| Question | Finding | Evidence and disposition |
+| --- | --- | --- |
+| Story | pass | Spine and four moments above. The opening starts on the roofs and ladder; the ending returns to the bins and horns; no section is a flat list. |
+| Evidence reasoning | revise (accepted) | The two quotations from the Antiquity summary and Baird’s abstract are attributed (“A summary of the study”, “Baird’s team argues”); the scene hotspots and closing paragraph keep observation, interpretation and limit apart; “This is a reading of the evidence, not a record of what happened” stays. Open item: full-text close review of Bogaard 2009 and Larsen 2019 (see Evidence limits). |
+| Proportionality | pass | Health findings come with Milner’s caution; the equality limit is kept; no ruler, no city claim. |
+| Cognitive load | revise (accepted) | New names: Boncuklu and Pınarbaşı (already in the old version), Douglas Baird, aurochs (defined where first met, in the scene hotspot, and again in the prose). Reading length +58%; paragraphs stay short. The owner may ask for trimming. |
+| Headings | pass | Unchanged. “The bargain of staying” leans on a mild metaphor but the learner sees its job (gains and costs) from the module text beneath it; left as is. |
+| Prompt fit | pass | See the prompt table; new prompt checked in the Prompt revision entry below. |
+| Visual value | not applicable | No image added or changed. |
+| Rights, media and accessibility | not applicable | No media change. |
+
+`npm run validate:content` passed; `npm run test:domain` passed (16 files, 84 tests); `npm run typecheck:chronos` passed; `npm run content:fingerprints` registered the new prompt and retired the old one. One test (`tests/content/validation.test.ts`) pinned the old prompt ID and now names the new one.
+
+### Card revision
+
+Old reveal: “You discovered Çatalhöyük by reading house and storage evidence to explain both the possibilities and pressures of staying in one place.” (title: “A settlement worth remembering”)
+New reveal: “A full larder deep inside the house, aurochs horns near the door, neighbors a rooftop away: you found Çatalhöyük by reading where things lay in its houses. It shows how stored food made staying possible, and made it complicated.” (title: “A settlement with no streets”)
+
+Facts (four before, five now; the first is unchanged): old “Dense mudbrick houses entered from rooftops, without ordinary streets” → “Mudbrick houses touched wall to wall with no streets: people crossed the roofs and climbed down a ladder to go in”; old “Household storage bins held plant foods in interior side rooms” → “Bins for grain, fruit, nuts and condiments stood in side rooms deep inside the houses”; old “Entrance-area displays and feasting evidence point toward shared social activity” → “Aurochs heads and horns near the entrances, with feast remains, point toward shared meals”; added “Houses were rebuilt on the same ground for generations, and the layers form mounds up to 20 meters high”. Subject, class, ID, art, depiction label and unlock are unchanged; learners who own the card see the new text.
+
+### Owner review
+
+Pending.
+
 ## Prompt revision
 
 ### 2026-10-03 — hints and option feedback (text only, same prompt IDs)
@@ -298,5 +387,32 @@ Part of the assessment audit that followed the Indus review (prompt readability 
 - `prompt.farming.opportunity-and-cost`: no hint before. New hint points to “The bargain of staying” and asks for one advantage, one problem and how they connect.
 
 **What learners will see.** Nothing is re-asked. Learners see the new hint, and after a wrong pick the new feedback, the next time they open the prompt. Finished lessons and parent reviews are unaffected.
+
+Owner approval: pending.
+
+### 2026-10-03 — `prompt.farming.house-pattern` → `prompt.farming.what-the-house-shows`
+
+Part of the voice revision on `revise/farming-settlements`. Same teaching job: read the bin-and-display pattern in one house and go no further than it supports (private household stores beside shared, more visible occasions; not equality, not a ruler, not one exact feast). Same kind (supported selection) and required flag (yes). The earlier hint and feedback revision of the same day (above) is superseded for this prompt; `prompt.farming.opportunity-and-cost` keeps its hint. `prompt.farming.house-pattern` is retired in `content/published-prompt-fingerprints.json`.
+
+**Why it changed.** The old best option was the longest and the only hedged one, absolute words appeared only in wrong options, and one distractor tested the reconstruction label rather than the house reading (see the audit above).
+
+| | Old | New |
+| --- | --- | --- |
+| Question | “Storage bins and plant remains were concentrated inside side rooms, while entrance areas held animal displays and evidence linked to feasting. Which conclusion is best supported?” | “Excavators found bins of grain, fruit and nuts in side rooms deep inside Çatalhöyük houses. Near the entrances they found the heads and horns of aurochs, and remains linked to feasting. Which statement fits these finds best?” |
+| Hint | “Ask where the bins and plant remains were found, and where the animal displays and feasting evidence were found. What does each location suggest?” | “Think about where each find was located, deep inside the house or near the entrance. Who would see each one?” |
+| Best option | `option.farming.private-and-shared`: “Households kept some food in private interior stores while some activities brought people together near more visible spaces.” | `option.farming.own-stores-shared-meals`: “Each household kept its own food, and people also came together to share meals.” |
+
+| New option | Feedback | Section that supports it |
+| --- | --- | --- |
+| `option.farming.own-stores-shared-meals` (best): Each household kept its own food, and people also came together to share meals. | Yes. Bins deep inside the houses fit food kept by each household, and horns and feast remains near the entrances fit meals shared more widely. | “Read the house” (side-room bins and entrance-area hotspots) and “Private stores and shared occasions” (`claim.farming.private-storage`, `bin-contents`, `shared-feasting`, `full-larder`) |
+| `option.farming.ruler-central-store`: A ruler collected grain from the houses and kept it in one large central store. | Reread “Private stores and shared occasions.” Where were the bins found, and does that fit one central store? | Same section; bins were inside houses, not in one central place (`claim.farming.private-storage`) |
+| `option.farming.similar-households`: The households had similar amounts of food and a similar place in the community. | Reread “Private stores and shared occasions.” Does the position of the bins tell us how much food each household had, or how people ranked? | Same section, last paragraph (`claim.farming.no-palace-equality`) |
+| `option.farming.one-common-supply`: People kept no food of their own, because the community shared a common supply. | Look at the first find again. If the community shared one supply, why would there be bins deep inside separate houses? | “Read the house” (side-room bins) |
+
+Old options for reference: `option.farming.perfect-equality`, `option.farming.central-ruler`, `option.farming.exact-scene` (retired with the prompt). Explanation (shown after the right pick): “The bins deep inside the houses fit food kept by each household. The horns and feast remains near the entrances fit meals shared more widely. This is an interpretation, not a record: the finds do not show a ruler, equal households, or exactly who took part in a feast.”
+
+**Checks.** The four labels run 79, 79, 80 and 79 characters; the best is not the longest; no option uses an absolute word the others do not; no joke option. Covering the stem, the options alone do not give the answer away (each of the three wrong options describes a misconception about early settled life: a ruler’s store, equal households, or sharing everything). Each feedback points to a section or to the stem’s own evidence without stating the answer. Every term in the stem (aurochs, feasting) is taught in the revised “Read the house” scene and the prose.
+
+**What learners will see.** Finished lessons, and lessons waiting for or passed by a parent, stay as they are; for them the new question is just another check to try. The prompt is required, so a learner still working through the lesson, or one whose lesson was sent back, must pick the best-supported answer on the new question before finishing. Parents see written questions only; this prompt is a selection, so Review is unaffected.
 
 Owner approval: pending.
