@@ -10,6 +10,8 @@ Builds on [ADR 005: Parent review](decisions/005-parent-review.md). Learners' an
 
 ## How to change a prompt
 
+For a published lesson, the [prompt revision runbook](../content/prompt-revision-runbook.md) wraps these steps with drafting, a support check and the owner's review.
+
 1. Give the changed prompt a new ID in the lesson module, update the lesson's `promptIds` and prompt module, and delete the old prompt.
 2. Run `npm run content:fingerprints`. It records the new prompt and marks the old one retired in `content/published-prompt-fingerprints.json`.
 3. Run `npm run validate:content` and merge. There is no database step.

@@ -1,6 +1,6 @@
 # Chronos lesson creation runbook
 
-Status: the single canonical process for creating, publishing and correcting a Chronos `Lesson`. Read this file and the [production queue](lesson-production-queue.md); nothing else is required reading. Start the research note by copying the [authoring template](lesson-production/authoring-templates.md). Open a [specialist runbook](#specialist-runbooks) only when its trigger applies.
+Status: the single canonical process for creating, publishing, materially revising and correcting a Chronos `Lesson`. Read this file and the [production queue](lesson-production-queue.md); nothing else is required reading. Start the research note by copying the [authoring template](lesson-production/authoring-templates.md). Open a [specialist runbook](#specialist-runbooks) only when its trigger applies.
 
 A lesson may be small or ambitious, but no step may be skipped silently. If a step does not apply, record why in the research note. When schedule pressure threatens the standard, narrow the lesson or keep it draft; do not lower the standard.
 
@@ -13,7 +13,7 @@ A lesson may be small or ambitious, but no step may be skipped silently. If a st
 - **Shell:** every lesson renders in the same Learn shell: a journey rail plus one scrolling lesson of five to eight semantic sections, short understanding prompts and an explicit completion action. Reopening always starts at the top.
 - **Knowledge Cards:** deterministic memory anchors earned when a parent passes the learner's finished lesson. Never random, duplicated, ranked by rarity, or mandatory.
 - **Evidence honesty:** observation, interpretation, reconstruction, uncertainty and later tradition are always distinguished. Generated imagery is never presented as evidence.
-- **Where content lives:** the repository is canonical. Lesson modules live in `content/lessons/`, are registered in `content/chronos.ts` and are ordered in `content/journeys/`. The database holds only what publication and progress need: published lesson IDs, journey entries, completion rules, card unlocks and learner progress.
+- **Where content lives:** the repository is canonical. Lesson modules live in `content/lessons/`, are registered in `content/chronos.ts` and are ordered in `content/journeys/`. The database holds only learner state, parent links and reviews, never lesson configuration.
 - **Who decides:** Carlin is the product owner and the only approver. AI may research, draft and validate. It may not be the sole historical, rights or publication reviewer, and it never approves on the owner's behalf.
 
 ## Invocation contract: “Create the next lesson”
@@ -84,9 +84,15 @@ Open these only when triggered. They own their details; this runbook decides whe
 - Asset ingestion, responsive derivatives, publishing and rollback: [`media-publishing.md`](../architecture/media-publishing.md)
 - A new reusable lesson module or other platform change is not lesson work. Handle it separately under `AGENTS.md`.
 
+## Changing a published lesson
+
+- **Revision:** any request to revise, redo or improve a published lesson, or one of its prompts or its card, follows the [lesson revision runbook](lesson-voice-revision-runbook.md). Its audit decides whether the telling, each prompt and the card need work, and it does them in one PR with one owner check. A prompt whose question, options, best answer or answer logic changes gets a new ID through the [prompt revision runbook](prompt-revision-runbook.md), which the revision runbook calls.
+- **Material revision:** a change to the essential question, durable understanding, central claims or their certainty, section order or teaching jobs, a prompt's teaching job, adding or removing a prompt, completion rules, the card's subject or adding or removing a card, the teaching job of an existing image, or journey position. Re-enter the earliest affected stage in the lesson's research note.
+- **Correction** (an error or harm in the published lesson): [Stage 18's correction path](#corrections-after-release).
+
 ## Non-negotiable product rules
 
-- Repository-authored content is canonical. Database rows configure publication, progress, prompts, and deterministic unlocks; they do not become an undocumented second curriculum.
+- Repository-authored content is canonical. The database holds learner progress, parent links and reviews, never lesson, prompt or card configuration.
 - One lesson has one stable identity even when reused in multiple journeys. Journey-specific framing belongs to `JourneyEntry`.
 - Lessons normally contain five to eight stable semantic sections. Use fewer or more only when the learning sequence genuinely requires it and document the exception.
 - Required lessons normally contain one to three required understanding prompts, usually two.
@@ -710,11 +716,13 @@ Normally use two required prompts:
 Prompt rules:
 
 - a written prompt requires a sincere attempt, not perfection; a selection prompt is done once the learner picks the best-supported option, so its feedback must help them get there;
-- use stable prompt and option IDs;
+- every multiple-choice prompt names its best-supported option in `bestOptionId`;
+- give each wrong option `feedback` that points back to the evidence without revealing the answer; a wrong pick shows only that option's feedback;
+- write the `explanation` for after success: why the answer is supported and what the evidence cannot prove. It appears only after the right pick; for a written prompt only the parent sees it, on Review, as “What a strong answer covers”;
+- use stable prompt and option IDs; once published, a prompt ID stands for its question, and changing it is a [prompt revision](prompt-revision-runbook.md);
 - test an essential understanding or historical-thinking move;
 - make distractors plausible misconceptions, not jokes or wording traps;
 - avoid dependence on an unimportant date, name, or vocabulary trick;
-- explain why an answer is supported and what the evidence cannot prove;
 - keep failure calm, specific, and recoverable;
 - never use lives, timers, streak threats, score spectacle, or punitive repetition;
 - do not pretend a minimum character count grades historical sophistication;
@@ -725,7 +733,7 @@ Test each prompt by answering:
 - Could a learner succeed through reasoning from this lesson rather than outside trivia?
 - Would a wrong answer reveal a useful misconception?
 - Does the feedback teach something rather than merely announce correctness?
-- Does the server/database derive completion eligibility from the same required-prompt configuration?
+- Read on its own, does any wrong option's feedback give away the answer?
 
 ## Stage 13 — Author journey framing and connections
 
@@ -896,7 +904,7 @@ If a command fails, fix that command rather than inventing a parallel pipeline.
 1. Assess severity and learner harm. Unpublish immediately for a serious factual, rights, safety or provenance issue.
 2. Update the research note, claims and sources, content, media and tests as needed, in one PR. Unpublishing is setting `status` back to `draft`; learners' saved progress and cards are kept.
 3. Keep stable IDs when meaning is unchanged; create a new canonical lesson or a reviewed mapping when meaning changes materially.
-   To change a published prompt's question, options, best answer, required flag or minimum length, give it a new prompt ID and run `npm run content:fingerprints`; explanation, feedback and hint text may change under the same ID ([policy](../architecture/prompt-changes.md)).
+   A published prompt's explanation, feedback, hint text and option order may be corrected under the same ID. Fixing its question, options, best answer, required flag or minimum length means a new prompt ID: follow the [prompt revision runbook](prompt-revision-runbook.md) in the correction PR ([policy](../architecture/prompt-changes.md)).
 4. Send the owner the direct lesson preview link, following the preview-link contract, even for a one-line fix.
 
 Monitoring drop-off, misconceptions, media delivery and learner feedback after release is product work, not part of this workflow.
