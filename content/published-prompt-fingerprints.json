@@ -11,11 +11,21 @@
     },
     "prompt.caral.evidence-and-limit": {
       "lessonId": "lesson.caral.andean-urbanism",
-      "fingerprint": "997cd084b2b4036df4acd668183c157a0b3eef8d362dba8ce98b8541fa7b7f8b"
+      "fingerprint": "997cd084b2b4036df4acd668183c157a0b3eef8d362dba8ce98b8541fa7b7f8b",
+      "retired": true
+    },
+    "prompt.caral.one-clue-and-gap": {
+      "lessonId": "lesson.caral.andean-urbanism",
+      "fingerprint": "9b328713df189820d9deba69847f9f06c9519ecbdb8b4095a6d90bb53ec81b2d"
     },
     "prompt.caral.supported-model": {
       "lessonId": "lesson.caral.andean-urbanism",
-      "fingerprint": "7e57a0ecf7ae5efbeb6e2aa8be6dc2e514e2c9da614b09897cae4a2da65e3332"
+      "fingerprint": "7e57a0ecf7ae5efbeb6e2aa8be6dc2e514e2c9da614b09897cae4a2da65e3332",
+      "retired": true
+    },
+    "prompt.caral.what-the-mounds-show": {
+      "lessonId": "lesson.caral.andean-urbanism",
+      "fingerprint": "d03204b6d7cdd8b2bf6d022feb7ff4ed3e0ddbea1b4bc23811b7dd42a4c67d34"
     },
     "prompt.egypt.evidence-and-limit": {
       "lessonId": "lesson.egypt.nile-state",
