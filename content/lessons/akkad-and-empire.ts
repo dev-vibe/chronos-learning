@@ -56,19 +56,19 @@ export const akkadPrompts: UnderstandingPrompt[] = [
   {
     id: 'prompt.akkad.local-arrangements', bestOptionId: 'option.akkad.different-ties', lessonId, kind: 'supported-selection', required: true,
     question: 'At Leilan, archaeologists found a fortified administrative building with grain-processing rooms and tablets. At Urkesh, they found seal impressions naming a daughter of an Akkadian ruler. What is the strongest conclusion?',
-    hint: 'Ask what the finds show at each place before deciding whether the two cities were governed in the same way.',
+    hint: 'Ask what each find shows at its own place before you compare the two cities.',
     explanation: 'Leilan has an Akkadian administrative building, with its ovens, tablets and an official’s sealings. The Urkesh sealings show a royal-family tie inside a local palace, but her exact role and the city’s political arrangement remain uncertain. Distant power could work through different local relationships.',
     options: [
       { id: 'option.akkad.different-ties', label: 'Both places had Akkadian connections, but the evidence points to different or uncertain arrangements.', feedback: 'Yes. The Leilan building and the Urkesh sealings show different kinds of connection; they cannot be flattened into one identical province.' },
-      { id: 'option.akkad.identical-provinces', label: 'Both cities had identical Akkadian offices because a royal name appears in each place.', feedback: 'A royal name or family tie does not establish every office and practice in a city. Leilan has stronger evidence for an administrative installation.' },
-      { id: 'option.akkad.no-connection', label: 'Neither city had a meaningful Akkadian connection.', feedback: 'The Leilan complex and the Urkesh sealings are material evidence of connections; the question is what kind of relationship each supports.' },
+      { id: 'option.akkad.identical-provinces', label: 'Both cities had identical Akkadian offices because a royal name appears in each place.', feedback: 'Reread “Governing at Tell Leilan” and “A royal connection at Urkesh.” What kind of evidence does each place have, and does a royal name show what offices a city had?' },
+      { id: 'option.akkad.no-connection', label: 'Neither city had a meaningful Akkadian connection.', feedback: 'Reread the two finds in “Governing at Tell Leilan” and “A royal connection at Urkesh.” Are they evidence of a connection to Akkad? The question is what kind of connection each one shows.' },
     ],
   },
   {
-    id: 'prompt.akkad.holding-power', lessonId, kind: 'concise-explanation', required: true, minimumResponseLength: 20,
-    question: 'Sargon’s inscription says he defeated several cities. Why would a victory alone not tell us how Akkadian rulers kept power? Use one example from Leilan or Urkesh.',
-    hint: 'Think about what people would have to keep doing after soldiers left a city.',
-    explanation: 'For example: Sargon could claim a victory, but continued rule needed people to grow, carry and bake grain, keep records and carry out orders. Leilan preserves the ovens, sealings and tablets of that work in an Akkadian administrative building. Urkesh shows a different tie, a princess whose seal closed doors in a local palace, although her exact role is uncertain. A victory claim alone cannot tell us how each city was governed.',
+    id: 'prompt.akkad.evidence-of-rule', lessonId, kind: 'concise-explanation', required: true, minimumResponseLength: 20,
+    question: 'Sargon boasted that he defeated cities, but winning a city is not the same as ruling it. Choose Tell Leilan or Urkesh. (1) Name one thing archaeologists found there. (2) Say what it shows about how Akkad kept hold of the city after the fighting.',
+    hint: 'Think about what people would have to keep doing after the soldiers left, or what tie a find shows between the city and Akkad.',
+    explanation: 'A strong answer covers both parts. For Tell Leilan: ovens, sealings that show an Akkadian official directing work, tablets, or grain rations show that holding the city took daily work by many people. For Urkesh: the seal of Tar’am-Agade, daughter of Naram-Sin, closed a door in the local palace and shows a royal family tie, although her exact role is uncertain. Either way, the answer says what the find shows about holding the city, not only that Akkad won.',
   },
 ];
 
@@ -124,7 +124,7 @@ const sections: Lesson['sections'] = [
     id: 'section.akkad.understanding', heading: 'Explain Akkadian rule', purpose: 'Use local evidence and explain what ruling at distance required.',
     modules: [
       { id: 'module.akkad.local-check', type: 'prompt', promptId: 'prompt.akkad.local-arrangements', claimIds: ['claim.akkad.leilan-administration', 'claim.akkad.urkesh-relationship'], sourceIds: ['source.akkad.leilan', 'source.akkad.urkesh'] },
-      { id: 'module.akkad.holding-check', type: 'prompt', promptId: 'prompt.akkad.holding-power', claimIds: ['claim.akkad.conquest-claims', 'claim.akkad.winning-and-governing'], sourceIds: ['source.akkad.sargon-inscription', 'source.akkad.leilan', 'source.akkad.urkesh'] },
+      { id: 'module.akkad.holding-check', type: 'prompt', promptId: 'prompt.akkad.evidence-of-rule', claimIds: ['claim.akkad.conquest-claims', 'claim.akkad.winning-and-governing'], sourceIds: ['source.akkad.sargon-inscription', 'source.akkad.leilan', 'source.akkad.urkesh'] },
     ],
   },
 ];

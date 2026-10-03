@@ -497,3 +497,37 @@ Whole lesson: story spine `none` (a sequence of evidence types); memorable momen
 ### Owner review
 
 Pending.
+
+## Prompt revision
+
+### 2026-10-03 — one prompt replaced, one reworded, after an age-fit audit of every lesson's prompts
+
+Branch `revise/akkad-prompts`. Part of the assessment audit that followed the Indus review (prompt readability check in `docs/content/prompt-revision-runbook.md`, PR #68). `prompt.akkad.holding-power` is replaced by `prompt.akkad.evidence-of-rule` and retired in `content/published-prompt-fingerprints.json`. `prompt.akkad.local-arrangements` keeps its ID: only the hint and two wrong-option feedbacks changed, which the prompt-change policy allows. Its fingerprint is unchanged.
+
+#### `prompt.akkad.holding-power` → `prompt.akkad.evidence-of-rule` (replaced)
+
+**Why it changed.** “Why would a victory alone not tell us how Akkadian rulers kept power?” asks the learner to reason about what a source cannot tell us before saying anything about what the evidence shows, with a negative built into the question.
+
+| | Old | New |
+| --- | --- | --- |
+| Question | “Sargon’s inscription says he defeated several cities. Why would a victory alone not tell us how Akkadian rulers kept power? Use one example from Leilan or Urkesh.” | “Sargon boasted that he defeated cities, but winning a city is not the same as ruling it. Choose Tell Leilan or Urkesh. (1) Name one thing archaeologists found there. (2) Say what it shows about how Akkad kept hold of the city after the fighting.” |
+| Hint | “Think about what people would have to keep doing after soldiers left a city.” | “Think about what people would have to keep doing after the soldiers left, or what tie a find shows between the city and Akkad.” |
+| Required / minimum length | yes / 20 | yes / 20 |
+
+Explanation (shown to the parent on Review as “What a strong answer covers”): Leilan (ovens, sealings showing an Akkadian official, tablets, rations show daily work by many people) or Urkesh (Tar’am-Agade’s seal on a palace door shows a royal family tie, her role uncertain), and what the find shows about holding the city. Support map: “Governing at Tell Leilan”, “A royal connection at Urkesh” and “Sargon’s conquest claims” (victory claims are the king’s side of the story).
+
+#### `prompt.akkad.local-arrangements` (text only, same ID)
+
+| | Old | New |
+| --- | --- | --- |
+| Hint | “Ask what the finds show at each place before deciding whether the two cities were governed in the same way.” | “Ask what each find shows at its own place before you compare the two cities.” |
+| Feedback, `identical-provinces` | “A royal name or family tie does not establish every office and practice in a city. Leilan has stronger evidence for an administrative installation.” | “Reread ‘Governing at Tell Leilan’ and ‘A royal connection at Urkesh.’ What kind of evidence does each place have, and does a royal name show what offices a city had?” |
+| Feedback, `no-connection` | “The Leilan complex and the Urkesh sealings are material evidence of connections; the question is what kind of relationship each supports.” | “Reread the two finds in ‘Governing at Tell Leilan’ and ‘A royal connection at Urkesh.’ Are they evidence of a connection to Akkad? The question is what kind of connection each one shows.” |
+
+The old hint named the answer's idea (“governed in the same way”), and the old feedback stated the conclusion instead of pointing back to the lesson.
+
+`npm run content:fingerprints`, `npm run validate:content`, `npm run test:domain` and `npm run typecheck:chronos` passed; no test named the old prompt ID. The publication migration still names the old ID; it is history and is not edited.
+
+**What learners will see.** Finished lessons, and lessons waiting for or passed by a parent, stay as they are. A learner still working through the lesson, or one whose lesson was sent back, must answer the new required written prompt before finishing; the reworded selection prompt is unchanged for everyone who already answered it. Parents see the written question as the learner saw it; an old submission is marked as changed.
+
+Owner approval: pending.
