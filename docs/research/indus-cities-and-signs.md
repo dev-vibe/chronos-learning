@@ -775,3 +775,24 @@ Explanation (shown to the parent on Review as “What a strong answer covers”)
 
 Owner approval: pending.
 
+### 2026-10-03 — review follow-up on PR #74
+
+Changes made in review, before merge. The new prompt IDs were not yet published, so their labels were edited in place and the fingerprints regenerated from `main`.
+
+**Lesson text.**
+
+- The Sayce paragraph is cut. As written, it gave Sayce’s 1924 dates for the Susa tablets (2600–2300 BCE) as plain fact and left his “practically identical … from the same hand” comparison uncorrected. Proto-Elamite tablets are now dated much earlier (about 3100–2900 BCE), and the comparison is not accepted, but no registered source says so, so a learner would come away with a false link. `claim.indus.sayce-comparison` and `source.indus.sayce-letter` are removed; the ledger rows above are history.
+- Marshall’s announcement stays, shortened, and now ties to the section: the cities proved more than two thousand years older than the third century BCE (`claim.indus.urban-period`), and no one could read the seals’ signs then or now (`claim.indus.undeciphered-signs`). `claim.indus.discovery-1924` drops “one or two thousand years off the first estimate”, which is the Harappa.com editor’s comment, not Marshall’s, and Marshall gave no estimate. The 400-mile distance is cut from the prose (the lesson otherwise uses metric units).
+- “The question mark in its title” → “The word ‘tentatively’”: the lesson never shows the Met title, so the learner had no question mark to look at. The card fact keeps it.
+- “Mound AB, Harappa Town and one corner of Mound E” → “only a few parts of the old city”: three unexplained site names for one point.
+
+**`prompt.indus.what-weights-show`.** The draft broke the PR’s own Stage 12 rule: the best option was the longest, and two wrong options carried absolute words (“every”, “all”). Question now ends “Which statement do the weights support best?” (“goes only as far as that evidence can take it” is the abstract phrasing the runbook now bans).
+
+| Option | Draft label | Final label |
+| --- | --- | --- |
+| `same-units` (best) | People at different sites weighed goods by the same units, so an agreement about quantity reached beyond any single city. | People in different Indus cities measured goods with the same set of units. |
+| `ruler-ordered-weights` | One ruler ordered every weight made and controlled all trade from a single capital. | A single ruler had the weights made and ran trade from one capital city. |
+| `households-equal` | Every household owned the same amount of goods, because everyone weighed with the same stones. | Households owned similar amounts of goods, since they used the same weights. |
+| `signs-read` | Researchers can read the signs on Indus seals, because the weights and the signs belong to one system. | Comparing the weights helped researchers work out what the seal signs say. |
+
+**`prompt.indus.water-needs-many-hands`.** Hint part 2 was “remember what the lesson says about rulers and neighborhood groups”: that is the model answer, and the revised lesson no longer mentions neighborhood groups. Now: “For part 2, look back at ‘Who organized the cities?’”

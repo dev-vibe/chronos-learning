@@ -279,19 +279,19 @@ export const earlyWritingMedia: MediaAsset[] = [
 
 export const earlyWritingPrompts: UnderstandingPrompt[] = [
   {
-    id: 'prompt.writing.what-tablet-shows', bestOptionId: 'option.writing.records-amounts',
+    id: 'prompt.writing.what-tablet-shows', bestOptionId: 'option.writing.counted-goods',
     lessonId: 'lesson.writing.early-systems',
     kind: 'supported-selection',
     evidenceModuleIds: ['module.writing.tablet-evidence'],
-    question: 'The Met tablet is divided into boxes holding signs for goods and round pressed-in marks for numbers. It has no verbs. Which statement is best supported by this tablet?',
-    hint: 'Look at what the tablet shows: boxes, signs for goods, and marks for numbers. Then ask what it never says.',
-    explanation: 'The tablet shows that someone recorded amounts of goods on clay, in a form another person could pick up and check later. With no verbs, it does not say who gave or received the goods, or why. It also does not mean that everyone could read it or that scholars can read every sign.',
+    question: 'The Met tablet is divided into boxes holding signs for goods and round pressed-in marks for numbers, with a seal rolled across it. It has no verbs. Which statement does this tablet support best?',
+    hint: 'Start with what is on the clay: boxes, signs for goods, marks for numbers. What job were marks like these for?',
+    explanation: 'The tablet shows that someone recorded amounts of goods on clay, in a form another person could pick up and check later. With no verbs, it does not say who gave or received the goods, or why. Its number marks and boxes make it an account, not a practice word list; reading it took training; and like most tablets it was made for checking at the time, not as a message to the future.',
     required: true,
     options: [
-      { id: 'option.writing.records-amounts', label: 'Someone recorded amounts of goods on clay, but the tablet does not tell the whole story of the exchange.', feedback: 'Yes. The boxes, signs for goods and number marks show a record of amounts, and the missing verbs leave the exchange itself unknown.' },
-      { id: 'option.writing.tablet-is-sentence', label: 'The tablet is a sentence that says who gave grain to whom, and why.', feedback: 'Reread “The tablet up close.” Does the tablet have any words that say who gave, who received, or why?' },
-      { id: 'option.writing.everyone-could-read', label: 'Any person in Uruk could read the tablet and check the count.', feedback: 'Reread “What records show — and leave out.” What did reading and writing these signs take?' },
-      { id: 'option.writing.all-signs-read', label: 'Scholars today can read every sign on early tablets like this one.', feedback: 'Reread “A record is not yet a sentence.” What does it say about how many early signs are still not understood?' },
+      { id: 'option.writing.counted-goods', label: 'Someone counted goods, but the tablet never says who gave them or why.', feedback: 'Yes. The boxes, signs for goods and number marks show a record of amounts, and the missing verbs leave the exchange itself unknown.' },
+      { id: 'option.writing.practice-list', label: 'It is a word list that a student copied out as writing practice.', feedback: 'Reread “A record is not yet a sentence.” Some early tablets were practice word lists. What on this tablet shows something being counted?' },
+      { id: 'option.writing.most-could-read', label: 'Most people in Uruk could read it and check the count themselves.', feedback: 'Reread “What records show — and leave out.” What did reading and writing these signs take?' },
+      { id: 'option.writing.message-to-future', label: 'It was made so people in the future would know about life in Uruk.', feedback: 'Reread “When memory is not enough” and the end of “What records show — and leave out.” Who needed to check a record like this, and what happened to most tablets once they were used?' },
     ],
   },
   {

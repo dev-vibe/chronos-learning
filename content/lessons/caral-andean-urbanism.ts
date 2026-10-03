@@ -408,19 +408,19 @@ export const caralAndeanUrbanismMedia: MediaAsset[] = [
 
 export const caralAndeanUrbanismPrompts: UnderstandingPrompt[] = [
   {
-    id: 'prompt.caral.what-the-mounds-show', bestOptionId: 'option.caral.built-without-writing',
+    id: 'prompt.caral.coast-valley-and-mounds', bestOptionId: 'option.caral.relied-on-each-other',
     lessonId: 'lesson.caral.andean-urbanism',
     kind: 'supported-selection',
-    evidenceModuleIds: ['module.caral.plaza-evidence'],
-    question: 'Caral has six huge platform mounds and a sunken plaza. Excavators found no pottery, no metal tools, and no writing like cuneiform. Which statement is best supported by that evidence?',
-    hint: 'Start with what Caral has and what it lacks. Then pick the statement that stays inside that evidence.',
-    explanation: 'The mounds, plazas, and farm and fishing remains show that people built large public buildings and linked inland farms with coastal fishing without pottery, metal, or writing. They do not show that Caral copied Egypt, that a city needs writing, or that missing fortifications mean a peaceful empire.',
+    evidenceModuleIds: ['module.caral.supe-map', 'module.caral.plaza-evidence'],
+    question: 'Inland at Caral, people grew cotton and gourds and raised six huge platform mounds. On the coast, fishers caught anchovies with cotton nets, and anchovy and shellfish remains turn up at inland sites. Excavators found no pottery. Which statement does this evidence support best?',
+    hint: 'Start with what moved between the coast and the valley. Then think about what people built, even without pottery.',
+    explanation: 'Cotton nets and gourd floats came from inland fields, and anchovies and shellfish reached inland sites, so coast and valley each supplied what the other needed. The mounds show that people organized large building projects without pottery, metal tools, or writing. The evidence does not show that Caral copied Egypt, that a city needs pottery or writing, or that missing fortifications mean a peaceful empire.',
     required: true,
     options: [
-      { id: 'option.caral.built-without-writing', label: 'People at Caral built large public buildings without pottery, metal tools, or writing.', feedback: 'Yes. The mounds and plazas survive, and the lesson shows how they were built with woven bags of stones, farming, and fishing.' },
-      { id: 'option.caral.copied-egypt', label: 'Caral’s builders copied Egypt’s pyramids.', feedback: 'Reread the opening and “What this case can prove.” When was monumental building going up at Caral, compared with Egypt’s first pyramid, and what does the lesson say about the path of Andean cities?' },
-      { id: 'option.caral.no-writing-no-city', label: 'Without writing, Caral cannot have been a real city.', feedback: 'Reread “Another way to build a city.” What did Caral have, even without pottery, metal, or writing?' },
-      { id: 'option.caral.peaceful-empire', label: 'No fortifications were found, so Caral was a peaceful society that ruled the whole Andes as one empire.', feedback: 'Reread “What this case can prove.” What does the lesson say about whether missing fortifications prove peace, and about whether Caral ruled its neighbors?' },
+      { id: 'option.caral.relied-on-each-other', label: 'Farmers and fishers relied on each other and built a city without pottery.', feedback: 'Yes. Cotton and gourds went toward the sea, fish came inland, and the mounds show large building projects without pottery.' },
+      { id: 'option.caral.copied-pyramid-idea', label: 'Caral’s builders copied the idea of pyramids from Egypt, which built them at the same time.', feedback: 'Reread the opening and “What this case can prove.” When was monumental building going up at Caral, compared with Egypt’s first pyramid, and what does the lesson say about the path of Andean cities?' },
+      { id: 'option.caral.only-a-village', label: 'Without pottery, Caral was a large village rather than a real city.', feedback: 'Reread “Another way to build a city.” What did Caral have, even without pottery, metal, or writing?' },
+      { id: 'option.caral.peaceful-capital', label: 'No fortifications were found, so Caral was a peaceful empire ruling its neighbors.', feedback: 'Reread “What this case can prove.” What does the lesson say about whether missing fortifications prove peace, and about whether Caral ruled its neighbors?' },
     ],
   },
   {
@@ -641,7 +641,7 @@ export const caralAndeanUrbanismLesson: Lesson = {
         {
           id: 'module.caral.prompt-model',
           type: 'prompt',
-          promptId: 'prompt.caral.what-the-mounds-show',
+          promptId: 'prompt.caral.coast-valley-and-mounds',
           claimIds: [],
           sourceIds: [],
         },

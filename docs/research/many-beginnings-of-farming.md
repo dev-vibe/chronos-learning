@@ -882,3 +882,20 @@ Explanation (shown to the parent on Review as “What a strong answer covers”)
 **What learners will see.** Finished lessons, and lessons waiting for or passed by a parent, stay as they are. A learner still working through the lesson, or one whose lesson was sent back, must answer both new required prompts before finishing. Parents see the written question as the learner saw it; an old submission is marked as changed.
 
 Owner approval: pending.
+
+### 2026-10-03 — review follow-up on PR #74
+
+Changes made in review, before merge; fingerprints regenerated from `main`.
+
+- **Prompt 2 had lost its teaching job.** “Name one crop or clue that shows people farming” checks recall of a crop, not why it points to an *independent* beginning, which was the old prompt’s job and the lesson’s durable understanding. Part 1 is now “Name one crop or clue that shows people there worked out farming with their own local plants.” The explanation’s part 1 now ties the clue to local plants.
+- Prompt 2’s hint and this note named a section “Different regions, different crops” that does not exist; the section is “Several regions, different pathways”.
+- **Prompt 1 options** broke the new Stage 12 rule: all three wrong options carried absolute words (“everywhere”, “Every”, “Only”) and the best option was the longest. The stem now adds Kuk’s date (by at least 7,000 years ago) and “not wheat”, so the learner has the evidence for independence, not only different crops.
+
+| Option | Draft label | Final label |
+| --- | --- | --- |
+| `own-local-plants` (best) | People in different places began farming on their own, with plants that grew near them. | Farming began separately in different places, using local plants. |
+| `copied-from-one-place` | Farming was invented once in Southwest Asia, and people everywhere else copied it. | Farming began in Southwest Asia, and the people of Kuk learned it from there. |
+| `villages-first` → `village-before-farming` | Every community that began farming had first built a permanent village. | People had to settle in a permanent village before they could start farming. |
+| `only-grain` | Only grain crops count as farming, so the gardens at Kuk do not belong in this story. | Growing taro and bananas is gardening, not farming, so Kuk does not count. |
+
+`option.farming.multi.villages-first` was an option ID of the retired prompt; the runbook says never reuse a retired ID, so it is renamed.

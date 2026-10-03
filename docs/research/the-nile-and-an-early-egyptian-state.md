@@ -738,3 +738,13 @@ The three choices are kept. Explanation (shown to the parent on Review as “Wha
 **What learners will see.** Finished lessons, and lessons waiting for or passed by a parent, stay as they are. A learner still working through the lesson, or one whose lesson was sent back, must answer both new required prompts before finishing. Parents see the written question as the learner saw it; an old submission is marked as changed.
 
 Owner approval: pending.
+
+### 2026-10-03 — review follow-up on PR #74
+
+Changes made in review, before merge; fingerprints regenerated from `main`. The entry above says the tell words were removed, but `everyone-agreed` still read “People all along the Nile” and `daily-grinding-board` “every day”, and the best option was the longest.
+
+| Option | Draft label | Final label |
+| --- | --- | --- |
+| `royal-message` (best) | The Palette shows Narmer as a king who commands force and rules over different parts of Egypt. | The Palette presents Narmer as a strong king who rules different parts of Egypt. |
+| `everyone-agreed` | People all along the Nile agreed that Narmer should be their king. | People along the Nile were glad to accept Narmer as their king. |
+| `daily-grinding-board` | Farmers used the Palette every day to grind eye paint. | Farmers used the Palette as an ordinary tool for grinding eye paint. |

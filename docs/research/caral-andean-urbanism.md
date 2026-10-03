@@ -964,3 +964,19 @@ The three choices are kept. Explanation (shown to the parent on Review as “Wha
 **What learners will see.** Finished lessons, and lessons waiting for or passed by a parent, stay as they are. A learner still working through the lesson, or one whose lesson was sent back, must answer both new required prompts before finishing. Parents see the written question as the learner saw it; an old submission is marked as changed.
 
 Owner approval: pending.
+
+### 2026-10-03 — review follow-up on PR #74
+
+Changes made in review, before merge; fingerprints regenerated from `main`.
+
+`prompt.caral.what-the-mounds-show` is replaced, before publication, by `prompt.caral.coast-valley-and-mounds`. The draft’s stem copied the opening’s sentence (“six huge platform mounds … no pottery, no metal tools, and no writing like cuneiform”) and its best option restated that sentence, so it tested matching words, not reasoning. It also dropped the coast–valley exchange, half of the old prompt’s teaching job. Three of its option IDs (`copied-egypt`, `no-writing-no-city`, `peaceful-empire`) were IDs of the retired prompt, which the runbook forbids.
+
+| | Final |
+| --- | --- |
+| Question | “Inland at Caral, people grew cotton and gourds and raised six huge platform mounds. On the coast, fishers caught anchovies with cotton nets, and anchovy and shellfish remains turn up at inland sites. Excavators found no pottery. Which statement does this evidence support best?” |
+| Evidence modules | `module.caral.supe-map`, `module.caral.plaza-evidence` |
+| Hint | “Start with what moved between the coast and the valley. Then think about what people built, even without pottery.” |
+| Best | `option.caral.relied-on-each-other`: Farmers and fishers relied on each other and built a city without pottery. (Two claims, both the point: the old prompt’s teaching job.) |
+| Wrong | `copied-pyramid-idea`: Caral’s builders copied the idea of pyramids from Egypt, which built them at the same time. `only-a-village`: Without pottery, Caral was a large village rather than a real city. `peaceful-capital`: No fortifications were found, so Caral was a peaceful empire ruling its neighbors. Feedback as in the draft. |
+
+Support map: best, “Coast and valley together” (`module.caral.geography`, `claim.caral.cotton-fish-exchange`, `claim.caral.fisher-farmer-exchange`) and “How the monuments were built”; the wrong options as in the draft.

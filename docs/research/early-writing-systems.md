@@ -302,3 +302,18 @@ Explanation (shown to the parent on Review as “What a strong answer covers”)
 **What learners will see.** Finished lessons, and lessons waiting for or passed by a parent, stay as they are. A learner still working through the lesson, or one whose lesson was sent back, must answer both new required prompts before finishing. Parents see the written question as the learner saw it; an old submission is marked as changed.
 
 Owner approval: pending.
+
+### 2026-10-03 — review follow-up on PR #74
+
+Changes made in review, before merge; fingerprints regenerated from `main`.
+
+`prompt.writing.what-tablet-shows`: the draft’s best option was the only hedged one and by far the longest (104 characters against 61–67), and two wrong options carried absolute words (“Any person”, “every sign”), so a learner could pick it without the lesson. The “sentence” option was also ruled out by the stem itself (“It has no verbs”). The options are now four real readings of an early tablet, of similar length:
+
+| Option | Label | Supported by |
+| --- | --- | --- |
+| `counted-goods` (best) | Someone counted goods, but the tablet never says who gave them or why. | “The tablet up close” |
+| `practice-list` | It is a word list that a student copied out as writing practice. | “A record is not yet a sentence” (word lists were exercises; this tablet has number marks) |
+| `most-could-read` | Most people in Uruk could read it and check the count themselves. | “What records show — and leave out” (reading took training) |
+| `message-to-future` | It was made so people in the future would know about life in Uruk. | “When memory is not enough”; “What records show — and leave out” (“made for an office, not for us”; most were thrown away) |
+
+The stem adds the rolled seal; the hint now asks what job the marks were for instead of pointing at what the tablet “never says”. `tests/learn/multi-lesson.test.tsx` still clicked the retired option label and named the retired written question, so `npm test` failed (it is outside `test:domain`); it now uses the new ones.

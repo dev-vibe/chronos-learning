@@ -580,10 +580,10 @@ export const egyptNileStatePrompts: UnderstandingPrompt[] = [
     explanation: 'The two crowns, the king’s size and the raised mace show how Narmer’s court wanted him seen: a ruler who commands force and rules different parts of Egypt. The Palette is a royal message. It is not a record of one exact battle, and it does not show what farmers, boat crews or captives thought.',
     required: true,
     options: [
-      { id: 'option.egypt.royal-message', label: 'The Palette shows Narmer as a king who commands force and rules over different parts of Egypt.', feedback: 'Yes. The crowns, the king’s size and the raised mace all fit a message about royal power, even though they do not tell us what actually happened.' },
+      { id: 'option.egypt.royal-message', label: 'The Palette presents Narmer as a strong king who rules different parts of Egypt.', feedback: 'Yes. The crowns, the king’s size and the raised mace all fit a message about royal power, even though they do not tell us what actually happened.' },
       { id: 'option.egypt.one-battle', label: 'The Palette records the one battle that joined Upper and Lower Egypt into a single kingdom.', feedback: 'Reread “What the Palette can prove.” Do specialists today read the Palette as a record of one battle?' },
-      { id: 'option.egypt.everyone-agreed', label: 'People all along the Nile agreed that Narmer should be their king.', feedback: 'Think about who ordered the Palette made and who it was made for. Does it show what farmers, boat crews or captives thought?' },
-      { id: 'option.egypt.daily-grinding-board', label: 'Farmers used the Palette every day to grind eye paint.', feedback: 'Reread “Read the Narmer Palette.” How big is it, and do ceremonial palettes show any marks of grinding?' },
+      { id: 'option.egypt.everyone-agreed', label: 'People along the Nile were glad to accept Narmer as their king.', feedback: 'Think about who ordered the Palette made and who it was made for. Does it show what farmers, boat crews or captives thought?' },
+      { id: 'option.egypt.daily-grinding-board', label: 'Farmers used the Palette as an ordinary tool for grinding eye paint.', feedback: 'Reread “Read the Narmer Palette.” How big is it, and do ceremonial palettes show any marks of grinding?' },
     ],
   },
   {

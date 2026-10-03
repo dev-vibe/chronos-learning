@@ -113,10 +113,10 @@ describe('multi-lesson Learn runtime', () => {
     const gateway = new MultiLessonGateway();
     render(<LearnApp lessonId="lesson.writing.early-systems" gatewayFactory={async () => gateway} />);
     await screen.findByRole('heading', { name: 'From Marks to Proto-Cuneiform' });
-    await userEvent.click(screen.getByRole('radio', { name: /^A proto-cuneiform tablet combining numbers and signs for goods$/i }));
+    await userEvent.click(screen.getByRole('radio', { name: /^Someone counted goods, but the tablet never says who gave them or why\.$/i }));
     expect(gateway.saveAttempt).not.toHaveBeenCalled();
     await userEvent.click(screen.getByRole('button', { name: 'Check my answer' }));
-    const explanation = screen.getByRole('textbox', { name: /Explain one thing durable records made possible/ });
+    const explanation = screen.getByRole('textbox', { name: /Name one job a clay record could do/ });
     await userEvent.type(explanation, 'Writing made allocations durable, but surviving administrative tablets omit many voices.');
     fireEvent.blur(explanation);
     expect(gateway.saveAttempt).toHaveBeenCalledTimes(1);

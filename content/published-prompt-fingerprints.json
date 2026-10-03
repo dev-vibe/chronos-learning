@@ -14,6 +14,10 @@
       "lessonId": "lesson.mesopotamia.akkadian-empire",
       "fingerprint": "8613e6e0940c938a9b9eb62b5bc8362c810b7d3de43b29a0a8a37e39a22ae39e"
     },
+    "prompt.caral.coast-valley-and-mounds": {
+      "lessonId": "lesson.caral.andean-urbanism",
+      "fingerprint": "daade7e732c4e03cda4e34099c185fc46ecf2a9edf5fca450058a9840d0a9e19"
+    },
     "prompt.caral.evidence-and-limit": {
       "lessonId": "lesson.caral.andean-urbanism",
       "fingerprint": "997cd084b2b4036df4acd668183c157a0b3eef8d362dba8ce98b8541fa7b7f8b",
@@ -28,10 +32,6 @@
       "fingerprint": "7e57a0ecf7ae5efbeb6e2aa8be6dc2e514e2c9da614b09897cae4a2da65e3332",
       "retired": true
     },
-    "prompt.caral.what-the-mounds-show": {
-      "lessonId": "lesson.caral.andean-urbanism",
-      "fingerprint": "d03204b6d7cdd8b2bf6d022feb7ff4ed3e0ddbea1b4bc23811b7dd42a4c67d34"
-    },
     "prompt.egypt.evidence-and-limit": {
       "lessonId": "lesson.egypt.nile-state",
       "fingerprint": "cb38be423238cdeb5861f2475a9be41506f62093cb8509b0db8d7f8eaae6215e",
@@ -39,7 +39,7 @@
     },
     "prompt.egypt.palette-royal-message": {
       "lessonId": "lesson.egypt.nile-state",
-      "fingerprint": "6a00f5f355b5367b926dfcf8321fc70539a38730cc04f70c3b1cad810a7e3756"
+      "fingerprint": "2783fcd7ab74985229a0f05e607661ff71383b0c35daff0f90e062bb4471b102"
     },
     "prompt.egypt.palette-supported-claim": {
       "lessonId": "lesson.egypt.nile-state",
@@ -61,7 +61,7 @@
     },
     "prompt.farming.multi.one-region-evidence": {
       "lessonId": "lesson.farming.multiple-origins",
-      "fingerprint": "dac2aba3ac3f02159ff57bebd688b16b008fa9b238f2badb3ba3ce7c3206d8c3"
+      "fingerprint": "136c1e8ccd53e03899148e9896a81d2a00829b84d0bc6ed6b1723ce36f7a9d0f"
     },
     "prompt.farming.multi.what-evidence-supports": {
       "lessonId": "lesson.farming.multiple-origins",
@@ -70,7 +70,7 @@
     },
     "prompt.farming.multi.what-regions-show": {
       "lessonId": "lesson.farming.multiple-origins",
-      "fingerprint": "cbdf8b35e11d8b704dfe665a0b61e84d8ff1b3f0d30a0088b7fb710fbf3de2c9"
+      "fingerprint": "50a0c39f3dc70d5daded6bfd9d4ce5d262295530d6f81c3352d700a5f7cda87a"
     },
     "prompt.farming.opportunity-and-cost": {
       "lessonId": "lesson.farming.settlements",
@@ -116,7 +116,7 @@
     },
     "prompt.indus.what-weights-show": {
       "lessonId": "lesson.indus.cities-and-signs",
-      "fingerprint": "09a4f61e694e8bca66ebd1a21ef782555edd635661931b435d32bd7a70a7576d"
+      "fingerprint": "fe365d80cb4d99e6b716cb0b7f3837cec13bc03ddbad744997300987f5ca02b7"
     },
     "prompt.kerma.contact-and-rule": {
       "lessonId": "lesson.nubia.kerma-and-nile-world",
@@ -158,7 +158,7 @@
     },
     "prompt.writing.what-tablet-shows": {
       "lessonId": "lesson.writing.early-systems",
-      "fingerprint": "80c6ad3fa3645664d8536772a2bd0984a4c883d84446cca9d37581fd9e00998e"
+      "fingerprint": "87ef6c3651d277be6aff0231f09db1e1e3bf1e69688a2997774817dcb871f9e4"
     }
   }
 }
