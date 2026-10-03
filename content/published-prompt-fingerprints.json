@@ -67,11 +67,16 @@
     },
     "prompt.indus.shared-standards": {
       "lessonId": "lesson.indus.cities-and-signs",
-      "fingerprint": "34197c9699a6ae77e9b0bbfce79ec8707daa97b952828984617321f7d419523e"
+      "fingerprint": "34197c9699a6ae77e9b0bbfce79ec8707daa97b952828984617321f7d419523e",
+      "retired": true
     },
     "prompt.indus.water-and-work": {
       "lessonId": "lesson.indus.cities-and-signs",
       "fingerprint": "e6256e0c4e43183c71ebf0c96695894430fc8d6d6bcc9413897c654bdde52f8f"
+    },
+    "prompt.indus.what-weights-show": {
+      "lessonId": "lesson.indus.cities-and-signs",
+      "fingerprint": "09a4f61e694e8bca66ebd1a21ef782555edd635661931b435d32bd7a70a7576d"
     },
     "prompt.kerma.contact-and-rule": {
       "lessonId": "lesson.nubia.kerma-and-nile-world",

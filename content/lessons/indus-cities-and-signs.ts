@@ -52,15 +52,15 @@ export const indusClaims: Claim[] = [
 
 export const indusPrompts: UnderstandingPrompt[] = [
   {
-    id: 'prompt.indus.shared-standards', bestOptionId: 'option.indus.shared-measure', lessonId: 'lesson.indus.cities-and-signs', kind: 'supported-selection', required: true, evidenceModuleIds: ['module.indus.weights-evidence'],
-    question: 'Stone weights from several Indus cities follow a shared system. Which conclusion is best supported by that pattern?',
-    hint: 'Separate what people needed to agree on from who might have made that agreement.',
-    explanation: 'The weights follow a shared pattern, starting with a doubling series, so they support a common way of measuring quantities. That could help people coordinate exchange or collections. The objects alone do not name the people who set or enforced the standard.',
+    id: 'prompt.indus.what-weights-show', bestOptionId: 'option.indus.same-units', lessonId: 'lesson.indus.cities-and-signs', kind: 'supported-selection', required: true, evidenceModuleIds: ['module.indus.weights-evidence'],
+    question: 'Excavators have measured weights from Harappa and other Indus sites. The first seven units double each time, and real stones vary a little. Which statement goes only as far as that evidence can take it?',
+    hint: 'Sort the statements by what the weights can show directly and what would need other evidence.',
+    explanation: 'The weights show that people at different sites used the same units in a doubling series, so an agreement about quantity reached beyond any single city. That could help people coordinate exchange or collections. The weights alone do not name the people who set or enforced the standard, say how goods were divided among households, or give any meaning to the signs on seals.',
     options: [
-      { id: 'option.indus.shared-measure', label: 'People in different places used a common way to measure quantities.', feedback: 'Yes. Repeated measurements across sites support a shared standard, even though individual weights vary.' },
-      { id: 'option.indus.one-emperor', label: 'One emperor personally controlled trade in every city.', feedback: 'A common standard does not identify an emperor. Different political arrangements could produce or maintain shared measures.' },
-      { id: 'option.indus.equal-wealth', label: 'Every household owned the same amount of valuable goods.', feedback: 'A weight measures a quantity. It does not tell us how wealth was divided between households.' },
-      { id: 'option.indus.decoded-signs', label: 'Researchers can now translate the signs on Indus seals.', feedback: 'Recognizing a measurement system does not provide sound values or meanings for the separate sign system.' },
+      { id: 'option.indus.same-units', label: 'People at different sites weighed goods by the same units, so an agreement about quantity reached beyond any single city.', feedback: 'Yes. Weights from different sites fit the same series of units, even though individual stones vary a little.' },
+      { id: 'option.indus.ruler-ordered-weights', label: 'One ruler ordered every weight made and controlled all trade from a single capital.', feedback: 'Reread “Who organized the cities?” What do researchers say shared standards and public works can and cannot show about who held authority?' },
+      { id: 'option.indus.households-equal', label: 'Every household owned the same amount of goods, because everyone weighed with the same stones.', feedback: 'Think about what a weight records. Does anything in the lesson show how goods were divided between households?' },
+      { id: 'option.indus.signs-read', label: 'Researchers can read the signs on Indus seals, because the weights and the signs belong to one system.', feedback: 'Reread “Seals and undeciphered signs.” What would a convincing reading have to explain, and do weights supply it?' },
     ],
   },
   {
@@ -119,7 +119,7 @@ const sections: Lesson['sections'] = [
   {
     id: 'section.indus.understanding', heading: 'Explain the evidence', purpose: 'Check a shared-measure inference and ask for an explanation of collective water work and its limits.',
     modules: [
-      { id: 'module.indus.shared-standards-check', type: 'prompt', promptId: 'prompt.indus.shared-standards', claimIds: ['claim.indus.shared-weights', 'claim.indus.weight-numbers', 'claim.indus.coordination-and-rule'], sourceIds: ['source.indus.measuring', 'source.indus.green-governance'] },
+      { id: 'module.indus.shared-standards-check', type: 'prompt', promptId: 'prompt.indus.what-weights-show', claimIds: ['claim.indus.shared-weights', 'claim.indus.weight-numbers', 'claim.indus.coordination-and-rule'], sourceIds: ['source.indus.measuring', 'source.indus.green-governance'] },
       { id: 'module.indus.water-work-check', type: 'prompt', promptId: 'prompt.indus.water-and-work', claimIds: ['claim.indus.household-drainage', 'claim.indus.trap-sand-heaps', 'claim.indus.drain-reuse', 'claim.indus.water-storage', 'claim.indus.coordination-and-rule'], sourceIds: ['source.indus.street-drains', 'source.indus.dholavira', 'source.indus.green-governance'] },
     ],
   },

@@ -662,6 +662,15 @@ Runbook: `docs/content/lesson-voice-revision-runbook.md`. Branch: `revise/indus-
 
 Whole lesson: story spine `none` (a sequence of evidence types); memorable moments `none` a 13-year-old would retell; opening did not land (announced question); ending did not land (summary).
 
+**Prompts.**
+
+| Prompt | Verdict | Finding |
+| --- | --- | --- |
+| `prompt.indus.shared-standards` | `replace` | The question already says the weights “follow a shared system”, and the best answer (“a common way to measure quantities”) restates it, so the check rewards recognition, not reasoning. Two wrong-option feedbacks give the answer away (“A weight measures a quantity”; “Recognizing a measurement system…”). Fixing the question changes the prompt's identity, so it is replaced; the teaching job (what a measured standard supports and what it does not) is unchanged. |
+| `prompt.indus.water-and-work` | `keep` (text already updated) | Written prompt grounded in the lesson's own evidence; it asks for a causal explanation and a bounded uncertainty about who organized the work, and works with the new upkeep detail (traps emptied again and again, drains raised with more bricks). Only the parent-facing explanation was extended. |
+
+**Card.** `card.indus.stamp-seal`: `refresh` (text and facts; art `keep`). The facts carried nothing of the lesson's spine (a seal whose signs nobody can read) and had three entries of five allowed. Art stays the Met catalog image, the best image of the object itself (Stage 11); `depictionLabel` is unchanged and still true.
+
 ### Story material
 
 - **Story spine:** the work behind the cities and the names nobody can read. The lesson follows what people did (cleaned drains, weighed goods, pressed seals, hung a sign over a gate) while the writing that might name them stays unread; the ending calls back to the sand beside the drain.
@@ -671,10 +680,10 @@ Whole lesson: story spine `none` (a sequence of evidence types); memorable momen
 
 ### Changes
 
-- Prose bodies in nine modules rewritten; two prompt explanations (`prompt.indus.shared-standards`, `prompt.indus.water-and-work`) extended with the new detail. All IDs, section order, headings, prompts, options, answer logic, media, captions and card are unchanged. No test text changed.
+- Prose bodies in nine modules rewritten; `prompt.indus.water-and-work` explanation extended with the new detail; `prompt.indus.shared-standards` replaced by `prompt.indus.what-weights-show` (see **Prompt revision** below); the card's reveal text and facts refreshed. Lesson, section, module, claim, source, media and card IDs, section order, headings, media, captions and completion are unchanged. No test text changed.
 - Module `claimIds` and `sourceIds` updated to cover what each module now says; both check modules gained the new claims they cite.
 - 14 claims and 3 sources added (claim ledger, central claim support and source close-review tables above): `trap-sand-heaps`, `drain-construction`, `drain-reuse`, `dholavira-setting`, `weight-numbers`, `weights-taxation-argument`, `dholavira-materials`, `discovery-1924`, `sayce-comparison`, `dholavira-signboard-find`, `dholavira-signboard-display`, `dholavira-layout`, `green-argument`, `harappa-sequence`; sources `iln-marshall`, `sayce-letter`, `dholavira-bisht`.
-- Reading length: 985 → 1,375 words in the prose modules (+40%). The growth is the two added stories and the specific detail; the summary sentences, the opening list of city needs and the moralizing asides were cut. Evidence-module captions, scene hotspots and the card were not changed.
+- Reading length: 985 → 1,375 words in the prose modules (+40%). The growth is the two added stories and the specific detail; the summary sentences, the opening list of city needs and the moralizing asides were cut. Evidence-module captions and scene hotspots were not changed.
 - **Images:** none added. A photograph of the Dholavira signboard would serve moment (3), but no clearly licensed original was found in this pass (Harappa.com photographs are copyrighted and the Commons category could not be opened from this session), so none was added. A follow-up image pass can add one under the Stage 10 rights path.
 
 ### Left out
@@ -698,8 +707,50 @@ Whole lesson: story spine `none` (a sequence of evidence types); memorable momen
 | Visual value | not applicable | No image added or changed; see Changes. |
 | Rights, media and accessibility | not applicable | No media change. |
 
-`npm run validate:content` passed; `npm run test:domain` passed (16 files, 84 tests). No test pinned the changed text.
+`npm run validate:content` passed; `npm run test:domain` passed (16 files, 84 tests); `npm run typecheck:chronos` passed; `npm run content:fingerprints` registered the new prompt and retired the old one. No test pinned the changed text or either prompt ID.
+
+### Card revision
+
+Old reveal: “Press a seal into soft clay, lift it away, and a raised copy of the design remains. Around four thousand years ago, someone chose this animal and these tiny signs to make a mark they could stamp again and again.”
+New reveal: the same, plus “We can see the mark. Nobody can yet read it.”
+
+Facts (three before, five now; the first three are unchanged): added “The museum’s title ends with a question mark: curators are not sure the object in front of the buffalo is an incense burner” (`claim.indus.seal-object`, Met object 49.40.2 title) and “No one has a securely established reading for the signs” (`claim.indus.undeciphered-signs`). Subject, class, ID, art, depiction label, recall prompt and unlock are unchanged; learners who own the card see the new text.
 
 ### Owner review
 
 Pending.
+
+
+## Prompt revision
+
+### 2026-10-02 — `prompt.indus.shared-standards` → `prompt.indus.what-weights-show`
+
+Part of the voice revision on `revise/indus-cities-and-signs-voice` (PR #67). Same teaching job: what a measured standard supports and what it does not (a shared standard is not an emperor, equal wealth or a decipherment). Same kind (supported selection), required flag and evidence module (`module.indus.weights-evidence`). `prompt.indus.shared-standards` is retired in `content/published-prompt-fingerprints.json`.
+
+**Why it changed.** The old question handed over its answer (see the audit above), and two wrong-option feedbacks restated it.
+
+**Old.** Question: “Stone weights from several Indus cities follow a shared system. Which conclusion is best supported by that pattern?” Hint: “Separate what people needed to agree on from who might have made that agreement.” Best: `option.indus.shared-measure`.
+
+| Old option | Feedback |
+| --- | --- |
+| People in different places used a common way to measure quantities. (best) | Yes. Repeated measurements across sites support a shared standard, even though individual weights vary. |
+| One emperor personally controlled trade in every city. | A common standard does not identify an emperor. Different political arrangements could produce or maintain shared measures. |
+| Every household owned the same amount of valuable goods. | A weight measures a quantity. It does not tell us how wealth was divided between households. |
+| Researchers can now translate the signs on Indus seals. | Recognizing a measurement system does not provide sound values or meanings for the separate sign system. |
+
+**New.** Question: “Excavators have measured weights from Harappa and other Indus sites. The first seven units double each time, and real stones vary a little. Which statement goes only as far as that evidence can take it?” Hint: “Sort the statements by what the weights can show directly and what would need other evidence.” Best: `option.indus.same-units`. Required: yes (unchanged).
+
+| New option | Feedback | Section that supports it |
+| --- | --- | --- |
+| `option.indus.same-units`: People at different sites weighed goods by the same units, so an agreement about quantity reached beyond any single city. (best) | Yes. Weights from different sites fit the same series of units, even though individual stones vary a little. | “Shared measures and skilled work” (`module.indus.weights`; `claim.indus.shared-weights`, `claim.indus.weight-numbers`) |
+| `option.indus.ruler-ordered-weights`: One ruler ordered every weight made and controlled all trade from a single capital. | Reread “Who organized the cities?” What do researchers say shared standards and public works can and cannot show about who held authority? | “Who organized the cities?” (`claim.indus.coordination-and-rule`) |
+| `option.indus.households-equal`: Every household owned the same amount of goods, because everyone weighed with the same stones. | Think about what a weight records. Does anything in the lesson show how goods were divided between households? | “Shared measures and skilled work” (a weight records a quantity) and “Who organized the cities?” (equal access is not identified) |
+| `option.indus.signs-read`: Researchers can read the signs on Indus seals, because the weights and the signs belong to one system. | Reread “Seals and undeciphered signs.” What would a convincing reading have to explain, and do weights supply it? | “Seals and undeciphered signs” (`module.indus.sign-limits`; `claim.indus.undeciphered-signs`) |
+
+Explanation (shown after the right pick): “The weights show that people at different sites used the same units in a doubling series, so an agreement about quantity reached beyond any single city. That could help people coordinate exchange or collections. The weights alone do not name the people who set or enforced the standard, say how goods were divided among households, or give any meaning to the signs on seals.”
+
+Each wrong option's feedback points to a section and a question without stating the answer. `npm run content:fingerprints`, `npm run validate:content` and `npm run test:domain` passed; no test referenced the old prompt or option IDs. The 2026-09-13 publication migration still names the old IDs; it is history and is not edited.
+
+**What learners will see.** Finished lessons, and lessons waiting for or passed by a parent, stay as they are; for them the new question is just another check to try. The prompt is required, so a learner still working through the lesson, or one whose lesson was sent back, must pick the best-supported answer on the new question before finishing. Parents see written questions only; this prompt is a selection, so Review is unaffected.
+
+Owner approval: pending.
