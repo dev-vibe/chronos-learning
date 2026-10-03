@@ -199,6 +199,19 @@ Selected after the September 14 research-direction approval and before prose dra
 | `claim.kerma.connections` — Kerma participated in exchange with other regions and had changing relations, including rivalry, with Egypt. | interpretation | high | mission-history; metallurgy; mass-burials | Do not identify a unique trade route from matching metal; no fixed alliance map. | Egyptian texts are external self-representation. | Explain independent neighbors can exchange and compete. | Editorially reviewed |
 | `claim.kerma.sennuwy` — Egyptian statue MFA 14.720 was found in Kerma tomb K III; its presence shows movement but cannot alone prove Egyptian rule. | observation | high | sennuwy; reisner-context | Find context/manufacture are known; exact transport remains unresolved. | Neither named Egyptian subject nor museum possession identifies tomb inhabitants. | One brief example; no second close-reading exercise. | Editorially reviewed |
 | `claim.kerma.conquest` — Egyptian conquest around the end of the lesson period ended Kerma's political independence and brought destruction to the city; this is not evidence that all its inhabitants disappeared. | interpretation | high | mission-history | Rounded endpoint, not instant erasure of community/practices; exact reign detail omitted. | Continued lives less prominent than royal campaigns. | Brief non-graphic ending acknowledges violent destruction and distinguishes kingdom from population. | Editorially reviewed |
+| `claim.kerma.sennuwy-find` — MFA 14.720 is a granodiorite statue of nearly 2,400 pounds, excavated in 1914 by the Harvard University–Boston Museum of Fine Arts Expedition in the burial complex of a local ruler in Kush. | observation | high | sennuwy; reisner-context | The MFA feature does not name Tomb K III; the K III context rests on Reisner p. 138 (see `claim.kerma.sennuwy`). Journey to Kerma unknown. | No Kerma account of the statue. | Opening moment; “Nobody knows how the statue got there.” | Added in the voice revision (2026-10-03); editorial review required |
+| `claim.kerma.kush-name` — Egyptian hieroglyphic texts refer to the kingdom of Kerma as the Kingdom of Kush. | observation | high | map-site | An Egyptian name, not a Kerma self-name. | Kerma’s own name for the kingdom is not recovered. | One sentence, labelled as Egyptian usage. | Added in the voice revision (2026-10-03); editorial review required |
+| `claim.kerma.pre-kerma-granaries` — The Pre-Kerma settlement (c. 3200–2500 BCE) had about 40 huts, four to seven meters across, around a storage area with almost 500 cereal granaries. | observation | high | mission-history | Before the lesson’s c. 2500 BCE start; background only; “granaries” are the mission’s term. | No household-level supply arrangements. | Food paragraph, attributed to the Swiss mission. | Added in the voice revision (2026-10-03); editorial review required |
+| `claim.kerma.defenses-and-hall` — Kerma city had deep ditches and elaborate fortifications and a large round audience hall rebuilt several times in the same place, probably with a conical roof on three or four rows of wooden columns. | interpretation | high | city-project; map-site | Roof form is a reconstruction (“likely”); function names are interpretations. | No builders’ account. | “They think it had a cone-shaped roof.” | Added in the voice revision (2026-10-03); editorial review required |
+| `claim.kerma.deffufa-size` — The Western Deffufa, a large mud-brick temple, currently stands 18 meters high; deffufa is a Nubian word for a large mud-brick, man-made structure. | observation | high | map-site | Present height after conservation and restoration; not the complete ancient building (see `claim.kerma.deffufa`). | Ancient name of the building not recovered. | Deffufa caption: “still stands about 18 meters high”. | Added in the voice revision (2026-10-03); editorial review required |
+| `claim.kerma.beaker-making` — Classic Kerma beakers were covered with red ocher and polished before firing, then inverted in combustible material to create the reducing atmosphere that gives the black tops. | interpretation | high | met-beaker | Museum catalogue reading of the firing method; not an excavated kiln. | Potters unnamed. | Beaker paragraph, plain words (“little air”). | Added in the voice revision (2026-10-03); editorial review required |
+| `claim.kerma.beaker-find` — Classic Kerma beakers were found stacked in tombs in groups of as many as seven; Met 20.2.45 came from Abydos Tomb 525 (Garstang excavations, 1908); such tombs generally contain both Kerma ceramics and Egyptian goods. | observation | high | met-beaker | Museum record; the 1908 excavation records were not re-read. | Who was buried is unknown. | Beaker paragraph and “Things moved in both directions”. | Added in the voice revision (2026-10-03); editorial review required |
+| `claim.kerma.beaker-traders` — The owners of Abydos tombs holding Kerma ceramics and Egyptian goods may have been traders, originally from Kerma, who settled in Egypt. | interpretation | low | met-beaker | A museum suggestion (“may have been”); other readings (gifts, intermarriage, captives) are not excluded. | No text names these people. | “May have been traders…”, one hedge, then “Nobody knows who made this beaker”. | Added in the voice revision (2026-10-03); editorial review required |
+| `claim.kerma.bronze-furnace` — A large cross-shaped furnace at the foot of the Western Deffufa was, in the excavators’ words, a unique installation for making bronze plaques; the city also produced faience and ceramics. | interpretation | moderate | city-project | French original: “installation unique destinée à la fabrication de plaques de bronze”; “four” translated as furnace; the page gives no date or dimensions. | No named metalworkers. | Metalworking paragraph, attributed to the excavators. | Added in the voice revision (2026-10-03); editorial review required |
+| `claim.kerma.trade-goods` — Trade in gold, precious stones, ivory, animal hide, ebony and cattle contributed to Kerma’s wealth, and the city stood at a crossroads of trade routes linking Africa and the Mediterranean. | interpretation | high | mission-history; city-project | Summaries; routes and volumes not quantified. | No traders’ accounts. | “Kerma was never cut off.” | Added in the voice revision (2026-10-03); editorial review required |
+| `claim.kerma.cattle-mound` — One tomb, perhaps of a Middle Kerma king (2050–1750 BCE), lay under a mound 25 m across with more than 4,000 cattle skulls in a crescent on its south side; later rulers’ mounds reached 90 m across. | observation | high | map-site | UNESCO submission summary (“perhaps of a king”); no human-sacrifice figure is used; who raised the animals is not stated. | Elite burials only. | Rulers paragraph, non-graphic. | Added in the voice revision (2026-10-03); editorial review required |
+| `claim.kerma.hyksos-alliance` — The Swiss mission cites an alliance proposed by a Hyksos king of the Fifteenth Dynasty, around 1580 BCE, as corroborating Kerma’s importance on the political scene. | interpretation | moderate | mission-history | The proposal is known from Egyptian reports (the Kamose stela, which may be literary) that were not re-read in this pass; the date comes from the mission’s history. | Kerma’s reply, if any, is unknown. | One attributed sentence, no names. | Added in the voice revision (2026-10-03); editorial review required |
+| `claim.kerma.conquest-displacement` — The Egyptian conquest of Kush by Thutmose I (1496–1483 BCE) forced the Nubians from homes, often burnt during the conquest; several settled at Soleb, Sesebi, Tabo, Kawa or the foot of Gebel Barkal. | interpretation | high | mission-history | Mission summary; reign dates as given by the mission; some groups’ movements are inferred from later settlement. | No Nubian account of the conquest. | Closing section; ends the “vanished population” misconception. | Added in the voice revision (2026-10-03); editorial review required |
 
 ## Central claim support
 
@@ -225,6 +238,21 @@ Selected after the September 14 research-direction approval and before prose dra
 | claim.kerma.sennuwy | source.kerma.sennuwy | object 14.720, Egyptian attribution and Kerma K III provenance | Sol passage retrieval/main assessment, 2026-09-14, close-reviewed |
 | claim.kerma.sennuwy | source.kerma.reisner-context | p. 138, statue context in K III | Sol passage retrieval/main assessment, 2026-09-14, close-reviewed |
 | claim.kerma.conquest | source.kerma.mission-history | passage end of the kingdom and final ceramic phases | Sol passage retrieval/main assessment, 2026-09-14, close-reviewed |
+| claim.kerma.sennuwy-find | source.kerma.sennuwy | MFA conservation feature: “Carved from granodiorite…”, “nearly 2400 pounds”, “Excavated by the Harvard University-Boston Museum of Fine Arts Expedition” (1914), “burial complex of a local ruler”, “land of Kush” | Page re-read 2026-10-03 with verbatim passage requested; main assessment; voice revision |
+| claim.kerma.kush-name | source.kerma.map-site | Tentative List 6594, Description: “…referred to in Egyptian hieroglyphic texts as the Kingdom of Kush” | Page re-read 2026-10-03 with verbatim passage requested; main assessment; voice revision |
+| claim.kerma.pre-kerma-granaries | source.kerma.mission-history | section PRE-KERMA (3200–2500 B.C.): “approximately 40 huts… which surround a storage area that includes almost 500 cereal granaries” | Page re-read 2026-10-03 with verbatim passage requested; main assessment; voice revision |
+| claim.kerma.defenses-and-hall | source.kerma.city-project | section La ville de Kerma: “fossés profonds et d’un système de fortifications élaborées”, “une grande salle d’audience circulaire” | Page re-read 2026-10-03 with verbatim passage requested; main assessment; voice revision |
+| claim.kerma.defenses-and-hall | source.kerma.map-site | Description: audience hall “a large round mud structure, which had been rebuilt several times in the same location and likely had a conical roof supported by three or four rows of wooden columns” | Page re-read 2026-10-03 with verbatim passage requested; main assessment; voice revision |
+| claim.kerma.deffufa-size | source.kerma.map-site | Description: “a large mudbrick temple, currently standing 18m high”; “(Deffufa is a Nubian word meaning, a large mudbrick, man-made structure)” | Page re-read 2026-10-03 with verbatim passage requested; main assessment; voice revision |
+| claim.kerma.beaker-making | source.kerma.met-beaker | object 545772, Description: red ocher and polishing before firing; inverted in a combustible material to create a reducing atmosphere; black tops | Page re-read 2026-10-03 with verbatim passage requested; main assessment; voice revision |
+| claim.kerma.beaker-find | source.kerma.met-beaker | object 545772, Excavation/Provenance (Garstang excavations, 1908; Abydos Tomb 525) and Description (stacked in groups of as many as seven; tombs contain both Kerma ceramics and Egyptian goods) | Page re-read 2026-10-03 with verbatim passage requested; main assessment; voice revision |
+| claim.kerma.beaker-traders | source.kerma.met-beaker | object 545772, Description: owners “may have been traders, originally from Kerma, who had taken up residence in Egypt” | Page re-read 2026-10-03 with verbatim passage requested; main assessment; voice revision |
+| claim.kerma.bronze-furnace | source.kerma.city-project | section La ville de Kerma: “le grand four en croix dégagé au pied de la Deffufa… installation unique destinée à la fabrication de plaques de bronze”; faience and ceramics | Page re-read 2026-10-03 with verbatim passage requested; main assessment; voice revision |
+| claim.kerma.trade-goods | source.kerma.mission-history | section KINGDOM OF KERMA, economic-prosperity passage: “Trade (gold, precious stones, ivory, animal hide, ebony, cattle) also contributed to the city’s wealth” | Page re-read 2026-10-03 with verbatim passage requested; main assessment; voice revision |
+| claim.kerma.trade-goods | source.kerma.city-project | geographic-context passage: “à la croisée de grandes routes commerciales reliant l’Afrique à la Méditerranée” | Page re-read 2026-10-03 with verbatim passage requested; main assessment; voice revision |
+| claim.kerma.cattle-mound | source.kerma.map-site | Description, Eastern Cemetery passage: “One tomb, perhaps of a king of the Middle Kerma period (2050–1750BC)… covered by a mound that reached 25m across. More than 4,000 cattle bucrania were arranged in a crescent shape on the south side of the mound”; “mounds up to 90m in diameter” | Page re-read 2026-10-03 with verbatim passage requested; main assessment; voice revision |
+| claim.kerma.hyksos-alliance | source.kerma.mission-history | section KINGDOM OF KERMA, Classic Kerma passage: “…an alliance proposed by a Hyksos king of the Fifteenth Dynasty, around 1580 B.C., corroborates the kingdom’s importance on the political scene” | Page re-read 2026-10-03 with verbatim passage requested; main assessment; voice revision |
+| claim.kerma.conquest-displacement | source.kerma.mission-history | passage on the end of the kingdom: “…carried out by one of the most illustrious New Kingdom pharaohs, Thutmosis I (1496-1483 B.C.)”; “The Nubians must leave their homes, often burnt during the conquest. Several settle at Soleb, Sesebi, Tabo, Kawa or at the foot of Gebel Barkal.” | Page re-read 2026-10-03 with verbatim passage requested; main assessment; voice revision |
 
 ## Content triage
 
@@ -582,6 +610,75 @@ Carlin responded **“nice. publish!”** after the final four-image review hand
 - [PR #47](https://github.com/dev-vibe/chronos-learning/pull/47) merged as `8087c990e9dec415dad24d4ae19f66c8027ddad3` on September 17. The main-branch Vercel deployment completed successfully, and the [live Kerma lesson](https://chronos-learning.vercel.app/learn/lesson.nubia.kerma-and-nile-world) returned the production application successfully. The authenticated branch smoke remains the behavioral release evidence; production verification did not repeat or overstate that human walkthrough.
 - Publication is complete. The lesson-production queue and ASH-101 can be closed.
 
+## Voice revision
+
+Runbook: `docs/content/lesson-voice-revision-runbook.md`. Branch: `revise/kerma-and-middle-nile`. Started 2026-10-03. Status: **awaiting owner review**.
+
+### Audit of the published version
+
+| Section | What read flat |
+| --- | --- |
+| `section.kerma.nile-neighbors` | Opened on a general sentence (“A kingdom needs more than a ruler”) and an announced question (“What made Kerma powerful?”); then a run of short declaratives and a callback instruction (“Remember the Nile’s role…”). No moment, object or place. |
+| `section.kerma.food-and-building` | “These traces bring ordinary needs into the history of a kingdom” where the Swiss mission’s history gives a number (about 40 huts around almost 500 grain stores); the building paragraph lists “streets, houses, workshops and substantial defenses” without detail; “Food alone did not create a kingdom” reads as an aside. The Deffufa caption never gives its height or the meaning of the word. |
+| `section.kerma.skilled-makers` | The beaker is described by shape and colors but not by how it was made (red ocher, fired upside down) or why it was in an Egyptian grave (the Met’s traders suggestion); ends on a hedge (“We can recognize skilled work without claiming…”). The metalworking paragraph is generic where the excavators describe a cross-shaped furnace at the foot of the Deffufa. |
+| `section.kerma.rulers-and-resources` | “Some enormous tombs” with no size where the UNESCO submission gives 25 m and 90 m mounds and more than 4,000 cattle skulls in a crescent; two closing paragraphs of hedging (“…without pretending that every worker’s choices… are known”). |
+| `section.kerma.egypt-and-change` | The statue gets one paragraph with no find story; an imperative (“Think of it alongside the workshops”); the conquest paragraph has no place or people after the fall and ends on a summary (“…independence and connections could exist together”). |
+| `section.kerma.understanding` | Prompt explanations accurate (see Prompts). |
+
+Whole lesson: story spine `none`; memorable moments `none` a 13-year-old would retell; opening did not land (general statement plus announced question); ending did not land (summary).
+
+**Prompts.**
+
+| Prompt | Verdict | Finding |
+| --- | --- | --- |
+| `prompt.kerma.contact-and-rule` | `replace` | Fails the Stage 12 option checks. The absolute words “proves” and “everything” appear only in the two wrong options; the best option is the only one with no absolute word. The question (“Which explanation best fits those finds?”) names “metalworking waste” without saying what waste shows. Same teaching job: tell a local-production inference from an imported-object overclaim. Replaced by `prompt.kerma.what-two-finds-show`. |
+| `prompt.kerma.work-and-power` | `replace` | Stacks asks: choose a group, “explain how their work helped support Kerma’s power”, and “connect the work to something the kingdom could do”, which is the same step twice, in the abstract phrase “support Kerma’s power”. A 12-year-old has to work out what is wanted before answering. Same teaching job: connect a kind of work to what the kingdom could do. Replaced by `prompt.kerma.what-work-made-possible`, one plain task. |
+
+**Card.** None: Kerma has no Knowledge Card (decision recorded under “Knowledge Card decision”). Adding a card is a material revision, so none was added. The beaker, the statue or the Western Deffufa could carry one; owner’s call.
+
+### Story material
+
+- **Story spine:** an Egyptian statue found in a Kerma ruler’s tomb, and the Kerma beaker that went the other way. The opening is the 1914 find; the closing paragraph returns to it (“Nobody knows how Lady Sennuwy reached a Kerma ruler’s tomb”) and says what is known: the kingdom that received her.
+- **Memorable moments:** (1) a 2,400-pound Egyptian statue in a Kerma ruler’s burial complex, found in 1914; (2) the Kerma beaker in an Egyptian grave at Abydos, red ocher and polish, fired upside down to make its black top, and the Met’s suggestion that its owner may have been a trader from Kerma living in Egypt; (3) a tomb mound 25 meters across with more than 4,000 cattle skulls set in a crescent along one side; (4) the alliance proposed by a king of Egypt’s Fifteenth Dynasty about 1580 BCE, and then the conquest under Thutmose I, after which Kerma’s people settled at Soleb, Sesebi, Tabo, Kawa and Gebel Barkal. A fifth smaller detail: before the kingdom, about 40 huts surrounded almost 500 grain stores.
+- **Where the material came from:** this note (Sennuwy, the beaker, conquest, alliance) and re-reads on 2026-10-03 of the registered sources: the Swiss mission history page (phases, trade goods, Pre-Kerma, alliance, conquest), the UNESCO Tentative List 6594 text (Deffufa height, audience hall, tomb mounds and cattle skulls, the name Kush), the French Ministry page (defenses, round hall, cross-shaped furnace, crossroads), the Met object record (Garstang 1908, firing method, stacked beakers, traders) and the MFA statue feature (granodiorite, weight, 1914, burial complex). No new source was registered.
+- **Legend used:** none.
+- **Evidence limits to know:** page text was read through a fetch tool that returns summaries; verbatim passages were requested for every figure used and are recorded in the central-claim table, but this was not a page-by-page close read. The statue’s K III tomb context and its tomb-ruler link still rest on Reisner p. 138, which was not re-read. The alliance report rests on Egyptian texts (the Kamose stela) that were not re-read; the lesson keeps it to one attributed sentence.
+
+### Changes
+
+- Prose bodies in nine modules rewritten (`nile-neighbors`, `feeding-city`, `building-city`, `beaker`, `metalworking`, `rulers`, `egyptian-object`, `political-change`); the Western Deffufa caption in `kerma-media.ts` expanded (height, the meaning of “deffufa”); both prompts replaced (see Prompt revision). Lesson, section, module, claim, source and media IDs, section order, headings, images, map, evidence-module captions other than the Deffufa, `learningOutcome`, `significance` and completion are unchanged. No test text changed.
+- Module `claimIds` and `sourceIds` updated to cover what each module now says.
+- 13 claims added (`sennuwy-find`, `kush-name`, `pre-kerma-granaries`, `defenses-and-hall`, `deffufa-size`, `beaker-making`, `beaker-find`, `beaker-traders`, `bronze-furnace`, `trade-goods`, `cattle-mound`, `hyksos-alliance`, `conquest-displacement`). No source added.
+- Reading length (prose modules): 790 → 1,144 words (+45%); with the evidence and map captions, 938 → 1,316 (+40%). Growth is the opening find, the beaker’s making and journey, the cattle skulls and mounds, the alliance and the settlers after the conquest; the announced question, the “remember the Nile” instruction, the “pretending” hedges and the summary ending were cut.
+- **Images:** none added. The four existing images (locator map, Western Deffufa photograph, Met beaker, MFA statue) already carry the moments in sections 2, 3 and 5. No licensed original photograph of the cross-shaped furnace or the cattle-skull mound was found in this pass.
+
+### Left out
+
+- Human sacrifice at the royal tombs (UNESCO: as many as 400 people with the largest burials): cause, consent and number are contested (Judd and Irish) and the earlier owner direction was non-graphic; the inequality point is made with mounds and cattle skulls.
+- The Hyksos king’s name, the Kamose stela and its embedded letter (may be literary) and Sobeknakht’s Elkab inscription: not re-read; no direct quotation authorized by the note.
+- Doukki Gel’s Palace A (55 by 49 m, about 1,400 columns, per UNESCO): the page places it in a ceremonial city near Kerma without separating its Kerma and Egyptian-period phases.
+- The 1908 Garstang excavation context beyond the Met record, faience (named in the Ministry page) and the Egyptian-period city at Doukki Gel.
+- Reisner’s Egyptian-colony interpretation: deferred in the note as historiography.
+
+### Stage 14B check on the changed sections
+
+| Question | Finding | Evidence and disposition |
+| --- | --- | --- |
+| Story | pass | Spine and moments above; the opening and the ending are the same statue; every section has a concrete object, place or number. |
+| Evidence reasoning | revise (accepted) | “May have been traders” is a single hedge, attributed to the museum, followed by “Nobody knows”; the alliance is “reads this as evidence” (the mission’s reading); the statue paragraph says plainly what a findspot does not show. Open item: re-read Reisner p. 138 and the Kamose stela text. |
+| Proportionality | pass | Unequal power is shown with mounds and skulls, not deaths; conquest ends with people who “had not vanished”; Egypt is a neighbor, not the subject. |
+| Cognitive load | revise (accepted) | New names: Lady Sennuwy, Abydos, Thutmose I, Soleb, Sesebi, Tabo, Kawa, Gebel Barkal. The last four appear in one sentence as examples (“places such as…”). Length +45% in prose. The owner may ask for fewer place names. |
+| Headings | pass | Unchanged and plain. |
+| Prompt fit | pass | See the prompt table and the Prompt revision entries below. |
+| Visual value | not applicable | No image added or changed. |
+| Rights, media and accessibility | not applicable | No media change; the Deffufa caption keeps its scale note. |
+
+`npm run validate:content` passed; `npm run test:domain` passed (16 files, 84 tests); `npm run typecheck:chronos` passed; `npm run content:fingerprints` registered the two new prompts and retired the two old ones. No test pinned the old prompt IDs.
+
+### Owner review
+
+Pending.
+
 ## Prompt revision
 
 ### 2026-10-03 — hints and option feedback (text only, same prompt IDs)
@@ -591,5 +688,43 @@ Part of the assessment audit that followed the Indus review (prompt readability 
 - `prompt.kerma.work-and-power`: the old hint began the learner's answer for them (“You could start: ‘Farmers helped support building work because…’”). New hint: “Pick one group and look back at ‘Feeding and building the city’ or ‘Kerma’s skilled makers.’ What could the kingdom do because of that group’s work?” `prompt.kerma.contact-and-rule` is unchanged (its hint and feedback already point back to the evidence).
 
 **What learners will see.** Nothing is re-asked. Learners see the new hint, and after a wrong pick the new feedback, the next time they open the prompt. Finished lessons and parent reviews are unaffected.
+
+Owner approval: pending.
+
+### 2026-10-03 — `prompt.kerma.contact-and-rule` → `prompt.kerma.what-two-finds-show`; `prompt.kerma.work-and-power` → `prompt.kerma.what-work-made-possible`
+
+Part of the voice revision on `revise/kerma-and-middle-nile`. The hints-and-feedback entry above is superseded for both prompts. Same teaching jobs: (1) tell a local-production inference from an imported-object overclaim, and say that contact is not rule; (2) connect a kind of work to what the kingdom could do. Same kinds (supported selection; written explanation), required flags (yes) and minimum length (20). Both old IDs are retired in `content/published-prompt-fingerprints.json`.
+
+**Why they changed.** See the prompt table in the voice-revision audit: option wording tells in the first; stacked asks and an abstract phrase in the second.
+
+**1. Selection.**
+
+| | Old | New |
+| --- | --- | --- |
+| Question | “At Kerma, archaeologists found metalworking waste and an Egyptian-made statue. Which explanation best fits those finds?” | “Archaeologists found waste left from making metal objects in the city of Kerma. In a Kerma ruler’s tomb they found a statue made in Egypt. Which statement fits both finds best?” |
+| Hint | “Waste left from making metal objects tells us where work happened. A finished object can travel after it was made.” | “Ask what each find shows: where something was made, and where it was found.” |
+| Best option | `option.kerma.local-and-connected` (75 characters): “People worked metal at Kerma, and some finished objects arrived from Egypt.” | `option.kerma.own-makers-and-contact` (79): “Kerma had its own metalworkers, and an object made in Egypt also reached Kerma.” |
+
+| New option | Feedback | Section that supports it |
+| --- | --- | --- |
+| `option.kerma.own-makers-and-contact` (best) | Yes. Waste left from making metal shows that metalworking happened at Kerma, and a statue made in Egypt shows an object traveling to Kerma. | “Kerma’s skilled makers” (`claim.kerma.metalworking`, `bronze-furnace`) and “A changing relationship with Egypt” (`claim.kerma.sennuwy`) |
+| `option.kerma.egypt-governed` (76): Egypt governed Kerma, because an Egyptian statue was buried in a Kerma tomb. | Reread “A changing relationship with Egypt.” Does finding an object in a place tell us who governed that place? | Same section: “Finding an object in a place does not show who governed it.” |
+| `option.kerma.metal-from-egypt` (83): Kerma depended on Egypt for its metal objects, since an Egyptian statue reached it. | Reread “Kerma’s skilled makers.” Where was the metalworking waste found, and what does that say about where metal was worked? | “Kerma’s skilled makers”: waste “is a trace of work done at Kerma”. |
+
+Old options for reference (retired with the prompt): `option.kerma.egyptian-government` (“The Egyptian statue proves that Egypt governed Kerma when its workshops operated.”) and `option.kerma.everything-local` (“The workshops show that everything used at Kerma was made there.”). Explanation (after the right pick): “The waste shows that metal was worked at Kerma. The statue shows that an object made in Egypt reached Kerma, though how it got there is unknown. Together the finds fit a kingdom with its own skilled workers and connections beyond it. They do not show who ruled Kerma.”
+
+**2. Written.**
+
+| | Old | New |
+| --- | --- | --- |
+| Question | “Choose farmers, herders, craftspeople or builders. Explain how their work helped support Kerma’s power. Connect the work to something the kingdom could do.” | “Choose one group: farmers, herders, craftspeople or builders. What did their work let the kingdom of Kerma do?” |
+| Hint | “Pick one group and look back at ‘Feeding and building the city’ or ‘Kerma’s skilled makers.’ What could the kingdom do because of that group’s work?” | “Pick one group, then look back at ‘Feeding and building the city’ or ‘Kerma’s skilled makers.’ Start with what that group did, then say what the kingdom could do because of it.” |
+| Required / minimum length | yes / 20 | yes / 20 |
+
+Explanation (shown to the parent as “What a strong answer covers”): a group, what its work was, and something the kingdom could do because of it (grain to feed builders and large building work; cattle as wealth; metal plaques and pottery that supplied the city and rulers; defenses and monuments), plus the note that wealth and authority were shared unequally. **Support map:** farmers and builders in “Feeding and building the city”; craftspeople in “Kerma’s skilled makers”; herders in “Feeding and building the city” (cattle remains), and in “Rulers and resources” (cattle skulls). **Two-sentence test:** “Farmers grew barley and wheat. That fed the people who built the city’s walls and the Western Deffufa.” Every word comes from the lesson.
+
+**Checks.** Option labels run 79, 76 and 83 characters; the best is neither the longest nor the only hedged option; no absolute word in the options; no joke option. Covering the stem, the options alone do not give the answer away. Each feedback points to a section and asks a question. Every term in the stems is taught in the revised lesson.
+
+**What learners will see.** Finished lessons, and lessons waiting for or passed by a parent, stay as they are; for them the new questions are just more checks to try. Both prompts are required, so a learner still working through the lesson, or one whose lesson was sent back, must answer them before finishing. Parents see the written question as the learner saw it; an old submission is marked as changed.
 
 Owner approval: pending.
