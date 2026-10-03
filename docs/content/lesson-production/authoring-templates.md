@@ -220,8 +220,8 @@ Sources and visual brief:
 
 ## Prompt rationale
 
-| Prompt ID | Required | Understanding/evidence assessed | Misconception exposed | Feedback job |
-| --- | --- | --- | --- | --- |
+| Prompt ID | Required | Understanding/evidence assessed | Misconception exposed | Feedback job | Plain-words check (what a 12-year-old does after one read) |
+| --- | --- | --- | --- | --- | --- |
 
 ## Ages 11–15 transformations
 

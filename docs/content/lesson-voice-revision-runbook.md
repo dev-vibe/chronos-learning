@@ -28,11 +28,11 @@ Add a `## Voice revision` section to the research note (the heading stays for ev
 
 **Telling.** For each section, write one line naming what reads flat: runs of short same-length sentences, hedging repeated in every sentence, moralizing asides, an announced question instead of an opening moment, a summary ending, a general sentence where a specific detail exists, or methods jargon. For the whole lesson, record the current story spine (or `none`), the current memorable moments (or `none`), and whether the opening and ending land.
 
-**Prompts.** For each prompt, against Stage 12 and the story the lesson will tell: does it check its part of the durable understanding using the lesson's own evidence, or is it generic? Does every multiple-choice prompt have a `bestOptionId`, and does every wrong option's feedback hint without giving the answer away? Record one verdict per prompt:
+**Prompts.** For each prompt, against Stage 12 and the story the lesson will tell: does it check its part of the durable understanding using the lesson's own evidence, or is it generic? Does every multiple-choice prompt have a `bestOptionId`, a hint and feedback on every option, and does every wrong option's feedback hint without giving the answer away? Then apply the Stage 12 age-fit checks: can a 12-year-old say what the question asks after one read; is it one or two plain tasks in the lesson's own words; is the evidence in the stem; do the options show wording tells (the longest best answer, absolute words only in the wrong ones, a joke option, a double-barreled best answer)? For a written prompt, can you write a two-sentence answer using only the lesson's words? Record one verdict per prompt:
 
 - `keep`;
-- `text` (explanation, feedback, hint or option order only, same ID: fix it in Step 3);
-- `replace` (question, options, best answer or answer logic: follow the [prompt revision runbook](prompt-revision-runbook.md) in this PR).
+- `text` (explanation, feedback, hint or option order only, same ID: fix it in Step 3; adding a missing hint or missing option feedback is `text`);
+- `replace` (question, options, best answer or answer logic, including a question that fails the age-fit checks: follow the [prompt revision runbook](prompt-revision-runbook.md) in this PR).
 
 **Card.** Does the card still match the revised lesson? Are its facts, reveal text and art (Stage 11: the lesson's most striking image of the subject) as good as the lesson now allows? Record `keep` or `refresh` and what would change.
 

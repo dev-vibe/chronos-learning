@@ -11,7 +11,7 @@ It applies when the new prompt keeps the old one's teaching job: it still checks
 Do not use it for:
 
 - **a change to the essential question, durable understanding or a prompt's teaching job, or adding or removing a prompt.** Those are material revisions and follow the creation runbook. Stop and tell the owner.
-- **text-only changes to explanation, option feedback, hint or option order.** Those keep the ID. Make them in a [lesson revision](lesson-voice-revision-runbook.md) or a [correction](lesson-creation-runbook.md#corrections-after-release).
+- **text-only changes to explanation, option feedback, hint or option order**, including adding a missing hint or missing option feedback. Those keep the ID. Make them in a [lesson revision](lesson-voice-revision-runbook.md) or a [correction](lesson-creation-runbook.md#corrections-after-release).
 
 ## Invocation
 
@@ -26,8 +26,8 @@ Do not use it for:
 
 ## Steps
 
-1. **Draft** the new prompt under Stage 12: same teaching job, plausible wrong options that reveal real misconceptions, a `bestOptionId` for multiple choice, a hint, feedback for each wrong option, and an explanation.
-2. **Check it against the lesson as it stands.** For every option, the best answer and every piece of feedback, name the section (or module) that supports it. If something needs a fact the lesson does not teach, rewrite the prompt. Inside a lesson revision, check against the revised text, which may add the sourced fact; on its own, the lesson text does not change. Read each wrong option's feedback on its own and confirm it points back to the evidence without giving away the answer.
+1. **Draft** the new prompt under Stage 12: same teaching job, a question a 12-year-old can follow after one read (one or two plain tasks, the lesson's own words, the evidence in the stem), plausible wrong options that reveal real misconceptions and show no wording tells, a `bestOptionId` for multiple choice, a hint, feedback on every option, and an explanation. For a written prompt, write a two-sentence answer using only the lesson's words; if you cannot, redraft.
+2. **Check it against the lesson as it stands.** For every option, the best answer and every piece of feedback, name the section (or module) that supports it. If something needs a fact the lesson does not teach, rewrite the prompt. Inside a lesson revision, check against the revised text, which may add the sourced fact; on its own, the lesson text does not change. Read each wrong option's feedback on its own and confirm it points back to the evidence without giving away the answer. Read the question as a 12-year-old would, and for a selection prompt cover the stem and check that the options alone do not give the answer away.
 3. **Replace the prompt.** Give it a new, descriptive prompt ID and new option IDs, and never reuse a retired ID (retired IDs are marked in `content/published-prompt-fingerprints.json`). Replace the old prompt in the lesson's `promptIds`, in its `prompt` module (`promptId`) and in the prompts array, and delete the old prompt. Search `tests/` for the old prompt and option IDs and point each reference at the new ones.
 4. **Record fingerprints:** `npm run content:fingerprints`. It adds the new prompt and marks the old one retired.
 5. **Validate:** `npm run validate:content` and `npm run test:domain`. Never edit a test to hide an ID or behavior change. No migration and no lesson gates.
