@@ -99,11 +99,21 @@
     },
     "prompt.writing.administration-evidence": {
       "lessonId": "lesson.writing.early-systems",
-      "fingerprint": "30294a367090514e7978abef3af50714237a8afe3dee4a402d5b3d0dd22136a7"
+      "fingerprint": "30294a367090514e7978abef3af50714237a8afe3dee4a402d5b3d0dd22136a7",
+      "retired": true
     },
     "prompt.writing.possibility-and-limit": {
       "lessonId": "lesson.writing.early-systems",
-      "fingerprint": "e3709b42bbf2a27f0755ff45f1034193acdaa2e413dc42bc3ff07dc0d08c7334"
+      "fingerprint": "e3709b42bbf2a27f0755ff45f1034193acdaa2e413dc42bc3ff07dc0d08c7334",
+      "retired": true
+    },
+    "prompt.writing.records-and-gaps": {
+      "lessonId": "lesson.writing.early-systems",
+      "fingerprint": "a2b8b175fc642ce526c5ccc2c01694b64ab3dccf0cc8e65dfbdcef4b6c3b38c7"
+    },
+    "prompt.writing.what-tablet-shows": {
+      "lessonId": "lesson.writing.early-systems",
+      "fingerprint": "80c6ad3fa3645664d8536772a2bd0984a4c883d84446cca9d37581fd9e00998e"
     }
   }
 }

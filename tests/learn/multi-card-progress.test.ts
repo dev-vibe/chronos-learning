@@ -18,7 +18,7 @@ describe('parent review submissions', () => {
   it('sends only this lesson’s written answers', () => {
     expect(submissionAnswers('lesson.uruk.first-city', {
       'prompt.uruk.opportunity-and-cost': 'Specialists, but unequal labor.',
-      'prompt.writing.possibility-and-limit': 'Wrong lesson',
+      'prompt.writing.records-and-gaps': 'Wrong lesson',
       'prompt.uruk.administration-evidence': 'option.uruk.tablets',
     })).toEqual({
       'prompt.uruk.opportunity-and-cost': 'Specialists, but unequal labor.',
