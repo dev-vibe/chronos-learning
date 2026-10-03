@@ -612,7 +612,7 @@ Carlin responded **“nice. publish!”** after the final four-image review hand
 
 ## Voice revision
 
-Runbook: `docs/content/lesson-voice-revision-runbook.md`. Branch: `revise/kerma-and-middle-nile`. Started 2026-10-03. Status: **awaiting owner review**.
+Runbook: `docs/content/lesson-voice-revision-runbook.md`. Branch: `revise/kerma-and-middle-nile`. Started 2026-10-03. PR: [#76](https://github.com/dev-vibe/chronos-learning/pull/76), merged 2026-10-03. Status: **approved by the owner 2026-10-03; merged**.
 
 ### Audit of the published version
 
@@ -677,7 +677,7 @@ Whole lesson: story spine `none`; memorable moments `none` a 13-year-old would r
 
 ### Owner review
 
-Pending.
+Reviewed on the Vercel preview of PR #76. Ash (Carlin Aylsworth) approved the revision on 2026-10-03 and merged it the same day, with no changes requested. The review covered the rewritten telling (opening on the 1914 Lady Sennuwy find), the two new prompts, `prompt.kerma.what-two-finds-show` and `prompt.kerma.what-work-made-possible`, and the 13 added claims. The evidence caveats stay as recorded above: Reisner p. 138 and the Kamose stela were not re-read, so the alliance is kept to one attributed sentence.
 
 ## Prompt revision
 
@@ -727,4 +727,4 @@ Explanation (shown to the parent as “What a strong answer covers”): a group,
 
 **What learners will see.** Finished lessons, and lessons waiting for or passed by a parent, stay as they are; for them the new questions are just more checks to try. Both prompts are required, so a learner still working through the lesson, or one whose lesson was sent back, must answer them before finishing. Parents see the written question as the learner saw it; an old submission is marked as changed.
 
-Owner approval: pending.
+Owner approval: approved 2026-10-03 with PR #76.
