@@ -581,3 +581,15 @@ Carlin responded **“nice. publish!”** after the final four-image review hand
 - Vercel branch deployment and PR checks pass. The bounded hosted smoke was assigned to Composer 2.5 Fast as the available lower-cost routine verifier; both the direct and audit URLs redirected immediately to Vercel login. No agent lesson behavior was observed, and no Sol/main-model smoke is substituted. Carlin then completed the supplied authenticated checklist and reported **“smoke is fine”** on September 17. This records owner verification of the two sincere attempts, explicit no-card completion, reopen-at-top behavior, absent prototype notes and four image loads.
 - [PR #47](https://github.com/dev-vibe/chronos-learning/pull/47) merged as `8087c990e9dec415dad24d4ae19f66c8027ddad3` on September 17. The main-branch Vercel deployment completed successfully, and the [live Kerma lesson](https://chronos-learning.vercel.app/learn/lesson.nubia.kerma-and-nile-world) returned the production application successfully. The authenticated branch smoke remains the behavioral release evidence; production verification did not repeat or overstate that human walkthrough.
 - Publication is complete. The lesson-production queue and ASH-101 can be closed.
+
+## Prompt revision
+
+### 2026-10-03 — hints and option feedback (text only, same prompt IDs)
+
+Part of the assessment audit that followed the Indus review (prompt readability check in `docs/content/prompt-revision-runbook.md`). The audit kept every prompt's question and options as they were, so no prompt ID changed and no fingerprint changed; only hints and option feedback, which the prompt-change policy allows under the same ID. Hints and feedback now point back to a section and ask a question instead of stating the answer; every selection option has feedback.
+
+- `prompt.kerma.work-and-power`: the old hint began the learner's answer for them (“You could start: ‘Farmers helped support building work because…’”). New hint: “Pick one group and look back at ‘Feeding and building the city’ or ‘Kerma’s skilled makers.’ What could the kingdom do because of that group’s work?” `prompt.kerma.contact-and-rule` is unchanged (its hint and feedback already point back to the evidence).
+
+**What learners will see.** Nothing is re-asked. Learners see the new hint, and after a wrong pick the new feedback, the next time they open the prompt. Finished lessons and parent reviews are unaffected.
+
+Owner approval: pending.

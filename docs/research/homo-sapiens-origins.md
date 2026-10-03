@@ -622,3 +622,16 @@ Whole lesson: story spine `partial` (Jebel Irhoud opens sections 1, 3 and 5 but 
 - Memorable moments: the 40,000-year Neanderthal that became 315,000 years old; the modern face on a long, low braincase; Omo I's moving date and the Shala ash; Olorgesailie's obsidian and colour after hundreds of thousands of years of handaxes; Kabwe's quarried-away cave.
 - Added claims: `claim.humans.irhoud-first-reading`, `omo-age-history`, `omo-ash-match`, `olorgesailie-change`, and `kabwe-site-lost` brought into the module; sources `source.humans.wong-2017-sciam`, `smithsonian-omo-i`, `si-olorgesailie-2018`.
 - Owner decision: Carlin Aylsworth reviewed the branch preview and approved the revision without changes (“approved!”), 2026-09-24.
+
+## Prompt revision
+
+### 2026-10-03 — hints and option feedback (text only, same prompt IDs)
+
+Part of the assessment audit that followed the Indus review (prompt readability check in `docs/content/prompt-revision-runbook.md`). The audit kept every prompt's question and options as they were, so no prompt ID changed and no fingerprint changed; only hints and option feedback, which the prompt-change policy allows under the same ID. Hints and feedback now point back to a section and ask a question instead of stating the answer; every selection option has feedback.
+
+- `prompt.humans.best-supported-conclusion`: the old hint (“Compare the spread of the finds. Does the oldest find prove where the first people lived?”) gave away why one wrong option fails. New hint: “Compare where the finds were made and how far apart they are. Which statement could explain all three?” The best answer's feedback now confirms the reasoning, and each wrong answer's feedback points to the finds in the question or to “Connected, not sealed off” / “Evidence across a continent” with a question instead of stating the reason.
+- `prompt.humans.evidence-and-limit`: unchanged (the hint already points at the evidence and the limit).
+
+**What learners will see.** Nothing is re-asked. Learners see the new hint, and after a wrong pick the new feedback, the next time they open the prompt. Finished lessons and parent reviews are unaffected.
+
+Owner approval: pending.

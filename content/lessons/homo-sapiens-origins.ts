@@ -576,7 +576,7 @@ export const homoSapiensOriginsPrompts: UnderstandingPrompt[] = [
     id: 'prompt.humans.best-supported-conclusion', bestOptionId: 'option.humans.connected-populations',
     lessonId: 'lesson.humans.homo-sapiens-origins',
     kind: 'supported-selection',
-    hint: 'Compare the spread of the finds. Does the oldest find prove where the first people lived?',
+    hint: 'Compare where the finds were made and how far apart they are. Which statement could explain all three?',
     evidenceModuleIds: ['module.humans.africa-evidence-map'],
     question: 'Fossils of early Homo sapiens have been found in Morocco from about 315,000 years ago, in South Africa from about 259,000 years ago, and in Ethiopia from at least 233,000 years ago. They are thousands of kilometres apart, and they do not all share the same mix of features. Which conclusion does this set of finds best support?',
     explanation: 'The finds are spread across Africa, cover more than 150,000 years and mix features in different ways, which fits groups that were sometimes apart and sometimes in contact. One valley cannot explain finds that far apart. Different mixes of features do not make separate species either, because these groups kept exchanging genes. And “oldest known” is not the same as “first”: Jebel Irhoud is only the oldest evidence found so far, and it turned up by accident in a mine. The next dig could be older and somewhere else. This evidence rules out a simple one-place story without swapping in a different single place.',
@@ -584,23 +584,19 @@ export const homoSapiensOriginsPrompts: UnderstandingPrompt[] = [
     options: [
       {
         id: 'option.humans.connected-populations',
-        feedback: 'The spread and different mixes of features fit connected populations across Africa. That does not identify one exact birthplace.',
-        label: 'Our species took shape among populations living in many parts of Africa that were sometimes separated and sometimes in contact.',
+        label: 'Our species took shape among populations living in many parts of Africa that were sometimes separated and sometimes in contact.', feedback: 'Yes. Finds this far apart, with different mixes of features, fit connected populations across Africa, though they do not point to one exact birthplace.',
       },
       {
         id: 'option.humans.one-valley',
-        feedback: 'A single eastern valley does not account for this spread of finds. Compare Morocco and South Africa as well as Ethiopia.',
-        label: 'Our species began in one valley in eastern Africa and spread out from there.',
+        label: 'Our species began in one valley in eastern Africa and spread out from there.', feedback: 'Look at the three places in the question. Could one valley in eastern Africa explain a fossil in Morocco and one in South Africa as well as one in Ethiopia?',
       },
       {
         id: 'option.humans.separate-species',
-        feedback: 'Different mixes of features alone do not establish separate species. This lesson also considers evidence for contact between populations.',
-        label: 'Each region of Africa evolved its own separate human species.',
+        label: 'Each region of Africa evolved its own separate human species.', feedback: 'Reread “Connected, not sealed off.” What does the lesson say about contact between populations in Africa?',
       },
       {
         id: 'option.humans.morocco-first',
-        feedback: 'Oldest found so far does not mean first ever. An older fossil might survive somewhere researchers have not yet found it.',
-        label: 'The Morocco fossils are the first members of our species, so our species began in Morocco.',
+        label: 'The Morocco fossils are the first members of our species, so our species began in Morocco.', feedback: 'Reread “Evidence across a continent.” Does the oldest fossil found so far have to be the first member of our species?',
       },
     ],
   },

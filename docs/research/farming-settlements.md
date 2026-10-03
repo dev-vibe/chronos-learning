@@ -287,3 +287,16 @@ Production prose, final generation/acquisition, media ingestion, corrective publ
 - [x] Product-owner approval of Revision 2 checkpoint
 - [x] Revision 2 production content, final media, corrective migration, tests, and preview
 - [x] Structured learner walkthrough or documented reason deferred
+
+## Prompt revision
+
+### 2026-10-03 — hints and option feedback (text only, same prompt IDs)
+
+Part of the assessment audit that followed the Indus review (prompt readability check in `docs/content/prompt-revision-runbook.md`). The audit kept every prompt's question and options as they were, so no prompt ID changed and no fingerprint changed; only hints and option feedback, which the prompt-change policy allows under the same ID. Hints and feedback now point back to a section and ask a question instead of stating the answer; every selection option has feedback.
+
+- `prompt.farming.house-pattern`: no hint and no option feedback before. New hint asks where the bins and plant remains were found compared with the animal displays and feasting evidence. Every option has feedback; wrong answers point to “Private stores and shared occasions” or “Read the house” with a question.
+- `prompt.farming.opportunity-and-cost`: no hint before. New hint points to “The bargain of staying” and asks for one advantage, one problem and how they connect.
+
+**What learners will see.** Nothing is re-asked. Learners see the new hint, and after a wrong pick the new feedback, the next time they open the prompt. Finished lessons and parent reviews are unaffected.
+
+Owner approval: pending.

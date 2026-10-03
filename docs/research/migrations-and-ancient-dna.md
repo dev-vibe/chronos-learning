@@ -396,3 +396,16 @@ Whole lesson: story spine `none` (Oase 1 appears only in section 3); memorable m
 - Memorable moments: the jaw among bear bones in galleries sealed for at least 17,000 years; a Neanderthal ancestor four to six generations back; the Ranis and Zlatý kůň cousins 230 km apart; a population recognized from a child’s fingertip; the Harbin skull hidden in a well (labelled as a later account).
 - Added claims: `claim.humans.oase-cave-find`, `oase-neanderthal-share`, `early-lineages-faded`, `ranis-zlaty-kun-relatives`, `denisova-fingertip`, `harbin-find-story`, `harbin-denisovan-link`; sources `source.humans.trinkaus-zilhao-2007-oase-discovery`, `natgeo-2021-harbin`, `nhm-2021-harbin`.
 - Owner decisions: during review Carlin asked to remove the duplicate masthead map (fixed in `8433dca`, recorded under Changes). Carlin Aylsworth then reviewed the branch preview and approved the revision (“approved!”), 2026-09-24.
+
+## Prompt revision
+
+### 2026-10-03 — hints and option feedback (text only, same prompt IDs)
+
+Part of the assessment audit that followed the Indus review (prompt readability check in `docs/content/prompt-revision-runbook.md`). The audit kept every prompt's question and options as they were, so no prompt ID changed and no fingerprint changed; only hints and option feedback, which the prompt-change policy allows under the same ID. Hints and feedback now point back to a section and ask a question instead of stating the answer; every selection option has feedback.
+
+- `prompt.humans.long-segments-inference`: no hint and no option feedback before. New hint: “Think about what happens to a stretch of inherited DNA each time it passes from parent to child.” Every option now has feedback; wrong answers point to “A Neanderthal ancestor in one person’s DNA” or “One shared encounter—and others” with a question.
+- `prompt.humans.adna-evidence-and-limit`: no hint before. New hint names three examples from the lesson (Oase 1; the people at Zlatý kůň and Ranis; the finger bone from Denisova Cave) and points to “What ancient DNA can and cannot tell us” for the limit.
+
+**What learners will see.** Nothing is re-asked. Learners see the new hint, and after a wrong pick the new feedback, the next time they open the prompt. Finished lessons and parent reviews are unaffected.
+
+Owner approval: pending.
