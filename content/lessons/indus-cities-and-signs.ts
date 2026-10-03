@@ -64,10 +64,10 @@ export const indusPrompts: UnderstandingPrompt[] = [
     ],
   },
   {
-    id: 'prompt.indus.water-and-work', lessonId: 'lesson.indus.cities-and-signs', kind: 'concise-explanation', required: true, evidenceModuleIds: ['module.indus.reservoir-evidence'], minimumResponseLength: 20,
-    question: 'Choose Mohenjo-daro’s drains or Dholavira’s reservoirs. Explain how that water system depended on people working together. What does the surviving system leave uncertain about who organized the work?',
-    hint: 'Think about the connection between a household and a larger system, or between collecting water and keeping it available.',
-    explanation: 'A strong answer picks one system and shows that it reached beyond a single household or needed ongoing work. For Mohenjo-daro: a household drain joined a street drain; the settling traps had to be emptied again and again, and excavators read the heaps of greenish-gray sand beside such traps as the leftovers; old drains were reused by raising their walls with more bricks. For Dholavira: gathering seasonal water in reservoirs took planned construction and upkeep. A strong answer also says that the surviving system shows organized work but not whether a ruler, a neighborhood group or another institution directed it.',
+    id: 'prompt.indus.water-needs-many-hands', lessonId: 'lesson.indus.cities-and-signs', kind: 'concise-explanation', required: true, evidenceModuleIds: ['module.indus.drainage-scene', 'module.indus.reservoir-evidence'], minimumResponseLength: 20,
+    question: 'Choose one: the drains of Mohenjo-daro or the reservoirs of Dholavira. (1) Why could one family not have built it and kept it working alone? (2) Name one thing we still don’t know about who was in charge of the work.',
+    hint: 'Think about what happens after the drain or reservoir is built. For part 2, remember what the lesson says about rulers and neighborhood groups.',
+    explanation: 'A strong answer covers both parts. (1) It picks one system and shows that it reached beyond a single household or needed ongoing work. Mohenjo-daro: a household drain joined a street drain; the settling traps had to be emptied again and again, and excavators read the heaps of greenish-gray sand beside such traps as the leftovers; old drains were reused by raising their walls with more bricks. Dholavira: gathering seasonal water in reservoirs took planned construction and upkeep. (2) It names something still unknown, such as whether a ruler, a neighborhood group or another institution directed the work.',
   },
 ];
 
@@ -120,7 +120,7 @@ const sections: Lesson['sections'] = [
     id: 'section.indus.understanding', heading: 'Explain the evidence', purpose: 'Check a shared-measure inference and ask for an explanation of collective water work and its limits.',
     modules: [
       { id: 'module.indus.shared-standards-check', type: 'prompt', promptId: 'prompt.indus.what-weights-show', claimIds: ['claim.indus.shared-weights', 'claim.indus.weight-numbers', 'claim.indus.coordination-and-rule'], sourceIds: ['source.indus.measuring', 'source.indus.green-governance'] },
-      { id: 'module.indus.water-work-check', type: 'prompt', promptId: 'prompt.indus.water-and-work', claimIds: ['claim.indus.household-drainage', 'claim.indus.trap-sand-heaps', 'claim.indus.drain-reuse', 'claim.indus.water-storage', 'claim.indus.coordination-and-rule'], sourceIds: ['source.indus.street-drains', 'source.indus.dholavira', 'source.indus.green-governance'] },
+      { id: 'module.indus.water-work-check', type: 'prompt', promptId: 'prompt.indus.water-needs-many-hands', claimIds: ['claim.indus.household-drainage', 'claim.indus.trap-sand-heaps', 'claim.indus.drain-reuse', 'claim.indus.water-storage', 'claim.indus.coordination-and-rule'], sourceIds: ['source.indus.street-drains', 'source.indus.dholavira', 'source.indus.green-governance'] },
     ],
   },
 ];

@@ -667,7 +667,7 @@ Whole lesson: story spine `none` (a sequence of evidence types); memorable momen
 | Prompt | Verdict | Finding |
 | --- | --- | --- |
 | `prompt.indus.shared-standards` | `replace` | The question already says the weights “follow a shared system”, and the best answer (“a common way to measure quantities”) restates it, so the check rewards recognition, not reasoning. Two wrong-option feedbacks give the answer away (“A weight measures a quantity”; “Recognizing a measurement system…”). Fixing the question changes the prompt's identity, so it is replaced; the teaching job (what a measured standard supports and what it does not) is unchanged. |
-| `prompt.indus.water-and-work` | `keep` (text already updated) | Written prompt grounded in the lesson's own evidence; it asks for a causal explanation and a bounded uncertainty about who organized the work, and works with the new upkeep detail (traps emptied again and again, drains raised with more bricks). Only the parent-facing explanation (shown on Review as “What a strong answer covers”) was extended, and reworded from an example answer into a statement of what a strong answer covers. |
+| `prompt.indus.water-and-work` | `replace` (owner feedback, 2026-10-03) | First audited as `keep`: grounded in the lesson's evidence and fair in what it expects. The owner then found the question hard to answer, and the audit agrees: three tasks in three sentences (choose a system, explain dependence, say what “the surviving system leave[s] uncertain about who organized the work”), the last of them an abstract question about the limits of evidence, in wording the lesson never uses. A 12–15-year-old has to translate it before answering. Replaced by `prompt.indus.water-needs-many-hands`: two plain parts and the lesson's own phrase, “who was in charge”. |
 
 **Card.** `card.indus.stamp-seal`: `refresh` (text and facts; art `keep`). The facts carried nothing of the lesson's spine (a seal whose signs nobody can read) and had three entries of five allowed. Art stays the Met catalog image, the best image of the object itself (Stage 11); `depictionLabel` is unchanged and still true.
 
@@ -680,7 +680,7 @@ Whole lesson: story spine `none` (a sequence of evidence types); memorable momen
 
 ### Changes
 
-- Prose bodies in nine modules rewritten; `prompt.indus.water-and-work` explanation extended with the new detail; `prompt.indus.shared-standards` replaced by `prompt.indus.what-weights-show` (see **Prompt revision** below); the card's reveal text and facts refreshed. Lesson, section, module, claim, source, media and card IDs, section order, headings, media, captions and completion are unchanged. No test text changed.
+- Prose bodies in nine modules rewritten; `prompt.indus.shared-standards` replaced by `prompt.indus.what-weights-show` and `prompt.indus.water-and-work` replaced by `prompt.indus.water-needs-many-hands` (see **Prompt revision** below); the card's reveal text and facts refreshed. Lesson, section, module, claim, source, media and card IDs, section order, headings, media, captions and completion are unchanged. No test text changed.
 - Module `claimIds` and `sourceIds` updated to cover what each module now says; both check modules gained the new claims they cite.
 - 14 claims and 3 sources added (claim ledger, central claim support and source close-review tables above): `trap-sand-heaps`, `drain-construction`, `drain-reuse`, `dholavira-setting`, `weight-numbers`, `weights-taxation-argument`, `dholavira-materials`, `discovery-1924`, `sayce-comparison`, `dholavira-signboard-find`, `dholavira-signboard-display`, `dholavira-layout`, `green-argument`, `harappa-sequence`; sources `iln-marshall`, `sayce-letter`, `dholavira-bisht`.
 - Reading length: 985 → 1,375 words in the prose modules (+40%). The growth is the two added stories and the specific detail; the summary sentences, the opening list of city needs and the moralizing asides were cut. Evidence-module captions and scene hotspots were not changed.
@@ -754,3 +754,24 @@ Each wrong option's feedback points to a section and a question without stating 
 **What learners will see.** Finished lessons, and lessons waiting for or passed by a parent, stay as they are; for them the new question is just another check to try. The prompt is required, so a learner still working through the lesson, or one whose lesson was sent back, must pick the best-supported answer on the new question before finishing. Parents see written questions only; this prompt is a selection, so Review is unaffected.
 
 Owner approval: pending.
+
+### 2026-10-03 — `prompt.indus.water-and-work` → `prompt.indus.water-needs-many-hands`
+
+Same teaching job: how organized work kept a water system running, and what the evidence leaves open about who directed it. Same kind (written explanation), required flag and minimum length (20). Evidence modules now include the drainage scene as well as the reservoir evidence, so a learner who chooses drains sees drain evidence. `prompt.indus.water-and-work` is retired in `content/published-prompt-fingerprints.json`.
+
+**Why it changed.** The owner could not answer the old question easily and doubted a 12–15-year-old could. The audit agrees (see the audit table above). It was also the only written prompt that asked for “what the evidence leaves uncertain” about an abstract noun (“who organized”).
+
+| | Old | New |
+| --- | --- | --- |
+| Question | “Choose Mohenjo-daro’s drains or Dholavira’s reservoirs. Explain how that water system depended on people working together. What does the surviving system leave uncertain about who organized the work?” | “Choose one: the drains of Mohenjo-daro or the reservoirs of Dholavira. (1) Why could one family not have built it and kept it working alone? (2) Name one thing we still don’t know about who was in charge of the work.” |
+| Hint | “Think about the connection between a household and a larger system, or between collecting water and keeping it available.” | “Think about what happens after the drain or reservoir is built. For part 2, remember what the lesson says about rulers and neighborhood groups.” |
+| Required / minimum length | yes / 20 | yes / 20 |
+
+Explanation (shown to the parent on Review as “What a strong answer covers”): covers both parts, with the upkeep evidence (settling traps emptied again and again; drains raised with more bricks; Dholavira's reservoirs) and an unknown such as whether a ruler, a neighborhood group or another institution directed the work.
+
+**Support map.** Part 1: “Water for city life” (`module.indus.drains`, `module.indus.reservoirs`; `claim.indus.household-drainage`, `claim.indus.trap-sand-heaps`, `claim.indus.drain-reuse`, `claim.indus.water-storage`). Part 2: “Who organized the cities?” (`claim.indus.coordination-and-rule`, `claim.indus.green-argument`, `claim.indus.dholavira-layout`). Every part of a strong answer is taught in those sections.
+
+**What learners will see.** Finished lessons, and lessons waiting for or passed by a parent, stay as they are. A learner still working through the lesson, or one whose lesson was sent back, writes an answer to the new question before finishing. Parents see the written question as the learner saw it; an old submission is marked as changed.
+
+Owner approval: pending.
+

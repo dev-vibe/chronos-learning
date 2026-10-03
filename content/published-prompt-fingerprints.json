@@ -72,7 +72,12 @@
     },
     "prompt.indus.water-and-work": {
       "lessonId": "lesson.indus.cities-and-signs",
-      "fingerprint": "e6256e0c4e43183c71ebf0c96695894430fc8d6d6bcc9413897c654bdde52f8f"
+      "fingerprint": "e6256e0c4e43183c71ebf0c96695894430fc8d6d6bcc9413897c654bdde52f8f",
+      "retired": true
+    },
+    "prompt.indus.water-needs-many-hands": {
+      "lessonId": "lesson.indus.cities-and-signs",
+      "fingerprint": "2449d190f9022628d2369691ea0caf25491f494aa4c7b358b28f5fad0c9ef24f"
     },
     "prompt.indus.what-weights-show": {
       "lessonId": "lesson.indus.cities-and-signs",
