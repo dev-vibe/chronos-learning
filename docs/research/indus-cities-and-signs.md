@@ -757,7 +757,7 @@ Owner approval: pending.
 
 ### 2026-10-03 — `prompt.indus.water-and-work` → `prompt.indus.water-needs-many-hands`
 
-Same teaching job: how organized work kept a water system running, and what the evidence leaves open about who directed it. Same kind (written explanation), required flag and minimum length (20). Evidence modules now include the drainage scene as well as the reservoir evidence, so a learner who chooses drains sees drain evidence. `prompt.indus.water-and-work` is retired in `content/published-prompt-fingerprints.json`.
+Same teaching job: how organized work kept a water system running, and what the evidence leaves open about who directed it. Same kind (written explanation), required flag and minimum length (20). The evidence module stays `module.indus.reservoir-evidence` (only `evidence` modules can be inspectable evidence for a prompt; the drainage scene is a `scene`). `prompt.indus.water-and-work` is retired in `content/published-prompt-fingerprints.json`.
 
 **Why it changed.** The owner could not answer the old question easily and doubted a 12–15-year-old could. The audit agrees (see the audit table above). It was also the only written prompt that asked for “what the evidence leaves uncertain” about an abstract noun (“who organized”).
 
