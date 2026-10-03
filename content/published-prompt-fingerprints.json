@@ -140,11 +140,21 @@
     },
     "prompt.kerma.contact-and-rule": {
       "lessonId": "lesson.nubia.kerma-and-nile-world",
-      "fingerprint": "3781209e90b0c8470533ad8b75681617a9f4fba28934ad1f490e3c32cff8c4f5"
+      "fingerprint": "3781209e90b0c8470533ad8b75681617a9f4fba28934ad1f490e3c32cff8c4f5",
+      "retired": true
+    },
+    "prompt.kerma.what-two-finds-show": {
+      "lessonId": "lesson.nubia.kerma-and-nile-world",
+      "fingerprint": "cebb5eecff1b6c18db33450284ed23a8742f29f76e60fe25307bc888a69598cb"
+    },
+    "prompt.kerma.what-work-made-possible": {
+      "lessonId": "lesson.nubia.kerma-and-nile-world",
+      "fingerprint": "826172246437923f009b5150f7d7c64731c0d2cf0fbec394afc44b5f5c702581"
     },
     "prompt.kerma.work-and-power": {
       "lessonId": "lesson.nubia.kerma-and-nile-world",
-      "fingerprint": "75b078a9c581cf0f239bc19c8dbb4400ccfd1b1aa3f449e272568dc344156d29"
+      "fingerprint": "75b078a9c581cf0f239bc19c8dbb4400ccfd1b1aa3f449e272568dc344156d29",
+      "retired": true
     },
     "prompt.pyramids.build-evidence-chain": {
       "lessonId": "lesson.egypt.pyramids-and-state-labor",
