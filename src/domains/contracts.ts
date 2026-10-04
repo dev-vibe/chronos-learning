@@ -62,7 +62,7 @@ export type LessonModule = z.infer<typeof LessonModuleSchema>;
 export type HistoricalMapModule = z.infer<typeof HistoricalMapModuleSchema>;
 export const LessonSectionSchema = z.object({ id: StableId, heading: z.string(), purpose: z.string(), modules: z.array(LessonModuleSchema).min(1) });
 export const UnderstandingPromptSchema = z.discriminatedUnion('kind', [
-  z.object({ id: StableId, lessonId: StableId, kind: z.literal('supported-selection'), question: z.string(), explanation: z.string().min(1), required: z.boolean(), hint: z.string().min(1).optional(), evidenceModuleIds: z.array(StableId).min(1).max(3).optional(), options: z.array(z.object({ id: StableId, label: z.string().min(1), feedback: z.string().min(1).optional() })).min(2).max(5) }),
+  z.object({ id: StableId, lessonId: StableId, kind: z.literal('supported-selection'), question: z.string(), explanation: z.string().min(1), required: z.boolean(), bestOptionId: StableId, hint: z.string().min(1).optional(), evidenceModuleIds: z.array(StableId).min(1).max(3).optional(), options: z.array(z.object({ id: StableId, label: z.string().min(1), feedback: z.string().min(1).optional() })).min(2).max(5) }),
   z.object({ id: StableId, lessonId: StableId, kind: z.literal('concise-explanation'), question: z.string(), explanation: z.string().min(1), required: z.boolean(), hint: z.string().min(1).optional(), evidenceModuleIds: z.array(StableId).min(1).max(3).optional(), minimumResponseLength: z.number().int().positive() }),
 ]);
 export const LessonSchema = z.object({ id: StableId, legacyAliases: z.array(z.string()), status: z.enum(['published','draft']), title: z.string(), masthead: z.string(), place: z.string().min(1), chronology: HistoricalDateRangeSchema, significance: z.string(), learningOutcome: z.string().min(1).optional(), orientationMapModuleId: StableId.optional(), heroMediaId: StableId.optional(), heroLabel: z.string().min(1).optional(), heroCaption: z.string().min(1).optional(), sectionIdsRequired: z.array(StableId), sections: z.array(LessonSectionSchema).min(1), claimIds: z.array(StableId).min(1), sourceIds: z.array(StableId).min(1), mediaIds: z.array(StableId), promptIds: z.array(StableId) });
@@ -103,7 +103,6 @@ export type Lesson = z.infer<typeof LessonSchema>; export type LessonSection = z
 export type LessonProgress = { learnerId:string; lessonId:string; status:'in-progress'|'completed'; resumeSectionId?:string; attemptedPromptIds:string[]; completedAt?:string };
 export type CardOwnership = { learnerId:string; cardId:string; acquiredAt:string };
 export type CompleteLessonCommand = { lessonId:string; idempotencyKey:string; explicitCompletion:true; attemptedPromptIds:string[]; rawScrollPosition?:number };
-export type CompleteLessonResult = { completion:'newly-completed'|'already-completed'; cardOwnership:'newly-acquired'|'already-owned'|'not-configured'; cardIds?:string[]; cardId?:string };
 
 export const compareHistoricalDates = (a: HistoricalDateRange, b: HistoricalDateRange) => a.startYear - b.startYear || a.endYear - b.endYear;
 export const canExplicitlyComplete = (requiredPromptIds:string[], command:CompleteLessonCommand) => command.explicitCompletion && requiredPromptIds.every((id) => command.attemptedPromptIds.includes(id));

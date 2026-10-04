@@ -1,6 +1,6 @@
 # Chronos target architecture
 
-Status: proposed architecture for ASH-52. It establishes boundaries and the migration seam; it does not implement the rebuild.
+Status: proposed architecture for ASH-52. It establishes boundaries and the migration seam; it does not implement the rebuild. Completion, prompt and card rules have since changed; see [ADR 005](decisions/005-parent-review.md) and [prompt changes](prompt-changes.md).
 
 ## Architectural goals
 

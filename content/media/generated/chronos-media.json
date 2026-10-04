@@ -485,6 +485,79 @@
       }
     },
     {
+      "id": "media.egypt.narmer-macehead",
+      "locator": {
+        "provider": "object-storage",
+        "bucket": "media-public",
+        "fallback": {
+          "path": "/images/optimized/egypt/narmer-macehead.optimized.jpg",
+          "width": 1600,
+          "height": 1002
+        },
+        "variants": [
+          {
+            "objectKey": "egypt/media.egypt.narmer-macehead/5afba8166936ca5e/optimized/ql-v1/480w-webp-q94-4cb5eeab2f67af77.webp",
+            "mimeType": "image/webp",
+            "bytes": 64176,
+            "sha256": "4cb5eeab2f67af772e6cff61b5e1fc913531219368dd49cd8708b11d1ea129ce",
+            "width": 480,
+            "height": 301,
+            "compression": {
+              "profile": "ql-v1",
+              "codec": "webp",
+              "encoder": "webp-lossy",
+              "quality": 94
+            },
+            "fidelity": {
+              "mode": "measured-quasi-lossless",
+              "psnrDb": 46.58,
+              "meanAbsoluteError": 0.678,
+              "maximumChannelDelta": 9
+            }
+          },
+          {
+            "objectKey": "egypt/media.egypt.narmer-macehead/5afba8166936ca5e/optimized/ql-v1/960w-webp-q94-141464931c3addc8.webp",
+            "mimeType": "image/webp",
+            "bytes": 227506,
+            "sha256": "141464931c3addc8295218f1d703a52452bac2758c17478a97db1bdcf0375b5a",
+            "width": 960,
+            "height": 601,
+            "compression": {
+              "profile": "ql-v1",
+              "codec": "webp",
+              "encoder": "webp-lossy",
+              "quality": 94
+            },
+            "fidelity": {
+              "mode": "measured-quasi-lossless",
+              "psnrDb": 46.17,
+              "meanAbsoluteError": 0.686,
+              "maximumChannelDelta": 12
+            }
+          },
+          {
+            "objectKey": "egypt/media.egypt.narmer-macehead/5afba8166936ca5e/optimized/ql-v1/1600w-source-jpeg-5afba8166936ca5e.jpg",
+            "mimeType": "image/jpeg",
+            "bytes": 558681,
+            "sha256": "5afba8166936ca5e25474794594815306888ccfdadeeddda103cecff023ddfeb",
+            "width": 1600,
+            "height": 1002,
+            "compression": {
+              "profile": "ql-v1",
+              "codec": "jpeg",
+              "encoder": "source-passthrough"
+            },
+            "fidelity": {
+              "mode": "pixel-exact",
+              "psnrDb": null,
+              "meanAbsoluteError": 0,
+              "maximumChannelDelta": 0
+            }
+          }
+        ]
+      }
+    },
+    {
       "id": "media.egypt.narmer-palette",
       "locator": {
         "provider": "object-storage",

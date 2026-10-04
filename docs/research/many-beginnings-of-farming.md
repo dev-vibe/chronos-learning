@@ -98,9 +98,14 @@ All sources accessed 2026-07-27. “Research use” supports claims; it does not
 | `source.farming.ranere-2009-balsas` | Ranere et al., [Cultural and chronological context…](https://pmc.ncbi.nlm.nih.gov/articles/PMC2664064/), *PNAS* 106 (2009) | Peer-reviewed excavation context for Piperno 2009 | Early Holocene occupation and plant use in Central Balsas; seasonal mobility with cultivation | One shelter sequence | Research citation | Reviewed 2026-07-27 |
 | `source.farming.smith-2006-ena` | Smith, [Eastern North America as an independent center…](https://doi.org/10.1073/pnas.0604335103), *PNAS* 103 (2006) | Peer-reviewed synthesis | Eastern North America domesticated local plants independently | Enrichment for Americas diversity; not a fifth roster region by itself | Research citation | Reviewed 2026-07-27 |
 | `source.farming.winchell-2018-sorghum` | Winchell et al., [Origins and dissemination of domesticated sorghum and pearl millet…](https://pmc.ncbi.nlm.nih.gov/articles/PMC6394749/), *African Archaeological Review* (2018) | Peer-reviewed Sahel synthesis | Eastern Sahel sorghum domestication pathway; western Sahel pearl millet pathway; Africa not a single secondary adopter | Dates continue to refine; impressions/ceramics dominate some early signals | OA PMC | Reviewed 2026-07-27 |
-| `source.farming.barron-2020-pearl-millet` | Barron et al., [Transition from wild to domesticated pearl millet…](https://link.springer.com/article/10.1007/s10437-021-09428-8), *African Archaeological Review* (2021) | Peer-reviewed ceramic-temper archaeobotany | Wild-to-domestic morphological transition in northern Mali; third-millennium BC domesticated forms | Preservation via temper, not carbonized grain alone | Research citation | Reviewed 2026-07-27 |
+| `source.farming.barron-2020-pearl-millet` | Barron et al., [Transition from wild to domesticated pearl millet…](https://link.springer.com/article/10.1007/s10437-021-09428-8), *African Archaeological Review* (2021) | Peer-reviewed ceramic-temper archaeobotany | Wild-to-domestic morphological transition in northern Mali; third-millennium BC domesticated forms | Preservation via temper, not carbonized grain alone | Research citation | Reviewed 2026-07-27. Voice revision, 2026-09-24, close-reviewed (open copy at d-nb.info/1232713961/34): abstract, p. 1, “Imprints of domesticated pearl millet … spikelets, observed as temper in ceramics dating to the third millennium BC”; p. 4, domesticated involucres have a stalk torn by threshing; pp. 6–7, AZ22 (5500–4950 cal BC, wild), MT25 (4240–3090 cal BC, transitional), MK36 (3020–1940 cal BC, domesticated). |
 | `source.farming.baird-2018-anatolia` | Baird et al., [Agricultural origins on the Anatolian plateau](https://doi.org/10.1073/pnas.1800163115), *PNAS* 115 (2018) | Peer-reviewed regional multi-proxy study | Gradual/uneven Southwest Asian uptake; bridge to Settlements lesson | Central Anatolia, not all Fertile Crescent | Research citation | Reviewed 2026-07-27 |
 | `source.farming.natural-earth` | [Natural Earth](https://www.naturalearthdata.com/) | Public-domain geographic base | Coastlines/continents for Chronos map generation | Modern coastlines; not Holocene shorelines | Public domain | Reviewed 2026-07-27 |
+| `source.farming.golson-2017-kuk-intro` | Golson, [An introduction to the investigations at Kuk Swamp](https://press-files.anu.edu.au/downloads/press/n2540/html/ch01.xhtml), ch. 1 of Golson, Denham, Hughes, Swadling and Muke (eds), *Ten Thousand Years of Cultivation at Kuk Swamp in the Highlands of Papua New Guinea*, Terra Australis 46, ANU Press (2017) | Excavator’s own open-access account | `kuk-drains-find` | Chapter 1 history of the investigation; does not itself argue the dates | Open access; paraphrase only | Voice revision, 2026-09-24, close-reviewed (ch. 1, account of the Kuk Research Station): “The Department of Agriculture, Stock and Fisheries had bought some 770 acres (311.6 ha) of swampland for the establishment of a Tea Research Station at Kuk Swamp, and drainage for the development of its western part had begun in 1969”; “The walls of newly dug drains exposed the swamp stratigraphy and the profiles of numerous ancient ditches”; Golson planned to visit after the ANZAAS congress in Port Moresby in August 1970. |
+| `source.farming.unesco-kuk` | UNESCO World Heritage Centre, [Kuk Early Agricultural Site](https://whc.unesco.org/en/list/887/) (inscribed 2008) | International heritage listing description | `kuk-mounds-ditches` | Summary text, not an excavation report | Paraphrase only; no images | Voice revision, 2026-09-24, close-reviewed (listing description): “116 ha of swamps in the western highlands of New Guinea 1,500 metres above sea-level”; land use for “7,000, and possibly for 10,000 years”; “cultivation mounds” followed by “draining the wetlands through the digging of ditches with wooden tools”; bananas, taro and yam by vegetative propagation. |
+| `source.farming.nsf-2009-balsas-maize` | U.S. National Science Foundation, [Wild grass became maize crop more than 8,700 years ago](https://www.eurekalert.org/news-releases/717396), news release via EurekAlert!, 23 March 2009 | Funder’s summary of Piperno 2009 and Ranere 2009 | `teosinte-ancestor`; `balsas-xihuatoxtla` | Press summary; used because the PNAS and PMC copies of the two papers could not be opened in this pass | Paraphrase only | Voice revision, 2026-09-24, close-reviewed: “a large, wild grass called Balsas teosinte that molecular biologists recently identified as the ancestor of maize”; “The shelter contained early maize and squash remains as well as ancient stone tools used to grind and mill the plants”; “dates to at least 8,700 calendar years ago”. |
+| `source.farming.smithsonian-2009-balsas` | Smithsonian Institution, [New Research Reveals the Earliest Evidence for Corn in the New World](https://www.si.edu/newsdesk/releases/new-research-reveals-earliest-evidence-corn-new-world), news release, 23 March 2009 (Piperno’s institution) | Research institution’s summary | `balsas-xihuatoxtla`; `balsas-seasonal` | Press summary | Paraphrase only | Voice revision, 2026-09-24, close-reviewed: “Microfossil (starch grain and phytolith) analysis from a rock shelter called Xihuatoxtla”; “maize was domesticated by 8,700 years ago”; “small groups of cultivators who were shifting their settlements seasonally and engaging in a variety of subsistence pursuits”. |
+| `source.farming.uw-2015-teosinte` | Tyrrell, [UW study shows how a kernel got naked and corn became king](https://news.wisc.edu/uw-study-shows-how-a-kernel-got-naked-and-corn-became-king/), University of Wisconsin–Madison News, 27 July 2015 (reporting John Doebley’s research) | University news report on peer-reviewed genetics | `teosinte-ancestor` | Popular summary; kernel count is a typical range | Paraphrase only | Voice revision, 2026-09-24, close-reviewed: teosinte’s “miniscule ‘ears’ … contain just 10 to 12 kernels”; kernels in a “hard, inedible casing”; maize has “massive ears containing hundreds of kernels”, “naked, uncovered and exposed”. |
 
 ### Sources deliberately not used as authorities
 
@@ -128,6 +133,13 @@ Research stopped when independent beginnings, protracted domestication, and the 
 | `claim.farming.multi.not-always-villages` | Early cultivation often occurred among mobile or seasonally mobile communities; permanent dense villages were not a universal first step | Interpretation | High | Ranere 2009; Fuller 2014; Denham 2003 | SW Asia has early sedentism debates of its own | Explicitly block “farming = Çatalhöyük houses everywhere” | Editorial review required |
 | `claim.farming.multi.no-automatic-cities` | Independent farming beginnings do not by themselves create cities, states, writing, or kings | Interpretation | High | Curriculum design; contrast with Uruk | Surpluses can enable later complexity; they do not guarantee it | Closing beat before Settlements / cities | Editorial review required |
 | `claim.farming.multi.climate-not-single-cause` | Holocene environmental change is relevant context, but no single climate event explains all farming beginnings | Interpretation | Moderate–High | Larson 2014 discussion; unpublished Holocene lesson deferred | Avoid filling the missing climate lesson with a one-cause story | One cautious context sentence only | Editorial review required |
+| `claim.farming.multi.kuk-drains-find` | In 1969, drains dug to prepare part of Kuk Swamp for a tea research station exposed the profiles of many ancient ditches in their walls; the archaeologist Jack Golson inspected them in 1970 | Observation | High | Golson 2017, ch. 1 | Golson’s visit is the documented start; the lesson says “years of digging” rather than giving excavation seasons | Voice revision: opening story (section 1), close read (section 4) and closing callback (section 5) | Reviewed 2026-09-24 |
+| `claim.farming.multi.kuk-mounds-ditches` | Kuk lies about 1,500 m above sea level; agriculture there arose independently by at least about 7,000 years ago, beginning with cultivation mounds and later draining the wetland with ditches dug with wooden tools | Observation | High | UNESCO Kuk listing; Denham 2003 (abstract, “by at least 6950 to 6440” cal BP) | Phase dating remains debated; the lesson uses “by at least 7,000 years ago” | Sections 1, 3 and 5 | Reviewed 2026-09-24 |
+| `claim.farming.multi.kuk-starch-10000` | Starch residues and use-wear on stone tools show people at Kuk processing taro and yams about 10,000 years ago | Observation | High | Fullagar 2006 (this ledger: ~10.2 ka cal BP) | Processing does not prove the plants were domesticated; the lesson says so in the next paragraph | Section 4 close read | Reviewed 2026-09-24 |
+| `claim.farming.multi.teosinte-ancestor` | Maize was domesticated from Balsas teosinte, a wild grass of southwestern Mexico whose small ears hold about 10 to 12 kernels in hard, inedible casings, while maize ears hold hundreds of exposed kernels | Observation | High | NSF 2009; UW–Madison 2015 | Kernel count is typical, not fixed | Section 2: how far a plant can change | Reviewed 2026-09-24 |
+| `claim.farming.multi.balsas-xihuatoxtla` | Starch grains and phytoliths of maize and squash from Xihuatoxtla rock shelter in the Central Balsas valley, found with stone grinding tools, date to at least about 8,700 years ago | Observation | High | Smithsonian 2009; NSF 2009; Piperno 2009 | The lesson says the traces were found “with” grinding tools, not “on” them, because the paper itself could not be opened | Section 3 Americas item; section 5 | Reviewed 2026-09-24 |
+| `claim.farming.multi.balsas-seasonal` | Early cultivators in the Central Balsas region appear to have lived in small groups that shifted their settlements seasonally and used a variety of ways of getting food | Interpretation | Moderate | Smithsonian 2009; Ranere 2009 | “Appears to have”; the lesson says “seem to have” | Section 5 | Reviewed 2026-09-24 |
+| `claim.farming.multi.millet-pottery-imprints` | In northern Mali, pearl millet chaff used as temper survives as imprints in pottery; older sherds show wild forms, and sherds dated to about 3000–2000 BCE show domesticated spikelets | Observation | High | Barron 2020/2021, pp. 1, 4, 6–7 | Three sites; the lesson does not call the change complete | Section 3 Africa item | Reviewed 2026-09-24 |
 
 ## Content triage
 
@@ -775,3 +787,124 @@ State: **Reserved for the later broad-public-release program; not a lesson-produ
 ### Stage 17 disposition
 
 Result: **Not yet conducted; no current gate is pending.** When the later family/beta UAT program runs, record observed confusion and resulting revisions here. That program governs readiness to share Chronos with the larger public; it does not retroactively block this lesson-production workflow.
+
+## Voice revision
+
+Runbook: `docs/content/lesson-voice-revision-runbook.md` (branch `docs/lesson-voice-revision-runbook`; not yet on `main`). Branch: `revise/many-beginnings-of-farming-voice`. Started 2026-09-24. Status: **approved by the owner 2026-09-24; merge completes the revision**. PR: [#59](https://github.com/dev-vibe/chronos-learning/pull/59).
+
+### Audit of the published version
+
+| Section | What read flat |
+| --- | --- |
+| `section.farming.multi.not-once` | Opened on “Imagine drawing one dot on a world map”, an “Imagine…” filler opening (Stage 7), then corrected a myth in the abstract. No person, place or moment; the lesson question was announced (“The question is not…”) rather than grown from a find. The crop list was the only specific detail. |
+| `section.farming.multi.what-domestication` | The mechanism was clear but told in general terms (“wild cereal plants”, “a seed head”) with a second “Now imagine” opening. Ended on a summary line (“That is why farming is better understood as a process than as an invention day”). The evidence caption repeated the prose instead of pointing at what the diagram shows (the scars). |
+| `section.farming.multi.five-beginnings` | Five parallel items are still the clearest form, but each named a crop and a region with no detail a learner would remember; Kuk, Balsas and the Mali pottery evidence already in the source ledger never appeared. |
+| `section.farming.multi.different-evidence` | The Kuk close read opened with a methods sentence (“makes the problem clear”) and listed finds (“channels, mounds, tools, and microscopic plant traces”) without saying how Kuk was found or why tubers are hard to see. Hedging repeated in consecutive sentences. |
+| `section.farming.multi.not-one-lifestyle` | Balsas mobility was stated in one abstract sentence. The paragraph on missing workers sat in the middle of the costs list. Ended on a slogan (“There was no single cause and no guaranteed destination.”). |
+| `section.farming.multi.world-check` | Prompts only; not changed. |
+
+Whole lesson: story spine `none`; memorable moments `one` (the wheat ear that will not let go of its grain, carried by the diagram); opening did not land (imagined map dot, announced question); ending did not land (slogan, then a summary box).
+
+### Story material
+
+- **Story spine:** Kuk Swamp as the puzzle of what the beginning of farming looks like in the ground. The 1969 drains for a tea research station expose old ditches and open the lesson; Kuk is the case that does not fit the one-birthplace story; it returns in section 4 as the detective problem (no grain to find, so starch grains and stone tools); and the lesson closes on the unnamed gardeners and their ditches, found again by the drains of 1969.
+- **Memorable moments:** (1) the fresh walls of tea-station drains showing the outlines of ancient ditches; (2) wild wheat that breaks apart as it ripens, and the smooth and rough scars archaeologists look for; (3) maize from teosinte, a wild grass whose tiny ear holds 10 to 12 kernels in hard cases; (4) pearl millet found as imprints in Mali pottery, where potters mixed chaff into their clay.
+- **Sources of the material:** close re-reading of Barron 2020/2021 and the Fuks and Marom figure already registered; the note’s Kuk, Balsas and Fullagar entries; targeted research for the Kuk find story (Golson 2017, ch. 1), the Kuk listing (UNESCO), and Balsas and teosinte details (NSF 2009, Smithsonian 2009, UW–Madison 2015).
+- **Later tradition used:** none. No legend fits this lesson; the find story is documented by the excavator.
+- **Cumulative link:** the journey’s previous lesson, Crossing to Sahul, ends with people reaching Australia and New Guinea “tens of thousands of years before farming”; this lesson now opens on the same island, in its highlands. The lesson text does not refer to Sahul, because the lesson can appear in other journeys.
+
+### Changes
+
+- Prose bodies, knowledge body and item text (three regional items and one knowledge body), and the wheat evidence caption rewritten. All IDs, headings, section order, prompts, options, answer logic, media, no-card decision and completion are unchanged. No module removed or reordered. Prompt explanations unchanged.
+- 5 sources and 7 claims added to the lesson module and to this note’s ledgers: `claim.farming.multi.kuk-drains-find`, `kuk-mounds-ditches`, `kuk-starch-10000`, `teosinte-ancestor`, `balsas-xihuatoxtla`, `balsas-seasonal`, `millet-pottery-imprints`; `source.farming.golson-2017-kuk-intro`, `unesco-kuk`, `nsf-2009-balsas-maize`, `smithsonian-2009-balsas`, `uw-2015-teosinte`. Module `claimIds`/`sourceIds` updated to cover what each module now says.
+- Reading length: 1,204 → 1,442 words in the learner-facing headings and modules (+19.8%). Cut: both “Imagine” openings, the summary and slogan endings, the doubled hedges in the Kuk close read.
+
+### Left out
+
+- Whether the maize starch was found *on* the Xihuatoxtla grinding tools: the Piperno and Ranere papers could not be opened in this pass (PNAS returned 403, PMC a CAPTCHA, Europe PMC was rate-limited), and the press releases say only that the shelter held maize and squash remains together with grinding tools. The lesson says “found with”.
+- How Golson’s early Kuk dates were received, and whether they were doubted before Denham 2003: no source opened in this pass addresses it.
+- The Manton site (1966), where a tea planter’s drains turned up wooden digging sticks and paddle-shaped spades near Kuk: well sourced in Golson 2017, but it would add a second site and a second find story; the lesson keeps to Kuk.
+- The name of the Australian visitor whose 1965 letter first alerted archaeologists: not given in the source.
+- A number for how long non-shattering wheat took to spread (the ledger’s ~1,000–4,000 years from Fuller 2014): the PMC copy could not be re-opened for a locator, so the lesson keeps “many generations”.
+
+### Stage 14B check on the changed sections
+
+| Question | Finding | Evidence and disposition |
+| --- | --- | --- |
+| Story | pass | Opens on the 1969 drains; Kuk returns in sections 3, 4 and at the end. Retellable moments: the ditches in the drain walls, the two wheat scars, the 10–12-kernel teosinte ear, the millet imprints in pots. The section 3 and 5 knowledge boxes keep their parallel form. |
+| Evidence reasoning | pass | Every new detail is an observation from a named source; Balsas mobility stays “seem to have”; the starch limit (wild or cultivated) and the ditch limit (no names, no full motives) are stated once, at the point of use. Both prompts remain answerable from sections 1–5 (prompt 2 now has richer regional clues). |
+| Proportionality | pass | Kuk is the spine but Southwest Asia is still called “an important early beginning”; each of the five regions keeps its item; the added Kuk detail corrects the historical under-weighting of New Guinea recorded in this note without ranking regions. Unnamed workers kept, not invented. |
+| Cognitive load | pass | New names: Kuk (already in the lesson), Jack Golson, Xihuatoxtla, teosinte, Mali. Dates kept to four anchors (1969/1970, about 10,000 and 7,000 years ago at Kuk, 8,700 years ago at Balsas, 3000–2000 BCE in Mali), one per paragraph. The Africa item is the densest line and keeps one idea per clause. |
+| Headings | pass | Unchanged; all name the subject in plain words. |
+
+`npm run validate:content` passed; `npm run test:domain` passed (14 files, 63 tests). No test pinned the changed text.
+
+### Owner review
+
+- Date: 2026-09-24.
+- PR: [#59](https://github.com/dev-vibe/chronos-learning/pull/59), branch preview [chronos-learning-git-revise-many-begi-4ec799-dev-vibes-projects.vercel.app](https://chronos-learning-git-revise-many-begi-4ec799-dev-vibes-projects.vercel.app/learn/lesson.farming.multiple-origins) (commit `d4a1bc4`).
+- Story spine: Kuk Swamp, from the 1969 tea-station drains that exposed its ancient ditches to the closing callback on the unnamed gardeners whose ditches the drains found again.
+- Memorable moments: the ancient ditches in the walls of the new drains; the wild wheat ear that falls apart and the smooth and rough scars; teosinte’s tiny 10–12-kernel ear behind maize; pearl millet imprints in Mali pottery.
+- Added claims: `claim.farming.multi.kuk-drains-find`, `kuk-mounds-ditches`, `kuk-starch-10000`, `teosinte-ancestor`, `balsas-xihuatoxtla`, `balsas-seasonal`, `millet-pottery-imprints`; sources `source.farming.golson-2017-kuk-intro`, `unesco-kuk`, `nsf-2009-balsas-maize`, `smithsonian-2009-balsas`, `uw-2015-teosinte`.
+- Owner decisions: none requested. Carlin Aylsworth reviewed the branch preview and approved the revision (“perfect approved”), 2026-09-24.
+
+## Prompt revision
+
+### 2026-10-03 — both understanding prompts replaced after an age-fit audit of every lesson's prompts
+
+Branch `revise/many-beginnings-prompts`. Part of the assessment audit that followed the Indus review (the prompt readability check in `docs/content/prompt-revision-runbook.md`, PR #68). Same teaching jobs, same kinds, same required flags: prompt 1 checks the multi-region conclusion, prompt 2 asks for one region's evidence and a limit. `prompt.farming.multi.what-evidence-supports` and `prompt.farming.multi.explain-independent` are retired in `content/published-prompt-fingerprints.json`.
+
+**Why they changed.** Audit verdicts: prompt 1 had no hint and no feedback on wrong options, and its stem named five regions without giving the learner the clue to reason from. Prompt 2 asked what the clues “cannot prove by themselves”, an abstract phrasing a 12–15-year-old has to decode before answering, and packed an explanation and a limit into one sentence.
+
+#### `prompt.farming.multi.what-evidence-supports` → `prompt.farming.multi.what-regions-show`
+
+| | Old | New |
+| --- | --- | --- |
+| Question | “Looking across Southwest Asia, China, New Guinea, Africa, and the Americas, which conclusion is best supported?” | “In Southwest Asia, farmers worked with wheat and barley. At Kuk in New Guinea, gardeners worked with bananas, taro, and yams. Which statement does this pattern best support?” |
+| Hint | none | “Ask where each community got its plants, and what that suggests about where its ideas came from.” |
+| Best option | `option.farming.multi.several-beginnings`: Farming began independently in several regions with different crops. | `option.farming.multi.own-local-plants`: People in different places began farming on their own, with plants that grew near them. |
+| Wrong options | one beginning copied everywhere; villages always came first; evidence on only one continent. No feedback. | `copied-from-one-place`; `villages-first` (“Every community … had first built a permanent village”); `only-grain` (“Only grain crops count as farming”). Each has feedback that points back to a section and asks a question. |
+
+Support map: best answer, “Farming did not begin once” (`module.farming.multi.opening`, Kuk) and “Different regions, different crops” (`module.farming.multi.regional-pattern`); `copied-from-one-place`, the opening; `villages-first`, “Farming was not one lifestyle” (`module.farming.multi.many-lifeways`, Xihuatoxtla); `only-grain`, “Different plants leave different clues” (`module.farming.multi.kuk-close-read`). Old distractor “evidence on only one continent” was dropped because nothing in the lesson raises it, so a learner had no section to reread.
+
+#### `prompt.farming.multi.explain-independent` → `prompt.farming.multi.one-region-evidence`
+
+| | Old | New |
+| --- | --- | --- |
+| Question | “Choose one region. How do its crops or clues support an independent beginning of farming, and what can those clues not prove by themselves?” | “Choose one region: Southwest Asia, China, New Guinea, Africa, or the Americas. (1) Name one crop or clue from there that shows people farming. (2) Name one thing that crop or clue still does not tell us.” |
+| Hint | none | “Look back at ‘Different regions, different crops’ and ‘Different plants leave different clues.’ Each clue answers one question and leaves another open.” |
+| Required / minimum length | yes / 30 | yes / 30 |
+
+Explanation (shown to the parent on Review as “What a strong answer covers”): names a specific crop or clue from one region, then something it leaves open (wild or cultivated, who did the work, when, why, or whether people stayed in one place). Support map: part 1, “Different regions, different crops” and the wheat evidence; part 2, “Different plants leave different clues” (starch limit, ditch limit) and “Farming was not one lifestyle”.
+
+`npm run content:fingerprints`, `npm run validate:content`, `npm run test:domain` and `npm run typecheck:chronos` passed. `tests/lesson/publication-plan.test.ts` named the old prompt IDs; it now names the new ones. The 2026-08-16 publication migration still names the old IDs; it is history and is not edited.
+
+**What learners will see.** Finished lessons, and lessons waiting for or passed by a parent, stay as they are. A learner still working through the lesson, or one whose lesson was sent back, must answer both new required prompts before finishing. Parents see the written question as the learner saw it; an old submission is marked as changed.
+
+Owner approval: pending.
+
+### 2026-10-03 — review follow-up on PR #74
+
+Changes made in review, before merge; fingerprints regenerated from `main`.
+
+- **Prompt 2 had lost its teaching job.** “Name one crop or clue that shows people farming” checks recall of a crop, not why it points to an *independent* beginning, which was the old prompt’s job and the lesson’s durable understanding. Part 1 is now “Name one crop or clue that shows people there worked out farming with their own local plants.” The explanation’s part 1 now ties the clue to local plants.
+- Prompt 2’s hint and this note named a section “Different regions, different crops” that does not exist; the section is “Several regions, different pathways”.
+- **Prompt 1 options** broke the new Stage 12 rule: all three wrong options carried absolute words (“everywhere”, “Every”, “Only”) and the best option was the longest. The stem now adds Kuk’s date (by at least 7,000 years ago) and “not wheat”, so the learner has the evidence for independence, not only different crops.
+
+| Option | Draft label | Final label |
+| --- | --- | --- |
+| `own-local-plants` (best) | People in different places began farming on their own, with plants that grew near them. | Farming began separately in different places, using local plants. |
+| `copied-from-one-place` | Farming was invented once in Southwest Asia, and people everywhere else copied it. | Farming began in Southwest Asia, and the people of Kuk learned it from there. |
+| `villages-first` → `village-before-farming` | Every community that began farming had first built a permanent village. | People had to settle in a permanent village before they could start farming. |
+| `only-grain` | Only grain crops count as farming, so the gardens at Kuk do not belong in this story. | Growing taro and bananas is gardening, not farming, so Kuk does not count. |
+
+`option.farming.multi.villages-first` was an option ID of the retired prompt; the runbook says never reuse a retired ID, so it is renamed.
+
+### 2026-10-03 — written prompt reworded positively (before merge)
+
+Owner feedback on PR #74: the “name one thing it does not tell us” part is a negatively posed question. Part 2 now asks the limit as an open question. `prompt.farming.multi.one-region-evidence` is not yet published, so it keeps its ID and the fingerprints were regenerated from `main`.
+
+| | Before | After |
+| --- | --- | --- |
+| Question | “Choose one region: Southwest Asia, China, New Guinea, Africa, or the Americas. (1) Name one crop or clue that shows people there worked out farming with their own local plants. (2) Name one thing that crop or clue still does not tell us.” | “Choose one region: Southwest Asia, China, New Guinea, Africa, or the Americas. (1) Name one crop or clue that shows people there worked out farming with their own local plants. (2) What is one question about those early farmers that researchers are still trying to answer?” |
+| Hint | “Look back at “Several regions, different pathways” and “Different plants leave different clues.” Each clue answers one question and leaves another open.” | “Look back at “Several regions, different pathways” and “Different plants leave different clues.” Each clue answers one question and raises another.” |

@@ -105,6 +105,17 @@
       ]
     },
     {
+      "id": "media.egypt.narmer-macehead",
+      "collection": "egypt",
+      "sourcePath": "public/images/evidence/egypt-narmer-macehead-quibell-1900.jpg",
+      "fallbackPath": "/images/optimized/egypt/narmer-macehead.optimized.jpg",
+      "preset": "photo",
+      "widths": [
+        480,
+        960
+      ]
+    },
+    {
       "id": "media.egypt.narmer-palette",
       "collection": "egypt",
       "sourcePath": "public/images/evidence/egypt-narmer-palette-both-faces.jpg",

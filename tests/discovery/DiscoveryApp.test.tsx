@@ -72,6 +72,8 @@ function makeHarness(content: ChronosContentBundle = chronosContent, multiple = 
   };
   const progressGateway = {
     loadJourneySummaries: vi.fn(async () => ({})),
+    loadInbox: vi.fn(async () => ({ passes: [], returned: [], waitingForMyReview: 0 })),
+    acknowledgePass: vi.fn(async () => undefined),
   } as unknown as LearnProgressGateway;
   return { journeyGateway, progressGateway, snapshot: () => snapshot };
 }
@@ -96,6 +98,23 @@ afterEach(() => {
 });
 
 describe('Home, Library, preview, and search composition', () => {
+  it('points a learner to sent-back work and a parent to waiting reviews, and celebrates a new pass', async () => {
+    const harness = makeHarness();
+    (harness.progressGateway.loadInbox as ReturnType<typeof vi.fn>).mockResolvedValue({
+      passes: [{ lessonId: 'lesson.uruk.first-city', cardIds: ['card.place.uruk'], feedback: 'Proud of you!' }],
+      returned: [{ lessonId: 'lesson.writing.early-systems', feedback: 'Add one example.' }],
+      waitingForMyReview: 2,
+    });
+    render(<DiscoveryApp route={{ name: 'home' }} journeyGatewayFactory={async () => harness.journeyGateway} progressGatewayFactory={async () => harness.progressGateway} />);
+    const dialog = await screen.findByRole('dialog', { name: 'Uruk: Life in an Early City' });
+    expect(within(dialog).getByText('“Proud of you!”')).toBeTruthy();
+    await userEvent.click(within(dialog).getByRole('button', { name: /Add it to my collection/ }));
+    expect(harness.progressGateway.acknowledgePass).toHaveBeenCalledWith('lesson.uruk.first-city');
+    await waitFor(() => expect(screen.queryByRole('dialog', { name: 'Uruk: Life in an Early City' })).toBeNull());
+    expect(screen.getByRole('link', { name: /From Marks to Proto-Cuneiform was sent back/ }).getAttribute('href')).toBe('/learn/lesson.writing.early-systems#completion-title');
+    expect(screen.getByRole('link', { name: /2 lessons are waiting for your review/ }).getAttribute('href')).toBe('/review');
+  });
+
   it('renders one obvious Continue action and an honest single-journey state', async () => {
     const harness = makeHarness();
     const navigate = vi.fn();
@@ -127,7 +146,7 @@ describe('Home, Library, preview, and search composition', () => {
         return snapshot;
       }),
     };
-    const progressGateway = { loadJourneySummaries: vi.fn(async () => ({})) } as unknown as LearnProgressGateway;
+    const progressGateway = { loadJourneySummaries: vi.fn(async () => ({})), loadInbox: vi.fn(async () => ({ passes: [], returned: [], waitingForMyReview: 0 })) } as unknown as LearnProgressGateway;
     render(<DiscoveryApp
       route={{ name: 'home' }}
       journeyGatewayFactory={async () => journeyGateway}
@@ -344,7 +363,7 @@ describe('Home, Library, preview, and search composition', () => {
     expect(localStorage.getItem('chronos.theme.v1')).toBe('dark');
     expect(screen.getAllByLabelText('Chronos navigation')).toHaveLength(2);
     expect(document.querySelector('.mobile-nav')).toBeTruthy();
-    expect(screen.queryByRole('link', { name: 'Learn' })).toBeNull(); expect(document.querySelectorAll('.global-rail nav a')).toHaveLength(3); expect(document.querySelectorAll('.mobile-nav a')).toHaveLength(3);
+    expect(screen.queryByRole('link', { name: 'Learn' })).toBeNull(); expect(document.querySelectorAll('.global-rail nav a')).toHaveLength(4); expect(document.querySelectorAll('.mobile-nav a')).toHaveLength(4);
     expect(within(screen.getByRole('complementary', { name: 'Chronos navigation' })).getByRole('button', { name: 'World History' })).toBeTruthy();
     expect(within(document.querySelector('.mobile-nav')!).getByRole('button', { name: 'World History' })).toBeTruthy();
   });

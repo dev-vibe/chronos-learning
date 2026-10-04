@@ -220,8 +220,8 @@ Sources and visual brief:
 
 ## Prompt rationale
 
-| Prompt ID | Required | Understanding/evidence assessed | Misconception exposed | Feedback job |
-| --- | --- | --- | --- | --- |
+| Prompt ID | Required | Understanding/evidence assessed | Misconception exposed | Feedback job | Plain-words check (what a 12-year-old does after one read) |
+| --- | --- | --- | --- | --- | --- |
 
 ## Ages 11–15 transformations
 
@@ -300,6 +300,6 @@ Explicit safe deferrals:
 Research checkpoint response (owner touchpoint 1): <date / link>
 Prototype approval (owner touchpoint 2): <date / link>
 Implementation and release gates: pass <date>
-Publication: migration `<name>` applied; <n> media objects checksum-verified
+Publication: merged <PR link>; <n> media objects checksum-verified
 Owner hosted check (owner touchpoint 3): pass <date>
 ```

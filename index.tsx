@@ -8,6 +8,7 @@ import { UserProfileProvider } from './contexts/UserProfileContext';
 import { LearnApp } from './src/learn/LearnApp';
 import { DiscoveryApp } from './src/app/ChronosApp';
 import { AuditApp } from './src/app/AuditApp';
+import { FamilyApp } from './src/app/FamilyApp';
 import { parseChronosRoute } from './src/app/routes';
 
 const queryClient = new QueryClient({
@@ -33,6 +34,8 @@ if (route.name === 'learn') {
   application = <LearnApp lessonId={route.lessonId} />;
 } else if (route.name === 'audit') {
   application = <AuditApp />;
+} else if (route.name === 'account' || route.name === 'review') {
+  application = <FamilyApp page={route.name} />;
 } else if (route.name === 'legacy') {
   application = <QueryClientProvider client={queryClient}>
     <AuthProvider>

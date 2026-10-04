@@ -1,6 +1,6 @@
 # Chronos lesson creation runbook
 
-Status: the single canonical process for creating, publishing and correcting a Chronos `Lesson`. Read this file and the [production queue](lesson-production-queue.md); nothing else is required reading. Start the research note by copying the [authoring template](lesson-production/authoring-templates.md). Open a [specialist runbook](#specialist-runbooks) only when its trigger applies.
+Status: the single canonical process for creating, publishing, materially revising and correcting a Chronos `Lesson`. Read this file and the [production queue](lesson-production-queue.md); nothing else is required reading. Start the research note by copying the [authoring template](lesson-production/authoring-templates.md). Open a [specialist runbook](#specialist-runbooks) only when its trigger applies.
 
 A lesson may be small or ambitious, but no step may be skipped silently. If a step does not apply, record why in the research note. When schedule pressure threatens the standard, narrow the lesson or keep it draft; do not lower the standard.
 
@@ -11,9 +11,9 @@ A lesson may be small or ambitious, but no step may be skipped silently. If a st
 - **What a lesson must achieve:** the learner forms an accurate, memorable, evidence-aware mental model, can explain the central idea, and knows the next action. Shipping a page is not the goal.
 - **Tone:** warm, intelligent, calm and spacious, like an editorial history publication or a museum companion. Lessons are told as true stories: real people, places and objects, with stakes and surprises, told straight. Not a game, a terminal or a textbook dump. No mascots, loot, XP, streaks, timers or score spectacle.
 - **Shell:** every lesson renders in the same Learn shell: a journey rail plus one scrolling lesson of five to eight semantic sections, short understanding prompts and an explicit completion action. Reopening always starts at the top.
-- **Knowledge Cards:** deterministic memory anchors earned by completing a lesson. Never random, duplicated, ranked by rarity, or mandatory.
+- **Knowledge Cards:** deterministic memory anchors earned when a parent passes the learner's finished lesson. Never random, duplicated, ranked by rarity, or mandatory.
 - **Evidence honesty:** observation, interpretation, reconstruction, uncertainty and later tradition are always distinguished. Generated imagery is never presented as evidence.
-- **Where content lives:** the repository is canonical. Lesson modules live in `content/lessons/`, are registered in `content/chronos.ts` and are ordered in `content/journeys/`. The database holds only what publication and progress need: published lesson IDs, journey entries, completion rules, card unlocks and learner progress.
+- **Where content lives:** the repository is canonical. Lesson modules live in `content/lessons/`, are registered in `content/chronos.ts` and are ordered in `content/journeys/`. The database holds only learner state, parent links and reviews, never lesson configuration.
 - **Who decides:** Carlin is the product owner and the only approver. AI may research, draft and validate. It may not be the sole historical, rights or publication reviewer, and it never approves on the owner's behalf.
 
 ## Invocation contract: “Create the next lesson”
@@ -84,13 +84,19 @@ Open these only when triggered. They own their details; this runbook decides whe
 - Asset ingestion, responsive derivatives, publishing and rollback: [`media-publishing.md`](../architecture/media-publishing.md)
 - A new reusable lesson module or other platform change is not lesson work. Handle it separately under `AGENTS.md`.
 
+## Changing a published lesson
+
+- **Revision:** any request to revise, redo or improve a published lesson, or one of its prompts or its card, follows the [lesson revision runbook](lesson-voice-revision-runbook.md). Its audit decides whether the telling, each prompt and the card need work, and it does them in one PR with one owner check. A prompt whose question, options, best answer or answer logic changes gets a new ID through the [prompt revision runbook](prompt-revision-runbook.md), which the revision runbook calls.
+- **Material revision:** a change to the essential question, durable understanding, central claims or their certainty, section order or teaching jobs, a prompt's teaching job, adding or removing a prompt, completion rules, the card's subject or adding or removing a card, the teaching job of an existing image, or journey position. Re-enter the earliest affected stage in the lesson's research note.
+- **Correction** (an error or harm in the published lesson): [Stage 18's correction path](#corrections-after-release).
+
 ## Non-negotiable product rules
 
-- Repository-authored content is canonical. Database rows configure publication, progress, prompts, and deterministic unlocks; they do not become an undocumented second curriculum.
+- Repository-authored content is canonical. The database holds learner progress, parent links and reviews, never lesson, prompt or card configuration.
 - One lesson has one stable identity even when reused in multiple journeys. Journey-specific framing belongs to `JourneyEntry`.
 - Lessons normally contain five to eight stable semantic sections. Use fewer or more only when the learning sequence genuinely requires it and document the exception.
 - Required lessons normally contain one to three required understanding prompts, usually two.
-- Completion requires a sincere attempt, not a perfect score, and only occurs through the explicit completion action.
+- Completion requires the best-supported answer on each required multiple-choice check (learners retry until they find it) and a sincere written attempt, and only occurs through the explicit completion action. Finishing sends the learner's written answers to a linked parent; the parent's pass awards the lesson's cards.
 - Every lesson opens at the top. Explored-section state may inform progress UI but must not trigger a resume banner, automatic scrolling, or viewport restoration.
 - Related lessons and optional journeys are navigation, not instructional sections or completion requirements.
 - A reconstruction is never presented as direct evidence. Uncertainty is never hidden merely to make prose cleaner.
@@ -689,6 +695,13 @@ Plan:
 - source list and visual brief;
 - deterministic `unlockLessonId`.
 
+**Card art is the lesson's most striking image of the card's subject.** A card is a prize the learner keeps, shown at trading-card size, so it should be the picture they would want to hold:
+
+- For a place, idea, event or people card, start from the hero or the lesson's most dramatic scene or reconstruction. Reuse it; the art box crops to a landscape frame, so check the subject survives the crop.
+- For an artifact card, use the best image of the object itself, shown whole.
+- A map, diagram or chart is card art only when the lesson has nothing more vivid. Record why in the card plan, and treat it as a gap worth a future image.
+- Keep the card's `depictionLabel` true to the image (reconstruction, illustration or surviving evidence).
+
 The reveal remains subordinate to lesson completion and the current journey’s next action.
 
 ## Stage 12 — Author understanding prompts and feedback
@@ -702,23 +715,42 @@ Normally use two required prompts:
 
 Prompt rules:
 
-- require a sincere attempt, not perfection;
-- use stable prompt and option IDs;
+- a written prompt requires a sincere attempt, not perfection; a selection prompt is done once the learner picks the best-supported option, so its feedback must help them get there;
+- every multiple-choice prompt names its best-supported option in `bestOptionId`;
+- give each wrong option `feedback` that points back to the evidence without revealing the answer; a wrong pick shows only that option's feedback;
+- write the `explanation` for after success: why the answer is supported and what the evidence cannot prove. It appears only after the right pick; for a written prompt only the parent sees it, on Review, as “What a strong answer covers”;
+- use stable prompt and option IDs; once published, a prompt ID stands for its question, and changing it is a [prompt revision](prompt-revision-runbook.md);
 - test an essential understanding or historical-thinking move;
 - make distractors plausible misconceptions, not jokes or wording traps;
 - avoid dependence on an unimportant date, name, or vocabulary trick;
-- explain why an answer is supported and what the evidence cannot prove;
 - keep failure calm, specific, and recoverable;
 - never use lives, timers, streak threats, score spectacle, or punitive repetition;
 - do not pretend a minimum character count grades historical sophistication;
 - exclude learner free text from general analytics.
+
+**Write the question for a 12-year-old.** An understanding prompt checks reasoning, so the learner must be able to tell what it asks before they can reason.
+
+- The learner can say what to do after one read. Ask one task, or two short linked parts numbered (1) and (2). Never stack three asks, and never pile a choice, an explanation and a limit into one question.
+- Use the lesson's own plain words. Do not ask in abstract research terms: “what can this evidence not prove by itself”, “what does the surviving system leave uncertain about who organized the work”, “state formation”, “independent beginning”. Ask about a limit as an open question the learner can answer positively: “What is one question researchers are still trying to answer about…?”, “What would researchers want to find next, and where would they look?”, “If you could ask one of these people a question, what would you ask?”. Never pose the ask as a negative (“Name one thing this does not tell us”, “What can this not prove?”): the learner has to work out what is missing before they can think about it.
+- Ask the positive question. “Why would a victory not tell us how rulers kept power?” becomes “After the soldiers left, what did people still have to do to keep the empire running?”.
+- Put the evidence in the stem. A selection stem sets out what was found, where and how many, so the learner reasons from it. A stem that only says “which conclusion is best supported?” tests whether they remember the lesson's title.
+- Keep the answer out of the stem and the hint. A hint names the first step (“Compare the three places”), not the conclusion. A written prompt's hint gives a sentence frame or a first step (“Start with…, then say…”).
+
+**Complete and fair options.**
+
+- Every selection prompt has a hint and `feedback` on every option, the best one included. A wrong pick shows only that option's feedback, so a missing one leaves the learner with nothing to learn from.
+- Write each wrong option as a misconception a real learner holds, in the same length, tone and hedging as the best option. No joke options, no absolute-word tells (“every”, “always”, “certainly”, “prove”) that only the wrong options use, and a best answer that is neither the longest nor the only hedged one.
+- Keep the best option to one claim. Do not join two claims with “and” unless both are the point.
 
 Test each prompt by answering:
 
 - Could a learner succeed through reasoning from this lesson rather than outside trivia?
 - Would a wrong answer reveal a useful misconception?
 - Does the feedback teach something rather than merely announce correctness?
-- Does the server/database derive completion eligibility from the same required-prompt configuration?
+- Read on its own, does any wrong option's feedback give away the answer?
+- Read the question as a 12-year-old: what is it asking me to do? If the answer takes more than one sentence, rewrite it.
+- For a written prompt, write a two-sentence answer using only the lesson's own words. If you cannot, the lesson does not teach what the prompt asks, or the prompt asks it too abstractly.
+- For a selection prompt, cover the stem: could someone who skipped the lesson pick the answer from the options alone (the longest, the only hedged one, the only one without an absolute word)? If so, rewrite the options.
 
 ## Stage 13 — Author journey framing and connections
 
@@ -768,7 +800,7 @@ The prototype must:
 - contain the full intended reading experience and sincere-attempt prompts rather than lorem ipsum or synopsis copy;
 - show section-linked media intentions as development-only review annotations when final media does not yet exist;
 - include usable placeholder alternatives or accessible descriptions without implying that unreviewed media is final;
-- avoid final asset generation/acquisition, publication migrations, unlocks, approval-state changes, and hosted production changes.
+- avoid final asset generation/acquisition, publication, unlocks, approval-state changes, and hosted production changes.
 
 Run `npm run lesson:gate -- --lesson <lesson-id> --note <path> --gate prototype` when the command is available. Open the exact lesson with `npm run lesson:preview -- --lesson <lesson-id>` and review desktop/mobile and light/dark presentation. A missing command is an implementation blocker for this production-system version; do not silently replace the real-shell review with screenshots of another renderer.
 
@@ -783,6 +815,7 @@ Before involving the owner, check the rendered prototype yourself against the qu
 - **Momentum:** does the opening create a problem worth following, and does each section answer or complicate the last? Does the ending resolve the question without pretending history is finished or inevitable?
 - **Cognitive load:** only indispensable vocabulary, defined where needed; one teaching job per section; no overloaded sentences, date piles, unexplained names or rapid place changes at real layout sizes.
 - **Headings:** plain words a skimming 12-year-old understands. A metaphor, riddle or punchline heading is `revise` or `blocking`.
+- **Prompt fit:** can a 12-year-old tell what each prompt asks after one read? One or two plain tasks, in the lesson's own words, posed positively (a limit asked as an open question, never “name one thing it does not tell us”), with the evidence in the stem; a hint and feedback on every selection option; no wording tells in the options (Stage 12).
 - **Evidence reasoning:** a concrete source, object, map or comparison to reason from; observation, inference, reconstruction and uncertainty distinguished at the point of use; prompts answerable from the lesson; feedback explains support and limits. Recurring labels stay plain: “Surviving evidence”, “What you can see”, “Who did the work”, “What we can know”.
 - **Proportionality:** emphasis and certainty match the evidence; no monocausal, deterministic or civilization-ranking story; people have specificity and agency; sensitive material is truthful and proportionate.
 - **Visual value:** every visual answers a named learner question at its exact position and has an accessible equivalent. Maps anchor the subject to recognizable wider geography at embedded size.
@@ -828,7 +861,7 @@ Follow the existing bounded-module architecture:
 9. Add the module to the small `content/chronos.ts` aggregation boundary. Do not move authored content into the aggregator.
 10. Add or update the relevant journey entry in `content/journeys/`.
 11. Update the media catalog/manifests through the pipeline, never by hand-editing generated outputs. Follow the media publishing runbook's runtime-source prep before `media:add` / `media:build`.
-12. Do not hand-author the publication SQL. `npm run lesson:prepare-publication` writes the committed migration and database test at go-live from the authored lesson.
+12. Publishing needs no SQL. The database holds no lesson configuration; a lesson goes live when `status: 'published'` merges to main. The cards a pass awards come from each card's `unlockLessonId`.
 13. Keep unpublished or incomplete neighbors fail-closed and non-completable.
 14. Do not proceed to Stage 16 while an approved Recommended map or core evidence visual remains unimplemented without explicit deferral.
 15. Verify the selected media method and reviewed reference/data-to-final fidelity using Stage 10; generation is optional, provenance is required.
@@ -855,41 +888,41 @@ Observation with real learners is a separate, sampled product program run by the
 
 ## Stage 18 — Publish, then correct when needed
 
-Publication is a mechanical cutover. It marks the lesson `published`, commits one migration that tells the database how completion works, and uploads this lesson's approved media. The owner's prototype approval was the editorial review, and CI is the full test suite. Do not restart Stages 0–16.
+Publication is a repository change. Merging `status: 'published'` to main makes the lesson live; there is no migration or database step. The owner's prototype approval was the editorial review. Do not restart Stages 0–16.
 
 A request to publish an already-approved lesson (for example after a pause) starts here. Confirm the release gate passes first; if it fails, return to Stage 15.
 
 ### Publication procedure
 
-1. Generate the cutover files:
+1. Flip the lesson to published:
 
    ```text
-   npm run lesson:prepare-publication -- --lesson <lesson-id> --note <path> --issue <ASH-n> --write --apply-status
+   npm run lesson:prepare-publication -- --lesson <lesson-id> --note <path> --apply-status
    ```
 
-   This writes the migration and database test, flips `status` to `published`, and unregisters the lesson from `content/prototype-reviews.ts`, which removes the draft-only “Prototype review / Not learner content” notes. Keep the archived review file under `content/prototype-reviews/`. Add `--equivalent-alias <legacy-id>` only when the owner already approved completion transfer for that alias. Never hand-write the SQL.
-2. Validate with `npm run validate:content` and `npm run test:domain`. Do not run the full suite or a build locally unless CI fails.
-3. Upload this lesson's media only, using the `--asset` list the prepare command printed: `npm run media:publish -- --asset <id> --asset <id>`. Credentials come from the existing project env. If staged files under `tmp/chronos-media/` are missing, rebuild only this lesson's assets when `media:build` supports `--asset`; otherwise run `media:build` once. Storage objects are immutable, and the publisher verifies checksums.
-4. Apply the committed migration to the Chronos Supabase project. No dashboard-only rows; never rewrite an applied migration.
-5. Push, let CI run, and put the preview link in the PR.
-6. **Owner touchpoint 3.** Once the branch preview deploys, send the owner the direct link to `/learn/<lesson-id>` (with audit parameters if needed) and ask them to report whether:
+   This checks the release gate, sets `status` to `published`, records the lesson's prompt fingerprints, unregisters the lesson from `content/prototype-reviews.ts` (removing the draft-only notes) and prints the media to upload. Keep the archived review file under `content/prototype-reviews/`.
+2. Validate with `npm run validate:content` and `npm run test:domain`.
+3. Upload this lesson's media only, using the printed command: `npm run media:publish -- --asset <id> --asset <id>`. Credentials come from the existing project env; storage objects are immutable.
+4. Push and put the preview link in the PR.
+5. **Owner touchpoint 3.** Send the owner the direct preview link to `/learn/<lesson-id>` and ask them to report whether:
    - the lesson opens at the top;
-   - both required prompts accept a sincere attempt;
-   - explicit completion works, including the card or no-card ending;
+   - each required prompt accepts a sincere attempt;
+   - finishing sends the answers for review, and a pass from `/review` shows the celebration with the card (or the no-card ending);
    - reopening the lesson starts at the top again;
    - the draft-only notes are gone.
 
    Do not open the lesson in a browser yourself, delegate the check, or infer a pass from deployment status. Fix any finding and send the link again.
-7. After the owner's pass, make the PR's final commit: set the queue row to `Complete` and fill the research note's `Final sign-off` section (migration name, media verified, owner check).
-8. When CI is green, merge. The lesson is complete. Do not verify production, update records after merge, or open a follow-up PR. The owner's own look at production is outside this process.
+6. After the owner's pass, make the final commit: set the queue row to `Complete` and fill the research note's `Final sign-off` (media verified, owner check).
+7. Merge. The lesson is live when main deploys. Do not verify production or open a follow-up PR.
 
-Do not re-read product docs or platform skills (Vercel, Supabase, browser automation), search changelogs, run advisors, repeat the quality review, rebuild the whole media catalog, merge `main` unless git reports a conflict, or write a custom uploader or storage path. If a command fails, fix that command rather than inventing a parallel pipeline.
+If a command fails, fix that command rather than inventing a parallel pipeline.
 
 ### Corrections after release
 
 1. Assess severity and learner harm. Unpublish immediately for a serious factual, rights, safety or provenance issue.
-2. Update the research note, claims and sources, content, media, tests and migration or configuration as needed, in one PR.
+2. Update the research note, claims and sources, content, media and tests as needed, in one PR. Unpublishing is setting `status` back to `draft`; learners' saved progress and cards are kept.
 3. Keep stable IDs when meaning is unchanged; create a new canonical lesson or a reviewed mapping when meaning changes materially.
+   A published prompt's explanation, feedback, hint text and option order may be corrected under the same ID. Fixing its question, options, best answer, required flag or minimum length means a new prompt ID: follow the [prompt revision runbook](prompt-revision-runbook.md) in the correction PR ([policy](../architecture/prompt-changes.md)).
 4. Send the owner the direct lesson preview link, following the preview-link contract, even for a one-line fix.
 
 Monitoring drop-off, misconceptions, media delivery and learner feedback after release is product work, not part of this workflow.

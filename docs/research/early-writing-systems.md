@@ -75,6 +75,7 @@ This increment reauthors one lesson and its durable editorial record. It does no
 | `source.cdli.writing-epistemology` | [Peter Damerow, “The Origins of Writing as a Problem of Historical Epistemology”](https://cdli.earth/articles/cdlj/2006-1) | Specialist open scholarly article in the Cuneiform Digital Library Journal | Restricted administrative semantics, spatial organization, weak relation to oral syntax, later adaptation to language, evidence limits | Interpretive framework from 2006; terminology such as “proto-writing” is debated and should not become an unqualified learner label | ISAC edited volume; Met essay; Antiquity | Scholarly reference; article text not redistributed | Reviewed 2026-07-19 |
 | `source.met.writing-origins` | [Ira Spar, “The Origins of Writing,” The Met](https://www.metmuseum.org/essays/the-origins-of-writing) | Institutional scholarly orientation | Uruk context, administrative use, drawn signs, later wedge impressions, expanding cuneiform uses | Published 2004 and sometimes uses linear “pictograph to cuneiform” shorthand; not the sole authority for contested origins | Damerow; Antiquity; ISAC | Reference only; article text not redistributed | Reviewed 2026-07-19 |
 | `source.isac.visible-language` | [Christopher Woods, ed., *Visible Language: Inventions of Writing in the Ancient Middle East and Beyond*](https://isac.uchicago.edu/research/publications/oimp/oimp-32-visible-language-inventions-writing-ancient-middle-east-and) | University of Chicago/ISAC specialist edited volume | What writing is, Mesopotamian development, lexical/scribal practice, later language representation, independent Egyptian/Chinese/Mesoamerican traditions | Broad synthesis; individual chapters carry different arguments and the 2015 edition reprints a 2010 exhibition catalog | Met; Damerow; Antiquity | Institutional research reference; runtime redistribution not asserted | Reviewed 2026-07-19 |
+| `source.cdli.englund-account-books` | [Robert K. Englund, “Proto-Cuneiform Account-Books and Journals,” in *Creating Economic Order* (CDL Press, 2004), pp. 23–46](https://cdli.earth/files-up/publications/englund2004a.pdf) | Specialist chapter by a leading proto-cuneiform editor | Number-sign values depend on the counted commodity (p. 31); 85% administrative / 15% lexical as averages (p. 28); school exercises (p. 34); dependent laborers in MSVO 1, 212–214 (pp. 40–41) | 2004; readings of person-qualifying signs are interpretive (“probably”) and come from specific Jemdet Nasr–period accounts, not the Met tablet | Damerow §5 and §8; *Antiquity* | Fact source only; text and figures not redistributed | Close-reviewed 2026-09-24 (voice revision) |
 
 Research stopped when the central claims were supported by an object record plus specialist corpus/scholarship, the major token/seal and language-representation cautions were recoverable, current scholarship largely repeated the same administrative evidence, and remaining uncertainty could be taught honestly. No source supports identifying a single inventor, exact invention moment, universal token-to-sign sequence, or complete list of early users; those claims are excluded.
 
@@ -93,6 +94,19 @@ Research stopped when the central claims were supported by an object record plus
 | `claim.writing.power-access`: specialized institutional record-making may have concentrated access to durable information and decisions | Interpretation | Moderate | Damerow; ISAC; Met essay | Early tablets do not identify every reader, writer, decision-maker, or informal user; later scribal evidence cannot be projected backward unchanged | Frame as a question and bounded inference, never direct tablet evidence | Renewed editorial review required |
 | `claim.writing.limits`: the surviving administrative corpus is not a complete record of speech, writing uses, or lived experience | Interpretation | High | Damerow; Antiquity | Survival, institutional collection, excavation, and modern decipherment all shape the sample | Contrast what survives, what scholars infer, and what remains missing | Renewed editorial review required |
 | `claim.writing.independent-traditions`: Mesopotamian proto-cuneiform was one early tradition; writing also developed independently in Egypt, China, and Mesoamerica | Observation | High | ISAC | “Independent” is a scholarly conclusion about exposure and development, not cultural isolation | Include briefly to block a universal Mesopotamian-origin story | Renewed editorial review required |
+| `claim.writing.tablet-making`: Met 1988.433.1 measures about 5.4 × 6 × 4.1 cm; signs drawn with a pointed implement; circular impressions are numbers; purchased 1988 | Observation | High | Met object record (dimensions, credit line, description ¶1) | Purchase means no recorded findspot | Scale and making in sections 1 and 4 | Close-reviewed 2026-09-24 (voice revision) |
+| `claim.writing.tablet-seal-scene`: A cylinder seal was incompletely rolled over both faces and edges before the tablet was inscribed; scene of a male figure guiding two dogs on a leash, hunting or herding boars in a reed marsh; the seal apparently has not survived | Observation | High | Met object record, description ¶2 | The Met’s “priest-king … good shepherd” identification is interpretive and stays out (rejected in content triage) | Opening moment and closing callback; card fact | Close-reviewed 2026-09-24 (voice revision) |
+| `claim.writing.temple-grain-no-verbs`: The Met reads the tablet as most likely grain distributed by a large temple; the absence of verbs makes early texts hard to interpret with certainty | Interpretation | Moderate | Met object record, description ¶2 | Refines `claim.writing.tablet-reading`; exact transaction unknown | Sections 1, 4 and 5; prompt 2 feedback | Close-reviewed 2026-09-24 (voice revision) |
+| `claim.writing.among-oldest`: Proto-cuneiform is probably the oldest known writing system and the only early one documented by an abundance of original texts | Interpretation | Moderate | Damerow §4.1 | Egyptian writing is close in date; “probably” kept | Section 1, stated as “probably” | Close-reviewed 2026-09-24 (voice revision) |
+| `claim.writing.seal-uses`: Seals secured containers and doors, covered bullae that could carry numerical impressions and enclose tokens, and were used on blank or numerical tablets; seals expressed authority and property | Observation | High | *Antiquity* 2025, “Information technologies and the Uruk phenomenon”; Damerow §9 | Sequence varied by site; not a single ladder | Section 3 items | Close-reviewed 2026-09-24 (voice revision) |
+| `claim.writing.no-discontinuity`: Damerow: tokens, standardized containers and seals developed into proto-cuneiform with “virtually no discontinuity” | Interpretation | Moderate | Damerow §9.3 | One scholar’s framing; quoted and attributed | Section 3 body | Close-reviewed 2026-09-24 (voice revision) |
+| `claim.writing.netted-vessel`: Kelley, Cartolano and Ferrara propose that ZATU190 (a vessel in a net) echoes a common seal motif, while warning that shape comparisons alone lack a sound method (Susa loops read as dried fruit or a belt loom) | Interpretation | Moderate | *Antiquity* 2025, “Late pre-literate seal motifs…” and “Comparing seals and signs” | A proposal, not a demonstrated path | Section 3 “Uncertain paths” item | Close-reviewed 2026-09-24 (voice revision) |
+| `claim.writing.number-values`: The value of a number sign depended on the counted commodity: N14 could be ten pots of butter oil, about 150 liters of barley, or about 6 hectares of field | Observation | High | Englund 2004, p. 31 | The Met tablet’s own number signs are not identified in the lesson | Section 5 “Quantities” item | Close-reviewed 2026-09-24 (voice revision) |
+| `claim.writing.school-lists`: Apart from administrative texts, surviving proto-cuneiform texts are mainly lexical lists, apparently written as exercises | Interpretation | High | Damerow §5; Englund 2004, pp. 28, 34 | Damerow notes the possible literary Tribute List exception (§5.1); lesson says “hardly any” | Sections 5 and 7 | Close-reviewed 2026-09-24 (voice revision) |
+| `claim.writing.one-off-signs`: About 6,000 texts and fragments contain more than 1,500 non-numerical signs, more than 500 attested only once | Observation | High | Damerow §8.1–8.2 | Counts depend on how variants are grouped; *Antiquity* speaks of “hundreds” of signs | Section 6 body | Close-reviewed 2026-09-24 (voice revision) |
+| `claim.writing.wedges-and-sounds`: Cuneiform (“wedge-shaped”) was written with a wedge-tipped stylus; by the Fara period some 500 years later, partial phonetic writing had changed the system and its range | Interpretation | High | Met object record ¶1; Met essay; Damerow §10.1 | The transition is meagerly documented (Damerow §10.1) | Section 6 items | Close-reviewed 2026-09-24 (voice revision) |
+| `claim.writing.dependent-laborers`: Englund reads sign combinations qualifying named persons in MSVO 1, 212–214 as dependent laborers, probably captives taken in violent actions against neighbors | Interpretation | Moderate | Englund 2004, pp. 40–41 | One specialist’s reading of specific accounts; attributed and hedged; no graphic detail | Section 7, one sentence | Close-reviewed 2026-09-24 (voice revision) |
+| `claim.writing.uruk-rubbish`: About 5,000 proto-cuneiform tablets were excavated at Uruk by the German Archaeological Institute, 1928–1976; the earliest known come from the Eanna precinct; virtually all were in secondary contexts in rubbish heaps, hampering dating | Observation | High | Woods, “The Earliest Mesopotamian Writing,” *Visible Language*, pp. 33–35 | The Met tablet is not from these excavations | Section 7 | Close-reviewed 2026-09-24 (voice revision) |
 
 ## Content triage
 
@@ -187,3 +201,128 @@ The lesson earns one deterministic Witness card: `card.artifact.proto-cuneiform-
 - [ ] Product owner approval
 - [ ] Structured learner walkthrough, or documented product decision to defer
 - [x] Post-implementation validation and responsive browser review
+
+## Voice revision
+
+Runbook: `docs/content/lesson-voice-revision-runbook.md`. Branch: `revise/early-writing-systems-voice`. Started 2026-09-24. Status: **approved by the owner 2026-09-24; merge completes the revision**. PR: [#61](https://github.com/dev-vibe/chronos-learning/pull/61).
+
+### Audit of the published version
+
+| Section | What read flat |
+| --- | --- |
+| `section.writing.opening-question` | Opened on a general system sentence (“Uruk was a city where institutions moved…”), then an announced question; no person, object or moment although the lesson’s own tablet was waiting in section 4. Heading `Can a mark remember?` is a riddle and appears word for word in the creation runbook’s Stage 8 “Fail” column. |
+| `section.writing.coordination-problem` | Abstract body (“keep selected details steady while goods and duties moved”); no stakes or institution named; items read like a definition list. |
+| `section.writing.before-tablets` | Four generic items; no concrete seal, envelope or sign; “not neat rungs on one known ladder” stated as a hedge rather than shown. The link to the seal on the lesson’s own tablet was missing. Heading `A toolbox before writing` is a metaphor. |
+| `section.writing.tablets-as-evidence` | Run of short same-length sentences (“You can observe…”); the best details in the Met record (seal rolled before writing, the scene, the missing verbs, the purchase that leaves provenance at “probably”) were absent. Heading `Read the object, then the claim` is a method slogan a skimming reader cannot decode. |
+| `section.writing.limits` | General where a sharp specific exists (“Different numerical systems counted different kinds of goods” instead of what one sign could mean); no mention that the non-account texts are school exercises. |
+| `section.writing.signs-change` | Methods voice (“Sign shapes, stylus methods, habits, and sound-uses changed unevenly”); no number or example showing an unsettled early system; no explanation of the word cuneiform. |
+| `section.writing.power-and-access` | Hedging repeated (“may also have…”, “careful reading — not something…”); a four-item “Archive care” box (a methods label, not one of the plain Stage 9 labels) repeated limits already made; no person at the receiving end of an account; ended on a list item, not an ending. |
+
+Whole lesson: story spine `none` (a sequence of topics; the tablet appeared only in section 4); memorable moments `none`; opening did not land (system sentence plus announced question); ending did not land (the lesson stopped on a four-item box).
+
+### Story material
+
+- **Story spine:** The Met tablet 1988.433.1. It opens the lesson as a lump of clay rolled with a seal and then written on; section 3 starts from its seal (“the old part”); section 4 reads it; section 5 generalizes from its missing verbs; the ending returns to the man and his dogs still crossing the clay.
+- **Memorable moments:** (1) the seal was rolled on first, before anyone wrote, leaving a man guiding two dogs on a leash, hunting or herding boars in a reed marsh, and the seal itself is lost; (2) the same small round number sign could mean ten pots of butter oil, about 150 liters of barley, or about 6 hectares of field; (3) the tablet has no verbs, so it never says who gave or who received; (4) virtually all of Uruk’s 5,000 early tablets came from ancient rubbish heaps.
+- **Supporting details:** more than 500 of the 1,500-plus early signs occur only once (an unsettled system); the non-account texts are mostly word lists copied as exercises; the netted-jar proposal and the dried-fruit-or-loom caution from *Antiquity* 2025; Englund’s reading of named “dependent laborers,” probably captives.
+- **Sources of the material:** close re-reading of the Met object record (full description), Damerow §§4–10, *Antiquity* 2025 (abstract; “Information technologies and the Uruk phenomenon”; “Comparing seals and signs”; “Late pre-literate seal motifs…”), and Woods in *Visible Language* pp. 33–35; one new specialist source, Englund 2004, for the number values, school exercises and dependent laborers.
+- **Later tradition used:** none. No legend fits the evidence here; the gap between the tablet and its reading carries that job.
+- **Cumulative link:** section 1 picks up the Uruk lesson (“In Uruk you saw a city where grain, animals, cloth and work had to be shared out…”).
+
+### Changes
+
+- Prose, knowledge body and item text, the evidence caption, the explanation for `prompt.writing.possibility-and-limit` and one card fact rewritten. Prompt IDs, options, answer logic, required flags, media, card identity and completion are unchanged. Section order and section IDs are unchanged.
+- Three headings renamed under the Stage 8 heading rules (IDs kept): `Can a mark remember?` → `A clay record of grain`; `A toolbox before writing` → `Record-keeping before writing`; `Read the object, then the claim` → `The tablet up close`. No test or script pins the old headings. The storyboard table above keeps the original headings as the historical record.
+- Removed `module.writing.archive-care` (the “Archive care” knowledge box in section 7). Its limits are stated once in prose; its claims (`claim.writing.limits`, `claim.writing.independent-traditions`) move to `module.writing.power`. No test references the module; it is not a prompt module.
+- 1 source and 13 claims added to the lesson module and to the ledgers above: `source.cdli.englund-account-books`; `claim.writing.tablet-making`, `tablet-seal-scene`, `temple-grain-no-verbs`, `among-oldest`, `seal-uses`, `no-discontinuity`, `netted-vessel`, `number-values`, `school-lists`, `one-off-signs`, `wedges-and-sounds`, `dependent-laborers`, `uruk-rubbish`. Module `claimIds`/`sourceIds` updated to cover what each module now says.
+- Reading length: 615 → 1,243 words in learner-facing headings and modules (lesson significance and hero caption included; prompts excluded). The published version was unusually thin; the added length is the opening scene, the concrete seal and number details and the ending, while the repeated limits box and hedges were cut. The result is in line with the other revised Foundations lessons (Sahul 1,256; Akkad 1,399).
+
+### Left out
+
+- The Met’s identification of the seal figure as the “priest-king … good shepherd”: interpretive and already rejected in content triage; the lesson describes the scene only.
+- Kushim, often called the first named person in history: popular but contested (name or title), and not in the registered sources.
+- Englund’s reading that one number sign equals one worker’s monthly ration (p. 39): sourced but hedged (“seems reasonable to assume”), and a second number fact would crowd the one about N14.
+- The Tribute List as possible earliest literature (Damerow §5.1): too uncertain to feature; the lesson says “hardly any” early text reads like speech so it stays true.
+- The rebus principle’s standard examples: the only close-read example (the Met essay’s English “eye/I”) would modernize the point; the lesson says only that some signs came to stand for sounds.
+- Signs on the Met tablet that look like ears of grain: visible, but no registered source reads the specific signs, so the lesson does not name them.
+
+### Stage 14B check on the changed sections
+
+| Question | Finding | Evidence and disposition |
+| --- | --- | --- |
+| Story | pass | Opens on the tablet being sealed and then written; the seal returns in section 3, the tablet is read in section 4, its missing verbs lead section 5, and the ending calls back to the man and his dogs. Knowledge boxes keep parallel items with concrete details; no section is a bare list. |
+| Evidence reasoning | pass | Section 4 separates what is visible from the Met’s reading and keeps “The marks survive; the exact transaction does not.” “Probably from Uruk” is explained by the purchase. The *Antiquity* proposal, Damerow’s “virtually no discontinuity” and Englund’s dependent-laborers reading are attributed. Both prompts remain answerable: prompt 1 from sections 4–5 and the caption; prompt 2 from sections 2, 4, 5 and 7. |
+| Proportionality | pass | “Probably the oldest” keeps its hedge and the ending names Egypt, China and Mesoamerica; power over records is framed once as a reasonable reading; captives are mentioned once, attributed and without detail; no ranking of societies with and without writing. |
+| Cognitive load | pass | New terms: cylinder seal (described in use), clay balls (glossed, the word “bullae” not used), stylus, cuneiform (defined as “wedge-shaped”). Numbers: 6 cm, 4 cm, 3100–2900 BCE, 1988, ten pots / 150 liters / 6 hectares, 1,500 / 500, 500 years, 5,000, 1928–1976 — spread across sections, one idea per sentence. Section 7 is the longest (four short paragraphs). |
+| Headings | pass (after revise) | Three headings renamed to plain subject names (see Changes). Remaining headings unchanged. No second title stack added; module eyebrows unchanged. |
+
+`npm run validate:content` passed; `npm run test:domain` passed (14 files, 63 tests). `tests/learn` has one failure, “resolves the published writing lesson with ordered journey navigation” in `tests/learn/multi-lesson.test.tsx`: it pins a journey summary list that predates the Indus, Kerma and Akkad lessons, fails identically on unmodified `main`, and does not touch this lesson’s content.
+
+### Owner review
+
+- Date: 2026-09-24.
+- PR: [#61](https://github.com/dev-vibe/chronos-learning/pull/61), branch preview [chronos-learning-git-revise-early-wri-a2d0ed-dev-vibes-projects.vercel.app](https://chronos-learning-git-revise-early-wri-a2d0ed-dev-vibes-projects.vercel.app/learn/lesson.writing.early-systems).
+- Story spine: the Met proto-cuneiform tablet 1988.433.1, from the seal rolled across it before anyone wrote to the closing callback on the man and his dogs still crossing the clay.
+- Memorable moments: the seal went on first (a man guiding two dogs among boars in a reed marsh; the seal itself lost); one small round sign could mean ten pots of butter oil, about 150 liters of barley or about 6 hectares of field; the tablet has no verbs, so it never says who gave or received; virtually all of Uruk's 5,000 early tablets came from ancient rubbish heaps.
+- Added: source `source.cdli.englund-account-books`; claims `claim.writing.tablet-making`, `tablet-seal-scene`, `temple-grain-no-verbs`, `among-oldest`, `seal-uses`, `no-discontinuity`, `netted-vessel`, `number-values`, `school-lists`, `one-off-signs`, `wedges-and-sounds`, `dependent-laborers`, `uruk-rubbish`.
+- Owner decisions: Carlin Aylsworth reviewed the branch preview and approved the revision, including the three renamed headings and the removed Archive care box (“approved”), 2026-09-24. During review Carlin also agreed to follow-up platform work (repo-derived publication config, a prompt-change policy and a prompt-revision path), tracked outside this PR.
+
+## Prompt revision
+
+### 2026-10-03 — both understanding prompts replaced after an age-fit audit of every lesson's prompts
+
+Branch `revise/early-writing-prompts`. Part of the assessment audit that followed the Indus review (prompt readability check in `docs/content/prompt-revision-runbook.md`, PR #68). Same teaching jobs, same kinds, same required flags. `prompt.writing.administration-evidence` and `prompt.writing.possibility-and-limit` are retired in `content/published-prompt-fingerprints.json`.
+
+**Why they changed.** Prompt 1 offered one real tablet against a modern painting and a much later story, so the answer was visible without reading the lesson, and it had no hint and no feedback. Prompt 2 asked a learner to explain a possibility and a limit of “surviving proto-cuneiform tablets” in one sentence, with no hint and no pointer to where either part is taught.
+
+#### `prompt.writing.administration-evidence` → `prompt.writing.what-tablet-shows`
+
+| | Old | New |
+| --- | --- | --- |
+| Question | “Which surviving evidence best supports the use of proto-cuneiform for administration?” | “The Met tablet is divided into boxes holding signs for goods and round pressed-in marks for numbers. It has no verbs. Which statement is best supported by this tablet?” |
+| Evidence module | none | `module.writing.tablet-evidence` |
+| Hint | none | “Look at what the tablet shows: boxes, signs for goods, and marks for numbers. Then ask what it never says.” |
+| Best option | `option.writing.tablet`: A proto-cuneiform tablet combining numbers and signs for goods | `option.writing.records-amounts`: Someone recorded amounts of goods on clay, but the tablet does not tell the whole story of the exchange. |
+| Wrong options | a modern painting of a scribe; a literary story copied centuries later (no feedback) | `tablet-is-sentence` (says who gave to whom and why); `everyone-could-read`; `all-signs-read`. Each has feedback that points to a section and asks a question. |
+
+Support map: best answer, “The tablet up close” (`module.writing.tablet-evidence`) and “Count, identify, and check”; `tablet-is-sentence`, “The tablet up close” (no verbs); `everyone-could-read`, “What records show — and leave out” (reading took training); `all-signs-read`, “A record is not yet a sentence” (many signs not understood).
+
+#### `prompt.writing.possibility-and-limit` → `prompt.writing.records-and-gaps`
+
+| | Old | New |
+| --- | --- | --- |
+| Question | “Explain one thing durable records made possible and one limit of what surviving proto-cuneiform tablets can tell historians.” | “(1) Name one job a clay record could do that memory alone could not. (2) Name one thing the surviving tablets still don’t tell us.” |
+| Hint | none | “Look back at ‘Count, identify, and check’ for part 1 and at ‘A record is not yet a sentence’ for part 2.” |
+| Required / minimum length | yes / 30 | yes / 30 |
+
+Explanation (shown to the parent on Review as “What a strong answer covers”): part 1, a real job (counting, sharing out, tracking work owed, checking one account against another); part 2, something the tablets leave out (no verbs, signs still not understood, the workers’ own words). Support map: part 1, “Count, identify, and check” and “What records show — and leave out”; part 2, “The tablet up close”, “A record is not yet a sentence” and “What records show — and leave out”.
+
+`npm run content:fingerprints`, `npm run validate:content`, `npm run test:domain` and `npm run typecheck:chronos` passed. `tests/learn/progress.test.ts` and `tests/learn/multi-card-progress.test.ts` named the old prompt and option IDs; they now name the new ones. The publication migration still names the old IDs; it is history and is not edited.
+
+**What learners will see.** Finished lessons, and lessons waiting for or passed by a parent, stay as they are. A learner still working through the lesson, or one whose lesson was sent back, must answer both new required prompts before finishing. Parents see the written question as the learner saw it; an old submission is marked as changed.
+
+Owner approval: pending.
+
+### 2026-10-03 — review follow-up on PR #74
+
+Changes made in review, before merge; fingerprints regenerated from `main`.
+
+`prompt.writing.what-tablet-shows`: the draft’s best option was the only hedged one and by far the longest (104 characters against 61–67), and two wrong options carried absolute words (“Any person”, “every sign”), so a learner could pick it without the lesson. The “sentence” option was also ruled out by the stem itself (“It has no verbs”). The options are now four real readings of an early tablet, of similar length:
+
+| Option | Label | Supported by |
+| --- | --- | --- |
+| `counted-goods` (best) | Someone counted goods, but the tablet never says who gave them or why. | “The tablet up close” |
+| `practice-list` | It is a word list that a student copied out as writing practice. | “A record is not yet a sentence” (word lists were exercises; this tablet has number marks) |
+| `most-could-read` | Most people in Uruk could read it and check the count themselves. | “What records show — and leave out” (reading took training) |
+| `message-to-future` | It was made so people in the future would know about life in Uruk. | “When memory is not enough”; “What records show — and leave out” (“made for an office, not for us”; most were thrown away) |
+
+The stem adds the rolled seal; the hint now asks what job the marks were for instead of pointing at what the tablet “never says”. `tests/learn/multi-lesson.test.tsx` still clicked the retired option label and named the retired written question, so `npm test` failed (it is outside `test:domain`); it now uses the new ones.
+
+### 2026-10-03 — written prompt reworded positively (before merge)
+
+Owner feedback on PR #74: the “name one thing it does not tell us” part is a negatively posed question. Part 2 now asks the limit as an open question. `prompt.writing.records-and-gaps` is not yet published, so it keeps its ID and the fingerprints were regenerated from `main`.
+
+| | Before | After |
+| --- | --- | --- |
+| Question | “(1) Name one job a clay record could do that memory alone could not. (2) Name one thing the surviving tablets still don’t tell us.” | “(1) Name one job a clay record could do that memory alone could not. (2) Imagine you could ask one of the workers counted on these tablets a question. What would you ask?” |
+| Hint | “Look back at “Count, identify, and check” for part 1 and at “A record is not yet a sentence” for part 2.” | “Look back at “Count, identify, and check” for part 1 and at “What records show — and leave out” for part 2: what would you want to hear in the workers’ own words?” |

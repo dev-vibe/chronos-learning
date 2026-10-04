@@ -1,6 +1,6 @@
 # ADR 002: Transactional progress command
 
-- Status: Accepted for the Uruk foundation
+- Status: Accepted for the Uruk foundation; lesson configuration and card granting superseded by [ADR 005](005-parent-review.md)
 - Date: 2026-07-13
 - Decision owners: Chronos product and engineering
 

@@ -1,5 +1,5 @@
 import React, { useCallback, useEffect, useLayoutEffect, useMemo, useRef, useState } from 'react';
-import { Archive, BookOpen, ChevronRight, Compass, Landmark, Lock, Moon, Sun } from 'lucide-react';
+import { BookOpen, ChevronRight, Compass, Lock, MessageSquareQuote, Moon, Sun } from 'lucide-react';
 import { chronosContent } from '../../content/chronos';
 import type { Journey, KnowledgeCard, Lesson, LessonModule, LessonSection } from '../domains/contracts';
 import { isLessonOpenable, unlockPreviewLessonsEnabled } from '../config/runtimeFlags';
@@ -7,15 +7,16 @@ import type { LessonPrototypeReview } from '../infrastructure/content/prototypeR
 import { HistoricalMapModule } from './HistoricalMapModule';
 import { ResponsiveMedia } from './ResponsiveMedia';
 import { EvidenceModule } from './EvidenceModule';
-import { UnderstandingCheck } from './UnderstandingCheck';
+import { promptDraftKey, UnderstandingCheck } from './UnderstandingCheck';
 import { EvidenceViewer } from './EvidenceViewer';
-import { completionKey, createProgressGateway, LocalPreviewGateway, type JourneyProgressSummary, type LearnProgressGateway, type LearnState } from './progress';
+import { createProgressGateway, LocalPreviewGateway, type JourneyProgressSummary, type LearnProgressGateway, type LearnState } from './progress';
+import { LessonReviewPanel } from './LessonReviewPanel';
+import { PassCelebration } from './PassCelebration';
 import { useChronosTheme } from '../theme/useChronosTheme';
 import { derivePromptRequirementState } from './prompt-requirements';
 import { JourneySwitcher } from '../app/JourneySwitcher';
 import { worldSpineRoadmap } from '../../content/world-spine/roadmap';
 import { resolveWorldSpineAccess } from '../domains/journeys/worldSpine';
-import { knowledgeCardTypeLabel } from '../domains/knowledgeCards';
 import { createJourneyDrawerState, JourneyDrawer, orderedJourneyEntries } from './JourneyDrawer';
 import { GlobalNavigation } from '../app/GlobalNavigation';
 import { PrototypeMediaIntentions } from './PrototypeMediaIntentions';
@@ -66,7 +67,9 @@ function Module({ module, state, onAttempt }: ModuleProps) {
   const answer = state.responses[prompt.id] ?? '';
   const lesson = lessonById.get(prompt.lessonId);
   const evidence = (prompt.evidenceModuleIds ?? []).flatMap((id) => lesson?.sections.flatMap((section) => section.modules).filter((candidate) => candidate.id === id && (candidate.type === 'evidence' || candidate.type === 'historical-map')) ?? []);
-  return <UnderstandingCheck key={`${state.learnerId}:${prompt.id}`} prompt={prompt} answer={answer} learnerId={state.learnerId} onAttempt={onAttempt} evidence={evidence.length ? evidence.map((item) => {
+  // Sent back: written answers open for editing, filled with what was sent.
+  const reopen = state.review?.status === 'returned';
+  return <UnderstandingCheck key={`${state.learnerId}:${prompt.id}:${reopen ? 'reopened' : 'open'}`} prompt={prompt} answer={answer} learnerId={state.learnerId} reopen={reopen} onAttempt={onAttempt} evidence={evidence.length ? evidence.map((item) => {
     if (item.type !== 'evidence' && item.type !== 'historical-map') return null;
     const media = mediaById.get(item.mediaId)!;
     return <figure key={item.id} className="prompt-evidence-image"><div><ResponsiveMedia media={media} alt={media.alt} sizes="(max-width: 800px) 100vw, 700px" loading="lazy" /><EvidenceViewer media={media} title={item.title} summary={item.type === 'historical-map' ? item.accessibleSummary : item.body} /></div><figcaption><strong>{item.title}</strong><p>{item.type === 'historical-map' ? item.accessibleSummary : item.body}</p><small>{media.depictionLabel}</small></figcaption></figure>;
@@ -99,12 +102,6 @@ function Section({ section, state, onAttempt, openingMapId }: { section: LessonS
 
     return <React.Fragment key={module.id}><Module module={module} state={state} onAttempt={onAttempt} /></React.Fragment>;
   })}</div></section>;
-}
-
-function KnowledgeCardReveal({ card, revealRef, acquired = false }: { card: KnowledgeCard; revealRef?: React.RefObject<HTMLDivElement | null>; acquired?: boolean }) {
-  const media = mediaById.get(card.mediaId)!;
-  const typeLabel = knowledgeCardTypeLabel(card.category);
-  return <div ref={revealRef} className="card-reveal" tabIndex={-1} aria-live={acquired ? 'polite' : undefined}><div className="knowledge-card"><div className="card-frame"><div className={`card-image card-image-${card.category}`} data-depiction={media.depictionMode}><ResponsiveMedia media={media} alt={media.alt} sizes="320px" loading="lazy" /></div><div className="card-body"><span className="card-class">{card.category === 'place' ? <Landmark /> : <Archive />} {typeLabel}</span><h3>{card.title}</h3><p className="card-date">{card.date.display} · {card.place}</p><p>{card.significance}</p><div className="card-ornament" aria-hidden="true"><i /><Compass /><i /></div></div></div></div><div className="card-copy"><p className="eyebrow">{acquired ? 'Knowledge Card acquired' : 'In your Knowledge Cards'}</p><h3>{card.revealTitle}</h3><p>{card.revealBody}</p><ul>{card.facts.map((fact) => <li key={fact}>{fact}</li>)}</ul>{card.recallPrompt && <details className="card-recall"><summary>Try remembering</summary><p>{card.recallPrompt}</p></details>}{card.connections?.filter((connection) => lessonById.get(connection.lessonId)?.status === 'published').map((connection) => <p key={connection.lessonId}><a href={`/learn/${connection.lessonId}`}>{connection.label}</a> — {connection.reason}</p>)}</div></div>;
 }
 
 type LearnStatusShellProps = {
@@ -206,12 +203,11 @@ export function LearnApp({ lessonId, gatewayFactory = createProgressGateway }: {
   const [error, setError] = useState('');
   const [busy, setBusy] = useState(false);
   const [loadAttempt, setLoadAttempt] = useState(0);
-  const [revealedCardIds, setRevealedCardIds] = useState<string[]>([]);
+  const [celebrationGateway, setCelebrationGateway] = useState<LearnProgressGateway>();
   const [prototypeReview, setPrototypeReview] = useState<LessonPrototypeReview>();
   const observed = useRef(new Set<string>());
   const gatewayRef = useRef<LearnProgressGateway>(new LocalPreviewGateway());
   const menuRef = useRef<HTMLElement>(null);
-  const revealRef = useRef<HTMLDivElement>(null);
   const retryLoad = useCallback(() => { setCurrentProgress(null); setJourneySummaries({}); setError(''); setLoadAttempt((value) => value + 1); }, []);
   const openDrawer = (event: React.MouseEvent<HTMLButtonElement>) => {
     menuRef.current = event.currentTarget;
@@ -251,6 +247,7 @@ export function LearnApp({ lessonId, gatewayFactory = createProgressGateway }: {
       if (active) {
         setCurrentProgress(detailed);
         setJourneySummaries(summaries);
+        setCelebrationGateway(selected);
       }
     }).catch(() => { if (active) setError('Progress could not be loaded. Check your connection and retry.'); });
     return () => { active = false; };
@@ -274,17 +271,8 @@ export function LearnApp({ lessonId, gatewayFactory = createProgressGateway }: {
     return () => { active = false; observer.disconnect(); timers.forEach(window.clearTimeout); };
   }, [lessonId, Boolean(state)]);
 
-  useEffect(() => {
-    if (revealedCardIds.length === 0 || !revealRef.current) return;
-    revealRef.current.focus({ preventScroll: true });
-    revealRef.current.scrollIntoView({
-      behavior: matchMedia('(prefers-reduced-motion: reduce)').matches ? 'auto' : 'smooth',
-      block: 'center',
-    });
-  }, [revealedCardIds]);
-
   const navigate = (id: string) => { const target = document.getElementById(id); if (!target) return; target.scrollIntoView({ behavior: matchMedia('(prefers-reduced-motion: reduce)').matches ? 'auto' : 'smooth', block: 'start' }); target.focus({ preventScroll: true }); };
-  const requirement = useMemo(() => derivePromptRequirementState(lesson?.promptIds ?? [], promptById, state?.attemptedPromptIds ?? []), [lesson, state?.attemptedPromptIds]);
+  const requirement = useMemo(() => derivePromptRequirementState(lesson?.promptIds ?? [], promptById, state?.responses ?? {}), [lesson, state?.responses]);
   const worldSpineAccess = useMemo(() => journey?.kind === 'world-history'
     ? resolveWorldSpineAccess(worldSpineRoadmap, chronosContent.lessons, journeySummaries, lessonId)
     : { accessible: true }, [journey?.kind, journeySummaries, lessonId]);
@@ -316,29 +304,37 @@ export function LearnApp({ lessonId, gatewayFactory = createProgressGateway }: {
     const nextState = await gatewayRef.current.saveAttempt(lessonId, id, response);
     setCurrentProgress(nextState);
   };
-  const complete = async () => {
+  const submit = async () => {
     setBusy(true); setError('');
     try {
-      const result = await gatewayRef.current.complete(lessonId, completionKey(lessonId));
-      const nextState = await gatewayRef.current.load(lessonId);
-      setCurrentProgress(nextState);
-      if (result.cardOwnership === 'newly-acquired') setRevealedCardIds(result.cardIds ?? (result.cardId ? [result.cardId] : []));
-      else setRevealedCardIds([]);
-    } catch { setError('The completion command was interrupted. Your attempts are safe; please retry.'); }
+      // Save written answers that were changed but not saved yet, so what is sent is what is on screen.
+      for (const prompt of lesson.promptIds.map((id) => promptById.get(id))) {
+        if (prompt?.kind !== 'concise-explanation') continue;
+        let draft: string | null = null;
+        try { draft = sessionStorage.getItem(promptDraftKey(state.learnerId, lessonId, prompt.id)); } catch { /* no drafts in this browser */ }
+        const text = draft?.trim() ?? '';
+        if (!text || text === (state.responses[prompt.id] ?? '')) continue;
+        if (text.length < prompt.minimumResponseLength) { setError(`Add a little more to “${prompt.question}” before sending.`); return; }
+        setCurrentProgress(await gatewayRef.current.saveAttempt(lessonId, prompt.id, text));
+      }
+      setCurrentProgress(await gatewayRef.current.submit(lessonId));
+    } catch { setError('Your answers could not be sent. They are still saved here; please retry.'); }
     finally { setBusy(false); }
   };
+  const reloadAfterPass = (passedLessonId: string) => {
+    if (passedLessonId !== lessonId) return;
+    gatewayRef.current.load(lessonId).then(setCurrentProgress).catch(() => undefined);
+  };
 
-  const openingMapId = orientationMapForLesson(lesson)?.id;
-  const hero = lesson.heroMediaId ? mediaById.get(lesson.heroMediaId) : undefined;
+  const openingMap = orientationMapForLesson(lesson);
+  const openingMapId = openingMap?.id;
+  const heroMedia = lesson.heroMediaId ? mediaById.get(lesson.heroMediaId) : undefined;
+  // A map hero is already shown in "Time and place" when the lesson has no locator map of its own; do not show it twice.
+  const orientationMediaId = (openingMap?.type === 'historical-map' ? openingMap.mediaId : undefined) ?? lesson.heroMediaId;
+  const hero = heroMedia?.depictionMode === 'map' && heroMedia.id === orientationMediaId ? undefined : heroMedia;
   const configuredCards = cardsByLessonId.get(lesson.id) ?? [];
-  const newlyAcquired = revealedCardIds.length > 0;
-  const ownedCardIds = [...new Set([...(state.cardIds ?? []), ...(state.cardId ? [state.cardId] : [])])];
-  const displayCardIds = newlyAcquired
-    ? revealedCardIds
-    : state.status === 'completed'
-      ? (ownedCardIds.length ? ownedCardIds : configuredCards.map((card) => card.id))
-      : [];
-  const displayCards = displayCardIds.map((id) => cardById.get(id)).filter((card): card is KnowledgeCard => Boolean(card));
+  const ownedCards = [...new Set(state.cardIds ?? [])].map((id) => cardById.get(id)).filter((card): card is KnowledgeCard => Boolean(card));
+  const lessonPrompts = lesson.promptIds.map((id) => promptById.get(id)).filter((prompt): prompt is NonNullable<typeof prompt> => Boolean(prompt));
   return <div className="learn-app" data-theme={theme}>
     <GlobalNavigation
       theme={theme}
@@ -349,12 +345,13 @@ export function LearnApp({ lessonId, gatewayFactory = createProgressGateway }: {
     />
     <JourneyDrawer open={drawer} onClose={() => setDrawer(false)} onNavigate={navigate} lesson={lesson} journey={journey} summaries={journeySummaries} currentState={state} currentSectionId={state.resumeSectionId ?? lesson.sections[0].id} returnFocus={menuRef} />
     <header className="mobile-progress"><span className="mobile-progress-spacer" aria-hidden="true" /><div><strong>{lesson.title}</strong><span>{state.exploredSectionIds.length} of {lesson.sections.length} sections explored</span></div><button className="icon-button" onClick={toggleTheme} aria-label={'Use ' + (theme === 'light' ? 'dark' : 'light') + ' theme'}>{theme === 'light' ? <Moon /> : <Sun />}</button></header>
-    <main className="lesson"><div className="lesson-toolbar"><JourneySwitcher currentJourneyId={journey.id} currentLessonId={lesson.id} /><span className="lesson-breadcrumb">{breadcrumbChapter} <ChevronRight /> {lesson.title}</span></div>
+    <main className="lesson"><div className="lesson-toolbar"><JourneySwitcher currentJourneyId={journey.id} currentLessonId={lesson.id} /><span className="lesson-breadcrumb">{breadcrumbChapter} <ChevronRight /> {lesson.title}</span>{state.review?.status === 'returned' && <a className="review-chip" href="#completion-title"><MessageSquareQuote aria-hidden="true" /> Sent back · see the note</a>}</div>
       <article><header className="masthead"><div className="masthead-copy"><p className="eyebrow">{lesson.masthead} <span>·</span> {lesson.place}</p><h1>{lesson.title}</h1><p className="dek">{lesson.significance}</p></div>{hero && <figure className="hero"><div className={'hero-image hero-image-' + hero.depictionMode}><ResponsiveMedia className={`hero-media hero-${hero.depictionMode}`} media={hero} alt={hero.alt} sizes="(max-width: 800px) 100vw, 60vw" loading="eager" decoding="async" /><span className="depiction-label">{lesson.heroLabel}</span></div><figcaption><span>{hero.depictionLabel}</span><span>{lesson.heroCaption}</span></figcaption></figure>}</header>
         <LessonOrientation lesson={lesson} journey={journey} />
         {lesson.sections.map((section) => <React.Fragment key={section.id}><Section section={section} state={state} onAttempt={attempt} openingMapId={openingMapId} /><PrototypeMediaIntentions lesson={lesson} review={prototypeReview} sectionId={section.id} /></React.Fragment>)}
-        <section className="completion-panel" aria-labelledby="completion-title"><p className="eyebrow">Your next step</p><h2 id="completion-title">{state.status === 'completed' ? 'Lesson explored' : `Complete ${lesson.title}`}</h2>{state.status === 'completed' ? <><p className="completion-understanding">{lesson.learningOutcome ?? lesson.significance}</p>{displayCards.length > 0 && <div className="card-reveal-list">{displayCards.map((card, index) => <React.Fragment key={card.id}><KnowledgeCardReveal card={card} acquired={newlyAcquired} revealRef={newlyAcquired && index === 0 ? revealRef : undefined} /></React.Fragment>)}</div>}<div className="next-lesson-preview">{next && <><h3>Next: {next.lesson.title}</h3><p>{next.lesson.significance}</p></>}</div><div className="actions">{next ? <a className="primary" href={`/learn/${next.lesson.id}`}>Continue: {next.lesson.title} <ChevronRight /></a> : <span className="journey-end">You have reached the available lessons in this journey. Come back to explore them again.</span>}</div></> : <><p>Share your thinking in the checks above, then complete the lesson when you are ready.</p><button className="primary" disabled={!requirement.ready || busy} onClick={complete}>{busy ? 'Completing…' : requirement.ready ? 'Complete lesson' : 'Answer the checks above'}</button></>}{error && <p className="error" role="alert">{error} <button onClick={complete}>Retry</button></p>}</section>
+        <LessonReviewPanel lesson={lesson} state={state} prompts={lessonPrompts} configuredCards={configuredCards} ownedCards={ownedCards} next={next?.lesson} ready={requirement.ready} answeredIds={requirement.answeredIds} busy={busy} error={error} onSubmit={submit} />
       </article>
     </main>
+    <PassCelebration gateway={celebrationGateway} onAcknowledged={reloadAfterPass} />
   </div>;
 }

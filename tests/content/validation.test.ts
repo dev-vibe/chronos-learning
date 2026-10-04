@@ -38,7 +38,7 @@ it('validates the typed Caral historical map and generated raster asset', () => 
     category: 'place',
     cardClass: 'foundation',
     unlockLessonId: 'lesson.caral.andean-urbanism',
-    mediaId: 'media.caral.sunken-plaza',
+    mediaId: 'media.caral.site-hero',
   });
   expect(lesson.mediaIds).toEqual(expect.arrayContaining([
     'media.caral.supe-valley-map',
@@ -99,7 +99,7 @@ it('publishes World History lessons only in authored journey order', () => {
   expect(chronosContent.lessons.find((lesson) => lesson.id === 'lesson.humans.homo-sapiens-origins')).toMatchObject({
     status: 'published',
     heroMediaId: 'media.humans.jebel-irhoud-landscape-reconstruction',
-    promptIds: ['prompt.humans.best-supported-conclusion', 'prompt.humans.evidence-and-limit'],
+    promptIds: ['prompt.humans.best-supported-conclusion', 'prompt.humans.face-and-braincase'],
     sectionIdsRequired: [
       'section.humans.skull-in-the-wrong-place',
       'section.humans.what-counts-as-us',
@@ -113,7 +113,7 @@ it('publishes World History lessons only in authored journey order', () => {
   expect(chronosContent.lessons.find((lesson) => lesson.id === 'lesson.farming.settlements')).toMatchObject({
     status: 'published',
     heroMediaId: 'media.farming.catalhoyuk-rooftops',
-    promptIds: ['prompt.farming.house-pattern', 'prompt.farming.opportunity-and-cost'],
+    promptIds: ['prompt.farming.what-the-house-shows', 'prompt.farming.opportunity-and-cost'],
     sectionIdsRequired: [
       'section.farming.enter-from-roof',
       'section.farming.slow-change',

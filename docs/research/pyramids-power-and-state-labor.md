@@ -1046,3 +1046,16 @@ Unclear action hierarchy found earlier: concise responses registered only on blu
 - [ ] Final media lifecycle and rights review complete
 - [ ] Implementation and release gates complete
 - [ ] Publication migration and hosted verification complete
+
+## Prompt revision
+
+### 2026-10-03 — hints and option feedback (text only, same prompt IDs)
+
+Part of the assessment audit that followed the Indus review (prompt readability check in `docs/content/prompt-revision-runbook.md`). The audit kept every prompt's question and options as they were, so no prompt ID changed and no fingerprint changed; only hints and option feedback, which the prompt-change policy allows under the same ID. Hints and feedback now point back to a section and ask a question instead of stating the answer; every selection option has feedback.
+
+- `prompt.pyramids.context-and-phase`: no hint and no option feedback before. New hint: “Compare what the separate clues say about Giza’s time with what they leave open about particular parts of the pyramid.” Every option has feedback; wrong answers point to “Giza in Khufu’s time” or “Dating a stone monument” with a question.
+- `prompt.pyramids.build-evidence-chain`: no hint before. New hint points to the five questions in “At the Great Pyramid” for choosing a clue, saying what it might mean and how to test it.
+
+**What learners will see.** Nothing is re-asked. Learners see the new hint, and after a wrong pick the new feedback, the next time they open the prompt. Finished lessons and parent reviews are unaffected.
+
+Owner approval: pending.

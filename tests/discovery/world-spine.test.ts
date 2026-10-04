@@ -21,9 +21,9 @@ describe('canonical World Spine roadmap', () => {
 
   it('keeps unfinished roadmap nodes visible but non-navigable', () => {
     const view = createWorldSpineRoadmapView(worldSpineRoadmap, chronosContent.lessons, {}, 'lesson.uruk.first-city');
-    const indus = view.flatMap((chapter) => chapter.nodes).find((node) => node.id === 'lesson.indus.cities-and-signs');
-    expect(indus).toMatchObject({ status: 'preparing' });
-    expect(indus?.href).toBeUndefined();
+    const exchange = view.flatMap((chapter) => chapter.nodes).find((node) => node.id === 'lesson.bronze-age.exchange-networks');
+    expect(exchange).toMatchObject({ status: 'preparing' });
+    expect(exchange?.href).toBeUndefined();
   });
 
   it('opens authored draft spine nodes when preview unlock is on', () => {

@@ -11,7 +11,7 @@ Before changing product behavior, data models, or UI (not lesson production), re
 3. `docs/design/design-system.md`
 4. The active Linear epic in the [Chronos rebuild project](https://linear.app/ashs-workshop/project/chronos-guided-history-learning-rebuild-0fe768438099)
 
-For lesson creation, publication, revision or correction, read only `docs/content/lesson-creation-runbook.md` and `docs/content/lesson-production-queue.md`. The runbook is self-contained; the required reading above does not apply to lesson work.
+For lesson creation, publication, revision or correction, read only `docs/content/lesson-creation-runbook.md` and `docs/content/lesson-production-queue.md`. The runbook is self-contained and routes any revision of a published lesson (telling, prompts or card) to the lesson revision runbook; the required reading above does not apply to lesson work.
 
 A user request equivalent to “Let's create the next Chronos lesson” is complete. Do not ask the user to supply a topic or repeat the workflow. Run the boot sequence in the lesson creation runbook, continue an active queued lesson or select the first eligible Ready lesson, and proceed through its built-in research/editorial approval gate.
 
@@ -27,8 +27,8 @@ For generated historical maps, follow `docs/content/historical-map-production.md
 - Lessons use stable semantic sections, unobtrusive explored-section progress, short understanding checks, and explicit completion. Reopening a lesson always starts at the top; do not add within-lesson resume banners, buttons, automatic scrolling, or scroll-position restoration.
 - Section headings name the subject or teaching job in ordinary words. They are not metaphors, riddles, or punchlines.
 - Related lessons and optional journeys never masquerade as progress-bearing lesson sections. Keep useful historical connections in the lesson where they teach; keep navigation visually distinct, non-disruptive, and subordinate to the current required action.
-- Required core lessons normally include one to three explanatory prompts. Sincere attempt, not perfect accuracy, is the default completion requirement.
-- Knowledge Cards are deterministic memory/reward objects. No XP economy, random packs, duplicates, currencies, rarity spectacle, combat stats, or punitive streaks.
+- Required core lessons normally include one to three explanatory prompts. A multiple-choice check is done once the learner picks the best-supported answer (they can retry until they do); a written answer needs a sincere attempt. Finishing a lesson sends the learner's written answers to their parent, who passes it or sends it back with a note. Kids either have their own sign-in linked by code (recommended) or a profile on the parent's sign-in, switched from an always-visible control; parent view can be PIN-locked.
+- Knowledge Cards are deterministic memory/reward objects, awarded when a parent passes the lesson. No XP economy, random packs, duplicates, currencies, rarity spectacle, combat stats, or punitive streaks.
 - Reconstruction, evidence, interpretation, uncertainty, and later tradition must be explicitly distinguished.
 - Generated art contains no baked-in educational paragraphs, titles, or UI chrome. Historical maps may use only the short source-verified labels or spatial annotations explicitly listed in their reviewed map brief.
 - Historical accuracy, source provenance, accessibility, progress integrity, migrations, and recovery are release requirements.
@@ -42,6 +42,8 @@ Do not expand the old monolithic `App.tsx`, XP/level system, rarity/stats model,
 ## Engineering workflow
 
 - PostgreSQL/Supabase is the durable learner-progress store. All schema changes are committed migrations; never make production-only dashboard changes.
+- Lessons, journeys, prompts and cards are defined only in the repository. The database holds learner state, parent links and reviews, never lesson configuration, so publishing, unpublishing or changing a lesson needs no migration.
+- A published prompt ID stands for one question. Changing a prompt's question, options, best answer, required flag or minimum length means a new ID and `npm run content:fingerprints`; finished lessons, passes and cards are never undone. See [`docs/architecture/prompt-changes.md`](docs/architecture/prompt-changes.md); for a published lesson, follow [`docs/content/prompt-revision-runbook.md`](docs/content/prompt-revision-runbook.md).
 - Supabase project: `Chronos`, ref `fghjnypxhnnutgsaqvvz`, region `ca-central-1`. Free is acceptable for development; upgrade before beta.
 - Keep domain rules outside route handlers and UI components.
 - Prefer typed module renderers over arbitrary HTML.
