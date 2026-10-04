@@ -46,7 +46,7 @@ export const worldHistoryJourney: Journey = {
         { id: 'entry.world-history.akkadian-empire', lessonId: 'lesson.mesopotamia.akkadian-empire', position: 7, required: true, framing: 'Ask how Akkadian rulers won cities and tried to keep power across different communities' },
         // Canonical positions 19 and 20 remain unauthored. This draft is visible
         // only in authoring preview; publication must preserve their prerequisites.
-        { id: 'entry.world-history.law-and-kingship', lessonId: 'lesson.mesopotamia.law-and-kingship', position: 10, required: true, framing: 'Compare a king’s written promise of justice with a surviving order about one person’s dispute' },
+        { id: 'entry.world-history.law-and-kingship', lessonId: 'lesson.mesopotamia.law-and-kingship', position: 10, required: true, framing: 'Follow Babylon’s rise under Hammurabi and explore how laws addressed the work of governing' },
       ],
     },
   ],
