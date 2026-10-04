@@ -158,11 +158,21 @@
     },
     "prompt.pyramids.build-evidence-chain": {
       "lessonId": "lesson.egypt.pyramids-and-state-labor",
-      "fingerprint": "7d0df31b86c5f627400042d8a6cfb7a39f6623a0e16b50131ae0ed6de08595dd"
+      "fingerprint": "7d0df31b86c5f627400042d8a6cfb7a39f6623a0e16b50131ae0ed6de08595dd",
+      "retired": true
+    },
+    "prompt.pyramids.clue-and-next-test": {
+      "lessonId": "lesson.egypt.pyramids-and-state-labor",
+      "fingerprint": "fa69537fb916f1844e480cc460949081c1bf65d63c51d12e3878081e0d0a0b78"
     },
     "prompt.pyramids.context-and-phase": {
       "lessonId": "lesson.egypt.pyramids-and-state-labor",
-      "fingerprint": "89ac6674d03331c6a7b8365e98e6461472445d18c05242b56b1bcdb9374178b4"
+      "fingerprint": "89ac6674d03331c6a7b8365e98e6461472445d18c05242b56b1bcdb9374178b4",
+      "retired": true
+    },
+    "prompt.pyramids.giza-clues-and-limits": {
+      "lessonId": "lesson.egypt.pyramids-and-state-labor",
+      "fingerprint": "0360b04af01b9ec4b252008d6f39480b10e393e040cf61fa1271850dfc563575"
     },
     "prompt.uruk.administration-evidence": {
       "lessonId": "lesson.uruk.first-city",

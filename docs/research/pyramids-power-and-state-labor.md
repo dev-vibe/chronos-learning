@@ -210,6 +210,8 @@ The detailed source-by-source review and challenge coverage remain in the [recen
 | `source.pyramids.vessels-abu-rawash` | Peer-reviewed archaeological study | Context-rich Early Dynastic manufacturing sequence | One site and reign; not a universal technique | Connects form, tool process, and excavated context | Editorial review required |
 | `source.pyramids.vessels-private-scans` | Claim-owner public files | Measurable private-vessel geometry | Underprovenance and incomplete acquisition chain | Files allow partial rechecking; no assets reused | Editorial review required |
 | `source.pyramids.turin-king-list` | Official museum papyrus context | Egyptian primeval/deep-time succession | Ramesside copy and mythic-ideological chronology | Corroborates cultural memory, not a monument date | Editorial review required |
+| `source.pyramids.aberdeen-dixon-cedar` | University news release (University of Aberdeen, 16 Dec 2020) | Dixon’s 1872 find, the 1946 donation, the 2019 rediscovery in a cigar tin and the 3341–3094 BCE radiocarbon range | Press-release summary; the peer-reviewed study (`source.pyramids.dixon-cedar`) is the technical source and was not retrievable in this pass | Dates agree with the CIPEG study cited above; no images reused | Added in the revision, accessed 2026-10-04 |
+| `source.pyramids.hawara-herodotus` | Ancient Greek testimony (Godley 1920 translation, Perseus) | What Herodotus says he saw and was refused at the Labyrinth (2.147–148) | A traveler’s report; he says he knows the lower rooms by hearsay only | Compared with Pliny and Petrie in the claims above; Perseus text CC BY-SA 3.0 US | Added in the revision, accessed 2026-10-04 |
 
 ## Claim ledger
 
@@ -233,6 +235,10 @@ The detailed source-by-source review and challenge coverage remain in the [recen
 | `claim.pyramids.vessels-private-limit` — private meshes can measure geometry but not establish provenance or maker | Interpretation / high | UnchartedX; Heritage Science | A securely provenanced outlier could change the assessment | Treat measurements seriously and separate claims | Editorial review required |
 | `claim.pyramids.deep-time-memory` — Egyptians preserved primeval successions | Later tradition / high | Turin King List | Genre does not provide a construction date | Include briefly with source boundary | Editorial review required |
 | `claim.pyramids.earlier-regime-hypothesis` — an earlier Nile regime of different character and ability is testable case by case | Interpretation / contested | Cross-case evidence | No single public chain presently attributes all four cases to one society | Name neutrally; neither dismiss nor settle | Editorial review required |
+| `claim.pyramids.dixon-cedar-story` — the cedar’s 1872 find, 1946 donation, 2019 rediscovery in a cigar tin and 3341–3094 BCE date | Observation / high | Aberdeen release; Dixon relics study | A press release; the date is the tree’s, not the building’s (already taught by `material-is-not-event`) | Opening moment and dating example | Added in the revision |
+| `claim.pyramids.merer-papyri-find` — 2013 Wadi el-Jarf find; oldest inscribed papyri; Merer’s logs of Tura limestone to Giza; no construction method recorded | Observation / high | Tallet, *Journal de Merer* | The log covers one crew over a few months | Opens the Giza section | Added in the revision |
+| `claim.pyramids.merer-crew-size` — about forty men, from a monthly bread ration of close to a ton | Interpretation / moderate | Tallet, *Journal de Merer* | Editor’s estimate (“might have counted some 40 members”) | One sentence, labeled an estimate | Added in the revision |
+| `claim.pyramids.herodotus-labyrinth` — Herodotus saw the upper rooms and was refused the lower ones | Later tradition / high | Hdt. 2.148 | A traveler’s account; what he reports about the vaults is hearsay | Opens the Hawara section | Added in the revision |
 
 **Survival bias and perspective:** royal and institutional records dominate. The makers of early vessels, ordinary construction workers, local guides behind classical reports, and people whose earlier sites were built over often remain unnamed. Absence of their texts is not absence of knowledge or agency. The lesson avoids turning later elite labels into the only possible identity of the people who made surviving things.
 
@@ -1047,6 +1053,74 @@ Unclear action hierarchy found earlier: concise responses registered only on blu
 - [ ] Implementation and release gates complete
 - [ ] Publication migration and hosted verification complete
 
+## Voice revision
+
+Runbook: `docs/content/lesson-voice-revision-runbook.md`. Branch: `revise/pyramids-power-and-state-labor`. Started 2026-10-04. PR: pending. Status: **awaiting owner review**.
+
+### Audit of the published version
+
+| Section | What read flat |
+| --- | --- |
+| `section.pyramids.questions` | Opened on an imagined stance (“Stand at the foot of the Great Pyramid and look up. Surely we know the story…?”), then a stack of six announced questions, then a scope paragraph; no specific moment. |
+| `section.pyramids.giza` | Merer’s log was summarized (“short entries bring part of the project alive”) with no entry, no find story and no number; the second paragraph ended on a summary sentence (“Many separate clues point to…”). The workers paragraph is accurate and limited; kept. |
+| `section.pyramids.dating` | The cedar was a general example (“a small piece of cedar found in a sealed shaft”); the muon paragraph ended on a stock “questions to explore”. |
+| `section.pyramids.osirion` | Strongest section: Seti’s stamped bricks and hidden cramp, then two broad dates. One summary closing sentence; otherwise kept. |
+| `section.pyramids.hawara` | Herodotus’s visit was reduced to “had walked through its upper rooms”; the refused lower rooms, the best moment in the sources, were missing. |
+| `section.pyramids.vessels` | Opened on “Imagine lifting a thin-walled bowl…” (the filler opening the runbook rules out) and ended on an announced question (“Did they also build parts of the monuments?”). |
+| `section.pyramids.world-check` | Conclusion was a recap of the four cases, a to-do list and a moral line (“We do not have to pretend that every question is settled…”). |
+
+Whole lesson: story spine `none` (four cases in turn); memorable moments `none` the lesson told in full; opening did not land (imagined stance plus announced questions); ending did not land (a recap and a moral).
+
+**Prompts.**
+
+| Prompt | Verdict | Finding |
+| --- | --- | --- |
+| `prompt.pyramids.context-and-phase` | `replace` | Fails Stage 12 age-fit. The stem (“Which conclusion best fits the whole pattern of evidence at Giza?”) puts no evidence in it and is abstract; the best option is the only one with a “but … remain unclear” concession while two wrong options hinge on “because” clauses; the wrong option about the “sealed shaft” depended on a detail the stem never gave. Same teaching job: strong Giza context beside open questions about a part of the monument. |
+| `prompt.pyramids.build-evidence-chain` | `replace` | Stacks three asks (a clue, what it might mean, what to look for next) behind an “Imagine you could…” opening and a three-way site choice. Same teaching job: an observation, interpretation and test chain from one case. |
+
+**Card.** `none`: the lesson has no card (see “Knowledge Card decision”: the durable object is a way of reasoning across sites). Verdict `keep` (no card). Adding a card is a material revision, so none was added.
+
+### Story material
+
+- **Story spine:** one question asked at four places: what exactly does this clue date or name? The lesson opens and closes on one object, the Dixon cedar, whose date is real and still does not date the pyramid.
+- **Memorable moments:** (1) the cedar in a cigar tin with the Egyptian flag, found in Aberdeen in 2019 after going missing for more than seventy years; (2) Merer’s log, found in a Red Sea harbor in 2013: the oldest inscribed papyri, a crew of about forty fed on about a ton of bread a month, an eyewitness who never says how the blocks were raised; (3) Herodotus, who walked through the Labyrinth’s upper rooms and was refused the lower ones; (4) the existing Seti connector under intact roof blocks and the granite date that will not agree.
+- **Where the material came from:** the research note; a close read of the English abstract, the summary and the conclusions of Tallet’s *Journal de Merer* (the PDF cited as `source.pyramids.ifao-merer`); Godley’s translation of Herodotus 2.147–148 on Perseus; and the University of Aberdeen release for the cedar.
+- **Legend used:** none added. Pliny’s 3,600 years and Herodotus’s caretakers stay labeled as ancient accounts.
+- **Evidence limits to know:** the CIPEG article on the Dixon relics (`source.pyramids.dixon-cedar`) and the Nature papers on the corridor and the vessels could not be retrieved in this pass (an access challenge and paywall redirects), so the cedar’s story rests on the Aberdeen release plus the claims already reviewed. The Perseus copy of Herodotus is a translation; the rooms’ identification with Hawara is the translator’s and later scholars’ note.
+
+### Changes
+
+- Prose rewritten in `module.pyramids.opening` (new opening on the cedar), `module.pyramids.giza-evidence` (Merer’s find and entry), `module.pyramids.dating-evidence` (cedar callback, muon paragraph), `module.pyramids.osirion-evidence` (one closing sentence), `module.pyramids.hawara-evidence` (Herodotus’s refused rooms), `module.pyramids.vessels-evidence` (opening and closing) and `module.pyramids.conclusion` (callbacks to the cedar). One knowledge item in `module.pyramids.hawara-streams` extended. Every lesson, section, module, claim, source, media and image ID, the section order, headings, captions, media and completion are unchanged.
+- Module `claimIds` and `sourceIds` updated to cover what each module now says.
+- 4 claims and 2 sources added: `claim.pyramids.dixon-cedar-story`, `merer-papyri-find`, `merer-crew-size`, `herodotus-labyrinth`; `source.pyramids.aberdeen-dixon-cedar`, `source.pyramids.hawara-herodotus`.
+- Reading length (prose, knowledge and caption text): about 2,360 → 2,660 words (+13%). Growth is the cedar and Merer openings and the Herodotus moment; the imagined openings, the announced questions and the recap were cut.
+- **Images:** none added. The existing diagrams and the Kircher engraving already carry the visual moments; no clearly licensed photograph of the cedar or the log was found in this pass.
+
+### Left out
+
+- Ankhhaf, Khufu’s half-brother and vizier, as head of the royal works (named in the Merer edition): a new name that does not carry the lesson.
+- The log’s date (year after the 13th cattle count, July to November): precise but not memorable for the age group.
+- Herodotus’s description of the Labyrinth’s twelve courts and a 240-foot pyramid beside it: sourced, cut for length.
+- The cedar’s companions (a stone ball and a hook): named only as “three objects”.
+
+### Stage 14B check on the changed sections
+
+| Question | Finding | Evidence and disposition |
+| --- | --- | --- |
+| Story | pass | Spine and four moments above; the opening and the ending share the cedar. |
+| Evidence reasoning | pass | The cedar, Merer’s crew size and Herodotus’s refusal are each labeled (a test of the tree, an estimate, a traveler’s account); no new reconstruction. |
+| Proportionality | pass | Giza still carries the strongest claim; the earlier-regime question stays an open, case-by-case idea. |
+| Cognitive load | revise (accepted) | New names: Waynman Dixon, James Grant, Wadi el-Jarf, Merer, Herodotus. Length +13%; paragraphs stay short. |
+| Headings | pass | Unchanged. |
+| Prompt fit | pass | See the Prompt revision entry. |
+| Visual value, Rights, media | not applicable | No media change. |
+
+`npm run validate:content`, `npm run test:domain` (16 files, 84 tests) and `npm run typecheck:chronos` passed; `npm run content:fingerprints` registered both new prompts and retired the old ones. `tests/content/pyramids-release.test.ts` pinned the old required-prompt IDs and now names the new ones.
+
+### Owner review
+
+Pending.
+
 ## Prompt revision
 
 ### 2026-10-03 — hints and option feedback (text only, same prompt IDs)
@@ -1057,5 +1131,10 @@ Part of the assessment audit that followed the Indus review (prompt readability 
 - `prompt.pyramids.build-evidence-chain`: no hint before. New hint points to the five questions in “At the Great Pyramid” for choosing a clue, saying what it might mean and how to test it.
 
 **What learners will see.** Nothing is re-asked. Learners see the new hint, and after a wrong pick the new feedback, the next time they open the prompt. Finished lessons and parent reviews are unaffected.
+
+### 2026-10-04 — two prompts replaced in the lesson revision
+
+- `prompt.pyramids.context-and-phase` → `prompt.pyramids.giza-clues-and-limits` (options `option.pyramids.khufu-work-corridor-undated`, `town-dates-corridor`, `corridor-casts-doubt`, `log-weak-evidence`; best `khufu-work-corridor-undated`). Why: abstract stem with no evidence, wording tells in the options. Support: best answer and feedback rest on “Giza in Khufu’s time” (log, nearby buildings, mortar dates, workers’ town serving Khafre and Menkaure) and “Dating a stone monument” (the corridor’s age is unknown); `town-dates-corridor` is answered by the workers’ town paragraph; `corridor-casts-doubt` by the corridor paragraph; `log-weak-evidence` by the evidence around the pyramid.
+- `prompt.pyramids.build-evidence-chain` → `prompt.pyramids.clue-and-next-test` (written, required, minimum 40 characters, unchanged). Why: three asks and an “Imagine…” opening. Support: any one of the Osirion, Hawara or vessel sections gives a clue, a limit and a next test. A two-sentence answer in the lesson’s words: “At the Osirion, a hidden stone connector carries Seti’s name, so Seti’s builders worked on it. To check whether an older building lies under it, I would test more stones where the walls join.”
 
 Owner approval: pending.
