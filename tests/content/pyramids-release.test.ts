@@ -33,7 +33,7 @@ describe('Pyramids, Builders, and Evidence publication', () => {
     expect(chronosContent.cards.filter((card) => card.unlockLessonId === id)).toEqual([]);
     expect(chronosPrototypeReviews.some((review) => review.lessonId === id)).toBe(false);
     expect(chronosContent.prompts.filter((prompt) => prompt.lessonId === id && prompt.required).map((prompt) => prompt.id)).toEqual([
-      'prompt.pyramids.context-and-phase', 'prompt.pyramids.build-evidence-chain',
+      'prompt.pyramids.giza-clues-and-limits', 'prompt.pyramids.clue-and-next-test',
     ]);
     for (const sourceId of lesson.sourceIds) {
       expect(chronosContent.sources.find((source) => source.id === sourceId)?.reviewStatus).toBe('reviewed');
