@@ -13,7 +13,9 @@ Research-direction decision: Carlin Aylsworth replied “all yes” on 2026-09-2
 
 ## Owner prototype decision packet — 2026-10-04
 
-[Open the unpublished lesson prototype](https://chronos-learning-git-codex-ash-105-la-404a65-dev-vibes-projects.vercel.app/learn/lesson.mesopotamia.law-and-kingship). This is the existing ASH-105 branch preview; deployment protection may require Vercel sign-in. If the draft is locked, enable browser-local audit mode at the same deployment’s `/audit` page and return to this lesson.
+[Open the current local lesson prototype](http://localhost:3000/learn/lesson.mesopotamia.law-and-kingship). The preview server runs with draft access enabled. The hosted branch does not yet contain this prototype.
+
+Hosted handoff blocker: automatic approval review rejected the GitHub push and PR #51 update twice on 2026-10-04, including after confirmation that the repository is public and inspection of the eight lesson-related changed paths. Its stated reason was missing explicit user authorization for this particular draft and editorial note to the public destination. No push or PR edit was performed. The local draft and prepared handoff remain intact; explicit upload authorization is requested before retrying.
 
 - **Title and scope:** Law, Kingship, and Hammurabi’s Babylon; one required World History lesson at position 21, focused on the stele, two injury provisions, Issinabu’s field letter and a brief later commentary.
 - **Question and understanding:** What does the law monument tell us about royal justice, and what do other records add? A public promise, written cases and a particular order answer different questions about justice; none supplies a complete history of court outcomes.
