@@ -81,4 +81,9 @@ export const learningConnectionsByLessonId: Record<string, LearningConnection> =
     extend: 'Compare a ruler’s victories and image with traces of administration and royal ties at two northern cities.',
     reasoningSkill: 'Test a royal claim against place-specific evidence and qualify what kind of political connection it supports.',
   },
+  'lesson.mesopotamia.law-and-kingship': {
+    retrieve: { lessonId: 'lesson.mesopotamia.akkadian-empire', prompt: 'What did a ruler need to do to bring several cities under one authority?' },
+    extend: 'Move from winning power to governing it: follow how fields, water, debts and property were handled across a growing kingdom.',
+    reasoningSkill: 'Explain a political change, then connect a legal case to the practical problem and responsibility it addresses.',
+  },
 };

@@ -1,0 +1,32 @@
+// Source-faithful locator: modern geography, never an ancient border/channel map.
+import { createHash } from 'node:crypto';
+import { readFile, writeFile, mkdir } from 'node:fs/promises';
+import sharp from 'sharp';
+const out='docs/research/assets/hammurabi/map'; await mkdir(out,{recursive:true});
+const bounds={west:32,east:52,south:27,north:42}, size={width:1600,height:1200};
+const inset={x:35,y:800,width:520,height:360}, ib={west:-15,east:80,south:-5,north:60};
+const project=(lon,lat)=>[(lon-bounds.west)/20*1600,(42-lat)/15*1200];
+const ip=(lon,lat)=>[inset.x+(lon-ib.west)/(ib.east-ib.west)*inset.width,inset.y+(ib.north-lat)/(ib.north-ib.south)*inset.height];
+const hash=async p=>createHash('sha256').update(await readFile(p)).digest('hex');
+const sites=[{name:'Babylon',longitude:44.422236,latitude:32.543395,authority:'Oracc/Pleiades 893951; UNESCO nomination center cross-check'},{name:'Larsa',longitude:45.853611,latitude:31.285833,authority:'Oracc/Pleiades 912897; French excavation location cross-check'}];
+await writeFile(out+'/sites.json',JSON.stringify({sites},null,2)+'\n');
+const source='docs/research/assets/akkad/map/akkad-relief-reference.png';
+const base='docs/research/assets/akkad/map/akkad-atlas-base.png';
+const rivers='docs/research/assets/akkad/map/selected-rivers.json';
+const land=JSON.parse(await readFile(out+'/ne_110m_land.geojson','utf8'));
+const riverData=JSON.parse(await readFile(rivers,'utf8'));
+const paths=riverData.features.flatMap(f=>f.geometry.type==='MultiLineString'?f.geometry.coordinates:[f.geometry.coordinates]).map(line=>line.map(([lo,la],i)=>(i?'L':'M')+project(lo,la).map(v=>v.toFixed(2)).join(',')).join(' ')).join(' ');
+const landPaths=land.features.flatMap(f=>f.geometry.type==='MultiPolygon'?f.geometry.coordinates:[f.geometry.coordinates]).map(poly=>poly.map(ring=>ring.map(([lo,la],i)=>(i?'L':'M')+ip(lo,la).map(v=>v.toFixed(2)).join(',')).join(' ')+' Z').join(' ')).join(' ');
+const text=(s,x,y,font=64,anchor='middle')=>'<text x="'+x+'" y="'+y+'" font-family="Georgia,serif" font-size="'+font+'" text-anchor="'+anchor+'" fill="#133e4c" stroke="#fff4da" stroke-width="8" paint-order="stroke" stroke-linejoin="round">'+s+'</text>';
+const [bx,by]=project(sites[0].longitude,sites[0].latitude),[lx,ly]=project(sites[1].longitude,sites[1].latitude);
+const [rx,ry]=ip(bounds.west,bounds.north);
+const overlay='<svg xmlns="http://www.w3.org/2000/svg" width="1600" height="1200"><defs><clipPath id="main"><rect width="1600" height="1200"/></clipPath><clipPath id="inset"><rect x="'+inset.x+'" y="'+inset.y+'" width="'+inset.width+'" height="'+inset.height+'"/></clipPath></defs><g clip-path="url(#main)"><path d="'+paths+'" fill="none" stroke="#fff0c7" stroke-width="15" stroke-linecap="round"/><path d="'+paths+'" fill="none" stroke="#217f9e" stroke-width="8" stroke-linecap="round"/>'+text('Mediterranean',250,530,60)+text('Sea',250,605,60)+text('Persian Gulf',1335,1120,60)+text('Euphrates',620,540,64)+text('Tigris',1050,585,64)+text('West Asia',1200,210,76)+text('Present-day Iraq',1100,440,58)+sites.map(s=>{const[x,y]=project(s.longitude,s.latitude);return '<circle cx="'+x+'" cy="'+y+'" r="18" fill="#a43d29" stroke="#fff6df" stroke-width="5"/>';}).join('')+'<path d="M'+bx+','+by+' L'+(bx-50)+','+(by-60)+'" fill="none" stroke="#943c29" stroke-width="5"/>'+text('Babylon',bx-65,by-72,80,'end')+'<path d="M'+lx+','+ly+' L'+(lx+55)+','+(ly+75)+'" fill="none" stroke="#943c29" stroke-width="5"/>'+text('Larsa',lx+75,ly+100,80,'start')+'<rect x="'+(inset.x-8)+'" y="'+(inset.y-8)+'" width="'+(inset.width+16)+'" height="'+(inset.height+16)+'" rx="8" fill="#fff1d1" stroke="#93572f" stroke-width="4"/><g clip-path="url(#inset)"><rect x="'+inset.x+'" y="'+inset.y+'" width="'+inset.width+'" height="'+inset.height+'" fill="#7aafc5"/><path d="'+landPaths+'" fill="#e3c28b" stroke="#947c52" stroke-width="1"/><rect x="'+rx+'" y="'+ry+'" width="'+20/95*inset.width+'" height="'+15/65*inset.height+'" fill="#a3472733" stroke="#983e28" stroke-width="4"/>'+text('Africa',185,1080,48)+text('West Asia',380,850,46)+'</g></g></svg>';
+await writeFile(out+'/labels-and-geometry.svg',overlay);
+await sharp(source).composite([{input:Buffer.from(overlay)}]).png().toFile(out+'/geographic-reference.png');
+await sharp(base).composite([{input:Buffer.from(overlay)}]).png().toFile(out+'/accepted-map.png');
+await sharp(out+'/accepted-map.png').jpeg({quality:95,chromaSubsampling:'4:4:4'}).toFile('public/images/hammurabi/babylon-larsa-locator.jpg');
+await sharp('docs/research/assets/hammurabi/stele/gary-todd-whole-original.jpg').resize({width:960,withoutEnlargement:true}).jpeg({quality:96,chromaSubsampling:'4:4:4'}).toFile('public/images/hammurabi/hammurabi-law-stele.jpg');
+const old=JSON.parse(await readFile('docs/research/assets/akkad/map/reference-lineage.json','utf8'));
+await writeFile(out+'/reference-lineage.json',JSON.stringify({date:'2026-10-04',method:'deterministic/native/vector rendering',script:'scripts/media/hammurabi-map.mjs',bounds,size,inset,insetBounds:ib,projection:'equirectangular; modern orientation, not ancient channels, shorelines or political territory',sites,sourceRelief:{path:source,sha256:await hash(source),original:old.raster},coloredRelief:{path:base,sha256:await hash(base),palette:old.palette.description},rivers:{path:rivers,sha256:await hash(rivers),original:old.rivers},land:{url:'https://raw.githubusercontent.com/nvkelso/natural-earth-vector/v5.1.2/geojson/ne_110m_land.geojson',version:'5.1.2',sha256:await hash(out+'/ne_110m_land.geojson')},labels:['Mediterranean','Sea','Persian Gulf','Euphrates','Tigris','West Asia','Present-day Iraq','Babylon','Larsa','Africa'],referenceSha256:await hash(out+'/geographic-reference.png'),masterSha256:await hash(out+'/accepted-map.png'),runtimeSha256:await hash('public/images/hammurabi/babylon-larsa-locator.jpg'),steleOriginalSha256:await hash('docs/research/assets/hammurabi/stele/gary-todd-whole-original.jpg'),steleRuntimeSha256:await hash('public/images/hammurabi/hammurabi-law-stele.jpg')},null,2)+'\n');
+console.log('Created reviewed geography, final map and full-frame stele runtime source.');
+
