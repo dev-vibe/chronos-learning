@@ -1,9 +1,11 @@
 import type { Claim, Lesson, Source, UnderstandingPrompt } from '../../src/domains/contracts';
 import type { AuthoredContentModule } from '../assemble';
+import { hammurabiLocatorVisual, hammurabiMedia, hammurabiMediaSources, hammurabiSteleCard, hammurabiSteleVisual } from './hammurabi-media';
 
 const lessonId = 'lesson.mesopotamia.law-and-kingship';
 
 export const hammurabiSources: Source[] = [
+  ...hammurabiMediaSources,
   { id: 'source.hammurabi.met-kingdom', title: 'The Isin-Larsa and Old Babylonian Periods (2004–1595 B.C.)', url: 'https://www.metmuseum.org/essays/the-isin-larsa-and-old-babylonian-periods-2004-1595-b-c', publisher: 'Elizabeth Knott, Metropolitan Museum of Art', accessedOn: '2026-10-04', licenseOrUse: 'Research citation and original paraphrase of political-history paragraphs and Art and Culture; no images redistributed.', reviewStatus: 'reviewed' },
   { id: 'source.hammurabi.met-babylon', title: 'Babylon', url: 'https://www.metmuseum.org/essays/babylon', publisher: 'Michael Seymour, Metropolitan Museum of Art', accessedOn: '2026-10-04', licenseOrUse: 'Research citation and original paraphrase of the geography and Hammurabi paragraphs; no images redistributed.', reviewStatus: 'reviewed' },
   { id: 'source.hammurabi.louvre-object', title: 'The Code of Hammurabi, SB 8', url: 'https://collections.louvre.fr/en/ark:/53355/cl010174436', publisher: 'Musée du Louvre', accessedOn: '2026-09-24', licenseOrUse: 'Research citation for the surviving object, relief, dimensions and provenance; image rights remain unresolved.', reviewStatus: 'reviewed' },
@@ -15,9 +17,10 @@ export const hammurabiSources: Source[] = [
 ];
 
 export const hammurabiClaims: Claim[] = [
+  { id: 'claim.hammurabi.site-orientation', statement: 'The archaeological site of Babylon lies northwest of Larsa in the lower Mesopotamian plain.', kind: 'observation', certainty: 'high', sourceIds: ['source.hammurabi.map-babylon', 'source.hammurabi.map-larsa', 'source.hammurabi.map-excavation'], reviewStatus: 'reviewed' },
   { id: 'claim.hammurabi.babylon-location', statement: 'Babylon stood on the Euphrates in Mesopotamia, in present-day Iraq.', kind: 'observation', certainty: 'high', sourceIds: ['source.hammurabi.met-babylon'], reviewStatus: 'reviewed' },
   { id: 'claim.hammurabi.kingdom-growth', statement: 'Through alliances and military campaigns, Hammurabi expanded Babylon’s kingdom, defeated Larsa and made Babylon a major political center.', kind: 'interpretation', certainty: 'high', sourceIds: ['source.hammurabi.met-kingdom', 'source.hammurabi.met-babylon'], reviewStatus: 'reviewed' },
-  { id: 'claim.hammurabi.governing-work', statement: 'The law collection and a letter about a field show royal government addressing property, agricultural obligations and particular requests through written rules and instructions.', kind: 'interpretation', certainty: 'moderate', sourceIds: ['source.hammurabi.avalon-cases', 'source.hammurabi.letter', 'source.hammurabi.louvre-essay'], reviewStatus: 'editorial-review-required' },
+  { id: 'claim.hammurabi.governing-work', statement: 'The law collection and a letter about a field show royal government addressing property, agricultural obligations and particular requests through written rules and instructions.', kind: 'interpretation', certainty: 'moderate', sourceIds: ['source.hammurabi.avalon-cases', 'source.hammurabi.letter', 'source.hammurabi.louvre-essay'], reviewStatus: 'reviewed' },
   { id: 'claim.hammurabi.stele-object', statement: 'The surviving basalt law stele is more than two meters tall and bears a royal relief above its inscription.', kind: 'observation', certainty: 'high', sourceIds: ['source.hammurabi.louvre-object', 'source.hammurabi.louvre-essay'], reviewStatus: 'reviewed' },
   { id: 'claim.hammurabi.royal-justice', statement: 'The relief associates Hammurabi with Shamash, and the prologue presents protecting the weak as a responsibility of his kingship.', kind: 'interpretation', certainty: 'high', sourceIds: ['source.hammurabi.louvre-object', 'source.hammurabi.cdli-stele'], reviewStatus: 'reviewed' },
   { id: 'claim.hammurabi.case-form', statement: 'The collection organizes conditional cases concerning matters including farming, property, trade, work and households.', kind: 'observation', certainty: 'high', sourceIds: ['source.hammurabi.louvre-essay', 'source.hammurabi.avalon-cases'], reviewStatus: 'reviewed' },
@@ -25,7 +28,7 @@ export const hammurabiClaims: Claim[] = [
   { id: 'claim.hammurabi.irrigation-duty', statement: 'Provision §55 requires a person whose careless irrigation floods a neighbor’s field to compensate the lost grain.', kind: 'observation', certainty: 'high', sourceIds: ['source.hammurabi.avalon-cases'], reviewStatus: 'reviewed' },
   { id: 'claim.hammurabi.witness-contract', statement: 'Provision §122 calls for witnesses and a contract before handing valuables to another person for safekeeping.', kind: 'observation', certainty: 'high', sourceIds: ['source.hammurabi.avalon-cases'], reviewStatus: 'reviewed' },
   { id: 'claim.hammurabi.different-remedies', statement: 'Neighboring injury cases prescribe different remedies according to legal status: a matching injury in §196 and silver in §198.', kind: 'observation', certainty: 'high', sourceIds: ['source.hammurabi.cdli-stele'], reviewStatus: 'reviewed' },
-  { id: 'claim.hammurabi.legal-significance', statement: 'The collection is a major surviving achievement of Babylonian legal reasoning: it connects concrete situations to responsibilities and remedies within a royal monument.', kind: 'interpretation', certainty: 'moderate', sourceIds: ['source.hammurabi.louvre-essay', 'source.hammurabi.avalon-cases'], reviewStatus: 'editorial-review-required' },
+  { id: 'claim.hammurabi.legal-significance', statement: 'The collection is a major surviving achievement of Babylonian legal reasoning: it connects concrete situations to responsibilities and remedies within a royal monument.', kind: 'interpretation', certainty: 'moderate', sourceIds: ['source.hammurabi.louvre-essay', 'source.hammurabi.avalon-cases'], reviewStatus: 'reviewed' },
   { id: 'claim.hammurabi.later-study', statement: 'A first-millennium commentary shows scholars still studying parts of Hammurabi’s collection many centuries later.', kind: 'observation', certainty: 'high', sourceIds: ['source.hammurabi.commentary'], reviewStatus: 'reviewed' },
 ];
 
@@ -53,7 +56,7 @@ export const hammurabiPrompts: UnderstandingPrompt[] = [
 const sections: Lesson['sections'] = [
   {
     id: 'section.hammurabi.babylon-rivals', heading: 'Babylon among rival kingdoms', purpose: 'Introduce Hammurabi’s starting position and the historical change the lesson follows.',
-    modules: [{ id: 'module.hammurabi.opening', type: 'prose', claimIds: ['claim.hammurabi.babylon-location', 'claim.hammurabi.kingdom-growth'], sourceIds: ['source.hammurabi.met-babylon', 'source.hammurabi.met-kingdom'], body: 'When Hammurabi became king in the eighteenth century BCE, Babylon was one kingdom among several competing for power. By the end of his reign, he had made it the center of a much larger state. How did a ruler win that position—and what did he have to do once other cities came under his authority?\n\nBabylon stood on the Euphrates River in Mesopotamia, in present-day Iraq. To its south lay the powerful kingdom of Larsa. Cities across the region had their own rulers, temples and histories. Hammurabi inherited a place in this crowded political world; he transformed Babylon’s position within it.' }],
+    modules: [{ id: 'module.hammurabi.opening', type: 'prose', claimIds: ['claim.hammurabi.babylon-location', 'claim.hammurabi.kingdom-growth'], sourceIds: ['source.hammurabi.met-babylon', 'source.hammurabi.met-kingdom'], body: 'When Hammurabi became king in the eighteenth century BCE, Babylon was one kingdom among several competing for power. By the end of his reign, he had made it the center of a much larger state. How did a ruler win that position—and what did he have to do once other cities came under his authority?\n\nBabylon stood on the Euphrates River in Mesopotamia, in present-day Iraq. To its south lay the powerful kingdom of Larsa. Cities across the region had their own rulers, temples and histories. Hammurabi inherited a place in this crowded political world; he transformed Babylon’s position within it.' }, hammurabiLocatorVisual],
   },
   {
     id: 'section.hammurabi.kingdom-growth', heading: 'How Hammurabi expanded his kingdom', purpose: 'Explain the combination of diplomacy and conquest that raised Babylon’s political importance.',
@@ -65,7 +68,7 @@ const sections: Lesson['sections'] = [
   },
   {
     id: 'section.hammurabi.law-stele', heading: 'The king and the law stele', purpose: 'Present the monument as a substantial legal and royal achievement within its ancient religious setting.',
-    modules: [{ id: 'module.hammurabi.stele', type: 'prose', claimIds: ['claim.hammurabi.stele-object', 'claim.hammurabi.royal-justice', 'claim.hammurabi.case-form'], sourceIds: ['source.hammurabi.louvre-object', 'source.hammurabi.louvre-essay', 'source.hammurabi.cdli-stele'], body: 'The surviving law stele—a standing stone carved with writing—is taller than an adult. Near its top, Hammurabi stands before Shamash, the sun god associated with justice. Below them run long columns of cuneiform signs. The monument joins the king’s authority, divine order and the responsibility to administer justice.\n\nIn its prologue, or opening statement, Hammurabi presents protecting people from the strong as a duty of his kingship. Then come hundreds of legal cases. Many use an “if … then” pattern: describe a situation, then state the response. Their subjects include families, property, agriculture, trade and work.\n\nWritten law collections existed before Hammurabi. His monument stands out for its scale, detailed reasoning and preservation. To see what makes it interesting, look beyond the familiar phrase “eye for an eye” to the everyday problems it addresses.' }],
+    modules: [{ id: 'module.hammurabi.stele', type: 'prose', claimIds: ['claim.hammurabi.stele-object', 'claim.hammurabi.royal-justice', 'claim.hammurabi.case-form'], sourceIds: ['source.hammurabi.louvre-object', 'source.hammurabi.louvre-essay', 'source.hammurabi.cdli-stele'], body: 'The surviving law stele—a standing stone carved with writing—is taller than an adult. Near its top, Hammurabi stands before Shamash, the sun god associated with justice. Below them run long columns of cuneiform signs. The monument joins the king’s authority, divine order and the responsibility to administer justice.\n\nIn its prologue, or opening statement, Hammurabi presents protecting people from the strong as a duty of his kingship. Then come hundreds of legal cases. Many use an “if … then” pattern: describe a situation, then state the response. Their subjects include families, property, agriculture, trade and work.\n\nWritten law collections existed before Hammurabi. His monument stands out for its scale, detailed reasoning and preservation. To see what makes it interesting, look beyond the familiar phrase “eye for an eye” to the everyday problems it addresses.' }, hammurabiSteleVisual],
   },
   {
     id: 'section.hammurabi.practical-cases', heading: 'Laws for farming and property', purpose: 'Let learners encounter the collection’s practical range through three precise provisions.',
@@ -92,13 +95,14 @@ const sections: Lesson['sections'] = [
 ];
 
 export const hammurabiLesson: Lesson = {
-  id: lessonId, legacyAliases: ['hammurabi'], status: 'draft',
+  id: lessonId, legacyAliases: ['hammurabi'], status: 'published',
   title: 'Law, Kingship, and Hammurabi’s Babylon', masthead: 'Eighteenth century BCE', place: 'Babylon · Mesopotamia · present-day Iraq',
   chronology: { startYear: -1800, endYear: -1600, display: 'c. 1800–1600 BCE', approximate: true },
   significance: 'Hammurabi made Babylon the center of a powerful kingdom. His famous law collection opens a world of farmers, borrowers, property and the work of government.',
   learningOutcome: 'You traced Babylon’s rise under Hammurabi and explained how a legal case addressed a practical problem in Babylonian life.',
+  orientationMapModuleId: 'module.hammurabi.locator',
   sectionIdsRequired: sections.map((section) => section.id), sections,
-  claimIds: hammurabiClaims.map((claim) => claim.id), sourceIds: hammurabiSources.map((source) => source.id), mediaIds: [], promptIds: hammurabiPrompts.map((prompt) => prompt.id),
+  claimIds: hammurabiClaims.map((claim) => claim.id), sourceIds: hammurabiSources.map((source) => source.id), mediaIds: hammurabiMedia.map((media) => media.id), promptIds: hammurabiPrompts.map((prompt) => prompt.id),
 };
 
-export const hammurabiContent: AuthoredContentModule = { sources: hammurabiSources, claims: hammurabiClaims, media: [], lessons: [hammurabiLesson], prompts: hammurabiPrompts };
+export const hammurabiContent: AuthoredContentModule = { sources: hammurabiSources, claims: hammurabiClaims, media: hammurabiMedia, lessons: [hammurabiLesson], prompts: hammurabiPrompts, cards: [hammurabiSteleCard] };

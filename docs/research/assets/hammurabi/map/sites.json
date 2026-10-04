@@ -1,0 +1,16 @@
+{
+  "sites": [
+    {
+      "name": "Babylon",
+      "longitude": 44.422236,
+      "latitude": 32.543395,
+      "authority": "Oracc/Pleiades 893951; UNESCO nomination center cross-check"
+    },
+    {
+      "name": "Larsa",
+      "longitude": 45.853611,
+      "latitude": 31.285833,
+      "authority": "Oracc/Pleiades 912897; French excavation location cross-check"
+    }
+  ]
+}

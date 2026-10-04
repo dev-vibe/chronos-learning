@@ -1048,6 +1048,129 @@
       }
     },
     {
+      "id": "media.hammurabi.law-stele",
+      "locator": {
+        "provider": "object-storage",
+        "bucket": "media-public",
+        "fallback": {
+          "path": "/images/optimized/hammurabi/hammurabi-law-stele.optimized.jpg",
+          "width": 960,
+          "height": 1440
+        },
+        "variants": [
+          {
+            "objectKey": "hammurabi/media.hammurabi.law-stele/253f7ca742973d54/optimized/ql-v1/480w-webp-lossless-c1cc0e0046cb7ff7.webp",
+            "mimeType": "image/webp",
+            "bytes": 362670,
+            "sha256": "c1cc0e0046cb7ff735515f096c3551ba721457d6ad5c8e1ac471fb24b7e6d2b4",
+            "width": 480,
+            "height": 720,
+            "compression": {
+              "profile": "ql-v1",
+              "codec": "webp",
+              "encoder": "webp-lossless"
+            },
+            "fidelity": {
+              "mode": "pixel-exact",
+              "psnrDb": null,
+              "meanAbsoluteError": 0,
+              "maximumChannelDelta": 0
+            }
+          },
+          {
+            "objectKey": "hammurabi/media.hammurabi.law-stele/253f7ca742973d54/optimized/ql-v1/960w-source-jpeg-253f7ca742973d54.jpg",
+            "mimeType": "image/jpeg",
+            "bytes": 468460,
+            "sha256": "253f7ca742973d54c394a14db6632a24a164c0b959b8274781a5e48383a4585c",
+            "width": 960,
+            "height": 1440,
+            "compression": {
+              "profile": "ql-v1",
+              "codec": "jpeg",
+              "encoder": "source-passthrough"
+            },
+            "fidelity": {
+              "mode": "pixel-exact",
+              "psnrDb": null,
+              "meanAbsoluteError": 0,
+              "maximumChannelDelta": 0
+            }
+          }
+        ]
+      }
+    },
+    {
+      "id": "media.hammurabi.locator",
+      "locator": {
+        "provider": "object-storage",
+        "bucket": "media-public",
+        "fallback": {
+          "path": "/images/optimized/hammurabi/babylon-larsa-locator.optimized.jpg",
+          "width": 1600,
+          "height": 1200
+        },
+        "variants": [
+          {
+            "objectKey": "hammurabi/media.hammurabi.locator/666146a1f37c4260/optimized/ql-v1/480w-webp-lossless-ef9106a9fd5f5d4e.webp",
+            "mimeType": "image/webp",
+            "bytes": 186036,
+            "sha256": "ef9106a9fd5f5d4e9c2edce0b68add09760fb957c0744722e1aa8412735dda39",
+            "width": 480,
+            "height": 360,
+            "compression": {
+              "profile": "ql-v1",
+              "codec": "webp",
+              "encoder": "webp-lossless"
+            },
+            "fidelity": {
+              "mode": "pixel-exact",
+              "psnrDb": null,
+              "meanAbsoluteError": 0,
+              "maximumChannelDelta": 0
+            }
+          },
+          {
+            "objectKey": "hammurabi/media.hammurabi.locator/666146a1f37c4260/optimized/ql-v1/960w-webp-lossless-4291cdfaa303552b.webp",
+            "mimeType": "image/webp",
+            "bytes": 654668,
+            "sha256": "4291cdfaa303552b4e4a5005ba9ac07057d6e66a1beef80344c4a70b52698da3",
+            "width": 960,
+            "height": 720,
+            "compression": {
+              "profile": "ql-v1",
+              "codec": "webp",
+              "encoder": "webp-lossless"
+            },
+            "fidelity": {
+              "mode": "pixel-exact",
+              "psnrDb": null,
+              "meanAbsoluteError": 0,
+              "maximumChannelDelta": 0
+            }
+          },
+          {
+            "objectKey": "hammurabi/media.hammurabi.locator/666146a1f37c4260/optimized/ql-v1/1600w-source-jpeg-666146a1f37c4260.jpg",
+            "mimeType": "image/jpeg",
+            "bytes": 681335,
+            "sha256": "666146a1f37c426030f39c2af2c80eb4e858bfc22b3e5ed2fbace050efb0c92e",
+            "width": 1600,
+            "height": 1200,
+            "compression": {
+              "profile": "ql-v1",
+              "codec": "jpeg",
+              "encoder": "source-passthrough"
+            },
+            "fidelity": {
+              "mode": "pixel-exact",
+              "psnrDb": null,
+              "meanAbsoluteError": 0,
+              "maximumChannelDelta": 0
+            }
+          }
+        ]
+      }
+    },
+    {
       "id": "media.humans.adna-clean-room",
       "locator": {
         "provider": "object-storage",

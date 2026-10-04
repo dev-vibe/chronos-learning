@@ -5,11 +5,11 @@ export const hammurabiPrototypeReview: LessonPrototypeReview = {
   researchNotePath: 'docs/research/law-kingship-hammurabi-babylon.md',
   validationTier: 'high-risk',
   mediaIntentions: [
-    { sectionId: 'section.hammurabi.babylon-rivals', kind: 'map', status: 'planned', purpose: 'Orient Babylon and Larsa along the Euphrates in Mesopotamia, with present-day Iraq as the wider-world anchor. Use reviewed geography and native accessible labels; no unsupported empire boundary or later city architecture.' },
-    { sectionId: 'section.hammurabi.law-stele', kind: 'evidence', status: 'planned', purpose: 'Show the actual Louvre SB 8 stele so learners can see the royal relief above the substantial legal inscription. Resolve rights, credit and phone legibility before runtime use.' },
+    { sectionId: 'section.hammurabi.babylon-rivals', kind: 'map', status: 'ready', mediaId: 'media.hammurabi.locator', purpose: 'Locate Babylon northwest of Larsa in West Asia and present-day Iraq. Reviewed modern geography and native orientation; no empire boundary.' },
+    { sectionId: 'section.hammurabi.law-stele', kind: 'evidence', status: 'ready', mediaId: 'media.hammurabi.law-stele', purpose: 'Show the surviving Louvre SB 8 stone, relief and inscription using the rights-cleared full-object CC0 photograph.' },
     { sectionId: 'section.hammurabi.practical-cases', kind: 'diagram', status: 'not-needed', purpose: 'Native text presents the failed harvest, careless irrigation and safekeeping provisions with readable problem-and-response relationships.' },
     { sectionId: 'section.hammurabi.governing-land', kind: 'evidence', status: 'not-needed', purpose: 'The named land request makes government concrete in prose. A small photograph would add little to this supporting episode; the original law stele is the main evidence image.' },
     { sectionId: 'section.hammurabi.legal-significance', kind: 'evidence', status: 'not-needed', purpose: 'The later commentary is a short afterlife point. Its fragment would not clarify the main explanation of kingdom-building and practical law.' },
   ],
-  productReview: { state: 'pending', notes: 'Owner rejected the narrow justice-versus-practice framing on 2026-10-04 and directed its replacement after the broader historical focus was described. This rewritten prototype and changed map/stele intentions await Stage 14B owner review; final media and publication are not approved.' },
+  productReview: { state: 'approved', reviewedBy: 'Carlin Aylsworth', reviewedOn: '2026-10-04', notes: 'Carlin Aylsworth replied “perfect. approved” on 2026-10-04 to the rewritten local prototype, revised map/stele intentions and card plan. Stage 14B approval authorizes final media and publication, including the public GitHub lesson handoff identified in the preceding message.' },
 };

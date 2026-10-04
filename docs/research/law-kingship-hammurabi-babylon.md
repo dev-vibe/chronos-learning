@@ -8,24 +8,24 @@ Journey/chapter/position: required World History, canonical position 21; product
 Required or optional: required
 Accountable reviewer: Carlin Aylsworth
 Validation tier: high-risk interpretation of kingship and ancient law
-Queue status: Active; rewritten Stage 14B prototype awaits owner review
+Queue status: Active; Stage 14B approved; published status applied in the PR, awaiting media upload and owner hosted check
 Branch: codex/ash-105-law-kingship-babylon; existing [PR #51](https://github.com/dev-vibe/chronos-learning/pull/51)
 Base integration: latest main a344cc2 integrated locally on 2026-10-04
 
-## Current prototype decision packet — 2026-10-04
+## Approved prototype decision packet — 2026-10-04
 
-[Open the revised local lesson](http://localhost:3000/learn/lesson.mesopotamia.law-and-kingship). Draft access is enabled in this running local preview. The hosted branch does not contain this revision.
+[Open the revised local lesson](http://localhost:3000/learn/lesson.mesopotamia.law-and-kingship). Draft access is enabled in this running local preview. The local draft contains the approved revision; hosted publication handoff pending.
 
 - **Historical focus:** how Hammurabi raised Babylon from a smaller kingdom to a major political capital, and what governing cities, farmland and property involved.
 - **Central explanation:** diplomacy and conquest enlarged the kingdom; the legal monument makes the practical responsibilities of Babylonian life visible through concrete cases.
 - **Retellable history:** Babylon and its rival Larsa; Rim-Sin’s territory passing under Hammurabi; a shepherd’s request about a field; a law monument taller than an adult; rules for harvest failure, flooding and safekeeping.
 - **Prompts:** explain why witnesses and a contract help settle a property dispute; choose a legal case and explain the problem and how its response helps people live or work together.
 - **Media direction changed:** a reviewed orientation map for Babylon/Larsa and an actual, licensed law-stele image. Native text carries the legal cases. No tablet photograph, later-city reconstruction or injury diagram is needed.
-- **Card:** provisional artifact/Witness card for the law stele, pending rights and owner approval; no card is registered or unlockable.
+- **Card:** approved artifact/Witness card, registered with a CC0 whole-object photograph and existing parent-pass unlock.
 - **Evidence proportion:** one short contextual paragraph on status and penalties; one sentence on debated court use. Neither supplies the lesson’s central question.
-- **Review state:** this is a substantially rewritten prototype, not an approved or published lesson. The earlier prototype’s historical-proportion pass is withdrawn.
+- **Review state:** Carlin approved the revised lesson, media jobs and card on 2026-10-04: “perfect. approved”. Final media and publication are authorized. The earlier prototype’s historical-proportion pass remains withdrawn.
 
-Hosted handoff blocker: automatic approval review rejected the public GitHub push and PR update twice on 2026-10-04. The stated reason was missing explicit authorization to upload this draft/editorial payload to that destination. No push or PR edit occurred. This material revision stays local until upload authorization is supplied.
+Public handoff authorization: the preceding handoff disclosed two automatic review rejections for missing explicit authorization. Carlin’s “perfect. approved” authorizes the revised lesson’s public GitHub handoff and publication.
 
 ## Owner decision card (Stage 3B)
 
@@ -129,7 +129,7 @@ Comparative analyses considered: Babylon versus rival kingdoms; provisions linki
 | --- | --- | --- | --- | --- |
 | claim.hammurabi.babylon-location | observation / high | met-babylon | Modern geographic anchor, not ancient border | Native location; reviewed |
 | claim.hammurabi.kingdom-growth | interpretation / high | met-kingdom, met-babylon | Institutional synthesis; no detailed chronology, motive or permanence claim | Rivalry, diplomacy, conquest and political change; reviewed |
-| claim.hammurabi.governing-work | interpretation / moderate | avalon-cases, letter, louvre-essay | Selected legal cases/one letter do not represent all government | Concrete administrative work; owner editorial review required |
+| claim.hammurabi.governing-work | interpretation / moderate | avalon-cases, letter, louvre-essay | Selected legal cases/one letter do not represent all government | Concrete administrative work; reviewed; owner approved 2026-10-04 |
 | claim.hammurabi.stele-object | observation / high | louvre-object, louvre-essay | One surviving object, original display specifics incomplete | Scale, relief, inscription; reviewed |
 | claim.hammurabi.royal-justice | interpretation / high | louvre-object, cdli-stele | Royal self-presentation, not proof of every outcome | Attribute prologue and religious setting; reviewed |
 | claim.hammurabi.case-form | observation / high | louvre-essay, avalon-cases | Collection is not a complete modern legal system | Conditional form and range; reviewed |
@@ -137,7 +137,7 @@ Comparative analyses considered: Babylon versus rival kingdoms; provisions linki
 | claim.hammurabi.irrigation-duty | observation / high | avalon-cases | Prescription, not a measured enforcement result | Flood damage and compensation; reviewed |
 | claim.hammurabi.witness-contract | observation / high | avalon-cases | Written requirement; its dispute-resolution purpose is a supported inference | Witnesses/contract and reasoning prompt; reviewed |
 | claim.hammurabi.different-remedies | observation / high | cdli-stele | No rigid modern class labels or practice frequency | Proportionate contextual paragraph; reviewed |
-| claim.hammurabi.legal-significance | interpretation / moderate | louvre-essay, avalon-cases | Historical significance synthesis, not guaranteed uniform application | Case reasoning and obligations; owner editorial review required |
+| claim.hammurabi.legal-significance | interpretation / moderate | louvre-essay, avalon-cases | Historical significance synthesis, not guaranteed uniform application | Case reasoning and obligations; reviewed; owner approved 2026-10-04 |
 | claim.hammurabi.later-study | observation / high | commentary | One later scholarly witness, not original court evidence | Brief afterlife; reviewed |
 
 ## Central claim support
@@ -200,10 +200,10 @@ Outcome wording: “traced” expansion and “explained” a practical case ref
 
 | Order | Section ID | Heading | Purpose | Evidence | Modules / media | Transition |
 | --- | --- | --- | --- | --- | --- | --- |
-| 1 | section.hammurabi.babylon-rivals | Babylon among rival kingdoms | Starting position and change | Met geography/political history | Prose; planned orientation map | Identify the rival |
+| 1 | section.hammurabi.babylon-rivals | Babylon among rival kingdoms | Starting position and change | Met geography/political history | Prose; historical-map module with media.hammurabi.locator | Identify the rival |
 | 2 | section.hammurabi.kingdom-growth | How Hammurabi expanded his kingdom | Diplomacy/conquest and capital | Met Rim-Sin/expansion passages | Prose | Conquest leads to governing |
 | 3 | section.hammurabi.governing-land | Governing cities and farmland | Land/property and official work | YBC 9959, legal cases | Prose | Introduce the legal monument |
-| 4 | section.hammurabi.law-stele | The king and the law stele | Scale, religion, legal tradition | SB 8/prologue/Louvre | Prose; planned actual stele | Enter the cases |
+| 4 | section.hammurabi.law-stele | The king and the law stele | Scale, religion, legal tradition | SB 8/prologue/Louvre | Prose; evidence module with media.hammurabi.law-stele | Enter the cases |
 | 5 | section.hammurabi.practical-cases | Laws for farming and property | Practical range/responses | §§48, 55, 122 | Prose + native knowledge | Explain significance |
 | 6 | section.hammurabi.legal-significance | Why Hammurabi’s laws mattered | Legal reasoning/context/afterlife | Cases, status pair, commentary, Babylon | Prose | Explain a problem |
 | 7 | section.hammurabi.understanding | Explain how the laws addressed a problem | Check taught reasoning | Selected cases | Two real prompts | Explicit finish / parent review |
@@ -215,19 +215,19 @@ Changed teaching jobs receive fresh semantic section and prompt IDs. This is an 
 
 | Intention | Section | Teaching job | Form / basis | Accessible equivalent | Prototype / final review |
 | --- | --- | --- | --- | --- | --- |
-| intent.hammurabi.map | section.hammurabi.babylon-rivals | Locate Babylon and its southern rival within Mesopotamia | Recommended historical orientation map, reviewed anchor required; native labels; no conquest arrows or precise empire line | Native orientation paragraph | Planned annotation only; specialist map runbook, anchor, labels and phone legibility after approval |
-| intent.hammurabi.stele | section.hammurabi.law-stele | Show scale and royal relief above extensive inscription | Required licensed original SB 8 view; surviving evidence | Native description | Planned annotation; rights, credit, fidelity and desktop/phone inspection pending |
+| intent.hammurabi.map | section.hammurabi.babylon-rivals | Locate Babylon and its southern rival within Mesopotamia | Recommended historical orientation map, reviewed anchor required; native labels; no conquest arrows or precise empire line | Native orientation paragraph and accessible map summary | Implemented as media.hammurabi.locator; see Image lifecycle and Final media display |
+| intent.hammurabi.stele | section.hammurabi.law-stele | Show scale and royal relief above extensive inscription | Required licensed original SB 8 view; surviving evidence | Native description, alt text and scale note | Implemented as media.hammurabi.law-stele (CC0); see Image lifecycle and Final media display |
 | intent.hammurabi.cases | section.hammurabi.practical-cases | Compare problem and response | Native-text cases, no illustration needed | Same text | Implemented |
 | intent.hammurabi.letter | section.hammurabi.governing-land | Follow a named request and instruction | No image; prose is clearer for this supporting episode | Same text | Implemented |
 | intent.hammurabi.video | none | No motion-dependent explanation | No video | Readable story | Not applicable |
 
-No accepted images or generated evidence substitutes. No later Ishtar Gate or Nebuchadnezzar architecture is used to depict Hammurabi’s Babylon. Media jobs and card require revised prototype approval.
+Both approved image jobs are implemented below. No later Ishtar Gate or Nebuchadnezzar architecture depicts Hammurabi’s Babylon.
 
 ## Knowledge Card decision
 
-One provisional artifact/Witness card: card.hammurabi.law-stele, unlock lesson.mesopotamia.law-and-kingship after parent pass.
+One approved and registered artifact/Witness card: card.hammurabi.law-stele, unlock lesson.mesopotamia.law-and-kingship after parent pass.
 Anchor: a major surviving Babylonian legal monument connects kingship to detailed cases about people’s obligations.
-Original SB 8 evidence only, licensed and credited, with physical fidelity and lesson/card-size review. Not registered or unlockable in this draft. If no suitable rights-cleared image is available, return the card decision for revision rather than inventing the artifact.
+Original SB 8 evidence only, licensed and credited, with physical fidelity and lesson/card-size review. Registered with the Gary Todd CC0 whole-object photo, factual sources, recall prompt and parent-pass unlock.
 
 ## Prompt rationale
 
@@ -251,13 +251,99 @@ Draft for approximately 12–13; no learner-age validation claimed.
 
 ## Image lifecycle
 
-No image is accepted yet. Actual-source/reference and final comparisons, rights records, hashes and runtime provenance will be added only for approved final assets under the specialist workflows.
+### media.hammurabi.locator
+
+#### 1. Reasoning and source basis
+
+Locate Babylon northwest of its rival Larsa within West Asia and present-day Iraq. Primary reference: [Natural Earth 1:50m relief](https://www.naturalearthdata.com/downloads/50m-raster-data/50m-cross-blend-hypso/), modern rivers v5.1.2 and 1:110m land v5.1.2. [Terms](https://www.naturalearthdata.com/about/terms-of-use/): public domain. Rights decision: approved. Attribution: Chronos deterministic map · Natural Earth, Public Domain · site points from Oracc/Pleiades.
+
+Independent checks: [UNESCO Babylon nomination](https://whc.unesco.org/document/166322), printed page 11 center 44.420833 E, 32.541969 N, agrees with Oracc at representative-site scale; [French Larsa excavation](https://archeologie.culture.gouv.fr/larsa/fr/les-grandes-maisons-paleo-babyloniennes), opening location paragraph, confirms lower Mesopotamian plain between the rivers. These are factual checks, not copied illustration inputs.
+
+Coordinate-verified: site dots. Source-supported: modern relief, rivers, coast and inset land. Approximate: generalized river/inset geometry. Omitted: ancient channels, shorelines, wetlands, borders, routes and settlement extent. The native module provides the corresponding uncertainty and accessible orientation.
+
+#### 2. Reference image or reviewed data actually used
+
+Operation: deterministic/native/vector rendering.
+Reviewed data/code paths and versions: scripts/media/hammurabi-map.mjs; docs/research/assets/akkad/map/{akkad-relief-reference.png,akkad-atlas-base.png,selected-rivers.json}, Natural Earth modern data v5.1.2; docs/research/assets/hammurabi/map/{ne_110m_land.geojson,sites.json,labels-and-geometry.svg,reference-lineage.json}.
+
+The existing blank Akkad crop is geographic data, not its annotated finished map. No Akkad locations, labels or historical claims are copied. Exact site authorities: [Babylon](https://oracc.museum.upenn.edu/geonames/cbd/qpn/x000000440.html) [44.422236,32.543395]; [Larsa](https://oracc.museum.upenn.edu/geonames/cbd/qpn/x000001820.html) [45.853611,31.285833]. Actual source HTML is preserved. Main equirectangular extent: 32–52 E, 27–42 N, 1600×1200. Inset: 15 W–80 E, 5 S–60 N. Its rectangle marks the exact main view, not territory.
+
+SHA-256: source relief crop 3c19123349b41a6568d6dfabf818d5e5902999f70ed2f8d5444b1a80ed832d09; selected rivers 548a3b45256083c354ecdf7e37f6c51674c64748ec1bc96d560c3fe153ed9088 (repository LF bytes; the first lineage pass hashed a Windows CRLF checkout of the same file, 4565298464f9defeaabc1d9a4c740aca873a2ea1b7878752d2936dc556620db3, with identical geometry); land 9e0729ee253ca7d7a5c4ae9395fb1902264c5377c52e224d13dd85010e2835d9; reviewed reference 13330163a1d18d5b48775426ee02f3e0106f1824dc12bfff9d31d39b1252b50c. Original ZIP/TIFF/full river hashes and palette transformation remain in reference-lineage.json.
+
+![Reviewed geographic data and new site overlay](assets/hammurabi/map/geographic-reference.png)
+
+#### 3. Generation or transformation
+
+Exact transformation, no image generation:
+```text
+Render reviewed modern geographic data at the recorded equirectangular extents. Add only the recorded Babylon and Larsa representative sites, modern river geometry, wider-world inset and approved labels. Preserve geographic geometry. Apply the reviewed warm ochre/mineral-blue palette to the blank relief crop. Invent no ancient waterways, territorial boundaries, routes or architecture. Export 1600×1200 JPEG quality 95, 4:4:4. Use the existing picture preset for responsive variants.
+```
+
+Exact raster labels: Mediterranean, Sea, Persian Gulf, Euphrates, Tigris, West Asia, Present-day Iraq, Babylon, Larsa, Africa. The module keeps orientation, credits and uncertainty as native text. Initial inspection found label crowding; text positions were adjusted without moving points or geometry.
+
+#### 4. Accepted final image
+
+Canonical master: docs/research/assets/hammurabi/map/accepted-map.png.
+Runtime source: public/images/hammurabi/babylon-larsa-locator.jpg.
+SHA-256: master f4d6c4068722409e40e0c641c5898c4c36c581cb4ebe1d88325d322570d8070c; runtime 666146a1f37c426030f39c2af2c80eb4e858bfc22b3e5ed2fbace050efb0c92e (1600×1200, 681,335 bytes).
+Transformation history: the first runtime export used JPEG quality 96 (316710e9cc81941a5435e6e3ad13f65324007b12692f15687758c87fb1c831fc) and exceeded the 768 KiB delivery limit in `media:build`. Only the JPEG quality changed to 95; master, geometry, labels and palette are unchanged. The catalog fallback is the matching .jpg.
+Reviewer/date/status: main agent / 2026-10-04 / source, rights and fidelity approved; responsive display checking below.
+Fidelity verdict: reference/final preserve coastline/terrain outline, river geometry, site order and coordinates, leader anchors and inset view rectangle. Final changes the palette. Neither reconstructs Hammurabi’s territory or ancient waterways.
+
+![Accepted Babylon and Larsa map](assets/hammurabi/map/accepted-map.png)
+
+### media.hammurabi.law-stele
+
+#### 1. Reasoning and source basis
+
+Show the full surviving tall stone, royal relief above the long inscription, and a physical anchor for the card. Identity and scale checked against [Louvre SB 8](https://collections.louvre.fr/en/ark:/53355/cl010174436) and existing lesson Louvre/CDLI sources. This is object evidence in a modern gallery, not a reconstruction of original display or proof of enforcement.
+
+Rights decision: approved, CC0 1.0. Gary Todd, 2016-07-13. [Canonical Commons image/license record](https://commons.wikimedia.org/wiki/File:Code_of_Hammurabi,_King_of_Babylon,_Basalt,_1792-1750_BC_(28296727785).jpg), [CC0 terms](https://creativecommons.org/publicdomain/zero/1.0/). Commons Flickr license review confirmed CC0 on 2021-03-08; original Flickr source is linked there. Attribution: Gary Todd · 2016 · CC0 1.0 · full frame resized and compressed.
+
+#### 2. Reference image actually used
+
+Reference: docs/research/assets/hammurabi/stele/gary-todd-whole-original.jpg, 3456×5184.
+SHA-256: 4386d5e3b91012969bacb823193b96323d8752afa1cbaacea4b384c1855f15a8.
+A first Gary Todd candidate (28298580035), preserved at docs/research/assets/hammurabi/stele/gary-todd-original.jpg (SHA-256 e11371446e554137e31f808f63dda134b9079f927236016b001c0841d5c2737a), showed only the upper portion and was rejected for this whole-object job. It is not registered media.
+
+![Full-object photograph actually used](assets/hammurabi/stele/gary-todd-whole-original.jpg)
+
+#### 3. Generation or transformation
+
+```text
+No generation, retouching or reconstruction. Resize the complete 3456×5184 frame to 960×1440 without enlargement. Encode JPEG quality 96 with 4:4:4 chroma. Preserve the entire stone and modern museum background. Use the existing photo delivery preset for pixel-exact or fidelity-qualified responsive variants.
+```
+
+Script: scripts/media/hammurabi-map.mjs, final resize operation. No glyph redrawing, reshaping, relighting, scene replacement or cropping of the object. Card detail uses the same full-object image with a modern-museum depiction label.
+
+#### 4. Accepted final image
+
+Runtime source: public/images/hammurabi/hammurabi-law-stele.jpg, 960×1440.
+SHA-256: 253f7ca742973d54c394a14db6632a24a164c0b959b8274781a5e48383a4585c.
+Reviewer/date/status: main agent / 2026-10-04 / source, rights and fidelity approved; responsive display checking below.
+Fidelity verdict: full frame, silhouette, relief position, inscription extent, material appearance and gallery match the original. Fine glyphs are not offered for reading or translation. Only resizing/compression changes the reference.
+
+![Accepted runtime photograph](../../public/images/hammurabi/hammurabi-law-stele.jpg)
+
+### Final media display and delivery
+
+Build: `media:build` completed on 2026-10-04 (19:07 UTC) after the quality-95 map and .jpg fallback corrections. A separate Linux rebuild of the same sources reproduced every Hammurabi variant byte count in the release manifest: stele 480w WebP lossless 362,670 B and 960w source JPEG 468,460 B; locator 480w WebP lossless 186,036 B, 960w WebP lossless 654,668 B and 1600w source JPEG 681,335 B. All variants are pixel-exact. Committed fallbacks match the runtime source hashes above.
+
+Local display inspection, 2026-10-04, draft lesson on a local Vite server with draft access (repository fallback delivery), headless Chromium at 1440×900, 820×1180 and 390×844 in light and dark themes:
+
+- Lesson opened at scrollY 0 in all six runs; document scrollWidth equalled clientWidth (no horizontal overflow).
+- Locator: 1600×1200 source decoded; displayed at 938×704, 678×509 and 328×246. All ten labels, both site dots and the inset rectangle are legible at desktop and tablet. At phone size labels remain readable but small; the expand control sits over the end of the “West Asia” label and opens the full-size map. Accepted: no information is lost, and the native module text repeats the orientation.
+- Stele: 960×1440 source decoded; displayed at 419×629 (side-by-side), 308×462 and 360×540. The whole stone, the relief and the inscription extent are visible in both themes; the scale note and credit render beside or below it.
+- Knowledge Card: the owned-card reveal and the pass-celebration card face were rendered from the authored card in an isolated local harness, at all three sizes and both themes. The full-object photograph is contained, not cropped, in the landscape art box (290×241 desktop, 219×181 celebration), with side bars; title, Artifact type line, date, significance and place are legible. The authenticated parent-pass flow itself was not exercised.
+- No console or page errors attributable to the lesson or its media.
+
+Not claimed: remote object-storage delivery (pending upload), hosted preview behavior, authenticated submission/parent pass, and learner age fit.
 
 ## Learner-prototype review
 
 Reviewer: main agent, author quality check; Carlin remains sole product/editorial approver.
 Learner observation: no human learner participated; age fit unverified.
-Product review: pending for this revised prototype.
+Product review: approved by Carlin, 2026-10-04, “perfect. approved”.
 
 ### Reassessment of the earlier author review
 
@@ -279,4 +365,21 @@ Historical retelling check: a reader has the material to explain Babylon’s sma
 
 ### Product/editorial review
 
-State: pending. Carlin directed the changed historical focus; the rewritten prototype, changed media jobs and card plan require explicit Stage 14B review. No final asset, publication, parent-pass result or learner mastery is claimed.
+State: approved. Carlin replied “perfect. approved” on 2026-10-04 to the revised prototype, media jobs and card. Stage 14B editorial approval authorizes publication. Owner hosted checking and real learner observation remain separate.
+
+
+## Publication record — 2026-10-04
+
+- Stage 16: `lesson:gate --gate implementation` and `--gate release` passed on the still-draft lesson after the product-review record gained its `reviewedBy`/`reviewedOn` fields.
+- Stage 18 cutover: `lesson:prepare-publication --apply-status` set the lesson to `published`, recorded both prompt fingerprints, unregistered the prototype review (archive file kept) and planned journey entry entry.world-history.law-and-kingship, card.hammurabi.law-stele and the two media IDs.
+- Post-cutover checks: `validate:content` passed. `test:domain` first failed one test because a published lesson needs a learning-connection record; the Akkad retrieve/extend/reasoning record from the learning blueprint was added to content/learning-connections.ts, and validation plus all 84 domain/content/legacy/lesson tests then passed.
+- Media upload: pending; limited to media.hammurabi.locator and media.hammurabi.law-stele through `media:publish`, followed by `media:verify:remote` for the same two IDs.
+
+## Final sign-off
+
+Owner prototype approval: Carlin Aylsworth, 2026-10-04, “perfect. approved”; final imagery, card and publication authorized.
+Historical claims: reviewed within stated confidence/evidence limits; central explanation approved.
+Media: rights/fidelity approved; build reproduced and local responsive display inspected (see Final media display and delivery); remote upload and checksum verification pending.
+Release consistency gates: implementation and release passed 2026-10-04; cutover applied; validation and domain tests pass.
+Owner hosted check: pending; author browsing does not substitute.
+Queue: Active until owner hosted pass. Merge: pending.

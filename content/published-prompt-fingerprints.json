@@ -81,6 +81,14 @@
       "lessonId": "lesson.farming.settlements",
       "fingerprint": "d99247607ad722ea87125a77e8781202cbf43f9f0007da785bde4fc724e276ab"
     },
+    "prompt.hammurabi.problem-and-response": {
+      "lessonId": "lesson.mesopotamia.law-and-kingship",
+      "fingerprint": "053c87151404b17b4621c0526c96732a0045ba13356a72c8f3e223a7544a1424"
+    },
+    "prompt.hammurabi.safekeeping": {
+      "lessonId": "lesson.mesopotamia.law-and-kingship",
+      "fingerprint": "30317aa5f15254abdf61e16abda2c87657f2d3fb16fe85a3e9303fa10195114b"
+    },
     "prompt.humans.adna-encounter": {
       "lessonId": "lesson.humans.migrations-and-interbreeding",
       "fingerprint": "ffdc13b3b09125d39f49dddf88877be8c0d353aecb2c71f109fe799fc8280335"
