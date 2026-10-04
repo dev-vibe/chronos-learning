@@ -5,11 +5,27 @@ Lesson ID: lesson.mesopotamia.law-and-kingship
 Research-note identity/version: initial Stage 3B packet, 2026-09-23
 Production record version: 2
 Journey/chapter/position: required World History, canonical position 21; production order 130
-Queue status: Active (Stage 14A prototype in progress)
+Queue status: Active (Stage 14B owner prototype review pending)
 Branch/base: codex/ash-105-law-kingship-babylon from main 6b2e270
 Accountable reviewer: Carlin Aylsworth
 Validation tier: high-risk interpretation (royal ideology, legal practice, social rank, enslavement, bodily punishments)
 Research-direction decision: Carlin Aylsworth replied “all yes” on 2026-09-24 in the lesson-production task
+
+## Owner prototype decision packet — 2026-10-04
+
+[Open the unpublished lesson prototype](https://chronos-learning-git-codex-ash-105-la-404a65-dev-vibes-projects.vercel.app/learn/lesson.mesopotamia.law-and-kingship). This is the existing ASH-105 branch preview; deployment protection may require Vercel sign-in. If the draft is locked, enable browser-local audit mode at the same deployment’s `/audit` page and return to this lesson.
+
+- **Title and scope:** Law, Kingship, and Hammurabi’s Babylon; one required World History lesson at position 21, focused on the stele, two injury provisions, Issinabu’s field letter and a brief later commentary.
+- **Question and understanding:** What does the law monument tell us about royal justice, and what do other records add? A public promise, written cases and a particular order answer different questions about justice; none supplies a complete history of court outcomes.
+- **Historical judgment:** retain the unequal written remedies while avoiding a rigid modern class chart. The monument’s precise judicial authority remains debated; the lesson avoids both guaranteed enforcement and a claim that it had no legal force. The two moderate interpretive claims remain pending owner editorial review.
+- **Deferred:** the whole collection, biblical borrowing, exact legal-status taxonomy, relief reworking and competing absolute chronologies. No new historical claim was introduced during this continuation.
+- **Age decisions:** seven sections, terms explained in use, a named petitioner, two short prompts, no graphic injury depiction. Age fit has not been observed with learners.
+- **Media:** an actual SB 8 stele photograph in the opening and an actual YBC 9959 tablet photograph beside the dispute, subject to rights and legibility review after approval. Native text carries both evidence encounters. No map or video is proposed.
+- **Card:** one planned artifact/Witness card for the whole law stele, subject to a licensed, legible image. No card is registered or unlockable yet.
+- **Understanding checks:** a supported selection distinguishes a royal order from a completed handover; the written response compares the eye-injury remedies and asks a question about their use in real disputes. The draft now names its best selection option. Current main requires the best-supported selection and a sincere written attempt, followed by explicit finishing and a parent’s pass for cards.
+- **Quality findings:** the original author review is retained below. Changed prompts were checked in the current shared Learn shell on desktop and phone, in light and dark themes. Wrong-answer feedback, retry, successful selection, written saving and top-of-page reopening worked. No horizontal overflow was observed at the phone viewport. Prototype gate, content validation, scoped typecheck and 84 domain/content/legacy/lesson tests pass. Signed-out audit preview does not exercise authenticated parent submission/pass, which remains for the hosted owner check after publication cutover.
+
+**Owner decision requested:** approve this prototype and its stated media/card direction, or specify changes. Approval authorizes final media and publication under the current runbook. Product review remains **pending** until Carlin explicitly responds.
 
 ## Owner decision card (Stage 3B)
 
@@ -29,7 +45,7 @@ Reply **all yes** or give numbered **yes / change / no** responses. These are pr
 
 ## Node proposal
 
-Current main marks Pyramids, Sahul, Indus, Kerma and Akkad complete. Production orders 110 and 120 remain ineligible because their named dependencies, Wheels and Animals, are Planned. Order 130 is the lowest eligible Ready row and already has ASH-105. The existing Pyramids checkout has unrelated local changes and is untouched; this lesson uses an isolated worktree from current main. The branch queue row is Active; the Stage 3B owner decision is pending.
+Current main marks Pyramids, Sahul, Indus, Kerma and Akkad complete. Production orders 110 and 120 remain ineligible because their named dependencies, Wheels and Animals, are Planned. Order 130 was the lowest eligible Ready row and already has ASH-105. This continuation reuses its existing branch, checkout and PR #51. The branch queue row is Active; the Stage 3B direction was approved and the Stage 14B prototype decision is pending. On 2026-10-04, GitHub reported the PR conflicted with main; integrating main completed without a local merge conflict and brought the current parent-review shell and lesson rules into this draft.
 
 One required canonical lesson would examine Hammurabi's Old Babylonian Babylon in the eighteenth century BCE, with c. 1800–1600 BCE as the roster's broad contextual range. Its distinctive job is to ask how a royal law collection represents authority, social difference and justice, and how far such a monument can take us toward actual practice. The Akkad lesson is the curriculum prerequisite and position 18; positions 19–20 are intended canonical predecessors but unpublished. Position 22, Shang Power, Bronze, and Oracle Bones, follows in the roster. This research increment produces no learner-facing content, asset, migration, unlock, or runtime change.
 
@@ -196,8 +212,8 @@ Extend: Move from how rulers held power to how a later king represented just rul
 Revisit: A future law/state lesson can revisit prescription versus practice; this is an editorial intention, not a claim that an unpublished lesson is available.
 Reasoning progression: From observing a royal image and reading attributed words, to comparing neighboring provisions, to corroborating with a different document, to a qualified conclusion about practice. Later work can compare larger archives independently.
 Transfer plan: The unfamiliar field letter supplies a bounded transfer within the lesson: learners apply the source-versus-outcome distinction to a named request after reading the stele. It has enough context to make the move fair.
-Completion versus mastery: Two sincere attempts record that the lesson was studied; they do not certify independent historical judgment. Independent understanding would appear when a learner explains, without a prompt, why another written rule cannot by itself prove a real outcome.
-Required sincere-attempt evidence: One supported selection comparing source reach and one concise explanation connecting the justice promise to the unequal injury cases and their limit.
+Completion versus mastery: The best-supported selection plus a sincere written attempt lets the learner explicitly finish and submit for parent review; a parent pass awards the planned card after publication. These steps do not certify independent historical judgment. Independent understanding would appear when a learner explains, without a prompt, why another written rule cannot by itself prove a real outcome.
+Required response evidence: One supported selection distinguishing a royal order from a completed handover, and one concise explanation comparing the unequal injury remedies and posing a question about actual use.
 
 ## Section/component storyboard
 
@@ -237,10 +253,10 @@ Sources and visual brief: Louvre SB 8 object and CDLI witness; depict the actual
 
 | Prompt ID | Required | Understanding/evidence assessed | Misconception exposed | Feedback job |
 | --- | --- | --- | --- | --- |
-| `prompt.hammurabi.sources` | yes | Distinguish public claim, specific royal order and missing outcomes | Every court followed every clause; no records of action survive | Explain what each source supports and where it stops |
-| `prompt.hammurabi.justice-and-status` | yes | Compare §§196/198 against prologue promise and distinguish text from result | “Eye for an eye” was equal for everyone | Name unequal remedies without pretending to know frequency |
+| `prompt.hammurabi.sources` | yes | Distinguish the field letter’s specific royal order from a completed handover | An instruction proves it was carried out; the king’s response is absent | Direct a retry to who gives the order and where the record ends |
+| `prompt.hammurabi.justice-and-status` | yes | Compare §§196/198 and pose a question about use in real disputes | “Eye for an eye” was equal for everyone | Parent-facing strong-answer guidance names unequal remedies and an open question about practice |
 
-Both prompts use the same required flags that the Learn shell and publication preparation read. A sincere attempt, not a perfect response, is the completion condition. Free text is not proposed for general analytics.
+Both prompts use the same required flags that the Learn shell and publication preparation read. The selection requires its best-supported option; the written response requires a sincere attempt. Current main sends finished written answers to a parent for review. Free text is not proposed for general analytics. These are unpublished draft prompts, so the clearer wording keeps their existing IDs.
 
 ## Ages 11–15 transformations
 

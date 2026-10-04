@@ -29,20 +29,20 @@ export const hammurabiClaims: Claim[] = [
 
 export const hammurabiPrompts: UnderstandingPrompt[] = [
   {
-    id: 'prompt.hammurabi.sources', lessonId, kind: 'supported-selection', required: true,
-    question: 'The stele promises justice, while a letter orders an official to decide one shepherd’s field dispute. What can these sources support together?',
-    hint: 'Think about what each source records, and what neither follows through to show.',
+    id: 'prompt.hammurabi.sources', lessonId, kind: 'supported-selection', required: true, bestOptionId: 'option.hammurabi.source-limits',
+    question: 'Issinabu complained about losing a field. Hammurabi’s letter told an official to decide the case and return it. What does this letter tell us about the dispute?',
+    hint: 'Follow the complaint and the order. Where does the letter’s account end?',
     explanation: 'The stele presents a ruler’s ideal and written cases. The letter records one complaint and an order. Neither tells us how every dispute ended or whether every stele case was applied in court.',
     options: [
-      { id: 'option.hammurabi.source-limits', label: 'The king publicly claimed justice and intervened in one dispute, but ordinary outcomes need more evidence.', feedback: 'Yes. Both sources matter, and each has a limit.' },
-      { id: 'option.hammurabi.every-court', label: 'Every judge applied every case on the stele exactly as written.', feedback: 'The stone states cases, but these sources do not show every courtroom decision.' },
-      { id: 'option.hammurabi.no-action', label: 'The king only made an image; no surviving record shows him responding to a dispute.', feedback: 'The field letter records a royal order, although it does not show the final outcome.' },
+      { id: 'option.hammurabi.source-limits', label: 'The king ordered the field returned; the later handover remains an open question.', feedback: 'Yes. The letter preserves an instruction, and its account stops before the handover.' },
+      { id: 'option.hammurabi.every-court', label: 'The official returned the field; the letter records the completed handover to the shepherd.', feedback: 'Read what Hammurabi tells the official to do. Is that a report of work already done?' },
+      { id: 'option.hammurabi.no-action', label: 'The shepherd asked for his field; the letter leaves the king’s response as an open question.', feedback: 'Follow the text beyond the complaint. Who gives the instruction to the official?' },
     ],
   },
   {
     id: 'prompt.hammurabi.justice-and-status', lessonId, kind: 'concise-explanation', required: true, minimumResponseLength: 20,
-    question: 'Hammurabi’s prologue says he would protect people from the strong. What do the two injury cases make you ask about that promise? Name one thing the cases show and one thing they cannot tell us.',
-    hint: 'Compare the stated outcomes, then ask whether a written case is the same as an observed result.',
+    question: '(1) How do the two eye-injury cases differ? (2) What would you want to find out about how those cases were used in real disputes?',
+    hint: 'Start with “One case says…, while the other…”. Then ask a question about what happened when people brought a dispute to an official.',
     explanation: 'The neighboring cases prescribe different remedies for people of different legal standing, so the text’s promise did not mean identical written treatment. The cases alone cannot tell us how often those outcomes happened, or what every person experienced.',
   },
 ];
@@ -57,7 +57,7 @@ const sections: Lesson['sections'] = [
   {
     id: 'section.hammurabi.royal-claim', heading: 'The king’s claim to justice', purpose: 'Read the relief and prologue as a public royal statement with a specific point of view.',
     modules: [
-      { id: 'module.hammurabi.royal-claim', type: 'prose', claimIds: ['claim.hammurabi.relief-figures', 'claim.hammurabi.royal-image', 'claim.hammurabi.justice-claim'], sourceIds: ['source.hammurabi.louvre-object', 'source.hammurabi.louvre-essay', 'source.hammurabi.cdli-stele'], body: 'At the top of the stele, Hammurabi stands before Shamash, a god associated with justice. The image connects the king’s authority with the god. It does not show Shamash dictating each case.\n\nBelow the image, the prologue speaks in the king’s voice. Hammurabi says his rule should establish justice and keep the strong from harming the weak. That is a powerful claim. It tells us how the ruler wanted his actions remembered. To ask what the promise meant for other people, we need to read the cases and look beyond the stone.' },
+      { id: 'module.hammurabi.royal-claim', type: 'prose', claimIds: ['claim.hammurabi.relief-figures', 'claim.hammurabi.royal-image', 'claim.hammurabi.justice-claim'], sourceIds: ['source.hammurabi.louvre-object', 'source.hammurabi.louvre-essay', 'source.hammurabi.cdli-stele'], body: 'At the top of the stele, a standing stone carved with writing, Hammurabi stands before Shamash, a god associated with justice. The image connects the king’s authority with the god. It does not show Shamash dictating each case.\n\nBelow the image, the prologue, or opening statement, speaks in the king’s voice. Hammurabi says his rule should establish justice and keep the strong from harming the weak. That is a powerful claim. It tells us how the ruler wanted his actions remembered. To ask what the promise meant for other people, we need to read the cases and look beyond the stone.' },
     ],
   },
   {
@@ -70,7 +70,7 @@ const sections: Lesson['sections'] = [
     id: 'section.hammurabi.injury-and-status', heading: 'Different remedies for injuries', purpose: 'Compare neighboring provisions and make the tension with the justice claim visible without a rigid class diagram.',
     modules: [
       { id: 'module.hammurabi.injury-intro', type: 'prose', claimIds: ['claim.hammurabi.different-remedies', 'claim.hammurabi.status-limits'], sourceIds: ['source.hammurabi.cdli-stele', 'source.hammurabi.ehammurabi-198'], body: 'Two neighboring cases concern injury to an eye. In one, the stated outcome is a matching injury to the person who caused it. In the other, the stated outcome is a payment of silver. The difference depends on a status word applied to the injured person. The Akkadian terms are difficult to fit neatly into modern labels, but the unequal written outcomes are clear.\n\nThe famous phrase “eye for an eye” is therefore a poor summary of how the whole collection treats people. The king’s promise to protect the weak sits beside provisions that distinguish people by legal standing. We should ask what justice meant in this text, and whose position it centered.' },
-      { id: 'module.hammurabi.injury-contrast', type: 'knowledge', eyebrow: 'What you can see', title: 'Two neighboring cases', body: 'Both cases concern an eye injury. Their prescribed remedies differ.', claimIds: ['claim.hammurabi.different-remedies', 'claim.hammurabi.status-limits'], sourceIds: ['source.hammurabi.cdli-stele', 'source.hammurabi.ehammurabi-198'], items: [
+      { id: 'module.hammurabi.injury-contrast', type: 'knowledge', eyebrow: 'What you can see', title: 'Two neighboring cases', body: 'Both cases concern an eye injury. The remedies—the responses the text calls for—differ.', claimIds: ['claim.hammurabi.different-remedies', 'claim.hammurabi.status-limits'], sourceIds: ['source.hammurabi.cdli-stele', 'source.hammurabi.ehammurabi-198'], items: [
         { label: 'Case §196', detail: 'For injury to a person described with one legal-status term, the text prescribes a matching injury.' },
         { label: 'Case §198', detail: 'For injury to a person described with another term, the text prescribes silver.' },
         { label: 'The limit', detail: 'These are written remedies. The cases do not record how often either result occurred.' },
