@@ -18,6 +18,7 @@ export const hammurabiSources: Source[] = [
 
 export const hammurabiClaims: Claim[] = [
   { id: 'claim.hammurabi.site-orientation', statement: 'The archaeological site of Babylon lies northwest of Larsa in the lower Mesopotamian plain.', kind: 'observation', certainty: 'high', sourceIds: ['source.hammurabi.map-babylon', 'source.hammurabi.map-larsa', 'source.hammurabi.map-excavation'], reviewStatus: 'reviewed' },
+  { id: 'claim.hammurabi.buried-city', statement: 'The earliest Babylonian house levels, from the time of the first dynasty’s kings, lie below the modern water level, so the city of Hammurabi’s time is known only in small part.', kind: 'observation', certainty: 'high', sourceIds: ['source.hammurabi.koldewey-merkes'], reviewStatus: 'reviewed' },
   { id: 'claim.hammurabi.babylon-location', statement: 'Babylon stood on the Euphrates in Mesopotamia, in present-day Iraq.', kind: 'observation', certainty: 'high', sourceIds: ['source.hammurabi.met-babylon'], reviewStatus: 'reviewed' },
   { id: 'claim.hammurabi.kingdom-growth', statement: 'Through alliances and military campaigns, Hammurabi expanded Babylon’s kingdom, defeated Larsa and made Babylon a major political center.', kind: 'interpretation', certainty: 'high', sourceIds: ['source.hammurabi.met-kingdom', 'source.hammurabi.met-babylon'], reviewStatus: 'reviewed' },
   { id: 'claim.hammurabi.governing-work', statement: 'The law collection and a letter about a field show royal government addressing property, agricultural obligations and particular requests through written rules and instructions.', kind: 'interpretation', certainty: 'moderate', sourceIds: ['source.hammurabi.avalon-cases', 'source.hammurabi.letter', 'source.hammurabi.louvre-essay'], reviewStatus: 'reviewed' },
@@ -101,6 +102,9 @@ export const hammurabiLesson: Lesson = {
   significance: 'Hammurabi made Babylon the center of a powerful kingdom. His famous law collection opens a world of farmers, borrowers, property and the work of government.',
   learningOutcome: 'You traced Babylon’s rise under Hammurabi and explained how a legal case addressed a practical problem in Babylonian life.',
   orientationMapModuleId: 'module.hammurabi.locator',
+  heroMediaId: 'media.hammurabi.babylon-hero',
+  heroLabel: 'Imagined reconstruction',
+  heroCaption: 'Babylon in Hammurabi’s time. His city now lies below the water table, so no plan of it survives. The mud-brick wall, houses, temple courtyard, boats and fields follow what is known of cities in this period.',
   sectionIdsRequired: sections.map((section) => section.id), sections,
   claimIds: hammurabiClaims.map((claim) => claim.id), sourceIds: hammurabiSources.map((source) => source.id), mediaIds: hammurabiMedia.map((media) => media.id), promptIds: hammurabiPrompts.map((prompt) => prompt.id),
 };

@@ -89,6 +89,7 @@ All new synthesis and close reading in this revision was done by the main agent.
 | source.hammurabi.cdli-stele | [CDLI SB 8 / P249253](https://cdli.earth/artifacts/249253), prologue column 1 lines 28–49; reverse column XVII §§196–199, with earlier composite review. | Primary object/text record; central/qualifying | Royal justice statement and different injury remedies. Different legal standing is secure; simple modern class labels and observed enforcement are not established. | Paraphrase only; close-reviewed main agent 2026-09-24. |
 | source.hammurabi.letter | [YBC 9959 / P293786](https://cdli.earth/cdli-tablet/664), translated lines 4–10. | Primary administrative letter; supporting | Issinabu’s field request and Hammurabi’s instruction to an official; a concrete government episode, not a sample establishing every subject’s access or the final outcome. | Photograph not cleared; close-reviewed main agent 2026-09-24. |
 | source.hammurabi.commentary | [Yale CCP BM 59739 / P461271](https://ccp.yale.edu/P461271), catalogue and Commentary fields. | Primary later scholarly tablet catalogue; supporting | First-millennium study of parts of the collection; not an account of eighteenth-century courts. | Metadata paraphrase; close-reviewed main agent 2026-09-24. |
+| source.hammurabi.koldewey-merkes | [Robert Koldewey, The Excavations at Babylon](https://www.gutenberg.org/ebooks/71398) (trans. A. S. Johns, 1914), Merkes section and preface on the earliest strata. | Excavator’s report; supporting (hero) | The Merkes residential quarter preserves house levels back to the earliest Babylonian kings, which now lie below the water level. Old report; supports the limit of knowledge, not a plan of Hammurabi’s city. | Public domain; close-read main agent 2026-10-04. |
 
 Supplemental qualifying review: [French archaeological mission, Studying texts from Mari](https://archeologie.culture.gouv.fr/mari/en/studying-texts-mari), paragraphs on palace archives and 1978/1998–2002 finds, close-read 2026-10-04. This independently establishes the range of political/social archival evidence for Hammurabi’s era, not any specific campaign sequence. [Pamela Barmash, The Laws of Hammurabi](https://academic.oup.com/book/31901) (2020), publisher abstract only, reviewed 2026-09-23 and 2026-10-04: scribal systematization plus royal inscription is a serious interpretation; full chapters remain inaccessible and do not support an asserted drafting history here.
 
@@ -139,6 +140,7 @@ Comparative analyses considered: Babylon versus rival kingdoms; provisions linki
 | claim.hammurabi.different-remedies | observation / high | cdli-stele | No rigid modern class labels or practice frequency | Proportionate contextual paragraph; reviewed |
 | claim.hammurabi.legal-significance | interpretation / moderate | louvre-essay, avalon-cases | Historical significance synthesis, not guaranteed uniform application | Case reasoning and obligations; reviewed; owner approved 2026-10-04 |
 | claim.hammurabi.later-study | observation / high | commentary | One later scholarly witness, not original court evidence | Brief afterlife; reviewed |
+| claim.hammurabi.buried-city | observation / high | koldewey-merkes | Early-twentieth-century report; later groundwater conditions vary | Hero caption: why the image is imagined; reviewed |
 
 ## Central claim support
 
@@ -160,6 +162,7 @@ Comparative analyses considered: Babylon versus rival kingdoms; provisions linki
 | claim.hammurabi.legal-significance | source.hammurabi.louvre-essay | Section “A monument of ancient law,” scale, case form and legal range | Main agent, 2026-10-04, close-reviewed |
 | claim.hammurabi.legal-significance | source.hammurabi.avalon-cases | Passage group §§48, 55, 122–124, situation/obligation/remedy relationships | Main agent, 2026-10-04, close-reviewed |
 | claim.hammurabi.later-study | source.hammurabi.commentary | Object BM 59739 / P461271, catalogue/date and Commentary fields | Main agent, 2026-09-24, close-reviewed |
+| claim.hammurabi.buried-city | source.hammurabi.koldewey-merkes | Merkes section (“these now stand below water-level”) and preface on the earliest strata | Main agent, 2026-10-04, close-reviewed |
 
 ## Content triage
 
@@ -219,6 +222,7 @@ Changed teaching jobs receive fresh semantic section and prompt IDs. This is an 
 | intent.hammurabi.stele | section.hammurabi.law-stele | Show scale and royal relief above extensive inscription | Required licensed original SB 8 view; surviving evidence | Native description, alt text and scale note | Implemented as media.hammurabi.law-stele (CC0); see Image lifecycle and Final media display |
 | intent.hammurabi.cases | section.hammurabi.practical-cases | Compare problem and response | Native-text cases, no illustration needed | Same text | Implemented |
 | intent.hammurabi.letter | section.hammurabi.governing-land | Follow a named request and instruction | No image; prose is clearer for this supporting episode | Same text | Implemented |
+| intent.hammurabi.hero | lesson hero | Let the learner enter Hammurabi’s city before the story starts, while saying plainly that it cannot be seen | Owner-requested imagined reconstruction (2026-10-04, after Stage 14B approval); generalized Old Babylonian city, no later Neo-Babylonian monuments | Alt text and hero caption | Implemented as media.hammurabi.babylon-hero; owner chose candidate 1 of 4 |
 | intent.hammurabi.video | none | No motion-dependent explanation | No video | Readable story | Not applicable |
 
 Both approved image jobs are implemented below. No later Ishtar Gate or Nebuchadnezzar architecture depicts Hammurabi’s Babylon.
@@ -325,6 +329,65 @@ Fidelity verdict: full frame, silhouette, relief position, inscription extent, m
 
 ![Accepted runtime photograph](../../public/images/hammurabi/hammurabi-law-stele.jpg)
 
+### media.hammurabi.babylon-hero — lesson hero
+
+#### 1. Reasoning and source basis
+
+Owner request, 2026-10-04 (after Stage 14B approval and the hosted handoff): “we need a reconstruction/imagining of babylon … the epic hero image”. Teaching job: let the learner enter the city whose rise the lesson follows, while the caption explains why it must be imagined. Governing claim: claim.hammurabi.buried-city (Koldewey, Merkes: the earliest Babylonian house levels lie below the water level). Supporting facts used in the brief: Babylon on the Euphrates (source.hammurabi.met-babylon); a temple of Marduk, E-sagil, in Babylon where the epilogue says the law stele was set up (source.hammurabi.avalon-cases, epilogue); a city wall built under Sumu-la-El, an earlier First Dynasty king (year name “Year the great city wall of Babylon was built”, recorded in standard year-name lists; context only, not a registered source); mud-brick courtyard houses in a dense quarter (Koldewey, Merkes).
+
+Depiction boundary: this is a generic atmospheric reconstruction of a poorly preserved city. No surviving plan, elevation or image of Hammurabi’s Babylon exists, so no real structure is depicted from evidence. The temple precinct is a generic Old Babylonian temple, not a reconstruction of E-sagil’s plan. Deliberately excluded because they are later or unattested for this period: the Ishtar Gate and Processional Way, glazed-brick reliefs and Nebuchadnezzar II’s walls (Met Babylon essay, Neo-Babylonian paragraphs), a towering ziggurat (Etemenanki’s Old Babylonian form is not established), hanging gardens and stone architecture.
+
+#### 2. Reference image or reviewed data actually used
+
+No reference image was supplied. Because no visual evidence of the Old Babylonian city survives, the generation used only the factual text brief below; no real artifact, inscription, building or excavation is reproduced. The existing Chronos reconstruction heroes (for example media.egypt.nile-landing-reconstruction) set the painterly house style by description only; none was an input.
+
+| Depicted subject | Basis | Treatment |
+| --- | --- | --- |
+| Euphrates beside the city | met-babylon geography paragraph | Generalized river course; not a mapped channel |
+| City wall, towers and gate | First Dynasty wall-building year name (context) | Generic buttressed mud-brick wall; height, line and gate position invented |
+| Dense flat-roofed courtyard houses | Koldewey, Merkes | Generic; no excavated house plan copied |
+| Temple precinct with niched walls | E-sagil named in the epilogue; general Mesopotamian temple practice | Generic; not E-sagil’s plan |
+| Boats, quay, canals, palms, barley, donkeys | General southern Mesopotamian farming and river transport | Illustrative people and activity |
+
+#### 3. Generation or transformation
+
+Tool/model/date: ElevenLabs flow b6JCCfCnxBzuWAwFMD1M, image-generation node q5PPrv6maYjg8HwnIbLk, model gpt-image-2, 16:9, 2K, quality high, four variations, 2026-10-04. Text-to-image; no input images. Accepted generation ID nCYw2SxJmYD9KH2FBJFR (2048×1152 PNG).
+
+Complete prompt, verbatim:
+
+```text
+Use: wide hero illustration for a history lesson for 11–15-year-olds. Painterly, naturalistic museum-reconstruction style with warm, believable light, like a careful archaeological reconstruction painting. No text, labels, captions, logos, watermarks or borders anywhere.
+
+Scene: an imagined view of the city of Babylon in Mesopotamia in the eighteenth century BCE, the time of King Hammurabi, seen from a high vantage point just outside the city in clear early-morning light. The land is completely flat alluvial plain; no hills or mountains anywhere on the horizon.
+
+Middle of the frame (keep all key subjects within the central horizontal band so a very wide crop still works): a broad, slow, brown-green river (the Euphrates) curves past the city. A long city wall of sun-dried mud brick with regularly spaced rectangular buttress towers runs along the river side, pierced by one plain gateway with a simple flat or arched mud-brick opening and wooden doors. Inside the wall, a dense city of flat-roofed, mud-plastered courtyard houses of one or two storeys, packed along narrow winding lanes, with small inner courtyards, wooden roof beams poking out of the walls, ladders and people on some roofs. Toward the center of the city, a large temple precinct on a raised mud-brick terrace: thick plain walls decorated only with vertical recessed niches and buttresses, a large open courtyard, all in the same earthen mud-brick colours, clearly larger than the houses but low and wide rather than tall.
+
+Foreground and river: wooden cargo boats and small reed boats with bundled sacks and clay jars at a muddy quay below the wall; men and women unloading grain sacks and jars, a donkey carrying baskets; irrigation canals branching into green barley fields and dense date-palm groves around the city; smoke from a few cooking fires drifting in the air. People wear simple wrapped garments of undyed wool or linen, fringed shawls, men bearded; no armour, no weapons.
+
+Strict historical constraints: everything is built of plain unglazed sun-dried mud brick and mud plaster with some baked brick; no blue or coloured glazed bricks, no lion or dragon reliefs, no Ishtar Gate, no towering stepped ziggurat or tower, no hanging gardens, no stone columns, no Greek, Roman, Egyptian or Persian architecture, no domes, no minarets, no modern objects. Keep it believable rather than fantastical; the scale comes from the size of the city and the river, not invented monuments.
+```
+
+Runtime transformation (scripts/media/hammurabi-hero.mjs): resize the full 2048×1152 master to 1600×900 without cropping, JPEG quality 90 with 4:4:4 chroma (quality 90 keeps the source under the 768 KiB delivery limit; 1600 px is the widest delivered width). Responsive variants come from `media:build` with the photo preset at 480 and 1600 px. A 960 px width was tried first and dropped: the painting’s fine detail meant no lossless or quasi-lossless (PSNR ≥ 45 dB) candidate fitted the 768 KiB limit at that size. The lesson hero crops the frame to about 2.85:1 on desktop and 1.78:1 on phones; the wall, gate, temple precinct, river and quay sit in that central band.
+
+#### 4. Accepted final image
+
+Canonical master: docs/research/assets/hammurabi/hero/babylon-reconstruction-master.png, SHA-256 86ebf22413f3b22a3fce8dd5063e7c2036d719a905fa6c41dd3e7bb819b3e262.
+Runtime source: public/images/hammurabi/babylon-reconstruction.jpg, 1600×900, SHA-256 1480274a0cf52070e64be8956410b2ec704710c033eced23c65842b5411dfca5.
+
+![Accepted Babylon reconstruction](assets/hammurabi/hero/babylon-reconstruction-master.png)
+
+Rejected candidates from the same run, kept as previews:
+
+| Candidate | Preview | Reason |
+| --- | --- | --- |
+| 2 | ![Candidate 2](assets/hammurabi/hero/rejected-candidate-B.jpg) | Crenellated towers and arched openings in the temple are less clearly supported; owner preferred 1 |
+| 3 | ![Candidate 3](assets/hammurabi/hero/rejected-candidate-C.jpg) | Rows of arched windows on the temple are speculative; owner preferred 1 |
+| 4 | ![Candidate 4](assets/hammurabi/hero/rejected-candidate-D.jpg) | Weaker central composition for the desktop crop; owner preferred 1 |
+
+Comparison verdict (main agent, 2026-10-04): the accepted image keeps to the brief. Mud brick throughout; no glazed brick, reliefs, Ishtar Gate, ziggurat, columns or domes; flat plain with no hills; the temple is wide and low with niched, buttressed walls; people unload jars and grain from wooden boats beside canals, barley fields and palms. Scale comes from the extent of the city. Inspected at full size: no lettering, signs or invented inscriptions. Unsupported details accepted as illustration and covered by the caption: the wall line and gate, the street pattern, the temple layout, the boats’ form and every person. Owner selected candidate 1 on 2026-10-04 from the four-candidate sheet.
+
+Rights: Chronos original, AI-assisted; generated in the owner’s ElevenLabs workspace. No third-party image inputs.
+
 ### Final media display and delivery
 
 Build: `media:build` completed on 2026-10-04 (19:07 UTC) after the quality-95 map and .jpg fallback corrections. A separate Linux rebuild of the same sources reproduced every Hammurabi variant byte count in the release manifest: stele 480w WebP lossless 362,670 B and 960w source JPEG 468,460 B; locator 480w WebP lossless 186,036 B, 960w WebP lossless 654,668 B and 1600w source JPEG 681,335 B. All variants are pixel-exact. Committed fallbacks match the runtime source hashes above.
@@ -336,6 +399,7 @@ Local display inspection, 2026-10-04, draft lesson on a local Vite server with d
 - Stele: 960×1440 source decoded; displayed at 419×629 (side-by-side), 308×462 and 360×540. The whole stone, the relief and the inscription extent are visible in both themes; the scale note and credit render beside or below it.
 - Knowledge Card: the owned-card reveal and the pass-celebration card face were rendered from the authored card in an isolated local harness, at all three sizes and both themes. The full-object photograph is contained, not cropped, in the landscape art box (290×241 desktop, 219×181 celebration), with side bars; title, Artifact type line, date, significance and place are legible. The authenticated parent-pass flow itself was not exercised.
 - No console or page errors attributable to the lesson or its media.
+- Hero (added after the owner’s request, same local setup and six viewport/theme runs): the 1600×900 source decoded; displayed at 980×344 (desktop, about 2.85:1 crop), 720×253 (tablet) and 362×203 (phone). The wall, gate, river, boats and quay stay in frame at every size; the temple precinct is visible but partly cropped at the top on desktop. The “Imagined reconstruction” badge, the depiction label “Reconstruction · layout and details invented” and the caption render in both themes. Lesson still opened at scrollY 0; no page errors.
 
 Not claimed: remote object-storage delivery (pending upload), hosted preview behavior, authenticated submission/parent pass, and learner age fit.
 
@@ -373,13 +437,14 @@ State: approved. Carlin replied “perfect. approved” on 2026-10-04 to the rev
 - Stage 16: `lesson:gate --gate implementation` and `--gate release` passed on the still-draft lesson after the product-review record gained its `reviewedBy`/`reviewedOn` fields.
 - Stage 18 cutover: `lesson:prepare-publication --apply-status` set the lesson to `published`, recorded both prompt fingerprints, unregistered the prototype review (archive file kept) and planned journey entry entry.world-history.law-and-kingship, card.hammurabi.law-stele and the two media IDs.
 - Post-cutover checks: `validate:content` passed. `test:domain` first failed one test because a published lesson needs a learning-connection record; the Akkad retrieve/extend/reasoning record from the learning blueprint was added to content/learning-connections.ts, and validation plus all 84 domain/content/legacy/lesson tests then passed.
-- Media upload: pending; limited to media.hammurabi.locator and media.hammurabi.law-stele through `media:publish`, followed by `media:verify:remote` for the same two IDs.
+- Hero added after cutover at the owner’s request (2026-10-04): media.hammurabi.babylon-hero, claim.hammurabi.buried-city and source.hammurabi.koldewey-merkes, with heroLabel/heroCaption on the lesson. `media:build` succeeded (55 assets; only the hero entries changed in the manifests). `validate:content`, all 84 domain/content/legacy/lesson tests and `typecheck:chronos` pass. The implementation and release gates check unpublished drafts only, so they were not re-run after cutover; the lifecycle block above records the hero’s provenance.
+- Media upload: pending; limited to media.hammurabi.babylon-hero, media.hammurabi.locator and media.hammurabi.law-stele through `media:publish`, followed by `media:verify:remote` for the same three IDs.
 
 ## Final sign-off
 
 Owner prototype approval: Carlin Aylsworth, 2026-10-04, “perfect. approved”; final imagery, card and publication authorized.
 Historical claims: reviewed within stated confidence/evidence limits; central explanation approved.
-Media: rights/fidelity approved; build reproduced and local responsive display inspected (see Final media display and delivery); remote upload and checksum verification pending.
+Media: rights/fidelity approved for the map and stele; owner selected the hero reconstruction from four candidates; build and local responsive display checked (see Final media display and delivery); remote upload and checksum verification pending for all three.
 Release consistency gates: implementation and release passed 2026-10-04; cutover applied; validation and domain tests pass.
 Owner hosted check: pending; author browsing does not substitute.
 Queue: Active until owner hosted pass. Merge: pending.

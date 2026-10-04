@@ -213,6 +213,17 @@
       ]
     },
     {
+      "id": "media.hammurabi.babylon-hero",
+      "collection": "hammurabi",
+      "sourcePath": "public/images/hammurabi/babylon-reconstruction.jpg",
+      "fallbackPath": "/images/optimized/hammurabi/babylon-reconstruction.optimized.jpg",
+      "preset": "photo",
+      "widths": [
+        480,
+        1600
+      ]
+    },
+    {
       "id": "media.hammurabi.law-stele",
       "collection": "hammurabi",
       "sourcePath": "public/images/hammurabi/hammurabi-law-stele.jpg",

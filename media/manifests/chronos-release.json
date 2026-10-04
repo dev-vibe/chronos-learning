@@ -1219,6 +1219,67 @@
       }
     },
     {
+      "id": "media.hammurabi.babylon-hero",
+      "locator": {
+        "provider": "object-storage",
+        "bucket": "media-public",
+        "fallback": {
+          "path": "/images/optimized/hammurabi/babylon-reconstruction.optimized.jpg",
+          "width": 1600,
+          "height": 900
+        },
+        "variants": [
+          {
+            "objectKey": "hammurabi/media.hammurabi.babylon-hero/1480274a0cf52070/optimized/ql-v1/480w-webp-lossless-7ec1f2c43d5cc0c7.webp",
+            "mimeType": "image/webp",
+            "bytes": 202360,
+            "sha256": "7ec1f2c43d5cc0c72ae8241ad717915fd9f6b342c30915c9ab16db91f3eb428e",
+            "width": 480,
+            "height": 270,
+            "compression": {
+              "profile": "ql-v1",
+              "codec": "webp",
+              "encoder": "webp-lossless"
+            },
+            "fidelity": {
+              "mode": "pixel-exact",
+              "psnrDb": null,
+              "meanAbsoluteError": 0,
+              "maximumChannelDelta": 0
+            }
+          },
+          {
+            "objectKey": "hammurabi/media.hammurabi.babylon-hero/1480274a0cf52070/optimized/ql-v1/1600w-source-jpeg-1480274a0cf52070.jpg",
+            "mimeType": "image/jpeg",
+            "bytes": 697558,
+            "sha256": "1480274a0cf52070e64be8956410b2ec704710c033eced23c65842b5411dfca5",
+            "width": 1600,
+            "height": 900,
+            "compression": {
+              "profile": "ql-v1",
+              "codec": "jpeg",
+              "encoder": "source-passthrough"
+            },
+            "fidelity": {
+              "mode": "pixel-exact",
+              "psnrDb": null,
+              "meanAbsoluteError": 0,
+              "maximumChannelDelta": 0
+            }
+          }
+        ]
+      },
+      "source": {
+        "bucket": "media-source",
+        "objectKey": "hammurabi/media.hammurabi.babylon-hero/1480274a0cf52070e64be8956410b2ec704710c033eced23c65842b5411dfca5/original.jpg",
+        "mimeType": "image/jpeg",
+        "bytes": 697558,
+        "sha256": "1480274a0cf52070e64be8956410b2ec704710c033eced23c65842b5411dfca5",
+        "width": 1600,
+        "height": 900
+      }
+    },
+    {
       "id": "media.hammurabi.law-stele",
       "locator": {
         "provider": "object-storage",
