@@ -130,6 +130,18 @@ Cards are premium collectible historical objects and memory anchors, not playabl
 - No combat stats, power, rarity gems, duplicate cards, currency, booster cues, or escalating gold spectacle.
 - Illustration and actual evidence are visibly separated in card detail.
 
+### Handling a card
+
+An earned card is a physical object the learner can pick up, not a menu destination. The card appears wherever it is earned or found (the pass celebration, the lesson's completion panel, and Recently discovered on Home), and it behaves the same way everywhere:
+
+- It leans toward the pointer with a soft sheen, and turns when dragged sideways or tapped. A release with enough distance or speed carries it to the other face with a little weight; a short, slow drag settles back.
+- The front is the card. The back is for remembering: an optional recall prompt that reveals the card's facts when the learner asks, plus an honest note about the picture (evidence vs. reconstruction, rights).
+- Motion is identical for every card. No rarity-based foil, no escalating effects, no sounds, no scoring of recall, nothing persisted about it.
+- A visible “Turn card over” button gives keyboard and screen-reader users the same result. The hidden face is inert and hidden from assistive technology.
+- Dragging is horizontal only (`touch-action: pan-y`), so the lesson still scrolls normally under a finger.
+- With `prefers-reduced-motion`, there is no lean or spin; the card simply swaps faces.
+- Opening an owned card from Home is an in-place dialog with a link back to its lesson. Do not add a collection page or card-specific navigation for this.
+
 ## Approved references
 
 The approved reference images live in `docs/design/references/`:
