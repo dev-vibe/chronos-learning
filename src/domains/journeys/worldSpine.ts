@@ -3,6 +3,7 @@ import { worldSpineAccessPolicy, type WorldSpineAccessPolicy } from '../../../co
 import { isLessonOpenable, unlockPreviewLessonsEnabled } from '../../config/runtimeFlags';
 import type { Lesson } from '../contracts';
 import type { JourneyProgressSummary } from '../../learn/progress';
+import { isLessonSettled, isLessonSkipped } from './skipped';
 
 export type WorldSpineNodeStatus = 'completed' | 'current' | 'available' | 'locked' | 'preparing';
 
@@ -44,6 +45,8 @@ export function resolveWorldSpineAccess(
   if (unlockPreviewLessonsEnabled()) return { accessible: true };
 
   const target = sequence[index];
+  // A lesson a parent removed is not part of this learner's curriculum.
+  if (isLessonSkipped(summaries, targetId)) return { accessible: false };
   if (summaries[targetId]?.status === 'completed') return { accessible: true };
 
   const cutoffOrder = sequence.find((node) => node.id === policy.openThroughLessonId)?.order;
@@ -51,9 +54,14 @@ export function resolveWorldSpineAccess(
 
   // Canonical prerequisites remain gates even while their lessons are not yet
   // published. Publication timing must never redefine curriculum sequencing.
-  const fallbackPrevious = index > 0 ? sequence[index - 1].id : undefined;
+  // A prerequisite a parent removed counts as met, and when the lesson just
+  // before this one was removed, the nearest earlier lesson still in the
+  // curriculum gates it instead.
+  let previousIndex = index - 1;
+  while (previousIndex >= 0 && isLessonSkipped(summaries, sequence[previousIndex].id)) previousIndex -= 1;
+  const fallbackPrevious = previousIndex >= 0 ? sequence[previousIndex].id : undefined;
   const gateIds = target.prerequisiteIds.length ? target.prerequisiteIds : fallbackPrevious ? [fallbackPrevious] : [];
-  const blockerId = gateIds.find((id) => summaries[id]?.status !== 'completed');
+  const blockerId = gateIds.find((id) => !isLessonSettled(summaries, id));
   return blockerId ? { accessible: false, blockerId } : { accessible: true };
 }
 
@@ -65,7 +73,8 @@ export function createWorldSpineRoadmapView(
 ): readonly WorldSpineChapterView[] {
   const lessonById = new Map(lessons.map((lesson) => [lesson.id, lesson]));
   return chapters.map((chapter) => {
-    const nodes = chapter.nodes.map((node): WorldSpineNodeView => {
+    // Lessons a parent removed from this learner's curriculum are not shown.
+    const nodes = chapter.nodes.filter((node) => !isLessonSkipped(summaries, node.id)).map((node): WorldSpineNodeView => {
       const lesson = lessonById.get(node.id);
       const completed = summaries[node.id]?.status === 'completed';
       if (!lesson || !isLessonOpenable(lesson)) {

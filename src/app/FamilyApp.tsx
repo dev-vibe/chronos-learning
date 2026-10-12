@@ -1,8 +1,9 @@
 import React, { useCallback, useEffect, useMemo, useState } from 'react';
-import { Check, ChevronDown, ClipboardCheck, KeyRound, Lock, LogOut, MessageSquareQuote, RefreshCw, ShieldCheck, UserRound, UserPlus, Users } from 'lucide-react';
+import { Ban, Check, ChevronDown, ClipboardCheck, KeyRound, Lock, LogOut, MessageSquareQuote, RefreshCw, ShieldCheck, UserRound, UserPlus, Users } from 'lucide-react';
 import { chronosContent } from '../../content/chronos';
-import { worldSpineRoadmap } from '../../content/world-spine/roadmap';
-import { buildLearnerOverview, triesDescription, triesLabel, type CompletedLesson, type OverviewRow } from '../domains/learnerOverview';
+import { worldSpineNodeCount, worldSpineRoadmap } from '../../content/world-spine/roadmap';
+import { isLessonOpenable } from '../config/runtimeFlags';
+import { buildLearnerOverview, triesDescription, triesLabel, type CompletedLesson, type LessonOptOut, type OverviewRow } from '../domains/learnerOverview';
 import { cardsForLesson } from '../learn/progress';
 import { useChronosTheme } from '../theme/useChronosTheme';
 import { GlobalNavigation } from './GlobalNavigation';
@@ -364,12 +365,14 @@ function ReviewPage({ gateway }: { gateway: FamilyGateway }) {
   const [account, setAccount] = useState<AccountSnapshot>();
   const [items, setItems] = useState<ReviewItem[]>();
   const [completed, setCompleted] = useState<CompletedLesson[]>([]);
+  const [optOuts, setOptOuts] = useState<LessonOptOut[]>([]);
+  const [optOutError, setOptOutError] = useState('');
   const [error, setError] = useState('');
   const load = useCallback(async () => {
     setError('');
     try {
-      const [loadedAccount, queue, finished] = await Promise.all([gateway.loadAccount(), gateway.loadReviewQueue(), gateway.loadCompletedLessons()]);
-      setAccount(loadedAccount); setItems(queue); setCompleted(finished);
+      const [loadedAccount, queue, finished, skipped] = await Promise.all([gateway.loadAccount(), gateway.loadReviewQueue(), gateway.loadCompletedLessons(), gateway.loadLessonOptOuts()]);
+      setAccount(loadedAccount); setItems(queue); setCompleted(finished); setOptOuts(skipped);
     } catch (caught) { setError(familyErrorMessage(caught, 'Review couldn’t be loaded. Check your connection and retry.')); }
   }, [gateway]);
   useEffect(() => { void load(); }, [load]);
@@ -381,6 +384,17 @@ function ReviewPage({ gateway }: { gateway: FamilyGateway }) {
   const learnerById = new Map(reviewable.map((learner) => [learner.id, learner]));
   const known = items.filter((item) => lessonById.has(item.lessonId) && learnerById.has(item.learnerId));
   const waiting = known.filter((item) => item.status === 'submitted').sort((left, right) => left.submittedAt.localeCompare(right.submittedAt));
+  const availableLessonIds = chronosContent.lessons.filter((lesson) => isLessonOpenable(lesson as { status: 'published' | 'draft' })).map((lesson) => lesson.id);
+  const rosterIds = new Set(worldSpineRoadmap.flatMap((chapter) => chapter.nodes.map((node) => node.id)));
+  const inPreparation = worldSpineNodeCount - availableLessonIds.filter((id) => rosterIds.has(id)).length;
+  const toggleSkip = async (learnerId: string, lessonId: string, skip: boolean) => {
+    const name = nameOf(learnerById.get(learnerId));
+    const title = lessonById.get(lessonId)?.title ?? 'this lesson';
+    if (skip && !window.confirm(`Skip “${title}” for ${name}? It leaves ${name}’s curriculum and won’t hold up later lessons. You can restore it any time.`)) return;
+    setOptOutError('');
+    try { await gateway.setLessonOptOut(learnerId, lessonId, skip); await load(); }
+    catch (caught) { setOptOutError(familyErrorMessage(caught, skip ? `“${title}” couldn’t be skipped. Please try again.` : `“${title}” couldn’t be restored. Please try again.`)); }
+  };
   return <>
     <header className="page-intro"><p className="label">Review</p><h1>{waiting.length ? `${waiting.length} ${waiting.length === 1 ? 'lesson is' : 'lessons are'} waiting.` : 'All caught up.'}</h1><p>Read each written answer. Multiple-choice checks are already done: a kid finishes one by choosing the best-supported answer. Pass the lesson to award its Knowledge Cards, or send it back with a note about what to change.</p></header>
     <section aria-labelledby="waiting-title" className="review-list">
@@ -389,35 +403,46 @@ function ReviewPage({ gateway }: { gateway: FamilyGateway }) {
       {!waiting.length && <p className="family-hint">New submissions appear here when a learner finishes a lesson.</p>}
     </section>
     <section className="dashboard-section progress-section" aria-labelledby="progress-title">
-      <div className="section-title"><div><p className="label">Progress</p><h2 id="progress-title">Lessons each kid has finished</h2><p>The same green checks they see on their World History timeline, with when each lesson was sent and how many tries it took to pass.</p></div></div>
-      <div className="progress-grid">{reviewable.map((learner) => <LearnerProgressCard key={learner.id} learner={learner} completed={completed} items={items} />)}</div>
+      <div className="section-title"><div><p className="label">Progress</p><h2 id="progress-title">Each kid’s lessons</h2><p>The same green checks they see on their World History timeline, with when each lesson was sent and how many tries it took to pass. Lessons still to do can be skipped: a skipped lesson leaves that kid’s curriculum and never holds up the lessons after it. You can restore it any time.</p>{inPreparation > 0 && <p className="progress-note">{inPreparation} more {inPreparation === 1 ? 'lesson is' : 'lessons are'} still being written and will appear here when published.</p>}</div></div>
+      {optOutError && <p className="error" role="alert">{optOutError}</p>}
+      <div className="progress-grid">{reviewable.map((learner) => <LearnerProgressCard key={learner.id} learner={learner} completed={completed} items={items} optOuts={optOuts} availableLessonIds={availableLessonIds} onToggleSkip={toggleSkip} />)}</div>
     </section>
   </>;
 }
 
-const reviewTagLabel: Record<OverviewRow['review'], string> = { passed: 'Passed', waiting: 'Waiting for you', returned: 'Sent back', unreviewed: 'Not reviewed' };
+const reviewTagLabel: Record<OverviewRow['review'], string> = { passed: 'Passed', waiting: 'Waiting for you', returned: 'Sent back', unreviewed: 'Not reviewed', unfinished: 'Not finished', skipped: 'Skipped' };
 
-function ProgressRow({ row }: { row: OverviewRow }) {
+function ProgressRow({ row, name, busy, onToggleSkip }: { row: OverviewRow; name: string; busy: boolean; onToggleSkip(lessonId: string, skip: boolean): void }) {
   const lesson = lessonById.get(row.lessonId)!;
+  const finished = row.review !== 'unfinished' && row.review !== 'skipped';
   const resent = row.tries > 1 && row.lastSentAt;
-  const detail = [
+  const detail = finished ? [
     `${row.review === 'unreviewed' ? 'Finished' : 'Sent'} ${whenLabel(row.firstSentAt)}`,
     resent ? `sent again ${whenLabel(row.lastSentAt)}` : '',
     row.reviewedAt ? `${row.review === 'passed' ? 'passed' : 'sent back'} ${whenLabel(row.reviewedAt)}` : '',
-  ].filter(Boolean).join(' · ');
-  return <li className="progress-row">
-    <span className="progress-check" aria-hidden="true"><Check /></span>
-    <div className="progress-lesson"><strong>{lesson.title}</strong><small>{detail}</small></div>
+  ].filter(Boolean).join(' · ') : row.review === 'skipped'
+    ? `Removed from ${name}’s curriculum ${whenLabel(row.skippedAt)}`
+    : '';
+  return <li className={`progress-row${row.review === 'skipped' ? ' progress-row-skipped' : ''}${row.review === 'unfinished' ? ' progress-row-open' : ''}`}>
+    <span className={`progress-check${finished ? '' : ' progress-check-open'}`} aria-hidden="true">{finished ? <Check /> : row.review === 'skipped' ? <Ban /> : null}</span>
+    <div className="progress-lesson"><strong>{lesson.title}</strong>{detail && <small>{detail}</small>}</div>
     <div className="progress-status">
-      <span className={`review-tag review-tag-${row.review}`}>{reviewTagLabel[row.review]}</span>
+      {row.review !== 'unfinished' && <span className={`review-tag review-tag-${row.review}`}>{reviewTagLabel[row.review]}</span>}
       {row.tries > 0 && <span className={`tries-chip${row.tries >= 3 ? ' tries-chip-many' : ''}`} title={triesDescription(row.review, row.tries)}>{triesLabel(row.tries)}</span>}
+      {row.review === 'unfinished' && <button type="button" className="quiet-link progress-action" disabled={busy} aria-label={`Skip ${lesson.title} for ${name}`} onClick={() => onToggleSkip(row.lessonId, true)}>Skip</button>}
+      {row.review === 'skipped' && <button type="button" className="quiet-link progress-action" disabled={busy} aria-label={`Restore ${lesson.title} for ${name}`} onClick={() => onToggleSkip(row.lessonId, false)}>Restore</button>}
     </div>
   </li>;
 }
 
-function LearnerProgressCard({ learner, completed, items }: { learner: FamilyMember; completed: CompletedLesson[]; items: ReviewItem[] }) {
-  const { rows, counts } = useMemo(() => buildLearnerOverview(learner.id, completed, items, worldSpineRoadmap, (lessonId) => lessonById.has(lessonId)), [learner.id, completed, items]);
+function LearnerProgressCard({ learner, completed, items, optOuts, availableLessonIds, onToggleSkip }: { learner: FamilyMember; completed: CompletedLesson[]; items: ReviewItem[]; optOuts: LessonOptOut[]; availableLessonIds: string[]; onToggleSkip(learnerId: string, lessonId: string, skip: boolean): Promise<void> }) {
+  const { rows, counts } = useMemo(() => buildLearnerOverview(learner.id, completed, items, worldSpineRoadmap, { availableLessonIds, optOuts, isKnownLesson: (lessonId) => lessonById.has(lessonId) }), [learner.id, completed, items, availableLessonIds, optOuts]);
+  const [busyLesson, setBusyLesson] = useState('');
   const name = nameOf(learner);
+  const toggle = async (lessonId: string, skip: boolean) => {
+    setBusyLesson(lessonId);
+    try { await onToggleSkip(learner.id, lessonId, skip); } finally { setBusyLesson(''); }
+  };
   const chapters = rows.reduce<Array<{ key: string; title: string; rows: OverviewRow[] }>>((groups, row) => {
     const key = row.chapterId ?? 'other';
     const group = groups.find((item) => item.key === key);
@@ -434,13 +459,14 @@ function LearnerProgressCard({ learner, completed, items }: { learner: FamilyMem
       <div><dt>Passed first try</dt><dd>{counts.passedFirstTry}</dd></div>
       <div><dt>Awaiting review</dt><dd>{counts.waiting}</dd></div>
       <div><dt>Needs another try</dt><dd>{counts.returned}</dd></div>
+      <div><dt>Still to do</dt><dd>{counts.unfinished}</dd></div>
+      {counts.skipped > 0 && <div><dt>Skipped</dt><dd>{counts.skipped}</dd></div>}
     </dl>
-    {rows.length === 0
-      ? <p className="family-hint">{name} hasn’t finished a lesson yet. Finished lessons will appear here.</p>
-      : chapters.map((chapter) => <section key={chapter.key} className="progress-chapter" aria-label={chapter.title}>
-          <h4>{chapter.title}</h4>
-          <ul className="progress-list">{chapter.rows.map((row) => <ProgressRow key={row.lessonId} row={row} />)}</ul>
-        </section>)}
+    {counts.finished === 0 && <p className="family-hint">{name} hasn’t finished a lesson yet. Finished lessons will appear here.</p>}
+    {chapters.map((chapter) => <section key={chapter.key} className="progress-chapter" aria-label={chapter.title}>
+      <h4>{chapter.title}</h4>
+      <ul className="progress-list">{chapter.rows.map((row) => <ProgressRow key={row.lessonId} row={row} name={name} busy={busyLesson === row.lessonId} onToggleSkip={toggle} />)}</ul>
+    </section>)}
   </article>;
 }
 

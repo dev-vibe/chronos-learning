@@ -53,7 +53,7 @@
 .review-tag-passed{background:color-mix(in srgb,var(--teal) 16%,transparent);color:var(--teal)}
 .review-tag-returned{background:color-mix(in srgb,var(--bronze) 16%,transparent);color:var(--bronze)}
 .review-tag-waiting{background:color-mix(in srgb,var(--gold) 20%,transparent);color:var(--ink)}
-.review-tag-unreviewed{background:var(--page);border:1px solid var(--line);color:var(--muted)}
+.review-tag-unreviewed,.review-tag-unfinished,.review-tag-skipped{background:var(--page);border:1px solid var(--line);color:var(--muted)}
 .progress-section .section-title p:not(.label){margin:6px 0 0;color:var(--muted);max-width:640px}
 .progress-grid{display:grid;gap:20px}
 .progress-card h3{font-size:1.6rem}
@@ -68,6 +68,11 @@
 .progress-row{display:grid;grid-template-columns:auto 1fr auto;gap:12px;align-items:center;padding:11px 0;border-bottom:1px solid var(--line)}
 .progress-check{display:grid;place-items:center;width:26px;height:26px;border-radius:50%;background:var(--teal);color:#fff}
 .progress-check svg{width:14px;height:14px}
+.progress-check-open{background:transparent;border:2px solid var(--line);color:var(--muted)}
+.progress-row-skipped .progress-lesson,.progress-row-skipped .progress-check{opacity:.62}
+.progress-row-skipped .progress-lesson strong{text-decoration:line-through;text-decoration-thickness:1px}
+.progress-action{min-height:30px;padding:0 6px;font-size:.82rem;font-weight:600}
+.progress-note{margin:6px 0 0;font-size:.85rem;color:var(--muted)}
 .progress-lesson{display:grid;gap:2px;min-width:0}
 .progress-lesson strong{font-size:.98rem;line-height:1.3}
 .progress-lesson small{color:var(--muted);font-size:.8rem;line-height:1.4}
@@ -79,7 +84,7 @@
 .review-notice svg{width:20px;flex:none;color:var(--bronze)}
 .review-notice span{flex:1;line-height:1.4}
 .review-notice strong{font-weight:600}
-@media(max-width:760px){.family-grid{grid-template-columns:1fr}.family-card{padding:20px 16px}.progress-row{grid-template-columns:auto 1fr}.progress-status{grid-column:2;justify-content:flex-start}.review-actions>button{width:100%}}
+@media(max-width:760px){.family-grid{grid-template-columns:1fr}.family-card{padding:20px 16px}.progress-row{grid-template-columns:auto 1fr}.progress-status{grid-column:2;justify-content:flex-start}.review-actions>button{width:100%}.progress-row-open{grid-template-columns:auto 1fr auto}.progress-row-open .progress-status{grid-column:auto}}
 .setup-card{grid-column:1/-1}
 .setup-options{display:grid;gap:12px;margin-top:8px}
 .setup-option{display:grid;gap:6px;width:100%;padding:16px 18px;border:1px solid var(--line);border-radius:14px;background:var(--page);color:var(--ink);font:inherit;text-align:left;cursor:pointer}

@@ -5,6 +5,7 @@ import { isLessonOpenable } from '../config/runtimeFlags';
 import type { Journey, Lesson } from '../domains/contracts';
 import type { JourneyProgressSummary, LearnState } from './progress';
 import { WorldSpineTimeline } from './WorldSpineTimeline';
+import { isLessonSkipped } from '../domains/journeys/skipped';
 
 export const orderedJourneyEntries = (
   journey: Journey,
@@ -31,7 +32,7 @@ export const createJourneyDrawerState = (
 ): LearnState => ({
   learnerId: 'drawer-preview',
   lessonId,
-  status: summary?.status ?? 'in-progress',
+  status: summary?.status === 'completed' ? 'completed' : 'in-progress',
   completedAt: summary?.completedAt,
   attemptedPromptIds: [],
   exploredSectionIds: [],
@@ -97,7 +98,7 @@ export function JourneyDrawer({
     return () => document.removeEventListener('keydown', onKey);
   }, [open, onClose, returnFocus]);
 
-  const entries = orderedJourneyEntries(journey, lessons);
+  const entries = orderedJourneyEntries(journey, lessons).filter((item) => !isLessonSkipped(summaries, item.lesson.id));
   const explored = currentState.exploredSectionIds;
   const accessibleName = journey.kind === 'world-history' ? 'World History' : `${journey.title} journey`;
   const close = () => {

@@ -11,6 +11,7 @@ import { resolveJourneyInvitation } from '../domains/journeys/invitations';
 import { createLocalSearchProvider, type SearchProvider, type SearchResult } from '../domains/search/search';
 import { knowledgeCardTypeLabel } from '../domains/knowledgeCards';
 import { isLessonOpenable, unlockPreviewLessonsEnabled } from '../config/runtimeFlags';
+import { isLessonSkipped } from '../domains/journeys/skipped';
 import { createProgressGateway, type JourneyProgressSummary, type LearnProgressGateway, type ReviewInbox } from '../learn/progress';
 import { PassCelebration } from '../learn/PassCelebration';
 import { createJourneyDrawerState, JourneyDrawer } from '../learn/JourneyDrawer';
@@ -112,7 +113,7 @@ function JourneyDetailPage({ journeyId, content, state, summaries, busy, onCommi
   const journey = content.journeys.find((entry) => entry.id === journeyId && entry.status === 'published'); const record = state.journeys[journeyId];
   useEffect(() => { document.title = item ? `${item.title} · Chronos` : 'Journey unavailable · Chronos'; }, [item]);
   if (!item || !journey) return <Recovery title="This journey isn’t available." body="The address may be incorrect, or the journey may not be available. Only reviewed journeys can be opened here." action="Return to Library" href="/library" />;
-  const progress = deriveJourneyProgress(journey, content.lessons, summaries); const entries = publishedEntries(journey, content.lessons); const lessonById = new Map(content.lessons.map((lesson) => [lesson.id, lesson]));
+  const progress = deriveJourneyProgress(journey, content.lessons, summaries); const entries = publishedEntries(journey, content.lessons).filter(({ entry }) => !isLessonSkipped(summaries, entry.lessonId)); const lessonById = new Map(content.lessons.map((lesson) => [lesson.id, lesson]));
   const nextAction = selectJourneyNextAction(journey, content.lessons, summaries, record?.activeLessonId);
   const activeLessonId = nextAction.kind === 'lesson' ? nextAction.lessonId : record?.activeLessonId ?? journey.entryLessonId;
   const continueState = continueJourney(state, journey, content.lessons, summaries);
@@ -190,7 +191,8 @@ function resolveWorldHistoryDrawer(
 export function DiscoveryApp({ route, content = chronosContent, journeyGatewayFactory = createJourneyStateGateway, progressGatewayFactory = createProgressGateway, searchProvider, navigate = (destination) => window.location.assign(destination) }: DiscoveryAppProps) {
   const [snapshot, setSnapshot] = useState<JourneyStateLoad>(); const [progressGateway, setProgressGateway] = useState<LearnProgressGateway>(); const [inbox, setInbox] = useState<ReviewInbox>(); const [summaries, setSummaries] = useState<Record<string, JourneyProgressSummary>>({}); const [loadError, setLoadError] = useState(''); const [actionError, setActionError] = useState(''); const [busy, setBusy] = useState(false); const [attempt, setAttempt] = useState(0); const [drawer, setDrawer] = useState(false); const gatewayRef = useRef<JourneyStateGateway | undefined>(undefined); const menuRef = useRef<HTMLElement>(null);
   const { theme, toggleTheme } = useChronosTheme();
-  const provider = useMemo(() => searchProvider ?? createLocalSearchProvider(content, searchAliases), [content, searchProvider]);
+  // Lessons a parent removed are not searchable for this learner.
+  const provider = useMemo(() => searchProvider ?? createLocalSearchProvider({ ...content, lessons: content.lessons.filter((lesson) => !isLessonSkipped(summaries, lesson.id)) }, searchAliases), [content, searchProvider, summaries]);
   useEffect(() => { const onKey = (event: KeyboardEvent) => { if ((event.ctrlKey || event.metaKey) && event.key.toLowerCase() === 'k') { event.preventDefault(); window.location.assign('/search'); } }; window.addEventListener('keydown', onKey); return () => window.removeEventListener('keydown', onKey); }, []);
   useEffect(() => { let current = true; setLoadError(''); Promise.all([journeyGatewayFactory(), progressGatewayFactory()]).then(async ([journeyGateway, progressGateway]) => { gatewayRef.current = journeyGateway; const openableIds = content.lessons.filter((lesson) => isLessonOpenable(lesson)).map((lesson) => lesson.id); const [loaded, progress] = await Promise.all([journeyGateway.load(), progressGateway.loadJourneySummaries(openableIds)]); if (current) { setSnapshot(loaded); setSummaries(progress); setProgressGateway(progressGateway); } progressGateway.loadInbox().then((loadedInbox) => { if (current) setInbox(loadedInbox); }).catch(() => undefined); }).catch(() => { if (current) setLoadError('Your navigation state could not be loaded. Check the connection and retry.'); }); return () => { current = false; }; }, [attempt, content, journeyGatewayFactory, progressGatewayFactory]);
   const commit = async (next: LearnerJourneyState, destination?: string) => { if (!gatewayRef.current) return; setBusy(true); setActionError(''); try { const loaded = await gatewayRef.current.save(next); setSnapshot(loaded); if (destination) navigate(destination); } catch { setActionError('That journey action could not be saved. Your lesson completion is safe; please retry.'); } finally { setBusy(false); } };

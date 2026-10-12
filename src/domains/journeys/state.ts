@@ -3,6 +3,7 @@ import type { JourneyProgressSummary } from '../../learn/progress';
 import { publishedEntries } from './catalog';
 import { worldSpineRoadmap } from '../../../content/world-spine/roadmap';
 import { resolveWorldSpineAccess } from './worldSpine';
+import { isLessonSkipped } from './skipped';
 
 export const DEFAULT_JOURNEY_ID = 'journey.world-history';
 export type JourneyMembership = 'open' | 'saved' | 'closed';
@@ -34,7 +35,8 @@ export function selectJourneyNextAction(
   summaries: Record<string, JourneyProgressSummary>,
   activeLessonId?: string,
 ): JourneyNextAction {
-  const published = publishedEntries(journey, lessons);
+  // Lessons a parent opted out of are not part of this learner's curriculum.
+  const published = publishedEntries(journey, lessons).filter(({ entry }) => !isLessonSkipped(summaries, entry.lessonId));
   const required = published.filter(({ entry }) => entry.required);
   const entries = required.length ? required : published;
   if (!entries.length) return { kind: 'blocked' };
@@ -156,7 +158,7 @@ export function setInvitationState(state: LearnerJourneyState, invitationId: str
   const next = copy(state); next.invitationStates[invitationId] = { action, updatedAt: now }; return next;
 }
 export function deriveJourneyProgress(journey: Journey, lessons: readonly Lesson[], summaries: Record<string, JourneyProgressSummary>) {
-  const required = publishedEntries(journey, lessons).filter(({ entry }) => entry.required);
+  const required = publishedEntries(journey, lessons).filter(({ entry }) => entry.required && !isLessonSkipped(summaries, entry.lessonId));
   const completed = required.filter(({ entry }) => summaries[entry.lessonId]?.status === 'completed').length;
   return { completed, total: required.length, percent: required.length ? Math.round(completed / required.length * 100) : 0, isCompleted: required.length > 0 && completed === required.length };
 }
