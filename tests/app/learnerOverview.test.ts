@@ -47,9 +47,32 @@ describe('learner overview', () => {
   it('ignores other learners and lessons the app no longer has, and keeps lessons outside the roadmap last', () => {
     const { rows } = buildLearnerOverview(kid,
       [done('lesson.a', '2026-10-01T00:00:00Z'), done('lesson.gone', '2026-10-01T00:00:00Z'), done('lesson.extra', '2026-09-01T00:00:00Z'), done('lesson.b', '2026-10-01T00:00:00Z', 'someone-else')],
-      [], chapters, (id) => id !== 'lesson.gone');
+      [], chapters, { isKnownLesson: (id) => id !== 'lesson.gone' });
     expect(rows.map((row) => row.lessonId)).toEqual(['lesson.a', 'lesson.extra']);
     expect(rows[1].chapterId).toBeUndefined();
+  });
+
+  it('lists lessons still to do, in order, among the finished ones', () => {
+    const { rows, counts } = buildLearnerOverview(kid, [done('lesson.b', '2026-10-01T00:00:00Z')], [], chapters, { availableLessonIds: ['lesson.a', 'lesson.b', 'lesson.c'] });
+    expect(rows.map((row) => [row.lessonId, row.review])).toEqual([['lesson.a', 'unfinished'], ['lesson.b', 'unreviewed'], ['lesson.c', 'unfinished']]);
+    expect(rows[0]).toMatchObject({ tries: 0 });
+    expect(rows[0].firstSentAt).toBeUndefined();
+    expect(counts).toMatchObject({ finished: 1, unfinished: 2, skipped: 0 });
+  });
+
+  it('shows skipped lessons as skipped and leaves them out of the still-to-do count', () => {
+    const optOuts = [{ learnerId: kid, lessonId: 'lesson.a', optedOutAt: '2026-10-06T00:00:00Z' }, { learnerId: 'someone-else', lessonId: 'lesson.c', optedOutAt: '2026-10-06T00:00:00Z' }];
+    const { rows, counts } = buildLearnerOverview(kid, [], [], chapters, { availableLessonIds: ['lesson.a', 'lesson.b', 'lesson.c'], optOuts });
+    expect(rows.map((row) => [row.lessonId, row.review])).toEqual([['lesson.a', 'skipped'], ['lesson.b', 'unfinished'], ['lesson.c', 'unfinished']]);
+    expect(rows[0].skippedAt).toBe('2026-10-06T00:00:00Z');
+    expect(counts).toMatchObject({ finished: 0, unfinished: 2, skipped: 1 });
+  });
+
+  it('never shows a finished lesson as skipped', () => {
+    const optOuts = [{ learnerId: kid, lessonId: 'lesson.a', optedOutAt: '2026-10-06T00:00:00Z' }];
+    const { rows, counts } = buildLearnerOverview(kid, [done('lesson.a', '2026-10-01T00:00:00Z')], [], chapters, { availableLessonIds: ['lesson.a'], optOuts });
+    expect(rows.map((row) => row.review)).toEqual(['unreviewed']);
+    expect(counts).toMatchObject({ finished: 1, skipped: 0 });
   });
 
   it('labels tries in plain ordinal words', () => {

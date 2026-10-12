@@ -119,30 +119,51 @@ describe('multi-lesson local progress boundary', () => {
   });
 });
 describe('journey progress summaries', () => {
-  it('uses one bounded lesson_progress query instead of five detailed reads per published lesson', async () => {
-    const lessonIds = Array.from({ length: 250 }, (_, index) => `lesson.test.${index}`);
-    const inFilter = vi.fn(async () => ({
-      data: [{ lesson_id: lessonIds[1], status: 'completed', completed_at: '2026-07-17T00:00:00.000Z' }],
-      error: null,
-    }));
-    const chain: any = {
-      select: () => chain,
-      eq: () => chain,
-      in: inFilter,
+  const learnerId = '11111111-1111-1111-1111-111111111111';
+  const clientWith = (tables: Record<string, { data?: any[]; error?: unknown }>) => {
+    const filters: Record<string, ReturnType<typeof vi.fn>> = {};
+    const client: any = {
+      from: vi.fn((table: string) => {
+        const inFilter = vi.fn(async () => ({ data: tables[table]?.data ?? [], error: tables[table]?.error ?? null }));
+        filters[table] = inFilter;
+        const chain: any = { select: () => chain, eq: () => chain, in: inFilter };
+        return chain;
+      }),
     };
-    const client: any = { from: vi.fn(() => chain) };
+    return { client, filters };
+  };
 
-    const summaries = await new SupabaseLearnGateway(
-      '11111111-1111-1111-1111-111111111111',
-      client,
-    ).loadJourneySummaries(lessonIds);
+  it('uses two bounded queries instead of five detailed reads per published lesson', async () => {
+    const lessonIds = Array.from({ length: 250 }, (_, index) => `lesson.test.${index}`);
+    const { client, filters } = clientWith({
+      lesson_progress: { data: [{ lesson_id: lessonIds[1], status: 'completed', completed_at: '2026-07-17T00:00:00.000Z' }] },
+    });
 
-    expect(client.from).toHaveBeenCalledTimes(1);
+    const summaries = await new SupabaseLearnGateway(learnerId, client).loadJourneySummaries(lessonIds);
+
+    expect(client.from).toHaveBeenCalledTimes(2);
     expect(client.from).toHaveBeenCalledWith('lesson_progress');
-    expect(inFilter).toHaveBeenCalledTimes(1);
-    expect(inFilter).toHaveBeenCalledWith('lesson_id', lessonIds);
+    expect(client.from).toHaveBeenCalledWith('lesson_opt_outs');
+    expect(filters.lesson_progress).toHaveBeenCalledWith('lesson_id', lessonIds);
+    expect(filters.lesson_opt_outs).toHaveBeenCalledWith('lesson_id', lessonIds);
     expect(Object.keys(summaries)).toHaveLength(250);
     expect(summaries[lessonIds[1]]).toMatchObject({ status: 'completed' });
     expect(summaries[lessonIds[249]]).toMatchObject({ status: 'in-progress' });
+  });
+
+  it('marks a lesson a parent opted out of as skipped, unless it was already finished', async () => {
+    const { client } = clientWith({
+      lesson_progress: { data: [{ lesson_id: 'lesson.b', status: 'completed', completed_at: '2026-07-17T00:00:00.000Z' }] },
+      lesson_opt_outs: { data: [{ lesson_id: 'lesson.a' }, { lesson_id: 'lesson.b' }] },
+    });
+    const summaries = await new SupabaseLearnGateway(learnerId, client).loadJourneySummaries(['lesson.a', 'lesson.b', 'lesson.c']);
+    expect(summaries['lesson.a']).toEqual({ lessonId: 'lesson.a', status: 'skipped' });
+    expect(summaries['lesson.b']).toMatchObject({ status: 'completed' });
+    expect(summaries['lesson.c']).toMatchObject({ status: 'in-progress' });
+  });
+
+  it('does not show skipped lessons as available when opt-outs cannot be read', async () => {
+    const { client } = clientWith({ lesson_opt_outs: { error: new Error('relation does not exist') } });
+    await expect(new SupabaseLearnGateway(learnerId, client).loadJourneySummaries(['lesson.a'])).rejects.toThrow('relation does not exist');
   });
 });

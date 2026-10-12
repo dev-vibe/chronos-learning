@@ -15,3 +15,5 @@ This requires Docker Desktop and Supabase CLI 2.109.1 or later. Without Docker, 
 `006_journey_discovery.sql` verifies composite journey state keys, learner-owned policies, update `WITH CHECK` behavior, invitation dismissal persistence, and cross-learner isolation.
 
 There are no per-lesson database tests: lessons are defined only in the repository, so publishing a lesson changes nothing in the database.
+
+`009_lesson_opt_outs.sql` covers a parent skipping and restoring an unfinished lesson for one kid: linked parents and shared sign-ins can, kids and strangers cannot, finished lessons cannot be skipped, and repeated skips are harmless.

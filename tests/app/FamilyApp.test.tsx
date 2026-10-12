@@ -7,7 +7,7 @@ import { chronosContent } from '../../content/chronos';
 import { FamilyApp } from '../../src/app/FamilyApp';
 import type { AccountSetup, AccountSnapshot, FamilyGateway, ReviewItem } from '../../src/infrastructure/family/gateway';
 import type { ActiveLearner } from '../../src/infrastructure/family/activeLearner';
-import type { CompletedLesson } from '../../src/domains/learnerOverview';
+import type { CompletedLesson, LessonOptOut } from '../../src/domains/learnerOverview';
 
 const kidId = '11111111-1111-4111-a111-111111111111';
 const parentId = '22222222-2222-4222-a222-222222222222';
@@ -42,6 +42,11 @@ class FakeFamilyGateway implements FamilyGateway {
   loadReviewQueue = vi.fn(async () => this.queue);
   completed: CompletedLesson[] = [];
   loadCompletedLessons = vi.fn(async () => this.completed);
+  optOuts: LessonOptOut[] = [];
+  loadLessonOptOuts = vi.fn(async () => this.optOuts);
+  setLessonOptOut = vi.fn(async (learnerId: string, lessonId: string, optedOut: boolean) => {
+    this.optOuts = optedOut ? [...this.optOuts, { learnerId, lessonId, optedOutAt: '2026-10-06T14:00:00.000Z' }] : this.optOuts.filter((item) => !(item.learnerId === learnerId && item.lessonId === lessonId));
+  });
   review = vi.fn(async (learnerId: string, lessonId: string, decision: 'pass' | 'return', feedback: string) => {
     this.queue = this.queue.map((item) => item.learnerId === learnerId && item.lessonId === lessonId ? { ...item, status: decision === 'pass' ? 'passed' : 'returned', feedback, reviewedAt: '2026-09-26T00:00:00.000Z' } : item);
   });
@@ -316,7 +321,7 @@ describe('Progress overview', () => {
     render(<FamilyApp page="review" gateway={gateway} />);
     const sam = await progressOf('Sam');
     // Same order as the timeline: Uruk comes before writing even though writing was sent later.
-    const rows = Array.from(document.querySelectorAll('.progress-row')).map((row) => row.textContent ?? '');
+    const rows = Array.from(sam.getAllByRole('listitem')).filter((row) => !row.querySelector('button')).map((row) => row.textContent ?? '');
     expect(rows).toHaveLength(2);
     expect(rows[0]).toContain(title(uruk));
     expect(rows[1]).toContain(title(writing));
@@ -360,6 +365,65 @@ describe('Progress overview', () => {
     expect(sam.getByText('Sent back')).toBeTruthy();
     expect(sam.getByText('1st try')).toBeTruthy();
     expect(sam.getByText('Needs another try').parentElement!.querySelector('dd')!.textContent).toBe('1');
+  });
+
+  describe('skipping lessons', () => {
+    it('lists lessons still to do with a Skip button, and never offers Skip on a finished lesson', async () => {
+      const gateway = parentGateway();
+      gateway.completed = [{ learnerId: kidId, lessonId: uruk, completedAt: '2026-09-24T15:42:00.000Z' }];
+      gateway.queue = [{ ...waitingUruk(), status: 'passed', reviewedAt: '2026-09-25T00:00:00.000Z' }];
+      render(<FamilyApp page="review" gateway={gateway} />);
+      const sam = await progressOf('Sam');
+      expect(sam.getByRole('button', { name: `Skip ${title(writing)} for Sam` })).toBeTruthy();
+      expect(sam.queryByRole('button', { name: `Skip ${title(uruk)} for Sam` })).toBeNull();
+      expect(sam.getByText('Still to do').parentElement!.querySelector('dd')!.textContent).not.toBe('0');
+    });
+
+    it('skips a lesson after confirming, shows it as skipped, and restores it', async () => {
+      const gateway = parentGateway();
+      vi.spyOn(window, 'confirm').mockReturnValue(true);
+      render(<FamilyApp page="review" gateway={gateway} />);
+      const sam = await progressOf('Sam');
+      await userEvent.click(sam.getByRole('button', { name: `Skip ${title(writing)} for Sam` }));
+      expect(gateway.setLessonOptOut).toHaveBeenCalledWith(kidId, writing, true);
+      const restore = await sam.findByRole('button', { name: `Restore ${title(writing)} for Sam` });
+      expect(sam.getByText('Skipped', { selector: '.review-tag' })).toBeTruthy();
+      expect(sam.getByText('Skipped', { selector: 'dt' }).parentElement!.querySelector('dd')!.textContent).toBe('1');
+      expect(sam.queryByRole('button', { name: `Skip ${title(writing)} for Sam` })).toBeNull();
+      // Skipping one kid's lesson leaves the other kid's list alone.
+      expect((await progressOf('Ava')).getByRole('button', { name: `Skip ${title(writing)} for Ava` })).toBeTruthy();
+      await userEvent.click(restore);
+      expect(gateway.setLessonOptOut).toHaveBeenLastCalledWith(kidId, writing, false);
+      expect(await sam.findByRole('button', { name: `Skip ${title(writing)} for Sam` })).toBeTruthy();
+      expect(sam.queryByText('Skipped', { selector: 'dt' })).toBeNull();
+    });
+
+    it('does nothing when the parent cancels the confirmation', async () => {
+      const gateway = parentGateway();
+      vi.spyOn(window, 'confirm').mockReturnValue(false);
+      render(<FamilyApp page="review" gateway={gateway} />);
+      const sam = await progressOf('Sam');
+      await userEvent.click(sam.getByRole('button', { name: `Skip ${title(writing)} for Sam` }));
+      expect(gateway.setLessonOptOut).not.toHaveBeenCalled();
+    });
+
+    it('explains when a skip cannot be saved', async () => {
+      const gateway = parentGateway();
+      vi.spyOn(window, 'confirm').mockReturnValue(true);
+      gateway.setLessonOptOut.mockRejectedValueOnce({ message: 'finished lessons cannot be skipped' });
+      render(<FamilyApp page="review" gateway={gateway} />);
+      const sam = await progressOf('Sam');
+      await userEvent.click(sam.getByRole('button', { name: `Skip ${title(writing)} for Sam` }));
+      expect((await screen.findByRole('alert')).textContent).toMatch(/already finished/);
+      expect(sam.getByRole('button', { name: `Skip ${title(writing)} for Sam` })).toBeTruthy();
+    });
+
+    it('says how many more lessons are still being written', async () => {
+      const gateway = parentGateway();
+      render(<FamilyApp page="review" gateway={gateway} />);
+      await progressOf('Sam');
+      expect(screen.getByText(/still being written/)).toBeTruthy();
+    });
   });
 });
 

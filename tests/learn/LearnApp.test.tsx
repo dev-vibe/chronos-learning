@@ -107,6 +107,15 @@ describe('Learn route and interactions', () => {
     expect(screen.getAllByRole('img', { name: /Editorial locator map.*Çatalhöyük/i })).toHaveLength(1);
     expect(screen.queryByText('This archive entry is not available.')).toBeNull();
   });
+  it('tells a learner a lesson a parent skipped has been set aside, without showing the lesson', async () => {
+    const gateway = new TestGateway();
+    gateway.state = { ...gateway.state, lessonId: 'lesson.farming.settlements' };
+    gateway.loadJourneySummaries = vi.fn(async (lessonIds: readonly string[]) => Object.fromEntries(lessonIds.map((lessonId) => [lessonId, { lessonId, status: lessonId === 'lesson.farming.settlements' ? 'skipped' as const : 'in-progress' as const }])));
+    render(<LearnApp lessonId="lesson.farming.settlements" gatewayFactory={async () => gateway} />);
+    expect(await screen.findByRole('heading', { name: 'This lesson has been set aside.' })).toBeTruthy();
+    expect(screen.getByRole('link', { name: 'Continue learning' }).getAttribute('href')).toBe('/home');
+    expect(screen.queryByRole('heading', { name: 'Farming and Settlements' })).toBeNull();
+  });
   it('places the Human Origins map once at the opening and preserves its teaching section', async () => {
     const gateway = new TestGateway();
     gateway.state = { ...gateway.state, lessonId: 'lesson.humans.homo-sapiens-origins' };

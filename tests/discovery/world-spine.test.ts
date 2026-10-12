@@ -75,6 +75,20 @@ describe('canonical World Spine roadmap', () => {
     }, 'lesson.writing.early-systems')).toEqual({ accessible: true });
   });
 
+  it('treats a parent-skipped lesson as settled so later lessons stay open, and closes the skipped lesson itself', () => {
+    const skipped = { 'lesson.uruk.first-city': { lessonId: 'lesson.uruk.first-city', status: 'skipped' as const } };
+    expect(resolveWorldSpineAccess(worldSpineRoadmap, chronosContent.lessons, skipped, 'lesson.writing.early-systems')).toEqual({ accessible: true });
+    expect(resolveWorldSpineAccess(worldSpineRoadmap, chronosContent.lessons, skipped, 'lesson.uruk.first-city')).toEqual({ accessible: false });
+  });
+
+  it('removes a parent-skipped lesson from the learner roadmap', () => {
+    const skipped = { 'lesson.writing.early-systems': { lessonId: 'lesson.writing.early-systems', status: 'skipped' as const } };
+    const ids = (summaries: Parameters<typeof createWorldSpineRoadmapView>[2]) => createWorldSpineRoadmapView(worldSpineRoadmap, chronosContent.lessons, summaries, 'lesson.uruk.first-city').flatMap((chapter) => chapter.nodes).map((node) => node.id);
+    expect(ids({})).toContain('lesson.writing.early-systems');
+    expect(ids(skipped)).not.toContain('lesson.writing.early-systems');
+    expect(ids(skipped)).toContain('lesson.uruk.first-city');
+  });
+
   it('gates a new learner after Uruk and unlocks the next lesson after completion', () => {
     expect(resolveWorldSpineAccess(worldSpineRoadmap, chronosContent.lessons, {}, 'lesson.uruk.first-city')).toEqual({ accessible: true });
     expect(resolveWorldSpineAccess(worldSpineRoadmap, chronosContent.lessons, {}, 'lesson.writing.early-systems')).toEqual({

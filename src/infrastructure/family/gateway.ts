@@ -1,7 +1,7 @@
 import { isSupabaseConfigured, supabase } from '../../../lib/supabase';
 import { enterParentView, forgetFamilyView } from './activeLearner';
 import { parseSubmittedQuestions, type SubmittedQuestion } from '../../domains/submissions';
-import type { CompletedLesson } from '../../domains/learnerOverview';
+import type { CompletedLesson, LessonOptOut } from '../../domains/learnerOverview';
 
 export type FamilyMember = { id: string; displayName?: string };
 /** separate: kids have their own sign-ins (recommended). shared: kid profiles on this sign-in. learner: just me. */
@@ -60,6 +60,10 @@ export interface FamilyGateway {
   loadReviewQueue(): Promise<ReviewItem[]>;
   /** Lessons each reviewable learner has finished, which is what shows as done on their timeline. */
   loadCompletedLessons(): Promise<CompletedLesson[]>;
+  /** Lessons parents have opted each reviewable learner out of. */
+  loadLessonOptOuts(): Promise<LessonOptOut[]>;
+  /** Remove a lesson from a learner's curriculum, or put it back. Only a parent of the learner may do this. */
+  setLessonOptOut(learnerId: string, lessonId: string, optedOut: boolean): Promise<void>;
   review(learnerId: string, lessonId: string, decision: ReviewDecision, feedback: string, cardIds: string[]): Promise<void>;
 }
 
@@ -72,6 +76,7 @@ const friendly: Record<string, string> = {
   'not linked to this learner': 'You are not linked to this learner any more.',
   'submission is not waiting for review': 'This lesson has already been reviewed.',
   'a note is required when sending work back': 'Add a note so they know what to change.',
+  'finished lessons cannot be skipped': 'This lesson is already finished, so it can’t be skipped.',
   'Invalid login credentials': 'That email and password didn’t match.',
   'a name is required': 'Add a name first.',
   'an account can hold up to 10 kids': 'An account can hold up to 10 kids.',
@@ -234,6 +239,17 @@ export class SupabaseFamilyGateway implements FamilyGateway {
       .filter((row) => row.completed_at)
       .map((row) => ({ learnerId: String(row.learner_id), lessonId: String(row.lesson_id), completedAt: String(row.completed_at) }));
   }
+  async loadLessonOptOuts(): Promise<LessonOptOut[]> {
+    const learnerIds = await this.reviewableLearnerIds();
+    if (!learnerIds.length) return [];
+    const { data, error } = await this.client.from('lesson_opt_outs').select('learner_id,lesson_id,opted_out_at').in('learner_id', learnerIds);
+    if (error) throw error;
+    return ((data ?? []) as any[]).map((row) => ({ learnerId: String(row.learner_id), lessonId: String(row.lesson_id), optedOutAt: String(row.opted_out_at) }));
+  }
+  async setLessonOptOut(learnerId: string, lessonId: string, optedOut: boolean) {
+    const { error } = await this.client.rpc('set_lesson_opt_out', { p_learner_id: learnerId, p_lesson_id: lessonId, p_opted_out: optedOut });
+    if (error) throw error;
+  }
   async loadReviewQueue(): Promise<ReviewItem[]> {
     const learnerIds = await this.reviewableLearnerIds();
     if (!learnerIds.length) return [];
@@ -290,6 +306,8 @@ class UnavailableFamilyGateway implements FamilyGateway {
   async parentPinEnabled() { return false; }
   async loadReviewQueue(): Promise<ReviewItem[]> { return []; }
   async loadCompletedLessons(): Promise<CompletedLesson[]> { return []; }
+  async loadLessonOptOuts(): Promise<LessonOptOut[]> { return []; }
+  async setLessonOptOut() { this.unavailable(); }
   async review() { this.unavailable(); }
 }
 

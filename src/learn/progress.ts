@@ -12,7 +12,8 @@ export type LessonReview = { status: ReviewStatus; round: number; submittedAt: s
 /** Present only for signed-in learners; guests have no parent to review their work. */
 export type LearnAccount = { parentLinked: boolean; view?: LearnerView };
 export type LearnState = LessonProgress & { exploredSectionIds: string[]; responses: PromptResponses; cardIds?: string[]; cardId?: string; review?: LessonReview; account?: LearnAccount; version: 1 };
-export type JourneyProgressSummary = Pick<LessonProgress, 'lessonId' | 'status' | 'completedAt'>;
+/** `skipped` means a parent opted this lesson out of the learner's curriculum. */
+export type JourneyProgressSummary = Omit<Pick<LessonProgress, 'lessonId' | 'status' | 'completedAt'>, 'status'> & { status: LessonProgress['status'] | 'skipped' };
 export type PassNotice = { lessonId: string; cardIds: string[]; feedback?: string };
 export type ReturnedNotice = { lessonId: string; feedback: string };
 export type ReviewInbox = { passes: PassNotice[]; returned: ReturnedNotice[]; waitingForMyReview: number };
@@ -164,15 +165,18 @@ export class SupabaseLearnGateway implements LearnProgressGateway {
   async loadJourneySummaries(lessonIds: readonly string[]): Promise<Record<string, JourneyProgressSummary>> {
     const uniqueIds = [...new Set(lessonIds)];
     if (uniqueIds.length === 0) return {};
-    const { data, error } = await this.client
-      .from('lesson_progress')
-      .select('lesson_id,status,completed_at')
-      .eq('learner_id', this.learnerId)
-      .in('lesson_id', uniqueIds);
-    if (error) throw error;
-    const stored = new Map((data ?? []).map((row: any) => [row.lesson_id, row]));
-    return Object.fromEntries(uniqueIds.map((lessonId) => {
+    const [progress, optOuts] = await Promise.all([
+      this.client.from('lesson_progress').select('lesson_id,status,completed_at').eq('learner_id', this.learnerId).in('lesson_id', uniqueIds),
+      this.client.from('lesson_opt_outs').select('lesson_id').eq('learner_id', this.learnerId).in('lesson_id', uniqueIds),
+    ]);
+    if (progress.error) throw progress.error;
+    if (optOuts.error) throw optOuts.error;
+    const stored = new Map((progress.data ?? []).map((row: any) => [row.lesson_id, row]));
+    const skipped = new Set((optOuts.data ?? []).map((row: any) => String(row.lesson_id)));
+    return Object.fromEntries(uniqueIds.map((lessonId): [string, JourneyProgressSummary] => {
       const row = stored.get(lessonId);
+      // A lesson already finished stays finished even if it was opted out later.
+      if (skipped.has(lessonId) && row?.status !== 'completed') return [lessonId, { lessonId, status: 'skipped' }];
       return [lessonId, {
         lessonId,
         status: row?.status === 'completed' ? 'completed' : 'in-progress',

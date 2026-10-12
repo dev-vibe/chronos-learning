@@ -17,6 +17,7 @@ import { derivePromptRequirementState } from './prompt-requirements';
 import { JourneySwitcher } from '../app/JourneySwitcher';
 import { worldSpineRoadmap } from '../../content/world-spine/roadmap';
 import { resolveWorldSpineAccess } from '../domains/journeys/worldSpine';
+import { isLessonSkipped } from '../domains/journeys/skipped';
 import { createJourneyDrawerState, JourneyDrawer, orderedJourneyEntries } from './JourneyDrawer';
 import { GlobalNavigation } from '../app/GlobalNavigation';
 import { PrototypeMediaIntentions } from './PrototypeMediaIntentions';
@@ -194,9 +195,9 @@ export function LearnApp({ lessonId, gatewayFactory = createProgressGateway }: {
   const journey = lesson ? findJourney(lesson.id) : undefined;
   const entries = journey ? orderedJourneyEntries(journey) : [];
   const currentIndex = entries.findIndex((item) => item.lesson.id === lessonId);
-  const next = entries.slice(currentIndex + 1).find((item) => isLessonOpenable(item.lesson));
   const [currentProgress, setCurrentProgress] = useState<LearnState | null>(null);
   const [journeySummaries, setJourneySummaries] = useState<Record<string, JourneyProgressSummary>>({});
+  const next = entries.slice(currentIndex + 1).find((item) => isLessonOpenable(item.lesson) && !isLessonSkipped(journeySummaries, item.lesson.id));
   const state = currentProgress?.lessonId === lessonId ? currentProgress : null;
   const [drawer, setDrawer] = useState(false);
   const { theme, toggleTheme } = useChronosTheme();
@@ -286,6 +287,7 @@ export function LearnApp({ lessonId, gatewayFactory = createProgressGateway }: {
   if (!state) return error
     ? <LearnStatusShell theme={theme} onTheme={toggleTheme} icon={<BookOpen />} eyebrow="Progress unavailable" title="We couldn’t open your progress." body={error} actions={<button className="primary" onClick={retryLoad}>Retry loading progress</button>} />
     : <LearnStatusShell theme={theme} onTheme={toggleTheme} icon={<Compass />} eyebrow="Opening lesson" title={`Opening ${lesson.title}…`} body="Gathering your journey and saved progress." busy />;
+  if (isLessonSkipped(journeySummaries, lessonId)) return <LearnStatusShell theme={theme} onTheme={toggleTheme} icon={<BookOpen />} eyebrow="Not in your curriculum" title="This lesson has been set aside." body="A parent removed this lesson from your curriculum. Nothing is wrong, and it doesn’t affect your other lessons." actions={<><a className="primary" href="/home">Continue learning</a></>} />;
   if (!worldSpineAccess.accessible) return <LearnStatusShell
     theme={theme}
     onTheme={toggleTheme}

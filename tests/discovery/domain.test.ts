@@ -155,6 +155,27 @@ describe('learner journey state', () => {
     });
   });
 
+  it('leaves skipped lessons out of the next action and out of required progress, without ever blocking later lessons', () => {
+    const ids = publishedRequiredLessonIds(world, chronosContent.lessons);
+    const summaries = {
+      [ids[0]]: { lessonId: ids[0], status: 'completed' as const },
+      [ids[1]]: { lessonId: ids[1], status: 'skipped' as const },
+    };
+    expect(selectJourneyNextAction(world, chronosContent.lessons, summaries, ids[0])).toEqual({ kind: 'lesson', lessonId: ids[2], source: 'next' });
+    // Skipped on its own, with nothing finished: the next lesson is still reachable.
+    expect(selectJourneyNextAction(world, chronosContent.lessons, { [ids[0]]: { lessonId: ids[0], status: 'skipped' as const } }, undefined)).toMatchObject({ kind: 'lesson', lessonId: ids[1] });
+    expect(deriveJourneyProgress(world, chronosContent.lessons, summaries)).toEqual({
+      completed: 1,
+      total: ids.length - 1,
+      percent: Math.round(1 / (ids.length - 1) * 100),
+      isCompleted: false,
+    });
+    // A journey is complete once every lesson that is still in the curriculum is finished.
+    const allSettled = Object.fromEntries(ids.map((id, index) => [id, { lessonId: id, status: index === 1 ? 'skipped' as const : 'completed' as const }]));
+    expect(selectJourneyNextAction(world, chronosContent.lessons, allSettled, ids.at(-1))).toEqual({ kind: 'complete' });
+    expect(deriveJourneyProgress(world, chronosContent.lessons, allSettled)).toMatchObject({ completed: ids.length - 1, total: ids.length - 1, isCompleted: true });
+  });
+
   it('preserves an accessible incomplete optional active lesson without counting it as required progress', () => {
     expect(selectJourneyNextAction(mixedScopeJourney, chronosContent.lessons, {}, 'lesson.writing.early-systems')).toEqual({
       kind: 'lesson', lessonId: 'lesson.writing.early-systems', source: 'active',
