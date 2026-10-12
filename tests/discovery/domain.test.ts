@@ -293,6 +293,11 @@ describe('stable routes', () => {
     expect(parseChronosRoute('/search', '?q=proto%20cuneiform')).toEqual({ name: 'search', query: 'proto cuneiform' });
     expect(parseChronosRoute('/audit')).toEqual({ name: 'audit' });
     expect(parseChronosRoute('/admin/')).toEqual({ name: 'audit' });
+    expect(parseChronosRoute('/learners')).toEqual({ name: 'review' });
+    expect(parseChronosRoute('/review')).toEqual({ name: 'review' });
+    expect(parseChronosRoute('/learners/abc-123')).toEqual({ name: 'learner', learnerId: 'abc-123' });
+    expect(parseChronosRoute('/learners/%E0%A4%A')).toEqual({ name: 'not-found' });
+    expect(parseChronosRoute('/learners/a/b')).toEqual({ name: 'not-found' });
     expect(parseChronosRoute('/educators')).toEqual({ name: 'not-found' });
     expect(parseChronosRoute('/educators/lesson.humans.homo-sapiens-origins')).toEqual({ name: 'not-found' });
     expect(parseChronosRoute('/library/unknown/extra')).toEqual({ name: 'not-found' });

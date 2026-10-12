@@ -1,5 +1,5 @@
 import React, { useCallback, useEffect, useMemo, useState } from 'react';
-import { Ban, Check, ChevronDown, ClipboardCheck, KeyRound, Lock, LogOut, MessageSquareQuote, RefreshCw, ShieldCheck, UserRound, UserPlus, Users } from 'lucide-react';
+import { ArrowLeft, Ban, Check, ChevronDown, ChevronRight, ClipboardCheck, KeyRound, Lock, LogOut, MessageSquareQuote, RefreshCw, ShieldCheck, UserRound, UserPlus, Users } from 'lucide-react';
 import { chronosContent } from '../../content/chronos';
 import { worldSpineNodeCount, worldSpineRoadmap } from '../../content/world-spine/roadmap';
 import { isLessonOpenable } from '../config/runtimeFlags';
@@ -38,7 +38,8 @@ const whenLabel = (iso?: string) => {
 
 type Session = { userId: string; email?: string } | null;
 
-export function FamilyApp({ page, gateway: provided, activeLearner }: { page: 'account' | 'review'; gateway?: FamilyGateway; activeLearner?: ActiveLearner | null }) {
+/** `review` is the Learners list (`/learners`, also `/review`); `learner` is one learner's progress. */
+export function FamilyApp({ page, learnerId, gateway: provided, activeLearner }: { page: 'account' | 'review' | 'learner'; learnerId?: string; gateway?: FamilyGateway; activeLearner?: ActiveLearner | null }) {
   const gateway = useMemo(() => provided ?? createFamilyGateway(), [provided]);
   const { theme, toggleTheme } = useChronosTheme();
   const resolved = useActiveLearner();
@@ -55,22 +56,24 @@ export function FamilyApp({ page, gateway: provided, activeLearner }: { page: 'a
       if (returning) window.history.replaceState(null, '', window.location.pathname);
     });
   }, [refreshSession]);
-  useEffect(() => { document.title = `${page === 'account' ? 'Account' : 'Review'} · Chronos`; }, [page]);
+  useEffect(() => { document.title = `${page === 'account' ? 'Account' : page === 'learner' ? 'Learner' : 'Learners'} · Chronos`; }, [page]);
 
   return <div className="discovery-app" data-theme={theme}>
-    <GlobalNavigation active="account" theme={theme} onTheme={toggleTheme} />
+    <GlobalNavigation active={page === 'account' ? 'account' : 'learners'} theme={theme} onTheme={toggleTheme} />
     <main className="discovery-main family-page">
       {session === undefined
         ? <p className="family-loading" aria-busy="true">Opening your account…</p>
         : !gateway.available
           ? <header className="page-intro"><p className="label">Account</p><h1>Accounts aren’t set up here.</h1><p>This copy of Chronos has no database connected, so lessons are saved in this browser only.</p></header>
           : !session
-            ? <SignIn gateway={gateway} onSignedIn={refreshSession} reviewing={page === 'review'} />
+            ? <SignIn gateway={gateway} onSignedIn={refreshSession} reviewing={page !== 'account'} />
             : active?.view === 'kid'
-              ? <KidViewPage gateway={gateway} active={active} reviewing={page === 'review'} />
+              ? <KidViewPage gateway={gateway} active={active} reviewing={page !== 'account'} />
               : page === 'account'
                 ? <AccountPage gateway={gateway} session={session} onSignedOut={refreshSession} />
-                : <ReviewPage gateway={gateway} />}
+                : page === 'learner' && learnerId
+                  ? <LearnerPage gateway={gateway} learnerId={learnerId} />
+                  : <ReviewPage gateway={gateway} />}
     </main>
   </div>;
 }
@@ -150,7 +153,7 @@ function AccountPage({ gateway, session, onSignedOut }: { gateway: FamilyGateway
   const setup = choosing ? undefined : inferredSetup(account);
   const changed = () => { refreshActiveLearner(); return load(); };
   const cards = setup === 'shared'
-    ? [<KidsOnAccountCard key="kids" gateway={gateway} account={account} waiting={waiting} onChange={changed} />, <ParentPinCard key="pin" gateway={gateway} account={account} onChange={load} />, <ReviewLearnersCard key="linked" gateway={gateway} account={account} waiting={0} onChange={load} secondary />]
+    ? [<KidsOnAccountCard key="kids" gateway={gateway} account={account} waiting={waiting} onChange={changed} />, <ParentPinCard key="pin" gateway={gateway} account={account} onChange={load} />, <ReviewLearnersCard key="linked" gateway={gateway} account={account} waiting={account.profiles.length ? 0 : waiting} onChange={load} secondary />]
     : setup === 'separate'
       ? [<ReviewLearnersCard key="linked" gateway={gateway} account={account} waiting={waiting} onChange={load} />]
       : setup === 'learner'
@@ -348,7 +351,8 @@ function ReviewLearnersCard({ gateway, account, waiting, onChange, secondary = f
     {hasLearners
       ? <>
           <ul className="family-members">{account.learners.map((learner) => <li key={learner.id}><span>{nameOf(learner)}</span><button className="quiet-link" onClick={() => unlink(learner)}>Unlink</button></li>)}</ul>
-          {!secondary && <a className="primary review-link" href="/review"><ClipboardCheck aria-hidden="true" /> {waiting ? `Review work · ${waiting} waiting` : 'Open Review'}</a>}
+          {/* On a shared sign-in the kids card already links to Review; without kids there, this card must. */}
+          {(!secondary || account.profiles.length === 0) && <a className="primary review-link" href="/review"><ClipboardCheck aria-hidden="true" /> {waiting ? `Review work · ${waiting} waiting` : 'Open Review'}</a>}
         </>
       : <p>{secondary ? 'If a kid has their own sign-in, enter the code from their Account page.' : 'Your kid creates their own account, chooses “Just me. I’m the learner.”, and reads you the code on their Account page. Enter it here.'}</p>}
     <form className="family-inline-form" onSubmit={link}>
@@ -361,53 +365,100 @@ function ReviewLearnersCard({ gateway, account, waiting, onChange, secondary = f
   </section>;
 }
 
-function ReviewPage({ gateway }: { gateway: FamilyGateway }) {
-  const [account, setAccount] = useState<AccountSnapshot>();
-  const [items, setItems] = useState<ReviewItem[]>();
-  const [completed, setCompleted] = useState<CompletedLesson[]>([]);
-  const [optOuts, setOptOuts] = useState<LessonOptOut[]>([]);
-  const [optOutError, setOptOutError] = useState('');
+type FamilyData = { account: AccountSnapshot; items: ReviewItem[]; completed: CompletedLesson[]; optOuts: LessonOptOut[] };
+
+/** Everything the Learners pages read, loaded together and refreshed after any change. */
+function useFamilyData(gateway: FamilyGateway) {
+  const [data, setData] = useState<FamilyData>();
   const [error, setError] = useState('');
   const load = useCallback(async () => {
     setError('');
     try {
-      const [loadedAccount, queue, finished, skipped] = await Promise.all([gateway.loadAccount(), gateway.loadReviewQueue(), gateway.loadCompletedLessons(), gateway.loadLessonOptOuts()]);
-      setAccount(loadedAccount); setItems(queue); setCompleted(finished); setOptOuts(skipped);
-    } catch (caught) { setError(familyErrorMessage(caught, 'Review couldn’t be loaded. Check your connection and retry.')); }
+      const [account, items, completed, optOuts] = await Promise.all([gateway.loadAccount(), gateway.loadReviewQueue(), gateway.loadCompletedLessons(), gateway.loadLessonOptOuts()]);
+      setData({ account, items, completed, optOuts });
+    } catch (caught) { setError(familyErrorMessage(caught, 'Learners couldn’t be loaded. Check your connection and retry.')); }
   }, [gateway]);
   useEffect(() => { void load(); }, [load]);
+  return { data, error, load };
+}
 
-  if (error && !items) return <><header className="page-intro"><p className="label">Review</p><h1>We couldn’t open Review.</h1><p>{error}</p></header><button className="primary" onClick={load}>Retry</button></>;
-  if (!account || !items) return <p className="family-loading" aria-busy="true">Opening Review…</p>;
+const openableLessonIds = () => chronosContent.lessons.filter((lesson) => isLessonOpenable(lesson as { status: 'published' | 'draft' })).map((lesson) => lesson.id);
+
+/** The Learners page: who you follow, and any written work waiting for you. Progress lives on each learner's own page. */
+function ReviewPage({ gateway }: { gateway: FamilyGateway }) {
+  const { data, error, load } = useFamilyData(gateway);
+  if (error && !data) return <><header className="page-intro"><p className="label">Learners</p><h1>We couldn’t open Learners.</h1><p>{error}</p></header><button className="primary" onClick={load}>Retry</button></>;
+  if (!data) return <p className="family-loading" aria-busy="true">Opening Learners…</p>;
+  const { account, items, completed, optOuts } = data;
   const reviewable = [...account.learners, ...account.profiles];
-  if (!reviewable.length) return <header className="page-intro"><p className="label">Review</p><h1>No kids to review yet.</h1><p>Link a kid with their code, or add kids to this sign-in, on <a href="/account">your Account page</a>.</p></header>;
+  if (!reviewable.length) return <header className="page-intro"><p className="label">Learners</p><h1>No learners yet.</h1><p>Link a learner with their code, or add learners to this sign-in, on <a href="/account">your Account page</a>.</p></header>;
   const learnerById = new Map(reviewable.map((learner) => [learner.id, learner]));
-  const known = items.filter((item) => lessonById.has(item.lessonId) && learnerById.has(item.learnerId));
-  const waiting = known.filter((item) => item.status === 'submitted').sort((left, right) => left.submittedAt.localeCompare(right.submittedAt));
-  const availableLessonIds = chronosContent.lessons.filter((lesson) => isLessonOpenable(lesson as { status: 'published' | 'draft' })).map((lesson) => lesson.id);
-  const rosterIds = new Set(worldSpineRoadmap.flatMap((chapter) => chapter.nodes.map((node) => node.id)));
-  const inPreparation = worldSpineNodeCount - availableLessonIds.filter((id) => rosterIds.has(id)).length;
-  const toggleSkip = async (learnerId: string, lessonId: string, skip: boolean) => {
-    const name = nameOf(learnerById.get(learnerId));
-    const title = lessonById.get(lessonId)?.title ?? 'this lesson';
-    if (skip && !window.confirm(`Skip “${title}” for ${name}? It leaves ${name}’s curriculum and won’t hold up later lessons. You can restore it any time.`)) return;
-    setOptOutError('');
-    try { await gateway.setLessonOptOut(learnerId, lessonId, skip); await load(); }
-    catch (caught) { setOptOutError(familyErrorMessage(caught, skip ? `“${title}” couldn’t be skipped. Please try again.` : `“${title}” couldn’t be restored. Please try again.`)); }
-  };
+  const waiting = items.filter((item) => lessonById.has(item.lessonId) && learnerById.has(item.learnerId) && item.status === 'submitted').sort((left, right) => left.submittedAt.localeCompare(right.submittedAt));
   return <>
-    <header className="page-intro"><p className="label">Review</p><h1>{waiting.length ? `${waiting.length} ${waiting.length === 1 ? 'lesson is' : 'lessons are'} waiting.` : 'All caught up.'}</h1><p>Read each written answer. Multiple-choice checks are already done: a kid finishes one by choosing the best-supported answer. Pass the lesson to award its Knowledge Cards, or send it back with a note about what to change.</p></header>
+    <header className="page-intro"><p className="label">Learners</p><h1>{waiting.length ? `${waiting.length} ${waiting.length === 1 ? 'lesson is' : 'lessons are'} waiting.` : 'All caught up.'}</h1><p>Read each written answer. Multiple-choice checks are already done: a learner finishes one by choosing the best-supported answer. Pass the lesson to award its Knowledge Cards, or send it back with a note about what to change.</p></header>
+    <LearnerRoster account={account} learners={reviewable} completed={completed} items={items} optOuts={optOuts} availableLessonIds={openableLessonIds()} />
     <section aria-labelledby="waiting-title" className="review-list">
       <h2 id="waiting-title" className="sr-only">Waiting for review</h2>
       {waiting.map((item) => <ReviewCard key={`${item.learnerId}:${item.lessonId}`} item={item} learner={learnerById.get(item.learnerId)!} gateway={gateway} onReviewed={load} />)}
       {!waiting.length && <p className="family-hint">New submissions appear here when a learner finishes a lesson.</p>}
     </section>
-    <section className="dashboard-section progress-section" aria-labelledby="progress-title">
-      <div className="section-title"><div><p className="label">Progress</p><h2 id="progress-title">Each kid’s lessons</h2><p>The same green checks they see on their World History timeline, with when each lesson was sent and how many tries it took to pass. Lessons still to do can be skipped: a skipped lesson leaves that kid’s curriculum and never holds up the lessons after it. You can restore it any time.</p>{inPreparation > 0 && <p className="progress-note">{inPreparation} more {inPreparation === 1 ? 'lesson is' : 'lessons are'} still being written and will appear here when published.</p>}</div></div>
-      {optOutError && <p className="error" role="alert">{optOutError}</p>}
-      <div className="progress-grid">{reviewable.map((learner) => <LearnerProgressCard key={learner.id} learner={learner} completed={completed} items={items} optOuts={optOuts} availableLessonIds={availableLessonIds} onToggleSkip={toggleSkip} />)}</div>
-    </section>
   </>;
+}
+
+/** One learner's progress, on its own page: the same green checks they see on their World History timeline. */
+function LearnerPage({ gateway, learnerId }: { gateway: FamilyGateway; learnerId: string }) {
+  const { data, error, load } = useFamilyData(gateway);
+  const [skipError, setSkipError] = useState('');
+  if (error && !data) return <><header className="page-intro"><p className="label">Learner</p><h1>We couldn’t open this learner.</h1><p>{error}</p></header><button className="primary" onClick={load}>Retry</button></>;
+  if (!data) return <p className="family-loading" aria-busy="true">Opening learner…</p>;
+  const { account, items, completed, optOuts } = data;
+  const learner = [...account.learners, ...account.profiles].find((candidate) => candidate.id === learnerId);
+  if (!learner) return <>
+    <header className="page-intro"><p className="label">Learner</p><h1>We couldn’t find that learner.</h1><p>They may have been unlinked or removed from this account.</p></header>
+    <a className="primary review-link" href="/learners"><ArrowLeft aria-hidden="true" /> All learners</a>
+  </>;
+  const name = nameOf(learner);
+  const ownSignIn = account.learners.some((candidate) => candidate.id === learner.id);
+  const availableLessonIds = openableLessonIds();
+  const waiting = items.filter((item) => item.learnerId === learner.id && item.status === 'submitted' && lessonById.has(item.lessonId)).length;
+  const rosterIds = new Set(worldSpineRoadmap.flatMap((chapter) => chapter.nodes.map((node) => node.id)));
+  const inPreparation = worldSpineNodeCount - availableLessonIds.filter((id) => rosterIds.has(id)).length;
+  const toggleSkip = async (skippedLearnerId: string, lessonId: string, skip: boolean) => {
+    const title = lessonById.get(lessonId)?.title ?? 'this lesson';
+    if (skip && !window.confirm(`Skip “${title}” for ${name}? It leaves ${name}’s curriculum and won’t hold up later lessons. You can restore it any time.`)) return;
+    setSkipError('');
+    try { await gateway.setLessonOptOut(skippedLearnerId, lessonId, skip); await load(); }
+    catch (caught) { setSkipError(familyErrorMessage(caught, skip ? `“${title}” couldn’t be skipped. Please try again.` : `“${title}” couldn’t be restored. Please try again.`)); }
+  };
+  return <>
+    <a className="quiet-link back-link" href="/learners"><ArrowLeft aria-hidden="true" /> All learners</a>
+    <header className="page-intro"><p className="label">{ownSignIn ? 'Learner · own sign-in' : 'Learner · on this sign-in'}</p><h1 id="learner-title">{name}</h1><p>Finished lessons, when each was sent, and how many tries it took to pass. Lessons still to do can be skipped: a skipped lesson leaves {name}’s curriculum and never holds up the lessons after it. You can restore it any time.</p>{inPreparation > 0 && <p className="progress-note">{inPreparation} more {inPreparation === 1 ? 'lesson is' : 'lessons are'} still being written and will appear here when published.</p>}</header>
+    {waiting > 0 && <a className="primary review-link" href="/learners"><ClipboardCheck aria-hidden="true" /> {waiting} {waiting === 1 ? 'lesson is' : 'lessons are'} waiting for your review</a>}
+    {skipError && <p className="error" role="alert">{skipError}</p>}
+    <LearnerProgressCard learner={learner} completed={completed} items={items} optOuts={optOuts} availableLessonIds={availableLessonIds} onToggleSkip={toggleSkip} titleId="learner-title" />
+  </>;
+}
+
+/** Everyone this account follows. Each row opens that learner's own page. */
+function LearnerRoster({ account, learners, completed, items, optOuts, availableLessonIds }: { account: AccountSnapshot; learners: FamilyMember[]; completed: CompletedLesson[]; items: ReviewItem[]; optOuts: LessonOptOut[]; availableLessonIds: string[] }) {
+  const ownSignIn = new Set(account.learners.map((learner) => learner.id));
+  return <section className="family-card family-roster" aria-labelledby="roster-title">
+    <h2 id="roster-title"><Users aria-hidden="true" /> Your learners</h2>
+    <ul className="roster-list">{learners.map((learner) => {
+      const { counts } = buildLearnerOverview(learner.id, completed, items, worldSpineRoadmap, { availableLessonIds, optOuts, isKnownLesson: (lessonId) => lessonById.has(lessonId) });
+      const summary = [
+        `${counts.finished} ${counts.finished === 1 ? 'lesson' : 'lessons'} finished`,
+        counts.waiting ? `${counts.waiting} waiting for you` : '',
+      ].filter(Boolean).join(' · ');
+      return <li key={learner.id}>
+        <a className="roster-link" href={`/learners/${learner.id}`}>
+          <span className="roster-kid"><strong>{nameOf(learner)}</strong><small>{ownSignIn.has(learner.id) ? 'Own sign-in' : 'On this sign-in'} · {summary}</small></span>
+          <ChevronRight aria-hidden="true" />
+        </a>
+      </li>;
+    })}</ul>
+    <p className="family-hint">To add a learner or link one with a code, open <a href="/account">Account</a>.</p>
+  </section>;
 }
 
 const reviewTagLabel: Record<OverviewRow['review'], string> = { passed: 'Passed', waiting: 'Waiting for you', returned: 'Sent back', unreviewed: 'Not reviewed', unfinished: 'Not finished', skipped: 'Skipped' };
@@ -435,7 +486,8 @@ function ProgressRow({ row, name, busy, onToggleSkip }: { row: OverviewRow; name
   </li>;
 }
 
-function LearnerProgressCard({ learner, completed, items, optOuts, availableLessonIds, onToggleSkip }: { learner: FamilyMember; completed: CompletedLesson[]; items: ReviewItem[]; optOuts: LessonOptOut[]; availableLessonIds: string[]; onToggleSkip(learnerId: string, lessonId: string, skip: boolean): Promise<void> }) {
+/** `titleId` names the card by a heading the page already shows; without it the card draws its own. */
+function LearnerProgressCard({ learner, completed, items, optOuts, availableLessonIds, onToggleSkip, titleId: pageTitleId }: { learner: FamilyMember; completed: CompletedLesson[]; items: ReviewItem[]; optOuts: LessonOptOut[]; availableLessonIds: string[]; onToggleSkip(learnerId: string, lessonId: string, skip: boolean): Promise<void>; titleId?: string }) {
   const { rows, counts } = useMemo(() => buildLearnerOverview(learner.id, completed, items, worldSpineRoadmap, { availableLessonIds, optOuts, isKnownLesson: (lessonId) => lessonById.has(lessonId) }), [learner.id, completed, items, availableLessonIds, optOuts]);
   const [busyLesson, setBusyLesson] = useState('');
   const name = nameOf(learner);
@@ -450,9 +502,9 @@ function LearnerProgressCard({ learner, completed, items, optOuts, availableLess
     else groups.push({ key, title: row.chapterTitle ? `Chapter ${row.chapterId} · ${row.chapterTitle}` : 'Other lessons', rows: [row] });
     return groups;
   }, []);
-  const titleId = `progress-${learner.id}`;
+  const titleId = pageTitleId ?? `progress-${learner.id}`;
   return <article className="family-card progress-card" aria-labelledby={titleId}>
-    <h3 id={titleId}><UserRound aria-hidden="true" /> {name}</h3>
+    {!pageTitleId && <h3 id={titleId}><UserRound aria-hidden="true" /> {name}</h3>}
     <dl className="progress-stats">
       <div><dt>Lessons finished</dt><dd>{counts.finished}</dd></div>
       <div><dt>Passed lessons</dt><dd>{counts.passed}</dd></div>

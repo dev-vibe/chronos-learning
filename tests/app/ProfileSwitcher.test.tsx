@@ -45,6 +45,17 @@ describe('choosing who is using Chronos', () => {
     sessionStorage.setItem('chronos.family.parentView', '1');
     expect(await loadActiveLearner(client)).toMatchObject({ learnerId: parentId, view: 'parent' });
   });
+  it('also loads kids linked from their own sign-in, and keeps them if the lookup fails', async () => {
+    const tables: Record<string, any> = {
+      learners: { select: () => tables.learners, eq: () => tables.learners, neq: () => tables.learners, in: () => tables.learners, order: async () => ({ data: [{ id: 'river', display_name: 'River' }], error: null }) },
+      guardian_links: { select: () => tables.guardian_links, eq: async () => ({ data: [{ learner_id: 'river' }], error: null }) },
+    };
+    const client: any = { auth: { getUser: async () => ({ data: { user: { id: parentId } } }) }, from: (table: string) => tables[table] };
+    const parent = await loadActiveLearner(client);
+    expect(parent).toMatchObject({ view: 'kid', linkedLearners: [{ id: 'river', displayName: 'River' }] });
+    tables.guardian_links.eq = async () => { throw new Error('offline'); };
+    expect(await loadActiveLearner(client)).toMatchObject({ linkedLearners: [] });
+  });
   it('switching kids leaves parent view and sends parent-only pages home', () => {
     sessionStorage.setItem('chronos.family.parentView', '1');
     switchToKid('kid-alex', location as unknown as Location);
@@ -53,6 +64,10 @@ describe('choosing who is using Chronos', () => {
     expect(location.reload).toHaveBeenCalled();
     location.pathname = '/review';
     switchToKid('kid-sam', location as unknown as Location);
+    expect(location.assign).toHaveBeenCalledWith('/home');
+    location.assign.mockClear();
+    location.pathname = '/learners/kid-sam';
+    switchToKid('kid-alex', location as unknown as Location);
     expect(location.assign).toHaveBeenCalledWith('/home');
   });
 });
@@ -78,7 +93,7 @@ describe('profile switcher', () => {
     renderIn(<ProfileSwitcher active={kidView} variant="tab" gateway={pinGateway(null)} />);
     await userEvent.click(screen.getByRole('button', { name: /Switch profile/ }));
     await userEvent.click(within(screen.getByRole('dialog')).getByRole('button', { name: /Parent view/ }));
-    await waitFor(() => expect(location.assign).toHaveBeenCalledWith('/review'));
+    await waitFor(() => expect(location.assign).toHaveBeenCalledWith('/learners'));
     expect(sessionStorage.getItem('chronos.family.parentView')).toBe('1');
   });
 
@@ -93,7 +108,7 @@ describe('profile switcher', () => {
     expect(location.assign).not.toHaveBeenCalled();
     await userEvent.type(screen.getByLabelText(/Parent PIN/), '2468');
     await userEvent.click(screen.getByRole('button', { name: 'Open' }));
-    await waitFor(() => expect(location.assign).toHaveBeenCalledWith('/review'));
+    await waitFor(() => expect(location.assign).toHaveBeenCalledWith('/learners'));
   });
 
   it('marks parent view clearly and closes on Escape', async () => {

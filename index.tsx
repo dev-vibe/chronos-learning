@@ -36,6 +36,8 @@ if (route.name === 'learn') {
   application = <AuditApp />;
 } else if (route.name === 'account' || route.name === 'review') {
   application = <FamilyApp page={route.name} />;
+} else if (route.name === 'learner') {
+  application = <FamilyApp page="learner" learnerId={route.learnerId} />;
 } else if (route.name === 'legacy') {
   application = <QueryClientProvider client={queryClient}>
     <AuthProvider>
