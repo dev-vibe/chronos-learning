@@ -4,7 +4,7 @@ import './global-navigation.css';
 import { hasParentArea } from '../infrastructure/family/activeLearner';
 import { ProfileSwitcher, useActiveLearner } from './ProfileSwitcher';
 
-export type GlobalDestination = 'home' | 'library' | 'search' | 'family' | 'account';
+export type GlobalDestination = 'home' | 'library' | 'search' | 'learners' | 'account';
 
 type GlobalNavigationProps = {
   active?: GlobalDestination;
@@ -19,7 +19,7 @@ const destinations = [
   { id: 'home' as const, label: 'Home', href: '/home', icon: Home },
   { id: 'library' as const, label: 'Library', href: '/library', icon: Library },
   { id: 'search' as const, label: 'Search', href: '/search', icon: Search },
-  { id: 'family' as const, label: 'Family', href: '/review', icon: Users },
+  { id: 'learners' as const, label: 'Learners', href: '/review', icon: Users },
   { id: 'account' as const, label: 'Account', href: '/account', icon: UserRound },
 ];
 
@@ -35,9 +35,10 @@ export function GlobalNavigation({
   // pinned near the top of the rail so it is always easy to find.
   const learner = useActiveLearner();
   const shared = learner && learner.profiles.length > 0 ? learner : null;
-  // Family (kids, progress and review) is a first-class destination for any
-  // parent with linked kids, and for parent view on a shared sign-in.
-  const links = destinations.filter(({ id }) => (id === 'family' ? hasParentArea(learner) : !shared || id !== 'account')).map(({ id, label, href, icon: Icon }) => (
+  // Learners (who they are, their progress and review) is a first-class
+  // destination for any parent or tutor with linked learners, and for parent view
+  // on a shared sign-in.
+  const links = destinations.filter(({ id }) => (id === 'learners' ? hasParentArea(learner) : !shared || id !== 'account')).map(({ id, label, href, icon: Icon }) => (
     <a
       key={id}
       href={href}

@@ -29,28 +29,28 @@ describe('the parent area in navigation', () => {
     expect(hasParentArea(shared('kid'))).toBe(false);
   });
 
-  it('shows Family beside Account once a kid is linked, and links it to the Family page', () => {
+  it('shows Learners beside Account once a learner is linked, and links it to the Learners page', () => {
     active = self(river);
-    render(<GlobalNavigation active="family" theme="light" onTheme={() => undefined} />);
-    const family = screen.getAllByRole('link', { name: 'Family' })[0];
-    expect(family.getAttribute('href')).toBe('/review');
-    expect(family.getAttribute('aria-current')).toBe('page');
+    render(<GlobalNavigation active="learners" theme="light" onTheme={() => undefined} />);
+    const learners = screen.getAllByRole('link', { name: 'Learners' })[0];
+    expect(learners.getAttribute('href')).toBe('/review');
+    expect(learners.getAttribute('aria-current')).toBe('page');
     expect(screen.getAllByRole('link', { name: 'Account' })[0].getAttribute('href')).toBe('/account');
   });
 
-  it('keeps Family out of the navigation with no linked kids or while a kid is using a shared sign-in', () => {
+  it('keeps Learners out of the navigation with no linked learners or while a kid is using a shared sign-in', () => {
     active = self([]);
     const { unmount } = render(<GlobalNavigation theme="light" onTheme={() => undefined} />);
-    expect(screen.queryByRole('link', { name: 'Family' })).toBeNull();
+    expect(screen.queryByRole('link', { name: 'Learners' })).toBeNull();
     unmount();
     active = shared('kid');
     render(<GlobalNavigation theme="light" onTheme={() => undefined} />);
-    expect(screen.queryByRole('link', { name: 'Family' })).toBeNull();
+    expect(screen.queryByRole('link', { name: 'Learners' })).toBeNull();
   });
 
-  it('shows Family in parent view on a shared sign-in', () => {
+  it('shows Learners in parent view on a shared sign-in', () => {
     active = shared('parent', []);
     render(<GlobalNavigation theme="light" onTheme={() => undefined} />);
-    expect(screen.getAllByRole('link', { name: 'Family' }).length).toBeGreaterThan(0);
+    expect(screen.getAllByRole('link', { name: 'Learners' }).length).toBeGreaterThan(0);
   });
 });

@@ -58,7 +58,7 @@ export function FamilyApp({ page, gateway: provided, activeLearner }: { page: 'a
   useEffect(() => { document.title = `${page === 'account' ? 'Account' : 'Review'} · Chronos`; }, [page]);
 
   return <div className="discovery-app" data-theme={theme}>
-    <GlobalNavigation active={page === 'review' ? 'family' : 'account'} theme={theme} onTheme={toggleTheme} />
+    <GlobalNavigation active={page === 'review' ? 'learners' : 'account'} theme={theme} onTheme={toggleTheme} />
     <main className="discovery-main family-page">
       {session === undefined
         ? <p className="family-loading" aria-busy="true">Opening your account…</p>
@@ -397,7 +397,7 @@ function ReviewPage({ gateway }: { gateway: FamilyGateway }) {
     catch (caught) { setOptOutError(familyErrorMessage(caught, skip ? `“${title}” couldn’t be skipped. Please try again.` : `“${title}” couldn’t be restored. Please try again.`)); }
   };
   return <>
-    <header className="page-intro"><p className="label">Family</p><h1>{waiting.length ? `${waiting.length} ${waiting.length === 1 ? 'lesson is' : 'lessons are'} waiting.` : 'All caught up.'}</h1><p>Read each written answer. Multiple-choice checks are already done: a kid finishes one by choosing the best-supported answer. Pass the lesson to award its Knowledge Cards, or send it back with a note about what to change.</p></header>
+    <header className="page-intro"><p className="label">Learners</p><h1>{waiting.length ? `${waiting.length} ${waiting.length === 1 ? 'lesson is' : 'lessons are'} waiting.` : 'All caught up.'}</h1><p>Read each written answer. Multiple-choice checks are already done: a kid finishes one by choosing the best-supported answer. Pass the lesson to award its Knowledge Cards, or send it back with a note about what to change.</p></header>
     <KidRoster account={account} kids={reviewable} completed={completed} items={items} optOuts={optOuts} availableLessonIds={availableLessonIds} />
     <section aria-labelledby="waiting-title" className="review-list">
       <h2 id="waiting-title" className="sr-only">Waiting for review</h2>
@@ -416,7 +416,7 @@ function ReviewPage({ gateway }: { gateway: FamilyGateway }) {
 function KidRoster({ account, kids, completed, items, optOuts, availableLessonIds }: { account: AccountSnapshot; kids: FamilyMember[]; completed: CompletedLesson[]; items: ReviewItem[]; optOuts: LessonOptOut[]; availableLessonIds: string[] }) {
   const ownSignIn = new Set(account.learners.map((learner) => learner.id));
   return <section className="family-card family-roster" aria-labelledby="roster-title">
-    <h2 id="roster-title"><Users aria-hidden="true" /> Your kids</h2>
+    <h2 id="roster-title"><Users aria-hidden="true" /> Your learners</h2>
     <ul className="family-members">{kids.map((kid) => {
       const { counts } = buildLearnerOverview(kid.id, completed, items, worldSpineRoadmap, { availableLessonIds, optOuts, isKnownLesson: (lessonId) => lessonById.has(lessonId) });
       const summary = [
@@ -428,7 +428,7 @@ function KidRoster({ account, kids, completed, items, optOuts, availableLessonId
         <a className="quiet-link" href={`#progress-${kid.id}`} aria-label={`See ${nameOf(kid)}’s progress`}>See progress</a>
       </li>;
     })}</ul>
-    <p className="family-hint">To add a kid or link one with a code, open <a href="/account">Account</a>.</p>
+    <p className="family-hint">To add a learner or link one with a code, open <a href="/account">Account</a>.</p>
   </section>;
 }
 

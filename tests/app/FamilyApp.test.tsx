@@ -268,11 +268,11 @@ describe('Review page', () => {
     expect(await screen.findByRole('heading', { name: 'No kids to review yet.' })).toBeTruthy();
   });
 
-  it('lists every kid at the top of the Family page with a way to their progress', async () => {
+  it('lists every learner at the top of the Learners page with a way to their progress', async () => {
     const gateway = parentGateway();
     gateway.account = { ...gateway.account, profiles: [{ id: 'kid-two', displayName: 'Ava' }] };
     render(<FamilyApp page="review" gateway={gateway} />);
-    const roster = await screen.findByRole('region', { name: 'Your kids' });
+    const roster = await screen.findByRole('region', { name: 'Your learners' });
     expect(within(roster).getByText('Sam')).toBeTruthy();
     expect(within(roster).getByText(/Own sign-in · 1 lesson finished · 1 waiting for you/)).toBeTruthy();
     expect(within(roster).getByText(/On this sign-in · 0 lessons finished/)).toBeTruthy();
