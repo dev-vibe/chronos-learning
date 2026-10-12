@@ -49,18 +49,37 @@
 .review-note-label span{font-weight:400;color:var(--muted)}
 .review-card textarea{min-height:92px;margin:6px 0 14px;resize:vertical}
 .review-actions{display:flex;flex-wrap:wrap;gap:10px}
-.reviewed-list{list-style:none;margin:0;padding:0}
-.reviewed-list li{display:grid;grid-template-columns:auto 1fr auto;gap:12px;align-items:center;padding:12px 0;border-bottom:1px solid var(--line);font-size:.92rem}
-.reviewed-list li>span:last-child{color:var(--muted);font-size:.82rem}
-.review-tag{padding:3px 10px;border-radius:999px;font-size:.72rem;font-weight:700}
+.review-tag{padding:3px 10px;border-radius:999px;font-size:.72rem;font-weight:700;white-space:nowrap}
 .review-tag-passed{background:color-mix(in srgb,var(--teal) 16%,transparent);color:var(--teal)}
 .review-tag-returned{background:color-mix(in srgb,var(--bronze) 16%,transparent);color:var(--bronze)}
+.review-tag-waiting{background:color-mix(in srgb,var(--gold) 20%,transparent);color:var(--ink)}
+.review-tag-unreviewed{background:var(--page);border:1px solid var(--line);color:var(--muted)}
+.progress-section .section-title p:not(.label){margin:6px 0 0;color:var(--muted);max-width:640px}
+.progress-grid{display:grid;gap:20px}
+.progress-card h3{font-size:1.6rem}
+.progress-card h3 svg{width:20px;color:var(--teal);flex:none}
+.progress-stats{display:grid;grid-template-columns:repeat(auto-fit,minmax(120px,1fr));gap:10px;margin:4px 0 18px}
+.progress-stats>div{padding:10px 12px;border:1px solid var(--line);border-radius:12px;background:var(--page)}
+.progress-stats dt{font-size:.72rem;color:var(--muted);line-height:1.3}
+.progress-stats dd{margin:2px 0 0;font:500 1.6rem/1.1 Newsreader,Georgia,serif;color:var(--ink)}
+.progress-chapter{margin-top:16px}
+.progress-chapter h4{margin:0 0 4px;font-size:.72rem;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--muted)}
+.progress-list{list-style:none;margin:0;padding:0}
+.progress-row{display:grid;grid-template-columns:auto 1fr auto;gap:12px;align-items:center;padding:11px 0;border-bottom:1px solid var(--line)}
+.progress-check{display:grid;place-items:center;width:26px;height:26px;border-radius:50%;background:var(--teal);color:#fff}
+.progress-check svg{width:14px;height:14px}
+.progress-lesson{display:grid;gap:2px;min-width:0}
+.progress-lesson strong{font-size:.98rem;line-height:1.3}
+.progress-lesson small{color:var(--muted);font-size:.8rem;line-height:1.4}
+.progress-status{display:flex;flex-wrap:wrap;gap:6px;justify-content:flex-end;align-items:center}
+.tries-chip{padding:2px 9px;border:1px solid var(--line);border-radius:999px;font-size:.72rem;font-weight:600;color:var(--muted);white-space:nowrap;cursor:help}
+.tries-chip-many{border-color:var(--bronze);color:var(--bronze)}
 .review-notices{display:grid;gap:12px;margin:0 0 26px}
 .review-notice{display:flex;align-items:center;gap:12px;padding:14px 18px;border:1px solid var(--gold);border-radius:14px;background:var(--surface);color:var(--ink);text-decoration:none}
 .review-notice svg{width:20px;flex:none;color:var(--bronze)}
 .review-notice span{flex:1;line-height:1.4}
 .review-notice strong{font-weight:600}
-@media(max-width:760px){.family-grid{grid-template-columns:1fr}.family-card{padding:20px 16px}.reviewed-list li{grid-template-columns:auto 1fr}.reviewed-list li>span:last-child{grid-column:2}.review-actions>button{width:100%}}
+@media(max-width:760px){.family-grid{grid-template-columns:1fr}.family-card{padding:20px 16px}.progress-row{grid-template-columns:auto 1fr}.progress-status{grid-column:2;justify-content:flex-start}.review-actions>button{width:100%}}
 .setup-card{grid-column:1/-1}
 .setup-options{display:grid;gap:12px;margin-top:8px}
 .setup-option{display:grid;gap:6px;width:100%;padding:16px 18px;border:1px solid var(--line);border-radius:14px;background:var(--page);color:var(--ink);font:inherit;text-align:left;cursor:pointer}

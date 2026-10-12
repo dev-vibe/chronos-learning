@@ -1,7 +1,7 @@
 begin;
 create extension if not exists pgtap with schema extensions;
 set local search_path=extensions,public;
-select plan(38);
+select plan(41);
 
 -- Kid, parent, a stranger and a second kid.
 insert into auth.users(id,instance_id,aud,role,email,encrypted_password,email_confirmed_at,created_at,updated_at)
@@ -46,6 +46,7 @@ select throws_ok(format('select public.link_learner(%L)', (select value from fix
 -- The stranger cannot see or review the kid's work.
 select set_config('request.jwt.claim.sub','33333333-3333-4333-a333-333333333333',true);
 select is((select count(*) from public.lesson_submissions), 0::bigint, 'an unlinked account sees no submissions');
+select is((select count(*) from public.lesson_progress), 0::bigint, 'an unlinked account sees no finished lessons');
 select throws_ok($$select public.review_submission('11111111-1111-4111-a111-111111111111','lesson.uruk.first-city','pass')$$, '42501', 'not linked to this learner', 'an unlinked account cannot review');
 select throws_ok($$select public.link_learner('ZZZZ-ZZZZ')$$, '22023', 'link code not found', 'an unknown code is rejected');
 
@@ -54,6 +55,7 @@ select set_config('request.jwt.claim.sub','22222222-2222-4222-a222-222222222222'
 select is((public.link_learner(lower(substr((select value from fixture where name='code'),1,4)) || '-' || substr((select value from fixture where name='code'),5))->>'displayName'), 'Kid', 'the parent links with the code');
 select is((select display_name from public.learners where id='11111111-1111-4111-a111-111111111111'), 'Kid', 'the parent can see the linked kid''s name');
 select is((select count(*) from public.lesson_submissions), 1::bigint, 'the parent sees the linked kid''s submission');
+select is((select count(*) from public.lesson_progress where status='completed'), 1::bigint, 'the parent sees the linked kid''s finished lesson');
 
 select set_config('request.jwt.claim.sub','33333333-3333-4333-a333-333333333333',true);
 select throws_ok(format('select public.link_learner(%L)', (select value from fixture where name='code')), '22023', 'link code not found', 'a used code cannot link anyone else');
@@ -95,6 +97,7 @@ select is((select count(*) from public.lesson_submissions), 1::bigint, 'kids onl
 delete from public.guardian_links where learner_id=auth.uid();
 select set_config('request.jwt.claim.sub','22222222-2222-4222-a222-222222222222',true);
 select is((select count(*) from public.lesson_submissions), 0::bigint, 'after unlinking the parent no longer sees the work');
+select is((select count(*) from public.lesson_progress), 0::bigint, 'after unlinking the parent no longer sees finished lessons');
 
 select * from finish();
 rollback;

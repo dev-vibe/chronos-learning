@@ -1,6 +1,8 @@
 import React, { useCallback, useEffect, useMemo, useState } from 'react';
 import { Check, ChevronDown, ClipboardCheck, KeyRound, Lock, LogOut, MessageSquareQuote, RefreshCw, ShieldCheck, UserRound, UserPlus, Users } from 'lucide-react';
 import { chronosContent } from '../../content/chronos';
+import { worldSpineRoadmap } from '../../content/world-spine/roadmap';
+import { buildLearnerOverview, triesDescription, triesLabel, type CompletedLesson, type OverviewRow } from '../domains/learnerOverview';
 import { cardsForLesson } from '../learn/progress';
 import { useChronosTheme } from '../theme/useChronosTheme';
 import { GlobalNavigation } from './GlobalNavigation';
@@ -24,10 +26,13 @@ import './family.css';
 const lessonById = new Map(chronosContent.lessons.map((lesson) => [lesson.id, lesson]));
 const cardById = new Map(chronosContent.cards.map((card) => [card.id, card]));
 const nameOf = (member?: FamilyMember) => member?.displayName ?? 'Learner';
-const shortDate = (iso?: string) => {
+/** "Oct 3, 4:12 PM", with the year only when it isn't this year. */
+const whenLabel = (iso?: string) => {
   if (!iso) return '';
   const date = new Date(iso);
-  return Number.isNaN(date.getTime()) ? '' : date.toLocaleDateString(undefined, { month: 'short', day: 'numeric' });
+  if (Number.isNaN(date.getTime())) return '';
+  const sameYear = date.getFullYear() === new Date().getFullYear();
+  return date.toLocaleString(undefined, { month: 'short', day: 'numeric', ...(sameYear ? {} : { year: 'numeric' }), hour: 'numeric', minute: '2-digit' });
 };
 
 type Session = { userId: string; email?: string } | null;
@@ -358,12 +363,13 @@ function ReviewLearnersCard({ gateway, account, waiting, onChange, secondary = f
 function ReviewPage({ gateway }: { gateway: FamilyGateway }) {
   const [account, setAccount] = useState<AccountSnapshot>();
   const [items, setItems] = useState<ReviewItem[]>();
+  const [completed, setCompleted] = useState<CompletedLesson[]>([]);
   const [error, setError] = useState('');
   const load = useCallback(async () => {
     setError('');
     try {
-      const [loadedAccount, queue] = await Promise.all([gateway.loadAccount(), gateway.loadReviewQueue()]);
-      setAccount(loadedAccount); setItems(queue);
+      const [loadedAccount, queue, finished] = await Promise.all([gateway.loadAccount(), gateway.loadReviewQueue(), gateway.loadCompletedLessons()]);
+      setAccount(loadedAccount); setItems(queue); setCompleted(finished);
     } catch (caught) { setError(familyErrorMessage(caught, 'Review couldn’t be loaded. Check your connection and retry.')); }
   }, [gateway]);
   useEffect(() => { void load(); }, [load]);
@@ -375,7 +381,6 @@ function ReviewPage({ gateway }: { gateway: FamilyGateway }) {
   const learnerById = new Map(reviewable.map((learner) => [learner.id, learner]));
   const known = items.filter((item) => lessonById.has(item.lessonId) && learnerById.has(item.learnerId));
   const waiting = known.filter((item) => item.status === 'submitted').sort((left, right) => left.submittedAt.localeCompare(right.submittedAt));
-  const reviewed = known.filter((item) => item.status !== 'submitted');
   return <>
     <header className="page-intro"><p className="label">Review</p><h1>{waiting.length ? `${waiting.length} ${waiting.length === 1 ? 'lesson is' : 'lessons are'} waiting.` : 'All caught up.'}</h1><p>Read each written answer. Multiple-choice checks are already done: a kid finishes one by choosing the best-supported answer. Pass the lesson to award its Knowledge Cards, or send it back with a note about what to change.</p></header>
     <section aria-labelledby="waiting-title" className="review-list">
@@ -383,11 +388,60 @@ function ReviewPage({ gateway }: { gateway: FamilyGateway }) {
       {waiting.map((item) => <ReviewCard key={`${item.learnerId}:${item.lessonId}`} item={item} learner={learnerById.get(item.learnerId)!} gateway={gateway} onReviewed={load} />)}
       {!waiting.length && <p className="family-hint">New submissions appear here when a learner finishes a lesson.</p>}
     </section>
-    {reviewed.length > 0 && <section className="dashboard-section" aria-labelledby="reviewed-title">
-      <div className="section-title"><div><p className="label">History</p><h2 id="reviewed-title">Reviewed</h2></div></div>
-      <ul className="reviewed-list">{reviewed.map((item) => <li key={`${item.learnerId}:${item.lessonId}`}><span className={`review-tag review-tag-${item.status}`}>{item.status === 'passed' ? 'Passed' : 'Sent back'}</span><strong>{lessonById.get(item.lessonId)!.title}</strong><span>{nameOf(learnerById.get(item.learnerId))} · {shortDate(item.reviewedAt)}</span></li>)}</ul>
-    </section>}
+    <section className="dashboard-section progress-section" aria-labelledby="progress-title">
+      <div className="section-title"><div><p className="label">Progress</p><h2 id="progress-title">Lessons each kid has finished</h2><p>The same green checks they see on their World History timeline, with when each lesson was sent and how many tries it took to pass.</p></div></div>
+      <div className="progress-grid">{reviewable.map((learner) => <LearnerProgressCard key={learner.id} learner={learner} completed={completed} items={items} />)}</div>
+    </section>
   </>;
+}
+
+const reviewTagLabel: Record<OverviewRow['review'], string> = { passed: 'Passed', waiting: 'Waiting for you', returned: 'Sent back', unreviewed: 'Not reviewed' };
+
+function ProgressRow({ row }: { row: OverviewRow }) {
+  const lesson = lessonById.get(row.lessonId)!;
+  const resent = row.tries > 1 && row.lastSentAt;
+  const detail = [
+    `${row.review === 'unreviewed' ? 'Finished' : 'Sent'} ${whenLabel(row.firstSentAt)}`,
+    resent ? `sent again ${whenLabel(row.lastSentAt)}` : '',
+    row.reviewedAt ? `${row.review === 'passed' ? 'passed' : 'sent back'} ${whenLabel(row.reviewedAt)}` : '',
+  ].filter(Boolean).join(' · ');
+  return <li className="progress-row">
+    <span className="progress-check" aria-hidden="true"><Check /></span>
+    <div className="progress-lesson"><strong>{lesson.title}</strong><small>{detail}</small></div>
+    <div className="progress-status">
+      <span className={`review-tag review-tag-${row.review}`}>{reviewTagLabel[row.review]}</span>
+      {row.tries > 0 && <span className={`tries-chip${row.tries >= 3 ? ' tries-chip-many' : ''}`} title={triesDescription(row.review, row.tries)}>{triesLabel(row.tries)}</span>}
+    </div>
+  </li>;
+}
+
+function LearnerProgressCard({ learner, completed, items }: { learner: FamilyMember; completed: CompletedLesson[]; items: ReviewItem[] }) {
+  const { rows, counts } = useMemo(() => buildLearnerOverview(learner.id, completed, items, worldSpineRoadmap, (lessonId) => lessonById.has(lessonId)), [learner.id, completed, items]);
+  const name = nameOf(learner);
+  const chapters = rows.reduce<Array<{ key: string; title: string; rows: OverviewRow[] }>>((groups, row) => {
+    const key = row.chapterId ?? 'other';
+    const group = groups.find((item) => item.key === key);
+    if (group) group.rows.push(row);
+    else groups.push({ key, title: row.chapterTitle ? `Chapter ${row.chapterId} · ${row.chapterTitle}` : 'Other lessons', rows: [row] });
+    return groups;
+  }, []);
+  const titleId = `progress-${learner.id}`;
+  return <article className="family-card progress-card" aria-labelledby={titleId}>
+    <h3 id={titleId}><UserRound aria-hidden="true" /> {name}</h3>
+    <dl className="progress-stats">
+      <div><dt>Lessons finished</dt><dd>{counts.finished}</dd></div>
+      <div><dt>Passed lessons</dt><dd>{counts.passed}</dd></div>
+      <div><dt>Passed first try</dt><dd>{counts.passedFirstTry}</dd></div>
+      <div><dt>Awaiting review</dt><dd>{counts.waiting}</dd></div>
+      <div><dt>Needs another try</dt><dd>{counts.returned}</dd></div>
+    </dl>
+    {rows.length === 0
+      ? <p className="family-hint">{name} hasn’t finished a lesson yet. Finished lessons will appear here.</p>
+      : chapters.map((chapter) => <section key={chapter.key} className="progress-chapter" aria-label={chapter.title}>
+          <h4>{chapter.title}</h4>
+          <ul className="progress-list">{chapter.rows.map((row) => <ProgressRow key={row.lessonId} row={row} />)}</ul>
+        </section>)}
+  </article>;
 }
 
 function ReviewCard({ item, learner, gateway, onReviewed }: { item: ReviewItem; learner: FamilyMember; gateway: FamilyGateway; onReviewed(): void }) {
@@ -406,7 +460,7 @@ function ReviewCard({ item, learner, gateway, onReviewed }: { item: ReviewItem; 
   const noteId = `note-${item.learnerId}-${item.lessonId}`;
   return <article className="family-card review-card" aria-labelledby={`${noteId}-title`}>
     <header>
-      <p className="label">{name} · sent {shortDate(item.submittedAt)}{item.round > 1 ? ' · resubmitted' : ''}</p>
+      <p className="label">{name} · sent {whenLabel(item.submittedAt)}{item.round > 1 ? ` · resubmitted (${triesLabel(item.round)})` : ''}</p>
       <h3 id={`${noteId}-title`}><a href={`/learn/${lesson.id}`}>{lesson.title}</a></h3>
     </header>
     {item.round > 1 && item.feedback && <figure className="parent-note"><figcaption><MessageSquareQuote aria-hidden="true" /> Your last note</figcaption><blockquote>{item.feedback}</blockquote></figure>}

@@ -1,6 +1,7 @@
 import { isSupabaseConfigured, supabase } from '../../../lib/supabase';
 import { enterParentView, forgetFamilyView } from './activeLearner';
 import { parseSubmittedQuestions, type SubmittedQuestion } from '../../domains/submissions';
+import type { CompletedLesson } from '../../domains/learnerOverview';
 
 export type FamilyMember = { id: string; displayName?: string };
 /** separate: kids have their own sign-ins (recommended). shared: kid profiles on this sign-in. learner: just me. */
@@ -57,6 +58,8 @@ export interface FamilyGateway {
   verifyParentPin(pin: string): Promise<boolean>;
   parentPinEnabled(): Promise<boolean>;
   loadReviewQueue(): Promise<ReviewItem[]>;
+  /** Lessons each reviewable learner has finished, which is what shows as done on their timeline. */
+  loadCompletedLessons(): Promise<CompletedLesson[]>;
   review(learnerId: string, lessonId: string, decision: ReviewDecision, feedback: string, cardIds: string[]): Promise<void>;
 }
 
@@ -204,7 +207,8 @@ export class SupabaseFamilyGateway implements FamilyGateway {
     if (error) throw error;
     return Boolean(data);
   }
-  async loadReviewQueue(): Promise<ReviewItem[]> {
+  /** Linked learners with their own sign-ins, plus the kid profiles held by this sign-in. */
+  private async reviewableLearnerIds(): Promise<string[]> {
     const user = await this.requireUser();
     const [links, kids] = await Promise.all([
       this.client.from('guardian_links').select('learner_id').eq('guardian_id', user.id),
@@ -212,10 +216,26 @@ export class SupabaseFamilyGateway implements FamilyGateway {
     ]);
     if (links.error) throw links.error;
     if (kids.error) throw kids.error;
-    const learnerIds = [...new Set([
+    return [...new Set([
       ...((links.data ?? []) as Array<{ learner_id: string }>).map((row) => row.learner_id),
       ...((kids.data ?? []) as Array<{ id: string }>).map((row) => row.id),
     ])];
+  }
+  async loadCompletedLessons(): Promise<CompletedLesson[]> {
+    const learnerIds = await this.reviewableLearnerIds();
+    if (!learnerIds.length) return [];
+    const { data, error } = await this.client
+      .from('lesson_progress')
+      .select('learner_id,lesson_id,completed_at')
+      .eq('status', 'completed')
+      .in('learner_id', learnerIds);
+    if (error) throw error;
+    return ((data ?? []) as any[])
+      .filter((row) => row.completed_at)
+      .map((row) => ({ learnerId: String(row.learner_id), lessonId: String(row.lesson_id), completedAt: String(row.completed_at) }));
+  }
+  async loadReviewQueue(): Promise<ReviewItem[]> {
+    const learnerIds = await this.reviewableLearnerIds();
     if (!learnerIds.length) return [];
     const { data, error } = await this.client
       .from('lesson_submissions')
@@ -269,6 +289,7 @@ class UnavailableFamilyGateway implements FamilyGateway {
   async verifyParentPin() { return true; }
   async parentPinEnabled() { return false; }
   async loadReviewQueue(): Promise<ReviewItem[]> { return []; }
+  async loadCompletedLessons(): Promise<CompletedLesson[]> { return []; }
   async review() { this.unavailable(); }
 }
 
