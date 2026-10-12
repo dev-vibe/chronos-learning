@@ -45,6 +45,17 @@ describe('choosing who is using Chronos', () => {
     sessionStorage.setItem('chronos.family.parentView', '1');
     expect(await loadActiveLearner(client)).toMatchObject({ learnerId: parentId, view: 'parent' });
   });
+  it('also loads kids linked from their own sign-in, and keeps them if the lookup fails', async () => {
+    const tables: Record<string, any> = {
+      learners: { select: () => tables.learners, eq: () => tables.learners, neq: () => tables.learners, in: () => tables.learners, order: async () => ({ data: [{ id: 'river', display_name: 'River' }], error: null }) },
+      guardian_links: { select: () => tables.guardian_links, eq: async () => ({ data: [{ learner_id: 'river' }], error: null }) },
+    };
+    const client: any = { auth: { getUser: async () => ({ data: { user: { id: parentId } } }) }, from: (table: string) => tables[table] };
+    const parent = await loadActiveLearner(client);
+    expect(parent).toMatchObject({ view: 'kid', linkedLearners: [{ id: 'river', displayName: 'River' }] });
+    tables.guardian_links.eq = async () => { throw new Error('offline'); };
+    expect(await loadActiveLearner(client)).toMatchObject({ linkedLearners: [] });
+  });
   it('switching kids leaves parent view and sends parent-only pages home', () => {
     sessionStorage.setItem('chronos.family.parentView', '1');
     switchToKid('kid-alex', location as unknown as Location);

@@ -193,6 +193,15 @@ describe('Account setup and shared accounts', () => {
     await waitFor(() => expect(within(kids).queryByText('Alexis')).toBeNull());
   });
 
+  it('links to Review from a shared account whose only kid has their own sign-in', async () => {
+    const gateway = newAccount();
+    gateway.account = { ...gateway.account, setup: 'shared', learners: [{ id: kidId, displayName: 'River' }] };
+    render(<FamilyApp page="account" gateway={gateway} activeLearner={null} />);
+    const linked = await screen.findByRole('region', { name: 'Kids with their own sign-in' });
+    expect(within(linked).getByText('River')).toBeTruthy();
+    expect(within(linked).getByRole('link', { name: /Open Review/ }).getAttribute('href')).toBe('/review');
+  });
+
   it('lets the parent add, change and turn off an optional parent-view PIN', async () => {
     const gateway = newAccount();
     gateway.account = { ...gateway.account, setup: 'shared', profiles: [{ id: 'kid-1', displayName: 'Sam' }] };
@@ -257,6 +266,19 @@ describe('Review page', () => {
     gateway.account = { ...gateway.account, learners: [] };
     render(<FamilyApp page="review" gateway={gateway} />);
     expect(await screen.findByRole('heading', { name: 'No kids to review yet.' })).toBeTruthy();
+  });
+
+  it('lists every kid at the top of the Family page with a way to their progress', async () => {
+    const gateway = parentGateway();
+    gateway.account = { ...gateway.account, profiles: [{ id: 'kid-two', displayName: 'Ava' }] };
+    render(<FamilyApp page="review" gateway={gateway} />);
+    const roster = await screen.findByRole('region', { name: 'Your kids' });
+    expect(within(roster).getByText('Sam')).toBeTruthy();
+    expect(within(roster).getByText(/Own sign-in · 1 lesson finished · 1 waiting for you/)).toBeTruthy();
+    expect(within(roster).getByText(/On this sign-in · 0 lessons finished/)).toBeTruthy();
+    expect(within(roster).getByRole('link', { name: 'See Sam’s progress' }).getAttribute('href')).toBe(`#progress-${kidId}`);
+    expect(document.getElementById(`progress-${kidId}`)).toBeTruthy();
+    expect(within(roster).getByRole('link', { name: 'Account' }).getAttribute('href')).toBe('/account');
   });
 
   it('shows the learner’s answers in words and requires a note to send work back', async () => {

@@ -106,3 +106,6 @@
 .kid-view-card .primary svg{width:18px}
 .kid-view-others{display:flex;flex-wrap:wrap;gap:8px;align-items:center}
 .kid-view-others .family-hint{margin:0 4px 0 0}
+.roster-kid{display:grid;gap:2px}
+.roster-kid small{color:var(--muted)}
+.progress-card{scroll-margin-top:16px}

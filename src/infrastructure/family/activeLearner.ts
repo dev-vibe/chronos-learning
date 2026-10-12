@@ -10,7 +10,8 @@ import { isSupabaseConfigured, supabase } from '../../../lib/supabase';
  */
 export type LearnerView = 'self' | 'kid' | 'parent';
 export type KidProfile = { id: string; displayName: string };
-export type ActiveLearner = { userId: string; learnerId: string; view: LearnerView; profiles: KidProfile[] };
+/** `linkedLearners` are kids with their own sign-in whom this account reviews. */
+export type ActiveLearner = { userId: string; learnerId: string; view: LearnerView; profiles: KidProfile[]; linkedLearners?: KidProfile[] };
 
 const KID_KEY = 'chronos.family.activeKid';
 const PARENT_KEY = 'chronos.family.parentView';
@@ -24,11 +25,33 @@ const local = () => globalThis.localStorage;
 const session = () => globalThis.sessionStorage;
 
 /** Pick the acting learner. Shared accounts default to the last kid used. */
-export function chooseActiveLearner(userId: string, profiles: KidProfile[], storedKidId: string | null, parentView: boolean): ActiveLearner {
-  if (!profiles.length) return { userId, learnerId: userId, view: 'self', profiles };
-  if (parentView) return { userId, learnerId: userId, view: 'parent', profiles };
+export function chooseActiveLearner(userId: string, profiles: KidProfile[], storedKidId: string | null, parentView: boolean, linkedLearners: KidProfile[] = []): ActiveLearner {
+  if (!profiles.length) return { userId, learnerId: userId, view: 'self', profiles, linkedLearners };
+  if (parentView) return { userId, learnerId: userId, view: 'parent', profiles, linkedLearners };
   const kid = profiles.find((profile) => profile.id === storedKidId) ?? profiles[0];
-  return { userId, learnerId: kid.id, view: 'kid', profiles };
+  return { userId, learnerId: kid.id, view: 'kid', profiles, linkedLearners };
+}
+
+/**
+ * Whether the parent area (kids, progress, review) belongs in the main
+ * navigation. A sign-in with kids of its own shows it only in parent view, so a
+ * kid using the shared sign-in never sees it. A sign-in that only reviews linked
+ * kids shows it whenever any are linked.
+ */
+export function hasParentArea(active: ActiveLearner | null | undefined): boolean {
+  if (!active) return false;
+  if (active.profiles.length) return active.view === 'parent';
+  return (active.linkedLearners?.length ?? 0) > 0;
+}
+
+async function loadLinkedLearners(client: typeof supabase, guardianId: string): Promise<KidProfile[]> {
+  try {
+    const { data: links } = await client.from('guardian_links').select('learner_id').eq('guardian_id', guardianId) as unknown as { data: Array<{ learner_id: string }> | null };
+    const ids = (links ?? []).map((row) => row.learner_id);
+    if (!ids.length) return [];
+    const { data: rows } = await client.from('learners').select('id,display_name').in('id', ids).order('created_at', { ascending: true }) as unknown as { data: Array<{ id: string; display_name: string | null }> | null };
+    return (rows ?? []).map((row) => ({ id: row.id, displayName: row.display_name ?? 'Kid' }));
+  } catch { return []; }
 }
 
 export async function loadActiveLearner(client: typeof supabase = supabase): Promise<ActiveLearner | null> {
@@ -43,8 +66,9 @@ export async function loadActiveLearner(client: typeof supabase = supabase): Pro
     .order('created_at', { ascending: true });
   if (error) throw error;
   const profiles = ((rows ?? []) as Array<{ id: string; display_name: string | null }>).map((row) => ({ id: row.id, displayName: row.display_name ?? 'Kid' }));
-  write(local, CACHE_KEY, JSON.stringify({ userId: user.id, profiles }));
-  return chooseActiveLearner(user.id, profiles, read(local, KID_KEY), read(session, PARENT_KEY) === '1');
+  const linkedLearners = await loadLinkedLearners(client, user.id);
+  write(local, CACHE_KEY, JSON.stringify({ userId: user.id, profiles, linkedLearners }));
+  return chooseActiveLearner(user.id, profiles, read(local, KID_KEY), read(session, PARENT_KEY) === '1', linkedLearners);
 }
 
 let pending: Promise<ActiveLearner | null> | undefined;
@@ -59,9 +83,9 @@ export function resolveActiveLearner(): Promise<ActiveLearner | null> {
 export function cachedActiveLearner(): ActiveLearner | null {
   if (!isSupabaseConfigured()) return null;
   try {
-    const cached = JSON.parse(read(local, CACHE_KEY) ?? 'null') as { userId: string; profiles: KidProfile[] } | null;
+    const cached = JSON.parse(read(local, CACHE_KEY) ?? 'null') as { userId: string; profiles: KidProfile[]; linkedLearners?: KidProfile[] } | null;
     if (!cached?.userId || !Array.isArray(cached.profiles)) return null;
-    return chooseActiveLearner(cached.userId, cached.profiles, read(local, KID_KEY), read(session, PARENT_KEY) === '1');
+    return chooseActiveLearner(cached.userId, cached.profiles, read(local, KID_KEY), read(session, PARENT_KEY) === '1', Array.isArray(cached.linkedLearners) ? cached.linkedLearners : []);
   } catch { return null; }
 }
 
