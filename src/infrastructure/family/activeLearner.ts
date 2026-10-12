@@ -103,10 +103,10 @@ export function forgetFamilyView() {
 /** Pages that belong to parent view send a kid back Home after switching. */
 export function switchToKid(kidId: string, location: Pick<Location, 'pathname' | 'assign' | 'reload'> = window.location) {
   rememberKid(kidId);
-  if (location.pathname === '/review' || location.pathname === '/account') location.assign('/home');
+  if (['/review', '/account', '/learners'].includes(location.pathname) || location.pathname.startsWith('/learners/')) location.assign('/home');
   else location.reload();
 }
-export function switchToParent(location: Pick<Location, 'assign'> = window.location, destination = '/review') {
+export function switchToParent(location: Pick<Location, 'assign'> = window.location, destination = '/learners') {
   enterParentView();
   location.assign(destination);
 }

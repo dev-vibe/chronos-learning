@@ -9,6 +9,7 @@ export type ChronosRoute =
   | { name: 'audit' }
   | { name: 'account' }
   | { name: 'review' }
+  | { name: 'learner'; learnerId: string }
   | { name: 'legacy' }
   | { name: 'not-found' };
 
@@ -18,7 +19,10 @@ export function parseChronosRoute(pathname: string, search = ''): ChronosRoute {
   if (clean === '/library') return { name: 'library' };
   if (clean === '/audit' || clean === '/admin') return { name: 'audit' };
   if (clean === '/account') return { name: 'account' };
-  if (clean === '/review') return { name: 'review' };
+  // The Learners list lives at /learners; /review is kept so existing links still work.
+  if (clean === '/review' || clean === '/learners') return { name: 'review' };
+  const learner = clean.match(/^\/learners\/([^/]+)$/);
+  if (learner) { const learnerId = safeDecodePathSegment(learner[1]); return learnerId === undefined ? { name: 'not-found' } : { name: 'learner', learnerId }; }
   const journey = clean.match(/^\/library\/([^/]+)$/);
   if (journey) { const journeyId = safeDecodePathSegment(journey[1]); return journeyId === undefined ? { name: 'not-found' } : { name: 'journey', journeyId }; }
   if (clean === '/search') return { name: 'search', query: new URLSearchParams(search).get('q') ?? '' };

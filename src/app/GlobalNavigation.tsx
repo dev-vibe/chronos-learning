@@ -19,7 +19,7 @@ const destinations = [
   { id: 'home' as const, label: 'Home', href: '/home', icon: Home },
   { id: 'library' as const, label: 'Library', href: '/library', icon: Library },
   { id: 'search' as const, label: 'Search', href: '/search', icon: Search },
-  { id: 'learners' as const, label: 'Learners', href: '/review', icon: Users },
+  { id: 'learners' as const, label: 'Learners', href: '/learners', icon: Users },
   { id: 'account' as const, label: 'Account', href: '/account', icon: UserRound },
 ];
 

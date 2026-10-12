@@ -265,20 +265,24 @@ describe('Review page', () => {
     const gateway = parentGateway();
     gateway.account = { ...gateway.account, learners: [] };
     render(<FamilyApp page="review" gateway={gateway} />);
-    expect(await screen.findByRole('heading', { name: 'No kids to review yet.' })).toBeTruthy();
+    expect(await screen.findByRole('heading', { name: 'No learners yet.' })).toBeTruthy();
   });
 
-  it('lists every learner at the top of the Learners page with a way to their progress', async () => {
+  it('lists every learner as a link to their own page, with no progress on the list itself', async () => {
     const gateway = parentGateway();
     gateway.account = { ...gateway.account, profiles: [{ id: 'kid-two', displayName: 'Ava' }] };
     render(<FamilyApp page="review" gateway={gateway} />);
     const roster = await screen.findByRole('region', { name: 'Your learners' });
-    expect(within(roster).getByText('Sam')).toBeTruthy();
-    expect(within(roster).getByText(/Own sign-in · 1 lesson finished · 1 waiting for you/)).toBeTruthy();
-    expect(within(roster).getByText(/On this sign-in · 0 lessons finished/)).toBeTruthy();
-    expect(within(roster).getByRole('link', { name: 'See Sam’s progress' }).getAttribute('href')).toBe(`#progress-${kidId}`);
-    expect(document.getElementById(`progress-${kidId}`)).toBeTruthy();
+    const sam = within(roster).getByRole('link', { name: /^Sam/ });
+    expect(sam.getAttribute('href')).toBe(`/learners/${kidId}`);
+    expect(sam.textContent).toContain('Own sign-in · 1 lesson finished · 1 waiting for you');
+    const ava = within(roster).getByRole('link', { name: /^Ava/ });
+    expect(ava.getAttribute('href')).toBe('/learners/kid-two');
+    expect(ava.textContent).toContain('On this sign-in · 0 lessons finished');
     expect(within(roster).getByRole('link', { name: 'Account' }).getAttribute('href')).toBe('/account');
+    // Progress, with its chapters and skip controls, is on each learner's page instead.
+    expect(screen.queryByRole('heading', { name: /Each kid/ })).toBeNull();
+    expect(screen.queryByText('Lessons finished', { selector: 'dt' })).toBeNull();
   });
 
   it('shows the learner’s answers in words and requires a note to send work back', async () => {
@@ -297,7 +301,7 @@ describe('Review page', () => {
     await userEvent.click(within(card).getByRole('button', { name: 'Send back' }));
     expect(gateway.review).toHaveBeenCalledWith(kidId, 'lesson.uruk.first-city', 'return', 'Say who did the work.', ['card.place.uruk']);
     expect(await screen.findByRole('heading', { name: 'All caught up.' })).toBeTruthy();
-    expect(screen.getByText('Sent back')).toBeTruthy();
+    expect(screen.queryByRole('article', { name: 'Uruk: Life in an Early City' })).toBeNull();
   });
 
   it('passes a lesson and awards the lesson’s card from the content bundle', async () => {
@@ -306,7 +310,7 @@ describe('Review page', () => {
     const pass = await screen.findByRole('button', { name: 'Pass and award the Uruk card' });
     await userEvent.click(pass);
     expect(gateway.review).toHaveBeenCalledWith(kidId, 'lesson.uruk.first-city', 'pass', '', ['card.place.uruk']);
-    await waitFor(() => expect(screen.getByText('Passed')).toBeTruthy());
+    expect(await screen.findByRole('heading', { name: 'All caught up.' })).toBeTruthy();
   });
 
   it('shows the parent’s previous note on resubmitted work', async () => {
@@ -340,7 +344,7 @@ describe('Progress overview', () => {
       { ...waitingUruk(), lessonId: uruk, status: 'passed', round: 1, submittedAt: '2026-09-24T15:42:00.000Z', reviewedAt: '2026-09-24T20:00:00.000Z' },
       { ...waitingUruk(), lessonId: writing, status: 'passed', round: 3, submittedAt: '2026-09-28T15:42:00.000Z', reviewedAt: '2026-09-29T20:00:00.000Z' },
     ];
-    render(<FamilyApp page="review" gateway={gateway} />);
+    render(<FamilyApp page="learner" learnerId={kidId} gateway={gateway} />);
     const sam = await progressOf('Sam');
     // Same order as the timeline: Uruk comes before writing even though writing was sent later.
     const rows = Array.from(sam.getAllByRole('listitem')).filter((row) => !row.querySelector('button')).map((row) => row.textContent ?? '');
@@ -357,32 +361,46 @@ describe('Progress overview', () => {
     expect(stat('Passed first try')).toBe('1');
   });
 
-  it('keeps one card per kid and says when a kid has not finished anything', async () => {
+  it('gives each learner their own page, and says when a learner has not finished anything', async () => {
     const gateway = parentGateway();
     gateway.completed = [{ learnerId: kidId, lessonId: uruk, completedAt: '2026-09-24T15:42:00.000Z' }];
     gateway.queue = [waitingUruk()];
-    render(<FamilyApp page="review" gateway={gateway} />);
+    const { unmount } = render(<FamilyApp page="learner" learnerId={kidId} gateway={gateway} />);
     const sam = await progressOf('Sam');
+    expect(screen.getByRole('heading', { level: 1, name: 'Sam' })).toBeTruthy();
     expect(sam.getByText('Waiting for you')).toBeTruthy();
+    expect(screen.getByRole('link', { name: 'All learners' }).getAttribute('href')).toBe('/learners');
+    expect(screen.getByRole('link', { name: /1 lesson is waiting for your review/ }).getAttribute('href')).toBe('/learners');
+    expect(screen.queryByText(/hasn’t finished a lesson yet/)).toBeNull();
+    unmount();
+    render(<FamilyApp page="learner" learnerId="kid-two" gateway={gateway} />);
     const ava = await progressOf('Ava');
     expect(ava.getByText(/Ava hasn’t finished a lesson yet/)).toBeTruthy();
+    expect(screen.queryByRole('link', { name: /waiting for your review/ })).toBeNull();
+  });
+
+  it('says so when a learner page is opened for someone who is not linked', async () => {
+    const gateway = parentGateway();
+    render(<FamilyApp page="learner" learnerId="someone-else" gateway={gateway} />);
+    expect(await screen.findByRole('heading', { name: 'We couldn’t find that learner.' })).toBeTruthy();
+    expect(screen.getByRole('link', { name: 'All learners' }).getAttribute('href')).toBe('/learners');
   });
 
   it('shows lessons finished before parent review as finished, not as waiting', async () => {
     const gateway = parentGateway();
     gateway.completed = [{ learnerId: kidId, lessonId: uruk, completedAt: '2026-08-01T15:42:00.000Z' }];
     gateway.queue = [];
-    render(<FamilyApp page="review" gateway={gateway} />);
+    render(<FamilyApp page="learner" learnerId={kidId} gateway={gateway} />);
     const sam = await progressOf('Sam');
     expect(sam.getByText('Not reviewed')).toBeTruthy();
     expect(sam.queryByText(/^\d+(st|nd|rd|th) try$/)).toBeNull();
-    expect(screen.getByText(/^Finished /)).toBeTruthy();
+    expect(sam.getByText(/^Finished \w{3} \d/)).toBeTruthy();
   });
 
   it('flags a lesson sent back and waiting on a resend', async () => {
     const gateway = parentGateway();
     gateway.queue = [{ ...waitingUruk(), status: 'returned', round: 1, feedback: 'Say who did the work.', reviewedAt: '2026-09-26T00:00:00.000Z' }];
-    render(<FamilyApp page="review" gateway={gateway} />);
+    render(<FamilyApp page="learner" learnerId={kidId} gateway={gateway} />);
     const sam = await progressOf('Sam');
     expect(sam.getByText('Sent back')).toBeTruthy();
     expect(sam.getByText('1st try')).toBeTruthy();
@@ -394,7 +412,7 @@ describe('Progress overview', () => {
       const gateway = parentGateway();
       gateway.completed = [{ learnerId: kidId, lessonId: uruk, completedAt: '2026-09-24T15:42:00.000Z' }];
       gateway.queue = [{ ...waitingUruk(), status: 'passed', reviewedAt: '2026-09-25T00:00:00.000Z' }];
-      render(<FamilyApp page="review" gateway={gateway} />);
+      render(<FamilyApp page="learner" learnerId={kidId} gateway={gateway} />);
       const sam = await progressOf('Sam');
       expect(sam.getByRole('button', { name: `Skip ${title(writing)} for Sam` })).toBeTruthy();
       expect(sam.queryByRole('button', { name: `Skip ${title(uruk)} for Sam` })).toBeNull();
@@ -404,7 +422,7 @@ describe('Progress overview', () => {
     it('skips a lesson after confirming, shows it as skipped, and restores it', async () => {
       const gateway = parentGateway();
       vi.spyOn(window, 'confirm').mockReturnValue(true);
-      render(<FamilyApp page="review" gateway={gateway} />);
+      render(<FamilyApp page="learner" learnerId={kidId} gateway={gateway} />);
       const sam = await progressOf('Sam');
       await userEvent.click(sam.getByRole('button', { name: `Skip ${title(writing)} for Sam` }));
       expect(gateway.setLessonOptOut).toHaveBeenCalledWith(kidId, writing, true);
@@ -412,8 +430,8 @@ describe('Progress overview', () => {
       expect(sam.getByText('Skipped', { selector: '.review-tag' })).toBeTruthy();
       expect(sam.getByText('Skipped', { selector: 'dt' }).parentElement!.querySelector('dd')!.textContent).toBe('1');
       expect(sam.queryByRole('button', { name: `Skip ${title(writing)} for Sam` })).toBeNull();
-      // Skipping one kid's lesson leaves the other kid's list alone.
-      expect((await progressOf('Ava')).getByRole('button', { name: `Skip ${title(writing)} for Ava` })).toBeTruthy();
+      // Skipping is per learner: only Sam's lesson was opted out.
+      expect(gateway.optOuts).toEqual([expect.objectContaining({ learnerId: kidId, lessonId: writing })]);
       await userEvent.click(restore);
       expect(gateway.setLessonOptOut).toHaveBeenLastCalledWith(kidId, writing, false);
       expect(await sam.findByRole('button', { name: `Skip ${title(writing)} for Sam` })).toBeTruthy();
@@ -423,7 +441,7 @@ describe('Progress overview', () => {
     it('does nothing when the parent cancels the confirmation', async () => {
       const gateway = parentGateway();
       vi.spyOn(window, 'confirm').mockReturnValue(false);
-      render(<FamilyApp page="review" gateway={gateway} />);
+      render(<FamilyApp page="learner" learnerId={kidId} gateway={gateway} />);
       const sam = await progressOf('Sam');
       await userEvent.click(sam.getByRole('button', { name: `Skip ${title(writing)} for Sam` }));
       expect(gateway.setLessonOptOut).not.toHaveBeenCalled();
@@ -433,7 +451,7 @@ describe('Progress overview', () => {
       const gateway = parentGateway();
       vi.spyOn(window, 'confirm').mockReturnValue(true);
       gateway.setLessonOptOut.mockRejectedValueOnce({ message: 'finished lessons cannot be skipped' });
-      render(<FamilyApp page="review" gateway={gateway} />);
+      render(<FamilyApp page="learner" learnerId={kidId} gateway={gateway} />);
       const sam = await progressOf('Sam');
       await userEvent.click(sam.getByRole('button', { name: `Skip ${title(writing)} for Sam` }));
       expect((await screen.findByRole('alert')).textContent).toMatch(/already finished/);
@@ -442,7 +460,7 @@ describe('Progress overview', () => {
 
     it('says how many more lessons are still being written', async () => {
       const gateway = parentGateway();
-      render(<FamilyApp page="review" gateway={gateway} />);
+      render(<FamilyApp page="learner" learnerId={kidId} gateway={gateway} />);
       await progressOf('Sam');
       expect(screen.getByText(/still being written/)).toBeTruthy();
     });

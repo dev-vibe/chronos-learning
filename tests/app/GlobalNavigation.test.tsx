@@ -33,7 +33,7 @@ describe('the parent area in navigation', () => {
     active = self(river);
     render(<GlobalNavigation active="learners" theme="light" onTheme={() => undefined} />);
     const learners = screen.getAllByRole('link', { name: 'Learners' })[0];
-    expect(learners.getAttribute('href')).toBe('/review');
+    expect(learners.getAttribute('href')).toBe('/learners');
     expect(learners.getAttribute('aria-current')).toBe('page');
     expect(screen.getAllByRole('link', { name: 'Account' })[0].getAttribute('href')).toBe('/account');
   });

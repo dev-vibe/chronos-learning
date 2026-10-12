@@ -65,6 +65,10 @@ describe('choosing who is using Chronos', () => {
     location.pathname = '/review';
     switchToKid('kid-sam', location as unknown as Location);
     expect(location.assign).toHaveBeenCalledWith('/home');
+    location.assign.mockClear();
+    location.pathname = '/learners/kid-sam';
+    switchToKid('kid-alex', location as unknown as Location);
+    expect(location.assign).toHaveBeenCalledWith('/home');
   });
 });
 
@@ -89,7 +93,7 @@ describe('profile switcher', () => {
     renderIn(<ProfileSwitcher active={kidView} variant="tab" gateway={pinGateway(null)} />);
     await userEvent.click(screen.getByRole('button', { name: /Switch profile/ }));
     await userEvent.click(within(screen.getByRole('dialog')).getByRole('button', { name: /Parent view/ }));
-    await waitFor(() => expect(location.assign).toHaveBeenCalledWith('/review'));
+    await waitFor(() => expect(location.assign).toHaveBeenCalledWith('/learners'));
     expect(sessionStorage.getItem('chronos.family.parentView')).toBe('1');
   });
 
@@ -104,7 +108,7 @@ describe('profile switcher', () => {
     expect(location.assign).not.toHaveBeenCalled();
     await userEvent.type(screen.getByLabelText(/Parent PIN/), '2468');
     await userEvent.click(screen.getByRole('button', { name: 'Open' }));
-    await waitFor(() => expect(location.assign).toHaveBeenCalledWith('/review'));
+    await waitFor(() => expect(location.assign).toHaveBeenCalledWith('/learners'));
   });
 
   it('marks parent view clearly and closes on Escape', async () => {
