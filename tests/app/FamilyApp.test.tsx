@@ -3,9 +3,11 @@ import React from 'react';
 import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest';
 import { cleanup, render, screen, waitFor, within } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
+import { chronosContent } from '../../content/chronos';
 import { FamilyApp } from '../../src/app/FamilyApp';
 import type { AccountSetup, AccountSnapshot, FamilyGateway, ReviewItem } from '../../src/infrastructure/family/gateway';
 import type { ActiveLearner } from '../../src/infrastructure/family/activeLearner';
+import type { CompletedLesson } from '../../src/domains/learnerOverview';
 
 const kidId = '11111111-1111-4111-a111-111111111111';
 const parentId = '22222222-2222-4222-a222-222222222222';
@@ -38,6 +40,8 @@ class FakeFamilyGateway implements FamilyGateway {
   verifyParentPin = vi.fn(async (pin: string) => this.pin === null || pin === this.pin);
   parentPinEnabled = vi.fn(async () => this.pin !== null);
   loadReviewQueue = vi.fn(async () => this.queue);
+  completed: CompletedLesson[] = [];
+  loadCompletedLessons = vi.fn(async () => this.completed);
   review = vi.fn(async (learnerId: string, lessonId: string, decision: 'pass' | 'return', feedback: string) => {
     this.queue = this.queue.map((item) => item.learnerId === learnerId && item.lessonId === lessonId ? { ...item, status: decision === 'pass' ? 'passed' : 'returned', feedback, reviewedAt: '2026-09-26T00:00:00.000Z' } : item);
   });
@@ -283,7 +287,79 @@ describe('Review page', () => {
     gateway.queue = [{ ...waitingUruk(), round: 2, feedback: 'Say who did the work.' }];
     render(<FamilyApp page="review" gateway={gateway} />);
     expect(await screen.findByText('Your last note')).toBeTruthy();
-    expect(screen.getByText(/resubmitted/)).toBeTruthy();
+    expect(screen.getByText(/resubmitted \(2nd try\)/)).toBeTruthy();
+  });
+});
+
+describe('Progress overview', () => {
+  const title = (id: string) => chronosContent.lessons.find((lesson) => lesson.id === id)!.title;
+  const writing = 'lesson.writing.early-systems';
+  const uruk = 'lesson.uruk.first-city';
+  const parentGateway = () => {
+    const gateway = new FakeFamilyGateway();
+    gateway.user = { userId: parentId };
+    gateway.account = { userId: parentId, displayName: 'Mom', setup: 'separate', linkCode: 'HJKLMNPQ', parents: [], learners: [{ id: kidId, displayName: 'Sam' }, { id: 'kid-two', displayName: 'Ava' }], profiles: [], parentPin: false };
+    return gateway;
+  };
+  const progressOf = async (name: string) => within(await screen.findByRole('article', { name }));
+
+  it('shows each kid’s finished lessons with when they were sent and how many tries they took', async () => {
+    const gateway = parentGateway();
+    gateway.completed = [
+      { learnerId: kidId, lessonId: writing, completedAt: '2026-09-25T15:42:00.000Z' },
+      { learnerId: kidId, lessonId: uruk, completedAt: '2026-09-24T15:42:00.000Z' },
+    ];
+    gateway.queue = [
+      { ...waitingUruk(), lessonId: uruk, status: 'passed', round: 1, submittedAt: '2026-09-24T15:42:00.000Z', reviewedAt: '2026-09-24T20:00:00.000Z' },
+      { ...waitingUruk(), lessonId: writing, status: 'passed', round: 3, submittedAt: '2026-09-28T15:42:00.000Z', reviewedAt: '2026-09-29T20:00:00.000Z' },
+    ];
+    render(<FamilyApp page="review" gateway={gateway} />);
+    const sam = await progressOf('Sam');
+    // Same order as the timeline: Uruk comes before writing even though writing was sent later.
+    const rows = Array.from(document.querySelectorAll('.progress-row')).map((row) => row.textContent ?? '');
+    expect(rows).toHaveLength(2);
+    expect(rows[0]).toContain(title(uruk));
+    expect(rows[1]).toContain(title(writing));
+    expect(sam.getByText('1st try')).toBeTruthy();
+    expect(sam.getByText('3rd try').getAttribute('title')).toBe('Passed after being sent back 2 times.');
+    expect(sam.getAllByText('Passed')).toHaveLength(2);
+    expect(rows[1]).toMatch(/Sent .*sent again .*passed /);
+    const stat = (label: string) => sam.getByText(label).parentElement!.querySelector('dd')!.textContent;
+    expect(stat('Lessons finished')).toBe('2');
+    expect(stat('Passed lessons')).toBe('2');
+    expect(stat('Passed first try')).toBe('1');
+  });
+
+  it('keeps one card per kid and says when a kid has not finished anything', async () => {
+    const gateway = parentGateway();
+    gateway.completed = [{ learnerId: kidId, lessonId: uruk, completedAt: '2026-09-24T15:42:00.000Z' }];
+    gateway.queue = [waitingUruk()];
+    render(<FamilyApp page="review" gateway={gateway} />);
+    const sam = await progressOf('Sam');
+    expect(sam.getByText('Waiting for you')).toBeTruthy();
+    const ava = await progressOf('Ava');
+    expect(ava.getByText(/Ava hasn’t finished a lesson yet/)).toBeTruthy();
+  });
+
+  it('shows lessons finished before parent review as finished, not as waiting', async () => {
+    const gateway = parentGateway();
+    gateway.completed = [{ learnerId: kidId, lessonId: uruk, completedAt: '2026-08-01T15:42:00.000Z' }];
+    gateway.queue = [];
+    render(<FamilyApp page="review" gateway={gateway} />);
+    const sam = await progressOf('Sam');
+    expect(sam.getByText('Not reviewed')).toBeTruthy();
+    expect(sam.queryByText(/^\d+(st|nd|rd|th) try$/)).toBeNull();
+    expect(screen.getByText(/^Finished /)).toBeTruthy();
+  });
+
+  it('flags a lesson sent back and waiting on a resend', async () => {
+    const gateway = parentGateway();
+    gateway.queue = [{ ...waitingUruk(), status: 'returned', round: 1, feedback: 'Say who did the work.', reviewedAt: '2026-09-26T00:00:00.000Z' }];
+    render(<FamilyApp page="review" gateway={gateway} />);
+    const sam = await progressOf('Sam');
+    expect(sam.getByText('Sent back')).toBeTruthy();
+    expect(sam.getByText('1st try')).toBeTruthy();
+    expect(sam.getByText('Needs another try').parentElement!.querySelector('dd')!.textContent).toBe('1');
   });
 });
 
