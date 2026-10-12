@@ -98,6 +98,21 @@ afterEach(() => {
 });
 
 describe('Home, Library, preview, and search composition', () => {
+  it('lets a learner pick up a card they own in place, without leaving Home', async () => {
+    const harness = makeHarness();
+    (harness.journeyGateway.load as ReturnType<typeof vi.fn>).mockResolvedValue({ ...harness.snapshot(), ownedCards: [{ cardId: 'card.place.uruk', acquiredAt: '2026-01-03T00:00:00.000Z' }] });
+    render(<DiscoveryApp route={{ name: 'home' }} journeyGatewayFactory={async () => harness.journeyGateway} progressGatewayFactory={async () => harness.progressGateway} />);
+    const tile = await screen.findByRole('button', { name: /Uruk/ });
+    await userEvent.click(tile);
+    const dialog = screen.getByRole('dialog', { name: 'Uruk' });
+    expect(within(dialog).getByRole('button', { name: /Turn over to try remembering/ })).toBeTruthy();
+    expect(within(dialog).getByRole('link', { name: /Revisit the lesson/ }).getAttribute('href')).toBe('/learn/lesson.uruk.first-city');
+    expect(window.location.pathname).toBe('/');
+    await userEvent.keyboard('{Escape}');
+    expect(screen.queryByRole('dialog', { name: 'Uruk' })).toBeNull();
+    expect(document.activeElement).toBe(tile);
+  });
+
   it('points a learner to sent-back work and a parent to waiting reviews, and celebrates a new pass', async () => {
     const harness = makeHarness();
     (harness.progressGateway.loadInbox as ReturnType<typeof vi.fn>).mockResolvedValue({

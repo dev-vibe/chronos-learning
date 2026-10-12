@@ -2,7 +2,7 @@ import React, { useEffect, useRef, useState } from 'react';
 import { PartyPopper, Sparkles } from 'lucide-react';
 import { chronosContent } from '../../content/chronos';
 import type { KnowledgeCard } from '../domains/contracts';
-import { KnowledgeCardFace } from './KnowledgeCardReveal';
+import { InteractiveKnowledgeCard } from './InteractiveKnowledgeCard';
 import type { LearnProgressGateway, PassNotice } from './progress';
 import './pass-celebration.css';
 
@@ -54,9 +54,18 @@ export function PassCelebration({ gateway, passes, onAcknowledged }: { gateway?:
       setQueue((items) => items.slice(1));
     }
   };
+  // Each card has its own turn button, so Tab cycles through every live control in the dialog.
+  const keepTabInside = (event: React.KeyboardEvent) => {
+    const controls = Array.from(dialogRef.current?.querySelectorAll<HTMLElement>('button:not([disabled]), a[href]') ?? []).filter((element) => !element.closest('[inert]'));
+    if (controls.length === 0) return;
+    const index = controls.indexOf(document.activeElement as HTMLElement);
+    const next = event.shiftKey ? (index <= 0 ? controls.length - 1 : index - 1) : (index === controls.length - 1 ? 0 : index + 1);
+    event.preventDefault();
+    controls[next].focus();
+  };
   const keepFocusInside = (event: React.KeyboardEvent) => {
     if (event.key === 'Escape') { event.preventDefault(); void acknowledge(); }
-    if (event.key === 'Tab') { event.preventDefault(); buttonRef.current?.focus(); }
+    if (event.key === 'Tab') keepTabInside(event);
   };
 
   return <div className="pass-celebration-backdrop">
@@ -66,7 +75,7 @@ export function PassCelebration({ gateway, passes, onAcknowledged }: { gateway?:
       <h2 id="pass-celebration-title">{lesson.title}</h2>
       <p id="pass-celebration-body">{cards.length === 0 ? 'Your parent read your answers and passed this lesson.' : cards.length === 1 ? 'Your parent read your answers and passed this lesson. You earned a new Knowledge Card!' : `Your parent read your answers and passed this lesson. You earned ${cards.length} new Knowledge Cards!`}</p>
       {current.feedback && <blockquote className="pass-celebration-note">“{current.feedback}”</blockquote>}
-      {cards.length > 0 && <div className="pass-celebration-cards">{cards.map((card) => <div key={card.id} className="pass-celebration-card"><KnowledgeCardFace card={card} /></div>)}</div>}
+      {cards.length > 0 && <div className="pass-celebration-cards">{cards.map((card) => <div key={card.id} className="pass-celebration-card"><InteractiveKnowledgeCard card={card} /></div>)}</div>}
       <button ref={buttonRef} className="primary pass-celebration-button" disabled={busy} onClick={acknowledge}><Sparkles aria-hidden="true" /> {cards.length ? (cards.length === 1 ? 'Add it to my collection' : 'Add them to my collection') : 'Awesome!'}</button>
       {queue.length > 1 && <p className="pass-celebration-more">{queue.length - 1} more {queue.length - 1 === 1 ? 'lesson was' : 'lessons were'} passed too.</p>}
     </div>
