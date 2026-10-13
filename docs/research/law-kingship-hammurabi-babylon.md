@@ -440,6 +440,21 @@ State: approved. Carlin replied “perfect. approved” on 2026-10-04 to the rev
 - Hero added after cutover at the owner’s request (2026-10-04): media.hammurabi.babylon-hero, claim.hammurabi.buried-city and source.hammurabi.koldewey-merkes, with heroLabel/heroCaption on the lesson. `media:build` succeeded (55 assets; only the hero entries changed in the manifests). `validate:content`, all 84 domain/content/legacy/lesson tests and `typecheck:chronos` pass. The implementation and release gates check unpublished drafts only, so they were not re-run after cutover; the lifecycle block above records the hero’s provenance.
 - Media upload: pending; limited to media.hammurabi.babylon-hero, media.hammurabi.locator and media.hammurabi.law-stele through `media:publish`, followed by `media:verify:remote` for the same three IDs.
 
+## Publication continuation — 2026-10-13
+
+[Hosted branch preview](https://chronos-learning-git-codex-ash-105-la-404a65-dev-vibes-projects.vercel.app/learn/lesson.mesopotamia.law-and-kingship). This is a preview, not production; hosted behavior and authenticated parent review remain owner checks.
+
+Continued the existing approved lesson and PR rather than starting another lesson. No learner copy, prompts, card, media choices, publication status or queue status changed.
+
+- Publication plan confirms the seven-section lesson, two required prompts, law-stele card and exactly three media IDs.
+- Rechecked release consistency against the current content using the archived approval and a draft status only in memory. The authored published status and prototype registry were left unchanged; the release consistency check passed.
+- Content validation and all 84 domain/content/legacy/lesson tests passed. The sandbox initially blocked the test runner from loading configuration; the same test command passed with normal filesystem access.
+- Restored staging bytes by running the existing, unmodified media build on an isolated three-asset catalog. All three resulting release entries, including their hashes, match the committed manifest exactly. Ten objects (three private source objects and seven public variants) are staged. No whole-catalog rebuild or generated-manifest edit was made in the lesson checkout.
+- Remote verification found the hero source absent. Upload then failed with Storage API 403 / row-level-security refusal before any object was uploaded.
+- Diagnosis: the local setting named SUPABASE_SECRET_KEY contains a legacy JWT with role anon, not a server publishing credential. No key value was printed, committed or sent in the handoff. The available connector exposes only publishable keys, and the dashboard session requires sign-in.
+- Requested that Carlin configure the existing local environment with the Chronos server secret/service-role key. Storage policies were left unchanged. After that, resume the prescribed media:publish and media:verify:remote commands for these three IDs.
+- Owner hosted check and merge remain pending. Keep the queue Active. Do not infer a hosted pass from deployment readiness.
+
 ## Final sign-off
 
 Owner prototype approval: Carlin Aylsworth, 2026-10-04, “perfect. approved”; final imagery, card and publication authorized.
