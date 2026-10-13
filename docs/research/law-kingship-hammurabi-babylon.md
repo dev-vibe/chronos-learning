@@ -8,7 +8,7 @@ Journey/chapter/position: required World History, canonical position 21; product
 Required or optional: required
 Accountable reviewer: Carlin Aylsworth
 Validation tier: high-risk interpretation of kingship and ancient law
-Queue status: Active; Stage 14B approved; published status applied in the PR; all lesson media uploaded and checksum-verified; awaiting owner hosted check
+Queue status: Complete in this PR's final commit; owner hosted check passed; merge completes publication.
 Branch: codex/ash-105-law-kingship-babylon; existing [PR #51](https://github.com/dev-vibe/chronos-learning/pull/51)
 Base integration: latest main a344cc2 integrated locally on 2026-10-04
 
@@ -467,11 +467,19 @@ The earlier credential blocker is resolved. The October 13 release consistency, 
 
 Owner touchpoint 3 remains pending. Carlin must report whether the lesson opens at the top; both required prompts accept attempts; finishing sends answers for review and a parent pass at /review shows the celebration/card; reopening starts at the top; and draft-only notes are gone. The credential reply does not count as that pass. After the pass, record Complete in the queue and final sign-off in this same PR, then merge. No post-merge verification or closeout PR.
 
+## Owner hosted check passed — 2026-10-13
+
+Carlin replied **“passed”** in the current lesson-production chat after receiving the direct hosted preview and all five Stage 18 checks. This is the accountable owner's report, not an agent browser check. The reported pass covers opening at the top, both required prompts accepting answers, finishing sending answers for review and a parent pass showing the celebration/card, reopening at the top, and removal of draft-only notes.
+
+All ten media objects were remotely checksum-verified before this check. Content validation and all 84 required domain/content/legacy/lesson tests passed in the preceding continuation. No learner-facing changes followed the hosted check.
+
+This final commit records the queue row as Complete and closes the required sign-off in PR #51. Merge completes the workflow. No post-merge production verification or separate closeout PR is authorized by this workflow.
+
 ## Final sign-off
 
 Owner prototype approval: Carlin Aylsworth, 2026-10-04, “perfect. approved”; final imagery, card and publication authorized.
 Historical claims: reviewed within stated confidence/evidence limits; central explanation approved.
 Media: rights/fidelity approved for the map and stele; owner selected the hero reconstruction from four candidates; build and local responsive display checked (see Final media display and delivery); all three media sets uploaded and all ten remote objects checksum-verified on 2026-10-13.
 Release consistency gates: implementation and release passed 2026-10-04; cutover applied; validation and domain tests pass.
-Owner hosted check: pending; author browsing does not substitute.
-Queue: Active until owner hosted pass. Merge: pending.
+Owner hosted check (owner touchpoint 3): pass — Carlin Aylsworth, 2026-10-13, “passed” in the current lesson-production chat following the five-item hosted checklist.
+Queue: Complete in the final commit of [PR #51](https://github.com/dev-vibe/chronos-learning/pull/51). Publication: merging this PR completes the lesson; all ten media objects are checksum-verified. No post-merge verification or closeout PR.
