@@ -8,7 +8,7 @@ Journey/chapter/position: required World History, canonical position 21; product
 Required or optional: required
 Accountable reviewer: Carlin Aylsworth
 Validation tier: high-risk interpretation of kingship and ancient law
-Queue status: Active; Stage 14B approved; published status applied in the PR, awaiting media upload and owner hosted check
+Queue status: Active; Stage 14B approved; published status applied in the PR; all lesson media uploaded and checksum-verified; awaiting owner hosted check
 Branch: codex/ash-105-law-kingship-babylon; existing [PR #51](https://github.com/dev-vibe/chronos-learning/pull/51)
 Base integration: latest main a344cc2 integrated locally on 2026-10-04
 
@@ -455,11 +455,23 @@ Continued the existing approved lesson and PR rather than starting another lesso
 - Requested that Carlin configure the existing local environment with the Chronos server secret/service-role key. Storage policies were left unchanged. After that, resume the prescribed media:publish and media:verify:remote commands for these three IDs.
 - Owner hosted check and merge remain pending. Keep the queue Active. Do not infer a hosted pass from deployment readiness.
 
+## Media publication completed — 2026-10-13
+
+Carlin replied “ok” to the publishing-credential request. A read-only format check confirmed that the local environment now contains a server secret key for Chronos. No key value was printed or committed.
+
+The prescribed publisher succeeded for exactly media.hammurabi.babylon-hero, media.hammurabi.locator and media.hammurabi.law-stele. A subsequent media:verify:remote run downloaded and SHA-256-verified all ten immutable objects against media/manifests/chronos-release.json: three private originals and seven public derivatives. No storage policies or database configuration changed.
+
+The earlier credential blocker is resolved. The October 13 release consistency, content validation and 84 passing tests above still apply; this continuation changed only the publication record.
+
+[Open the hosted lesson preview](https://chronos-learning-git-codex-ash-105-la-404a65-dev-vibes-projects.vercel.app/learn/lesson.mesopotamia.law-and-kingship). This is the same branch preview; it may require Vercel sign-in. The branch deployment was reported Ready before this documentation-only update, but deployment readiness is not a hosted behavior check.
+
+Owner touchpoint 3 remains pending. Carlin must report whether the lesson opens at the top; both required prompts accept attempts; finishing sends answers for review and a parent pass at /review shows the celebration/card; reopening starts at the top; and draft-only notes are gone. The credential reply does not count as that pass. After the pass, record Complete in the queue and final sign-off in this same PR, then merge. No post-merge verification or closeout PR.
+
 ## Final sign-off
 
 Owner prototype approval: Carlin Aylsworth, 2026-10-04, “perfect. approved”; final imagery, card and publication authorized.
 Historical claims: reviewed within stated confidence/evidence limits; central explanation approved.
-Media: rights/fidelity approved for the map and stele; owner selected the hero reconstruction from four candidates; build and local responsive display checked (see Final media display and delivery); remote upload and checksum verification pending for all three.
+Media: rights/fidelity approved for the map and stele; owner selected the hero reconstruction from four candidates; build and local responsive display checked (see Final media display and delivery); all three media sets uploaded and all ten remote objects checksum-verified on 2026-10-13.
 Release consistency gates: implementation and release passed 2026-10-04; cutover applied; validation and domain tests pass.
 Owner hosted check: pending; author browsing does not substitute.
 Queue: Active until owner hosted pass. Merge: pending.
