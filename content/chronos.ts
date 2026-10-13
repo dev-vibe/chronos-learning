@@ -12,11 +12,12 @@ import { urukContent } from './lessons/uruk';
 import { indusContent } from './lessons/indus-cities-and-signs';
 import { kermaContent } from './lessons/kerma-and-middle-nile';
 import { akkadContent } from './lessons/akkad-and-empire';
+import { hammurabiContent } from './lessons/law-kingship-hammurabi-babylon';
 import { worldHistoryJourney } from './journeys/world-history';
 import { journeyInvitations } from './journeys/invitations';
 
 export const chronosContent = assembleContent(
-  [homoSapiensOriginsContent, migrationsAncientDnaContent, sahulCrossingContent, manyBeginningsOfFarmingContent, farmingSettlementsContent, urukContent, earlyWritingSystemsContent, egyptNileStateContent, caralAndeanUrbanismContent, pyramidsPowerStateLaborContent, indusContent, kermaContent, akkadContent],
+  [homoSapiensOriginsContent, migrationsAncientDnaContent, sahulCrossingContent, manyBeginningsOfFarmingContent, farmingSettlementsContent, urukContent, earlyWritingSystemsContent, egyptNileStateContent, caralAndeanUrbanismContent, pyramidsPowerStateLaborContent, indusContent, kermaContent, akkadContent, hammurabiContent],
   [worldHistoryJourney],
   journeyInvitations,
 );

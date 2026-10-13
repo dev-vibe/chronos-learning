@@ -213,6 +213,40 @@
       ]
     },
     {
+      "id": "media.hammurabi.babylon-hero",
+      "collection": "hammurabi",
+      "sourcePath": "public/images/hammurabi/babylon-reconstruction.jpg",
+      "fallbackPath": "/images/optimized/hammurabi/babylon-reconstruction.optimized.jpg",
+      "preset": "photo",
+      "widths": [
+        480,
+        1600
+      ]
+    },
+    {
+      "id": "media.hammurabi.law-stele",
+      "collection": "hammurabi",
+      "sourcePath": "public/images/hammurabi/hammurabi-law-stele.jpg",
+      "fallbackPath": "/images/optimized/hammurabi/hammurabi-law-stele.optimized.jpg",
+      "preset": "photo",
+      "widths": [
+        480,
+        960
+      ]
+    },
+    {
+      "id": "media.hammurabi.locator",
+      "collection": "hammurabi",
+      "sourcePath": "public/images/hammurabi/babylon-larsa-locator.jpg",
+      "fallbackPath": "/images/optimized/hammurabi/babylon-larsa-locator.optimized.jpg",
+      "preset": "picture",
+      "widths": [
+        480,
+        960,
+        1600
+      ]
+    },
+    {
       "id": "media.humans.adna-clean-room",
       "collection": "ancient-dna",
       "sourcePath": "public/images/evidence/ancient-dna-clean-room-illustration.webp",

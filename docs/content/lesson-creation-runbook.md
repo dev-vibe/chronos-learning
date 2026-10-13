@@ -170,6 +170,14 @@ Write the following as a provisional research target. The essential question and
 
 Reject or split the proposal when it is merely “everything about Ancient Egypt,” depends on a list of unrelated facts, repeats another node, or cannot name a coherent learner outcome.
 
+### Historical significance and proportion
+
+For a required World History lesson, explain why its subject belongs in the chronological story: what happened, what people accomplished or struggled to do, how the society worked, and what changed. Write this historical explanation before choosing a source exercise. A narrow object or dispute can carry the story only if it opens that larger understanding.
+
+Evidence awareness supports the historical explanation. Repeated reminders that a source cannot prove everything do not constitute a lesson about a ruler, city or civilization. Do not organize a core lesson around a ruler's possible hypocrisy, present-day moral verdicts, or uncertainty about one administrative outcome unless that question is itself historically consequential and explicitly approved as the focus. Explain achievements, institutions, coercion and social differences in their historical setting, with emphasis proportional to their role in the subject.
+
+At Stage 3B, include a plain sentence explaining why the subject matters historically. At Stage 14B, check what a learner could tell someone about the subject after reading. If the retelling consists mainly of cautions about evidence while omitting the defining development or achievement, mark the draft **blocking** and rewrite its argument before handoff.
+
 # Phase 2 — Research and model
 
 ## Stage 2 — Plan the research
