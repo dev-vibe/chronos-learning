@@ -1,3 +1,5 @@
+> **Superseded.** This batch prompt belongs to the old timeline-node workflow, kept only for history. Do not run it; the files it names no longer describe how lessons are made. Current process: [`docs/content/lesson-creation-runbook.md`](docs/content/lesson-creation-runbook.md) and [`docs/content/lesson-production-queue.md`](docs/content/lesson-production-queue.md). Agent rules: [`AGENTS.md`](AGENTS.md).
+
 # Bronze Age Lesson Batch Prompt
 
 Use this prompt in a new AI thread to continue the Bronze Age expansion in batches of exactly 3 lessons.

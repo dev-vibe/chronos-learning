@@ -1,3 +1,5 @@
+> **Superseded.** This is the old timeline-node research workflow, kept only for history. Do not use it for lesson work. Current process: [`docs/content/lesson-creation-runbook.md`](docs/content/lesson-creation-runbook.md) and [`docs/content/lesson-production-queue.md`](docs/content/lesson-production-queue.md). Agent rules: [`AGENTS.md`](AGENTS.md).
+
 # Node Research & Content Creation Runbook
 
 This runbook is for creating Chronos Learning timeline nodes: compact, visual, story-rich history lessons for preteens ages 11-13.
