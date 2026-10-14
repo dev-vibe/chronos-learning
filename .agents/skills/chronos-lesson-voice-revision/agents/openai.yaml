@@ -1,0 +1,4 @@
+interface:
+  display_name: "Chronos Lesson Revision"
+  short_description: "Revise a published lesson, prompts, or card"
+  default_prompt: "Use $chronos-lesson-voice-revision to revise a published Chronos lesson."
