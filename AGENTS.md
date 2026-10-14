@@ -13,6 +13,8 @@ Before changing product behavior, data models, or UI (not lesson production), re
 
 For lesson creation, publication, revision or correction, read only `docs/content/lesson-creation-runbook.md` and `docs/content/lesson-production-queue.md`. The runbook is self-contained and routes any revision of a published lesson (telling, prompts or card) to the lesson revision runbook; the required reading above does not apply to lesson work.
 
+The skills in `.agents/skills/` are thin routers to those runbooks. Change the process by editing the runbooks, never by adding steps to a skill, so every editor stays current. The Claude skills for the same work are pointers that read these files from `main`.
+
 A user request equivalent to “Let's create the next Chronos lesson” is complete. Do not ask the user to supply a topic or repeat the workflow. Run the boot sequence in the lesson creation runbook, continue an active queued lesson or select the first eligible Ready lesson, and proceed through its built-in research/editorial approval gate.
 
 For UI work, inspect the images in `docs/design/references/`. They express visual intent, hierarchy, and product personality. Rebuild them with real responsive components and accessible native text; do not embed screenshots or imitate generated text errors.
