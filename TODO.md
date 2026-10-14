@@ -1,3 +1,5 @@
+> **Superseded.** This roadmap describes the old timeline app, kept only for history. Lesson order and status now live in the production queue. Current process: [`docs/content/lesson-creation-runbook.md`](docs/content/lesson-creation-runbook.md) and [`docs/content/lesson-production-queue.md`](docs/content/lesson-production-queue.md). Agent rules: [`AGENTS.md`](AGENTS.md).
+
 # Project Roadmap & To-Dos
 
 ## 🟢 Status: Operational (Content Integrated)

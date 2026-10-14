@@ -1,3 +1,5 @@
+> **Superseded.** This list tracks the old timeline nodes, kept only for history. Lesson order and status now live in the production queue. Current process: [`docs/content/lesson-creation-runbook.md`](docs/content/lesson-creation-runbook.md) and [`docs/content/lesson-production-queue.md`](docs/content/lesson-production-queue.md). Agent rules: [`AGENTS.md`](AGENTS.md).
+
 # Content Creation TODO List
 
 This document tracks which timeline nodes have content and which still need to be created.
