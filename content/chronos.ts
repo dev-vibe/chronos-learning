@@ -8,6 +8,7 @@ import { homoSapiensOriginsContent } from './lessons/homo-sapiens-origins';
 import { migrationsAncientDnaContent } from './lessons/migrations-and-interbreeding';
 import { sahulCrossingContent } from './lessons/sahul-crossing';
 import { manyBeginningsOfFarmingContent } from './lessons/many-beginnings-of-farming';
+import { wheelsMetalsContent } from './lessons/wheels-metals-and-specialized-work';
 import { urukContent } from './lessons/uruk';
 import { indusContent } from './lessons/indus-cities-and-signs';
 import { kermaContent } from './lessons/kerma-and-middle-nile';
@@ -17,7 +18,7 @@ import { worldHistoryJourney } from './journeys/world-history';
 import { journeyInvitations } from './journeys/invitations';
 
 export const chronosContent = assembleContent(
-  [homoSapiensOriginsContent, migrationsAncientDnaContent, sahulCrossingContent, manyBeginningsOfFarmingContent, farmingSettlementsContent, urukContent, earlyWritingSystemsContent, egyptNileStateContent, caralAndeanUrbanismContent, pyramidsPowerStateLaborContent, indusContent, kermaContent, akkadContent, hammurabiContent],
+  [homoSapiensOriginsContent, migrationsAncientDnaContent, sahulCrossingContent, manyBeginningsOfFarmingContent, farmingSettlementsContent, wheelsMetalsContent, urukContent, earlyWritingSystemsContent, egyptNileStateContent, caralAndeanUrbanismContent, pyramidsPowerStateLaborContent, indusContent, kermaContent, akkadContent, hammurabiContent],
   [worldHistoryJourney],
   journeyInvitations,
 );
