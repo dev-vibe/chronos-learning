@@ -721,6 +721,8 @@ Normally use two required prompts:
 1. one recognition, selection, ordering, matching, image/evidence, or comparison prompt;
 2. one concise explanation asking the learner to connect evidence, causation, opportunity/cost, similarity/difference, or evidence/limit.
 
+**One question per prompt.** Every prompt asks exactly one question, and each written prompt gets one answer box for one answer. Learners at this age reliably miss the second part of a combined question. If the check needs two things (for example a reason and an open question), make two separate prompts that the learner answers one after the other. Stay within three required prompts: if splitting would need more, drop the least important ask instead of combining two.
+
 Prompt rules:
 
 - a written prompt requires a sincere attempt, not perfection; a selection prompt is done once the learner picks the best-supported option, so its feedback must help them get there;
@@ -738,7 +740,8 @@ Prompt rules:
 
 **Write the question for a 12-year-old.** An understanding prompt checks reasoning, so the learner must be able to tell what it asks before they can reason.
 
-- The learner can say what to do after one read. Ask one task, or two short linked parts numbered (1) and (2). Never stack three asks, and never pile a choice, an explanation and a limit into one question.
+- The learner can say what to do after one read. Ask one question only: no numbered parts such as (1) and (2), no “and also…”, no second question mark. Never pile a choice, an explanation and a limit into one prompt; split them into separate prompts.
+- Use very clear, friendly, everyday words. Write the question the way a kind teacher would say it out loud to a 12-year-old: short sentences, the most common words that are still accurate, and no word the lesson did not explain. Address the learner as “you” and tell them plainly what to write (“Write one or two sentences about…”). Prefer a question under about 25 words; put background facts in a separate sentence before it.
 - Use the lesson's own plain words. Do not ask in abstract research terms: “what can this evidence not prove by itself”, “what does the surviving system leave uncertain about who organized the work”, “state formation”, “independent beginning”. Ask about a limit as an open question the learner can answer positively: “What is one question researchers are still trying to answer about…?”, “What would researchers want to find next, and where would they look?”, “If you could ask one of these people a question, what would you ask?”. Never pose the ask as a negative (“Name one thing this does not tell us”, “What can this not prove?”): the learner has to work out what is missing before they can think about it.
 - Ask the positive question. “Why would a victory not tell us how rulers kept power?” becomes “After the soldiers left, what did people still have to do to keep the empire running?”.
 - Put the evidence in the stem. A selection stem sets out what was found, where and how many, so the learner reasons from it. A stem that only says “which conclusion is best supported?” tests whether they remember the lesson's title.
@@ -757,6 +760,7 @@ Test each prompt by answering:
 - Does the feedback teach something rather than merely announce correctness?
 - Read on its own, does any wrong option's feedback give away the answer?
 - Read the question as a 12-year-old: what is it asking me to do? If the answer takes more than one sentence, rewrite it.
+- Count the questions. If the prompt asks for more than one thing, split it into separate prompts.
 - For a written prompt, write a two-sentence answer using only the lesson's own words. If you cannot, the lesson does not teach what the prompt asks, or the prompt asks it too abstractly.
 - For a selection prompt, cover the stem: could someone who skipped the lesson pick the answer from the options alone (the longest, the only hedged one, the only one without an absolute word)? If so, rewrite the options.
 
@@ -823,7 +827,7 @@ Before involving the owner, check the rendered prototype yourself against the qu
 - **Momentum:** does the opening create a problem worth following, and does each section answer or complicate the last? Does the ending resolve the question without pretending history is finished or inevitable?
 - **Cognitive load:** only indispensable vocabulary, defined where needed; one teaching job per section; no overloaded sentences, date piles, unexplained names or rapid place changes at real layout sizes.
 - **Headings:** plain words a skimming 12-year-old understands. A metaphor, riddle or punchline heading is `revise` or `blocking`.
-- **Prompt fit:** can a 12-year-old tell what each prompt asks after one read? One or two plain tasks, in the lesson's own words, posed positively (a limit asked as an open question, never “name one thing it does not tell us”), with the evidence in the stem; a hint and feedback on every selection option; no wording tells in the options (Stage 12).
+- **Prompt fit:** can a 12-year-old tell what each prompt asks after one read? Exactly one question per prompt, split into separate prompts when more is needed, in very clear everyday words and the lesson's own terms, posed positively (a limit asked as an open question, never “name one thing it does not tell us”), with the evidence in the stem; a hint and feedback on every selection option; no wording tells in the options (Stage 12).
 - **Evidence reasoning:** a concrete source, object, map or comparison to reason from; observation, inference, reconstruction and uncertainty distinguished at the point of use; prompts answerable from the lesson; feedback explains support and limits. Recurring labels stay plain: “Surviving evidence”, “What you can see”, “Who did the work”, “What we can know”.
 - **Proportionality:** emphasis and certainty match the evidence; no monocausal, deterministic or civilization-ranking story; people have specificity and agency; sensitive material is truthful and proportionate.
 - **Visual value:** every visual answers a named learner question at its exact position and has an accessible equivalent. Maps anchor the subject to recognizable wider geography at embedded size.
