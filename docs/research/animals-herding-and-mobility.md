@@ -2,7 +2,7 @@
 
 Issue: [ASH-114](https://linear.app/ashs-workshop/issue/ASH-114/research-and-publish-animals-herding-and-mobility); blocks ASH-104 (Steppe Mobility and the Chariot)
 Lesson ID: lesson.animals.domestication-and-pastoralism
-Research-note identity/version: Stage 0–3B research-direction packet, 2026-10-29
+Research-note identity/version: Stage 14B prototype packet, 2026-10-29 (Stage 3B direction approved the same day)
 Production record version: 2
 Journey/chapter/position: required World History, chapter `chapter.world-history.human-beginnings`, canonical Spine position 9 (after `lesson.farming.settlements`, before `lesson.technology.wheels-metals-and-work`); production order 30
 Required or optional: required
@@ -29,15 +29,15 @@ Reply `all yes` or give numbered `yes / change / no` responses; a change needs o
 
 Material decision-changing caveat: whether cattle were also domesticated separately in Africa is still debated; I recommend one short sentence presenting it as an open question rather than choosing a side.
 
-Optional explanation and the [research packet](#recent-challenge-audit-stages-3a3b) follow. Decision status: pending (shared 2026-10-29).
+Optional explanation and the [research packet](#recent-challenge-audit-stages-3a3b) follow. Decision status: responded 2026-10-29 — Carlin replied “all yes” to all five beats and the one-sentence open-question treatment of African cattle origins.
 
 ## Work boundary (Stage 0)
 
-This increment researches and, after owner approval, builds one required World History lesson at canonical position 9, following `lesson.farming.settlements` in the Human Beginnings and Food Systems chapter. No existing canonical lesson covers animal domestication or pastoralism: `lesson.farming.multiple-origins` explicitly deferred animals to this node, and `lesson.farming.settlements` mentions Boncuklu's sheep and goats only as part of mixed farming. Stable ID: `lesson.animals.domestication-and-pastoralism`. Legacy alias candidate `animal_domestication` is recorded in the roster; semantic equivalence will be checked before it is attached. The lesson stays `draft` and non-completable until the publication gates pass. Accountable reviewer: Carlin Aylsworth.
+This increment researches and, after owner approval, builds one required World History lesson at canonical position 9, following `lesson.farming.settlements` in the Human Beginnings and Food Systems chapter. No existing canonical lesson covers animal domestication or pastoralism: `lesson.farming.multiple-origins` explicitly deferred animals to this node, and `lesson.farming.settlements` mentions Boncuklu's sheep and goats only as part of mixed farming. Stable ID: `lesson.animals.domestication-and-pastoralism`. Legacy alias `animal_domestication` (legacy node “Domestication of Animals”, c. 8000 BCE, in `data/eras/foundations/agriculture.ts`) covers the same subject as this lesson's first half and is attached; this lesson is its semantic successor. The lesson stays `draft` and non-completable until the publication gates pass. Accountable reviewer: Carlin Aylsworth.
 
 Non-goals for this increment: no Learn-shell or platform redesign; no horse-domestication or chariot lesson content beyond one bridge sentence (owned by `lesson.steppe.chariots-and-mobility`); no wheels, carts or metallurgy depth (owned by `lesson.technology.wheels-metals-and-work`); no dog, cat or chicken domestication stories beyond context; no modern pastoral policy; no final media before prototype approval.
 
-## Node proposal (provisional until Stage 3B response)
+## Node proposal
 
 Essential question: How did people turn wild animals into herds, and why did living with herds become its own way of life?
 Durable understanding: People in several regions turned hunted animals into managed herds by controlling which animals lived and bred; herding, often on the move, became a skilled and lasting way of life that sat beside farming and connected distant communities.
@@ -151,5 +151,174 @@ Required main-lesson highlights: Ganj Dareh evidence encounter; several regions;
 Story Arc / Investigation depth candidates: hunted vs. herded bones as an investigation; Nabta Playa cattle debate as optional depth.
 Judgments or further research requested from product owner: (1) approve the five beats or reshape; (2) confirm that the African cattle origin is taught as an open question in one sentence; (3) confirm the steppe gets only a bridge sentence so the chariot lesson keeps horses and wagons.
 Packet shared (date/link): 2026-10-29, this note on branch `claude/animals-herding-mobility` and its PR.
-Product-owner response: pending.
-Follow-up research and disposition: before Stage 4, obtain full texts for Evershed 2008/2022, Dunne 2012, Hildebrand 2018 and Marshall & Hildebrand 2002, and recheck Zeder 2008 quotes.
+Product-owner response: 2026-10-29, “all yes” — all five beats approved, including the one-sentence open question on African cattle origins and a bridge-only treatment of the steppe.
+Follow-up research and disposition (2026-10-29): full texts of Evershed 2008, Evershed 2022, Dunne 2012 and Hildebrand 2018 remain inaccessible from this session (publisher/PMC bot checks; Europe PMC returns no open full text). The main agent re-read each published abstract (and Hildebrand's significance statement) verbatim through Europe PMC/NCBI and narrowed the learner wording to what those author summaries state. Those sources and their claims stay `review-required`; this is an owner decision at Stage 14B. Marshall & Hildebrand 2002 is no longer needed: Dunne 2012's abstract and Gifford-Gonzalez & Hanotte 2011 carry the herding-before-crops claim. Zeder 2008 is no longer cited in the lesson; Daly 2021, Verdugo 2019, Pitt 2019 and Frantz 2019 carry the dates instead.
+
+## Claim ledger
+
+Registered in `content/lessons/animals-herding-and-mobility.ts`. Claims resting only on an inaccessible full text stay `editorial-review-required` until that text is read or the owner accepts the abstract-level wording.
+
+| Claim ID and wording | Kind | Certainty | Sources | Counterevidence/limits | Missing perspective | Learner treatment | Review |
+| --- | --- | --- | --- | --- | --- | --- | --- |
+| `claim.animals.ganj-dareh-management` — goats managed at Ganj Dareh by c. 8200 BCE; young males culled, females kept, females outnumber males | interpretation | high | daly-2021-ganj-dareh | Herding inference uses present-day Zagros herding as an analogy | Who did the herding work | State directly; core evidence encounter | reviewed |
+| `claim.animals.asiab-hunting` — Asiab c. 9750–9300 BCE: ~70% older than 4, more males; hunters' pattern | interpretation | high | daly-2021-ganj-dareh | One comparison site | — | Contrast case | reviewed |
+| `claim.animals.hoofprints-newborns` — hoofprints in mud brick; many newborn/unborn bones | observation | high | daly-2021-ganj-dareh | Hoofprints are not identified to species in the paper; text says "hoofed animals" | — | Opening clue | reviewed |
+| `claim.animals.body-change-later` — body change detectable ~1,000 years after management, first at Ali Kosh | interpretation | high | daly-2021-ganj-dareh | Exact lag 500–1,000 years in other syntheses | — | State directly | reviewed |
+| `claim.animals.several-regions` — goats from several wild populations; taurine cattle upper Euphrates/Tigris ~10,500 BP; zebu separately in Indus ~1,500 years later; pigs Near East by ~10,500 BP | interpretation | high | daly-2018-mosaic, verdugo-2019-cattle, pitt-2019-cattle, frantz-2019-pigs | Taurine origin itself "restricted"; zebu date secondary in Pitt intro | — | Knowledge items with rough dates | reviewed |
+| `claim.animals.andean-camelids` — llamas/alpacas from hunted camelids ~7,000–5,500 years ago; handling injuries ~4,900; corrals ~4,500–3,600; only herd animals of the ancient Americas | interpretation | moderate | yacobaccio-2021-camelids, diaz-maroto-2021-camelids | Regional dates differ; alpaca ancestry unresolved | Andean herders' own accounts | Knowledge item + short prose | reviewed |
+| `claim.animals.early-milk` — milk in use by 7th millennium BCE, >2,200 vessels, esp. NW Anatolia | observation | high | evershed-2008-milk | Abstract-level review only | — | State directly | editorial review required (full text) |
+| `claim.animals.milk-before-digestion` — many early milk users could not digest fresh milk; lactase persistence common only much later | interpretation | high | evershed-2022-lactase, prendergast-2019-herders | Why LP spread is contested (famine/disease proposal not taught) | — | One paragraph; processing into yogurt/cheese marked "may" | editorial review required (Evershed full text) |
+| `claim.animals.wool-traction-later` — light traction early (Balkans), wider traction from 4th millennium BCE, woolly sheep later | interpretation | moderate | gaastra-2018-traction, vila-2021-wool | One region for early traction; wool/urban link a hypothesis (not taught) | — | Knowledge items | reviewed |
+| `claim.animals.sahara-herding-first` — green Sahara herding a stable, widespread way of life long before domesticated plants or villages | interpretation | high | dunne-2012-sahara-milk, gifford-gonzalez-hanotte-2011 | Abstract-level for Dunne | Saharan herders' voices | State directly | editorial review required (Dunne full text) |
+| `claim.animals.takarkori-milk` — milk fats in 5th-millennium BCE Takarkori pottery | observation | high | dunne-2012-sahara-milk | Abstract + Fig. 2 caption only | — | State directly | editorial review required |
+| `claim.animals.african-cattle-debate` — African cattle domestication unresolved; many favour introduction + local aurochs breeding | interpretation | contested | gifford-gonzalez-hanotte-2011, pitt-2019-cattle | Wendorf & Schild primary texts not read (recorded asymmetric-scrutiny risk) | — | One open-question paragraph, both sides | reviewed |
+| `claim.animals.lothagam-cemetery` — ~5,000 years ago as the Humid Period ended; pillars, circles, cairns; ≥580 people of all ages and both sexes, most with ornaments; no evidence of ranking | observation | high | hildebrand-2018-lothagam | "No evidence of ranking" is not proof of equality; abstract-level review | Builders' own meaning | State at abstract wording | editorial review required (full text) |
+| `claim.animals.lothagam-networks` — excavators suggest moving frontier encouraged strong networks | interpretation | moderate | hildebrand-2018-lothagam | Interpretation, attributed | — | Attributed to excavators | editorial review required |
+| `claim.animals.herders-mixed-with-foragers` — herding spread into eastern Africa in steps with mixing | interpretation | moderate | prendergast-2019-herders | Earliest Turkana herders unsampled | — | One sentence | reviewed |
+| `claim.animals.mustatil-offerings` — mustatil c. 5300–4800 BCE; cattle dominate offerings; may have held mobile herding groups together | interpretation | moderate | kennedy-2023-mustatil | One site; ritual reading | — | Attributed interpretation | reviewed |
+| `claim.animals.mobility-strategy` — mobility as a dryland strategy; herders settle and move without cutting ties; not a stage | interpretation | high | szuchman-2009-nomads, adriansen-2008-fulani | Present-day evidence labelled as comparison only | Ancient herders' explanations | Central framing | reviewed |
+| `claim.animals.steppe-milk` — steppe milk drinking widespread after ~3300 BCE | observation | high | wilkin-2021-yamnaya | Small sample; causal "enabled" not taught | — | Bridge sentence | reviewed |
+
+Deliberately excluded: Botai horse claims and horse domestication (Spine 20); Sherratt's single "revolution" as a fact (taught only as an older idea that was revised); Saharan rock-art dates; the famine/disease explanation for lactase persistence; woolly sheep driving urban growth; dog domestication.
+
+## Central claim support
+
+| Claim ID | Source ID | Locator | Review |
+| --- | --- | --- | --- |
+| claim.animals.ganj-dareh-management | source.animals.daly-2021-ganj-dareh | Abstract (management by c. 8200 cal BC); section "Archaeozoological Evidence of Goat Domestication in the Central Zagros", paragraph on sex-specific harvest profiles (60–70% of males before 2.5 y; F:M 1.11–1.86:1); Fig. 2A | main agent, 2026-10-29, close-reviewed from Europe PMC full-text XML |
+| claim.animals.asiab-hunting | source.animals.daly-2021-ganj-dareh | Section "Archaeozoological Evidence…", Asiab passage (9750–9300 cal BC; nearly 70% older than 4 y; 0.67:1 F:M) | main agent, 2026-10-29, close-reviewed |
+| claim.animals.hoofprints-newborns | source.animals.daly-2021-ganj-dareh | Section "Archaeozoological Evidence…", hoofprint passage (level D brick; 2017 brick with three hoofprints); Fig. 2B caption (sample 270, context 2033); perinatal/neonatal bones sentence | main agent, 2026-10-29, close-reviewed |
+| claim.animals.body-change-later | source.animals.daly-2021-ganj-dareh | Abstract ("detectable morphological change appearing ∼1,000 y later"); section "Archaeozoological Evidence…", Ali Kosh sentence (c. 7500–6500 BC) | main agent, 2026-10-29, close-reviewed |
+| claim.animals.several-regions | source.animals.pitt-2019-cattle | Section 1 Introduction, paragraph 1 (taurine Fertile Crescent >10,000 YA; indicine Indus Valley ~1,500 years later); Abstract | main agent, 2026-10-29, close-reviewed from NCBI full-text XML |
+| claim.animals.several-regions | source.animals.frantz-2019-pigs | Abstract and Conclusion section (pig domestication by ~10,500 y BP, Anatolian wild boar) | main agent, 2026-10-29, close-reviewed from Europe PMC full-text XML |
+| claim.animals.several-regions | source.animals.daly-2018-mosaic | Abstract; main-text passage after Fig. 1–3 (three regional Neolithic goat groups; "dispersed in space and time") | research subagent, 2026-10-29, close-reviewed from accepted manuscript |
+| claim.animals.several-regions | source.animals.verdugo-2019-cattle | Abstract passage and opening paragraphs (domestication c. 10,500 BP, upper Euphrates and Tigris) | research subagent, 2026-10-29, close-reviewed from accepted manuscript |
+| claim.animals.andean-camelids | source.animals.yacobaccio-2021-camelids | "Implications" box (7100 cal BP; 4900 cal BP pathologies; corrals 4500–3639 cal BP); Introduction paragraph 1 (only domesticated ungulates of the Americas); section on corrals with Figure 5 (Inca Cueva 7) | main agent, 2026-10-29, close-reviewed from Europe PMC full-text XML |
+| claim.animals.african-cattle-debate | source.animals.gifford-gonzalez-hanotte-2011 | Section "Cattle" (Nabta–Kiseiba claims doubted; uncontroversial domestic Bos c. 5750–4550 BC; independent domestication neither proved nor disproved) | research subagent, 2026-10-29, close-reviewed |
+| claim.animals.african-cattle-debate | source.animals.pitt-2019-cattle | Abstract passage (two domestication episodes favoured; African taurine variation explained by hybridization with local aurochs) | main agent, 2026-10-29, close-reviewed |
+| claim.animals.mustatil-offerings | source.animals.kennedy-2023-mustatil | Section "Radiocarbon dating" (5307–5002 to 5056–4755 cal BC); faunal section "Bovines" (217 of 247 remains); Discussion passage on nomadic pastoral communities | main agent, 2026-10-29, close-reviewed from Europe PMC full-text XML |
+| claim.animals.steppe-milk | source.animals.wilkin-2021-yamnaya | Main-text passage on Eneolithic (10 of 11 no dairy) and Early Bronze Age (15 of 16 dairy-positive); Abstract ("key catalyst of steppe mobility" not taught) | main agent, 2026-10-29, close-reviewed from Europe PMC full-text XML |
+| claim.animals.herders-mixed-with-foragers | source.animals.prendergast-2019-herders | Section "Dates of admixture" and one-sentence summary (several movements; minimal-admixture models rejected) | main agent, 2026-10-29, close-reviewed from NCBI author manuscript |
+| claim.animals.milk-before-digestion | source.animals.prendergast-2019-herders | Section "Low frequency of genetic adaptation to milk consumption" (eastern African pastoralists mostly lactose intolerant as recently as 3000–1000 years ago) | main agent, 2026-10-29, close-reviewed |
+| claim.animals.mobility-strategy | source.animals.szuchman-2009-nomads | Introduction, pp. 1–9 (continuum; sedentarization without severing ties) | research subagent, 2026-10-29, close-reviewed (extraction) |
+
+Central claims not yet close-reviewed in full text (abstract-level only, owner decision at 14B): `claim.animals.early-milk` (Evershed 2008 abstract), `claim.animals.milk-before-digestion` (Evershed 2022 abstract; Prendergast row above is full text), `claim.animals.sahara-herding-first` and `claim.animals.takarkori-milk` (Dunne 2012 abstract), `claim.animals.lothagam-cemetery` and `claim.animals.lothagam-networks` (Hildebrand 2018 abstract and significance statement).
+
+## Content triage
+
+| Candidate idea | Essential/supporting/enrichment/deferred/rejected | Why | Destination |
+| --- | --- | --- | --- |
+| Ganj Dareh vs. Asiab bones | Essential | Evidence encounter for management before body change | Sections 1–2, prompt 1 |
+| Several regions, different animals | Essential | Corrects single-heartland story | Section 3 |
+| Andean camelids and corrals | Supporting | Shows the slow, stepwise process and the Americas | Section 3 |
+| Milk before lactose tolerance | Essential | Living-animal products; memorable surprise | Section 4 |
+| Wool and traction timing | Supporting | Corrects one-package "revolution" | Section 4 |
+| Sahara herding before crops; Takarkori milk | Essential | Herding not a stage before farming | Section 5 |
+| African cattle-origin debate | Supporting | Owner-approved one-paragraph open question | Section 5 |
+| Lothagam North cemetery | Essential | Herders as builders and cooperators | Section 5 |
+| Mobility as strategy; mustatils | Essential | Durable understanding | Section 6, prompt 2 |
+| Steppe milk after 3300 BCE | Supporting | Bridge to later lessons | Section 6 |
+| Botai and horse domestication | Deferred | Owned by Spine 20 | Steppe lesson |
+| Carts and ploughs | Deferred | Owned by Spine 10 | Wheels lesson |
+| Mari tribal kings | Deferred | Later period | Possible later lesson |
+| Dogs, chickens, guinea pigs | Rejected for this lesson | Off the herding/mobility thread | — |
+| Famine/disease and lactase persistence | Rejected | Contested, adds load | — |
+| Undated rock-art milking scenes as evidence | Rejected as evidence | Rarely datable | Mentioned only with caveat |
+
+## Learning blueprint
+
+Essential question: How did people turn wild animals into herds, and why did living with herds become its own way of life?
+Durable understanding: People in several regions turned hunted animals into managed herds by controlling which animals lived and bred; herding, often on the move, became a skilled and lasting way of life alongside farming.
+Supporting understandings: (1) Bones show management before bodies changed. (2) Several regions domesticated different animals. (3) Live animals gave milk, and later pulling power and wool, at different times. (4) In Africa herding came before crops, and herders built monuments together. (5) Mobility was a strategy for uncertain water and grass, and herders stayed connected to others.
+Prerequisites: domestication as a slow process (lesson.farming.multiple-origins); mixed farming with a few sheep and goats at Boncuklu (lesson.farming.settlements).
+Misconceptions: domestication as one moment of taming in one village; herders as a primitive stage; nomads as aimless wanderers; animals kept only for meat; milk drinking requires adult digestion; farming always came first.
+Indispensable vocabulary: herd/herding, domestication, aurochs, camelid, dairying, mobility (pastoralism is avoided in learner text in favour of "herding").
+Evidence encounter: Ganj Dareh goat age-and-sex pattern compared with Asiab, plus the hoofprinted brick.
+Historical-thinking move: comparing two evidence patterns (hunted vs. herded) to infer human choices, then qualifying what the bones cannot show.
+Retrieve: from lesson.farming.multiple-origins, domestication as gradual inherited change driven by ordinary choices (the wheat-ear mechanism); from lesson.farming.settlements, Boncuklu keeping a few sheep and goats while foraging.
+Extend: the same gradual-selection logic applied to animals, with the new twist that people controlled which animals bred and that herding could mean leaving villages rather than settling.
+Revisit: planned in lesson.technology.wheels-metals-and-work (animal pulling power, carts) and lesson.steppe.chariots-and-mobility (steppe milk, horses); both are unpublished and named here as editorial intentions only.
+Reasoning progression: prior lessons practiced observing plant evidence and naming its limits → here the learner compares two bone patterns to infer a human choice → next, Wheels and Steppe lessons ask learners to weigh several evidence types for a technology's spread.
+Transfer plan: no unfamiliar-evidence transfer task in this lesson; the Andean corrals give a light second case of management evidence, and fuller transfer is deferred to the Steppe lesson, where horse-domestication evidence can be tested with the same "management vs. hunting" logic.
+Completion versus mastery: completion records the correct Ganj Dareh selection and a sincere written attempt on mobility; mastery would be shown if a learner could use the hunted-vs-herded logic on new bones (for example camelids) without prompting, which is not tested here.
+Required sincere-attempt evidence: prompt 2 written answer (minimum 30 characters) explaining a reason for moving and posing one open question.
+Story spine: the hoofprinted bricks of Ganj Dareh open the lesson; the herd idea travels across regions to the Sahara and Lake Turkana, and closes on herders who move by knowledge, not chance.
+Memorable moments: hoofprints pressed into a mud brick 10,000 years ago; goat bones that reveal herders' choices; people using milk thousands of years before most adults could digest it; at least 580 people buried together by early herders at Lake Turkana.
+
+## Section/component storyboard
+
+| Order | Section ID | Learner-facing heading | Authoring purpose (not shown) | Claims/sources | Module | Media/action | Transition |
+| --- | --- | --- | --- | --- | --- | --- | --- |
+| 1 | section.animals.ganj-dareh | Goats in a mountain village | Open on Ganj Dareh and the hoofprints; pose the question | ganj-dareh-management, hoofprints-newborns / daly-2021 | prose | Planned evidence image: hoofprinted brick | Hunted or kept? → how bones answer |
+| 2 | section.animals.bones-show-herding | How bones show herding | Evidence encounter; management before body change | asiab-hunting, ganj-dareh-management, body-change-later / daly-2021 | prose, knowledge (What you can see), prose | Planned native survival chart | One village → many regions |
+| 3 | section.animals.several-places | Herding began in several places | Multi-region model; Andes stepwise | several-regions, andean-camelids, african-cattle-debate | prose, knowledge, prose | Planned world locator map | Why keep animals alive? |
+| 4 | section.animals.milk-wool-pulling | Milk, wool and pulling power | Living-animal products and uneven timing | early-milk, milk-before-digestion, wool-traction-later | prose, knowledge | No media (text clearer) | Milk leads to the Sahara |
+| 5 | section.animals.africa-herding-first | In Africa, herding came first | Herding before crops; Takarkori; cattle debate; Lothagam North | sahara-herding-first, takarkori-milk, african-cattle-debate, lothagam-cemetery, lothagam-networks, herders-mixed-with-foragers | prose ×2 | Map from section 3 covers place | Why move at all? |
+| 6 | section.animals.why-herders-moved | Why herders moved | Mobility as strategy; mustatils; connections; steppe bridge; What we can know | mobility-strategy, mustatil-offerings, steppe-milk | prose, knowledge (What we can know) | No media | → World Check |
+| 7 | section.animals.world-check | World Check | Use the bone evidence and explain mobility | prompts | prompt ×2 | — | Journey continues |
+
+Heading voice: each learner-facing heading names the subject in ordinary words; none uses a metaphor or riddle.
+
+## Media decisions
+
+| Intention ID | Section ID | Teaching question | Form | Evidence/claim basis | Depiction label | Accessible equivalent | Stage 14A treatment | Final review |
+| --- | --- | --- | --- | --- | --- | --- | --- | --- |
+| media.animals.ganj-dareh-hoofprints (Recommended core) | section.animals.ganj-dareh | What did the excavators actually find? | Surviving evidence photograph, direct use (crop only) | Daly 2021 Fig. 2B, CC BY 4.0; hoofprints-newborns | Surviving evidence · excavation photograph | Alt text describing the brick and three hoof impressions | Planned intention annotation; text carries the clue | Stage 15: rights (CC BY credit), fidelity, alt |
+| media.animals.ganj-dareh-survival-chart (Recommended core) | section.animals.bones-show-herding | Which goats lived longer, and how does that differ from hunting? | Native/deterministic chart from reviewed figure data | Daly 2021 Fig. 2A and Asiab text figures; ganj-dareh-management, asiab-hunting | Evidence-led diagram · simplified from published survivorship curves | Text table of the same percentages | Planned; the "What you can see" knowledge grid carries the numbers | Stage 15: data/code record, fidelity to figure, no generation |
+| media.animals.herding-regions-map (Recommended) | section.animals.several-places | Where did herding begin, and how far apart? | Historical locator map, Akkad standard, Natural Earth base | several-regions, andean-camelids, sahara-herding-first, lothagam-cemetery, mustatil-offerings, steppe-milk | Evidence-led world map · broad regions approximate, modern coasts for orientation | Accessible summary listing regions and dates | Planned; knowledge items carry regions | Stage 15: historical-map runbook; ChatGPT prompt supplied if an illustrated edit is used |
+| — | section.animals.milk-wool-pulling | — | No media | — | — | — | Not needed | — |
+| — | section.animals.africa-herding-first | — | No media (no licensed Lothagam image; rock-art copy too small and undated; reconstruction would lack usable site references) | — | — | — | Not needed | — |
+| — | section.animals.why-herders-moved | — | No media | — | — | — | Not needed | — |
+
+Optional, not planned: an evidence-based reconstruction hero of Ganj Dareh herders. Not recommended for the prototype; if the owner asks for one, it needs actual subject references (wild bezoar goat photographs, Ganj Dareh architecture record) and a ChatGPT prompt recorded in the image lifecycle block.
+
+## Image lifecycle
+
+No final images exist at Stage 14B. Blocks for `media.animals.ganj-dareh-hoofprints`, `media.animals.ganj-dareh-survival-chart` and `media.animals.herding-regions-map` are written at Stage 15. Any image built from references rather than used as the source itself will include a ready-to-paste ChatGPT prompt (owner standing preference, 2026-10-29).
+
+## Knowledge Card decision
+
+Decision: card (recommended, pending owner)
+Rationale: the hoofprinted brick of Ganj Dareh is a concrete, visually representable memory anchor for the lesson's central evidence idea — animals living among people before their bodies changed — and is distinct from existing cards.
+Stable card ID, category, class, and unlock lesson if applicable: `card.animals.ganj-dareh-hoofprints`, category artifact, class Witness, unlockLessonId `lesson.animals.domestication-and-pastoralism`.
+Understanding anchored: herding began with management that bones and traces reveal before domestication is visible.
+Sources and visual brief: Daly et al. 2021 (CC BY 4.0) Fig. 2B photograph shown whole as card art; depiction label "Surviving evidence · excavation photograph". Facts: Zagros Mountains, western Iran; village used c. 8200–7600 BCE; most young male goats eaten, most females kept; goat bodies changed about 1,000 years later. Card art resolution must be checked at Stage 15; if too small, Lothagam North cannot substitute (no licensed image), so the fallback is no card.
+
+## Prompt rationale
+
+| Prompt ID | Required | Understanding/evidence assessed | Misconception exposed | Feedback job | Plain-words check (what a 12-year-old does after one read) |
+| --- | --- | --- | --- | --- | --- |
+| prompt.animals.ganj-dareh-bones | yes | Infer herding from the age/sex pattern and newborn bones | Better hunting; new breed already; hunting young for taste | Each wrong option sends the learner back to who survived or when bodies changed | "Read the numbers about which goats died young and pick the explanation that fits." |
+| prompt.animals.why-herders-moved | yes | Explain mobility as a strategy; pose a positive open question | Nomads wander aimlessly | Explanation shows a strong answer (water/grass; open question) | "Say why Sahara herders moved, then ask one question researchers still want answered." Two-sentence lesson-only answer: "Rain fell unevenly, so they moved to find water and grass for their cattle. Researchers still want to know whether cattle were also tamed in Africa." |
+
+## Ages 11–15 transformations
+
+Initial drafting reference: roughly 12–13; age fit remains a hypothesis until observed with learners.
+
+- Survivorship curves and sex ratios → three plain statements ("young males died", "females lived on", "goats were born here") with simple percentages.
+- "Pastoralism" and "secondary products" → "herding" and "what living animals gave"; the older "revolution" idea is described in one sentence as a view researchers revised.
+- Lactase persistence → "most adults cannot easily digest fresh milk"; no genetics vocabulary.
+- Contested African cattle origin → one paragraph giving both views and saying the question is open.
+- Human remains at Lothagam North → stated plainly as a cemetery with numbers and ornaments; no description of bodies.
+- Present-day Fulani explanations → explicitly labelled as modern and "not a window into the distant past".
+
+## Prototype review record (Stage 14B)
+
+Rendered check, 2026-10-29, by the authoring agent in a local Vite preview with `VITE_UNLOCK_PREVIEW_LESSONS=true` at `/learn/lesson.animals.domestication-and-pastoralism`: desktop 1280 px light and mobile 390 px dark screenshots, full page, no console errors. Product review is `pending` in `content/prototype-reviews/animals-herding-and-mobility.ts`.
+
+| Check | Finding | Evidence from the page / disposition |
+| --- | --- | --- |
+| Mental model | pass | Opening asks "hunted prey or kept animals?"; sections 2–6 answer it and widen it; significance line states the durable understanding. |
+| Cumulative learning | pass | Retrieves gradual domestication and Boncuklu's goats; extends to animals and mobility; revisits are marked as unpublished intentions. |
+| Momentum | pass | Hoofprints → bones → several regions → milk → Africa → why move → checks. Ending lands on mobility as knowledge, not a heading summary. |
+| Cognitive load | revise → fixed | "Tamed" wording in two places implied a single taming moment; changed to "domesticated"/"began herding". Masthead place line is long on mobile but legible; kept because each region is taught. |
+| Headings | pass | Six plain headings plus World Check; no metaphors or riddles. |
+| Prompt fit | pass | Selection stem carries the Asiab and Ganj Dareh numbers; hint names a first step; every option has feedback; wrong options are real misconceptions of similar length. Written prompt has two numbered plain parts and a positive open question. |
+| Evidence reasoning | pass | "What you can see" grid distinguishes observation (percentages, newborn bones) from inference (herding); "What we can know" uses the four-item shape. |
+| Proportionality | pass | African cattle origin given both views in one paragraph; Lothagam "no evidence of ranking" not inflated to "equal"; present-day Fulani evidence labelled as modern. |
+| Visual value | pass (planned) | Three planned intentions sit at their exact sections; three sections record why no media. No final media yet. |
+| Story | pass | Retellable moments: hoofprints in a 10,000-year-old brick; goat bones as a record of herders' choices; milk thousands of years before most adults could digest it; 580 people buried together by Lake Turkana. |
+| Next action | pass | Completion panel requires both checks; journey continues to Uruk after this entry. |
+| Research | revise (owner decision) | Six claims rest on abstract-level review of four inaccessible full texts (Evershed 2008, Evershed 2022, Dunne 2012, Hildebrand 2018); wording is narrowed to the abstracts and the claims stay review-required. Implementation gate will fail until resolved. |
+| Rights, media and accessibility | not applicable yet | No final images; Daly 2021 figures are CC BY 4.0; Stage 15 will record lifecycle blocks and a ChatGPT prompt for any reference-built image. |
+| Technical | pass | Prototype gate, content validation and Chronos typecheck pass; tests updated for the new journey entry. One unrelated pre-existing failure on `main` remains in `tests/learn/multi-lesson.test.tsx` (expects the journey without Hammurabi). |

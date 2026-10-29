@@ -32,6 +32,7 @@ describe('Crossing to Sahul published lesson', () => {
       LESSON_ID,
       'lesson.farming.multiple-origins',
       'lesson.farming.settlements',
+      'lesson.animals.domestication-and-pastoralism',
     ]);
     expect(entries).not.toContain('lesson.humans.ice-age-lifeways');
   });
