@@ -283,16 +283,16 @@
         "fallback": {
           "path": "/images/optimized/animals/herding-regions-map.optimized.webp",
           "width": 1600,
-          "height": 826
+          "height": 1169
         },
         "variants": [
           {
-            "objectKey": "animals/media.animals.herding-regions-map/bdbf1b98eb31141f/optimized/ql-v1/480w-webp-lossless-117eb7c18cac70b3.webp",
+            "objectKey": "animals/media.animals.herding-regions-map/0f7c23677bfa435c/optimized/ql-v1/480w-webp-lossless-4c700b1eb7772346.webp",
             "mimeType": "image/webp",
-            "bytes": 95214,
-            "sha256": "117eb7c18cac70b327109588d19839d1ecd06cd24666d7b063c709c7c2ce82e9",
+            "bytes": 176236,
+            "sha256": "4c700b1eb7772346d5ff5a6aed23570fe970595408fe8c5ab6cd751ca521ffcd",
             "width": 480,
-            "height": 248,
+            "height": 350,
             "compression": {
               "profile": "ql-v1",
               "codec": "webp",
@@ -306,23 +306,23 @@
             }
           },
           {
-            "objectKey": "animals/media.animals.herding-regions-map/bdbf1b98eb31141f/optimized/ql-v1/1600w-webp-q94-9ed7a1e0f30a45a6.webp",
+            "objectKey": "animals/media.animals.herding-regions-map/0f7c23677bfa435c/optimized/ql-v1/1600w-webp-q96-1299b0541a18977f.webp",
             "mimeType": "image/webp",
-            "bytes": 175120,
-            "sha256": "9ed7a1e0f30a45a6699bde501b7799da21c360b28177316fd4aec7f11753c44d",
+            "bytes": 463768,
+            "sha256": "1299b0541a18977f1aff816a1fe6cc6606e91e20e11c700d67081454b46d64f6",
             "width": 1600,
-            "height": 826,
+            "height": 1169,
             "compression": {
               "profile": "ql-v1",
               "codec": "webp",
               "encoder": "webp-lossy",
-              "quality": 94
+              "quality": 96
             },
             "fidelity": {
               "mode": "measured-quasi-lossless",
-              "psnrDb": 46.42,
-              "meanAbsoluteError": 0.738,
-              "maximumChannelDelta": 16
+              "psnrDb": 46.63,
+              "meanAbsoluteError": 0.717,
+              "maximumChannelDelta": 14
             }
           }
         ]

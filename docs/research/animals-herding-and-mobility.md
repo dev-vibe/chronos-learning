@@ -405,93 +405,77 @@ Do not add a title, icons, goats, extra labels, gridline values, shadows, 3D eff
 - Comparison verdict — intentional changes: plain-language axis and age labels; percentages instead of 0–1; overall curve and levels A–E omitted.
 - Comparison verdict — unsupported details checked: no added data points or trend lines.
 
-### `media.animals.herding-regions-map` — world locator
+### `media.animals.herding-regions-map` — locator map (revision 2, 2026-10-29)
 
 #### 1. Reasoning and source basis
 
-- Teaching job: show that herding began in several far-apart places and where the lesson's seven places are relative to recognizable continents.
+- Teaching job: show that herding began in several far-apart places, and where the lesson's places sit relative to Africa, Europe, Arabia and Asia.
 - Governing claim IDs: `claim.animals.several-regions`, `claim.animals.andean-camelids`, `claim.animals.sahara-herding-first`, `claim.animals.lothagam-cemetery`, `claim.animals.mustatil-offerings`, `claim.animals.steppe-milk`.
-- Factual/historical sources: Natural Earth II 1:50m shaded relief (geography); Ganj Dareh coordinates from XRONOS (34.317 N, 47.500 E); Takarkori coordinates 24.883 N, 10.333 E (Wikipedia, consistent with Dunne 2012's Tadrart Acacus setting); Lothagam North placed west of southern Lake Turkana (~2.9 N, 36.0 E) from Hildebrand 2018 and the Lothagam locality; mustatil placed east of AlUla (~26.6 N, 38.2 E) from Kennedy 2023's title and setting; zones from Pitt 2019 (Fertile Crescent, Indus Valley), Yacobaccio 2021 (central/southern Andes), Dunne 2012 (green Sahara), Wilkin 2021 (western steppe).
-- Why image instead of no media: distance and spread across continents is the point; the knowledge grid alone cannot show it.
-- Depiction and uncertainty boundary: modern coasts for orientation; zones are deliberately broad ellipses; markers are much larger than the sites; no routes, arrows or borders. Native text carries all names, the orientation sentence and the uncertainty note.
+- Factual/historical sources: Natural Earth HYP_50M_SR_W relief (the raster used by the Akkad and Hammurabi locators) with the NE2_50M_SR_W raster as water mask; Ganj Dareh 34.317 N, 47.500 E (XRONOS); Takarkori 24.883 N, 10.333 E (Wikipedia, consistent with Dunne 2012); Lothagam North placed west of southern Lake Turkana (~2.9 N, 36.0 E) from Hildebrand 2018; mustatil east of AlUla (~26.6 N, 38.2 E) from Kennedy 2023; region glows from Pitt 2019 (Fertile Crescent, Indus Valley), Dunne 2012 (Sahara), Wilkin 2021 (western steppe), Yacobaccio 2021 (Andes, inset).
+- Why image instead of no media: distance and spread across continents is the point.
+- Depiction and uncertainty boundary: modern coasts for orientation; glows are deliberately soft and approximate; dots are much larger than the sites; no routes, arrows or borders.
 
 #### 2. Reference image or reviewed data actually used
 
 | Reference preview | Origin and permitted use |
 | --- | --- |
-| ![Reference for media.animals.herding-regions-map](animals-media/natural-earth-reference-crop.jpg) | Creator/institution: Natural Earth<br>Canonical origin: [NE2_50M_SR_W, v3.2.0](https://www.naturalearthdata.com/downloads/50m-natural-earth-2/50m-natural-earth-ii-with-shaded-relief-and-water/)<br>License/use: Public Domain<br>Accessed: 2026-10-29 |
+| ![Reference for media.animals.herding-regions-map](animals-media/natural-earth-reference-crop.jpg) | Creator/institution: Natural Earth<br>Canonical origin: [HYP_50M_SR_W](https://www.naturalearthdata.com/downloads/50m-raster-data/50m-cross-blend-hypso/) and [NE2_50M_SR_W](https://www.naturalearthdata.com/downloads/50m-natural-earth-2/50m-natural-earth-ii-with-shaded-relief-and-water/)<br>License/use: Public Domain<br>Accessed: 2026-10-29 |
 
-- Repository research copy and SHA-256: `docs/research/animals-media/natural-earth-reference-crop.jpg` (unstyled crop of the same bounds, `248b56ad77124deb0d6ede9f0c8e77d59fdec6d1e3ed6a94504a77f05ede97d8`); full download `NE2_50M_SR_W.zip`, `7e0e07089b699a3cccad98dd1b2446390d8e3f8c5006359d477a329cebcafaa9`; TIFF `02ae944d9ee8a64ccacbd4f535220aac10b5c95e874118b6db8d6f07cea48e71`.
-- Edit mode: deterministic recolour with drawn zones and markers
-- Visual relationship to preserve: coastlines, relief and relative positions; marker placement at the listed coordinates.
-- Locked layout/detail invariants: equirectangular crop 88 W–98 E, 36 S–60 N; marker coordinates and zone parameters as listed in `render_herding_map.py`.
-- Details not to copy or infer: no ancient shorelines, lakes, rivers, routes, borders or site names baked into the image.
+- Repository research copy and SHA-256: unstyled HYP crop of the same bounds `docs/research/animals-media/natural-earth-reference-crop.jpg`, `855381637e6d3a5285efd7f97b8d1c44e5e565f12c306662e622cade97c13553`. HYP zip `57d89405e8f7d1e5d1cca11701d394b3d45aea75b301a6992ad5571eff64527a` and TIFF `925ec796d213adf3036db5e316d2a17ebbadf9f03f29fb20d320b340944293d5` (identical to the Akkad record); NE2 zip `7e0e07089b699a3cccad98dd1b2446390d8e3f8c5006359d477a329cebcafaa9`, TIFF `02ae944d9ee8a64ccacbd4f535220aac10b5c95e874118b6db8d6f07cea48e71`.
+- Edit mode: deterministic recolour with drawn glows, markers, labels and inset
+- Visual relationship to preserve: coastlines, relief and relative positions; markers at the listed coordinates.
+- Locked layout/detail invariants: equirectangular, 22 W–82 E and 20 S–56 N at 16 px per degree (1664×1216); inset 84 W–32 W, 42 S–12.7 N; marker coordinates, glow parameters and label list exactly as in `render_herding_map.py`.
+- Details not to copy or infer: no ancient shorelines, lakes, rivers, routes or borders.
 
 | Depicted real subject / composite panel | Actual subject reference and object/accession or figure ID | Input path and SHA-256 | Physical or measured details to preserve | Final fidelity verdict |
 | --- | --- | --- | --- | --- |
-| World geography | Natural Earth II 1:50m | TIFF `02ae944d…e71` | coastlines, relief | pass |
-| Ganj Dareh marker | XRONOS site 23478 | coordinates in code | 34.32 N, 47.50 E | pass |
-| Takarkori marker | Wikipedia Takarkori | coordinates in code | 24.88 N, 10.33 E | pass |
-| Lothagam North marker | Hildebrand 2018; Lothagam, west Turkana | coordinates in code | west of southern Lake Turkana | pass (approximate) |
-| AlUla mustatil marker | Kennedy 2023 | coordinates in code | east of AlUla | pass (approximate) |
+| Geography (main and inset) | Natural Earth HYP and NE2 1:50m | TIFFs above | coastlines, relief | pass |
+| Ganj Dareh dot | XRONOS site 23478 | coordinates in code | 34.32 N, 47.50 E | pass |
+| Takarkori dot | Wikipedia Takarkori | coordinates in code | 24.88 N, 10.33 E | pass |
+| Lothagam North dot | Hildebrand 2018 | coordinates in code | west of southern Lake Turkana | pass (approximate) |
+| Mustatil near AlUla dot | Kennedy 2023 | coordinates in code | east of AlUla | pass (approximate) |
 
-- Separate style/layout references: Akkad locator palette (golden land, blue water, terracotta markers) as style only.
-- Unsupported subjects omitted or replaced with native text: individual Andean sites (Telarmachay, Inca Cueva) shown only as a zone; Anatolian milk evidence not mapped.
+- Separate style/layout references: Akkad locator (`public/images/akkad/akkad-locator.jpg`) for palette formula, marker and label styling only.
+- Unsupported subjects omitted or replaced with native text: individual Andean sites; Anatolian milk evidence.
+- Labels (exact): Ganj Dareh, Takarkori, Lothagam North, Mustatil near AlUla, Fertile Crescent, Indus Valley, Sahara, Western steppe, Mediterranean Sea, Indian Ocean, AFRICA, EUROPE, ASIA, ARABIA, South America, Andes. Spelling checked against the lesson text.
 
 #### 3. Generation or transformation
 
 - Operation: deterministic/native/vector rendering
-- Reviewed data/code paths and versions (for deterministic output): `docs/research/animals-media/render_herding_map.py` (SHA-256 `dcccfa32a4af20c4ebc681786bc90bc24814745da4cac2a876a1314b8d76d660`), Pillow 12.3, NumPy.
-- Every actual input path and SHA-256: NE2_50M_SR_W.tif `02ae944d9ee8a64ccacbd4f535220aac10b5c95e874118b6db8d6f07cea48e71`.
+- Reviewed data/code paths and versions (for deterministic output): `docs/research/animals-media/render_herding_map.py` (SHA-256 `4993bc722db839c762cafdd49bc20cc01854e34537b0b2ecc0e91422c315f380`), Pillow 12.3, NumPy, Lora font. Palette formula ported from `scripts/media/akkad-map-reference.mjs`.
+- Every actual input path and SHA-256: HYP TIFF `925ec796…93d5`; NE2 TIFF `02ae944d…8e71`.
 - Tool/model/date: Pillow/NumPy, 2026-10-29.
 - Complete prompt, including subject-to-reference mapping and prohibition on invented physical or measured details (`No generation` when applicable):
 
 ```text
-No generation. python3 render_herding_map.py NE2_50M_SR_W.tif herding-regions-map.png
+No generation. python3 render_herding_map.py HYP_50M_SR_W.tif NE2_50M_SR_W.tif herding-regions-map.png
 ```
 
-- Optional ChatGPT prompt (only if Carlin prefers an illustrated version; attach `herding-regions-map.png` as the image to edit and `public/images/akkad/akkad-locator.jpg` as a style-only reference):
+- Optional ChatGPT prompt (only if Carlin prefers a hand-illustrated finish; attach `herding-regions-map.png` as the image to edit and `public/images/akkad/akkad-locator.jpg` as a style-only reference):
 
 ```text
-Create a single historical map illustration for a Chronos lesson by restyling the FIRST attached image. The second attached image is a style reference only; do not copy its geography.
+Restyle the FIRST attached map as a single historical atlas illustration for a children's history lesson (ages 11–15). The SECOND attached image is a style reference only; do not copy its geography.
 
-LESSON AND PURPOSE:
-- Subject: places where people began herding animals
-- Period: c. 9000–2000 BCE
-- Teaching goal: herding began in several far-apart regions
-- Wider-world anchor: the Americas, Africa, Europe and Asia must stay recognizable
+KEEP EXACTLY (do not move, add, remove or reshape):
+- the crop, projection, every coastline, the Mediterranean, Red Sea, Black Sea, Caspian Sea and Persian Gulf;
+- the four red dots and their positions: Ganj Dareh (western Iran), Takarkori (Sahara, Libya), Mustatil near AlUla (northwest Arabia), Lothagam North (Kenya);
+- the four soft orange glows (Fertile Crescent, Indus Valley, Sahara, western steppe) and the shaded Andes in the South America inset, kept soft, never hard borders;
+- the inset box in the bottom-left corner;
+- every label and its spelling: Ganj Dareh, Takarkori, Lothagam North, Mustatil near AlUla, Fertile Crescent, Indus Valley, Sahara, Western steppe, Mediterranean Sea, Indian Ocean, AFRICA, EUROPE, ASIA, ARABIA, South America, Andes.
 
-GEOGRAPHIC REFERENCE:
-- Treat the first attached map as the geographic source.
-- Preserve its crop, projection, coastlines, terrain placement, and the exact position and size of all seven numbered markers and five shaded zones.
+STYLE: warm golden relief like the style reference, clear blue water, terracotta dots with cream halos, dark teal serif labels with a cream outline, restrained paper texture, calm and easy to read on a phone.
 
-VERIFIED FEATURES:
-- Markers 1 (western Iran), 4 (Libya), 5 (west of Lake Turkana, Kenya), 6 (northwest Arabia)
-- Zones: Fertile Crescent, Indus Valley (2), Andes (3), Sahara, western steppe (7)
+DO NOT ADD: rivers, lakes, roads, routes, arrows, borders, cities, ruins, animals, a compass, legend, title, date or any word not listed above.
 
-APPROXIMATE FEATURES:
-- All five zones; keep them soft, translucent ovals. Do not sharpen them into borders.
-
-REQUIRED LABELS:
-- Only the numbers 1 to 7 already in the markers. No other text.
-
-CHRONOS STYLE:
-- warm golden or parchment-toned land, with clear blue water;
-- ochre, blue-green and terracotta accents with enough contrast to read at lesson size;
-- restrained paper texture; elegant editorial historical-atlas character;
-- calm, clear, and approachable for ages 11–15.
-
-DO NOT ADD:
-- invented settlements, rivers, lakes, roads, borders, arrows, routes, ruins, animals or symbols;
-- modern national borders;
-- a compass, legend, title, date, paragraph, logo or watermark;
-- any word or number not already on the map.
-
-OUTPUT:
-- one complete raster map, at least 2000 px wide, no cropping of the Andes, Africa or the steppe.
+OUTPUT: one raster map at least 1664 × 1216 px with nothing cropped.
 ```
 
-- Candidate/rejection record: first render rejected (Andes zone tilted the wrong way and spilling into the Pacific; steppe and Fertile Crescent zones covering seas); second render accepted with zones clipped to land.
+- Candidate/rejection record:
+  - Revision 1 (`docs/research/animals-media/herding-regions-map-rev1-rejected.png`, `ec905c6fad1f803badf44d0f1cf4ddc3158cc291ace370d47b2c6162a33dc8d7`): world-scale NE2 render with numbered markers and outlined ellipses. Published 2026-10-29, then rejected by Carlin the same day (“map really sucks”): pale, crude blobs, numbers instead of names, far below the Akkad standard.
+  - Revision 2 draft A: HYP raster with its own chroma water test classified humid forests (Europe, Central Africa) as water; rejected and replaced by the NE2 water mask.
+  - Revision 2 draft B: overlapping AlUla and Takarkori labels, inset labels too small; rejected.
+  - Revision 2 draft C: labels about 8 px on a phone; enlarged. Draft D: an Atlantic Ocean label landed on West Africa and two labels clipped at the edges; the Atlantic label was removed and the others moved.
+  - Revision 2 final: accepted.
 
 #### 4. Accepted final image
 
@@ -499,16 +483,16 @@ OUTPUT:
 | --- | --- |
 | ![Reference comparison for media.animals.herding-regions-map](animals-media/natural-earth-reference-crop.jpg) | ![Accepted final for media.animals.herding-regions-map](animals-media/herding-regions-map.png) |
 
-- Final master path, dimensions, and SHA-256: `docs/research/animals-media/herding-regions-map.png`, 2000×1032, `ec905c6fad1f803badf44d0f1cf4ddc3158cc291ace370d47b2c6162a33dc8d7`.
-- Runtime/fallback path and SHA-256: `public/images/animals/herding-regions-map.jpg` (1600×826, `bdbf1b98eb31141f05ba4715b87b33439f1d19f96f3166580986c5d1830ac632`, preset `photo`); fallback `public/images/optimized/animals/herding-regions-map.optimized.webp` (`9ed7a1e0f30a45a6699bde501b7799da21c360b28177316fd4aec7f11753c44d`).
-- Reviewer/date/status: authoring agent, 2026-10-29, approved; owner approved the map intention 2026-10-29.
+- Final master path, dimensions, and SHA-256: `docs/research/animals-media/herding-regions-map.png`, 1664×1216, `84938c675a331cae5e0c4c36035a1acf5bcd9f634d29c266b71022211b537405`.
+- Runtime/fallback path and SHA-256: `public/images/animals/herding-regions-map.jpg` (1600×1169, `0f7c23677bfa435c559a84b68e2884c5a423d868b3a0ed04afc65a213ada2e82`, preset `photo`); fallback `public/images/optimized/animals/herding-regions-map.optimized.webp` (`1299b0541a18977f1aff816a1fe6cc6606e91e20e11c700d67081454b46d64f6`).
+- Reviewer/date/status: authoring agent, 2026-10-29, approved for the owner's correction check.
 - Subject coverage verdict — every depicted real subject has an actual visual reference or reviewed factual data used by the method: yes
 - Subject fidelity verdict — every subject preserves its referenced physical or measured details: yes
 - Fidelity verdict — every locked invariant retained: yes
-- Lesson-size verdict — evidence-bearing differences remain visually distinct on desktop and mobile: yes (numbers legible at 390 px)
-- Comparison verdict — preserved relationship: identical coastlines and relief to the Natural Earth crop; markers at listed coordinates.
-- Comparison verdict — intentional changes: warm recolour; translucent zones clipped to land; numbered markers.
-- Comparison verdict — unsupported details checked: no labels, routes, borders or water features added.
+- Lesson-size verdict — evidence-bearing differences remain visually distinct on desktop and mobile: yes (site labels about 12 px at 390 px width)
+- Comparison verdict — preserved relationship: coastlines and relief identical to the unstyled crop; dots at listed coordinates.
+- Comparison verdict — intentional changes: Akkad palette, soft region glows clipped to land, serif labels, South America inset.
+- Comparison verdict — unsupported details checked: no rivers, routes, borders or extra places.
 
 ## Knowledge Card decision
 
@@ -563,6 +547,10 @@ Rendered check, 2026-10-29, by the authoring agent in a local Vite preview with 
 2026-10-29: Carlin replied “approved”. This authorizes final media and publication, the hoofprint Witness card, and the abstract-level wording for the four inaccessible full texts (Evershed 2008, Evershed 2022, Dunne 2012, Hildebrand 2018); those sources and their six claims are now `reviewed`, with the acceptance recorded in each source's `licenseOrUse`.
 
 In the same message Carlin asked that, as a standing rule, prompts ask one question at a time in very clear, approachable language. The rule was added to the runbook in [PR #88](https://github.com/dev-vibe/chronos-learning/pull/88) (merged). This lesson's two-part written prompt was split: `prompt.animals.why-herders-moved` now asks only why Sahara herders moved, and a new `prompt.animals.herder-question` asks for one open question. The lesson now has three required prompts (the runbook maximum).
+
+## Corrections after release
+
+2026-10-29: Carlin rejected the published locator map (“map really sucks”). Same media ID, new lineage: rebuilt to the Akkad standard (hypsometric relief, labelled sites, region glows, South America inset). The map module's visible text no longer needs a number key. See the map's image lifecycle block for the rejected revision. Owner check of the corrected lesson pending.
 
 ## Final sign-off
 
