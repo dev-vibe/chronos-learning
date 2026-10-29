@@ -1,6 +1,6 @@
 # Animals, Herding, and Mobility — research and editorial note
 
-Issue: Linear issue not yet created (no Linear access in this session); rename the branch or link the PR once the issue exists
+Issue: [ASH-114](https://linear.app/ashs-workshop/issue/ASH-114/research-and-publish-animals-herding-and-mobility); blocks ASH-104 (Steppe Mobility and the Chariot)
 Lesson ID: lesson.animals.domestication-and-pastoralism
 Research-note identity/version: Stage 0–3B research-direction packet, 2026-10-29
 Production record version: 2
@@ -9,7 +9,7 @@ Required or optional: required
 Accountable reviewer: Carlin Aylsworth
 Validation tier: ordinary (multi-region synthesis with one contested origin question)
 Queue status: `Active` in this branch's first commit. Carlin promoted the row from `Planned` on 2026-10-29 when asked how to handle Steppe Mobility and the Chariot's unmet production dependency ("Do Animals first").
-Branch: `claude/animals-herding-mobility`
+Branch: `claude/animals-herding-mobility`; [PR #86](https://github.com/dev-vibe/chronos-learning/pull/86) (title carries the issue key)
 
 ## Owner decision card (Stage 3B)
 
