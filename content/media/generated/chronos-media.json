@@ -3020,6 +3020,238 @@
       }
     },
     {
+      "id": "media.wheels-metals.iceman-axe",
+      "locator": {
+        "provider": "object-storage",
+        "bucket": "media-public",
+        "fallback": {
+          "path": "/images/optimized/wheels-metals/iceman-axe-blade.optimized.webp",
+          "width": 1000,
+          "height": 750
+        },
+        "variants": [
+          {
+            "objectKey": "wheels-metals/media.wheels-metals.iceman-axe/c2277fbef7ed7176/optimized/ql-v1/480w-webp-q94-f100f049c4b5a9ee.webp",
+            "mimeType": "image/webp",
+            "bytes": 24418,
+            "sha256": "f100f049c4b5a9ee50ad6e8bdfce7160c182697377073483e8668a7f3f19153a",
+            "width": 480,
+            "height": 360,
+            "compression": {
+              "profile": "ql-v1",
+              "codec": "webp",
+              "encoder": "webp-lossy",
+              "quality": 94
+            },
+            "fidelity": {
+              "mode": "measured-quasi-lossless",
+              "psnrDb": 45.35,
+              "meanAbsoluteError": 0.898,
+              "maximumChannelDelta": 12
+            }
+          },
+          {
+            "objectKey": "wheels-metals/media.wheels-metals.iceman-axe/c2277fbef7ed7176/optimized/ql-v1/960w-webp-q90-79666e75eea03a99.webp",
+            "mimeType": "image/webp",
+            "bytes": 46142,
+            "sha256": "79666e75eea03a997185b326f60271700be63382fc8b5a922467ef50ee66ea59",
+            "width": 960,
+            "height": 720,
+            "compression": {
+              "profile": "ql-v1",
+              "codec": "webp",
+              "encoder": "webp-lossy",
+              "quality": 90
+            },
+            "fidelity": {
+              "mode": "measured-quasi-lossless",
+              "psnrDb": 45.1,
+              "meanAbsoluteError": 0.898,
+              "maximumChannelDelta": 16
+            }
+          },
+          {
+            "objectKey": "wheels-metals/media.wheels-metals.iceman-axe/c2277fbef7ed7176/optimized/ql-v1/1000w-webp-q90-8c57106e6592bce6.webp",
+            "mimeType": "image/webp",
+            "bytes": 51194,
+            "sha256": "8c57106e6592bce6844295ce2d1f881643fa73e7b5f0e6ee4a2a38e698e79d85",
+            "width": 1000,
+            "height": 750,
+            "compression": {
+              "profile": "ql-v1",
+              "codec": "webp",
+              "encoder": "webp-lossy",
+              "quality": 90
+            },
+            "fidelity": {
+              "mode": "measured-quasi-lossless",
+              "psnrDb": 45.74,
+              "meanAbsoluteError": 0.825,
+              "maximumChannelDelta": 14
+            }
+          }
+        ]
+      }
+    },
+    {
+      "id": "media.wheels-metals.ljubljana-wheel",
+      "locator": {
+        "provider": "object-storage",
+        "bucket": "media-public",
+        "fallback": {
+          "path": "/images/optimized/wheels-metals/ljubljana-wheel.optimized.jpg",
+          "width": 1600,
+          "height": 1225
+        },
+        "variants": [
+          {
+            "objectKey": "wheels-metals/media.wheels-metals.ljubljana-wheel/aa72698886b05dc1/optimized/ql-v1/960w-webp-q94-35c45b36e8e1eb97.webp",
+            "mimeType": "image/webp",
+            "bytes": 116230,
+            "sha256": "35c45b36e8e1eb979c177e2427c519f7df875fc30280c48cd91b2abd82b8ba50",
+            "width": 960,
+            "height": 735,
+            "compression": {
+              "profile": "ql-v1",
+              "codec": "webp",
+              "encoder": "webp-lossy",
+              "quality": 94
+            },
+            "fidelity": {
+              "mode": "measured-quasi-lossless",
+              "psnrDb": 45.78,
+              "meanAbsoluteError": 0.767,
+              "maximumChannelDelta": 15
+            }
+          },
+          {
+            "objectKey": "wheels-metals/media.wheels-metals.ljubljana-wheel/aa72698886b05dc1/optimized/ql-v1/1600w-source-jpeg-aa72698886b05dc1.jpg",
+            "mimeType": "image/jpeg",
+            "bytes": 197436,
+            "sha256": "aa72698886b05dc161228856df4ead2d803342c309e040e04974cf3e93df2f7c",
+            "width": 1600,
+            "height": 1225,
+            "compression": {
+              "profile": "ql-v1",
+              "codec": "jpeg",
+              "encoder": "source-passthrough"
+            },
+            "fidelity": {
+              "mode": "pixel-exact",
+              "psnrDb": null,
+              "meanAbsoluteError": 0,
+              "maximumChannelDelta": 0
+            }
+          }
+        ]
+      }
+    },
+    {
+      "id": "media.wheels-metals.locator-map",
+      "locator": {
+        "provider": "object-storage",
+        "bucket": "media-public",
+        "fallback": {
+          "path": "/images/optimized/wheels-metals/wheels-metals-locator.optimized.webp",
+          "width": 1600,
+          "height": 1374
+        },
+        "variants": [
+          {
+            "objectKey": "wheels-metals/media.wheels-metals.locator-map/96386f85ac31e820/optimized/ql-v1/480w-webp-lossless-0872a22ca538eed2.webp",
+            "mimeType": "image/webp",
+            "bytes": 207852,
+            "sha256": "0872a22ca538eed210fa1f73e96ffde22d683e4f763c39ca504cb4290da0cc81",
+            "width": 480,
+            "height": 412,
+            "compression": {
+              "profile": "ql-v1",
+              "codec": "webp",
+              "encoder": "webp-lossless"
+            },
+            "fidelity": {
+              "mode": "pixel-exact",
+              "psnrDb": null,
+              "meanAbsoluteError": 0,
+              "maximumChannelDelta": 0
+            }
+          },
+          {
+            "objectKey": "wheels-metals/media.wheels-metals.locator-map/96386f85ac31e820/optimized/ql-v1/1600w-webp-q92-e9ee54ba8322690c.webp",
+            "mimeType": "image/webp",
+            "bytes": 312866,
+            "sha256": "e9ee54ba8322690c83d830969945d93a2d5c72228f3dfe1090510924208651ea",
+            "width": 1600,
+            "height": 1374,
+            "compression": {
+              "profile": "ql-v1",
+              "codec": "webp",
+              "encoder": "webp-lossy",
+              "quality": 92
+            },
+            "fidelity": {
+              "mode": "measured-quasi-lossless",
+              "psnrDb": 45.02,
+              "meanAbsoluteError": 0.827,
+              "maximumChannelDelta": 16
+            }
+          }
+        ]
+      }
+    },
+    {
+      "id": "media.wheels-metals.standard-of-ur",
+      "locator": {
+        "provider": "object-storage",
+        "bucket": "media-public",
+        "fallback": {
+          "path": "/images/optimized/wheels-metals/standard-of-ur-war.optimized.jpg",
+          "width": 1600,
+          "height": 690
+        },
+        "variants": [
+          {
+            "objectKey": "wheels-metals/media.wheels-metals.standard-of-ur/0faed02bb62e9db8/optimized/ql-v1/480w-webp-lossless-64c557f8ed5fcc6d.webp",
+            "mimeType": "image/webp",
+            "bytes": 175726,
+            "sha256": "64c557f8ed5fcc6de684bdbb5324c2e4c4aef7f6b6886bd0f2a61c414a09828a",
+            "width": 480,
+            "height": 207,
+            "compression": {
+              "profile": "ql-v1",
+              "codec": "webp",
+              "encoder": "webp-lossless"
+            },
+            "fidelity": {
+              "mode": "pixel-exact",
+              "psnrDb": null,
+              "meanAbsoluteError": 0,
+              "maximumChannelDelta": 0
+            }
+          },
+          {
+            "objectKey": "wheels-metals/media.wheels-metals.standard-of-ur/0faed02bb62e9db8/optimized/ql-v1/1600w-source-jpeg-0faed02bb62e9db8.jpg",
+            "mimeType": "image/jpeg",
+            "bytes": 278413,
+            "sha256": "0faed02bb62e9db8d2b7b894e0f48054af029ef10168cc921b936bbad1978c07",
+            "width": 1600,
+            "height": 690,
+            "compression": {
+              "profile": "ql-v1",
+              "codec": "jpeg",
+              "encoder": "source-passthrough"
+            },
+            "fidelity": {
+              "mode": "pixel-exact",
+              "psnrDb": null,
+              "meanAbsoluteError": 0,
+              "maximumChannelDelta": 0
+            }
+          }
+        ]
+      }
+    },
+    {
       "id": "media.writing.proto-cuneiform-tablet",
       "locator": {
         "provider": "object-storage",

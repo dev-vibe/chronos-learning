@@ -8,7 +8,7 @@ Journey/chapter/position: required World History, chapter 02 (Cities, States, an
 Required or optional: required
 Accountable reviewer: Carlin Aylsworth
 Validation tier: ordinary (technology history with live origin debates; no sensitive material beyond Ötzi's violent death, which the lesson does not need)
-Queue status: `Active` from this branch's first commit. Carlin promoted the row from `Planned` on 2026-10-29 ("Do Wheels & Metals first") after being told that Bronze Age Exchange Networks (order 110) depends on it.
+Queue status: `Active` from this branch's first commit; `Complete` only after the owner's hosted check. Carlin promoted the row from `Planned` on 2026-10-29 ("Do Wheels & Metals first") after being told that Bronze Age Exchange Networks (order 110) depends on it.
 Branch: `cowork/ash-115-wheels-metals-and-work`
 
 ## Owner decision card (Stage 3B)
@@ -149,17 +149,17 @@ Follow-up research and disposition (2026-10-29): Velušček, Čufar and Zupanči
 
 ## Claim ledger
 
-All claims are registered in `content/lessons/wheels-metals-and-specialized-work.ts`. Review = main agent, 2026-10-29, unless marked `editorial-review-required` (needs a full-text read or owner editorial check before release).
+All claims are registered in `content/lessons/wheels-metals-and-specialized-work.ts`. Review = main agent, 2026-10-29. Claims first marked for editorial review were cleared before release on 2026-10-29: the Çatalhöyük author manuscript was read in full (Abstract; Discussion p. 36), which also corroborates the Belovode and multiple-origins claims; Roberts et al. 2009 and Mischka 2011 support only what their abstracts and Table 3 state; the Veracruz reasons claim is limited to what researchers suggest.
 
 | Claim ID and wording | Kind | Certainty | Sources | Counterevidence/limits | Missing perspective | Learner treatment | Review |
 | --- | --- | --- | --- | --- | --- | --- | --- |
 | `claim.wheels-metals.iceman-find` — found 1991 in melting Alpine ice; died c. 3300 BCE | observation | high | iceman-discovery, artioli-2017 | Death date is a range (3350–3000 BC) | — | State | reviewed |
 | `claim.wheels-metals.axe-making` — almost pure copper, cast, hammered, re-sharpened, yew haft | observation | high | iceman-equipment | Museum description | — | State | reviewed |
 | `claim.wheels-metals.axe-tuscany` — copper from southern Tuscany | interpretation | high | artioli-2017, iceman-equipment | Austrian ores overlap isotopically, excluded on antimony; manufacture site unproven | Who carried or traded it is unknown | State as what the chemistry shows | reviewed |
-| `claim.wheels-metals.axe-status` — copper axes prized, buried with high-ranking men | interpretation | moderate | iceman-equipment | Popular museum text; burial evidence not cited | Women’s and ordinary people’s access | One sentence | editorial review |
-| `claim.wheels-metals.belovode` — smelting by c. 5000 BCE in Serbia | observation | high | radivojevic-2015 | “Currently earliest”; abstract only | — | State with “so far” | editorial review |
-| `claim.wheels-metals.several-origins` — one or several beginnings debated | interpretation | contested | radivojevic-2015, roberts-2009, catalhoyuk-2017 | Roberts et al. 2009 argue single invention | Iranian-plateau evidence not examined | Compare both views briefly | editorial review |
-| `claim.wheels-metals.catalhoyuk` — Çatalhöyük “slag” was accidental burning | interpretation | high | catalhoyuk-2017 | Read via press summary | — | One sentence as detective story | editorial review |
+| `claim.wheels-metals.axe-status` — copper axes prized, buried with high-ranking men | interpretation | moderate | iceman-equipment | Popular museum text; burial evidence not cited | Women’s and ordinary people’s access | One sentence | reviewed 2026-10-29 |
+| `claim.wheels-metals.belovode` — smelting by c. 5000 BCE in Serbia | observation | high | radivojevic-2015 | “Currently earliest”; abstract only | — | State with “so far” | reviewed 2026-10-29 |
+| `claim.wheels-metals.several-origins` — one or several beginnings debated | interpretation | contested | radivojevic-2015, roberts-2009, catalhoyuk-2017 | Roberts et al. 2009 argue single invention | Iranian-plateau evidence not examined | Compare both views briefly | reviewed 2026-10-29 |
+| `claim.wheels-metals.catalhoyuk` — Çatalhöyük “slag” was accidental burning | interpretation | high | catalhoyuk-2017 | Read via press summary | — | One sentence as detective story | reviewed 2026-10-29 |
 | `claim.wheels-metals.metal-chain` — ore, smelting, casting, finishing | interpretation | high | radivojevic-2015, iceman-equipment, arslantepe-unesco | Whether one person or several did each step varied | Miners’ and smelters’ lives are poorly preserved | Knowledge module; “in many communities” | reviewed |
 | `claim.wheels-metals.arslantepe` — nine arsenical copper swords, earliest known | observation | high | arslantepe-unesco | Nomination dossier is advocacy; fire dated 3100 or 3000 BC | — | State | reviewed |
 | `claim.wheels-metals.arslantepe-workshop` — workshop with many moulds | interpretation | moderate | arslantepe-unesco | Dossier summary, not the excavation report | — | State | reviewed |
@@ -174,13 +174,13 @@ All claims are registered in `content/lessons/wheels-metals-and-specialized-work
 | `claim.wheels-metals.ljubljana-repair` — later repair wedge | interpretation | moderate | velusek-2009 | “Perhaps” in source | — | “probably” | reviewed |
 | `claim.wheels-metals.oxen` — oxen, new herd management, traction pathology | interpretation | moderate | bondar-2018 | Cow traction debated (Bondár p. 278) | — | State | reviewed |
 | `claim.wheels-metals.veracruz` — wheeled clay figures, no wheeled vehicles | observation | high | princeton-feline | — | Indigenous explanations not recovered | Comparison | reviewed |
-| `claim.wheels-metals.veracruz-why` — reasons debated: no draft animals, rugged land | interpretation | contested | princeton-feline, cabinet-2013 | Princeton: “remains unanswered” | — | “often suggested” | editorial review |
+| `claim.wheels-metals.veracruz-why` — reasons debated: no draft animals, rugged land | interpretation | contested | princeton-feline, cabinet-2013 | Princeton: “remains unanswered” | — | “often suggested” | reviewed 2026-10-29 |
 | `claim.wheels-metals.ur-standard` — Standard of Ur materials and wagons | observation | high | bm-standard | Curator uses “chariots” for four-wheeled vehicles | — | State | reviewed |
 | `claim.wheels-metals.kungas` — kunga hybrids, war wagons, likely on the Standard | interpretation | moderate | bennett-2022 | Two informative DNA samples; iconographic link inferred | — | “probably”, “likely” | reviewed |
 | `claim.wheels-metals.ur-imports` — few resources, no gold; lapis probably from Afghanistan | interpretation | moderate | horne-1998 | 1998 synthesis | — | State with “probably” | reviewed |
 | `claim.wheels-metals.ur-metal-sources` — tin bronze and arsenical copper; Oman copper; tin unknown | interpretation | moderate | klein-2016 | Turkey not excluded for copper | — | State | reviewed |
 | `claim.wheels-metals.copper-debate` — Copper boasts of hoes, axes, sickles | later-tradition | high | silver-copper | Literary debate known from later copies | — | Labelled as a poem | reviewed |
-| `claim.wheels-metals.systems` — systems, not single inventions; rulers gathered products | interpretation | moderate | bondar-2018, velusek-2009, artioli-2017, horne-1998 | Synthesis of the lesson | Workers’ own view absent | Closing synthesis | editorial review |
+| `claim.wheels-metals.systems` — systems, not single inventions; rulers gathered products | interpretation | moderate | bondar-2018, velusek-2009, artioli-2017, horne-1998 | Synthesis of the lesson | Workers’ own view absent | Closing synthesis | reviewed 2026-10-29 |
 
 ## Central claim support
 
@@ -291,9 +291,9 @@ Do not add writing, labels, text, symbols, metal objects, horses, spoked wheels,
 
 ## Knowledge Card decision
 
-Decision: card (proposed for owner review at Stage 14B)
+Decision: card (approved with the prototype, 2026-10-29)
 Rationale: the Ljubljana Marshes wheel is a durable, visual memory anchor for the lesson’s evidence encounter, distinct from existing cards, and well sourced.
-Stable card ID, category, class, and unlock lesson if applicable: `card.ljubljana-marshes-wheel`, artifact, witness, unlock `lesson.technology.wheels-metals-and-work`.
+Stable card ID, category, class, and unlock lesson if applicable: `card.wheels-metals.ljubljana-wheel`, artifact, witness, unlock `lesson.technology.wheels-metals-and-work`.
 Understanding anchored: a wheel was the work of skilled specialists and needed a whole system to be useful.
 Sources and visual brief: velusek-2009, ljubljana-record, bondar-2018. Card art: the best licensed photograph of the wheel shown whole (the same image as the section 4 evidence photograph). Facts: c. 3200 BCE; two ash planks from a tree over 80 years old; four oak strips; square hub so the axle turned with the wheel; found in 2002 and first mistaken for rubbish.
 
@@ -370,8 +370,227 @@ Spelling: learner text uses American spelling to match the published lessons (mo
 
 ### Product/editorial review
 
-Reviewer/date: Carlin Aylsworth, pending
-State: pending
-Material decisions: (1) approve the prototype; (2) keep or drop the optional cart reconstruction hero; (3) approve the Ljubljana Marshes wheel as the lesson’s Knowledge Card.
+Reviewer/date: Carlin Aylsworth, 2026-10-29
+State: approved (“approved!”, 2026-10-29). This authorizes final media and publication.
+Material decisions: prototype approved as presented, including the Ljubljana Marshes wheel card. The optional cart reconstruction is deferred: Carlin generates images with ChatGPT, so the ChatGPT-ready prompt above is handed to him for a follow-up on ASH-115.
 Blocking findings: none
 Explicit safe deferrals: potter’s wheel; steppe wagon graves; tin routes (to Bronze Age Exchange Networks)
+
+## Image lifecycle
+
+All four images are licensed originals or deterministic renders. None is generated or edited from sources beyond cropping and resizing, so no ChatGPT prompt applies to them; the only image that would need one (the optional cart reconstruction) is deferred, and its prompt is under Media decisions. Rights decision for all four: approved under the media policy (public domain or CC BY-SA, attribution recorded). The orientation shell places the locator at the lesson opening.
+
+### `media.wheels-metals.locator-map` — orientation locator
+
+#### 1. Reasoning and source basis
+
+- Teaching job: place the lesson’s finds relative to recognizable Europe and the Middle East, so the learner sees how far apart the early wheel finds are and where Ötzi’s copper came from.
+- Governing claim IDs: claim.wheels-metals.wheel-spread, claim.wheels-metals.axe-tuscany, claim.wheels-metals.origin-unknown.
+- Factual/historical sources: Natural Earth relief, land and lake data (public domain); site records in `assets/wheels-metals/map/sites.json` (Wikidata, Oracc, Pleiades; each cross-checked with OpenStreetMap Nominatim or Pleiades, 2026-10-29).
+- Why image instead of no media: ten unfamiliar places across two continents cannot be held in mind from text alone.
+- Depiction and uncertainty boundary: modern coastlines and relief; points mark finds, not origins; no routes, arrows or borders. Southern Tuscany (Campiglia Marittima ore district) and Belovode (nearby Veliko Laole) are approximate and drawn as hollow markers.
+
+#### 2. Reference image or reviewed data actually used
+
+Reviewed data: Natural Earth HYP_50M_SR_W (https://naturalearth.s3.amazonaws.com/50m_raster/HYP_50M_SR_W.zip, ZIP SHA-256 57d89405e8f7d1e5d1cca11701d394b3d45aea75b301a6992ad5571eff64527a, TIFF SHA-256 925ec796d213adf3036db5e316d2a17ebbadf9f03f29fb20d320b340944293d5); ne_50m_land and ne_50m_lakes v5.1.2 (SHA-256 e874b27a51d146452be360cafb3cc50c86001074a67d534113e6534682f9826b and d350b75978b26fe839b797c2c529b2fb8f47fb3983c03f4964e36d5df9378a52); `sites.json` SHA-256 d9be54c916d419a957956284310ef88bd9520932895efe7f34d671827f7a047b.
+
+| Reference preview | Origin and permitted use |
+| --- | --- |
+| ![Reference for media.wheels-metals.locator-map](assets/wheels-metals/map/wheels-metals-relief-reference.png) | Creator/institution: Natural Earth contributors<br>Canonical origin: https://www.naturalearthdata.com/downloads/50m-raster-data/50m-cross-blend-hypso/<br>License/use: Public domain<br>Accessed: 2026-10-29 |
+
+- Repository research copy and SHA-256: `assets/wheels-metals/map/wheels-metals-relief-reference.png`, a72041e11c0704697618115656751048bc70206de321faeea4909ad0d3629c0f
+- Edit mode: deterministic rendering from reviewed data
+- Visual relationship to preserve: coastlines, relief placement, site positions, inset extent.
+- Details not to copy or infer: ancient shorelines, rivers, borders, routes.
+
+#### 3. Generation or transformation
+
+- Operation: deterministic/native/vector rendering
+- Reviewed data/code paths and versions: `scripts/media/wheels-metals-map.mjs` (SHA-256 1f85dafbd56495dc3851129c9f9eb88436779df9374b61db626f0bd1db88e606); `assets/wheels-metals/map/reference-lineage.json`; sharp 0.35.3.
+- Every actual input path and SHA-256: as listed in section 2.
+- Tool/model/date: Node.js 22 with sharp, 2026-10-29.
+- Complete prompt: No generation.
+
+```text
+No generation. Crop Natural Earth HYP_50M_SR_W to 3°E–50°E, 27°N–57°N; resample to 1600 × 1374 (equidistant cylindrical, standard parallel 42°N); recolour with the Akkad locator palette using a water mask rasterized from Natural Earth land and lake polygons; overlay ten site markers from sites.json (hollow for approximate points), five sea labels and a world inset with a view rectangle.
+```
+
+- Candidate/rejection record: draft 1 rejected because the Akkad chroma-based water test painted European lowland tints as sea; draft 2 rejected for a clipped “Ljubljana Marshes” label and a “Caspian Sea” label falling on land; draft 3 accepted (Caspian label removed).
+
+#### 4. Accepted final image
+
+| Reference used | Accepted final |
+| --- | --- |
+| ![Reference comparison for media.wheels-metals.locator-map](assets/wheels-metals/map/wheels-metals-relief-reference.png) | ![Accepted final for media.wheels-metals.locator-map](assets/wheels-metals/map/wheels-metals-locator-master.png) |
+
+- Final master path, dimensions, and SHA-256: `assets/wheels-metals/map/wheels-metals-locator-master.png`, 1600 × 1374, f66db2fdb138ae4d3d6c81779d809ad4b9484ae936a36c6fdb1f85a5114ed78d
+- Runtime/fallback path and SHA-256: `public/images/wheels-metals/wheels-metals-locator.jpg`, 96386f85ac31e820b84920ded6771cf175090558ec43fd2d9d69916733e14c50; optimized fallback from `media:build`
+- Reviewer/date/status: main agent, 2026-10-29, approved
+- Subject coverage verdict: yes (every point comes from a recorded coordinate)
+- Subject fidelity verdict: yes
+- Fidelity verdict: yes; coastlines and relief are unchanged from the reference crop; only colour and overlays differ
+- Lesson-size verdict: yes; labels checked at 1100 px preview width
+- Comparison verdict — preserved relationship: coastlines, relief and site positions match the data.
+- Comparison verdict — intentional changes: palette; labels; inset.
+- Comparison verdict — unsupported details checked: no routes, borders, rivers or invented places.
+
+### `media.wheels-metals.iceman-axe` — opening evidence
+
+#### 1. Reasoning and source basis
+
+- Teaching job: let the learner see the copper blade the opening follows.
+- Governing claim IDs: claim.wheels-metals.axe-making, claim.wheels-metals.axe-tuscany.
+- Factual/historical sources: iceman-equipment, artioli-2017; the museum label in the original photograph (3,300–3,100 B.C.).
+- Why image instead of no media: the object is the story’s anchor.
+- Depiction and uncertainty boundary: the blade only; the haft and binding are described in text and the caption says they are not shown.
+
+#### 2. Reference image or reviewed data actually used
+
+| Reference preview | Origin and permitted use |
+| --- | --- |
+| ![Reference for media.wheels-metals.iceman-axe](assets/wheels-metals/iceman-axe-laptev-original.jpg) | Creator/institution: АлександрЛаптев (Wikimedia Commons user), South Tyrol Museum of Archaeology<br>Canonical origin: https://commons.wikimedia.org/wiki/File:Iceman%27s_Copper_Axe.jpg<br>License/use: CC BY-SA 4.0, https://creativecommons.org/licenses/by-sa/4.0/<br>Accessed: 2026-10-29 |
+
+- Repository research copy and SHA-256: `assets/wheels-metals/iceman-axe-laptev-original.jpg`, 610bf529aea2c472d2d739f308e9bec7a9470326db8ee4b0e998867f2f27b1b9
+- Edit mode: direct use (crop and compression)
+- Visual relationship to preserve: the blade’s shape, colour and surface.
+- Details not to copy or infer: none added.
+
+#### 3. Generation or transformation
+
+- Operation: crop/compression only
+- Every actual input path and SHA-256: as above.
+- Tool/model/date: sharp 0.35.3, 2026-10-29.
+- Complete prompt: No generation.
+
+```text
+No generation. Crop 1000 × 750 px at left 250, top 40 (removing the trilingual museum label), JPEG quality 90.
+```
+
+- Candidate/rejection record: full frame rejected because the museum label would add unreadable text at lesson size.
+
+#### 4. Accepted final image
+
+| Reference used | Accepted final |
+| --- | --- |
+| ![Reference comparison for media.wheels-metals.iceman-axe](assets/wheels-metals/iceman-axe-laptev-original.jpg) | ![Accepted final for media.wheels-metals.iceman-axe](../../public/images/wheels-metals/iceman-axe-blade.jpg) |
+
+- Final master path, dimensions, and SHA-256: the original research copy above is the master
+- Runtime/fallback path and SHA-256: `public/images/wheels-metals/iceman-axe-blade.jpg`, 1000 × 750, c2277fbef7ed7176cf4edc610484d46dcedd37ff41504825ef929fadfd4648b3
+- Reviewer/date/status: main agent, 2026-10-29, approved
+- Subject coverage verdict: yes
+- Subject fidelity verdict: yes
+- Fidelity verdict: yes; pixels unchanged apart from crop and compression
+- Lesson-size verdict: yes
+- Comparison verdict — preserved relationship: whole blade retained.
+- Comparison verdict — intentional changes: label and lower plinth cropped out.
+- Comparison verdict — unsupported details checked: none added.
+
+### `media.wheels-metals.ljubljana-wheel` — evidence encounter and card art
+
+#### 1. Reasoning and source basis
+
+- Teaching job: let the learner find the two planks, oak strips and axle described in the close-read module; also the Knowledge Card art.
+- Governing claim IDs: claim.wheels-metals.ljubljana-construction, claim.wheels-metals.ljubljana-find.
+- Factual/historical sources: velusek-2009 (Figs. 8.8–8.11, 8.21), ljubljana-record.
+- Why image instead of no media: the construction details are the lesson’s evidence.
+- Depiction and uncertainty boundary: surviving object as displayed; damage from the 2002 digger is stated in the caption.
+
+#### 2. Reference image or reviewed data actually used
+
+| Reference preview | Origin and permitted use |
+| --- | --- |
+| ![Reference for media.wheels-metals.ljubljana-wheel](assets/wheels-metals/ljubljana-wheel-milosevic-original.jpg) | Creator/institution: Petar Milošević, City Museum of Ljubljana<br>Canonical origin: https://commons.wikimedia.org/wiki/File:Ljubljana_Marshes_Wheel_with_axle_(oldest_wooden_wheel_yet_discovered).jpg<br>License/use: CC BY-SA 4.0, https://creativecommons.org/licenses/by-sa/4.0/<br>Accessed: 2026-10-29 |
+
+- Repository research copy and SHA-256: `assets/wheels-metals/ljubljana-wheel-milosevic-original.jpg`, bbad913ebf581c7a0022baabd961b93b24efb4021b9f577c56501a2c9cd4a720
+- Edit mode: direct use (resize and compression)
+- Visual relationship to preserve: the whole wheel and axle.
+- Details not to copy or infer: none added.
+
+#### 3. Generation or transformation
+
+- Operation: crop/compression only
+- Every actual input path and SHA-256: as above.
+- Tool/model/date: sharp 0.35.3, 2026-10-29.
+- Complete prompt: No generation.
+
+```text
+No generation. Full frame resized to 1600 px wide, JPEG quality 88.
+```
+
+- Candidate/rejection record: none; the other Commons version (Wheel 1a.jpg) is an edit of the same photograph.
+
+#### 4. Accepted final image
+
+| Reference used | Accepted final |
+| --- | --- |
+| ![Reference comparison for media.wheels-metals.ljubljana-wheel](assets/wheels-metals/ljubljana-wheel-milosevic-original.jpg) | ![Accepted final for media.wheels-metals.ljubljana-wheel](../../public/images/wheels-metals/ljubljana-wheel.jpg) |
+
+- Final master path, dimensions, and SHA-256: the original research copy above is the master
+- Runtime/fallback path and SHA-256: `public/images/wheels-metals/ljubljana-wheel.jpg`, 1600 × 1225, aa72698886b05dc161228856df4ead2d803342c309e040e04974cf3e93df2f7c
+- Reviewer/date/status: main agent, 2026-10-29, approved
+- Subject coverage verdict: yes
+- Subject fidelity verdict: yes
+- Fidelity verdict: yes; full frame
+- Lesson-size verdict: yes; planks and strips visible at 390 px
+- Comparison verdict — preserved relationship: whole frame.
+- Comparison verdict — intentional changes: resolution only.
+- Comparison verdict — unsupported details checked: none added.
+
+### `media.wheels-metals.standard-of-ur` — Ur evidence
+
+#### 1. Reasoning and source basis
+
+- Teaching job: show four-wheeled, solid-wheeled wagons and their animal teams.
+- Governing claim IDs: claim.wheels-metals.ur-standard, claim.wheels-metals.kungas.
+- Factual/historical sources: bm-standard, bennett-2022.
+- Why image instead of no media: the wagon procession is a visual argument.
+- Depiction and uncertainty boundary: modern photograph; the identification of the animals as kungas is labelled “likely” in the text.
+
+#### 2. Reference image or reviewed data actually used
+
+| Reference preview | Origin and permitted use |
+| --- | --- |
+| ![Reference for media.wheels-metals.standard-of-ur](assets/wheels-metals/standard-of-ur-war-leastcommonancestor-original.jpg) | Creator/institution: LeastCommonAncestor (Wikimedia Commons), British Museum 121201<br>Canonical origin: https://commons.wikimedia.org/wiki/File:Standard_of_Ur_-_War_side.jpg<br>License/use: CC BY-SA 3.0, https://creativecommons.org/licenses/by-sa/3.0/<br>Accessed: 2026-10-29 |
+
+- Repository research copy and SHA-256: `assets/wheels-metals/standard-of-ur-war-leastcommonancestor-original.jpg`, d75cf7d3a71da6b70ba70fb06d814317b9914e14fbb8f4d979c27d433cdb07ff
+- Edit mode: direct use (resize and compression)
+- Visual relationship to preserve: all three registers.
+- Details not to copy or infer: none added.
+
+#### 3. Generation or transformation
+
+- Operation: crop/compression only
+- Every actual input path and SHA-256: as above.
+- Tool/model/date: sharp 0.35.3, 2026-10-29.
+- Complete prompt: No generation.
+
+```text
+No generation. Full frame resized to 1600 px wide, JPEG quality 88.
+```
+
+- Candidate/rejection record: “Standard of Ur - War.jpg” rejected because its public-domain claim rests on an unverified third-party website; British Museum images rejected because CC BY-NC-SA is not permitted by the media policy.
+
+#### 4. Accepted final image
+
+| Reference used | Accepted final |
+| --- | --- |
+| ![Reference comparison for media.wheels-metals.standard-of-ur](assets/wheels-metals/standard-of-ur-war-leastcommonancestor-original.jpg) | ![Accepted final for media.wheels-metals.standard-of-ur](../../public/images/wheels-metals/standard-of-ur-war.jpg) |
+
+- Final master path, dimensions, and SHA-256: the original research copy above is the master
+- Runtime/fallback path and SHA-256: `public/images/wheels-metals/standard-of-ur-war.jpg`, 1600 × 690, 0faed02bb62e9db8d2b7b894e0f48054af029ef10168cc921b936bbad1978c07
+- Reviewer/date/status: main agent, 2026-10-29, approved
+- Subject coverage verdict: yes
+- Subject fidelity verdict: yes
+- Fidelity verdict: yes; full frame
+- Lesson-size verdict: yes on desktop; on mobile the bottom-row wagons remain identifiable
+- Comparison verdict — preserved relationship: whole panel.
+- Comparison verdict — intentional changes: resolution only.
+- Comparison verdict — unsupported details checked: none added.
+
+## Final sign-off
+
+Research checkpoint response (owner touchpoint 1): 2026-10-29, “all yes”
+Prototype approval (owner touchpoint 2): 2026-10-29, “approved!”
+Implementation and release gates: pass 2026-10-29 (validate:content, test:domain and typecheck:chronos pass)
+Publication: status set to published on the PR branch; 13 media objects (4 sources, 9 derivatives) uploaded and remote-checksum-verified 2026-10-29; merge pending the owner check
+Owner hosted check (owner touchpoint 3): pending

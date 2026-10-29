@@ -1,0 +1,15 @@
+{
+  "purpose": "Representative points for the lesson's finds and sites; not settlement extents, routes or ancient borders",
+  "sites": [
+    { "name": "Flintbek", "longitude": 10.063333, "latitude": 54.243333, "precision": "modern village; the LA 3 barrow lies in its district", "source": "https://www.wikidata.org/wiki/Q570392", "crossCheck": "OpenStreetMap Nominatim 54.24321, 10.06332" },
+    { "name": "Bronocice", "longitude": 20.35, "latitude": 50.333333, "precision": "modern village", "source": "https://www.wikidata.org/wiki/Q3394755", "crossCheck": "OpenStreetMap Nominatim 50.34034, 20.36166" },
+    { "name": "Balatonberény", "longitude": 17.32095, "latitude": 46.706789, "precision": "modern village; representative Boleráz wagon-model find (Bondár 2018, table p. 285)", "source": "https://www.wikidata.org/wiki/Q789252", "crossCheck": "OpenStreetMap Nominatim 46.71084, 17.31932" },
+    { "name": "Ljubljana Marshes", "longitude": 14.330556, "latitude": 45.958056, "precision": "Stare Gmajne wheel findspot as recorded for the wheel", "source": "https://www.wikidata.org/wiki/Q6660938", "crossCheck": "OpenStreetMap Nominatim, Verd (Vrhnika) 45.94794, 14.30394" },
+    { "name": "Tisenjoch", "longitude": 10.841423, "latitude": 46.778612, "precision": "mountain pass where Ötzi was found", "source": "https://www.wikidata.org/wiki/Q111793234", "crossCheck": "OpenStreetMap Nominatim 46.77858, 10.84141" },
+    { "name": "Southern Tuscany", "longitude": 10.616667, "latitude": 43.066667, "precision": "approximate: Campiglia Marittima ore district, representing the southern Tuscan ores matched by Artioli et al. 2017", "source": "https://www.wikidata.org/wiki/Q157686", "crossCheck": "OpenStreetMap Nominatim 43.04017, 10.60365" },
+    { "name": "Belovode", "longitude": 21.4347, "latitude": 44.3158, "precision": "approximate: nearby village of Veliko Laole", "source": "https://www.wikidata.org/wiki/Q3104422", "crossCheck": "OpenStreetMap Nominatim 44.31731, 21.43489" },
+    { "name": "Arslantepe", "longitude": 38.361111, "latitude": 38.381944, "precision": "site", "source": "https://www.wikidata.org/wiki/Q705132", "crossCheck": "OpenStreetMap Nominatim 38.38153, 38.36071" },
+    { "name": "Uruk", "longitude": 45.638752, "latitude": 31.32446, "precision": "site", "source": "https://oracc.museum.upenn.edu/geonames/cbd/qpn/x000003180.html", "crossCheck": "https://pleiades.stoa.org/places/912986 (45.63905, 31.32338)" },
+    { "name": "Ur", "longitude": 46.104444, "latitude": 30.962222, "precision": "site", "source": "https://www.wikidata.org/wiki/Q5699", "crossCheck": "https://pleiades.stoa.org/places/912985 (46.10542, 30.96132)" }
+  ]
+}

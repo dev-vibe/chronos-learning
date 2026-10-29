@@ -36,6 +36,12 @@ export const learningConnectionsByLessonId: Record<string, LearningConnection> =
     revisit: { lessonId: 'lesson.farming.settlements', prompt: 'How did growing food change everyday life in one settlement?' },
     reasoningSkill: 'Compare change across regions without assuming a single path.',
   },
+  'lesson.technology.wheels-metals-and-work': {
+    retrieve: { lessonId: 'lesson.farming.settlements', prompt: 'How did keeping animals and storing food change what a village could do?' },
+    extend: 'Follow a copper axe and a wooden wheel to see how new technologies depended on many skills, materials and trained animals.',
+    revisit: { lessonId: 'lesson.uruk.first-city', prompt: 'How did a city organize the specialist work that tools, carts and metals needed?' },
+    reasoningSkill: 'Compare dated finds from several places to reach a qualified conclusion about where a technology began.',
+  },
   'lesson.farming.settlements': {
     retrieve: { lessonId: 'lesson.farming.multiple-origins', prompt: 'Why was farming a gradual change with different beginnings?' },
     extend: 'Look closely at one settlement to weigh the opportunities and costs of living together.',

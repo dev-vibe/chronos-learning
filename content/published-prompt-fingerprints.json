@@ -180,6 +180,14 @@
       "lessonId": "lesson.uruk.first-city",
       "fingerprint": "7647a5b4e72da8851429b924b7ece75c0b3b9924a6fbec026dab01a62c795ccb"
     },
+    "prompt.wheels-metals.what-it-needed": {
+      "lessonId": "lesson.technology.wheels-metals-and-work",
+      "fingerprint": "9a2de156864efa380675550082eec80469208d26401fcf39447b7137d58fb41e"
+    },
+    "prompt.wheels-metals.where-wheels-began": {
+      "lessonId": "lesson.technology.wheels-metals-and-work",
+      "fingerprint": "f3a801463a6891a1cb7b9ca6c4f1b0dfa8ae41b8956136020eab1cf7173e35bb"
+    },
     "prompt.writing.administration-evidence": {
       "lessonId": "lesson.writing.early-systems",
       "fingerprint": "30294a367090514e7978abef3af50714237a8afe3dee4a402d5b3d0dd22136a7",

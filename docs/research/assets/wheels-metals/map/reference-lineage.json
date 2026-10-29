@@ -1,0 +1,117 @@
+{
+  "method": "deterministic palette edit of georeferenced Natural Earth relief (Akkad palette; water mask from Natural Earth 1:50m land and lake polygons), then reviewed site and sea-label overlays; modern orientation only",
+  "vectors": {
+    "land": {
+      "url": "https://raw.githubusercontent.com/nvkelso/natural-earth-vector/v5.1.2/geojson/ne_50m_land.geojson",
+      "sha256": "e874b27a51d146452be360cafb3cc50c86001074a67d534113e6534682f9826b"
+    },
+    "lakes": {
+      "url": "https://raw.githubusercontent.com/nvkelso/natural-earth-vector/v5.1.2/geojson/ne_50m_lakes.geojson",
+      "sha256": "d350b75978b26fe839b797c2c529b2fb8f47fb3983c03f4964e36d5df9378a52"
+    },
+    "license": "Public domain"
+  },
+  "raster": {
+    "url": "https://naturalearth.s3.amazonaws.com/50m_raster/HYP_50M_SR_W.zip",
+    "zipSha256": "57d89405e8f7d1e5d1cca11701d394b3d45aea75b301a6992ad5571eff64527a",
+    "tifSha256": "925ec796d213adf3036db5e316d2a17ebbadf9f03f29fb20d320b340944293d5",
+    "license": "Public domain"
+  },
+  "siteData": {
+    "path": "docs/research/assets/wheels-metals/map/sites.json",
+    "sha256": "d9be54c916d419a957956284310ef88bd9520932895efe7f34d671827f7a047b",
+    "points": {
+      "Flintbek": [
+        240.45388936170212,
+        126.25534860000002
+      ],
+      "Bronocice": [
+        590.6382978723404,
+        305.33334859999985
+      ],
+      "Balatonberény": [
+        487.5217021276596,
+        471.4290638
+      ],
+      "Ljubljana Marshes": [
+        385.72105531914895,
+        505.7210352
+      ],
+      "Tisenjoch": [
+        266.94205957446815,
+        468.13957039999985
+      ],
+      "Southern Tuscany": [
+        259.29079148936165,
+        638.1466513999999
+      ],
+      "Belovode": [
+        627.564255319149,
+        580.9363599999998
+      ],
+      "Arslantepe": [
+        1203.7825021276597,
+        852.7069648
+      ],
+      "Uruk": [
+        1451.5319829787234,
+        1175.939732
+      ],
+      "Ur": [
+        1467.3853276595744,
+        1192.5302324
+      ]
+    }
+  },
+  "approximatePoints": [
+    "Southern Tuscany",
+    "Belovode"
+  ],
+  "bounds": {
+    "west": 3,
+    "east": 50,
+    "south": 27,
+    "north": 57
+  },
+  "insetBounds": {
+    "west": -25,
+    "east": 110,
+    "south": -40,
+    "north": 72
+  },
+  "inset": {
+    "x": 1192,
+    "y": 36,
+    "width": 372,
+    "height": 309
+  },
+  "size": {
+    "width": 1600,
+    "height": 1374
+  },
+  "projection": "equidistant cylindrical, standard parallel 42°N; modern coastlines; no ancient border, shoreline or route",
+  "palette": {
+    "sourceCropSha256": "a72041e11c0704697618115656751048bc70206de321faeea4909ad0d3629c0f",
+    "coloredBaseSha256": "3d0bb3d262ef65f36840389dbef32d2bbc6d6674030767215a1306ff45f3e695"
+  },
+  "approvedRasterLabels": [
+    "Flintbek",
+    "Bronocice",
+    "Balatonberény",
+    "Ljubljana Marshes",
+    "Tisenjoch",
+    "Southern Tuscany",
+    "Belovode",
+    "Arslantepe",
+    "Uruk",
+    "Ur",
+    "Mediterranean Sea",
+    "Black Sea",
+    "North Sea",
+    "Persian Gulf",
+    "Europe",
+    "Africa",
+    "Asia"
+  ],
+  "outputSha256": "f66db2fdb138ae4d3d6c81779d809ad4b9484ae936a36c6fdb1f85a5114ed78d"
+}

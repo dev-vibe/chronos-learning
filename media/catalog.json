@@ -614,6 +614,53 @@
       ]
     },
     {
+      "id": "media.wheels-metals.iceman-axe",
+      "collection": "wheels-metals",
+      "sourcePath": "public/images/wheels-metals/iceman-axe-blade.jpg",
+      "fallbackPath": "/images/optimized/wheels-metals/iceman-axe-blade.optimized.webp",
+      "preset": "photo",
+      "widths": [
+        480,
+        960
+      ]
+    },
+    {
+      "id": "media.wheels-metals.ljubljana-wheel",
+      "collection": "wheels-metals",
+      "sourcePath": "public/images/wheels-metals/ljubljana-wheel.jpg",
+      "fallbackPath": "/images/optimized/wheels-metals/ljubljana-wheel.optimized.jpg",
+      "preset": "photo",
+      "widths": [
+        480,
+        960,
+        1600
+      ]
+    },
+    {
+      "id": "media.wheels-metals.locator-map",
+      "collection": "wheels-metals",
+      "sourcePath": "public/images/wheels-metals/wheels-metals-locator.jpg",
+      "fallbackPath": "/images/optimized/wheels-metals/wheels-metals-locator.optimized.webp",
+      "preset": "picture",
+      "widths": [
+        480,
+        960,
+        1600
+      ]
+    },
+    {
+      "id": "media.wheels-metals.standard-of-ur",
+      "collection": "wheels-metals",
+      "sourcePath": "public/images/wheels-metals/standard-of-ur-war.jpg",
+      "fallbackPath": "/images/optimized/wheels-metals/standard-of-ur-war.optimized.jpg",
+      "preset": "photo",
+      "widths": [
+        480,
+        960,
+        1600
+      ]
+    },
+    {
       "id": "media.writing.proto-cuneiform-tablet",
       "collection": "early-writing",
       "sourcePath": "public/images/evidence/proto-cuneiform-tablet-met-329081.jpg",
