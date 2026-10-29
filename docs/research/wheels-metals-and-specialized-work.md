@@ -1,6 +1,6 @@
 # Wheels, Metals, and Specialized Work — research and editorial note
 
-Issue: Linear issue to be created (no Linear connection in the 2026-10-29 session; the PR title will carry the key once it exists)
+Issue: [ASH-115](https://linear.app/ashs-workshop/issue/ASH-115/research-and-publish-wheels-metals-and-specialized-work)
 Lesson ID: lesson.technology.wheels-metals-and-work
 Research-note identity/version: Stage 0–3B research direction, 2026-10-29
 Production record version: 2
@@ -9,7 +9,7 @@ Required or optional: required
 Accountable reviewer: Carlin Aylsworth
 Validation tier: ordinary (technology history with live origin debates; no sensitive material beyond Ötzi's violent death, which the lesson does not need)
 Queue status: `Active` from this branch's first commit. Carlin promoted the row from `Planned` on 2026-10-29 ("Do Wheels & Metals first") after being told that Bronze Age Exchange Networks (order 110) depends on it.
-Branch: `cowork/wheels-metals-and-work`
+Branch: `cowork/ash-115-wheels-metals-and-work`
 
 ## Owner decision card (Stage 3B)
 
@@ -140,6 +140,6 @@ Possible effect on essential question and central argument: replaces "who invent
 Required main-lesson highlights: Ötzi's Tuscan copper; the Ljubljana wheel's ash-and-oak joinery; the near-simultaneous appearance of wheels; oxen as draft animals; metal as a chain of skills; the Ur or Arslantepe ending.
 Story Arc / Investigation depth candidates: "Where did the wheel begin?" as an Investigation using Bondár's dated evidence; the tin problem as a link to Bronze Age Exchange Networks.
 Judgments or further research requested from product owner: (1) approve or change the five beats; (2) choose the ending (Ur c. 2500 BCE, recommended, or Arslantepe c. 3300 BCE); (3) whether the Mesoamerican comparison earns its place in beat 4.
-Packet shared (date/link): 2026-10-29, in the session handoff and on branch `cowork/wheels-metals-and-work`.
+Packet shared (date/link): 2026-10-29, in the session handoff and on branch `cowork/ash-115-wheels-metals-and-work`.
 Product-owner response: pending.
 Follow-up research and disposition: after the response, read Roberts et al. 2009, Velušček 2009, Ekholm 1946 (if beat 4 keeps the comparison) and Salzmann et al. on Ur before building the claim ledger.
