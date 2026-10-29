@@ -1,5 +1,6 @@
 import type { Claim, Lesson, MediaAsset, Source, UnderstandingPrompt } from '../../src/domains/contracts';
 import type { AuthoredContentModule } from '../assemble';
+import { animalsHoofprintsCard, animalsHoofprintsVisual, animalsMedia, animalsMediaSources, animalsRegionsMapVisual, animalsSurvivalChartVisual } from './animals-media';
 
 // Stage 14A prototype. Draft only: no final media, card or publication.
 // Research record: docs/research/animals-herding-and-mobility.md
@@ -74,8 +75,8 @@ export const animalsHerdingSources: Source[] = [
     url: 'https://doi.org/10.1038/nature07180',
     publisher: 'Nature 455, 528–531 (2008)',
     accessedOn: '2026-10-29',
-    licenseOrUse: 'Peer-reviewed residue study cited at the wording of its published abstract (more than 2,200 vessels; milk in use by the seventh millennium BCE, especially in northwestern Anatolia); full text not reviewed',
-    reviewStatus: 'review-required',
+    licenseOrUse: 'Peer-reviewed residue study cited at the wording of its published abstract (more than 2,200 vessels; milk in use by the seventh millennium BCE, especially in northwestern Anatolia); full text not reviewed. Carlin accepted this abstract-level wording when approving the prototype on 2026-10-29',
+    reviewStatus: 'reviewed',
   },
   {
     id: 'source.animals.evershed-2022-lactase',
@@ -83,8 +84,8 @@ export const animalsHerdingSources: Source[] = [
     url: 'https://doi.org/10.1038/s41586-022-05010-7',
     publisher: 'Nature 608, 336–345 (2022)',
     accessedOn: '2026-10-29',
-    licenseOrUse: 'Peer-reviewed study cited at the wording of its published abstract (widespread milk use from the Neolithic; adults without lactase persistence consumed milk); full text not reviewed',
-    reviewStatus: 'review-required',
+    licenseOrUse: 'Peer-reviewed study cited at the wording of its published abstract (widespread milk use from the Neolithic; adults without lactase persistence consumed milk); full text not reviewed. Carlin accepted this abstract-level wording when approving the prototype on 2026-10-29',
+    reviewStatus: 'reviewed',
   },
   {
     id: 'source.animals.prendergast-2019-herders',
@@ -119,8 +120,8 @@ export const animalsHerdingSources: Source[] = [
     url: 'https://doi.org/10.1038/nature11186',
     publisher: 'Nature 486, 390–394 (2012)',
     accessedOn: '2026-10-29',
-    licenseOrUse: 'Peer-reviewed residue study cited at the wording of its published abstract and Fig. 2 caption (Takarkori rock shelter; milk fats in fifth-millennium BCE pottery; herding as a stable way of life before domesticated plants); full text not reviewed',
-    reviewStatus: 'review-required',
+    licenseOrUse: 'Peer-reviewed residue study cited at the wording of its published abstract and Fig. 2 caption (Takarkori rock shelter; milk fats in fifth-millennium BCE pottery; herding as a stable way of life before domesticated plants); full text not reviewed. Carlin accepted this abstract-level wording when approving the prototype on 2026-10-29',
+    reviewStatus: 'reviewed',
   },
   {
     id: 'source.animals.gifford-gonzalez-hanotte-2011',
@@ -137,8 +138,8 @@ export const animalsHerdingSources: Source[] = [
     url: 'https://doi.org/10.1073/pnas.1721975115',
     publisher: 'Proceedings of the National Academy of Sciences 115(36), 8942–8947 (2018)',
     accessedOn: '2026-10-29',
-    licenseOrUse: 'Excavation report cited at the wording of its published abstract and significance statement (about 5,000 years ago; at least 580 individuals; no evidence for social stratification; “moving frontier” interpretation); full text not reviewed',
-    reviewStatus: 'review-required',
+    licenseOrUse: 'Excavation report cited at the wording of its published abstract and significance statement (about 5,000 years ago; at least 580 individuals; no evidence for social stratification; “moving frontier” interpretation); full text not reviewed. Carlin accepted this abstract-level wording when approving the prototype on 2026-10-29',
+    reviewStatus: 'reviewed',
   },
   {
     id: 'source.animals.kennedy-2023-mustatil',
@@ -233,7 +234,7 @@ export const animalsHerdingClaims: Claim[] = [
     kind: 'observation',
     certainty: 'high',
     sourceIds: ['source.animals.evershed-2008-milk'],
-    reviewStatus: 'editorial-review-required',
+    reviewStatus: 'reviewed',
   },
   {
     id: 'claim.animals.milk-before-digestion',
@@ -241,7 +242,7 @@ export const animalsHerdingClaims: Claim[] = [
     kind: 'interpretation',
     certainty: 'high',
     sourceIds: ['source.animals.evershed-2022-lactase', 'source.animals.prendergast-2019-herders'],
-    reviewStatus: 'editorial-review-required',
+    reviewStatus: 'reviewed',
   },
   {
     id: 'claim.animals.wool-traction-later',
@@ -257,7 +258,7 @@ export const animalsHerdingClaims: Claim[] = [
     kind: 'interpretation',
     certainty: 'high',
     sourceIds: ['source.animals.dunne-2012-sahara-milk', 'source.animals.gifford-gonzalez-hanotte-2011'],
-    reviewStatus: 'editorial-review-required',
+    reviewStatus: 'reviewed',
   },
   {
     id: 'claim.animals.takarkori-milk',
@@ -265,7 +266,7 @@ export const animalsHerdingClaims: Claim[] = [
     kind: 'observation',
     certainty: 'high',
     sourceIds: ['source.animals.dunne-2012-sahara-milk'],
-    reviewStatus: 'editorial-review-required',
+    reviewStatus: 'reviewed',
   },
   {
     id: 'claim.animals.african-cattle-debate',
@@ -281,7 +282,7 @@ export const animalsHerdingClaims: Claim[] = [
     kind: 'observation',
     certainty: 'high',
     sourceIds: ['source.animals.hildebrand-2018-lothagam'],
-    reviewStatus: 'editorial-review-required',
+    reviewStatus: 'reviewed',
   },
   {
     id: 'claim.animals.lothagam-networks',
@@ -289,7 +290,7 @@ export const animalsHerdingClaims: Claim[] = [
     kind: 'interpretation',
     certainty: 'moderate',
     sourceIds: ['source.animals.hildebrand-2018-lothagam'],
-    reviewStatus: 'editorial-review-required',
+    reviewStatus: 'reviewed',
   },
   {
     id: 'claim.animals.herders-mixed-with-foragers',
@@ -325,7 +326,7 @@ export const animalsHerdingClaims: Claim[] = [
   },
 ];
 
-export const animalsHerdingMedia: MediaAsset[] = [];
+export const animalsHerdingMedia: MediaAsset[] = animalsMedia;
 
 export const animalsHerdingPrompts: UnderstandingPrompt[] = [
   {
@@ -333,7 +334,7 @@ export const animalsHerdingPrompts: UnderstandingPrompt[] = [
     bestOptionId: 'option.animals.kept-females',
     lessonId: 'lesson.animals.domestication-and-pastoralism',
     kind: 'supported-selection',
-    question: 'At Asiab, an older site in the same mountains, most goats were over four years old when they died, and more were males. At Ganj Dareh, most males died before they were two and a half, most females lived longer, and the site also has many bones of newborn goats. Which explanation fits Ganj Dareh best?',
+    question: 'At Asiab, an older site in the same mountains, most goats were over four years old when they died, and more were males. At Ganj Dareh, most males died before they were two and a half, most females lived longer, and the site also has many bones of newborn goats. Which explanation fits the Ganj Dareh bones best?',
     hint: 'Compare who survived at each site: which goats lived long, and which goats were born there?',
     explanation: 'Herders who want a herd to grow keep the females that give birth and eat most young males, because a few males are enough for breeding. That is the pattern at Ganj Dareh, and the newborn bones show goats were being born where people lived. The goats’ bodies still looked wild; that change came about 1,000 years later. The bones show how people managed goats, but not who owned them or how herding work was shared.',
     required: true,
@@ -348,18 +349,28 @@ export const animalsHerdingPrompts: UnderstandingPrompt[] = [
     id: 'prompt.animals.why-herders-moved',
     lessonId: 'lesson.animals.domestication-and-pastoralism',
     kind: 'concise-explanation',
-    question: 'Think about the cattle herders of the green Sahara. (1) Why might they move their herds during the year? (2) What is one question researchers would still like to answer about these herders?',
-    hint: 'Start with what cattle need every day and how rain fell in the Sahara, then think about a clue the lesson says is still debated or missing.',
-    explanation: 'A strong answer covers both parts. (1) Rain and grass in drylands like the Sahara were uneven from place to place and year to year, so moving let herders reach fresh water and pasture and keep their animals alive; moving was a skill, not aimless wandering. (2) It asks a real open question, such as whether cattle were also domesticated in Africa, who did the milking and herding work, where the herders went in each season, or how they made milk into foods they could digest.',
+    question: 'Cattle herders in the green Sahara moved their herds from place to place during the year. Why do you think they moved? Write one or two sentences.',
+    hint: 'Start with what cattle need every day. Then think about how the rain fell in the Sahara.',
+    explanation: 'A strong answer says that cattle need water and grass every day, and that rain in dry lands like the Sahara fell unevenly, in different places in different years. Moving let herders reach fresh water and grass and keep their animals alive. Moving was a skill that took knowledge, not aimless wandering.',
     required: true,
     minimumResponseLength: 30,
+  },
+  {
+    id: 'prompt.animals.herder-question',
+    lessonId: 'lesson.animals.domestication-and-pastoralism',
+    kind: 'concise-explanation',
+    question: 'Researchers are still learning about the herders in this lesson. What is one question you would like them to answer? Write your question.',
+    hint: 'Look back at “In Africa, herding came first” and “What we can know.” What are researchers still unsure about?',
+    explanation: 'A strong answer asks a real open question that the lesson points to, such as whether cattle were also domesticated in Africa, who did the herding and milking work, where herders went in each season, how they made milk into foods they could digest, or why people built Lothagam North together.',
+    required: true,
+    minimumResponseLength: 15,
   },
 ];
 
 export const animalsHerdingLesson: Lesson = {
   id: 'lesson.animals.domestication-and-pastoralism',
   legacyAliases: ['animal_domestication'],
-  status: 'draft',
+  status: 'published',
   title: 'Animals, Herding, and Mobility',
   masthead: 'c. 9000–2000 BCE',
   place: 'Southwest Asia, Africa, Arabia, the Andes and the Eurasian steppe',
@@ -392,6 +403,7 @@ export const animalsHerdingLesson: Lesson = {
           claimIds: ['claim.animals.hoofprints-newborns', 'claim.animals.ganj-dareh-management'],
           sourceIds: ['source.animals.daly-2021-ganj-dareh'],
         },
+        animalsHoofprintsVisual,
       ],
     },
     {
@@ -421,6 +433,7 @@ export const animalsHerdingLesson: Lesson = {
           claimIds: ['claim.animals.ganj-dareh-management', 'claim.animals.hoofprints-newborns', 'claim.animals.body-change-later'],
           sourceIds: ['source.animals.daly-2021-ganj-dareh'],
         },
+        animalsSurvivalChartVisual,
         {
           id: 'module.animals.management-first',
           type: 'prose',
@@ -464,6 +477,7 @@ export const animalsHerdingLesson: Lesson = {
             'source.animals.gifford-gonzalez-hanotte-2011',
           ],
         },
+        animalsRegionsMapVisual,
         {
           id: 'module.animals.andes-corrals',
           type: 'prose',
@@ -554,7 +568,7 @@ export const animalsHerdingLesson: Lesson = {
     {
       id: 'section.animals.world-check',
       heading: 'World Check',
-      purpose: 'Use the Ganj Dareh evidence and explain mobility as a strategy',
+      purpose: 'Use the Ganj Dareh evidence, explain mobility as a strategy, and pose one open question (one question per prompt)',
       modules: [
         {
           id: 'module.animals.prompt-bones',
@@ -570,19 +584,27 @@ export const animalsHerdingLesson: Lesson = {
           claimIds: [],
           sourceIds: [],
         },
+        {
+          id: 'module.animals.prompt-question',
+          type: 'prompt',
+          promptId: 'prompt.animals.herder-question',
+          claimIds: [],
+          sourceIds: [],
+        },
       ],
     },
   ],
   claimIds: animalsHerdingClaims.map((claim) => claim.id),
-  sourceIds: animalsHerdingSources.map((source) => source.id),
-  mediaIds: [],
+  sourceIds: [...animalsHerdingSources, ...animalsMediaSources].map((source) => source.id),
+  mediaIds: animalsMedia.map((media) => media.id),
   promptIds: animalsHerdingPrompts.map((prompt) => prompt.id),
 };
 
 export const animalsHerdingContent: AuthoredContentModule = {
-  sources: animalsHerdingSources,
+  sources: [...animalsHerdingSources, ...animalsMediaSources],
   claims: animalsHerdingClaims,
   media: animalsHerdingMedia,
   prompts: animalsHerdingPrompts,
   lessons: [animalsHerdingLesson],
+  cards: [animalsHoofprintsCard],
 };

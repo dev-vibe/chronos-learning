@@ -170,6 +170,165 @@
       }
     },
     {
+      "id": "media.animals.ganj-dareh-hoofprints",
+      "locator": {
+        "provider": "object-storage",
+        "bucket": "media-public",
+        "fallback": {
+          "path": "/images/optimized/animals/ganj-dareh-hoofprints.optimized.webp",
+          "width": 620,
+          "height": 456
+        },
+        "variants": [
+          {
+            "objectKey": "animals/media.animals.ganj-dareh-hoofprints/46f00419b77c9307/optimized/ql-v1/480w-webp-q96-93b33574251bbf94.webp",
+            "mimeType": "image/webp",
+            "bytes": 70934,
+            "sha256": "93b33574251bbf9477d93fef01fb77319f2bd022575a25ce484fb2daaa2b3c6b",
+            "width": 480,
+            "height": 353,
+            "compression": {
+              "profile": "ql-v1",
+              "codec": "webp",
+              "encoder": "webp-lossy",
+              "quality": 96
+            },
+            "fidelity": {
+              "mode": "measured-quasi-lossless",
+              "psnrDb": 45.5,
+              "meanAbsoluteError": 0.851,
+              "maximumChannelDelta": 12
+            }
+          },
+          {
+            "objectKey": "animals/media.animals.ganj-dareh-hoofprints/46f00419b77c9307/optimized/ql-v1/620w-webp-q96-1f6bb2a750fecfd9.webp",
+            "mimeType": "image/webp",
+            "bytes": 114068,
+            "sha256": "1f6bb2a750fecfd9720dc14b933b1805b5d31db2db5aa4f590e35a947bccce0e",
+            "width": 620,
+            "height": 456,
+            "compression": {
+              "profile": "ql-v1",
+              "codec": "webp",
+              "encoder": "webp-lossy",
+              "quality": 96
+            },
+            "fidelity": {
+              "mode": "measured-quasi-lossless",
+              "psnrDb": 46.11,
+              "meanAbsoluteError": 0.798,
+              "maximumChannelDelta": 9
+            }
+          }
+        ]
+      }
+    },
+    {
+      "id": "media.animals.ganj-dareh-survival-chart",
+      "locator": {
+        "provider": "object-storage",
+        "bucket": "media-public",
+        "fallback": {
+          "path": "/images/optimized/animals/ganj-dareh-survival-chart.optimized.webp",
+          "width": 1600,
+          "height": 1100
+        },
+        "variants": [
+          {
+            "objectKey": "animals/media.animals.ganj-dareh-survival-chart/9d0fcb087bce1892/optimized/ql-v1/480w-webp-lossless-31a279ee46f4ea6e.webp",
+            "mimeType": "image/webp",
+            "bytes": 29962,
+            "sha256": "31a279ee46f4ea6e7c263e4181355dd1edc123d5211486fc8ceb0f08c0e21b48",
+            "width": 480,
+            "height": 330,
+            "compression": {
+              "profile": "ql-v1",
+              "codec": "webp",
+              "encoder": "webp-lossless"
+            },
+            "fidelity": {
+              "mode": "pixel-exact",
+              "psnrDb": null,
+              "meanAbsoluteError": 0,
+              "maximumChannelDelta": 0
+            }
+          },
+          {
+            "objectKey": "animals/media.animals.ganj-dareh-survival-chart/9d0fcb087bce1892/optimized/ql-v1/1600w-webp-lossless-d0e8b67a51218175.webp",
+            "mimeType": "image/webp",
+            "bytes": 37322,
+            "sha256": "d0e8b67a51218175a0d45ebe1bc3ec01aa3b3b49470fdcc331e4e38c07175cd7",
+            "width": 1600,
+            "height": 1100,
+            "compression": {
+              "profile": "ql-v1",
+              "codec": "webp",
+              "encoder": "webp-lossless"
+            },
+            "fidelity": {
+              "mode": "pixel-exact",
+              "psnrDb": null,
+              "meanAbsoluteError": 0,
+              "maximumChannelDelta": 0
+            }
+          }
+        ]
+      }
+    },
+    {
+      "id": "media.animals.herding-regions-map",
+      "locator": {
+        "provider": "object-storage",
+        "bucket": "media-public",
+        "fallback": {
+          "path": "/images/optimized/animals/herding-regions-map.optimized.webp",
+          "width": 1600,
+          "height": 826
+        },
+        "variants": [
+          {
+            "objectKey": "animals/media.animals.herding-regions-map/bdbf1b98eb31141f/optimized/ql-v1/480w-webp-lossless-117eb7c18cac70b3.webp",
+            "mimeType": "image/webp",
+            "bytes": 95214,
+            "sha256": "117eb7c18cac70b327109588d19839d1ecd06cd24666d7b063c709c7c2ce82e9",
+            "width": 480,
+            "height": 248,
+            "compression": {
+              "profile": "ql-v1",
+              "codec": "webp",
+              "encoder": "webp-lossless"
+            },
+            "fidelity": {
+              "mode": "pixel-exact",
+              "psnrDb": null,
+              "meanAbsoluteError": 0,
+              "maximumChannelDelta": 0
+            }
+          },
+          {
+            "objectKey": "animals/media.animals.herding-regions-map/bdbf1b98eb31141f/optimized/ql-v1/1600w-webp-q94-9ed7a1e0f30a45a6.webp",
+            "mimeType": "image/webp",
+            "bytes": 175120,
+            "sha256": "9ed7a1e0f30a45a6699bde501b7799da21c360b28177316fd4aec7f11753c44d",
+            "width": 1600,
+            "height": 826,
+            "compression": {
+              "profile": "ql-v1",
+              "codec": "webp",
+              "encoder": "webp-lossy",
+              "quality": 94
+            },
+            "fidelity": {
+              "mode": "measured-quasi-lossless",
+              "psnrDb": 46.42,
+              "meanAbsoluteError": 0.738,
+              "maximumChannelDelta": 16
+            }
+          }
+        ]
+      }
+    },
+    {
       "id": "media.caral.excavated-shicra",
       "locator": {
         "provider": "object-storage",

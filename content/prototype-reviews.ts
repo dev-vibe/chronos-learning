@@ -1,5 +1,4 @@
 import type { LessonPrototypeReview } from '../src/infrastructure/content/prototypeReview';
-import { animalsHerdingPrototypeReview } from './prototype-reviews/animals-herding-and-mobility';
 
 /**
  * Development and authoring-only review metadata.
@@ -8,4 +7,4 @@ import { animalsHerdingPrototypeReview } from './prototype-reviews/animals-herdi
  * imports it only in Vite development preview mode, while lesson gate scripts
  * import it directly for deterministic validation.
  */
-export const chronosPrototypeReviews: readonly LessonPrototypeReview[] = [animalsHerdingPrototypeReview];
+export const chronosPrototypeReviews: readonly LessonPrototypeReview[] = [];

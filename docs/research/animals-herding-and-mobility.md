@@ -2,7 +2,7 @@
 
 Issue: [ASH-114](https://linear.app/ashs-workshop/issue/ASH-114/research-and-publish-animals-herding-and-mobility); blocks ASH-104 (Steppe Mobility and the Chariot)
 Lesson ID: lesson.animals.domestication-and-pastoralism
-Research-note identity/version: Stage 14B prototype packet, 2026-10-29 (Stage 3B direction approved the same day)
+Research-note identity/version: Stage 15–18 final media and publication, 2026-10-29 (Stage 3B direction and Stage 14B prototype approved the same day)
 Production record version: 2
 Journey/chapter/position: required World History, chapter `chapter.world-history.human-beginnings`, canonical Spine position 9 (after `lesson.farming.settlements`, before `lesson.technology.wheels-metals-and-work`); production order 30
 Required or optional: required
@@ -166,14 +166,14 @@ Registered in `content/lessons/animals-herding-and-mobility.ts`. Claims resting 
 | `claim.animals.body-change-later` — body change detectable ~1,000 years after management, first at Ali Kosh | interpretation | high | daly-2021-ganj-dareh | Exact lag 500–1,000 years in other syntheses | — | State directly | reviewed |
 | `claim.animals.several-regions` — goats from several wild populations; taurine cattle upper Euphrates/Tigris ~10,500 BP; zebu separately in Indus ~1,500 years later; pigs Near East by ~10,500 BP | interpretation | high | daly-2018-mosaic, verdugo-2019-cattle, pitt-2019-cattle, frantz-2019-pigs | Taurine origin itself "restricted"; zebu date secondary in Pitt intro | — | Knowledge items with rough dates | reviewed |
 | `claim.animals.andean-camelids` — llamas/alpacas from hunted camelids ~7,000–5,500 years ago; handling injuries ~4,900; corrals ~4,500–3,600; only herd animals of the ancient Americas | interpretation | moderate | yacobaccio-2021-camelids, diaz-maroto-2021-camelids | Regional dates differ; alpaca ancestry unresolved | Andean herders' own accounts | Knowledge item + short prose | reviewed |
-| `claim.animals.early-milk` — milk in use by 7th millennium BCE, >2,200 vessels, esp. NW Anatolia | observation | high | evershed-2008-milk | Abstract-level review only | — | State directly | editorial review required (full text) |
-| `claim.animals.milk-before-digestion` — many early milk users could not digest fresh milk; lactase persistence common only much later | interpretation | high | evershed-2022-lactase, prendergast-2019-herders | Why LP spread is contested (famine/disease proposal not taught) | — | One paragraph; processing into yogurt/cheese marked "may" | editorial review required (Evershed full text) |
+| `claim.animals.early-milk` — milk in use by 7th millennium BCE, >2,200 vessels, esp. NW Anatolia | observation | high | evershed-2008-milk | Abstract-level review only | — | State directly | reviewed (abstract-level; owner accepted 2026-10-29) |
+| `claim.animals.milk-before-digestion` — many early milk users could not digest fresh milk; lactase persistence common only much later | interpretation | high | evershed-2022-lactase, prendergast-2019-herders | Why LP spread is contested (famine/disease proposal not taught) | — | One paragraph; processing into yogurt/cheese marked "may" | reviewed (abstract-level; owner accepted 2026-10-29) |
 | `claim.animals.wool-traction-later` — light traction early (Balkans), wider traction from 4th millennium BCE, woolly sheep later | interpretation | moderate | gaastra-2018-traction, vila-2021-wool | One region for early traction; wool/urban link a hypothesis (not taught) | — | Knowledge items | reviewed |
-| `claim.animals.sahara-herding-first` — green Sahara herding a stable, widespread way of life long before domesticated plants or villages | interpretation | high | dunne-2012-sahara-milk, gifford-gonzalez-hanotte-2011 | Abstract-level for Dunne | Saharan herders' voices | State directly | editorial review required (Dunne full text) |
-| `claim.animals.takarkori-milk` — milk fats in 5th-millennium BCE Takarkori pottery | observation | high | dunne-2012-sahara-milk | Abstract + Fig. 2 caption only | — | State directly | editorial review required |
+| `claim.animals.sahara-herding-first` — green Sahara herding a stable, widespread way of life long before domesticated plants or villages | interpretation | high | dunne-2012-sahara-milk, gifford-gonzalez-hanotte-2011 | Abstract-level for Dunne | Saharan herders' voices | State directly | reviewed (abstract-level; owner accepted 2026-10-29) |
+| `claim.animals.takarkori-milk` — milk fats in 5th-millennium BCE Takarkori pottery | observation | high | dunne-2012-sahara-milk | Abstract + Fig. 2 caption only | — | State directly | reviewed (abstract-level; owner accepted 2026-10-29) |
 | `claim.animals.african-cattle-debate` — African cattle domestication unresolved; many favour introduction + local aurochs breeding | interpretation | contested | gifford-gonzalez-hanotte-2011, pitt-2019-cattle | Wendorf & Schild primary texts not read (recorded asymmetric-scrutiny risk) | — | One open-question paragraph, both sides | reviewed |
-| `claim.animals.lothagam-cemetery` — ~5,000 years ago as the Humid Period ended; pillars, circles, cairns; ≥580 people of all ages and both sexes, most with ornaments; no evidence of ranking | observation | high | hildebrand-2018-lothagam | "No evidence of ranking" is not proof of equality; abstract-level review | Builders' own meaning | State at abstract wording | editorial review required (full text) |
-| `claim.animals.lothagam-networks` — excavators suggest moving frontier encouraged strong networks | interpretation | moderate | hildebrand-2018-lothagam | Interpretation, attributed | — | Attributed to excavators | editorial review required |
+| `claim.animals.lothagam-cemetery` — ~5,000 years ago as the Humid Period ended; pillars, circles, cairns; ≥580 people of all ages and both sexes, most with ornaments; no evidence of ranking | observation | high | hildebrand-2018-lothagam | "No evidence of ranking" is not proof of equality; abstract-level review | Builders' own meaning | State at abstract wording | reviewed (abstract-level; owner accepted 2026-10-29) |
+| `claim.animals.lothagam-networks` — excavators suggest moving frontier encouraged strong networks | interpretation | moderate | hildebrand-2018-lothagam | Interpretation, attributed | — | Attributed to excavators | reviewed (abstract-level; owner accepted 2026-10-29) |
 | `claim.animals.herders-mixed-with-foragers` — herding spread into eastern Africa in steps with mixing | interpretation | moderate | prendergast-2019-herders | Earliest Turkana herders unsampled | — | One sentence | reviewed |
 | `claim.animals.mustatil-offerings` — mustatil c. 5300–4800 BCE; cattle dominate offerings; may have held mobile herding groups together | interpretation | moderate | kennedy-2023-mustatil | One site; ritual reading | — | Attributed interpretation | reviewed |
 | `claim.animals.mobility-strategy` — mobility as a dryland strategy; herders settle and move without cutting ties; not a stage | interpretation | high | szuchman-2009-nomads, adriansen-2008-fulani | Present-day evidence labelled as comparison only | Ancient herders' explanations | Central framing | reviewed |
@@ -202,7 +202,7 @@ Deliberately excluded: Botai horse claims and horse domestication (Spine 20); Sh
 | claim.animals.milk-before-digestion | source.animals.prendergast-2019-herders | Section "Low frequency of genetic adaptation to milk consumption" (eastern African pastoralists mostly lactose intolerant as recently as 3000–1000 years ago) | main agent, 2026-10-29, close-reviewed |
 | claim.animals.mobility-strategy | source.animals.szuchman-2009-nomads | Introduction, pp. 1–9 (continuum; sedentarization without severing ties) | research subagent, 2026-10-29, close-reviewed (extraction) |
 
-Central claims not yet close-reviewed in full text (abstract-level only, owner decision at 14B): `claim.animals.early-milk` (Evershed 2008 abstract), `claim.animals.milk-before-digestion` (Evershed 2022 abstract; Prendergast row above is full text), `claim.animals.sahara-herding-first` and `claim.animals.takarkori-milk` (Dunne 2012 abstract), `claim.animals.lothagam-cemetery` and `claim.animals.lothagam-networks` (Hildebrand 2018 abstract and significance statement).
+Central claims reviewed at abstract level only (owner accepted this wording at 14B, 2026-10-29): `claim.animals.early-milk` (Evershed 2008 abstract), `claim.animals.milk-before-digestion` (Evershed 2022 abstract; Prendergast row above is full text), `claim.animals.sahara-herding-first` and `claim.animals.takarkori-milk` (Dunne 2012 abstract), `claim.animals.lothagam-cemetery` and `claim.animals.lothagam-networks` (Hildebrand 2018 abstract and significance statement).
 
 ## Content triage
 
@@ -241,7 +241,7 @@ Revisit: planned in lesson.technology.wheels-metals-and-work (animal pulling pow
 Reasoning progression: prior lessons practiced observing plant evidence and naming its limits → here the learner compares two bone patterns to infer a human choice → next, Wheels and Steppe lessons ask learners to weigh several evidence types for a technology's spread.
 Transfer plan: no unfamiliar-evidence transfer task in this lesson; the Andean corrals give a light second case of management evidence, and fuller transfer is deferred to the Steppe lesson, where horse-domestication evidence can be tested with the same "management vs. hunting" logic.
 Completion versus mastery: completion records the correct Ganj Dareh selection and a sincere written attempt on mobility; mastery would be shown if a learner could use the hunted-vs-herded logic on new bones (for example camelids) without prompting, which is not tested here.
-Required sincere-attempt evidence: prompt 2 written answer (minimum 30 characters) explaining a reason for moving and posing one open question.
+Required sincere-attempt evidence: two separate written answers, one explaining a reason for moving (minimum 30 characters) and one posing an open question (minimum 15 characters).
 Story spine: the hoofprinted bricks of Ganj Dareh open the lesson; the herd idea travels across regions to the Sahara and Lake Turkana, and closes on herders who move by knowledge, not chance.
 Memorable moments: hoofprints pressed into a mud brick 10,000 years ago; goat bones that reveal herders' choices; people using milk thousands of years before most adults could digest it; at least 580 people buried together by early herders at Lake Turkana.
 
@@ -274,22 +274,257 @@ Optional, not planned: an evidence-based reconstruction hero of Ganj Dareh herde
 
 ## Image lifecycle
 
-No final images exist at Stage 14B. Blocks for `media.animals.ganj-dareh-hoofprints`, `media.animals.ganj-dareh-survival-chart` and `media.animals.herding-regions-map` are written at Stage 15. Any image built from references rather than used as the source itself will include a ready-to-paste ChatGPT prompt (owner standing preference, 2026-10-29).
+All three images are produced without image generation: one direct crop of an openly licensed photograph and two deterministic renders from recorded data and code. Per Carlin's standing preference (2026-10-29), each image built from references also carries a ready-to-paste ChatGPT prompt, offered as an optional restyle; the deterministic or direct-use file below is the accepted final either way.
+
+### `media.animals.ganj-dareh-hoofprints` — opening evidence and card art
+
+#### 1. Reasoning and source basis
+
+- Teaching job: let learners see the actual clue that opens the lesson: hoofprints pressed into a Ganj Dareh mud brick.
+- Governing claim IDs: `claim.animals.hoofprints-newborns`.
+- Factual/historical sources: Daly et al. 2021, PNAS 118:e2100901118, Fig. 2B and caption ("Hoofprints in mud-brick at Ganj Dareh (sample 270, context 2033, lowest level of collapse from Smith excavation)"), https://pmc.ncbi.nlm.nih.gov/articles/PMC8237664/.
+- Why image instead of no media: the object itself is the evidence; words alone cannot show what a hoofprint in a brick looks like.
+- Depiction and uncertainty boundary: surviving evidence photograph. The paper does not identify the species from the prints, so captions say "hoofed animals". The text mentions a 2017 brick; the figure caption names the Smith-excavation context, so the caption does not claim which brick is shown beyond "a mud brick from Ganj Dareh".
+
+#### 2. Reference image or reviewed data actually used
+
+| Reference preview | Origin and permitted use |
+| --- | --- |
+| ![Reference for media.animals.ganj-dareh-hoofprints](animals-media/daly2021-fig2-reference.jpg) | Creator/institution: Daly, Mattiangeli, Hare, Davoudi, Fathi, Doost, Amiri, Khazaeli, Decruyenaere, Nokandeh, Richter, Darvishi Khatooni, Mashkour, Zeder, Bradley et al.<br>Canonical origin: [PNAS Fig. 2](https://pmc.ncbi.nlm.nih.gov/articles/instance/8237664/bin/pnas.2100901118fig02.jpg)<br>License/use: CC BY 4.0 (article licence statement in the PMC record)<br>Accessed: 2026-10-29 |
+
+- Repository research copy and SHA-256: `docs/research/animals-media/daly2021-fig2-reference.jpg`, `f7ceed251d8252f67828538b2ddcfe8fd4f3b3ac982d77a296dcc65e7ee5d8dc` (677×892).
+- Edit mode: direct use (crop only)
+- Visual relationship to preserve: the whole brick, all hoof impressions, the published scale bar and the authors' tracing inset.
+- Details not to copy or infer: no retouching, sharpening, recolouring or species labels.
+
+| Depicted real subject / composite panel | Actual subject reference and object/accession or figure ID | Input path and SHA-256 | Physical or measured details to preserve | Final fidelity verdict |
+| --- | --- | --- | --- | --- |
+| Ganj Dareh mud brick with hoofprints | Daly et al. 2021 Fig. 2B; sample 270, context 2033 | `docs/research/animals-media/daly2021-fig2-reference.jpg`, `f7ceed25…5d8dc` | brick outline, four impressions, 15 cm scale bar, inset tracing | pass |
+
+- Separate style/layout references: none.
+- Unsupported subjects omitted or replaced with native text: species identification; excavation year of this specific brick.
+
+#### 3. Generation or transformation
+
+- Operation: crop/compression only
+- Reviewed data/code paths and versions (for deterministic output): Pillow crop box (57, 436, 677, 892) found by detecting the black panel B background; runtime JPEG quality 95.
+- Every actual input path and SHA-256: `docs/research/animals-media/daly2021-fig2-reference.jpg`, `f7ceed251d8252f67828538b2ddcfe8fd4f3b3ac982d77a296dcc65e7ee5d8dc`.
+- Tool/model/date: Pillow 12.3, 2026-10-29.
+- Complete prompt, including subject-to-reference mapping and prohibition on invented physical or measured details (`No generation` when applicable):
+
+```text
+No generation. Crop panel B from the published figure; no other change.
+```
+
+- Optional ChatGPT prompt: not offered. This is the source photograph itself, and the rule is to use evidence photographs as they are.
+- Candidate/rejection record: one candidate; accepted.
+
+#### 4. Accepted final image
+
+| Reference used | Accepted final |
+| --- | --- |
+| ![Reference comparison for media.animals.ganj-dareh-hoofprints](animals-media/daly2021-fig2-reference.jpg) | ![Accepted final for media.animals.ganj-dareh-hoofprints](animals-media/ganj-dareh-hoofprints.png) |
+
+- Final master path, dimensions, and SHA-256: `docs/research/animals-media/ganj-dareh-hoofprints.png`, 620×456, `c5e73a9a3eab00b8ea538a48e2923ad5d7055303d7ff3e42247a7a7cff21e841`.
+- Runtime/fallback path and SHA-256: `public/images/animals/ganj-dareh-hoofprints.jpg` (`46f00419b77c9307c5035e5020b4740a312751b9cb2810fd519735a41233c5e6`, preset `photo`, widths 480/620); fallback `public/images/optimized/animals/ganj-dareh-hoofprints.optimized.webp` (`1f6bb2a750fecfd9720dc14b933b1805b5d31db2db5aa4f590e35a947bccce0e`).
+- Reviewer/date/status: authoring agent, 2026-10-29, approved for redistribution (CC BY 4.0 with credit in `rightsLabel`); owner approved the evidence-image intention 2026-10-29.
+- Subject coverage verdict — every depicted real subject has an actual visual reference or reviewed factual data used by the method: yes
+- Subject fidelity verdict — every subject preserves its referenced physical or measured details: yes
+- Fidelity verdict — every locked invariant retained: yes
+- Lesson-size verdict — evidence-bearing differences remain visually distinct on desktop and mobile: yes (hoof impressions clear at 390 px; source resolution limits enlargement)
+- Comparison verdict — preserved relationship: pixel-identical crop of panel B.
+- Comparison verdict — intentional changes: panel letter and panel A removed by the crop.
+- Comparison verdict — unsupported details checked: none added.
+
+### `media.animals.ganj-dareh-survival-chart` — evidence-encounter chart
+
+#### 1. Reasoning and source basis
+
+- Teaching job: make the herders' choice visible: females survive longer, males drop after the first year.
+- Governing claim IDs: `claim.animals.ganj-dareh-management`.
+- Factual/historical sources: Daly et al. 2021 Fig. 2A ("All Levels" panel, sex-specific combined survivorship curves) and the matching text (60–70% of males harvested before 2.5 years; 60–70% of females survive).
+- Why image instead of no media: the gap between two lines is the evidence pattern; a chart shows it at a glance, and the knowledge grid gives the numbers in text.
+- Depiction and uncertainty boundary: diagram redrawn from published data; values read from the published chart are approximate (about ±0.02). The overall curve and level-by-level panels are omitted for simplicity.
+
+#### 2. Reference image or reviewed data actually used
+
+| Reference preview | Origin and permitted use |
+| --- | --- |
+| ![Reference for media.animals.ganj-dareh-survival-chart](animals-media/daly2021-fig2-reference.jpg) | Creator/institution: Daly et al. 2021<br>Canonical origin: [PNAS Fig. 2A](https://pmc.ncbi.nlm.nih.gov/articles/PMC8237664/)<br>License/use: CC BY 4.0<br>Accessed: 2026-10-29 |
+
+- Repository research copy and SHA-256: `docs/research/animals-media/daly2021-fig2-reference.jpg`, `f7ceed251d8252f67828538b2ddcfe8fd4f3b3ac982d77a296dcc65e7ee5d8dc`.
+- Edit mode: adapted composition (deterministic redraw of one panel with plain labels)
+- Visual relationship to preserve: female above male after the first age group; male drop between 1–1½ and 1½–2½ years; both lines falling by 2½–4 years.
+- Locked layout/detail invariants: four age groups in published order; values female 0.94, 0.95, 0.74, 0.31 and male 0.97, 0.77, 0.25, 0.12, measured against the 0.00/0.25/0.75/1.00 gridlines of the "All Levels" panel (1.00 at y≈30.5 px, 0.00 at y≈192.5 px; age-group x positions 86/135/183/232 px in the 677 px figure).
+- Details not to copy or infer: no levels A–E, no trend lines, no Asiab values on the same axes (different measure).
+
+| Depicted real subject / composite panel | Actual subject reference and object/accession or figure ID | Input path and SHA-256 | Physical or measured details to preserve | Final fidelity verdict |
+| --- | --- | --- | --- | --- |
+| Ganj Dareh goat survivorship, all levels | Daly et al. 2021 Fig. 2A "All Levels" | `docs/research/animals-media/daly2021-fig2-reference.jpg`, `f7ceed25…5d8dc`; data in `render_survival_chart.py` | eight values and their order | pass |
+
+- Separate style/layout references: Chronos palette only.
+- Unsupported subjects omitted or replaced with native text: Asiab comparison stays in prose.
+
+#### 3. Generation or transformation
+
+- Operation: deterministic/native/vector rendering
+- Reviewed data/code paths and versions (for deterministic output): `docs/research/animals-media/render_survival_chart.py` (SHA-256 `c0d58b7ef432f4f80f94a7243c4f6eb0742235ceab1b2051018d4e05a039c7ad`), matplotlib 3.11.2, Inter font.
+- Every actual input path and SHA-256: values above, read from `daly2021-fig2-reference.jpg` (`f7ceed25…5d8dc`).
+- Tool/model/date: matplotlib, 2026-10-29.
+- Complete prompt, including subject-to-reference mapping and prohibition on invented physical or measured details (`No generation` when applicable):
+
+```text
+No generation. python3 render_survival_chart.py ganj-dareh-survival-chart.png
+```
+
+- Optional ChatGPT prompt (only if Carlin prefers a hand-styled version; attach `ganj-dareh-survival-chart.png` as the image to edit):
+
+```text
+Restyle the attached line chart for a children's history lesson (ages 11–15) without changing any data.
+Keep exactly: the two lines, their eight points and heights, the four x-axis labels "½–1", "1–1½", "1½–2½", "2½–4", the axis titles "Goats still alive" and "Age in years", the y-axis labels "0%", "50%", "100%", and the legend "Female goats" and "Male goats".
+Female line warm ochre with round markers; male line deep teal with square markers; warm parchment background; clean editorial style, large readable text.
+Do not add a title, icons, goats, extra labels, gridline values, shadows, 3D effects or any new numbers. Do not move, smooth or re-scale any point.
+```
+
+- Candidate/rejection record: first render (font 22 px, long age labels) rejected as illegible at 390 px; second render accepted.
+
+#### 4. Accepted final image
+
+| Reference used | Accepted final |
+| --- | --- |
+| ![Reference comparison for media.animals.ganj-dareh-survival-chart](animals-media/daly2021-fig2-reference.jpg) | ![Accepted final for media.animals.ganj-dareh-survival-chart](animals-media/ganj-dareh-survival-chart.png) |
+
+- Final master path, dimensions, and SHA-256: `docs/research/animals-media/ganj-dareh-survival-chart.png`, 1600×1100, `bd3a2b5a61f44ae1f12b943f5af993680172f16e91c5afaf34b2106d635ba1b1`.
+- Runtime/fallback path and SHA-256: `public/images/animals/ganj-dareh-survival-chart.png` (`9d0fcb087bce18928dc4af2ec845f287073cab6998594bc0fe7a464c2daa7226`, preset `picture`); fallback `public/images/optimized/animals/ganj-dareh-survival-chart.optimized.webp` (`d0e8b67a51218175a0d45ebe1bc3ec01aa3b3b49470fdcc331e4e38c07175cd7`).
+- Reviewer/date/status: authoring agent, 2026-10-29, approved; owner approved the chart intention 2026-10-29.
+- Subject coverage verdict — every depicted real subject has an actual visual reference or reviewed factual data used by the method: yes
+- Subject fidelity verdict — every subject preserves its referenced physical or measured details: yes
+- Fidelity verdict — every locked invariant retained: yes
+- Lesson-size verdict — evidence-bearing differences remain visually distinct on desktop and mobile: yes (checked at 390 px)
+- Comparison verdict — preserved relationship: same eight values and order; same female-above-male gap.
+- Comparison verdict — intentional changes: plain-language axis and age labels; percentages instead of 0–1; overall curve and levels A–E omitted.
+- Comparison verdict — unsupported details checked: no added data points or trend lines.
+
+### `media.animals.herding-regions-map` — world locator
+
+#### 1. Reasoning and source basis
+
+- Teaching job: show that herding began in several far-apart places and where the lesson's seven places are relative to recognizable continents.
+- Governing claim IDs: `claim.animals.several-regions`, `claim.animals.andean-camelids`, `claim.animals.sahara-herding-first`, `claim.animals.lothagam-cemetery`, `claim.animals.mustatil-offerings`, `claim.animals.steppe-milk`.
+- Factual/historical sources: Natural Earth II 1:50m shaded relief (geography); Ganj Dareh coordinates from XRONOS (34.317 N, 47.500 E); Takarkori coordinates 24.883 N, 10.333 E (Wikipedia, consistent with Dunne 2012's Tadrart Acacus setting); Lothagam North placed west of southern Lake Turkana (~2.9 N, 36.0 E) from Hildebrand 2018 and the Lothagam locality; mustatil placed east of AlUla (~26.6 N, 38.2 E) from Kennedy 2023's title and setting; zones from Pitt 2019 (Fertile Crescent, Indus Valley), Yacobaccio 2021 (central/southern Andes), Dunne 2012 (green Sahara), Wilkin 2021 (western steppe).
+- Why image instead of no media: distance and spread across continents is the point; the knowledge grid alone cannot show it.
+- Depiction and uncertainty boundary: modern coasts for orientation; zones are deliberately broad ellipses; markers are much larger than the sites; no routes, arrows or borders. Native text carries all names, the orientation sentence and the uncertainty note.
+
+#### 2. Reference image or reviewed data actually used
+
+| Reference preview | Origin and permitted use |
+| --- | --- |
+| ![Reference for media.animals.herding-regions-map](animals-media/natural-earth-reference-crop.jpg) | Creator/institution: Natural Earth<br>Canonical origin: [NE2_50M_SR_W, v3.2.0](https://www.naturalearthdata.com/downloads/50m-natural-earth-2/50m-natural-earth-ii-with-shaded-relief-and-water/)<br>License/use: Public Domain<br>Accessed: 2026-10-29 |
+
+- Repository research copy and SHA-256: `docs/research/animals-media/natural-earth-reference-crop.jpg` (unstyled crop of the same bounds, `248b56ad77124deb0d6ede9f0c8e77d59fdec6d1e3ed6a94504a77f05ede97d8`); full download `NE2_50M_SR_W.zip`, `7e0e07089b699a3cccad98dd1b2446390d8e3f8c5006359d477a329cebcafaa9`; TIFF `02ae944d9ee8a64ccacbd4f535220aac10b5c95e874118b6db8d6f07cea48e71`.
+- Edit mode: deterministic recolour with drawn zones and markers
+- Visual relationship to preserve: coastlines, relief and relative positions; marker placement at the listed coordinates.
+- Locked layout/detail invariants: equirectangular crop 88 W–98 E, 36 S–60 N; marker coordinates and zone parameters as listed in `render_herding_map.py`.
+- Details not to copy or infer: no ancient shorelines, lakes, rivers, routes, borders or site names baked into the image.
+
+| Depicted real subject / composite panel | Actual subject reference and object/accession or figure ID | Input path and SHA-256 | Physical or measured details to preserve | Final fidelity verdict |
+| --- | --- | --- | --- | --- |
+| World geography | Natural Earth II 1:50m | TIFF `02ae944d…e71` | coastlines, relief | pass |
+| Ganj Dareh marker | XRONOS site 23478 | coordinates in code | 34.32 N, 47.50 E | pass |
+| Takarkori marker | Wikipedia Takarkori | coordinates in code | 24.88 N, 10.33 E | pass |
+| Lothagam North marker | Hildebrand 2018; Lothagam, west Turkana | coordinates in code | west of southern Lake Turkana | pass (approximate) |
+| AlUla mustatil marker | Kennedy 2023 | coordinates in code | east of AlUla | pass (approximate) |
+
+- Separate style/layout references: Akkad locator palette (golden land, blue water, terracotta markers) as style only.
+- Unsupported subjects omitted or replaced with native text: individual Andean sites (Telarmachay, Inca Cueva) shown only as a zone; Anatolian milk evidence not mapped.
+
+#### 3. Generation or transformation
+
+- Operation: deterministic/native/vector rendering
+- Reviewed data/code paths and versions (for deterministic output): `docs/research/animals-media/render_herding_map.py` (SHA-256 `dcccfa32a4af20c4ebc681786bc90bc24814745da4cac2a876a1314b8d76d660`), Pillow 12.3, NumPy.
+- Every actual input path and SHA-256: NE2_50M_SR_W.tif `02ae944d9ee8a64ccacbd4f535220aac10b5c95e874118b6db8d6f07cea48e71`.
+- Tool/model/date: Pillow/NumPy, 2026-10-29.
+- Complete prompt, including subject-to-reference mapping and prohibition on invented physical or measured details (`No generation` when applicable):
+
+```text
+No generation. python3 render_herding_map.py NE2_50M_SR_W.tif herding-regions-map.png
+```
+
+- Optional ChatGPT prompt (only if Carlin prefers an illustrated version; attach `herding-regions-map.png` as the image to edit and `public/images/akkad/akkad-locator.jpg` as a style-only reference):
+
+```text
+Create a single historical map illustration for a Chronos lesson by restyling the FIRST attached image. The second attached image is a style reference only; do not copy its geography.
+
+LESSON AND PURPOSE:
+- Subject: places where people began herding animals
+- Period: c. 9000–2000 BCE
+- Teaching goal: herding began in several far-apart regions
+- Wider-world anchor: the Americas, Africa, Europe and Asia must stay recognizable
+
+GEOGRAPHIC REFERENCE:
+- Treat the first attached map as the geographic source.
+- Preserve its crop, projection, coastlines, terrain placement, and the exact position and size of all seven numbered markers and five shaded zones.
+
+VERIFIED FEATURES:
+- Markers 1 (western Iran), 4 (Libya), 5 (west of Lake Turkana, Kenya), 6 (northwest Arabia)
+- Zones: Fertile Crescent, Indus Valley (2), Andes (3), Sahara, western steppe (7)
+
+APPROXIMATE FEATURES:
+- All five zones; keep them soft, translucent ovals. Do not sharpen them into borders.
+
+REQUIRED LABELS:
+- Only the numbers 1 to 7 already in the markers. No other text.
+
+CHRONOS STYLE:
+- warm golden or parchment-toned land, with clear blue water;
+- ochre, blue-green and terracotta accents with enough contrast to read at lesson size;
+- restrained paper texture; elegant editorial historical-atlas character;
+- calm, clear, and approachable for ages 11–15.
+
+DO NOT ADD:
+- invented settlements, rivers, lakes, roads, borders, arrows, routes, ruins, animals or symbols;
+- modern national borders;
+- a compass, legend, title, date, paragraph, logo or watermark;
+- any word or number not already on the map.
+
+OUTPUT:
+- one complete raster map, at least 2000 px wide, no cropping of the Andes, Africa or the steppe.
+```
+
+- Candidate/rejection record: first render rejected (Andes zone tilted the wrong way and spilling into the Pacific; steppe and Fertile Crescent zones covering seas); second render accepted with zones clipped to land.
+
+#### 4. Accepted final image
+
+| Reference used | Accepted final |
+| --- | --- |
+| ![Reference comparison for media.animals.herding-regions-map](animals-media/natural-earth-reference-crop.jpg) | ![Accepted final for media.animals.herding-regions-map](animals-media/herding-regions-map.png) |
+
+- Final master path, dimensions, and SHA-256: `docs/research/animals-media/herding-regions-map.png`, 2000×1032, `ec905c6fad1f803badf44d0f1cf4ddc3158cc291ace370d47b2c6162a33dc8d7`.
+- Runtime/fallback path and SHA-256: `public/images/animals/herding-regions-map.jpg` (1600×826, `bdbf1b98eb31141f05ba4715b87b33439f1d19f96f3166580986c5d1830ac632`, preset `photo`); fallback `public/images/optimized/animals/herding-regions-map.optimized.webp` (`9ed7a1e0f30a45a6699bde501b7799da21c360b28177316fd4aec7f11753c44d`).
+- Reviewer/date/status: authoring agent, 2026-10-29, approved; owner approved the map intention 2026-10-29.
+- Subject coverage verdict — every depicted real subject has an actual visual reference or reviewed factual data used by the method: yes
+- Subject fidelity verdict — every subject preserves its referenced physical or measured details: yes
+- Fidelity verdict — every locked invariant retained: yes
+- Lesson-size verdict — evidence-bearing differences remain visually distinct on desktop and mobile: yes (numbers legible at 390 px)
+- Comparison verdict — preserved relationship: identical coastlines and relief to the Natural Earth crop; markers at listed coordinates.
+- Comparison verdict — intentional changes: warm recolour; translucent zones clipped to land; numbered markers.
+- Comparison verdict — unsupported details checked: no labels, routes, borders or water features added.
 
 ## Knowledge Card decision
 
-Decision: card (recommended, pending owner)
+Decision: card (approved by Carlin 2026-10-29)
 Rationale: the hoofprinted brick of Ganj Dareh is a concrete, visually representable memory anchor for the lesson's central evidence idea — animals living among people before their bodies changed — and is distinct from existing cards.
 Stable card ID, category, class, and unlock lesson if applicable: `card.animals.ganj-dareh-hoofprints`, category artifact, class Witness, unlockLessonId `lesson.animals.domestication-and-pastoralism`.
 Understanding anchored: herding began with management that bones and traces reveal before domestication is visible.
-Sources and visual brief: Daly et al. 2021 (CC BY 4.0) Fig. 2B photograph shown whole as card art; depiction label "Surviving evidence · excavation photograph". Facts: Zagros Mountains, western Iran; village used c. 8200–7600 BCE; most young male goats eaten, most females kept; goat bodies changed about 1,000 years later. Card art resolution must be checked at Stage 15; if too small, Lothagam North cannot substitute (no licensed image), so the fallback is no card.
+Sources and visual brief: Daly et al. 2021 (CC BY 4.0) Fig. 2B photograph shown whole as card art; depiction label "Surviving evidence · excavation photograph". Facts: Zagros Mountains, western Iran; village used c. 8200–7600 BCE; most young male goats eaten, most females kept; goat bodies changed about 1,000 years later. Card art checked at Stage 15: the 620×456 crop shows the whole brick and fills the card frame; registered as `card.animals.ganj-dareh-hoofprints` in `content/lessons/animals-media.ts`.
 
 ## Prompt rationale
 
 | Prompt ID | Required | Understanding/evidence assessed | Misconception exposed | Feedback job | Plain-words check (what a 12-year-old does after one read) |
 | --- | --- | --- | --- | --- | --- |
 | prompt.animals.ganj-dareh-bones | yes | Infer herding from the age/sex pattern and newborn bones | Better hunting; new breed already; hunting young for taste | Each wrong option sends the learner back to who survived or when bodies changed | "Read the numbers about which goats died young and pick the explanation that fits." |
-| prompt.animals.why-herders-moved | yes | Explain mobility as a strategy; pose a positive open question | Nomads wander aimlessly | Explanation shows a strong answer (water/grass; open question) | "Say why Sahara herders moved, then ask one question researchers still want answered." Two-sentence lesson-only answer: "Rain fell unevenly, so they moved to find water and grass for their cattle. Researchers still want to know whether cattle were also tamed in Africa." |
+| prompt.animals.why-herders-moved | yes | Explain mobility as a strategy | Nomads wander aimlessly | Explanation shows a strong answer (water and grass; uneven rain) | "Say why Sahara herders moved their cattle." Lesson-only answer: "Rain fell unevenly, so they moved to find water and grass for their cattle." |
+| prompt.animals.herder-question | yes | Pose a positive open question about herders | Treating the past as fully known | Explanation lists real open questions the lesson raises | "Write one question I'd like researchers to answer." Lesson-only answer: "Were cattle also domesticated in Africa?" |
 
 ## Ages 11–15 transformations
 
@@ -322,3 +557,13 @@ Rendered check, 2026-10-29, by the authoring agent in a local Vite preview with 
 | Research | revise (owner decision) | Six claims rest on abstract-level review of four inaccessible full texts (Evershed 2008, Evershed 2022, Dunne 2012, Hildebrand 2018); wording is narrowed to the abstracts and the claims stay review-required. Implementation gate will fail until resolved. |
 | Rights, media and accessibility | not applicable yet | No final images; Daly 2021 figures are CC BY 4.0; Stage 15 will record lifecycle blocks and a ChatGPT prompt for any reference-built image. |
 | Technical | pass | Prototype gate, content validation and Chronos typecheck pass; tests updated for the new journey entry. One unrelated pre-existing failure on `main` remains in `tests/learn/multi-lesson.test.tsx` (expects the journey without Hammurabi). |
+
+### Owner response at Stage 14B
+
+2026-10-29: Carlin replied “approved”. This authorizes final media and publication, the hoofprint Witness card, and the abstract-level wording for the four inaccessible full texts (Evershed 2008, Evershed 2022, Dunne 2012, Hildebrand 2018); those sources and their six claims are now `reviewed`, with the acceptance recorded in each source's `licenseOrUse`.
+
+In the same message Carlin asked that, as a standing rule, prompts ask one question at a time in very clear, approachable language. The rule was added to the runbook in [PR #88](https://github.com/dev-vibe/chronos-learning/pull/88) (merged). This lesson's two-part written prompt was split: `prompt.animals.why-herders-moved` now asks only why Sahara herders moved, and a new `prompt.animals.herder-question` asks for one open question. The lesson now has three required prompts (the runbook maximum).
+
+## Final sign-off
+
+Pending owner touchpoint 3.

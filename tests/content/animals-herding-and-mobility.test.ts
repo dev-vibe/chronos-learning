@@ -4,17 +4,17 @@ import { isLessonOpenable, setUnlockPreviewLessonsForTests } from '../../src/con
 
 const LESSON_ID = 'lesson.animals.domestication-and-pastoralism';
 
-describe('Animals, Herding, and Mobility prototype', () => {
+describe('Animals, Herding, and Mobility published lesson', () => {
   afterEach(() => setUnlockPreviewLessonsForTests(undefined));
 
   const lesson = chronosContent.lessons.find((item) => item.id === LESSON_ID);
 
-  it('stays an unpublished draft that only preview mode can open', () => {
-    expect(lesson).toMatchObject({ status: 'draft', title: 'Animals, Herding, and Mobility', mediaIds: [] });
+  it('opens as a published lesson with its three images and card', () => {
+    expect(lesson).toMatchObject({ status: 'published', title: 'Animals, Herding, and Mobility' });
+    expect(lesson!.mediaIds).toHaveLength(3);
     setUnlockPreviewLessonsForTests(false);
-    expect(isLessonOpenable(lesson!)).toBe(false);
-    setUnlockPreviewLessonsForTests(true);
     expect(isLessonOpenable(lesson!)).toBe(true);
+    expect(chronosContent.cards.find((card) => card.unlockLessonId === LESSON_ID)?.id).toBe('card.animals.ganj-dareh-hoofprints');
   });
 
   it('follows Farming and Settlements in the World History journey', () => {
@@ -25,9 +25,10 @@ describe('Animals, Herding, and Mobility prototype', () => {
     expect(entries.indexOf(LESSON_ID)).toBe(entries.indexOf('lesson.farming.settlements') + 1);
   });
 
-  it('has two required prompts with feedback on every selection option', () => {
+  it('asks one question per prompt, with feedback on every selection option', () => {
     const prompts = chronosContent.prompts.filter((prompt) => lesson!.promptIds.includes(prompt.id));
-    expect(prompts.filter((prompt) => prompt.required)).toHaveLength(2);
+    expect(prompts.filter((prompt) => prompt.required)).toHaveLength(3);
+    for (const prompt of prompts) expect(prompt.question).not.toMatch(/\(1\)|\(2\)/);
     for (const prompt of prompts) {
       if (prompt.kind === 'supported-selection') {
         expect(prompt.options.every((option) => (option.feedback ?? "").length > 0)).toBe(true);

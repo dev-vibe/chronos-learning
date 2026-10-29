@@ -37,6 +37,41 @@
       ]
     },
     {
+      "id": "media.animals.ganj-dareh-hoofprints",
+      "collection": "animals",
+      "sourcePath": "public/images/animals/ganj-dareh-hoofprints.jpg",
+      "fallbackPath": "/images/optimized/animals/ganj-dareh-hoofprints.optimized.webp",
+      "preset": "photo",
+      "widths": [
+        480,
+        620
+      ]
+    },
+    {
+      "id": "media.animals.ganj-dareh-survival-chart",
+      "collection": "animals",
+      "sourcePath": "public/images/animals/ganj-dareh-survival-chart.png",
+      "fallbackPath": "/images/optimized/animals/ganj-dareh-survival-chart.optimized.webp",
+      "preset": "picture",
+      "widths": [
+        480,
+        960,
+        1600
+      ]
+    },
+    {
+      "id": "media.animals.herding-regions-map",
+      "collection": "animals",
+      "sourcePath": "public/images/animals/herding-regions-map.jpg",
+      "fallbackPath": "/images/optimized/animals/herding-regions-map.optimized.webp",
+      "preset": "photo",
+      "widths": [
+        480,
+        960,
+        1600
+      ]
+    },
+    {
       "id": "media.caral.excavated-shicra",
       "collection": "caral",
       "sourcePath": "public/images/evidence/caral-excavated-shicra.jpg",

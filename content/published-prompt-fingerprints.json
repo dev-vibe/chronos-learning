@@ -14,6 +14,18 @@
       "lessonId": "lesson.mesopotamia.akkadian-empire",
       "fingerprint": "8613e6e0940c938a9b9eb62b5bc8362c810b7d3de43b29a0a8a37e39a22ae39e"
     },
+    "prompt.animals.ganj-dareh-bones": {
+      "lessonId": "lesson.animals.domestication-and-pastoralism",
+      "fingerprint": "1c0e39e9345b665826ddfc841aa40c9ce94dd038ea7d682746ce259fba2f95b9"
+    },
+    "prompt.animals.herder-question": {
+      "lessonId": "lesson.animals.domestication-and-pastoralism",
+      "fingerprint": "7b634a355785d1ac0a7288b5f968b2a444d9fa33812009c3afa943e9f377ed0f"
+    },
+    "prompt.animals.why-herders-moved": {
+      "lessonId": "lesson.animals.domestication-and-pastoralism",
+      "fingerprint": "bc098d534159064694b4f0d6282f6369cadf4816886cecd6dac26708ecb72f54"
+    },
     "prompt.caral.coast-valley-and-mounds": {
       "lessonId": "lesson.caral.andean-urbanism",
       "fingerprint": "daade7e732c4e03cda4e34099c185fc46ecf2a9edf5fca450058a9840d0a9e19"
