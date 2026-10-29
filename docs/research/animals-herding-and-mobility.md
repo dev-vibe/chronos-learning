@@ -8,7 +8,7 @@ Journey/chapter/position: required World History, chapter `chapter.world-history
 Required or optional: required
 Accountable reviewer: Carlin Aylsworth
 Validation tier: ordinary (multi-region synthesis with one contested origin question)
-Queue status: `Active` in this branch's first commit. Carlin promoted the row from `Planned` on 2026-10-29 when asked how to handle Steppe Mobility and the Chariot's unmet production dependency ("Do Animals first").
+Queue status: `Complete` in this PR's final commit (`Active` in its first commit). Carlin promoted the row from `Planned` on 2026-10-29 when asked how to handle Steppe Mobility and the Chariot's unmet production dependency ("Do Animals first").
 Branch: `claude/animals-herding-mobility`; [PR #86](https://github.com/dev-vibe/chronos-learning/pull/86) (title carries the issue key)
 
 ## Owner decision card (Stage 3B)
@@ -566,4 +566,6 @@ In the same message Carlin asked that, as a standing rule, prompts ask one quest
 
 ## Final sign-off
 
-Pending owner touchpoint 3.
+- Media verified: all three assets (`media.animals.ganj-dareh-hoofprints`, `media.animals.ganj-dareh-survival-chart`, `media.animals.herding-regions-map`) published to Supabase Storage with `npm run media:publish` and checksum-verified with `npm run media:verify:remote` on 2026-10-29.
+- Owner hosted check (touchpoint 3): Carlin approved on 2026-10-29 (“lgtm … meaning, lesson approved”) after receiving the hosted preview link and the five-item checklist. The approval was given as an overall pass, not item by item.
+- Queue row set to `Complete` in this PR's final commit; merging publishes the lesson.
