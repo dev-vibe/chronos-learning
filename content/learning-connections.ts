@@ -42,6 +42,11 @@ export const learningConnectionsByLessonId: Record<string, LearningConnection> =
     revisit: { lessonId: 'lesson.uruk.first-city', prompt: 'Which problems change when a settlement becomes a city?' },
     reasoningSkill: 'Connect material evidence to daily life and weigh consequences.',
   },
+  'lesson.animals.domestication-and-pastoralism': {
+    retrieve: { lessonId: 'lesson.farming.settlements', prompt: 'How did a few sheep and goats fit into life at Boncuklu?' },
+    extend: 'Follow animals from hunted prey to managed herds, and see why moving with them became a way of life of its own.',
+    reasoningSkill: 'Compare two evidence patterns, hunted and herded bones, to infer people’s choices.',
+  },
   'lesson.uruk.first-city': {
     retrieve: { lessonId: 'lesson.farming.settlements', prompt: 'What opportunities and difficulties came with living close together?' },
     extend: 'Examine how food, work, and records connected people in a much larger city.',

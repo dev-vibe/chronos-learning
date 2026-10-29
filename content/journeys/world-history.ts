@@ -29,6 +29,7 @@ export const worldHistoryJourney: Journey = {
         { id: 'entry.world-history.sahul-crossing', lessonId: 'lesson.humans.sahul-crossing', position: 2, required: true, framing: 'Cross open water and ask what planning could support early settlement in Sahul' },
         { id: 'entry.world-history.multiple-origins', lessonId: 'lesson.farming.multiple-origins', position: 3, required: true, framing: 'Before zooming into one settlement, see how farming began independently in more than one part of the world' },
         { id: 'entry.world-history.farming', lessonId: 'lesson.farming.settlements', position: 4, required: true, framing: 'Read one settlement to see how stored food changed the work and choices of staying' },
+        { id: 'entry.world-history.animals-herding', lessonId: 'lesson.animals.domestication-and-pastoralism', position: 5, required: true, framing: 'Follow animals from hunted prey to managed herds, and see why moving with them became a way of life of its own' },
       ],
     },
     {
