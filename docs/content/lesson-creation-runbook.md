@@ -485,6 +485,9 @@ Voice rules:
 - Never invent dialogue, thoughts, feelings or scenes and present them as fact. A reconstructed scene must be labeled and built from evidence.
 - Say what happened, not what didn't. Do not refute ideas the learner never had: “This does not mean…”, “It was a message, not a battle report”, “It does not show that Urkesh was run the way Leilan was”. A run of these turns a story into a list of corrections. Correct a misconception only when it is one kids really hold (named in the blueprint), once, at the point where it would form.
 - Use verbs and people, not abstract nouns. “Akkad sent its own officials to run Leilan” beats “Leilan shows an Akkadian administrative installation”. Words such as arrangement, connection, tie, relationship, presence, role, practice, nature, significance and framework usually hide who did what to whom. Rewrite the sentence around the people and the action.
+- Every name earns its place. Name a person, place or people only when the story needs it or the learner will meet it again, give each a plain clause saying what it is, and avoid piles of new names in one sentence or section. Use one name for one thing; when two are needed (Agade the city, Akkad the kingdom), say once how they relate.
+- Never assume the learner did an earlier lesson. A callback re-says the one fact it needs (“In Nubia, the kingdom of Kerma traded with Egypt without being ruled by it”), not “At Kerma you saw…”.
+- Explain an everyday-unfamiliar word the first time it appears (inscription, stele, cylinder seal), in the same sentence, or use a plainer word.
 - Leave the research note's words in the research note. Scholarly terms (administration, state formation, attested, polity, ideology, material culture, installation, uniform) appear only when the lesson needs the idea, explained in plain words the first time.
 - Tell the detective work once, as a story: who found what, and how they worked it out. Then go back to the history. Do not end every section with a reminder of what is still unknown; say what is unknown once, where it matters, as a real open question.
 
@@ -883,7 +886,7 @@ Run `npm run lesson:gate -- --lesson <lesson-id> --note <path> --gate prototype`
 
 Run this after Stage 14A and before Stage 14B. (It is lettered C so existing stage numbers stay stable.) The author cannot judge whether their own words are clear: they already know what they meant, and words such as “clue”, “the evidence” or “the arrangement” feel obvious from inside the research. A reader who has never seen the research is the only fair test.
 
-1. **Start a separate agent** (a subagent or a new session) that has not seen the research note, this runbook, the conversation or the lesson source file. Give it only what the learner sees, in page order: section headings, body text, item text, captions and labels, then each check with its options and hint. Do not include IDs, `purpose`, alt text, feedback or explanations.
+1. **Start a separate agent** (a subagent or a new session) that has not seen the research note, this runbook, the conversation or the lesson source file. Give it only what the learner sees, in page order: run `npm run lesson:kid-read -- --lesson <lesson-id>` and save the output to a file outside the repository for the reader to open. It leaves out IDs, `purpose`, alt text, feedback and explanations. (`--feedback` adds option feedback for step 4.)
 2. **Brief it with exactly this:**
 
    > You are a bright, curious 12-year-old who knows almost nothing about this topic. Read this history lesson once, from top to bottom, the way you would at home. Then:
@@ -895,7 +898,7 @@ Run this after Stage 14A and before Stage 14B. (It is lettered C so existing sta
    > Be blunt. Confusing writing is the writer's fault, not yours.
 3. **Score it against Stage 6A:**
    - (1) must match what each check intends. If the reader misreads the task, the question fails, however correct its words.
-   - (2) must reach the right option, or a sincere answer on target, using only the lesson.
+   - (2) must reach the right option, or a sincere answer on target, using only the lesson. A capable model often reaches the right answer even through a bad question, so a right answer alone proves little: weigh the restatement in (1) and the flags in (3) more heavily.
    - (4) must roughly match the kid's answer. If it is mostly about what the evidence cannot show, or misses the main thing that happened, the lesson fails [Historical significance and proportion](#historical-significance-and-proportion).
    - Every flag on a check, hint or option is fixed. Flags in the prose are fixed, or kept with a written reason.
 4. **Test the feedback.** Give a fresh reader the lesson, one question and one wrong option's feedback, and ask: what is this telling you to do next? It must send them to a place in the lesson with something specific to look for, without giving the answer.

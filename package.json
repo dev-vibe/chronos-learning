@@ -13,6 +13,7 @@
     "lesson:preview": "tsx scripts/lesson/preview.ts",
     "lesson:gate": "tsx scripts/lesson/gate.ts",
     "lesson:prepare-publication": "tsx scripts/lesson/prepare-publication.ts",
+    "lesson:kid-read": "tsx scripts/lesson/kid-read-text.ts",
     "media:add": "tsx scripts/media/add.ts",
     "media:build": "tsx scripts/media/build.ts",
     "media:verify": "tsx scripts/media/build.ts --check",
