@@ -131,6 +131,14 @@ Required sincere-attempt evidence:
 Story spine: <person, object, place or puzzle followed from opening to end>
 Memorable moments: <two to four true, specific details or stories a learner would retell>
 
+## Kid's question
+
+Plain words first, then checked against the claim ledger (runbook Stage 6A). The draft checks go in the Prompt rationale table.
+
+Kid's question: <the question a curious 12-year-old would ask, in their words>
+Kid's answer: <two or three sentences they could tell a friend: what happened and why, with one or two real details>
+How we know, in one line: <the one piece of detective work the lesson tells>
+
 ## Section/component storyboard
 
 | Order | Section ID | Learner-facing heading | Authoring purpose (not shown) | Claims/sources | Module | Media/action | Transition |
@@ -220,7 +228,7 @@ Sources and visual brief:
 
 ## Prompt rationale
 
-| Prompt ID | Required | Understanding/evidence assessed | Misconception exposed | Feedback job | Plain-words check (what a 12-year-old does after one read) |
+| Prompt ID | Question (draft at 6A, final at 12) | Sentence of the kid's answer it checks | Plant list: what the lesson must show first | Misconception a wrong choice exposes | Kid reader's restatement and yes/sort of/no (14C) |
 | --- | --- | --- | --- | --- | --- |
 
 ## Ages 11–15 transformations
@@ -263,6 +271,16 @@ Deterministic prototype gate: pass | fail
 | Intention ID | Section ID | Annotation shown | Review state | Disposition |
 | --- | --- | --- | --- | --- |
 
+### Kid read (Stage 14C)
+
+Reader: <fresh agent/session/model; confirm it saw only `lesson:kid-read` output>
+`lesson:check-questions`: <no flags | flags kept, with reasons>
+
+| Round | Restatements match intent, with “yes”? | Answers on target? | Retelling matches kid's answer? | Flags | Fixes made |
+| --- | --- | --- | --- | --- | --- |
+
+First round's question restatements (word for word):
+
 ### Author quality check (Stage 14B)
 
 Checked by/date:
@@ -274,6 +292,7 @@ Checked by/date:
 | Momentum | | | |
 | Cognitive load | | | |
 | Headings | | | |
+| Prompt fit | | | |
 | Evidence reasoning | | | |
 | Proportionality | | | |
 | Visual value | | | |
