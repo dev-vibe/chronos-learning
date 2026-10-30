@@ -3,7 +3,7 @@ import type { UnderstandingPrompt } from './contracts';
 /**
  * A written question as the learner saw it when they sent the lesson for
  * review. Only written answers go to the parent: a multiple-choice check is
- * finished once the learner picks the best-supported answer. The question is
+ * finished once the learner picks the right answer. The question is
  * stored with the answer so Review can still show it after the lesson's
  * prompts change (a changed question gets a new prompt ID).
  */
@@ -12,7 +12,7 @@ export type SubmittedQuestion = {
   kind: 'concise-explanation';
   question: string;
   required: boolean;
-  /** The "What a strong answer covers" guide at the time of submission. */
+  /** The "What a good answer includes" guide at the time of submission. */
   explanation?: string;
 };
 

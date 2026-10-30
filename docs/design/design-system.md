@@ -85,6 +85,8 @@ Keep prose in reading order; use multi-column explanations only when comparison 
 
 Artifacts and maps can enlarge in an accessible viewer with keyboard/touch controls, focus containment and return, and text alternatives. Authored “Look here” notes and side-by-side comparisons use reviewed evidence. Keep relevant evidence available while answering. Opening maps must connect recognizable wider geography to the lesson places through their extent or a linked inset, with a visible native orientation sentence. Give maps enough width to read this connection without enlargement; do not squeeze them beside a timeline until labels become decoration. Maps/timelines disclose approximate dates, uncertain geography, deep-time units and any schematic scale; do not invent precision.
 
+The shell puts no teaching words of its own around lesson content. A small fixed set of components shows only labels authored in the lesson (an optional label left out is not shown) and neutral control text such as “Check my answer”, “Try again”, “Hint”, “Save my answer”, “Enlarge” and “About this picture”. A right multiple-choice pick says “Yes, that’s right.” with the option's authored feedback and the explanation behind “Tell me more”; a wrong pick shows only that option's feedback. `tests/learn/plain-ui-words.test.ts` keeps the runbook's banned words out of shell text.
+
 Learner copy gives a warm next action. Keep internal terms such as “deterministic,” “reviewed path” and character thresholds out of ordinary instructions. Provenance remains inspectable in secondary surfaces.
 
 ## Home, discovery and adult support

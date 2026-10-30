@@ -542,7 +542,7 @@ Each section must perform a distinct job. A common pattern is:
 4. **Mechanism or development** — how something worked or changed.
 5. **Evidence encounter** — examine an object, source, map, or record.
 6. **Consequences and power** — possibilities, costs, unequal effects, or limits.
-7. **Evidence/interpretation/uncertainty** — what can and cannot be concluded. When this job is a `knowledge` module, use the stable eyebrow **What we can know** and the four-item shape: it can show; it can support; it cannot prove alone; it cannot recover. Do not use “evidence boundary” or other methods jargon as the learner-facing label.
+7. **Evidence/interpretation/uncertainty** — what can and cannot be concluded. When this job is a `knowledge` module, label it with what it is about in plain words, or leave the eyebrow out (Stage 9). Do not use “evidence boundary”, “What we can know” or other methods labels.
 8. **World Check and explicit completion** — use evidence, receive feedback, complete deliberately.
 
 This is a pattern, not a template to fill blindly. A biography, battle, migration, intellectual debate, environmental change, and archaeological investigation may need different sequences. Keep the stable shell while authoring the historical argument.
@@ -569,16 +569,17 @@ Use the smallest current module that expresses the teaching job:
 | `historical-map` | geographic orientation from recognizable wider context to lesson places; spatial relationships that support the explanation | isolated local dots without wider context, decorative geography, or unsupported historical borders/routes |
 | `prompt` | a canonical understanding prompt placed where requirements are satisfied | navigation, surveys, trivia, or fake participation |
 
-Titles: section `heading` owns orientation. For `knowledge` modules, the learner sees eyebrow + `body` as the lead into the item grid — do not invent a second grabber title for display. Module `title` on `evidence`, `scene`, and `historical-map` is a local cue only when needed (observe X; compare Y). Module `eyebrow` is a type/place label, not a slogan.
+Titles and labels: section `heading` owns orientation. The Learn shell adds no words of its own around a module. Every label a learner sees is a field you author, and an optional label you leave out is simply not shown. Write each one in the plain words a 12-year-old uses at home; the Stage 12 plain-words table applies to labels too.
 
-Keep these recurring learner-facing type labels in ordinary words:
+- `knowledge` `eyebrow` (optional): a short label above the lead, or nothing. The learner sees eyebrow + `body` as the lead into the item grid; do not invent a second grabber title for display.
+- `evidence` `artifactLabel`: the small label above the module title. Name the thing and say plainly what kind of picture it is: “Mud brick from Ganj Dareh, western Iran”, “Drawing of the carved scene”, “Reconstruction of the reservoir”. The shell no longer adds a type label, so a reconstruction, drawing or chart says so here.
+- `evidence`, `scene` and `historical-map` `title`: a local cue only when needed (look at X; compare Y). An evidence or map title also labels the picture when a prompt keeps it beside the question (`evidenceModuleIds`), so it must make sense on its own.
+- `scaleNote`: shown as written beside a ruler icon, with no heading, so write a full sentence.
+- `lookHere` items: each item's `label` is its own heading; there is no “Look here” heading. `comparison.label` labels the second picture, in the module and in its picture details.
+- `historical-map` `eyebrow` (optional); `coordinateNote` and `uncertaintyNote` appear without headings, so each says in a full plain sentence what is exact and what is approximate.
+- Understanding prompts: Stage 12 covers `hint`, option `feedback` and the optional `answerPlaceholder`.
 
-- `evidence` module chrome: **Surviving evidence** (not “from the evidence room”).
-- Close-read `knowledge` module after a source: **What you can see** (not “observation before interpretation” or “look before you explain”).
-- Labor/institution `knowledge` module: **Who did the work** (not “a city/state in practice”).
-- Source-limit `knowledge` module: **What we can know** (not “evidence boundary”).
-
-Do not invent a new methods slogan for the same job.
+Do not reuse a fixed label for a kind of module, such as “Surviving evidence”, “What you can see”, “Who did the work” or “What we can know”. Name what this module is about (“The goat bones of Ganj Dareh”) or leave the optional label out. Do not invent a methods slogan for the same job.
 
 If the lesson genuinely needs a timeline, comparison table, audio source, diagram, or another unsupported teaching primitive, stop and decide whether to add a bounded reusable module. Do not fake it with arbitrary HTML, an image containing educational text, overloaded `knowledge` cards, an inaccessible visual without a reviewed data model or text equivalent. A new module is an architecture/design change and requires its own validation and accessibility coverage.
 
@@ -728,7 +729,9 @@ Prompt rules:
 - a written prompt requires a sincere attempt, not perfection; a selection prompt is done once the learner picks the best-supported option, so its feedback must help them get there;
 - every multiple-choice prompt names its best-supported option in `bestOptionId`;
 - give each wrong option `feedback` that points back to the evidence without revealing the answer; a wrong pick shows only that option's feedback;
-- write the `explanation` for after success: why the answer is supported and what the evidence cannot prove. It appears only after the right pick; for a written prompt only the parent sees it, on Review, as “What a strong answer covers”;
+- write the `explanation` for after success: why the answer is supported and what the evidence cannot prove. It appears only after the right pick, behind a “Tell me more” toggle; for a written prompt only the parent sees it, on Review, as “What a good answer includes”;
+- the Learn shell adds no feedback wording of its own: a right pick shows “Yes, that’s right.” with that option's `feedback`, and a wrong pick shows “Not quite. Try again.” with only that option's `feedback`. `npm run validate:content` requires a `hint` on every prompt that is not yet published, and `feedback` on every option of a new multiple-choice prompt;
+- a written prompt may give an `answerPlaceholder`: grey text in the empty answer box, such as a sentence starter (“I think… because in the story…”). Leave it out and the box is empty. Like the hint, it can change without a new prompt ID;
 - use stable prompt and option IDs; once published, a prompt ID stands for its question, and changing it is a [prompt revision](prompt-revision-runbook.md);
 - test an essential understanding or historical-thinking move;
 - make distractors plausible misconceptions, not jokes or wording traps;
@@ -828,7 +831,7 @@ Before involving the owner, check the rendered prototype yourself against the qu
 - **Cognitive load:** only indispensable vocabulary, defined where needed; one teaching job per section; no overloaded sentences, date piles, unexplained names or rapid place changes at real layout sizes.
 - **Headings:** plain words a skimming 12-year-old understands. A metaphor, riddle or punchline heading is `revise` or `blocking`.
 - **Prompt fit:** can a 12-year-old tell what each prompt asks after one read? Exactly one question per prompt, split into separate prompts when more is needed, in very clear everyday words and the lesson's own terms, posed positively (a limit asked as an open question, never “name one thing it does not tell us”), with the evidence in the stem; a hint and feedback on every selection option; no wording tells in the options (Stage 12).
-- **Evidence reasoning:** a concrete source, object, map or comparison to reason from; observation, inference, reconstruction and uncertainty distinguished at the point of use; prompts answerable from the lesson; feedback explains support and limits. Recurring labels stay plain: “Surviving evidence”, “What you can see”, “Who did the work”, “What we can know”.
+- **Evidence reasoning:** a concrete source, object, map or comparison to reason from; observation, inference, reconstruction and uncertainty distinguished at the point of use; prompts answerable from the lesson; feedback explains support and limits. Labels are authored or left out, in plain words: each evidence `artifactLabel` names the thing and says when it is a reconstruction or drawing, and no module reuses a fixed label for its kind (Stage 9).
 - **Proportionality:** emphasis and certainty match the evidence; no monocausal, deterministic or civilization-ranking story; people have specificity and agency; sensitive material is truthful and proportionate.
 - **Visual value:** every visual answers a named learner question at its exact position and has an accessible equivalent. Maps anchor the subject to recognizable wider geography at embedded size.
 - **Story:** name the two or three moments a 13-year-old would retell. Is there a story spine? Does any section read as a flat list of facts? Is the voice vivid and direct without being goofy or preachy?

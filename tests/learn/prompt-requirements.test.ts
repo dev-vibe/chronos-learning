@@ -14,7 +14,7 @@ describe('prompt requirement state', () => {
       .toEqual({ requiredIds: ['prompt.required.choice', 'prompt.required.essay'], answeredIds: ['prompt.required.choice', 'prompt.required.essay'], ready: true });
   });
 
-  it('counts a multiple-choice check only once the best-supported answer is picked', () => {
+  it('counts a multiple-choice check only once the right answer is picked', () => {
     const wrong = derivePromptRequirementState(ids, prompts, { 'prompt.required.choice': 'option.other', 'prompt.required.essay': 'An answer.' });
     expect(wrong.answeredIds).toEqual(['prompt.required.essay']);
     expect(wrong.ready).toBe(false);

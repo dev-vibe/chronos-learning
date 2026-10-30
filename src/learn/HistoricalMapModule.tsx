@@ -41,7 +41,7 @@ export function HistoricalMapModule({ module, media, sources }: HistoricalMapMod
     <ResponsiveMedia media={media} alt={media.alt} sizes="(max-width: 800px) 100vw, 960px" loading="lazy" />
     <EvidenceViewer className="historical-map__enlarge" media={media} title={module.title} summary={module.accessibleSummary}>
       <p>{module.uncertaintyNote}</p>
-      {module.lookHere && <aside className="look-here"><h4>Look here</h4><ul>{module.lookHere.map((item) => <li key={item.label}><strong>{item.label}</strong><p>{item.detail}</p></li>)}</ul></aside>}
+      {module.lookHere && <aside className="look-here"><ul>{module.lookHere.map((item) => <li key={item.label}><strong>{item.label}</strong><p>{item.detail}</p></li>)}</ul></aside>}
       <ul>{sources.map((source) => <li key={source.id}><a href={source.url} target="_blank" rel="noreferrer">{source.title}</a></li>)}</ul>
     </EvidenceViewer>
     <button
@@ -63,19 +63,20 @@ export function HistoricalMapModule({ module, media, sources }: HistoricalMapMod
       onKeyDown={(event) => { if (event.key === 'Escape') { event.preventDefault(); closeDialog(); } }}
     >
       <div className="historical-map__dialog-header">
-        <div><span>{module.eyebrow}</span><h3 id={dialogTitleId}>{module.title}</h3></div>
+        <div>{module.eyebrow && <span>{module.eyebrow}</span>}<h3 id={dialogTitleId}>{module.title}</h3></div>
         <button type="button" onClick={closeDialog} aria-label="Close map information"><X aria-hidden="true" /></button>
       </div>
       <div id={dialogDescriptionId} className="historical-map__dialog-body">
         <p>{module.body}</p>
         <dl>
-          <div><dt>Period</dt><dd>{module.periodLabel}</dd></div>
-          <div><dt>Focus</dt><dd>{module.focusPlace}</dd></div>
+          <div><dt>When</dt><dd>{module.periodLabel}</dd></div>
+          <div><dt>Where</dt><dd>{module.focusPlace}</dd></div>
           <div><dt>Today</dt><dd>{module.modernContext}</dd></div>
         </dl>
-        <section><h4>Coordinate-verified city locations</h4><p>{module.coordinateNote}</p></section>
-        <section><h4>Approximate ancient landscape</h4><p>{module.uncertaintyNote}</p></section>
-        <section className="historical-map__sources"><h4>Geographic references</h4><ul>{sources.map((source) => {
+        {/* The authored notes say what is exact and what is approximate; the shell adds no headings of its own. */}
+        <p>{module.coordinateNote}</p>
+        <p>{module.uncertaintyNote}</p>
+        <section className="historical-map__sources"><h4>Where the map comes from</h4><ul>{sources.map((source) => {
           const label = source.title === source.publisher || source.title.includes(source.publisher)
             ? source.title
             : `${source.publisher} — ${source.title}`;

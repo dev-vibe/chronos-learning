@@ -94,24 +94,55 @@ it('uses authored choice feedback only after deliberate submission', async () =>
   expect(await screen.findByText('Color alone cannot establish the purpose.')).toBeTruthy();
 });
 
-it('says plainly when a choice is the best-supported answer, and invites a retry without revealing it when it is not', async () => {
-  const selection = { ...prompt, kind: 'supported-selection' as const, bestOptionId: 'choice.a', options: [{ id: 'choice.a', label: 'Marks', feedback: 'Yes. These marks show a durable record.' }, { id: 'choice.b', label: 'Color', feedback: 'Color alone cannot establish the purpose.' }] };
+it('says plainly when a choice is right, and on a wrong pick shows only that option’s own feedback', async () => {
+  const selection = { ...prompt, kind: 'supported-selection' as const, bestOptionId: 'choice.a', options: [{ id: 'choice.a', label: 'Marks', feedback: 'Yes. These marks show a durable record.' }, { id: 'choice.b', label: 'Color', feedback: 'Look back at the marks on the clay. What were they counting?' }] };
   const save = vi.fn(async () => undefined);
   const view = render(<UnderstandingCheck prompt={selection} answer="" learnerId="test" onAttempt={save} />);
   await userEvent.click(screen.getByLabelText('Color'));
   await userEvent.click(screen.getByRole('button', { name: 'Check my answer' }));
   view.rerender(<UnderstandingCheck prompt={selection} answer="choice.b" learnerId="test" onAttempt={save} />);
-  expect(await screen.findByText(/Not quite. Try another answer./)).toBeTruthy();
-  expect(screen.queryByText(/best-supported answer/)).toBeNull();
+  const retry = await screen.findByRole('status');
+  expect(retry.textContent?.trim()).toBe('Not quite. Try again.Look back at the marks on the clay. What were they counting?');
   expect(screen.queryByText(selection.explanation)).toBeNull();
   expect(screen.queryByText('Marks', { selector: 'p, b' })).toBeNull();
   await userEvent.click(screen.getByLabelText('Marks'));
   expect(screen.queryByText(/Not quite/)).toBeNull();
   await userEvent.click(screen.getByRole('button', { name: 'Check my answer' }));
   view.rerender(<UnderstandingCheck prompt={selection} answer="choice.a" learnerId="test" onAttempt={save} />);
-  expect(await screen.findByText(/Yes! That’s the best-supported answer./)).toBeTruthy();
+  expect(await screen.findByText('Yes, that’s right.')).toBeTruthy();
+  // The option's own feedback, without its leading "Yes." (the heading already says it).
   expect(screen.getByText('These marks show a durable record.')).toBeTruthy();
+  // The explanation waits behind a neutral toggle.
+  const more = screen.getByText('Tell me more').closest('details')!;
+  expect(more.open).toBe(false);
+  expect(more.textContent).toContain(selection.explanation);
   expect(save).toHaveBeenCalledTimes(2);
+});
+
+it('adds no wording of its own when a wrong option has no feedback', async () => {
+  const selection = { ...prompt, kind: 'supported-selection' as const, bestOptionId: 'choice.a', options: [{ id: 'choice.a', label: 'Marks' }, { id: 'choice.b', label: 'Color' }] };
+  render(<UnderstandingCheck prompt={selection} answer="choice.b" learnerId="test" onAttempt={vi.fn()} />);
+  expect((await screen.findByRole('status')).textContent?.trim()).toBe('Not quite. Try again.');
+});
+
+it('labels each picture kept beside a question with its own title from the lesson, and the hint plainly', async () => {
+  const pictures = [
+    { id: 'module.test.tablet', title: 'Records pressed into clay', content: <p>Tablet picture</p> },
+    { id: 'module.test.map', title: 'A city shaped by water', content: <p>Map picture</p> },
+  ];
+  render(<UnderstandingCheck prompt={prompt} answer="" learnerId="test" pictures={pictures} onAttempt={vi.fn()} />);
+  const summaries = Array.from(document.querySelectorAll('.prompt-evidence > summary')).map((node) => node.textContent);
+  expect(summaries).toEqual(['Records pressed into clay', 'A city shaped by water']);
+  expect(screen.getByText('Hint').tagName).toBe('SUMMARY');
+  expect(screen.queryByText(/evidence/i)).toBeNull();
+});
+
+it('shows an authored answer-box placeholder, and none when the lesson gives none', () => {
+  const { unmount } = render(<UnderstandingCheck prompt={{ ...prompt, answerPlaceholder: 'I think the marks… because…' }} answer="" learnerId="test" onAttempt={vi.fn()} />);
+  expect(screen.getByRole('textbox').getAttribute('placeholder')).toBe('I think the marks… because…');
+  unmount();
+  render(<UnderstandingCheck prompt={prompt} answer="" learnerId="test" onAttempt={vi.fn()} />);
+  expect(screen.getByRole('textbox').hasAttribute('placeholder')).toBe(false);
 });
 
 it('gives an actionable message for empty or obsolete choices without saving an attempt', async () => {

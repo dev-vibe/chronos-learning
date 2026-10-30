@@ -82,7 +82,7 @@ Replacing or removing an existing image is still a material revision; report the
 
 **Headings** stay unless they break the Stage 8 heading rules; in that case, rename in plain words and keep the section ID.
 
-**The “What we can know” box** is optional. Keep it where four parallel items are the clearest form. Otherwise, state the limit once in prose. If you remove the module, search `tests/` for its module ID and never remove a prompt module.
+**A box about what we can and cannot know** (older lessons label it “What we can know”) is optional. Keep it where four parallel items are the clearest form, labeled with what it is about in plain words or with no label (lesson creation runbook, Stage 9). Otherwise, state the limit once in prose. If you remove the module, search `tests/` for its module ID and never remove a prompt module.
 
 **Length** has no fixed limit; a flat lesson may need to grow and a padded one to shrink. The story replaces flat text; it does not pile on top of it. Keep a sentence only if it carries the story or the teaching, and keep the lesson one focused sitting rather than a chapter (Stage 7 pacing heuristics; Stage 14B Cognitive load). Record the before and after word counts in the research note so the owner can see the change.
 

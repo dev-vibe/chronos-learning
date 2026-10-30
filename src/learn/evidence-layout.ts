@@ -1,6 +1,7 @@
 import type { LessonModule, MediaAsset } from '../domains/contracts';
 
-type EvidenceLayout = Extract<LessonModule, { type: 'evidence' }>['layout'];
+// `type?:` so the plain (non-strict) typecheck does not resolve this to `never`; see EvidenceModule.tsx.
+type EvidenceLayout = Extract<LessonModule, { type?: 'evidence' }>['layout'];
 
 /** Use registered dimensions, so layout is stable before images load or fall back. */
 export function evidenceLayout(media: MediaAsset, authored?: EvidenceLayout): NonNullable<EvidenceLayout> {

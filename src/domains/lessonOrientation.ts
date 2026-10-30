@@ -8,9 +8,9 @@ export function orientationMapForLesson(lesson: Lesson) {
 
 /** The authored display string remains authoritative, including years-ago dates. */
 export function periodRelationship(current: HistoricalDateRange, other: HistoricalDateRange) {
-  if (other.endYear < current.startYear) return 'Earlier focus period';
-  if (other.startYear > current.endYear) return 'Later focus period';
-  return 'Overlapping focus periods';
+  if (other.endYear < current.startYear) return 'Earlier';
+  if (other.startYear > current.endYear) return 'Later';
+  return 'Overlapping';
 }
 
 export function orientationPeriods(current: Lesson, peers: Lesson[]) {

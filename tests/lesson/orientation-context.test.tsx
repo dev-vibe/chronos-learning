@@ -23,6 +23,6 @@ describe('opening geographic orientation', () => {
     const { container } = render(<LessonOrientation lesson={lesson} journey={journey} />);
     expect(container.querySelector('.orientation-map img')).not.toBeNull();
     expect(container.querySelector('.orientation-layout--wide-map')).toBeNull();
-    expect(screen.getByRole('list', { name: 'Lesson focus periods' })).toBeTruthy();
+    expect(screen.getByRole('list', { name: 'Lesson dates' })).toBeTruthy();
   });
 });

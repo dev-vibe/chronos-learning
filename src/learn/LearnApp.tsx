@@ -49,10 +49,10 @@ function Module({ module, state, onAttempt }: ModuleProps) {
     const paragraphs = module.body.split(/\n\n+/).map((part) => part.trim()).filter(Boolean);
     return <div className="prose-module">{paragraphs.map((paragraph) => <p key={paragraph.slice(0, 48)}>{paragraph}</p>)}</div>;
   }
-  if (module.type === 'knowledge') return <aside className="knowledge-block"><div className="module-heading"><span>{module.eyebrow}</span><p className="module-lead">{module.body}</p></div><dl data-count={module.items.length}>{module.items.map((item) => <div key={item.label}><dt>{item.label}</dt><dd>{item.detail}</dd></div>)}</dl></aside>;
+  if (module.type === 'knowledge') return <aside className="knowledge-block"><div className="module-heading">{module.eyebrow && <span>{module.eyebrow}</span>}<p className="module-lead">{module.body}</p></div><dl data-count={module.items.length}>{module.items.map((item) => <div key={item.label}><dt>{item.label}</dt><dd>{item.detail}</dd></div>)}</dl></aside>;
   if (module.type === 'scene') {
     const media = mediaById.get(module.mediaId)!;
-    return <details className="scene-module"><summary><span className="scene-thumb"><ResponsiveMedia media={media} alt="" sizes="96px" loading="lazy" /></span><span><small>Visual field guide</small><strong>{module.title}</strong><em>{module.body}</em></span><ChevronRight /></summary><div className="scene-details"><ResponsiveMedia media={media} alt={media.alt} sizes="(max-width: 800px) 100vw, 50vw" loading="lazy" /><ol>{module.hotspots.map((spot, index) => <li key={spot.label}><span>{index + 1}</span><div><strong>{spot.label}</strong><p>{spot.detail}</p></div></li>)}</ol></div></details>;
+    return <details className="scene-module"><summary><span className="scene-thumb"><ResponsiveMedia media={media} alt="" sizes="96px" loading="lazy" /></span><span><strong>{module.title}</strong><em>{module.body}</em></span><ChevronRight /></summary><div className="scene-details"><ResponsiveMedia media={media} alt={media.alt} sizes="(max-width: 800px) 100vw, 50vw" loading="lazy" /><ol>{module.hotspots.map((spot, index) => <li key={spot.label}><span>{index + 1}</span><div><strong>{spot.label}</strong><p>{spot.detail}</p></div></li>)}</ol></div></details>;
   }
   if (module.type === 'evidence') {
     const media = mediaById.get(module.mediaId)!;
@@ -69,11 +69,11 @@ function Module({ module, state, onAttempt }: ModuleProps) {
   const evidence = (prompt.evidenceModuleIds ?? []).flatMap((id) => lesson?.sections.flatMap((section) => section.modules).filter((candidate) => candidate.id === id && (candidate.type === 'evidence' || candidate.type === 'historical-map')) ?? []);
   // Sent back: written answers open for editing, filled with what was sent.
   const reopen = state.review?.status === 'returned';
-  return <UnderstandingCheck key={`${state.learnerId}:${prompt.id}:${reopen ? 'reopened' : 'open'}`} prompt={prompt} answer={answer} learnerId={state.learnerId} reopen={reopen} onAttempt={onAttempt} evidence={evidence.length ? evidence.map((item) => {
-    if (item.type !== 'evidence' && item.type !== 'historical-map') return null;
+  return <UnderstandingCheck key={`${state.learnerId}:${prompt.id}:${reopen ? 'reopened' : 'open'}`} prompt={prompt} answer={answer} learnerId={state.learnerId} reopen={reopen} onAttempt={onAttempt} pictures={evidence.flatMap((item) => {
+    if (item.type !== 'evidence' && item.type !== 'historical-map') return [];
     const media = mediaById.get(item.mediaId)!;
-    return <figure key={item.id} className="prompt-evidence-image"><div><ResponsiveMedia media={media} alt={media.alt} sizes="(max-width: 800px) 100vw, 700px" loading="lazy" /><EvidenceViewer media={media} title={item.title} summary={item.type === 'historical-map' ? item.accessibleSummary : item.body} /></div><figcaption><strong>{item.title}</strong><p>{item.type === 'historical-map' ? item.accessibleSummary : item.body}</p><small>{media.depictionLabel}</small></figcaption></figure>;
-  }) : undefined} />;
+    return [{ id: item.id, title: item.title, content: <figure className="prompt-evidence-image"><div><ResponsiveMedia media={media} alt={media.alt} sizes="(max-width: 800px) 100vw, 700px" loading="lazy" /><EvidenceViewer media={media} title={item.title} summary={item.type === 'historical-map' ? item.accessibleSummary : item.body} /></div><figcaption><p>{item.type === 'historical-map' ? item.accessibleSummary : item.body}</p><small>{media.depictionLabel}</small></figcaption></figure> }];
+  })} />;
 }
 
 function Section({ section, state, onAttempt, openingMapId }: { section: LessonSection; state: LearnState; onAttempt(id: string, response: string): Promise<void>; openingMapId?: string }) {
@@ -94,7 +94,7 @@ function Section({ section, state, onAttempt, openingMapId }: { section: LessonS
         {previousModule?.type === 'knowledge'
           ? <Module module={previousModule} state={state} onAttempt={onAttempt} />
           : <aside className="historical-map-intro">
-              <div className="module-heading"><span>{module.eyebrow}</span><h3>{module.title}</h3><p>{module.body}</p></div>
+              <div className="module-heading">{module.eyebrow && <span>{module.eyebrow}</span>}<h3>{module.title}</h3><p>{module.body}</p></div>
             </aside>}
         <Module module={module} state={state} onAttempt={onAttempt} />
       </div>;
@@ -249,7 +249,7 @@ export function LearnApp({ lessonId, gatewayFactory = createProgressGateway }: {
         setJourneySummaries(summaries);
         setCelebrationGateway(selected);
       }
-    }).catch(() => { if (active) setError('Progress could not be loaded. Check your connection and retry.'); });
+    }).catch(() => { if (active) setError('Progress could not be loaded. Check your internet and try again.'); });
     return () => { active = false; };
   }, [lessonId, lesson, journey, loadAttempt, gatewayFactory]);
 

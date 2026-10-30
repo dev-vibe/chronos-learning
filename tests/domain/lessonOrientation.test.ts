@@ -10,14 +10,14 @@ it('orders deep-time periods chronologically and preserves authored approximate 
   expect(periods.map(item => item.lesson.id)).toEqual([current.id, next.id]);
   expect(orientationPeriods(next, [current]).map(item => item.lesson.id)).toEqual([current.id, next.id]);
   expect(periods[0].lesson.chronology.display).toBe(current.chronology.display);
-  expect(periods[1].relation).toBe('Later focus period');
+  expect(periods[1].relation).toBe('Later');
   expect(orientationPeriods(current, [{ ...next, status: 'draft' }])).toHaveLength(1);
 });
 
 it('distinguishes overlapping focus periods without claiming simultaneous beginnings', () => {
   const range = { startYear: -4000, endYear: -3000, display: 'c. 4000–3000 BCE', approximate: true };
-  expect(periodRelationship(range, { ...range, startYear: -3500, endYear: -2500 })).toBe('Overlapping focus periods');
-  expect(periodRelationship(range, { ...range, startYear: -6000, endYear: -5000 })).toBe('Earlier focus period');
+  expect(periodRelationship(range, { ...range, startYear: -3500, endYear: -2500 })).toBe('Overlapping');
+  expect(periodRelationship(range, { ...range, startYear: -6000, endYear: -5000 })).toBe('Earlier');
 });
 
 it('keeps authored learning connections within the published catalogue', () => {

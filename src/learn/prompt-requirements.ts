@@ -9,7 +9,7 @@ export type PromptRequirementState = {
 };
 
 /**
- * A multiple-choice check counts once the learner has picked the best-supported
+ * A multiple-choice check counts once the learner has picked the right
  * answer (they can try again until they do). A written answer counts once saved;
  * the parent reviews it.
  */

@@ -137,7 +137,6 @@ export function JourneyDrawer({
         <div className="rail-heading">
           <p className="eyebrow">{journey.title}</p>
           <h2>{entries.find((item) => item.lesson.id === lesson.id)?.chapter.title}</h2>
-          <p>From settlements to recorded information</p>
         </div>
         <ol className="journey-list">{entries.map(({ entry, lesson: item }, index) => {
           const isCurrent = item.id === lesson.id;

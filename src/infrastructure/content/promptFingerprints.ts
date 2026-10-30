@@ -7,8 +7,8 @@ import { createHash } from 'node:crypto';
  * lesson, kind, question text, options (ids and labels), best option,
  * required flag and minimum answer length.
  *
- * Explanation, option feedback and hint text are left out: they may be
- * revised under the same ID. Option order is left out too: reordering the
+ * Explanation, option feedback, hint and answer-box placeholder text are left
+ * out: they may be revised under the same ID. Option order is left out too: reordering the
  * choices does not change the question or what counts as an answer.
  */
 export const PROMPT_FINGERPRINTS_PATH = 'content/published-prompt-fingerprints.json';
@@ -20,9 +20,10 @@ type PromptLike = {
   kind: string;
   question: string;
   required: boolean;
+  hint?: string;
   bestOptionId?: string;
   minimumResponseLength?: number;
-  options?: Array<{ id: string; label: string }>;
+  options?: Array<{ id: string; label: string; feedback?: string }>;
 };
 type LessonLike = { id: string; status: string; promptIds: string[] };
 
@@ -102,4 +103,24 @@ export function regeneratePromptFingerprints(prompts: readonly unknown[], lesson
   }
   const sorted = Object.fromEntries(Object.keys(next).sort().map((id) => [id, next[id]]));
   return { file: { about: ABOUT, prompts: sorted }, errors };
+}
+
+/**
+ * A prompt that is not live (not yet in the fingerprint file, or only retired
+ * there, as in a draft lesson) needs a hint, and a multiple-choice prompt needs its own
+ * feedback on every option: a wrong pick shows only that option's feedback,
+ * and the Learn shell adds no wording of its own. Prompts already published
+ * are left as they are, so this never breaks a live lesson.
+ */
+export function checkNewPromptGuidance(prompts: readonly unknown[], recorded: PromptFingerprintFile | undefined): string[] {
+  const errors: string[] = [];
+  for (const prompt of prompts as PromptLike[]) {
+    const entry = recorded?.prompts[prompt.id];
+    if (entry && !entry.retired) continue;
+    if (!prompt.hint?.trim()) errors.push(`${prompt.id}: a new prompt needs a hint`);
+    if (prompt.kind !== 'supported-selection') continue;
+    const missing = (prompt.options ?? []).filter((option) => !option.feedback?.trim()).map((option) => option.id);
+    if (missing.length) errors.push(`${prompt.id}: a new multiple-choice prompt needs feedback on every option (missing on ${missing.join(', ')})`);
+  }
+  return errors;
 }

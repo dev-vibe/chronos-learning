@@ -137,7 +137,7 @@ Memorable moments: <two to four true, specific details or stories a learner woul
 | --- | --- | --- | --- | --- | --- | --- | --- |
 
 Heading voice: each learner-facing heading names the subject or job in ordinary words. Fail metaphors, riddles, and punchlines. If the heading needs explaining, rewrite it.
-Recurring type labels: evidence chrome **Surviving evidence**; close-read knowledge **What you can see**; labor/institution knowledge **Who did the work**; source-limit knowledge **What we can know**.
+Labels: authored or left out, in plain words (runbook Stage 9). The shell adds none of its own, so do not reuse fixed type labels such as “Surviving evidence” or “What we can know”; an evidence `artifactLabel` names the thing and says when it is a reconstruction or drawing.
 
 ## Media decisions
 

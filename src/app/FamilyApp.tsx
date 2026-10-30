@@ -134,7 +134,7 @@ function AccountPage({ gateway, session, onSignedOut }: { gateway: FamilyGateway
       const loaded = await gateway.loadAccount();
       setAccount(loaded);
       if (loaded.learners.length || loaded.profiles.length) setWaiting((await gateway.loadReviewQueue()).filter((item) => item.status === 'submitted').length);
-    } catch (caught) { setError(familyErrorMessage(caught, 'Your account couldn’t be loaded. Check your connection and retry.')); }
+    } catch (caught) { setError(familyErrorMessage(caught, 'Your account couldn’t be loaded. Check your internet and try again.')); }
   }, [gateway]);
   useEffect(() => { void load(); }, [load]);
   const signOut = async () => { await gateway.signOut().catch(() => undefined); onSignedOut(); };
@@ -370,7 +370,7 @@ function ReviewPage({ gateway }: { gateway: FamilyGateway }) {
     try {
       const [loadedAccount, queue, finished] = await Promise.all([gateway.loadAccount(), gateway.loadReviewQueue(), gateway.loadCompletedLessons()]);
       setAccount(loadedAccount); setItems(queue); setCompleted(finished);
-    } catch (caught) { setError(familyErrorMessage(caught, 'Review couldn’t be loaded. Check your connection and retry.')); }
+    } catch (caught) { setError(familyErrorMessage(caught, 'Review couldn’t be loaded. Check your internet and try again.')); }
   }, [gateway]);
   useEffect(() => { void load(); }, [load]);
 
@@ -382,7 +382,7 @@ function ReviewPage({ gateway }: { gateway: FamilyGateway }) {
   const known = items.filter((item) => lessonById.has(item.lessonId) && learnerById.has(item.learnerId));
   const waiting = known.filter((item) => item.status === 'submitted').sort((left, right) => left.submittedAt.localeCompare(right.submittedAt));
   return <>
-    <header className="page-intro"><p className="label">Review</p><h1>{waiting.length ? `${waiting.length} ${waiting.length === 1 ? 'lesson is' : 'lessons are'} waiting.` : 'All caught up.'}</h1><p>Read each written answer. Multiple-choice checks are already done: a kid finishes one by choosing the best-supported answer. Pass the lesson to award its Knowledge Cards, or send it back with a note about what to change.</p></header>
+    <header className="page-intro"><p className="label">Review</p><h1>{waiting.length ? `${waiting.length} ${waiting.length === 1 ? 'lesson is' : 'lessons are'} waiting.` : 'All caught up.'}</h1><p>Read each written answer. Multiple-choice questions are already done: a kid finishes one by choosing the right answer. Pass the lesson to award its Knowledge Cards, or send it back with a note about what to change.</p></header>
     <section aria-labelledby="waiting-title" className="review-list">
       <h2 id="waiting-title" className="sr-only">Waiting for review</h2>
       {waiting.map((item) => <ReviewCard key={`${item.learnerId}:${item.lessonId}`} item={item} learner={learnerById.get(item.learnerId)!} gateway={gateway} onReviewed={load} />)}
@@ -465,12 +465,12 @@ function ReviewCard({ item, learner, gateway, onReviewed }: { item: ReviewItem; 
     </header>
     {item.round > 1 && item.feedback && <figure className="parent-note"><figcaption><MessageSquareQuote aria-hidden="true" /> Your last note</figcaption><blockquote>{item.feedback}</blockquote></figure>}
     {item.questions.length === 0
-      ? <p className="family-hint">This lesson has no written answers to read. {name} finished its checks by choosing the best-supported answers.</p>
+      ? <p className="family-hint">This lesson has no written answers to read. {name} finished its multiple-choice questions by choosing the right answers.</p>
       : <ol className="review-answers">{item.questions.map((question) => <li key={question.promptId}>
           <p className="review-question">{question.question}</p>
           {!lesson.promptIds.includes(question.promptId) && <p className="review-retired-note">This question has since changed in the lesson. It is shown as {name} saw it.</p>}
           <p className="review-answer">{item.answers[question.promptId] || <em className="no-answer">No answer</em>}</p>
-          {question.explanation && <details className="review-guide"><summary><ChevronDown aria-hidden="true" /> What a strong answer covers</summary><p>{question.explanation}</p></details>}
+          {question.explanation && <details className="review-guide"><summary><ChevronDown aria-hidden="true" /> What a good answer includes</summary><p>{question.explanation}</p></details>}
         </li>)}</ol>}
     <label htmlFor={noteId} className="review-note-label">Note for {name} <span>(needed to send it back)</span></label>
     <textarea id={noteId} value={note} onChange={(event) => { setNote(event.target.value); setError(''); }} maxLength={2000} placeholder={`Nice work, or what ${name} should add…`} />

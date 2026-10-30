@@ -2,6 +2,7 @@ import { readFileSync } from 'node:fs';
 import { describe, expect, it } from 'vitest';
 import { chronosContent } from '../../content/chronos';
 import {
+  checkNewPromptGuidance,
   checkPromptFingerprints,
   fingerprintPrompt,
   PROMPT_FINGERPRINTS_PATH,
@@ -51,6 +52,7 @@ describe('published prompt fingerprints', () => {
     ['hint', choiceId, (prompt: any) => { prompt.hint = 'A friendlier hint.'; }],
     ['option feedback', choiceId, (prompt: any) => { prompt.options[0].feedback = 'Look again at what survives.'; }],
     ['option order', choiceId, (prompt: any) => { prompt.options.reverse(); }],
+    ['the answer-box placeholder', essayId, (prompt: any) => { prompt.answerPlaceholder = 'I think… because in the story…'; }],
     ['evidence links', choiceId, (prompt: any) => { delete prompt.evidenceModuleIds; }],
   ])('allows %s to change under the same ID', (_label, id, change) => {
     expect(errorsFor(edit(content(), id, change))).toEqual([]);
@@ -104,5 +106,36 @@ describe('published prompt fingerprints', () => {
 
   it('reports a missing fingerprint file', () => {
     expect(checkPromptFingerprints(chronosContent.prompts, chronosContent.lessons, undefined)).toEqual([`${PROMPT_FINGERPRINTS_PATH} is missing. Run npm run content:fingerprints.`]);
+  });
+});
+
+describe('hints and option feedback on new prompts', () => {
+  it('leaves every published prompt as it is', () => {
+    expect(checkNewPromptGuidance(chronosContent.prompts, committed())).toEqual([]);
+    // Even a live prompt without a hint or feedback is not reported: it is already published.
+    const bundle = edit(content(), choiceId, (prompt) => { delete prompt.hint; delete prompt.options[0].feedback; });
+    expect(checkNewPromptGuidance(bundle.prompts, committed())).toEqual([]);
+  });
+
+  it('requires a hint and feedback on every option for a prompt not yet published', () => {
+    const bundle = content();
+    const old = bundle.prompts.find((prompt) => prompt.id === choiceId)!;
+    const draft: any = structuredClone({ ...old, id: 'prompt.uruk.new-choice' });
+    delete draft.hint;
+    delete draft.options[1].feedback;
+    bundle.prompts.push(draft);
+    expect(checkNewPromptGuidance(bundle.prompts, committed())).toEqual([
+      'prompt.uruk.new-choice: a new prompt needs a hint',
+      `prompt.uruk.new-choice: a new multiple-choice prompt needs feedback on every option (missing on ${draft.options[1].id})`,
+    ]);
+    const essay: any = { ...bundle.prompts.find((prompt) => prompt.id === essayId)!, id: 'prompt.uruk.new-essay', hint: '  ' };
+    expect(checkNewPromptGuidance([essay], committed())).toEqual(['prompt.uruk.new-essay: a new prompt needs a hint']);
+  });
+
+  it('applies to a retired prompt that is back in a draft lesson', () => {
+    const file = committed();
+    file.prompts[choiceId] = { ...file.prompts[choiceId], retired: true };
+    const bundle = edit(content(), choiceId, (prompt) => { delete prompt.hint; });
+    expect(checkNewPromptGuidance(bundle.prompts, file)).toEqual([`${choiceId}: a new prompt needs a hint`]);
   });
 });

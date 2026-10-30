@@ -4,7 +4,7 @@ Builds on [ADR 005: Parent review](decisions/005-parent-review.md). Learners' an
 
 ## The policy
 
-1. **A prompt ID stands for the question itself:** its lesson, kind, question text, options (ids and labels), `bestOptionId`, `required` and `minimumResponseLength`. To change any of these, give the prompt a new ID. Explanation, option feedback and hint text may change under the same ID, and so may option order.
+1. **A prompt ID stands for the question itself:** its lesson, kind, question text, options (ids and labels), `bestOptionId`, `required` and `minimumResponseLength`. To change any of these, give the prompt a new ID. Explanation, option feedback, hint and answer-box placeholder (`answerPlaceholder`) text may change under the same ID, and so may option order.
 2. **What a learner has earned stays.** A prompt change never un-finishes a lesson, reopens a passed review or removes a card.
 3. **Nothing is migrated or deleted.** Old answers stay in the database under their old IDs, and a retired ID is never reused.
 
