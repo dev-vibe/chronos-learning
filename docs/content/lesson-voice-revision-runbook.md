@@ -6,9 +6,14 @@ Status: the one process for revising an already-published lesson. It audits the 
 
 Use this runbook for any request to revise a published lesson: “Revise the Akkad lesson”, “Redo the Akkad lesson”, “Revise the next old lesson”, “Improve the Akkad prompt”, “Refresh the Akkad card”. The owner does not need to say which parts to change; the audit in Step 1 decides. A request that names one part (“improve the X prompt”) does only that part.
 
-Stop and tell the owner instead if the lesson needs a change to the essential question, durable understanding, central claims or their certainty, section order or teaching jobs, a prompt's teaching job, adding or removing a prompt, completion rules, the card's subject or adding or removing a card, the teaching job of an existing image, or journey position. Those are material revisions and follow the creation runbook. Do not fold one into a revision.
+Stop and tell the owner instead if the lesson needs a change to the essential question, durable understanding, central claims or their certainty, section order or teaching jobs, a prompt's teaching job, adding or removing a prompt (except the two prompt fixes below), completion rules, the card's subject or adding or removing a card, the teaching job of an existing image, or journey position. Those are material revisions and follow the creation runbook. Do not fold one into a revision.
 
-Two prompt changes are not material, so a revision makes them: splitting a two-part prompt into one question (dropping the less important part if a split would pass three required prompts), and refocusing a prompt that quizzes an evidence limit (“what is one question researchers are still trying to answer?”, “what can this not prove?”) onto the lesson's kid's question (creation runbook Stage 6A). Name both in the owner packet.
+Two prompt fixes are not material, so a revision makes them through the [prompt revision runbook](prompt-revision-runbook.md):
+
+- **Split** a two-part prompt into separate prompts of one question each. If that would pass three required prompts, keep the more important part as one prompt and drop the other.
+- **Refocus** a prompt that quizzes an evidence limit (“what is one question researchers are still trying to answer?”, “what can this not prove?”) onto the lesson's kid's question (creation runbook Stage 6A).
+
+Name each one in the owner packet.
 
 ## Invocation
 
@@ -28,9 +33,9 @@ A request such as “Revise the Akkad lesson” or “Revise the next old lesson
 
 Add a `## Voice revision` section to the research note (the heading stays for every revision so “the next one” keeps working).
 
-**First, write the kid's question and kid's answer** under creation runbook Stage 6A, with the research note closed, if the note does not already have a `## Kid's question` section. This restates the existing essential question and durable understanding in a kid's words; it does not change what the lesson teaches. If you cannot write a kid's answer that is about what happened (not about what the evidence cannot show), say so to the owner: the lesson may need a material revision.
+**First, write the kid's question and kid's answer** under creation runbook Stage 6A (plain words first, then check them against the claim ledger), if the note does not already have a `## Kid's question` section. This restates the existing essential question and durable understanding in a kid's words; it does not change what the lesson teaches. If you cannot write a kid's answer that is about what happened (not about what the evidence cannot show), say so to the owner: the lesson may need a material revision.
 
-**Then run a cold kid read of the lesson as it stands** (Stage 14C, steps 1–3). Its report is the most useful part of the audit: it shows which words and questions a reader stumbles on.
+**Then run a cold kid read of the lesson as it stands** (Stage 14C, steps 1–3), and run `npm run lesson:check-questions -- --lesson <lesson-id>`. Its report is the most useful part of the audit: it shows which words and questions a reader stumbles on.
 
 Then audit three parts.
 
@@ -84,7 +89,7 @@ Every new fact the learner will read needs a claim with kind, certainty and a re
 
 Replacing or removing an existing image is still a material revision; report the problem instead.
 
-**Prompts** marked `text` change here under the same ID. For each prompt marked `replace`, follow steps 1–6 of the [prompt revision runbook](prompt-revision-runbook.md) against the revised lesson, in this branch.
+**Prompts** marked `text` change here under the same ID. For each prompt marked `replace`, follow steps 1–6 of the [prompt revision runbook](prompt-revision-runbook.md) against the revised lesson, in this branch. A split adds a `prompt` module for each new prompt in the same section, where the old one stood.
 
 **The card**, if marked `refresh`: rewrite the reveal text in the lesson's voice, update facts so each is true, sourced and worth remembering (three to five), and choose the art under Stage 11. The art may be any image the lesson uses, including one added above; keep `depictionLabel` true to it. Learners who already own the card see the new version; nothing is taken away.
 
@@ -98,8 +103,8 @@ Replacing or removing an existing image is still a material revision; report the
 
 ## Step 4 — Check
 
-1. Run the Stage 14C kid read on the revised lesson with a fresh reader (not the one from the audit), including every new or changed prompt and the feedback test, and repeat until it passes. Record the final report under `## Voice revision`.
-2. Re-run the Stage 14B review questions on the changed sections, focusing on Story, Evidence reasoning, Proportionality, Cognitive load and Headings, plus Visual value and Rights, media and accessibility for any image you added. Re-read every prompt against the revised text: each option, best answer and piece of feedback must still be supported by the lesson. Record the findings in the `## Voice revision` section. Fix anything `blocking`.
+1. Run `npm run lesson:check-questions -- --lesson <lesson-id>` and the Stage 14C kid read on the revised lesson with a fresh reader (not the one from the audit), including the feedback test, and repeat until it passes. This one read covers every replaced prompt. Record it under `## Voice revision`.
+2. Re-run the Stage 14B review questions on the changed sections, focusing on Prompt fit, Story, Evidence reasoning, Proportionality, Cognitive load and Headings, plus Visual value and Rights, media and accessibility for any image you added. Re-read every prompt against the revised text: each option, best answer and piece of feedback must still be supported by the lesson. Record the findings in the `## Voice revision` section. Fix anything `blocking`.
 3. Run `npm run validate:content` and `npm run test:domain`. If a test pins old text that you changed on purpose, update that expectation in the same PR. Never edit a test to hide an ID or behavior change.
 4. Do not run lesson gates (they apply to drafts) or write a migration (prose and media are not stored in the database). CI runs the full suite and build.
 5. If you added images, publish each approved asset to Storage and verify it (`npm run media:publish -- --asset <id>`, then `npm run media:verify:remote -- --asset <id>`) before merge. These need the trusted storage credentials; if the session does not have them, give the owner the two commands in the handoff. Until the objects are published, the app shows the committed rollback copy.
@@ -116,7 +121,7 @@ Push, open the PR, and let CI run. Once the branch preview deploys, send the own
 - anything you left out because the evidence was too thin;
 - the kid's question and kid's answer;
 - the kid read: what the first reader stumbled on, and how the final reader restated and answered each question;
-- the audit verdict for each prompt and the card, one line each;
+- the audit verdict for each prompt and the card, one line each, naming any split or refocused prompt;
 - for each replaced prompt, the prompt revision runbook's owner-check items;
 - if the card changed, its old and new art, facts and reveal text.
 

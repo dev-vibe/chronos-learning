@@ -133,14 +133,11 @@ Memorable moments: <two to four true, specific details or stories a learner woul
 
 ## Kid's question
 
-Written with the research note closed (runbook Stage 6A).
+Plain words first, then checked against the claim ledger (runbook Stage 6A). The draft checks go in the Prompt rationale table.
 
 Kid's question: <the question a curious 12-year-old would ask, in their words>
 Kid's answer: <two or three sentences they could tell a friend: what happened and why, with one or two real details>
 How we know, in one line: <the one piece of detective work the lesson tells>
-
-| Draft check | Kind | Sentence of the kid's answer it checks | Plant list: what the lesson must show first |
-| --- | --- | --- | --- |
 
 ## Section/component storyboard
 
@@ -231,7 +228,7 @@ Sources and visual brief:
 
 ## Prompt rationale
 
-| Prompt ID | Required | Sentence of the kid's answer it checks | Misconception exposed | Feedback job | What the kid reader said it asks (Stage 14C) |
+| Prompt ID | Question (draft at 6A, final at 12) | Sentence of the kid's answer it checks | Plant list: what the lesson must show first | Misconception a wrong choice exposes | Kid reader's restatement and yes/sort of/no (14C) |
 | --- | --- | --- | --- | --- | --- |
 
 ## Ages 11–15 transformations
@@ -276,14 +273,13 @@ Deterministic prototype gate: pass | fail
 
 ### Kid read (Stage 14C)
 
-Reader: <fresh agent/session; confirm it saw only learner-facing text>
+Reader: <fresh agent/session/model; confirm it saw only `lesson:kid-read` output>
+`lesson:check-questions`: <no flags | flags kept, with reasons>
 
-| Round | Restatement of each question matches intent? | Answers on target? | Retelling matches kid's answer? | Flags (words, sentences) | Fixes made |
+| Round | Restatements match intent, with “yes”? | Answers on target? | Retelling matches kid's answer? | Flags | Fixes made |
 | --- | --- | --- | --- | --- | --- |
 
-First report (verbatim):
-
-Final report (verbatim):
+First round's question restatements (word for word):
 
 ### Author quality check (Stage 14B)
 

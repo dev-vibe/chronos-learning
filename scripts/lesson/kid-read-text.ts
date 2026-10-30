@@ -23,22 +23,36 @@ if (!lesson) {
 const promptsById = new Map(chronosContent.prompts.map((prompt) => [prompt.id, prompt]));
 const out: string[] = [];
 const line = (text = '') => out.push(text);
-let questionNumber = 0;
+// The question appears in place; its choices and hint are printed at the end,
+// so a reader says what each question asks before seeing them (in the app the
+// hint stays hidden until the learner opens it).
+const asked: UnderstandingPrompt[] = [];
 
 const writePrompt = (prompt: UnderstandingPrompt) => {
-  questionNumber += 1;
+  asked.push(prompt);
   line();
-  line(`Question ${questionNumber}: ${prompt.question}`);
-  if (prompt.kind === 'supported-selection') {
-    prompt.options.forEach((option, index) => line(`  ${String.fromCharCode(65 + index)}) ${option.label}`));
-  } else {
-    line('  [Answer box]');
-  }
-  if (prompt.hint) line(`  Hint: ${prompt.hint}`);
-  if (withFeedback && prompt.kind === 'supported-selection') {
-    line('  Feedback shown after picking each option:');
-    prompt.options.forEach((option, index) => line(`    ${String.fromCharCode(65 + index)}) ${option.feedback ?? '(none)'}`));
-  }
+  line(`Question ${asked.length}: ${prompt.question}`);
+  line(prompt.kind === 'supported-selection' ? '  (multiple choice: the choices are at the end)' : '  (written answer)');
+};
+
+const writeChoicesAndHints = () => {
+  if (!asked.length) return;
+  line();
+  line('## Choices and hints (look only after saying what each question asks)');
+  asked.forEach((prompt, index) => {
+    line();
+    line(`Question ${index + 1}`);
+    if (prompt.kind === 'supported-selection') {
+      prompt.options.forEach((option, optionIndex) => line(`  ${String.fromCharCode(65 + optionIndex)}) ${option.label}`));
+    } else {
+      line('  [Answer box]');
+    }
+    if (prompt.hint) line(`  Hint (hidden until opened): ${prompt.hint}`);
+    if (withFeedback && prompt.kind === 'supported-selection') {
+      line('  Feedback shown after picking each choice:');
+      prompt.options.forEach((option, optionIndex) => line(`    ${String.fromCharCode(65 + optionIndex)}) ${option.feedback ?? '(none)'}`));
+    }
+  });
 };
 
 const notes = (items: { label?: string; detail?: string }[] | undefined) => items?.forEach((item) => line(`- ${item.label}: ${item.detail}`));
@@ -87,5 +101,6 @@ for (const section of lesson.sections) {
   line(`## ${section.heading}`);
   section.modules.forEach(writeModule);
 }
+writeChoicesAndHints();
 
 console.log(out.join('\n').replace(/\n{3,}/g, '\n\n'));
