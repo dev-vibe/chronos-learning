@@ -8,7 +8,8 @@ A lesson may be small or ambitious, but no step may be skipped silently. If a st
 
 - **What it is:** a history-learning app. Underneath, a knowledge graph; in use, a guided journey; over time, a personal illustrated atlas. The World History Spine teaches chronological orientation; optional Story Arcs, Idea Trails and Investigations go deeper. A lesson exists once and can appear in several journeys with journey-specific framing; completing it anywhere completes it everywhere.
 - **Who it serves:** learners aged 11–15, mainly homeschooling. Draft for a roughly 12–13-year-old reader; adults should still find it credible. Parents follow progress from their own account, outside the learner shell.
-- **What a lesson must achieve:** the learner forms an accurate, memorable, evidence-aware mental model, can explain the central idea, and knows the next action. Shipping a page is not the goal.
+- **What a lesson must achieve:** the learner forms an accurate, memorable, evidence-aware mental model, can tell someone in their own words what happened and why, and knows the next action. Shipping a page is not the goal.
+- **Questions:** every question a learner reads sounds like a curious person asking, not an exam or a research paper. If a 12-year-old cannot tell what a question wants after one read, the question is wrong, not the learner.
 - **Tone:** warm, intelligent, calm and spacious, like an editorial history publication or a museum companion. Lessons are told as true stories: real people, places and objects, with stakes and surprises, told straight. Not a game, a terminal or a textbook dump. No mascots, loot, XP, streaks, timers or score spectacle.
 - **Shell:** every lesson renders in the same Learn shell: a journey rail plus one scrolling lesson of five to eight semantic sections, short understanding prompts and an explicit completion action. Reopening always starts at the top.
 - **Knowledge Cards:** deterministic memory anchors earned when a parent passes the learner's finished lesson. Never random, duplicated, ranked by rarity, or mandatory.
@@ -28,7 +29,7 @@ A request equivalent to “Let's create the next Chronos lesson” is a complete
 6. Use the row's Linear issue (create one only if missing). Create the lesson branch from latest `main` with the issue key in its name so Linear follows the branch and PR on its own. Do not update Linear by hand.
 7. In the branch's first commit, set the row to `Active`.
 8. Run Stages 0–3B and stop at owner touchpoint 1.
-9. After the owner responds, run Stages 4–14B and stop at owner touchpoint 2.
+9. After the owner responds, run Stages 4–14A, the Stage 14C kid read and Stage 14B, and stop at owner touchpoint 2.
 10. After approval, run Stages 15–18 without further prompting. Stop only at owner touchpoint 3.
 11. In the PR's final commit, set the row to `Complete`. If fewer than three reviewed `Ready` candidates remain, say so in the handoff without inventing entries.
 
@@ -61,9 +62,9 @@ Before sending the final response, check: **Can the user open the lesson being d
 | Step | Stages | Reviewable output / exit |
 | --- | --- | --- |
 | Brief | 0–2 | Stable identity, audience, curriculum position, essential question, scope, non-goals and research questions. |
-| Research/material decisions | 3–7 | Proportional source and challenge review; owner touchpoint 1 before claim selection; claim ledger, content triage and cumulative blueprint. |
+| Research/material decisions | 3–7 | Proportional source and challenge review; owner touchpoint 1 before claim selection; claim ledger, content triage, cumulative blueprint, and the kid's question, kid's answer and draft checks (6A). |
 | Learning prototype | 8–14A | Complete draft in the shared Learn shell with real prompts and media intentions; no publication or final assets. |
-| Review | 14B | One quality check by the author; owner touchpoint 2 on the actual prototype. |
+| Review | 14C, 14B | A fresh reader tries the lesson and its questions cold (14C); one quality check by the author; owner touchpoint 2 on the actual prototype. |
 | Final assets | 15–16 | Refine the approved draft and produce final media; implementation and release gates. |
 | Publication | 18 | Mechanical cutover, owner touchpoint 3, `Complete` in the PR, merge. |
 
@@ -124,7 +125,9 @@ Create one lesson research/editorial note under `docs/research/` before writing 
 8. section and component storyboard;
 9. media and Knowledge Card plan;
 10. age/editorial pass notes;
-11. review decisions, open questions, and publication sign-off.
+11. the kid's question, kid's answer and draft checks (Stage 6A);
+12. the kid read reports and fixes (Stage 14C);
+13. review decisions, open questions, and publication sign-off.
 
 Do not rely on chat history, browser tabs, or an agent’s memory as the editorial record.
 
@@ -161,7 +164,7 @@ Answer these before collecting facts:
 
 Write the following as a provisional research target. The essential question and durable understanding do not become the lesson's settled model until the Stage 3B research-direction checkpoint has been considered:
 
-- **Essential question:** one genuine historical question, not a topic label.
+- **Essential question:** one genuine historical question, not a topic label, that a curious 12-year-old could ask in their own words (Stage 6A writes their version).
 - **Durable understanding:** one sentence the learner should remember months later.
 - **Three to five supporting understandings:** the minimum conceptual structure.
 - **Evidence encounter:** the object, source, map, comparison, or dataset through which the learner will reason.
@@ -310,7 +313,7 @@ Complete the audit with a coverage statement listing the search window, terminol
 
 ## Stage 3B — Present the research-direction checkpoint
 
-Write the audit into the lesson's research note. Lead both the note and the actual user-facing handoff with a **one-screen decision card**, not an explanatory essay or a link the owner must open. Give a recommended focus and roughly three to five numbered provisional teaching beats. Each row uses plain language to say what the beat would teach and, in a few words, what visual might help or why none would. Offer `yes / change / no` for each row and accept a response such as `all yes` or `1 yes; 2 change: ...`. Keep source IDs, caveats, and argumentation in the linked research packet unless one uncertainty would materially change the owner's decision. The owner should be able to respond from the handoff message alone. These beats are editorial possibilities, not approved section headings, selected claims, storyboard rows, or media commitments. Put optional explanation and the detailed packet below the card; do not ask the owner to parse them for routine approval.
+Write the audit into the lesson's research note. Lead both the note and the actual user-facing handoff with a **one-screen decision card**, not an explanatory essay or a link the owner must open. Give a recommended focus, then one line with the question a curious 12-year-old would ask about it and one plain sentence they could tell a friend afterward (provisional; Stage 6A settles them), then roughly three to five numbered provisional teaching beats. Each row uses plain language to say what the beat would teach and, in a few words, what visual might help or why none would. Offer `yes / change / no` for each row and accept a response such as `all yes` or `1 yes; 2 change: ...`. Keep source IDs, caveats, and argumentation in the linked research packet unless one uncertainty would materially change the owner's decision. The owner should be able to respond from the handoff message alone. These beats are editorial possibilities, not approved section headings, selected claims, storyboard rows, or media commitments. Put optional explanation and the detailed packet below the card; do not ask the owner to parse them for routine approval.
 
 The underlying analytical packet must still identify:
 
@@ -411,7 +414,7 @@ Record:
 - the story spine: the person, object, place or puzzle the lesson follows from opening to end, where the evidence allows;
 - two to four memorable moments: true, specific details or stories a learner would want to tell someone afterward.
 
-Prefer “Explain how clay records helped institutions coordinate goods, and name a limit of what the tablets reveal” over “Know about proto-cuneiform.”
+Prefer “Explain how clay tablets helped temple officials keep track of grain, workers and animals” over “Know about proto-cuneiform.”
 
 The U.S. Institute of Education Sciences recommends building world and word knowledge and giving grades 4–9 learners repeated chances to ask and answer questions while making sense of text. Apply that here by giving necessary context before demanding inference, defining essential vocabulary in use, and making the understanding check depend on the lesson’s evidence rather than trivia. See the [grades 4–9 practice guide](https://ies.ed.gov/ncee/wwc/PracticeGuide/29).
 
@@ -422,6 +425,22 @@ Record **Retrieve** (which earlier idea returns), **Extend** (how this lesson de
 Plan progression from observing and separating inference, through contextualizing and corroborating, to comparing explanations and qualifying a conclusion. Name the move practiced now, its prior scaffold, and the next increase in independence. Occasionally plan transfer to unfamiliar evidence using reviewed material, with enough context for a fair attempt; it need not appear in every lesson or become a completion hurdle. [Learner observation](lesson-production/learner-observation.md) tests whether these choices work.
 
 Completion records studied content and sincere attempts. It is distinct from demonstrated mastery; an example answer, character count, or optional recall task cannot certify mastery or revoke completion.
+
+## Stage 6A — Write the kid's question and draft the checks
+
+The questions at the end of a lesson can only be as clear as the idea they check, and that idea is usually first written in research language. So write the learner's version of the idea now, before the storyboard, and draft the checks from it. The lesson is then built to answer them.
+
+Write this with the research note closed. Work from what a curious kid would want to know, not from the claim ledger, the synthesis or the durable-understanding sentence. Their words (arrangement, installation, attested, uniform, connection) are exactly what leaks into confusing questions.
+
+Record in the research note under `## Kid's question`:
+
+- **The kid's question:** the question a curious 12-year-old would actually ask about this subject, in their words. It usually starts with how, why, who or what was it like: “How did people build the pyramids without machines?”, “How did one king control cities hundreds of miles away?”, “Why did people start keeping goats instead of hunting them?” It is the essential question, said by a kid. If the two differ in substance, fix the essential question; do not keep two.
+- **The kid's answer:** two or three sentences the learner could say to a friend or parent afterward, in their own words. It says what happened and why, with one or two real details. For Akkad: “Akkad's kings won lots of battles, but keeping a city was harder. At Leilan they sent their own officials and fed hundreds of workers every day. In other cities they did it differently, like marrying a princess into the local royal family.” If the kid's answer is mostly about what the evidence cannot prove, the lesson has lost its history (see [Historical significance and proportion](#historical-significance-and-proportion)).
+- **How we know, in one line:** the one piece of detective work the lesson shows (Merer's diary, the goat bones, the door sealings). It is how the story is known, told as part of the story. It is not the point of the lesson.
+- **Draft checks:** the multiple-choice question and the written question, written now under Stage 12. Each one checks one sentence of the kid's answer. Stage 12 polishes them; it does not invent them later from the claim ledger.
+- **Plant list:** for each check, what the lesson must show for a kid to answer it: the facts, the details and any word it must explain. Stage 8 places each one before the check.
+
+The opening (Stage 8) raises the kid's question through a real moment and may ask the learner to hold a guess (“What would you have done?”); the ending pays it off. A learner who reaches the checks should feel asked about the thing they have been reading about, not something new. This matters for memory as well as clarity: a question asked before reading helps learners remember the answer to *that* question and almost nothing else, and guessing first strengthens the effect ([St. Hilaire, Chan and Ahn, 2024 meta-analysis](https://par.nsf.gov/servlets/purl/10511812)). Stories organized around a problem the reader wants solved are understood faster and remembered better than explanation (Daniel Willingham, “The privileged status of story”, *American Educator*, Summer 2004). So the opening question and the end checks must be the same question.
 
 ## Stage 7 — Perform the ages 11–15 design pass
 
@@ -464,6 +483,10 @@ Voice rules:
 - Use humor only when it comes from the history itself, such as a real complaint letter or a boast that backfired. No invented jokes, slang, pop-culture references, exclamation marks, or “Imagine you are…” openings used as filler.
 - Never talk down. Write for a curious, intelligent reader who lacks background, not ability.
 - Never invent dialogue, thoughts, feelings or scenes and present them as fact. A reconstructed scene must be labeled and built from evidence.
+- Say what happened, not what didn't. Do not refute ideas the learner never had: “This does not mean…”, “It was a message, not a battle report”, “It does not show that Urkesh was run the way Leilan was”. A run of these turns a story into a list of corrections. Correct a misconception only when it is one kids really hold (named in the blueprint), once, at the point where it would form.
+- Use verbs and people, not abstract nouns. “Akkad sent its own officials to run Leilan” beats “Leilan shows an Akkadian administrative installation”. Words such as arrangement, connection, tie, relationship, presence, role, practice, nature, significance and framework usually hide who did what to whom. Rewrite the sentence around the people and the action.
+- Leave the research note's words in the research note. Scholarly terms (administration, state formation, attested, polity, ideology, material culture, installation, uniform) appear only when the lesson needs the idea, explained in plain words the first time.
+- Tell the detective work once, as a story: who found what, and how they worked it out. Then go back to the history. Do not end every section with a reminder of what is still unknown; say what is unknown once, where it matters, as a real open question.
 
 ### Practical reading and pacing heuristics
 
@@ -537,12 +560,12 @@ Authoring `purpose` stays imperative and internal (“Supply the species categor
 Each section must perform a distinct job. A common pattern is:
 
 1. **Masthead/orientation** — time, place, significance, depiction label. Place the subject relative to recognizable wider geography before introducing unfamiliar local sites; follow the map runbook's context-to-detail requirement.
-2. **Opening** — a moment, person, object or puzzle that makes the learner want the answer. The essential question grows out of it rather than being announced.
+2. **Opening** — a moment, person, object or puzzle that makes the learner want the answer. The kid's question (Stage 6A) grows out of it rather than being announced.
 3. **Necessary context** — what the learner must know to reason further.
 4. **Mechanism or development** — how something worked or changed.
 5. **Evidence encounter** — examine an object, source, map, or record.
 6. **Consequences and power** — possibilities, costs, unequal effects, or limits.
-7. **Evidence/interpretation/uncertainty** — what can and cannot be concluded. When this job is a `knowledge` module, use the stable eyebrow **What we can know** and the four-item shape: it can show; it can support; it cannot prove alone; it cannot recover. Do not use “evidence boundary” or other methods jargon as the learner-facing label.
+7. **How we know and what is still a mystery** — told once, as the detective story and a real open question, usually in prose. Use a `knowledge` module only when four parallel items really are clearer than a few sentences; then use the stable eyebrow **What we can know**, and write each item as a plain positive statement (“The seal shows a princess of Akkad lived in the palace”; “Nobody yet knows whether she was queen”), not a run of “cannot prove” lines. Do not use “evidence boundary” or other methods jargon as the learner-facing label.
 8. **World Check and explicit completion** — use evidence, receive feedback, complete deliberately.
 
 This is a pattern, not a template to fill blindly. A biography, battle, migration, intellectual debate, environmental change, and archaeological investigation may need different sequences. Keep the stable shell while authoring the historical argument.
@@ -551,7 +574,7 @@ Flow tests:
 
 - Can the learner state why each section follows the previous one?
 - Does new information answer or sharpen the opening question?
-- Is the evidence encountered before the lesson asks the learner to use it?
+- Is the evidence encountered before the lesson asks the learner to use it? Is every item on the Stage 6A plant list placed before its check?
 - Does the page alternate modes only when the teaching mode changes?
 - Is the final instructional section truly the end, with navigation appearing afterward?
 - Does removing any section break the argument? If not, cut or merge it.
@@ -714,55 +737,94 @@ The reveal remains subordinate to lesson completion and the current journey’s 
 
 ## Stage 12 — Author understanding prompts and feedback
 
-Start from the learning blueprint, not from facts that happen to be easy to quiz.
+The checks were drafted at Stage 6A from the kid's answer. This stage makes them clear, fair and kind. Question writing is its own job: do it as a separate pass, after the lesson text exists, with the research note closed, and test it with the Stage 14C kid read.
+
+A learner who does not understand a question learns nothing from it, and neither does the parent reading the answer. Every rule below serves one test: **a 12-year-old reads the question once and knows exactly what to do and what kind of answer is wanted.**
+
+### What the checks are for
 
 Normally use two required prompts:
 
-1. one recognition, selection, ordering, matching, image/evidence, or comparison prompt;
-2. one concise explanation asking the learner to connect evidence, causation, opportunity/cost, similarity/difference, or evidence/limit.
+1. one multiple-choice question (or ordering, matching or image question) about the most important idea in the kid's answer;
+2. one written question that asks the learner to explain, in their own words, a how or a why from the lesson.
 
-**One question per prompt.** Every prompt asks exactly one question, and each written prompt gets one answer box for one answer. Learners at this age reliably miss the second part of a combined question. If the check needs two things (for example a reason and an open question), make two separate prompts that the learner answers one after the other. Stay within three required prompts: if splitting would need more, drop the least important ask instead of combining two.
+Ask about the history: what people did, why they did it, how it worked, what changed, what it was like. Ask how we know only when the detective work is itself one of the lesson's main moments, and then ask it concretely (“How could archaeologists tell the goats were being herded, not hunted?”). Do not use the checks to quiz what the evidence cannot prove. The lesson tells the learner what is still unknown; the checks do not test it.
 
-Prompt rules:
+**One question per prompt.** Every prompt asks exactly one question, and each written prompt gets one answer box for one answer. No numbered parts such as (1) and (2), no “and also…”, no second question mark, no “Choose one X, then…”. Learners at this age reliably miss the second part of a combined question. If the check needs two things, make two prompts the learner answers one after the other. Stay within three required prompts: if splitting would need more, drop the least important ask.
 
-- a written prompt requires a sincere attempt, not perfection; a selection prompt is done once the learner picks the best-supported option, so its feedback must help them get there;
-- every multiple-choice prompt names its best-supported option in `bestOptionId`;
-- give each wrong option `feedback` that points back to the evidence without revealing the answer; a wrong pick shows only that option's feedback;
-- write the `explanation` for after success: why the answer is supported and what the evidence cannot prove. It appears only after the right pick; for a written prompt only the parent sees it, on Review, as “What a strong answer covers”;
-- use stable prompt and option IDs; once published, a prompt ID stands for its question, and changing it is a [prompt revision](prompt-revision-runbook.md);
-- test an essential understanding or historical-thinking move;
-- make distractors plausible misconceptions, not jokes or wording traps;
-- avoid dependence on an unimportant date, name, or vocabulary trick;
-- keep failure calm, specific, and recoverable;
-- never use lives, timers, streak threats, score spectacle, or punitive repetition;
-- do not pretend a minimum character count grades historical sophistication;
-- exclude learner free text from general analytics.
+### Write the question the way a person would ask it
 
-**Write the question for a 12-year-old.** An understanding prompt checks reasoning, so the learner must be able to tell what it asks before they can reason.
+- **Ask a real question, not an exam task.** A real question is one a curious person might ask out loud: “Why did Akkad build so many ovens at Leilan?”, “What were the people of Ganj Dareh doing with their goats?” An exam task asks the learner to judge statements: “Which conclusion is best supported?”, “Which statement does this evidence support best?”, “What is the strongest conclusion?”. Do not use those stems. Ask the question the right answer answers.
+- **Name the thing; never use a category label.** Say “Merer's diary”, “the hoofprints in the mud bricks”, “the princess's seal on the palace door”. Do not say “a clue”, “a find”, “the evidence”, “a source”, “an example”, “one of the sites” or “this pattern” unless the lesson itself called that exact thing by that word. A label is the writer's way of seeing the lesson; the learner has to rebuild the writer's whole framing before they can start.
+- **Say what you are trying to figure out.** A question about a thing says what the thing tells us about: not “What does the seal show?” but “What does the princess's seal tell us about how Akkad got along with the king of Urkesh?”. A learner should never have to guess “a clue to what?”.
+- **Use only the lesson's words.** Every word in the question appears in the lesson with the same meaning, or is an everyday word a 12-year-old uses. If the lesson said “the king's people ran the city”, do not ask about “administration” or “control”. Rewording test items into everyday words and simpler sentences, with the content unchanged, raises scores for all students, not only weak readers ([Abedi and Lord, CRESST](https://cresst.org/?p=2850)): hard wording tests reading, not history. These words are banned in questions, options, hints and feedback:
 
-- The learner can say what to do after one read. Ask one question only: no numbered parts such as (1) and (2), no “and also…”, no second question mark. Never pile a choice, an explanation and a limit into one prompt; split them into separate prompts.
-- Use very clear, friendly, everyday words. Write the question the way a kind teacher would say it out loud to a 12-year-old: short sentences, the most common words that are still accurate, and no word the lesson did not explain. Address the learner as “you” and tell them plainly what to write (“Write one or two sentences about…”). Prefer a question under about 25 words; put background facts in a separate sentence before it.
-- Use the lesson's own plain words. Do not ask in abstract research terms: “what can this evidence not prove by itself”, “what does the surviving system leave uncertain about who organized the work”, “state formation”, “independent beginning”. Ask about a limit as an open question the learner can answer positively: “What is one question researchers are still trying to answer about…?”, “What would researchers want to find next, and where would they look?”, “If you could ask one of these people a question, what would you ask?”. Never pose the ask as a negative (“Name one thing this does not tell us”, “What can this not prove?”): the learner has to work out what is missing before they can think about it.
-- Ask the positive question. “Why would a victory not tell us how rulers kept power?” becomes “After the soldiers left, what did people still have to do to keep the empire running?”.
-- Put the evidence in the stem. A selection stem sets out what was found, where and how many, so the learner reasons from it. A stem that only says “which conclusion is best supported?” tests whether they remember the lesson's title.
-- Keep the answer out of the stem and the hint. A hint names the first step (“Compare the three places”), not the conclusion. A written prompt's hint gives a sentence frame or a first step (“Start with…, then say…”).
+  | Instead of | Write |
+  | --- | --- |
+  | conclusion; which statement; best fits; strongest; most likely; which of the following | ask the question the right answer answers |
+  | evidence; a find; a clue; a source; this pattern; an example | the thing's name: Merer's diary, the ovens, the door seals |
+  | arrangement; connection; tie; relationship; role | the actual link: who was in charge, a marriage, a trade, a boss |
+  | suggest; indicate; demonstrate; establish; imply; attest | show, tell us (or ask “why do you think…”) |
+  | significance | why it matters |
+  | control; kept hold of; administration; governed | ran the city; stayed in charge; told people what to do |
+  | analyze; infer; consider; evaluate | cut it and ask the question |
+  | researchers are still trying to answer; cannot prove; does not tell us | a positive open question (see below), or nothing |
+  | any “not” or “except” in the question | the positive question |
+- **Ask it positively.** Never pose the ask as a negative: “Name one thing this does not tell us”, “What can this not prove?”, “Why would a victory alone not tell us…?”. Ask the positive question: “After the soldiers went home, what did people still have to do every day to keep the city running?”.
+- **Short, friendly and direct.** Address the learner as “you”. Put any background in a short sentence before the question, then ask the question in one sentence of about 20 words or fewer.
+- **Show the answer's shape.** A written question says how much to write (“Write one or two sentences”) and where the answer comes from: from the lesson (“Use something from the story”) or from their own thinking (“There is no single right answer. Make your best guess and say why.”). Kids answer better when they know which kind of question it is ([Question–Answer Relationships](https://www.readingrockets.org/classroom/classroom-strategies/question-answer-relationship-qar)). The hint gives a sentence starter (“I think… because in the story…”), which is the kid-sized version of claim and support ([Project Zero, Claim–Support–Question](https://pz.harvard.edu/resources/claim-support-question)).
+- **Put what they need in front of them.** For a multiple-choice question, the stem names the specific things to reason from (what was found, where, how many) so the learner reasons from them rather than trying to remember the lesson's title.
+- **Go deep in plain words.** The big historical-thinking ideas are kid questions underneath ([Seixas's historical thinking concepts](https://www.thecanadianencyclopedia.ca/en/article/historical-thinking-concepts); the [Digital Inquiry Group's grades 3–5 chart](https://www.inquirygroup.org/history-lessons/historical-thinking-chart) does the same): Why did it happen? What happened because of it? What changed, and what stayed the same? What was it like for them? How do we know? Why does it matter? Use the concepts to plan; write only the kid questions. Deeper questions work when they are concrete and personal rather than abstract: “Would you rather have been a farmer at Çatalhöyük or a hunter who moved with the seasons? Why?”, “If you were the king of Akkad, how would you keep a far-away city loyal after your army went home?”, “Sargon carved his boasts in stone. Why do you think kings wanted their wins written down?”, “If you could dig anywhere at Giza for one day, where would you dig, and what would you hope to find?”. These still ask one question and still depend on the lesson.
 
-**Complete and fair options.**
+### Write the multiple-choice options
 
-- Every selection prompt has a hint and `feedback` on every option, the best one included. A wrong pick shows only that option's feedback, so a missing one leaves the learner with nothing to learn from.
-- Write each wrong option as a misconception a real learner holds, in the same length, tone and hedging as the best option. No joke options, no absolute-word tells (“every”, “always”, “certainly”, “prove”) that only the wrong options use, and a best answer that is neither the longest nor the only hedged one.
-- Keep the best option to one claim. Do not join two claims with “and” unless both are the point.
+- Each option is a short, plain answer to the question, in the learner's words: “They sent their own officials to run it.” Not a hedged claim: “Both places had Akkadian connections, but the evidence points to different or uncertain arrangements.”
+- Put the whole question in the stem, so a learner knows what is asked before reading the options ([Haladyna, Downing and Rodriguez's item-writing review](https://cpl.health.unm.edu/AssetListing/Writing-Questions-for-Learning-and-Assessment-2573/Rules-for-Multiple-Choice-Items-Haladyna-et-al-2002-5943)). Three options are enough; use four only when a fourth real misunderstanding exists. No “all of the above” or “none of the above”.
+- Each wrong option is a mistake a real kid could make after reading the lesson quickly, or a popular myth the lesson corrects (“Slaves captured in war built the pyramids”), written as confidently and at about the same length as the right one: a plain sentence of roughly 6–14 words, with no “but…” clause. No joke options.
+- No tells: the right answer is not the longest, the only hedged one, or the only one without “every”, “always”, “never” or “all”. Do not hedge the right answer when the lesson states it plainly. When it is uncertain, put the hedge in the question (“What do the excavators think…?”). When “nobody knows yet” is itself the right idea, make it a plain option of its own rather than hedging every option.
+- Keep the right answer to one idea. Do not join two claims with “and” unless both are the point.
+- Every option has `feedback` and the prompt has a `hint`. Name the right option in `bestOptionId`.
 
-Test each prompt by answering:
+### Hints, feedback and explanations
 
-- Could a learner succeed through reasoning from this lesson rather than outside trivia?
-- Would a wrong answer reveal a useful misconception?
-- Does the feedback teach something rather than merely announce correctness?
-- Read on its own, does any wrong option's feedback give away the answer?
-- Read the question as a 12-year-old: what is it asking me to do? If the answer takes more than one sentence, rewrite it.
-- Count the questions. If the prompt asks for more than one thing, split it into separate prompts.
-- For a written prompt, write a two-sentence answer using only the lesson's own words. If you cannot, the lesson does not teach what the prompt asks, or the prompt asks it too abstractly.
-- For a selection prompt, cover the stem: could someone who skipped the lesson pick the answer from the options alone (the longest, the only hedged one, the only one without an absolute word)? If so, rewrite the options.
+These are read by the same 12-year-old and follow the same plain-words rules.
+
+- **Hint:** the first step, said simply and pointing at a named place in the lesson: “Look back at the ovens at Leilan. What had to happen every single day?”. A written prompt's hint may give a sentence starter: “Start with ‘The people at Leilan had to…’”. Never the answer; never a reasoning instruction such as “Ask what each find shows at its own place before you compare”.
+- **Wrong-option feedback:** one or two sentences that send the learner back to a named section with one plain question to look for. It does not reveal the answer. “Reread ‘Governing at Tell Leilan.’ Who was directing the farm work there, a local ruler or someone sent by Akkad?”.
+- **Right-option feedback:** one sentence saying why it is right, in the lesson's words.
+- **Explanation:** shown after the right pick, and to the parent on Review as “What a strong answer covers”. Write it for a parent who did not read the lesson closely: the plain answer and the one or two details from the lesson that a good answer would use. Mention a limit only if a good answer genuinely depends on it.
+
+### Other prompt rules
+
+- A written prompt requires a sincere attempt, not perfection. A multiple-choice prompt is done once the learner picks the best option, so its hint and feedback must help them get there.
+- Use stable prompt and option IDs. Once published, a prompt ID stands for its question, and changing it is a [prompt revision](prompt-revision-runbook.md).
+- Avoid dependence on an unimportant date, name or vocabulary trick. The learner should succeed by understanding the lesson, not by remembering trivia or knowing things from outside it.
+- Keep failure calm, specific and recoverable. Never use lives, timers, streak threats, score spectacle or punitive repetition.
+- Do not pretend a minimum character count grades historical sophistication.
+- Exclude learner free text from general analytics.
+
+### Check each prompt before the kid read
+
+Answer these yourself, then let the Stage 14C kid read confirm them:
+
+- Say out loud, in one sentence, what the question asks the learner to do. Would a 12-year-old say the same thing after one read? If you need two sentences, rewrite it.
+- Circle every word that is not in the lesson or in everyday speech. Replace each one.
+- Circle every category label (clue, find, evidence, example, source, pattern). Replace each one with the thing's name, unless the lesson called that exact thing by that word.
+- Does the question say what the learner is trying to figure out? Could they ask back “a clue to what?” or “show what about what?”.
+- Count the question marks and the tasks. One of each.
+- For a written prompt, write a two-sentence answer a 12-year-old would write, using only the lesson's words. If you cannot, the lesson does not teach it, or the question asks it too abstractly.
+- For a multiple-choice prompt, cover the question: could someone who skipped the lesson pick the right answer from the options alone (the longest, the only hedged one, the only one without an absolute word)? If so, rewrite the options.
+- Read each wrong option's feedback on its own. Does it give the answer away? Does it tell the learner where to look and what to look for?
+- Would a wrong answer reveal a real misunderstanding, and does its feedback fix it?
+
+| Instead of | Ask |
+| --- | --- |
+| Which conclusion best fits the whole pattern of evidence at Giza? | Merer's diary says his boat crew hauled limestone to Khufu's pyramid. Why does his diary help us know who built the pyramid? |
+| At Leilan… At Urkesh… What is the strongest conclusion? | Akkad sent its own officials to run Leilan. At Urkesh, archaeologists found an Akkadian princess's seal on a door in the local king's palace. What do the excavators think Akkad did at Urkesh instead? |
+| Choose Tell Leilan or Urkesh. (1) Name one thing archaeologists found there. (2) Say what it shows about how Akkad kept hold of the city after the fighting. | Winning a battle took one day. Why was keeping a city like Leilan so much harder? Write one or two sentences. |
+| (1) Choose one clue from the Osirion, Hawara or the stone vessels, and say what it might mean. (2) What would you look for next to check your idea? | Scans found a hidden corridor inside the Great Pyramid, and nobody knows how old it is. How could researchers find out? Write one or two sentences. |
+| Choose one region… (1) Name one crop… (2) What is one question… researchers are still trying to answer? | The first farmers in Southwest Asia grew wheat. The first farmers in New Guinea grew bananas and taro. How do those crops show that the New Guinea farmers worked out farming for themselves? |
+| Hint: Think about what people would have to keep doing after the soldiers left, or what tie a find shows between the city and Akkad. | Hint: Look back at the ovens at Leilan. What had to happen every single day? |
 
 ## Stage 13 — Author journey framing and connections
 
@@ -793,7 +855,8 @@ Before production implementation, make the note readable by someone who did not 
 - section/component storyboard;
 - media and card rationale, rights, provenance, and visual briefs;
 - a top-level image lifecycle section with visible reference-versus-final comparisons and exact prompts for every accepted image;
-- prompt rationale;
+- the kid's question, kid's answer and prompt rationale;
+- the Stage 14C kid read reports and what changed;
 - age 11–15 transformations;
 - reviewer names/statuses or explicit pending gates;
 - unresolved questions and the safe publication behavior they require.
@@ -816,18 +879,42 @@ The prototype must:
 
 Run `npm run lesson:gate -- --lesson <lesson-id> --note <path> --gate prototype` when the command is available. Open the exact lesson with `npm run lesson:preview -- --lesson <lesson-id>` and review desktop/mobile and light/dark presentation. A missing command is an implementation blocker for this production-system version; do not silently replace the real-shell review with screenshots of another renderer.
 
+## Stage 14C — Kid read (a fresh reader tries the lesson cold)
+
+Run this after Stage 14A and before Stage 14B. (It is lettered C so existing stage numbers stay stable.) The author cannot judge whether their own words are clear: they already know what they meant, and words such as “clue”, “the evidence” or “the arrangement” feel obvious from inside the research. A reader who has never seen the research is the only fair test.
+
+1. **Start a separate agent** (a subagent or a new session) that has not seen the research note, this runbook, the conversation or the lesson source file. Give it only what the learner sees, in page order: section headings, body text, item text, captions and labels, then each check with its options and hint. Do not include IDs, `purpose`, alt text, feedback or explanations.
+2. **Brief it with exactly this:**
+
+   > You are a bright, curious 12-year-old who knows almost nothing about this topic. Read this history lesson once, from top to bottom, the way you would at home. Then:
+   > 1. For each question at the end, before you answer it, say in your own words what it is asking you to do and what kind of answer it wants.
+   > 2. Answer it the way a 12-year-old would, in one or two sentences. For a multiple-choice question, say which option you pick and why.
+   > 3. List every word, phrase or sentence in the lesson or the questions that you would stumble on, have to read twice, or not understand. Say why. Be especially picky about the questions: flag any word that refers to something you would have to guess at (for example “the clue”, “this find”, “the evidence”, “the connection”: which one? a clue to what?).
+   > 4. In two or three sentences, tell a friend what the lesson was about.
+   > 5. Name the part you would still remember next week, and the part that felt boring or confusing.
+   > Be blunt. Confusing writing is the writer's fault, not yours.
+3. **Score it against Stage 6A:**
+   - (1) must match what each check intends. If the reader misreads the task, the question fails, however correct its words.
+   - (2) must reach the right option, or a sincere answer on target, using only the lesson.
+   - (4) must roughly match the kid's answer. If it is mostly about what the evidence cannot show, or misses the main thing that happened, the lesson fails [Historical significance and proportion](#historical-significance-and-proportion).
+   - Every flag on a check, hint or option is fixed. Flags in the prose are fixed, or kept with a written reason.
+4. **Test the feedback.** Give a fresh reader the lesson, one question and one wrong option's feedback, and ask: what is this telling you to do next? It must send them to a place in the lesson with something specific to look for, without giving the answer.
+5. **Repeat** with a new fresh reader on everything you changed until (1), (2) and (4) pass. Record the first and final reports verbatim, and what you changed, in the research note under `## Kid read`.
+
+The kid read is a proxy for clarity, not evidence that the lesson suits children. Never describe it as a child test or as age-fit evidence (Stage 17). A real learner's confusion reported by the owner outranks it and is a reason to revise.
+
 ## Stage 14B — Check the prototype and request owner approval
 
-Before involving the owner, check the rendered prototype yourself against the questions below. Record each finding in the research note as `pass`, `revise`, `blocking` or `not applicable`, with evidence from the page. Return to Stage 14A for every `blocking` finding before the handoff. Do not total points or let a strength offset a blocking weakness. This is the only quality review; it is not repeated later.
+Before involving the owner, check the rendered prototype yourself against the questions below, using the Stage 14C kid read as evidence for Prompt fit, Cognitive load and Story. Record each finding in the research note as `pass`, `revise`, `blocking` or `not applicable`, with evidence from the page. Return to Stage 14A for every `blocking` finding before the handoff. Do not total points or let a strength offset a blocking weakness. This is the only quality review; it is not repeated later.
 
 **Learner experience**
 
-- **Mental model:** can the learner state the essential question and durable understanding in plain words? Does every section contribute, with no causal step hidden in metadata, alt text or feedback?
+- **Mental model:** did the Stage 14C reader's retelling match the kid's answer (Stage 6A)? Can the learner state the essential question and durable understanding in plain words? Does every section contribute, with no causal step hidden in metadata, alt text or feedback?
 - **Cumulative learning:** are Retrieve, Extend and Revisit real, and does the reasoning progression build from observation toward qualified explanation?
 - **Momentum:** does the opening create a problem worth following, and does each section answer or complicate the last? Does the ending resolve the question without pretending history is finished or inevitable?
 - **Cognitive load:** only indispensable vocabulary, defined where needed; one teaching job per section; no overloaded sentences, date piles, unexplained names or rapid place changes at real layout sizes.
 - **Headings:** plain words a skimming 12-year-old understands. A metaphor, riddle or punchline heading is `revise` or `blocking`.
-- **Prompt fit:** can a 12-year-old tell what each prompt asks after one read? Exactly one question per prompt, split into separate prompts when more is needed, in very clear everyday words and the lesson's own terms, posed positively (a limit asked as an open question, never “name one thing it does not tell us”), with the evidence in the stem; a hint and feedback on every selection option; no wording tells in the options (Stage 12).
+- **Prompt fit:** did the Stage 14C reader say what each prompt asks, correctly, after one read? Each prompt is one real question (not “which conclusion/statement is best supported”), asked positively in the lesson's own everyday words, naming the actual thing rather than a label such as “a clue” or “the evidence”, and saying what the learner is trying to figure out. Written prompts show the answer's size and a sentence starter. Every option has feedback, the prompt has a plain hint, and the options show no wording tells (Stage 12). Is each check the kid's question (Stage 6A) or a step toward it?
 - **Evidence reasoning:** a concrete source, object, map or comparison to reason from; observation, inference, reconstruction and uncertainty distinguished at the point of use; prompts answerable from the lesson; feedback explains support and limits. Recurring labels stay plain: “Surviving evidence”, “What you can see”, “Who did the work”, “What we can know”.
 - **Proportionality:** emphasis and certainty match the evidence; no monocausal, deterministic or civilization-ranking story; people have specificity and agency; sensitive material is truthful and proportionate.
 - **Visual value:** every visual answers a named learner question at its exact position and has an accessible equivalent. Maps anchor the subject to recognizable wider geography at embedded size.

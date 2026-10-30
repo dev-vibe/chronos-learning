@@ -8,6 +8,8 @@ Use this runbook for any request to revise a published lesson: “Revise the Akk
 
 Stop and tell the owner instead if the lesson needs a change to the essential question, durable understanding, central claims or their certainty, section order or teaching jobs, a prompt's teaching job, adding or removing a prompt, completion rules, the card's subject or adding or removing a card, the teaching job of an existing image, or journey position. Those are material revisions and follow the creation runbook. Do not fold one into a revision.
 
+Two prompt changes are not material, so a revision makes them: splitting a two-part prompt into one question (dropping the less important part if a split would pass three required prompts), and refocusing a prompt that quizzes an evidence limit (“what is one question researchers are still trying to answer?”, “what can this not prove?”) onto the lesson's kid's question (creation runbook Stage 6A). Name both in the owner packet.
+
 ## Invocation
 
 A request such as “Revise the Akkad lesson” or “Revise the next old lesson” is a complete instruction.
@@ -18,21 +20,27 @@ A request such as “Revise the Akkad lesson” or “Revise the next old lesson
 
 ## Read
 
-- The creation runbook's **Chronos in brief**, **Non-negotiable product rules**, **Stage 7** (especially **Voice and storytelling**), the heading rules in **Stage 8**, the learner-facing labels in **Stage 9**, the card-art rule in **Stage 11**, **Stage 12** (prompts) and the review questions in **Stage 14B**.
+- The creation runbook's **Chronos in brief**, **Non-negotiable product rules**, **Stage 6A** (the kid's question), **Stage 7** (especially **Voice and storytelling**), the heading rules in **Stage 8**, the learner-facing labels in **Stage 9**, the card-art rule in **Stage 11**, **Stage 12** (prompts), **Stage 14C** (kid read) and the review questions in **Stage 14B**.
 - The lesson module `content/lessons/<slug>.ts` (and `<slug>-media.ts` if present), including its prompts and card.
 - The lesson's research note, especially the claim ledger (`later-tradition` claims), the content triage's Enrichment, Deferred and Rejected items, the source ledger, the image lifecycle captions and the card facts. Colorful material cut from the first version usually lives there.
 
 ## Step 1 — Audit the lesson and choose the work
 
-Add a `## Voice revision` section to the research note (the heading stays for every revision so “the next one” keeps working) and start it with a short audit of three parts.
+Add a `## Voice revision` section to the research note (the heading stays for every revision so “the next one” keeps working).
 
-**Telling.** For each section, write one line naming what reads flat: runs of short same-length sentences, hedging repeated in every sentence, moralizing asides, an announced question instead of an opening moment, a summary ending, a general sentence where a specific detail exists, or methods jargon. For the whole lesson, record the current story spine (or `none`), the current memorable moments (or `none`), and whether the opening and ending land.
+**First, write the kid's question and kid's answer** under creation runbook Stage 6A, with the research note closed, if the note does not already have a `## Kid's question` section. This restates the existing essential question and durable understanding in a kid's words; it does not change what the lesson teaches. If you cannot write a kid's answer that is about what happened (not about what the evidence cannot show), say so to the owner: the lesson may need a material revision.
 
-**Prompts.** For each prompt, against Stage 12 and the story the lesson will tell: does it check its part of the durable understanding using the lesson's own evidence, or is it generic? Does every multiple-choice prompt have a `bestOptionId`, a hint and feedback on every option, and does every wrong option's feedback hint without giving the answer away? Then apply the Stage 12 age-fit checks: can a 12-year-old say what the question asks after one read; is it one or two plain tasks in the lesson's own words; is the evidence in the stem; do the options show wording tells (the longest best answer, absolute words only in the wrong ones, a joke option, a double-barreled best answer)? For a written prompt, can you write a two-sentence answer using only the lesson's words? Record one verdict per prompt:
+**Then run a cold kid read of the lesson as it stands** (Stage 14C, steps 1–3). Its report is the most useful part of the audit: it shows which words and questions a reader stumbles on.
+
+Then audit three parts.
+
+**Telling.** For each section, write one line naming what reads flat or confusing: runs of short same-length sentences, hedging repeated in every sentence, moralizing asides, an announced question instead of an opening moment, a summary ending, a general sentence where a specific detail exists, methods jargon, research-note words, abstract nouns hiding who did what (arrangement, connection, tie, role), refutations of ideas the learner never had (“This does not mean…”, “X, not Y”), or a reminder of what is unknown at the end of every section. Add every prose flag from the kid read. For the whole lesson, record the current story spine (or `none`), the current memorable moments (or `none`), and whether the opening and ending land.
+
+**Prompts.** For each prompt, against Stage 12, the kid's question and the kid read: did the reader say correctly what it asks after one read? Is it one real question (not “which conclusion/statement is best supported”, no numbered parts), asked positively in the lesson's everyday words, naming the actual thing instead of a label (“a clue”, “this find”, “the evidence”), and saying what the learner is trying to figure out? Does it check part of the kid's answer, or quiz an evidence limit? Does every multiple-choice prompt have a `bestOptionId`, a plain hint and feedback on every option, with no wording tells in the options (the longest or only hedged best answer, absolute words only in the wrong ones, a joke option, a double-barreled best answer)? Are the hint, feedback and explanation in plain words too? For a written prompt, does it show the answer's size and a sentence starter, and can you write a two-sentence 12-year-old answer using only the lesson's words? Record one verdict per prompt:
 
 - `keep`;
 - `text` (explanation, feedback, hint or option order only, same ID: fix it in Step 3; adding a missing hint or missing option feedback is `text`);
-- `replace` (question, options, best answer or answer logic, including a question that fails the age-fit checks: follow the [prompt revision runbook](prompt-revision-runbook.md) in this PR).
+- `replace` (question, options, best answer or answer logic, including a question that fails any of the checks above: follow the [prompt revision runbook](prompt-revision-runbook.md) in this PR).
 
 **Card.** Does the card still match the revised lesson? Are its facts, reveal text and art (Stage 11: the lesson's most striking image of the subject) as good as the lesson now allows? Record `keep` or `refresh` and what would change.
 
@@ -82,7 +90,7 @@ Replacing or removing an existing image is still a material revision; report the
 
 **Headings** stay unless they break the Stage 8 heading rules; in that case, rename in plain words and keep the section ID.
 
-**The “What we can know” box** is optional. Keep it where four parallel items are the clearest form. Otherwise, state the limit once in prose. If you remove the module, search `tests/` for its module ID and never remove a prompt module.
+**The “What we can know” box** is optional. Keep it where four parallel items are the clearest form, with each item rewritten as a plain positive statement (creation runbook Stage 8, item 7). Otherwise, state what is still unknown once in prose, as a real open question. If you remove the module, search `tests/` for its module ID and never remove a prompt module.
 
 **Length** has no fixed limit; a flat lesson may need to grow and a padded one to shrink. The story replaces flat text; it does not pile on top of it. Keep a sentence only if it carries the story or the teaching, and keep the lesson one focused sitting rather than a chapter (Stage 7 pacing heuristics; Stage 14B Cognitive load). Record the before and after word counts in the research note so the owner can see the change.
 
@@ -90,10 +98,11 @@ Replacing or removing an existing image is still a material revision; report the
 
 ## Step 4 — Check
 
-1. Re-run the Stage 14B review questions on the changed sections, focusing on Story, Evidence reasoning, Proportionality, Cognitive load and Headings, plus Visual value and Rights, media and accessibility for any image you added. Re-read every prompt against the revised text: each option, best answer and piece of feedback must still be supported by the lesson. Record the findings in the `## Voice revision` section. Fix anything `blocking`.
-2. Run `npm run validate:content` and `npm run test:domain`. If a test pins old text that you changed on purpose, update that expectation in the same PR. Never edit a test to hide an ID or behavior change.
-3. Do not run lesson gates (they apply to drafts) or write a migration (prose and media are not stored in the database). CI runs the full suite and build.
-4. If you added images, publish each approved asset to Storage and verify it (`npm run media:publish -- --asset <id>`, then `npm run media:verify:remote -- --asset <id>`) before merge. These need the trusted storage credentials; if the session does not have them, give the owner the two commands in the handoff. Until the objects are published, the app shows the committed rollback copy.
+1. Run the Stage 14C kid read on the revised lesson with a fresh reader (not the one from the audit), including every new or changed prompt and the feedback test, and repeat until it passes. Record the final report under `## Voice revision`.
+2. Re-run the Stage 14B review questions on the changed sections, focusing on Story, Evidence reasoning, Proportionality, Cognitive load and Headings, plus Visual value and Rights, media and accessibility for any image you added. Re-read every prompt against the revised text: each option, best answer and piece of feedback must still be supported by the lesson. Record the findings in the `## Voice revision` section. Fix anything `blocking`.
+3. Run `npm run validate:content` and `npm run test:domain`. If a test pins old text that you changed on purpose, update that expectation in the same PR. Never edit a test to hide an ID or behavior change.
+4. Do not run lesson gates (they apply to drafts) or write a migration (prose and media are not stored in the database). CI runs the full suite and build.
+5. If you added images, publish each approved asset to Storage and verify it (`npm run media:publish -- --asset <id>`, then `npm run media:verify:remote -- --asset <id>`) before merge. These need the trusted storage credentials; if the session does not have them, give the owner the two commands in the handoff. Until the objects are published, the app shows the committed rollback copy.
 
 ## Step 5 — Owner review (the only touchpoint)
 
@@ -105,6 +114,8 @@ Push, open the PR, and let CI run. Once the branch preview deploys, send the own
 - any claims or sources you added, one line each;
 - any images you added, with their source, license and where they appear;
 - anything you left out because the evidence was too thin;
+- the kid's question and kid's answer;
+- the kid read: what the first reader stumbled on, and how the final reader restated and answered each question;
 - the audit verdict for each prompt and the card, one line each;
 - for each replaced prompt, the prompt revision runbook's owner-check items;
 - if the card changed, its old and new art, facts and reveal text.
