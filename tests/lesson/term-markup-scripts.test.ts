@@ -14,7 +14,7 @@ describe('scripts that read lesson text', () => {
   it('kid read prints plain text plus the panel and the word boxes', () => {
     const out = run('scripts/lesson/kid-read-text.ts', ['--lesson', 'lesson.mesopotamia.akkadian-empire']);
     expect(out).not.toMatch(/\[\[|\]\]/);
-    expect(out).toContain('Sargon, king of Akkad, wanted everyone to know');
+    expect(out).toContain('was king of Akkad, a kingdom in what is now Iraq');
     expect(out).toContain('## People, places and words');
     expect(out).toMatch(/- stele \(Word\): A tall stone slab/);
   }, 60_000);

@@ -59,7 +59,7 @@ describe('lesson term validation', () => {
   it('allows at most eight featured terms, each with a gloss', () => {
     const { bundle, terms } = fixture();
     terms.forEach((term) => { term.featured = true; term.gloss ??= 'A short gloss'; });
-    expect(errorsOf(bundle)).toMatch(/13 featured terms; the top panel shows at most 8/);
+    expect(errorsOf(bundle)).toMatch(new RegExp(`${terms.length} featured terms; the top panel shows at most 8`));
     const second = fixture();
     const unfeatured = second.terms.find((term) => !term.featured)!;
     unfeatured.featured = true;
