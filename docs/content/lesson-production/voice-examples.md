@@ -22,7 +22,7 @@ Most pairs come from the Akkad revision of November 2026, after a homeschooling 
 >
 > About a thousand years later, another king, from a land to the east, used the same stone to boast about himself. …
 >
-> This is winning as the stone shows it: one great moment, with the king on top. The ovens at Leilan show the other half: the everyday work of keeping a city.
+> The stone shows a king winning a battle. The ovens at Leilan show the work of keeping a city, every single day.
 
 What changed: the opening needed the reader to remember an earlier section and decode a metaphor; the point was stated as a correction; “makes the point sharper” never said how; dates and find spots that served nothing moved to the caption; the first line says why the section is here and the last line ties it back to the lesson's question.
 
@@ -87,7 +87,7 @@ What changed: the dig story is vivid, and kid readers remembered it, but a paren
 | Holding Leilan was daily work, done by many hands. | Keeping Leilan took work every day from many people. |
 | One of his boasts, written down by his scribes, says… (and “boast” seven more times) | His scribes wrote that… / Sargon’s records… (a loaded word repeated until it reads as a judgment of the man; we cannot know his motives, so the lesson describes what the records say and notes once that they are his side of the story) |
 | Keeping it took people on the spot… | Keeping it took people from Akkad living in the city… |
-| The ovens at Leilan tell the other half of the story. | The ovens at Leilan show the other half: the everyday work of keeping a city. |
+| The ovens at Leilan tell the other half of the story. / This is winning as the stone shows it. | The stone shows a king winning a battle. The ovens at Leilan show the work of keeping a city, every single day. |
 
 ## Say the plain thing
 
