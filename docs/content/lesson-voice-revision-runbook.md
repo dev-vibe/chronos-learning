@@ -69,7 +69,7 @@ Every new fact the learner will read needs a claim with kind, certainty and a re
 
 ## Step 3 — Rewrite
 
-**What may change:** prose `body` text; `knowledge` body and item text; evidence and scene captions and hotspot text; prompt explanation, option feedback and hint text, and option order; journey transition and bridge text; the card's reveal text, facts (accurate and sourced) and art; and new images, each with the module that carries it (see **Add images** below).
+**What may change:** prose `body` text; `knowledge` body and item text; evidence and scene captions and hotspot text; prompt explanation, option feedback and hint text, and option order; journey transition and bridge text; the lesson's `terms` (add, remove or reword terms and their `[[ ]]` marks; keep existing term IDs, follow the term rules in Stage 9 of the [creation runbook](lesson-creation-runbook.md#lesson-terms), and cite every definition); the card's reveal text, facts (accurate and sourced) and art; and new images, each with the module that carries it (see **Add images** below).
 
 **What stays:**
 

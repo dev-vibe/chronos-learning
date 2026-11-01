@@ -6,6 +6,7 @@
 //   npm run lesson:check-questions -- --all                  (report only)
 import { chronosContent } from '../../content/chronos';
 import type { UnderstandingPrompt } from '../../src/domains/contracts';
+import { stripTermMarkup } from '../../src/domains/lessonTerms';
 import { argumentValue, hasFlag } from './arguments';
 
 type Rule = { pattern: RegExp; why: string };
@@ -30,26 +31,29 @@ const words = (text: string) => text.split(/\s+/).filter(Boolean).length;
 
 function checkPrompt(prompt: UnderstandingPrompt): string[] {
   const flags: string[] = [];
-  const scan = (where: string, text: string, rules: Rule[]) => {
+  // Term markup is not allowed in prompts (validate:content rejects it), but never let it skew a check.
+  const scan = (where: string, raw: string, rules: Rule[]) => {
+    const text = stripTermMarkup(raw);
     for (const rule of rules) {
       const match = text.match(rule.pattern);
       if (match) flags.push(`${where}: “${match[0]}” — ${rule.why}`);
     }
   };
-  scan('question', prompt.question, [...wordRules, ...questionRules]);
-  const questionMarks = (prompt.question.match(/\?/g) ?? []).length;
+  const question = stripTermMarkup(prompt.question);
+  scan('question', question, [...wordRules, ...questionRules]);
+  const questionMarks = (question.match(/\?/g) ?? []).length;
   if (questionMarks !== 1) flags.push(`question: ${questionMarks} question marks — ask exactly one question`);
-  const asked = sentences(prompt.question).filter((sentence) => sentence.includes('?')).at(-1);
+  const asked = sentences(question).filter((sentence) => sentence.includes('?')).at(-1);
   if (asked && words(asked) > 20) flags.push(`question: the question sentence has ${words(asked)} words — keep it to about 20`);
-  if (words(prompt.question) > 45) flags.push(`question: ${words(prompt.question)} words including background — keep it to about 40`);
+  if (words(question) > 45) flags.push(`question: ${words(question)} words including background — keep it to about 40`);
   if (prompt.hint) scan('hint', prompt.hint, wordRules);
   else flags.push('hint: missing');
   if (prompt.kind === 'supported-selection') {
     prompt.options.forEach((option, index) => {
       const name = `option ${String.fromCharCode(65 + index)}`;
       scan(name, option.label, wordRules);
-      if (words(option.label) > 16) flags.push(`${name}: ${words(option.label)} words — keep options short and plain`);
-      if (/\bbut\b/i.test(option.label)) flags.push(`${name}: “but” clause — one plain idea per option`);
+      if (words(stripTermMarkup(option.label)) > 16) flags.push(`${name}: ${words(stripTermMarkup(option.label))} words — keep options short and plain`);
+      if (/\bbut\b/i.test(stripTermMarkup(option.label))) flags.push(`${name}: “but” clause — one plain idea per option`);
       if (option.feedback) scan(`${name} feedback`, option.feedback, wordRules);
       else flags.push(`${name} feedback: missing`);
     });

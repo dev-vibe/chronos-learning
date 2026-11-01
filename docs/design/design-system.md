@@ -87,6 +87,16 @@ Artifacts and maps can enlarge in an accessible viewer with keyboard/touch contr
 
 Learner copy gives a warm next action. Keep internal terms such as “deterministic,” “reviewed path” and character thresholds out of ordinary instructions. Provenance remains inspectable in secondary surfaces.
 
+### Lesson terms
+
+Terms move “what is this?” explanations out of the reading line while keeping them one tap away. Authoring rules live in [Stage 9 of the creation runbook](../content/lesson-creation-runbook.md#lesson-terms).
+
+- **In-text term.** A dotted teal underline in the reading text's own font and color; hover and open states turn it solid with a faint teal wash. No bright highlight, icon or badge. Only the first marked occurrence in each section is a term, so a reader who jumps into a section still finds it without the page filling with underlines. Each term is a native button with an invisible hit area of at least 44px that does not change line height.
+- **Definition box.** One small box at a time: kind label (Person, People, Place, Word, Object) as a teal eyebrow, the label in the editorial serif, the definition in sans, and a 44px close button. It is anchored to the term with a small pointer, below it when there is room and above it otherwise, and stays clear of the sticky mobile header and tab bar, so it never covers the term. The same popover is used at every width; at 390px it is the full reading width (340px max). A bottom sheet was rejected because it can cover the term and takes the reader out of the line they were reading.
+- **Opening it.** Tap, click, Enter or Space opens it and moves focus into it (`role="dialog"`, non-modal, labelled by the term and described by the definition). Escape or the close button closes it and returns focus to the term; tapping elsewhere closes it. On devices that hover (`(hover: hover)`), resting on a term for about a third of a second shows the same box as a preview without moving focus; hover is never the only way in. Reduced motion removes the fade.
+- **People, places and words panel.** Directly below Time and place, in the same quiet bordered surface. It lists only featured terms (at most 8), grouped People, Places, Words, each as label plus a one-line gloss, so it reads as an index rather than a game element. Each item scrolls to its section (smoothly unless reduced motion is set) and moves focus to the section heading. It is a disclosure: open by default on wider screens, collapsed by default at 700px and below so the first section is not pushed far down. Nothing is remembered; reopening a lesson still starts at the top.
+- Lessons without terms render exactly as before: no panel, no marks.
+
 ## Home, discovery and adult support
 
 Continue dominates Home with chapter context; an authored retrieval opportunity may connect earlier learning to what comes next. Completion states what was studied and previews the next lesson concretely. Knowledge Cards may offer optional recall and useful connections without review pressure.

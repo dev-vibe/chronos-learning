@@ -147,6 +147,13 @@ How we know, in one line: <the one piece of detective work the lesson tells>
 Heading voice: each learner-facing heading names the subject or job in ordinary words. Fail metaphors, riddles, and punchlines. If the heading needs explaining, rewrite it.
 Recurring type labels: evidence chrome **Surviving evidence**; close-read knowledge **What you can see**; labor/institution knowledge **Who did the work**; source-limit knowledge **What we can know**.
 
+## Terms
+
+Optional. Rules: [creation runbook Stage 9, Lesson terms](../lesson-creation-runbook.md#lesson-terms). At most 8 featured; every definition cites claims and sources the lesson registers.
+
+| Term ID | Label (aliases) | Kind | Definition (≤ 30 words, two sentences) | Gloss (featured only, ≤ 10 words) | Featured | Primary section | Claims/sources | Marked in sections |
+| --- | --- | --- | --- | --- | --- | --- | --- | --- |
+
 ## Media decisions
 
 | Intention ID | Section ID | Teaching question | Form | Evidence/claim basis | Depiction label | Accessible equivalent | Stage 14A treatment | Final review |
