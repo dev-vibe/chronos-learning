@@ -564,7 +564,7 @@ Avoid: line or procession formation, crowd, close figure, detailed caveman appea
 
 Standard: 2026-11-01
 
-Runbook: `docs/content/lesson-voice-revision-runbook.md` (point-first sections, lesson terms, name budget, hook-and-question opening, targeted passes). Branch: `revise/homo-sapiens-origins`. Started 2026-11-01. Status: **awaiting owner review** (PR: pending). The 2026-09-24 revision below was done under an older standard; it stays as the record of that pass.
+Runbook: `docs/content/lesson-voice-revision-runbook.md` (point-first sections, lesson terms, name budget, hook-and-question opening, targeted passes). Branch: `revise/homo-sapiens-origins`. Started 2026-11-01. Status: **awaiting owner review** (PR: https://github.com/dev-vibe/chronos-learning/pull/97). The 2026-09-24 revision below was done under an older standard; it stays as the record of that pass.
 
 Why this lesson: the first lesson in World History journey order whose research note has no `Standard: 2026-11-01` line. Only the Akkad note has one; this note has a `## Voice revision` section from 2026-09-24 without it.
 
