@@ -141,9 +141,10 @@ How we know, in one line: <the one piece of detective work the lesson tells>
 
 ## Section/component storyboard
 
-| Order | Section ID | Learner-facing heading | Authoring purpose (not shown) | Claims/sources | Module | Media/action | Transition |
-| --- | --- | --- | --- | --- | --- | --- | --- |
+| Order | Section ID | Learner-facing heading | Point (one sentence a kid could repeat) | Authoring purpose (not shown) | Claims/sources | Module | Media/action | Transition |
+| --- | --- | --- | --- | --- | --- | --- | --- | --- |
 
+Point: each section's point is written before its prose and checked by the kid read; see [Point-first sections](../lesson-creation-runbook.md#point-first-sections). Purpose is written positively, never “then name its limits”.
 Heading voice: each learner-facing heading names the subject or job in ordinary words. Fail metaphors, riddles, and punchlines. If the heading needs explaining, rewrite it.
 Recurring type labels: evidence chrome **Surviving evidence**; close-read knowledge **What you can see**; labor/institution knowledge **Who did the work**; source-limit knowledge **What we can know**.
 
@@ -283,8 +284,8 @@ Deterministic prototype gate: pass | fail
 Reader: <fresh agent/session/model; confirm it saw only `lesson:kid-read` output>
 `lesson:check-questions`: <no flags | flags kept, with reasons>
 
-| Round | Restatements match intent, with “yes”? | Answers on target? | Retelling matches kid's answer? | Flags | Fixes made |
-| --- | --- | --- | --- | --- | --- |
+| Round | Restatements match intent, with “yes”? | Answers on target? | Section points match? | Retelling matches kid's answer? | Flags | Fixes made |
+| --- | --- | --- | --- | --- | --- | --- |
 
 First round's question restatements (word for word):
 

@@ -472,11 +472,11 @@ Accuracy is the floor, not the goal. A lesson that is correct but flat does not 
 Story tools (use the ones the evidence supports):
 
 - **Open on a moment.** Start with a person doing something, an object being found, or a puzzle, at a specific time and place. Zoom out to the system once the learner cares.
-- **Follow someone or something.** Where the evidence allows, carry one person, object or place through the lesson so the sections feel like chapters rather than topics.
+- **Follow someone or something.** Where the evidence allows, carry one person, object or place through the lesson so the sections feel like chapters rather than topics. A callback adds colour, but each section still orients on its own (see **Point-first sections**).
 - **Give people wants and stakes.** Say what rulers, workers, families or traders were trying to do, and what could go wrong for them.
 - **Tell the stories people told.** Legends, boasts, curses, complaints and later retellings are strong material when labeled as what they are (“Later Mesopotamians told a story that…”). The gap between the legend and the evidence is often the best part of the lesson.
 - **Show the detective work.** How something was found, misread, dated or reinterpreted is a story. Uncertainty can be the hook (“Nobody can read this script yet”) rather than a disclaimer.
-- **Use the surprising true detail.** A number, a scale comparison, a sensory detail from the object, a short translated quote. One sharp specific beats three general sentences.
+- **Use the surprising true detail.** A number, a scale comparison, a sensory detail from the object, a short translated quote. One sharp specific beats three general sentences, and it must serve the section's point: a pile of true details buries it.
 - **Land the ending.** Close with a callback to the opening or a real open question, not a summary of the headings.
 
 Voice rules:
@@ -484,16 +484,30 @@ Voice rules:
 - Vary sentence length. A run of short declarative sentences reads like a list; let a longer sentence carry the story forward.
 - State uncertainty once, clearly, where it matters, then keep going. Do not hedge every sentence.
 - Let the history make the moral point. Do not add asides telling the learner how to feel about it.
-- Use humor only when it comes from the history itself, such as a real complaint letter or a boast that backfired. No invented jokes, slang, pop-culture references, exclamation marks, or “Imagine you are…” openings used as filler.
+- Use humor only when it comes from the history itself, such as a real complaint letter or a boast that backfired. No invented jokes, slang, pop-culture references, exclamation marks, or “Imagine you are…” openings used as filler. Speaking to the reader to direct their attention (“Look at the king’s helmet”) is welcome; it is not an invented scene.
 - Never talk down. Write for a curious, intelligent reader who lacks background, not ability.
 - Never invent dialogue, thoughts, feelings or scenes and present them as fact. A reconstructed scene must be labeled and built from evidence.
 - Say what happened, not what didn't. Do not refute ideas the learner never had: “This does not mean…”, “It was a message, not a battle report”, “It does not show that Urkesh was run the way Leilan was”. A run of these turns a story into a list of corrections. Correct a misconception only when it is one kids really hold (named in the blueprint), once, at the point where it would form.
 - Use verbs and people, not abstract nouns. “Akkad sent its own officials to run Leilan” beats “Leilan shows an Akkadian administrative installation”. Words such as arrangement, connection, tie, relationship, presence, role, practice, nature, significance and framework usually hide who did what to whom. Rewrite the sentence around the people and the action.
-- Every name earns its place. Name a person, place or people only when the story needs it or the learner will meet it again, give each a plain clause saying what it is, and avoid piles of new names in one sentence or section. Use one name for one thing; when two are needed (Agade the city, Akkad the kingdom), say once how they relate.
+- Every name earns its place. Name a person, place or people only when the story needs it or the learner will meet it again, give each a plain clause saying what it is, and avoid piles of new names in one sentence or section. A name the story needs only once can live in a caption or term definition instead. Use one name for one thing; when two are needed (Agade the city, Akkad the kingdom), say once how they relate.
 - Never assume the learner did an earlier lesson. A callback re-says the one fact it needs (“In Nubia, the kingdom of Kerma traded with Egypt without being ruled by it”), not “At Kerma you saw…”.
-- Explain an everyday-unfamiliar word the first time it appears (inscription, stele, cylinder seal), in the same sentence, or use a plainer word.
+- Explain an everyday-unfamiliar word the first time it appears (inscription, stele, cylinder seal), in the same sentence, or use a plainer word, when the section's point depends on it. Otherwise a term definition can carry it (see **Words and names** under Point-first sections).
 - Leave the research note's words in the research note. Scholarly terms (administration, state formation, attested, polity, ideology, material culture, installation, uniform) appear only when the lesson needs the idea, explained in plain words the first time.
 - Tell the detective work once, as a story: who found what, and how they worked it out. Then go back to the history. Do not end every section with a reminder of what is still unknown; say what is unknown once, where it matters, as a real open question.
+
+### Point-first sections
+
+A vivid section can still leave the learner unsure what it was for. Before drafting a section, write its **point**: one sentence a kid could repeat, recorded in the storyboard's Point column (Stage 8). For the Akkad victory stele: “Naram-Sin had himself carved like a god so everyone would see him as more than a man, and the message was so strong that a later king stole the stone to boast about himself.” Then check the section against this shape:
+
+1. **Orient first.** Within the first sentence or two, the reader knows what this section is about. Point to the image if there is one (“Look closely at the carving below”), or name the person, place or thing and why it matters here. Do not make the reader remember someone from an earlier section, or decode a metaphor, to find their footing (“Tar’am-Agade’s father told his own story in stone”).
+2. **Describe** what can be seen or what happened, concretely.
+3. **State the point** plainly and positively, close to the point sentence. Do not leave it for the reader to infer from a clever line, and do not state it as a correction (“The stele is a message, not a battle report”).
+4. **Make each paragraph's link to the point visible.** Usually the content does this on its own. When a reader could wonder why a paragraph is there, make the connection explicit, in whatever way reads naturally. Do not open paragraphs the same way. A sentence that announces a link (“The stone’s later life makes the point sharper”) delivers it in the next sentence, or goes.
+5. **Keep details that serve the point.** A date, find spot, size or discovery fact stays in the text only if it carries the point. Otherwise it belongs in the image caption, a term definition (Stage 9) or the Knowledge Card, or nowhere.
+
+This is a shape to check against, not a template. Do not open every section with “Look closely”; a section built on a story moment can open on the moment, as long as the reader knows within a sentence or two what they are looking at.
+
+**Words and names: in the sentence or in a term.** Lesson terms let a learner tap a word for its definition, but many learners will not tap. The lesson must read correctly with no definition opened. A word or name the section's point depends on gets a plain explanation in the sentence where it first appears (“a stele, a tall carved stone”), and may also be a term. A word or name the point does not depend on (a find spot, a second king, the year of an excavation) can rely on its term definition or caption, or be cut.
 
 ### Practical reading and pacing heuristics
 
@@ -536,8 +550,8 @@ Do this before writing final prose or sourcing decorative images.
 
 Create a table:
 
-| Order | Stable section ID | Learner-facing heading | Authoring purpose (not shown) | Key claim(s) | Module(s) | Evidence/media | Transition |
-| --- | --- | --- | --- | --- | --- | --- | --- |
+| Order | Stable section ID | Learner-facing heading | Point (one sentence a kid could repeat) | Authoring purpose (not shown) | Key claim(s) | Module(s) | Evidence/media | Transition |
+| --- | --- | --- | --- | --- | --- | --- | --- | --- |
 
 Heading rules:
 
@@ -562,7 +576,7 @@ Do not:
 - compress a thesis into a clever verb phrase;
 - put an analogy in the heading.
 
-Authoring `purpose` stays imperative and internal (“Supply the species category…”). Never publish that voice as on-page chrome. If the section is a single `knowledge` or `prose` module, do not invent a second grabber title for the module. Claim IDs, section IDs, and durable-understanding sentences follow the same voice.
+Authoring `purpose` stays imperative and internal (“Supply the species category…”). Never publish that voice as on-page chrome. Write it positively, as what the learner comes away understanding. Do not end a purpose with “then name its limits” or “qualify the claim”: that steers the prose into a list of what the evidence cannot show. If the section is a single `knowledge` or `prose` module, do not invent a second grabber title for the module. Claim IDs, section IDs, and durable-understanding sentences follow the same voice.
 
 Each section must perform a distinct job. A common pattern is:
 
@@ -918,21 +932,23 @@ Run this after Stage 14A and before Stage 14B. (It is lettered C so existing sta
 1. **Start a separate agent** (a subagent, a new session, or another model) that has not seen the research note, this runbook, the conversation or the lesson source file. If no separate agent is available, say so in the owner packet; do not run the kid read yourself and call it independent. Give the reader only what the learner sees: run `npm run lesson:kid-read -- --lesson <lesson-id>` and save the output to a file outside the repository for it to open. The output leaves out IDs, `purpose`, alt text, feedback and explanations, and prints each question's choices and hint at the end, because in the app the hint stays hidden until the learner opens it.
 2. **Brief it with exactly this:**
 
-   > You are a 12-year-old doing this history lesson because you were told to. You are not a big reader and you know almost nothing about the topic. Read the lesson once, from top to bottom, without going back. Then:
+   > You are a 12-year-old doing this history lesson because you were told to. You are not a big reader and you know almost nothing about the topic. Read the lesson once, from top to bottom, without going back. The word definitions printed at the end are what you would see if you tapped a highlighted word; read the lesson without them first. Then:
    > 1. For each question, before you look at its choices or its hint, say in your own words what it is asking you to do. Then say whether you would know what to write: yes, sort of, or no.
    > 2. Now look at the choices and the hint, and answer the way a 12-year-old would, in one or two sentences. For a multiple-choice question, say which choice you pick and why.
-   > 3. List every word, phrase or sentence in the lesson or the questions that you would stumble on, have to read twice, or not understand, and say why. Be especially picky about the questions: flag any word that points at something you would have to guess (which one? a clue to what?).
-   > 4. In two or three sentences, tell a friend what the lesson was about.
-   > 5. Name the part you would still remember next week, and the part that felt boring or confusing.
+   > 3. List every word, phrase or sentence in the lesson or the questions that you would stumble on, have to read twice, or not understand, and say why. Mark any word you would have needed to tap to follow what was going on. Be especially picky about the questions: flag any word that points at something you would have to guess (which one? a clue to what?).
+   > 4. For each section heading, say in one sentence the main thing that section wanted you to understand. If you can't tell, say so.
+   > 5. In two or three sentences, tell a friend what the lesson was about.
+   > 6. Name the part you would still remember next week, and the part that felt boring or confusing.
    > Be blunt. Confusing writing is the writer's fault, not yours.
 3. **Score it against Stage 6A:**
    - (1) must match what each check intends, with “yes, I'd know what to write”. If the reader misreads the task or says “sort of” or “no”, the question fails, however correct its words.
    - (2) must reach the right choice, or a sincere answer on target, using only the lesson. A capable model often reaches the right answer even through a bad question, so a right answer alone proves little: weigh (1) and the flags in (3) more heavily.
-   - (4) must roughly match the kid's answer. If it is mostly about what the evidence cannot show, or misses the main thing that happened, the lesson fails [Historical significance and proportion](#historical-significance-and-proportion).
-   - Every flag on a question, hint, choice or feedback is fixed. Flags in the prose are fixed, or kept with a written reason.
+   - (4) must roughly match each section's Point (Stage 8). A section whose point the reader cannot say, or says wrongly, is revised (see **Point-first sections**).
+   - (5) must roughly match the kid's answer. If it is mostly about what the evidence cannot show, or misses the main thing that happened, the lesson fails [Historical significance and proportion](#historical-significance-and-proportion).
+   - Every flag on a question, hint, choice or feedback is fixed. Flags in the prose are fixed, or kept with a written reason. A word the reader needed to tap to follow a section's point gets a plain explanation in the sentence.
 4. **Test the feedback** in one more run: give a fresh reader `npm run lesson:kid-read -- --lesson <lesson-id> --feedback` and ask, for each wrong choice's feedback, what it tells them to do next. Each must send them to a place in the lesson with something specific to look for, without giving the answer.
-5. **Repeat** with a new fresh reader on what you changed until (1), (2) and (4) pass, for at most three rounds. If something still fails after three, tell the owner in the packet instead of looping.
-6. **Record** in the research note's `Kid read` block (see the template): the reader's restatement and yes/sort of/no for each question, its retelling, its flags, and what you changed. Keep the first report's question restatements word for word; summarize the rest.
+5. **Repeat** with a new fresh reader on what you changed until (1), (2), (4) and (5) pass, for at most three rounds. If something still fails after three, tell the owner in the packet instead of looping.
+6. **Record** in the research note's `Kid read` block (see the template): the reader's restatement and yes/sort of/no for each question, its section points, its retelling, its flags, and what you changed. Keep the first report's question restatements word for word; summarize the rest.
 7. **Re-run it** on any prompt whose wording changes later: after owner feedback at touchpoint 2, during Stage 15, or in a correction.
 
 The kid read is a proxy for clarity, not evidence that the lesson suits children. Never describe it as a child test or as age-fit evidence (Stage 17). A real learner's confusion reported by the owner outranks it and is a reason to revise.
@@ -944,6 +960,7 @@ Before involving the owner, check the rendered prototype yourself against the qu
 **Learner experience**
 
 - **Mental model:** did the Stage 14C reader's retelling match the kid's answer (Stage 6A)? Can the learner state the essential question and durable understanding in plain words? Does every section contribute, with no causal step hidden in metadata, alt text or feedback?
+- **Section points:** does each section orient within its first sentence or two, state its point plainly and positively, and keep only details that serve it? Did the Stage 14C reader say each point back? Does every word a point depends on get a plain explanation in the text, not only in a term definition?
 - **Cumulative learning:** are Retrieve, Extend and Revisit real, and does the reasoning progression build from noticing toward explaining why?
 - **Momentum:** does the opening create a problem worth following, and does each section answer or complicate the last? Does the ending resolve the question without pretending history is finished or inevitable?
 - **Cognitive load:** only indispensable vocabulary, defined where needed; one teaching job per section; no overloaded sentences, date piles, unexplained names or rapid place changes at real layout sizes.
