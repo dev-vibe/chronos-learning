@@ -1,3 +1,4 @@
+-- Applied migration version: 20261101214240.
 -- A submission can carry the learner's "guess before reading".
 --
 -- Some lessons ask an ungraded question near the top that the learner answers
