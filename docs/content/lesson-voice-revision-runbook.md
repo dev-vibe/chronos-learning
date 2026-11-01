@@ -23,7 +23,7 @@ A request such as “Revise the Akkad lesson” or “Revise the next old lesson
 2. Revise the lesson the owner names. For “the next one”, take the first lesson in `content/journeys/world-history.ts` order whose research note has no `## Voice revision` section recording the current revision standard (below).
 3. One lesson per branch and PR, and one owner check covering everything the PR changes. There is no Linear issue and no queue change; the research note and the PR are the record.
 
-**Current revision standard: 2026-11-01 (point-first sections and lesson terms).** Every revision writes `Standard: <date>` as the first line of its `## Voice revision` section. When the voice, prompt or card rules change enough that earlier revisions fall short, the PR that changes them bumps this date, and lessons revised under an older standard (or with no `Standard:` line) become eligible for “the next one” again, in journey order. A lesson revised under an older standard keeps its old `## Voice revision` section; the new revision adds another above it.
+**Current revision standard: 2026-11-01 (point-first sections, lesson terms, name budget, targeted passes).** Every revision writes `Standard: <date>` as the first line of its `## Voice revision` section. When the voice, prompt or card rules change enough that earlier revisions fall short, the PR that changes them bumps this date, and lessons revised under an older standard (or with no `Standard:` line) become eligible for “the next one” again, in journey order. A lesson revised under an older standard keeps its old `## Voice revision` section; the new revision adds another above it.
 
 ## Read
 
@@ -39,7 +39,7 @@ Add a `## Voice revision` section to the research note (the heading stays for ev
 
 **Next, write each section's point** (creation runbook, [Point-first sections](lesson-creation-runbook.md#point-first-sections)): one sentence a kid could repeat, restating what the section already teaches. This does not change the section's teaching job.
 
-**Then run a cold kid read of the lesson as it stands** (Stage 14C, steps 1–3), and run `npm run lesson:check-questions -- --lesson <lesson-id>`. Its report is the most useful part of the audit: it shows which words and questions a reader stumbles on.
+**Then run the targeted passes and a cold kid read of the lesson as it stands** (creation runbook Stage 14D, then Stage 14C steps 1–3), and run `npm run lesson:check-questions -- --lesson <lesson-id>`. Their reports are the most useful part of the audit: it shows which words and questions a reader stumbles on.
 
 Then audit three parts.
 
@@ -107,7 +107,7 @@ Replacing or removing an existing image is still a material revision; report the
 
 ## Step 4 — Check
 
-1. Run `npm run lesson:check-questions -- --lesson <lesson-id>` and the Stage 14C kid read on the revised lesson with a fresh reader (not the one from the audit), including the feedback test, and repeat until it passes. This one read covers every replaced prompt. Record it under `## Voice revision`.
+1. Run the Stage 14D targeted passes on the revised lesson with fresh readers and fix what they find. Then run `npm run lesson:check-questions -- --lesson <lesson-id>` and the Stage 14C kid read on the revised lesson with a fresh reader (not the one from the audit), including the feedback test, and repeat until it passes. This one read covers every replaced prompt. Record it under `## Voice revision`.
 2. Re-run the Stage 14B review questions on the changed sections, focusing on Section points, Prompt fit, Story, Evidence reasoning, Proportionality, Cognitive load and Headings, plus Visual value and Rights, media and accessibility for any image you added. Re-read every prompt against the revised text: each option, best answer and piece of feedback must still be supported by the lesson. Record the findings in the `## Voice revision` section. Fix anything `blocking`.
 3. Run `npm run validate:content` and `npm run test:domain`. If a test pins old text that you changed on purpose, update that expectation in the same PR. Never edit a test to hide an ID or behavior change.
 4. Do not run lesson gates (they apply to drafts) or write a migration (prose and media are not stored in the database). CI runs the full suite and build.

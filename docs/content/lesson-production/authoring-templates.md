@@ -279,6 +279,15 @@ Deterministic prototype gate: pass | fail
 | Intention ID | Section ID | Annotation shown | Review state | Disposition |
 | --- | --- | --- | --- | --- |
 
+### Targeted passes (Stage 14D)
+
+| Pass | Reader | Flags | Fixes made or reason kept |
+| --- | --- | --- | --- |
+| Names | | | |
+| Points and details | | | |
+| Plain words | | | |
+| Questions | | | |
+
 ### Kid read (Stage 14C)
 
 Reader: <fresh agent/session/model; confirm it saw only `lesson:kid-read` output>
