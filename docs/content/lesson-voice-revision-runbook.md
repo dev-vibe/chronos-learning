@@ -20,8 +20,10 @@ Name each one in the owner packet.
 A request such as “Revise the Akkad lesson” or “Revise the next old lesson” is a complete instruction.
 
 1. Fetch `dev-vibe/chronos-learning` and create a branch from the latest `main` named `revise/<lesson-slug>`.
-2. Revise the lesson the owner names. For “the next one”, take the first lesson in `content/journeys/world-history.ts` order whose research note has no `## Voice revision` section.
+2. Revise the lesson the owner names. For “the next one”, take the first lesson in `content/journeys/world-history.ts` order whose research note has no `## Voice revision` section recording the current revision standard (below).
 3. One lesson per branch and PR, and one owner check covering everything the PR changes. There is no Linear issue and no queue change; the research note and the PR are the record.
+
+**Current revision standard: 2026-11-01 (point-first sections and lesson terms).** Every revision writes `Standard: <date>` as the first line of its `## Voice revision` section. When the voice, prompt or card rules change enough that earlier revisions fall short, the PR that changes them bumps this date, and lessons revised under an older standard (or with no `Standard:` line) become eligible for “the next one” again, in journey order. A lesson revised under an older standard keeps its old `## Voice revision` section; the new revision adds another above it.
 
 ## Read
 
@@ -35,11 +37,13 @@ Add a `## Voice revision` section to the research note (the heading stays for ev
 
 **First, write the kid's question and kid's answer** under creation runbook Stage 6A (plain words first, then check them against the claim ledger), if the note does not already have a `## Kid's question` section. This restates the existing essential question and durable understanding in a kid's words; it does not change what the lesson teaches. If you cannot write a kid's answer that is about what happened (not about what the evidence cannot show), say so to the owner: the lesson may need a material revision.
 
+**Next, write each section's point** (creation runbook, [Point-first sections](lesson-creation-runbook.md#point-first-sections)): one sentence a kid could repeat, restating what the section already teaches. This does not change the section's teaching job.
+
 **Then run a cold kid read of the lesson as it stands** (Stage 14C, steps 1–3), and run `npm run lesson:check-questions -- --lesson <lesson-id>`. Its report is the most useful part of the audit: it shows which words and questions a reader stumbles on.
 
 Then audit three parts.
 
-**Telling.** For each section, write one line naming what reads flat or confusing: runs of short same-length sentences, hedging repeated in every sentence, moralizing asides, an announced question instead of an opening moment, a summary ending, a general sentence where a specific detail exists, methods jargon, research-note words, abstract nouns hiding who did what (arrangement, connection, tie, role), refutations of ideas the learner never had (“This does not mean…”, “X, not Y”), or a reminder of what is unknown at the end of every section. Add every prose flag from the kid read. For the whole lesson, record the current story spine (or `none`), the current memorable moments (or `none`), and whether the opening and ending land.
+**Telling.** For each section, write one line naming what reads flat or confusing: runs of short same-length sentences, hedging repeated in every sentence, moralizing asides, an announced question instead of an opening moment, a summary ending, a general sentence where a specific detail exists, methods jargon, research-note words, abstract nouns hiding who did what (arrangement, connection, tie, role), refutations of ideas the learner never had (“This does not mean…”, “X, not Y”), or a reminder of what is unknown at the end of every section. Check each section against its point: no clear point, or one left implied or stated as a correction; an opening that leans on an earlier section or a metaphor; a paragraph whose link to the point is unclear; details that do not serve the point; a word the point depends on that the text leaves to a term definition. Add every prose flag from the kid read. For the whole lesson, record the current story spine (or `none`), the current memorable moments (or `none`), and whether the opening and ending land.
 
 **Prompts.** For each prompt, against Stage 12, the kid's question and the kid read: did the reader say correctly what it asks after one read? Is it one real question (not “which conclusion/statement is best supported”, no numbered parts), asked positively in the lesson's everyday words, naming the actual thing instead of a label (“a clue”, “this find”, “the evidence”), and saying what the learner is trying to figure out? Does it check part of the kid's answer, or quiz an evidence limit? Does every multiple-choice prompt have a `bestOptionId`, a plain hint and feedback on every option, with no wording tells in the options (the longest or only hedged best answer, absolute words only in the wrong ones, a joke option, a double-barreled best answer)? Are the hint, feedback and explanation in plain words too? For a written prompt, does it show the answer's size and a sentence starter, and can you write a two-sentence 12-year-old answer using only the lesson's words? Record one verdict per prompt:
 
@@ -69,7 +73,7 @@ Every new fact the learner will read needs a claim with kind, certainty and a re
 
 ## Step 3 — Rewrite
 
-**What may change:** prose `body` text; `knowledge` body and item text; evidence and scene captions and hotspot text; prompt explanation, option feedback and hint text, and option order; journey transition and bridge text; the lesson's `terms` (add, remove or reword terms and their `[[ ]]` marks; keep existing term IDs, follow the term rules in Stage 9 of the [creation runbook](lesson-creation-runbook.md#lesson-terms), and cite every definition); the card's reveal text, facts (accurate and sourced) and art; and new images, each with the module that carries it (see **Add images** below).
+**What may change:** prose `body` text; `knowledge` body and item text; evidence and scene captions and hotspot text; prompt explanation, option feedback and hint text, and option order; journey transition and bridge text; a section's `purpose` wording, when it steers the prose toward limits (“then name its limits”), rewritten positively with the same teaching job; the lesson's `terms` (add, remove or reword terms and their `[[ ]]` marks; keep existing term IDs, follow the term rules in Stage 9 of the [creation runbook](lesson-creation-runbook.md#lesson-terms), and cite every definition); the card's reveal text, facts (accurate and sourced) and art; and new images, each with the module that carries it (see **Add images** below).
 
 **What stays:**
 
@@ -104,7 +108,7 @@ Replacing or removing an existing image is still a material revision; report the
 ## Step 4 — Check
 
 1. Run `npm run lesson:check-questions -- --lesson <lesson-id>` and the Stage 14C kid read on the revised lesson with a fresh reader (not the one from the audit), including the feedback test, and repeat until it passes. This one read covers every replaced prompt. Record it under `## Voice revision`.
-2. Re-run the Stage 14B review questions on the changed sections, focusing on Prompt fit, Story, Evidence reasoning, Proportionality, Cognitive load and Headings, plus Visual value and Rights, media and accessibility for any image you added. Re-read every prompt against the revised text: each option, best answer and piece of feedback must still be supported by the lesson. Record the findings in the `## Voice revision` section. Fix anything `blocking`.
+2. Re-run the Stage 14B review questions on the changed sections, focusing on Section points, Prompt fit, Story, Evidence reasoning, Proportionality, Cognitive load and Headings, plus Visual value and Rights, media and accessibility for any image you added. Re-read every prompt against the revised text: each option, best answer and piece of feedback must still be supported by the lesson. Record the findings in the `## Voice revision` section. Fix anything `blocking`.
 3. Run `npm run validate:content` and `npm run test:domain`. If a test pins old text that you changed on purpose, update that expectation in the same PR. Never edit a test to hide an ID or behavior change.
 4. Do not run lesson gates (they apply to drafts) or write a migration (prose and media are not stored in the database). CI runs the full suite and build.
 5. If you added images, publish each approved asset to Storage and verify it (`npm run media:publish -- --asset <id>`, then `npm run media:verify:remote -- --asset <id>`) before merge. These need the trusted storage credentials; if the session does not have them, give the owner the two commands in the handoff. Until the objects are published, the app shows the committed rollback copy.
@@ -129,4 +133,4 @@ The owner reads the lesson on the preview. If they ask for changes, revise and s
 
 ## Step 6 — Finish in the same PR
 
-After the owner approves, make the PR's final commit: complete the `## Voice revision` section with the date, PR link, story spine, memorable moments, added claims and images, prompt and card changes, and the owner's approval. Merge when CI is green. Merging puts the revision live. There is no post-merge check and no follow-up PR.
+After the owner approves, make the PR's final commit: complete the `## Voice revision` section with the standard, the date, PR link, story spine, memorable moments, added claims and images, prompt and card changes, and the owner's approval. Merge when CI is green. Merging puts the revision live. There is no post-merge check and no follow-up PR.
