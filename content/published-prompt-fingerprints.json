@@ -3,7 +3,8 @@
   "prompts": {
     "prompt.akkad.evidence-of-rule": {
       "lessonId": "lesson.mesopotamia.akkadian-empire",
-      "fingerprint": "b21ae067d56c1f3efb6019d5a5b3311af7edc96c88d36ec965f5f09a628e5145"
+      "fingerprint": "b21ae067d56c1f3efb6019d5a5b3311af7edc96c88d36ec965f5f09a628e5145",
+      "retired": true
     },
     "prompt.akkad.holding-power": {
       "lessonId": "lesson.mesopotamia.akkadian-empire",
@@ -12,7 +13,16 @@
     },
     "prompt.akkad.local-arrangements": {
       "lessonId": "lesson.mesopotamia.akkadian-empire",
-      "fingerprint": "8613e6e0940c938a9b9eb62b5bc8362c810b7d3de43b29a0a8a37e39a22ae39e"
+      "fingerprint": "8613e6e0940c938a9b9eb62b5bc8362c810b7d3de43b29a0a8a37e39a22ae39e",
+      "retired": true
+    },
+    "prompt.akkad.official-or-princess": {
+      "lessonId": "lesson.mesopotamia.akkadian-empire",
+      "fingerprint": "ca774b7a93b7f9b49ae801e5fd52ef56504d0090471311fb4301ce2b588e5673"
+    },
+    "prompt.akkad.urkesh-difference": {
+      "lessonId": "lesson.mesopotamia.akkadian-empire",
+      "fingerprint": "8dcabeca424a499d6a7967730a46f6b5f41222fbe87d913a71ed7a7d0d8042de"
     },
     "prompt.animals.ganj-dareh-bones": {
       "lessonId": "lesson.animals.domestication-and-pastoralism",

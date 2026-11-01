@@ -82,8 +82,8 @@ export const learningConnectionsByLessonId: Record<string, LearningConnection> =
     reasoningSkill: 'Distinguish evidence of local production from evidence that an object moved between communities.',
   },
   'lesson.mesopotamia.akkadian-empire': {
-    retrieve: { lessonId: 'lesson.nubia.kerma-and-nile-world', prompt: 'Why does an object from another kingdom not, by itself, prove political rule?' },
-    extend: 'Compare a ruler’s victories and image with traces of administration and royal ties at two northern cities.',
+    retrieve: { lessonId: 'lesson.nubia.kerma-and-nile-world', prompt: 'In Nubia, the kingdom of Kerma traded with Egypt without being ruled by it. What do you think one kingdom has to do to rule another?' },
+    extend: 'Follow Akkad’s kings from their boasts to two northern cities, Leilan and Urkesh, to see what it took to stay in charge after a victory.',
     reasoningSkill: 'Test a royal claim against place-specific evidence and qualify what kind of political connection it supports.',
   },
   'lesson.mesopotamia.law-and-kingship': {

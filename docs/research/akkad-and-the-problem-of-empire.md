@@ -105,6 +105,7 @@ The source IDs below are research handles; registered lesson sources use `source
 | `source.akkad.smarthistory-stele` — [Harris and Zucker, Smarthistory, Victory Stele of Naram-Sin](https://smarthistory.org/victory-stele-of-naram-sin/) | Voice revision, 2026-09-23; transcript passages on the horned helmet, the Lullubi figures and Shutruk-Nahhunte | Art-historical explanation that the horned helmet signals divinity; describes enemies falling, fleeing and lying beneath the king; dates the Elamite removal to the twelfth century BCE, about a thousand years after the stele was made. Interpretive support alongside the Louvre record. | Open page; no image or video reuse. |
 | `source.akkad.curse-etcsl` — [ETCSL t.2.1.5, The cursing of Agade](https://etcsl.orinst.ox.ac.uk/section2/tr215.htm) | Voice revision, 2026-09-23; lines 100–175 and 272–281 | Later Sumerian poem: Naram-Sin attacks Enlil’s temple, Enlil brings the Gutians, the city is cursed, grass grows long on its canal towpaths, and the poem closes by praising Inana for Agade’s destruction. Later tradition, not an account of events. | Open scholarly translation; brief paraphrase only. |
 | `source.akkad.curse-cdli` — [CDLI Literary 000375 composite P469679](https://cdli.earth/artifacts/469679) | Voice revision, 2026-09-23; record metadata | Dates the poem’s surviving witnesses to the Old Babylonian period (c. 1900–1600 BCE), from Nippur and other sites; primary publication Cooper 1983. Establishes that the poem is centuries later than Naram-Sin. | Open record. |
+| `source.akkad.urkesh-door-sealing` — [Urkesh door sealing record, K01 I0046](https://urkesh.org/mz/a/K01/d/I/0046.htm) | Voice revision, 2026-11-01; object record (object sealed: door; reverse: flat face, two rope strands, peg impression) | How a palace door was sealed at Urkesh: clay over a rope wound around a peg. Does not identify this sealing as Tar’am-Agade’s. | Excavators' public record; citation only |
 
 ## Recent-challenge audit — Stages 3A–3B
 
@@ -192,6 +193,7 @@ Packet shared: [Akkad owner decision card and supporting packet](https://github.
 | `claim.akkad.horned-helmet` — in Akkadian art a horned helmet was a sign of divinity. | interpretation | high | `source.akkad.smarthistory-stele` | Art-historical reading; the Louvre record names the horned tiara but does not interpret it. | — | One clause. | Voice revision, close-reviewed 2026-09-23. |
 | `claim.akkad.stele-booty` — in the twelfth century BCE Shutruk-Nahhunte of Elam took the stele from Sippar to Susa as war booty and had an inscription carved on its mountain saying so; excavators found it at Susa in 1898. | observation | high | `source.akkad.louvre-stele`, `source.akkad.smarthistory-stele` | — | — | The stele’s second life. | Voice revision, close-reviewed 2026-09-23. |
 | `claim.akkad.curse-of-agade` — the Curse of Agade, known from Old Babylonian copies centuries after Naram-Sin, blames Agade’s ruin on his attack on Enlil’s temple and describes grass growing on the city’s towpaths. | later-tradition | high | `source.akkad.curse-etcsl`, `source.akkad.curse-cdli` | Literary explanation, not evidence of cause. | — | Labeled later tradition in the ending. | Voice revision, close-reviewed 2026-09-23. |
+| `claim.akkad.door-sealing` — door sealings from the Urkesh palace were lumps of clay pressed against the door over a rope wound around a peg, with a seal rolled across the clay. | observation | high | `source.akkad.urkesh-door-sealing` |
 
 ## Central claim support
 
@@ -442,6 +444,131 @@ Reviewer identifier: **Adult proxy 1**, a neutral alias for the independent adul
 - **Technical validation:** implementation and release gates passed while the lesson was draft. After the authored status flip and removal of a forward learning-connection link to unpublished Bronze Age Exchange Networks, content validation and all 63 domain tests passed on 2026-09-23.
 - **Publication:** complete. The generated migration `20260923185357_publish_akkadian_empire.sql` and database test `016_akkadian_empire.sql` are versioned cutover outputs. The first prepare command exposed a lesson-ID constant lookup defect; the fixed command successfully flipped status and unregistered the prototype review. The Supabase connector's database calls timed out, but the existing authenticated CLI reached the linked Chronos project. Its read-back showed no Akkad publication row or migration record, then the committed SQL was applied through `supabase db query --file`. Read-back confirmed one published lesson, one journey entry, enabled completion and two required prompts; `supabase migration repair --status applied 20260923185357` recorded the applied migration. The rollback-only database test exited successfully and reached assertion 16. After Carlin explicitly approved using the CLI release credential for this upload, the canonical publisher uploaded all three approved assets: three private source objects and six public delivery objects. A separate `--verify-only` run matched all nine remote checksums. The credential was used only in a temporary shell process and was neither displayed nor saved. Carlin reported the hosted lesson check passed and explicitly approved merging [PR #49](https://github.com/dev-vibe/chronos-learning/pull/49). It squash-merged at `ae6799a5ff0dd7ddc85680b527bd7988de9def66`. Vercel production deployment `dpl_2YsJBvtiUux3CWXDjZnxVaj1jBNu` is READY at that exact commit, with alias `chronos-learning.vercel.app` and no alias error. No agent visual check of the hosted or production lesson was performed. The queue moves to `Complete` after merge and deployment verification.
 
+## Kid's question
+
+- **The kid's question:** Once Akkad's kings won a city, how did they stay in charge of it?
+- **The kid's answer:** Akkad's kings won lots of battles, but staying in charge of a city was much harder. At Leilan they put their own official in charge and fed the workers from big ovens every day. At Urkesh it worked differently: the city kept its own rulers, and a princess from Akkad used her seal in their palace, maybe as the king's wife.
+- **How we know, in one line:** clay sealings and ovens dug up at Leilan and Urkesh show what the kings' boasts leave out.
+- **Draft checks:** `prompt.akkad.urkesh-difference` (multiple choice: what was different at Urkesh, checking the third sentence) and `prompt.akkad.staying-in-charge` (written: why staying in charge of Leilan was more work, checking the first two). Both are in the 2026-11-01 entry under `## Prompt revision`.
+
+Checked against the claim ledger: `winning-and-governing`, `leilan-official`, `barley-ration`, `leilan-administration`, `urkesh-find`, `taram-sealings`, `urkesh-relationship` (“maybe as the king's wife” keeps the excavators' reading a reading).
+
+## Voice revision
+
+Standard: 2026-11-01
+
+Runbook: `docs/content/lesson-voice-revision-runbook.md` (point-first sections, lesson terms). Branch: `revise/akkad-and-empire`. Started 2026-11-01. Status: **approved and merged 2026-11-01** ([PR #94](https://github.com/dev-vibe/chronos-learning/pull/94)). The 2026-09-23 revision below was done under an older standard; it stays as the record of that pass.
+
+### Section points
+
+| Section | Point (one sentence a kid could repeat) |
+| --- | --- |
+| `section.akkad.place-and-question` | Sargon bragged that his power reached far, but winning cities was the easy part; staying in charge of them was the real problem, and even his capital, Agade, has never been found. |
+| `section.akkad.conquest-claims` | Sargon's boasts are what he wanted people to remember, and even his bread boast points at the daily work of feeding people. |
+| `section.akkad.leilan-administration` | At Leilan, staying in charge meant an Akkadian official running the city and feeding its workers every single day. |
+| `section.akkad.urkesh-ties` | At Urkesh it worked differently: the city kept its own rulers, and a princess from Akkad used her seal inside their palace. |
+| `section.akkad.naram-sin-stele` | Naram-Sin had himself carved like a god so everyone would see his win, and a thousand years later another king carried the stone off to boast about himself; a stone like this shows the winning, not the daily work of staying in charge. |
+| `section.akkad.regional-change` | Akkad's power fell apart, probably in different ways in different places; nobody knows exactly why, and a later poem blamed Naram-Sin. |
+| `section.akkad.understanding` | (the two checks) |
+
+### Audit of the published version
+
+`npm run lesson:check-questions` flagged both prompts (12 and 5 flags: “strongest”, “administrative”, “connection”, “evidence”, “but” clause; “not”, numbered parts, no question mark, “tie”). Audit kid read below.
+
+| Section | Flags |
+| --- | --- |
+| `place-and-question` | Name pile (Meluhha, Magan, Dilmun, Indus, Oman, Bahrain in one sentence); “quay”, “inscriptions” and “securely found” unexplained; Akkad vs Agade never said once; “At Kerma you saw…” assumes an earlier lesson and refutes an idea; abstract nouns (“center”, “communities”, “working relationships”); map caption a negative claim about what a claim “could not show”. |
+| `conquest-claims` | Opens on how the text survives (“no single stone with its original setting”), a detail that does not serve the point; “Upper Sea to the Lower Sea” unexplained; “governorships” before its explanation; ends with “X, not Y”. |
+| `leilan-administration` | Point left implied (“you see why rulers needed a building like this”); research words (“administrative building”, “administrative texts”); “sealings” and “sila” unexplained; ends on what the finds do not name. |
+| `urkesh-ties` | Orients late (what Urkesh is comes in paragraph two); “Hurrian” with no explanation; two refutations (“not just mentioned somewhere else”; “It does not show that Urkesh was run the way Leilan was”, a runbook example of what not to write); “alliance”, “administrator”; second section ending on who left no names. |
+| `naram-sin-stele` | Opens on a callback and metaphor (“Tar’am-Agade’s father told his own story in stone”); point stated as a correction (“a message, not a battle report”); announced link that never delivers (“makes the point sharper”); trailing details that serve nothing (Sippar, 1898, lost inscription); name pile (Lullubi, Elamite, Shutruk-Nahhunte, Susa, Sippar); purpose “then name its limits”; evidence caption asks a negative question (“What can it not tell you…?”) and names Shutruk-Nahhunte before the text does. |
+| `regional-change` | Heading does not say what the section is about (kid reader); hedge in every sentence of the drought paragraph, “does not show”; “basalt”, “towpaths”; “later tradition… not what caused it”; ending is a list of everything. |
+| `understanding` | Both prompts `replace` (below). |
+
+Whole lesson: story spine (Agade, the capital nobody has found) and memorable moments from the last revision still work; the kid reader remembered the last-day seal find, the stolen stele and the lost capital. Opening lands; ending was a summary.
+
+**Prompts.** `prompt.akkad.local-arrangements`: `replace` (exam stem, research words, hedged best answer that won by being longest; the reader picked it by elimination). `prompt.akkad.evidence-of-rule`: `replace` (split candidate with numbered parts and “Choose…”; replaced by one question instead of two, keeping the lesson at two required prompts).
+
+**Card.** The lesson has no Knowledge Card; adding one is a material revision, so `keep` (none). A card for Tar’am-Agade's seal or the stele would be a natural future addition.
+
+### Changes
+
+- Prose, knowledge text, evidence and map captions, artifact labels, prompt text, terms and the journey bridge (`content/learning-connections.ts`: the Kerma retrieve question was negative and assumed the earlier lesson; the extend line used research words) rewritten. Every section, module, claim, source and media ID is unchanged; section order and teaching jobs are unchanged.
+- Heading `section.akkad.regional-change`: “Changes in different regions” → “How Akkad’s power ended” (failed the heading test in the kid read).
+- Purposes rewritten positively: `naram-sin-stele` (was “…then name its limits”) and `regional-change` (was “…without a uniform collapse or monocausal drought story”).
+- The stele section rebuilt point-first: orient on the image, describe, state the message plainly, then the stone's later life as the same boast reused. Sippar, Susa, 1898, the Louvre and the height moved to the image caption.
+- Both prompts replaced (see `## Prompt revision`).
+- Terms: Urkesh gloss and definition no longer use “Hurrian”. No term added or removed; all IDs kept.
+- One claim and one source added after owner review: `claim.akkad.door-sealing` (`source.akkad.urkesh-door-sealing`, the excavators' record of an Urkesh door sealing with rope and peg impressions), to explain how a door was sealed. Every other new sentence restates an existing claim (`empire-term`, `northern-sites`, `stele-term`, `lullubi` and `susa-location` are now cited by the modules that use them). Invented phrases (“What they say is loud”, “The stone kept boasting”) replaced with plain wording at the owner's request.
+- Reading length (learner-facing sections, `lesson:kid-read`): 1,481 → 1,421 words.
+
+### Left out
+
+- Explaining “Tell” in Tell Leilan (a mound of earlier towns): the reader stumbled on it, but no registered claim covers it; worth a claim and a term in a later pass.
+- Meluhha, Magan, Dilmun: dropped from the text; the modern places carry the point.
+- Hurrian: dropped from the text and term; the point is only that Urkesh kept its own rulers.
+
+### Kid read
+
+Reader: three fresh general-purpose subagents, each given only `lesson:kid-read` output (no research note, runbook, source or conversation); round 1 read the published lesson (audit), rounds 2 and 3 the revision. `lesson:check-questions`: 17 flags before, none after.
+
+| Round | Restatements match intent, with “yes”? | Answers on target? | Section points match? | Retelling matches kid's answer? | Flags | Fixes made |
+| --- | --- | --- | --- | --- | --- | --- |
+| 1 (published) | Q1 sort of (“strongest how?”); Q2 yes/sort of (numbered parts; Urkesh did not fit “kept hold”) | Q1 right by elimination (“the long careful-sounding one”); Q2 on target | 6 of 6, stele read as “not a true report” | yes | quay, inscriptions, Meluhha pile, Kerma, Upper/Lower Sea, governorships, sealings, šabra, sila, Hurrian, “does not show”, stele name pile, basalt, towpaths, vague last heading, museum codes, “About scale” | the audit changes above |
+| 2 | Q1 yes; Q2 sort of (“the story”? which “people at Leilan”?) | both on target; Q1 “too easy” (B repeated the stem) | 6 of 6 | yes | Agade vs Akkad in the panel, Uruk before introduced, seal in the panel, Elam, tablets, ration, “nearby towns” reasoning, caption naming “another king” early | Q1 option B replaced, Q2 wording and hint, panel glosses, Uruk and Elam glossed, tablets/ration/nearby-towns rewritten |
+| 3 | Q1 yes/sort of; Q2 yes | both on target; noticed B as a real trap (Sargon's governors) | 5 of 6: stele “can't tell what this has to do with keeping cities” | yes | Akkad vs Agade spelling, “one of them says”, excavators vs archaeologists, “drought” undefined, Q2 said Sargon took Leilan, feedback nearly gives the answer | one line tying the stele to the lesson (“This is winning the way a king wanted it seen… The ovens at Leilan tell the other half of the story”), the small wordings, B feedback now says why it is a trap, Q2 “Akkad’s army” |
+
+Three rounds is the limit, so the round-3 fixes were not read again. Still open (owner packet): the stele's tie to the lesson after the added line; Akkad vs Agade spelling; “Tell” in Tell Leilan; the masthead printing the date twice and “c.” unexplained; the “About scale” label on captions that are not about size.
+
+Feedback test (rounds 2 and 3): each wrong choice sends the reader to the right section with one thing to look for; the reader judged both close to giving the answer, which is acceptable after a wrong pick.
+
+First round's question restatements (word for word):
+
+- Q1: “It tells me two things that got dug up, one at Leilan and one at Urkesh, and wants me to pick what they mean together. … But I don't know what ‘strongest conclusion’ means. Strongest how? The biggest claim? The one most likely to be true?”
+- Q2: “Pick Tell Leilan or Urkesh, say one thing they found there, then say how that thing helped Akkad stay in charge after the fighting. … For Urkesh the lesson literally said the seal ‘does not show’ the city was run like Leilan, so I'm not sure Urkesh even counts as Akkad ‘keeping hold’ of it.”
+
+### Stage 14B check on the changed sections
+
+| Question | Finding | Evidence and disposition |
+| --- | --- | --- |
+| Section points | pass | Each section orients in its first sentence or two and states its point; round 3 said back 5 of 6, and the stele got a line tying it to the lesson. |
+| Prompt fit | pass | One real question each, in the lesson's words; Q2 names what to use (“one thing you read about Leilan”); `lesson:check-questions` clean. Q1 options are short, equal-length plain answers; B is a real misreading (Sargon's governors), C a common belief. |
+| Story | pass | Spine (lost Agade) and moments kept; all three readers remembered the last-day seal find, the stolen stele and the lost capital. Ending is a callback, no longer a list of headings. |
+| Evidence reasoning | pass | Boasts attributed; the excavators' two readings of Tar’am-Agade kept as readings; the seal example labelled a different seal; the Curse labelled as written long after; the drought debate stated once as an open question. Every option and feedback is supported by a named section (see `## Prompt revision`). |
+| Proportionality | pass | No graphic detail; missing voices said once (Leilan's workers, the Lullubi), positively. |
+| Cognitive load | pass | Name piles removed (Meluhha/Magan/Dilmun, Hurrian, Sippar/Susa moved to caption); sila, quay, towpath, basalt, administrative gone; stele and sealings explained in the sentence. 1,481 → 1,421 words. |
+| Headings | pass | One renamed (“How Akkad’s power ended”); the rest unchanged. |
+| Visual value | pass | No image added; the stele caption now carries the stone's history instead of a negative question. |
+
+`npm run validate:content`, `npm run lesson:check-questions` (no flags) and `npm run test:domain` (20 files, 107 tests) passed.
+
+### Second owner review — 2026-11-01
+
+A homeschooling parent read the preview. Her points: the opening packed in too many ideas; the main idea was not clear to a kid; the princess seemed unrelated; Akkad, Agade, Akkadian and Tar’am-Agade blurred together. The owner also asked for no invented phrases (“What they say is loud”) and a plain account of the door sealing. These led to runbook PR #95 (name budget, hook-and-question opening, main idea stated plainly, written question that cannot be copied, every detail one a kid could explain, Stage 14D targeted passes, `lesson-production/voice-examples.md`), which this lesson applies.
+
+**Targeted passes (Stage 14D), on the text after the first round of changes**
+
+| Pass | Flags | Fixes made |
+| --- | --- | --- |
+| Names | 13 names to track (budget about 6); Akkad/Agade and Uruk/Urkesh look-alikes; Tell Leilan vs Leilan; Akkad, Mesopotamia, Naram-Sin, Elam used before explained; Agade, Uruk, Curse of Agade, Elam not needed | Akkad said to be a kingdom; capital, princess, defeated people and second king described with names in term boxes; Uruk and Mesopotamia out of the text; “Leilan” only; headings without unexplained names |
+| Points and details | stele section opened without saying why it is there and ended on a side story; drought never tied to food; Urkesh never said what the princess did for Akkad; governors not framed as one way of keeping a city; wall thickness, “multiply” with no number, and the lost capital unconnected | stele opens “Kings also wanted their wins to be seen” and ends on the winning/keeping contrast; drought tied to grain and food; Urkesh and governor lines say how each kept a city; lost capital now explains why we look at other cities; ending states the main idea |
+| Plain words | 38 flags: “on the spot”, “a mountain people”, “sign of the gods”, “impression”, “excavators”, “scribes” and “seal” unexplained, the hedge in every sentence of the drought paragraph, the ending on an unknown, word boxes with “inscriptions” and “Akkadian” | each rewritten in everyday words; seal explained once at its first use; drought paragraph said once; lesson ends on the main idea |
+| Questions | Q1 copyable and hint too leading, C feedback gave the answer; Q2 asked which way “worked better” though the lesson has no evidence for that | Q1 option B is now the Leilan misreading, hint and feedback reworked; Q2 now asks which the learner would choose for a new city, with the reasons the lesson gives for each |
+
+**Kid reads after the passes (two rounds).** Both readers restated Q1 correctly (“yes”) and Q2 as “sort of”: they could choose, but asked where the reasons were. The lesson now states each way's reason (“Akkad’s own official in charge, and food for the workers every single day”; “Urkesh kept its own king, and Akkad’s royal family had one of its own inside his palace”) and the hint points at those sentences. Both said back every section's point except the princess's door-sealing (“why does closing doors matter?”), now followed by what it shows. Both retold the main idea: winning was easy, keeping a city took an official and food at Leilan and a princess at Urkesh. Remembered: the horned-helmet king, the giant ovens and the water bottle of barley.
+
+**Prompts.** Still two required prompts, neither ever published. `prompt.akkad.urkesh-difference` keeps its ID; its question now says “At Leilan”, the best option is “Its own king stayed, and a princess from Akkad joined the palace”, and option B (`option.akkad.official-from-akkad`) is “Akkad sent its own official to run the city”. The written prompt is now `prompt.akkad.official-or-princess`: “At Leilan, Akkad put its own official in charge. At Urkesh, a princess from Akkad joined the palace of the city’s own king. If you were Akkad’s king, which would you choose for a new city? Give one reason from the lesson.” The intermediate drafts `prompt.akkad.staying-in-charge` and `prompt.akkad.which-way-worked` were never published and are not in the fingerprints.
+
+**Owner approval:** approved by Carlin on 2026-11-01, after two rounds of review with the homeschooling parent; merged in PR #94.
+
+**Still open for the owner:** the masthead prints the date twice and leaves “c.”, “BCE” and “Mesopotamia” unexplained (lesson fields, not prose); the “About scale” caption label is used for captions that are not about size (a shared component label); readers found it odd when tapping “a princess from Akkad” or “another king” opened a box with a name they never saw in the text. Also at the owner's request, Sargon's inscriptions are called his records, not his boasts (the word judged his tone and repeated eight times); the lesson says once that they are his side of the story. At the owner's request, those boxes are gone: the Agade, Tar’am-Agade, Shutruk-Nahhunte, Lullubi and šabra terms were removed, and term boxes now open only on the word they define (seven terms, six featured).
+
+Learner-facing words: 1,481 (published) → 1,389.
+
+### Owner review
+
+Pending.
+
 ## Voice revision
 
 Runbook: `docs/content/lesson-voice-revision-runbook.md`. Branch: `revise/akkad-and-empire-voice`. Started 2026-09-23. Status: **awaiting owner review**.
@@ -531,3 +658,41 @@ The old hint named the answer's idea (“governed in the same way”), and the o
 **What learners will see.** Finished lessons, and lessons waiting for or passed by a parent, stay as they are. A learner still working through the lesson, or one whose lesson was sent back, must answer the new required written prompt before finishing; the reworded selection prompt is unchanged for everyone who already answered it. Parents see the written question as the learner saw it; an old submission is marked as changed.
 
 Owner approval: pending.
+
+### 2026-11-01 — both prompts replaced in the point-first revision
+
+Branch `revise/akkad-and-empire`, inside the lesson revision (`## Voice revision`, standard 2026-11-01). Both old prompts are retired in `content/published-prompt-fingerprints.json`. The lesson keeps two required prompts.
+
+#### `prompt.akkad.local-arrangements` → `prompt.akkad.urkesh-difference` (replaced)
+
+**Why.** “What is the strongest conclusion?” is an exam stem; the best answer was the longest and the only hedged one, and used “connections” and “arrangements”. The audit reader picked it by elimination without knowing what it claimed. Same teaching job: Akkad's power worked differently in different cities.
+
+| | Old | New |
+| --- | --- | --- |
+| Question | “At Leilan, archaeologists found a fortified administrative building with grain-processing rooms and tablets. At Urkesh, they found seal impressions naming a daughter of an Akkadian ruler. What is the strongest conclusion?” | “At Tell Leilan, an official sent by Akkad ran the farm work. What was different at Urkesh?” |
+| Options | A (best) “Both places had Akkadian connections, but the evidence points to different or uncertain arrangements.” / B “Both cities had identical Akkadian offices because a royal name appears in each place.” / C “Neither city had a meaningful Akkadian connection.” | A (best) “A princess from Akkad used her seal in the palace.” / B “Akkad made one of its own people governor of the city.” / C “Soldiers from Akkad moved into the palace to guard it.” |
+| Feedback | (see 2026-10-03 entry) | A “Yes. Urkesh kept its own rulers, and Tar’am-Agade, the daughter of Akkad’s king, used her seal in their palace.” / B “Sargon made his own people governors of some cities. Look back at the part about Urkesh: who still ruled it?” / C “Look back at the part about Urkesh. What did the excavators dig up in the palace?” |
+| Hint | “Ask what each find shows at its own place before you compare the two cities.” | “Look back at the part about Urkesh. Whose name was on the clay in the palace?” |
+| Explanation | “Leilan has an Akkadian administrative building… Distant power could work through different local relationships.” | “At Leilan, Akkad pushed the city’s own rulers aside and put its own official in charge. Urkesh kept its own rulers, but a daughter of Akkad’s king used her seal in their palace, perhaps as the local king’s wife.” |
+| Required | yes | yes |
+
+Support map: stem from “Governing at Tell Leilan” (šabra directing farm work); A from “A royal connection at Urkesh” (sealings on a palace door; “Urkesh kept its own rulers”); B is what Sargon's boasts describe for the southern cities (his own people made governors, “Sargon’s conquest claims”), the mistake a reader makes by assuming every city was run the same way; C is the common belief that empires rule by garrisons, which the lesson never supports; the explanation's “perhaps as the local king’s wife” is the excavators' reading as the lesson states it.
+
+#### `prompt.akkad.evidence-of-rule` → `prompt.akkad.staying-in-charge` (replaced)
+
+**Why.** Numbered parts, “Choose Tell Leilan or Urkesh”, a negative (“not the same as”) and no question mark. Urkesh also fit badly: the lesson does not say Akkad ran it. Replaced by one question about Leilan rather than split into two prompts. Same teaching job: what staying in charge after a victory took.
+
+| | Old | New |
+| --- | --- | --- |
+| Question | “Sargon boasted that he defeated cities, but winning a city is not the same as ruling it. Choose Tell Leilan or Urkesh. (1) Name one thing archaeologists found there. (2) Say what it shows about how Akkad kept hold of the city after the fighting.” | “Akkad’s army could win a city in a single battle. Why was staying in charge of a city like Tell Leilan so much more work? Write one or two sentences, using one thing you read about Leilan.” |
+| Hint | “Think about what people would have to keep doing after the soldiers left, or what tie a find shows between the city and Akkad.” | “Start with: ‘After the battle, Akkad’s official at Leilan still had to…’” |
+| Explanation (parent, “What a strong answer covers”) | “A strong answer covers both parts…” | “A strong answer says that winning took one battle, but staying in charge took work every day: an Akkadian official directing the farm work, ovens turning grain into food, a ration of barley for every worker, and people keeping records. One detail from Leilan is enough.” |
+| Required / minimum length | yes / 20 | yes / 20 |
+
+Support map: “A battle could be won in a day” and “Staying in charge after the army went home took officials, food…” (opening); the šabra, ovens, barley ration and schoolroom (“Governing at Tell Leilan”); the “Who did the work” box. A two-sentence 12-year-old answer from the lesson's words: “After the battle, Akkad’s official at Leilan still had to get food made for every worker, every day. That meant ovens, barley and keeping records, not just one fight.”
+
+`npm run content:fingerprints`, `npm run validate:content`, `npm run lesson:check-questions` (no flags) and `npm run test:domain` passed; no test named the old IDs. Kid read: see `## Voice revision`, 2026-11-01.
+
+**What learners will see.** Finished lessons, and lessons waiting for or passed by a parent, stay as they are; for them the new questions are just more checks to try. A learner still working through the lesson, or one whose lesson was sent back, must answer both new required prompts before sending. Parents see written questions only; on Review, an old written answer shows the question as the learner saw it and is marked as changed.
+
+Owner approval: approved 2026-11-01 (PR #94). Final prompts: `prompt.akkad.urkesh-difference` and `prompt.akkad.official-or-princess` (see `## Voice revision`, second owner review).
