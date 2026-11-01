@@ -29,7 +29,7 @@ A request equivalent to “Let's create the next Chronos lesson” is a complete
 6. Use the row's Linear issue (create one only if missing). Create the lesson branch from latest `main` with the issue key in its name so Linear follows the branch and PR on its own. Do not update Linear by hand.
 7. In the branch's first commit, set the row to `Active`.
 8. Run Stages 0–3B and stop at owner touchpoint 1.
-9. After the owner responds, run Stages 4–14A, the Stage 14C kid read and Stage 14B, and stop at owner touchpoint 2.
+9. After the owner responds, run Stages 4–14A, the Stage 14D targeted passes, the Stage 14C kid read and Stage 14B, and stop at owner touchpoint 2.
 10. After approval, run Stages 15–18 without further prompting. Stop only at owner touchpoint 3.
 11. In the PR's final commit, set the row to `Complete`. If fewer than three reviewed `Ready` candidates remain, say so in the handoff without inventing entries.
 
@@ -64,7 +64,7 @@ Before sending the final response, check: **Can the user open the lesson being d
 | Brief | 0–2 | Stable identity, audience, curriculum position, essential question, scope, non-goals and research questions. |
 | Research/material decisions | 3–7 | Proportional source and challenge review; owner touchpoint 1 before claim selection; claim ledger, content triage, cumulative blueprint, and the kid's question, kid's answer and draft checks (6A). |
 | Learning prototype | 8–14A | Complete draft in the shared Learn shell with real prompts and media intentions; no publication or final assets. |
-| Review | 14C, 14B | A fresh reader tries the lesson and its questions cold (14C); one quality check by the author; owner touchpoint 2 on the actual prototype. |
+| Review | 14D, 14C, 14B | Fresh readers check names, points, plain words and questions one at a time (14D), then one tries the lesson cold (14C); one quality check by the author; owner touchpoint 2 on the actual prototype. |
 | Final assets | 15–16 | Refine the approved draft and produce final media; implementation and release gates. |
 | Publication | 18 | Mechanical cutover, owner touchpoint 3, `Complete` in the PR, merge. |
 
@@ -467,6 +467,8 @@ Age adaptation changes explanation, pacing, assumptions, and support. It does no
 
 ### Voice and storytelling
 
+Real before-and-after pairs for these rules are in [voice examples](lesson-production/voice-examples.md); read the pair before applying a rule.
+
 Accuracy is the floor, not the goal. A lesson that is correct but flat does not get read. Write the way a knowledgeable guide tells a story they love to someone they respect: vivid, direct and specific, never cute.
 
 Story tools (use the ones the evidence supports):
@@ -490,6 +492,7 @@ Voice rules:
 - Say what happened, not what didn't. Do not refute ideas the learner never had: “This does not mean…”, “It was a message, not a battle report”, “It does not show that Urkesh was run the way Leilan was”. A run of these turns a story into a list of corrections. Correct a misconception only when it is one kids really hold (named in the blueprint), once, at the point where it would form.
 - Use verbs and people, not abstract nouns. “Akkad sent its own officials to run Leilan” beats “Leilan shows an Akkadian administrative installation”. Words such as arrangement, connection, tie, relationship, presence, role, practice, nature, significance and framework usually hide who did what to whom. Rewrite the sentence around the people and the action.
 - Every name earns its place. Name a person, place or people only when the story needs it or the learner will meet it again, give each a plain clause saying what it is, and avoid piles of new names in one sentence or section. A name the story needs only once can live in a caption or term definition instead. Use one name for one thing; when two are needed (Agade the city, Akkad the kingdom), say once how they relate.
+- **Name budget.** A section brings in at most three new names (people, peoples, places, gods) the reader has to keep track of, and a lesson about six. Names only in a caption, the panel or a term box do not count. Avoid names that look alike or share a root (Akkad, Agade, Akkadian, Tar’am-Agade) where one will do: use the kingdom's name everywhere, “Akkad’s officials” rather than “Akkadian administration”, and describe a person (“a princess from Akkad”) with the name in the term box (`[[a princess from Akkad|term.akkad.taram-agade]]`) when the story does not need the reader to remember it.
 - Never assume the learner did an earlier lesson. A callback re-says the one fact it needs (“In Nubia, the kingdom of Kerma traded with Egypt without being ruled by it”), not “At Kerma you saw…”.
 - Explain an everyday-unfamiliar word the first time it appears (inscription, stele, cylinder seal), in the same sentence, or use a plainer word, when the section's point depends on it. Otherwise a term definition can carry it (see **Words and names** under Point-first sections).
 - Leave the research note's words in the research note. Scholarly terms (administration, state formation, attested, polity, ideology, material culture, installation, uniform) appear only when the lesson needs the idea, explained in plain words the first time.
@@ -497,13 +500,17 @@ Voice rules:
 
 ### Point-first sections
 
-A vivid section can still leave the learner unsure what it was for. Before drafting a section, write its **point**: one sentence a kid could repeat, recorded in the storyboard's Point column (Stage 8). For the Akkad victory stele: “Naram-Sin had himself carved like a god so everyone would see him as more than a man, and the message was so strong that a later king stole the stone to boast about himself.” Then check the section against this shape:
+A vivid section can still leave the learner unsure what it was for. Before drafting a section, write its **point**: one sentence a kid could repeat, recorded in the storyboard's Point column (Stage 8). For the Akkad victory stele: “Naram-Sin had himself carved like a god so everyone would see his victory, and a thousand years later another king used the same stone to boast about himself; a stone like this shows the winning, while the ovens at Leilan show the work of keeping a city.” Then check the section against this shape:
 
 1. **Orient first.** Within the first sentence or two, the reader knows what this section is about. Point to the image if there is one (“Look closely at the carving below”), or name the person, place or thing and why it matters here. Do not make the reader remember someone from an earlier section, or decode a metaphor, to find their footing (“Tar’am-Agade’s father told his own story in stone”).
 2. **Describe** what can be seen or what happened, concretely.
 3. **State the point** plainly and positively, close to the point sentence. Do not leave it for the reader to infer from a clever line, and do not state it as a correction (“The stele is a message, not a battle report”).
 4. **Make each paragraph's link to the point visible.** Usually the content does this on its own. When a reader could wonder why a paragraph is there, make the connection explicit, in whatever way reads naturally. Do not open paragraphs the same way. A sentence that announces a link (“The stone’s later life makes the point sharper”) delivers it in the next sentence, or goes.
-5. **Keep details that serve the point.** A date, find spot, size or discovery fact stays in the text only if it carries the point. Otherwise it belongs in the image caption, a term definition (Stage 9) or the Knowledge Card, or nowhere.
+5. **Keep details that serve the point.** A date, find spot, size or discovery fact stays in the text only if it carries the point. Otherwise it belongs in the image caption, a term definition (Stage 9) or the Knowledge Card, or nowhere. Test every detail, person and place: could a kid say why it is there? Interesting details that do not serve the point lower what learners remember (the “seductive details” effect), however vivid. A case that is there to compare with another (Urkesh against Leilan) says so where it begins.
+
+**The opening section is a hook and one question.** Open on the moment, then ask the lesson's question in one plain sentence, and, where it helps, invite a guess the ending pays off (“Make a guess before you read on.”). Keep it to two or three new names; dates, definitions and the places on the map come in the section that needs them. A short preview helps only when the reader can hold it.
+
+**State the main idea plainly.** The learner should never have to infer the kid's answer. Say it in plain words where the lesson reaches it and again at the end. The thinking comes from the questions (Stage 12), not from hiding the answer.
 
 This is a shape to check against, not a template. Do not open every section with “Look closely”; a section built on a story moment can open on the moment, as long as the reader knows within a sentence or two what they are looking at.
 
@@ -519,7 +526,7 @@ These are review signals, not mechanical publication gates:
 - no duplicate title stack (purpose + heading + module title all competing for attention);
 - usually one or two modules per section;
 - short paragraphs, with the key relationship stated before qualifications pile up;
-- roughly five to nine indispensable new terms, not a glossary dump;
+- roughly five to nine indispensable new terms, not a glossary dump, and about six names to keep track of (see **Name budget**);
 - enough total reading for a focused lesson rather than a chapter-length article;
 - visual or interaction changes that follow conceptual changes, not arbitrary alternating stripes;
 - one to three required prompts, usually two.
@@ -793,6 +800,8 @@ Ask about the history: what people did, why they did it, how it worked, what cha
 
 **One question per prompt.** Every prompt asks exactly one question, and each written prompt gets one answer box for one answer. No numbered parts such as (1) and (2), no “and also…”, no second question mark, no “Choose one X, then…”. Learners at this age reliably miss the second part of a combined question. If the check needs two things, make two prompts the learner answers one after the other. Stay within three required prompts: if splitting would need more, drop the least important ask.
 
+**Make them use the idea, not copy it.** The lesson states the main idea plainly; the written question must not be answerable by copying or lightly rewording a sentence from the lesson. Ask the learner to compare the cases, choose and give a reason, apply the idea to the other case, or predict. Search the lesson for a sentence that answers the written question; if there is one, rewrite the question. Guided thinking of this kind beats both telling alone and leaving learners to work it out alone ([Alfieri et al., 2011](https://doi.org/10.1037/a0021017)).
+
 ### Write the question the way a person would ask it
 
 - **Ask a real question, not an exam task.** A real question is one a curious person might ask out loud: “Why did Akkad build so many ovens at Leilan?”, “What were the people of Ganj Dareh doing with their goats?” An exam task asks the learner to judge statements: “Which conclusion is best supported?”, “Which statement does this evidence support best?”, “What is the strongest conclusion?”. Do not use those stems. Ask the question the right answer answers.
@@ -854,6 +863,7 @@ Run `npm run lesson:check-questions -- --lesson <lesson-id>` first. It catches t
 - Circle every category label (clue, find, evidence, example, source, pattern). Replace each one with the thing's name.
 - Does the question say what the learner is trying to figure out? Could they ask back “a clue to what?” or “show what about what?”.
 - Count the question marks and the tasks. One of each.
+- For a written prompt, search the lesson for a sentence that already answers it. If you find one, the question tests copying; rewrite it.
 - For a written prompt, write a two-sentence answer a 12-year-old would write, using only the lesson's words. If you cannot, the lesson does not teach it, or the question asks it too abstractly.
 - For a multiple-choice prompt, cover the question: could someone who skipped the lesson pick the right answer from the options alone (the longest, the only hedged one, the only one without an absolute word)? If so, rewrite the options.
 - Read each wrong option's feedback on its own. Does it give the answer away? Does it tell the learner where to look and what to look for?
@@ -924,6 +934,10 @@ The prototype must:
 - avoid final asset generation/acquisition, publication, unlocks, approval-state changes, and hosted production changes.
 
 Run `npm run lesson:gate -- --lesson <lesson-id> --note <path> --gate prototype` when the command is available. Open the exact lesson with `npm run lesson:preview -- --lesson <lesson-id>` and review desktop/mobile and light/dark presentation. A missing command is an implementation blocker for this production-system version; do not silently replace the real-shell review with screenshots of another renderer.
+
+## Stage 14D — Targeted passes (before the kid read)
+
+Run after Stage 14A and before Stage 14C. One reader checking fifteen things misses most of them; a reader checking one thing finds it. Run the four passes in [targeted passes](lesson-production/targeted-passes.md), each by a separate fresh agent that sees only the `lesson:kid-read` text, its brief and the matching [voice examples](lesson-production/voice-examples.md): **names**, **points and details**, **plain words** and **questions**. They can run in parallel. Fix every flag or record why it stays, then run the kid read on the fixed text. Record each pass's flags and fixes in the research note's `Targeted passes` block.
 
 ## Stage 14C — Kid read (a fresh reader tries the lesson cold)
 
