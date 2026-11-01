@@ -34,6 +34,12 @@ class MultiLessonGateway implements LearnProgressGateway {
     this.states.set(lessonId, next);
     return next;
   });
+  saveGuess = vi.fn(async (lessonId: string, guessId: string, guess: string) => {
+    const state = this.states.get(lessonId)!;
+    const next = { ...state, guesses: { ...(state.guesses ?? {}), [guessId]: guess } };
+    this.states.set(lessonId, next);
+    return next;
+  });
   submit = vi.fn(async (lessonId: string) => {
     const state = this.states.get(lessonId)!;
     const next: LearnState = { ...state, status: 'completed', completedAt: state.completedAt ?? new Date().toISOString(), review: { status: 'submitted', round: 1, submittedAt: '2026-09-25T00:00:00.000Z', cardIds: [] } };

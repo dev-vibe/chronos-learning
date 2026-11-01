@@ -445,7 +445,7 @@ Record in the research note under `## Kid's question`:
 - **Draft checks:** the multiple-choice question and the written question, written now under Stage 12, in the Prompt rationale table of the [authoring template](lesson-production/authoring-templates.md). Each check asks the kid's question or one step toward it, and checks one sentence of the kid's answer. Stage 12 rewrites their wording against the finished lesson text; it does not swap in a new target from the claim ledger.
 - **Plant list** (a column in the same table): for each check, what the lesson must show for a kid to answer it: the facts, the details and any word it must explain. Stage 8 places each one before the check.
 
-The opening (Stage 8) raises the kid's question through a real moment and may ask the learner to hold a guess (“What would you have done?”); the ending pays it off. A learner who reaches the checks should feel asked about the thing they have been reading about, not something new. A question asked before reading helps learners remember the answer to that question and little else, so the checks ask the opening question or a step toward it (see [Why these rules](#why-these-rules)).
+The opening (Stage 8) raises the kid's question through a real moment and may ask the learner to commit to a guess with the **guess before reading** module (`guess`, Stage 9); the ending pays it off. Draft the guess question here with the checks, from the kid's question, and note in the Prompt rationale table where the lesson answers it. A learner who reaches the checks should feel asked about the thing they have been reading about, not something new. A question asked before reading helps learners remember the answer to that question and little else, so the checks ask the opening question or a step toward it (see [Why these rules](#why-these-rules)).
 
 ## Stage 7 — Perform the ages 11–15 design pass
 
@@ -512,7 +512,7 @@ A vivid section can still leave the learner unsure what it was for. Before draft
 4. **Make each paragraph's link to the point visible.** Usually the content does this on its own. When a reader could wonder why a paragraph is there, make the connection explicit, in whatever way reads naturally. Do not open paragraphs the same way. A sentence that announces a link (“The stone’s later life makes the point sharper”) delivers it in the next sentence, or goes.
 5. **Keep details that serve the point.** A date, find spot, size or discovery fact stays in the text only if it carries the point. Otherwise it belongs in the image caption, a term definition (Stage 9) or the Knowledge Card, or nowhere. Test every detail, person and place: could a kid say why it is there? Interesting details that do not serve the point lower what learners remember (the “seductive details” effect), however vivid. A case that is there to compare with another (Urkesh against Leilan) says so where it begins.
 
-**The opening section is a hook and one question.** Open on the moment, then ask the lesson's question in one plain sentence, and, where it helps, invite a guess the ending pays off (“Make a guess before you read on.”). Keep it to two or three new names; dates, definitions and the places on the map come in the section that needs them. A short preview helps only when the reader can hold it.
+**The opening section is a hook and one question.** Open on the moment, then ask the lesson's question in one plain sentence. Where it helps, make that question a `guess` module (Stage 9): the learner writes a guess before the rest of the lesson appears, and sees it again where the ending answers it. Do not ask for a guess in the prose (“Make a guess before you read on.”); learners skip it, and a guess helps only when they commit to one. Keep it to two or three new names; dates, definitions and the places on the map come in the section that needs them. A short preview helps only when the reader can hold it.
 
 **State the main idea plainly.** The learner should never have to infer the kid's answer. Say it in plain words where the lesson reaches it and again at the end. The thinking comes from the questions (Stage 12), not from hiding the answer.
 
@@ -623,6 +623,7 @@ Use the smallest current module that expresses the teaching job:
 | `evidence` | sustained attention to a surviving object/source and what it supports | generic illustration or claims the object cannot establish |
 | `historical-map` | geographic orientation from recognizable wider context to lesson places; spatial relationships that support the explanation | isolated local dots without wider context, decorative geography, or unsupported historical borders/routes |
 | `prompt` | a canonical understanding prompt placed where requirements are satisfied | navigation, surveys, trivia, or fake participation |
+| `guess` | the lesson's main question, asked in the opening so the learner commits to a guess before reading on; the guess is shown again where the lesson answers it | a check, a quiz with a right answer, a second question, or anything after the opening section |
 
 Titles: section `heading` owns orientation. For `knowledge` modules, the learner sees eyebrow + `body` as the lead into the item grid — do not invent a second grabber title for display. Module `title` on `evidence`, `scene`, and `historical-map` is a local cue only when needed (observe X; compare Y). Module `eyebrow` is a type/place label, not a slogan.
 
@@ -634,6 +635,23 @@ Keep these recurring learner-facing type labels in ordinary words:
 - Source-limit `knowledge` module: **What we can know** (not “evidence boundary”).
 
 Do not invent a new methods slogan for the same job.
+
+### Guess before reading
+
+A `guess` module asks the lesson's main question in the opening and holds back the rest of the lesson until the learner saves a short guess. It is not an understanding prompt: it is never graded, never counts toward the one to three required prompts or toward finishing or passing, and the learner gets no feedback beyond “Saved”. The parent sees it on Review under its own heading, above the written answers, to compare before and after.
+
+| Field | Rule |
+| --- | --- |
+| `id` | Stable, `guess.<lesson-slug>.<name>` (for example `guess.akkad.keep-a-city`). Learners' guesses are stored under it, so it follows the [prompt-change policy](../architecture/prompt-changes.md): a changed question gets a new ID and `npm run content:fingerprints`. |
+| `question` | One plain question with no single right answer, about the lesson's main question (Stage 12, **Guess questions**). |
+| `sentenceStarter` | Optional. A few words the box shows as a starting point (“A king would need”). May change under the same ID. |
+| `payoffModuleId` | The module (or section) where the lesson answers the question. The learner's guess appears just after it as “You guessed: …”. Point at the paragraph that answers it, usually the closing one. |
+
+- **When to use it:** when the lesson's opening question is one a kid can guess at from everyday sense before reading (“what would a king need to keep a city?”), and the ending answers it plainly. Skip it when a guess would need facts the lesson has not given yet.
+- **At most one per lesson, in the opening section only, with a payoff.** It sits after the hook, as the last module of the opening section; everything after it waits. The question is not repeated in the prose above it.
+- **Needs a payoff.** The ending must answer the question in plain words (see **State the main idea plainly**). If no paragraph answers it, fix the lesson, not the guess.
+- Like written answers, a learner's guess is their own free text: it goes to their parent and stays out of general analytics.
+- `npm run validate:content` fails on more than one guess, a guess outside the first section, or a `payoffModuleId` that is not in the lesson or does not come after the guess. A learner who finished the lesson before it had a guess sees the whole lesson with no guess box.
 
 ### Lesson terms
 
@@ -651,7 +669,7 @@ A lesson may list `terms`: words, people and places a learner can tap for a shor
 | `aliases` | Other forms the text marks, such as `Naram-Sin’s`. Curly and straight apostrophes match. |
 | `claimIds`, `sourceIds` | Required. A definition is learner-facing fact, so it cites claims and sources the lesson registers, like prose. Add a claim (and source) when a definition says something no existing claim covers. |
 
-Mark terms explicitly in the text: `[[stele]]` matches a label or alias; `[[steles|term.akkad.stele]]` shows a different form of the same word. A box opens only on the word it defines: never mark a description (“a princess from Akkad”, “another king”) so that tapping it reveals a name or fact the text does not show. If the text does not use a name, the lesson has no term for it. Nothing is matched automatically. Marks are allowed in prose `body`, `knowledge` body and item `detail`, and `evidence` and `scene` bodies (scene captions sit in a disclosure, so their marks read as plain text). They are not allowed in headings, titles, labels, map text, understanding prompts, hints or feedback. Only the first marked occurrence in each section is highlighted, so mark the first mention in each section where the term helps and leave the rest plain.
+Mark terms explicitly in the text: `[[stele]]` matches a label or alias; `[[steles|term.akkad.stele]]` shows a different form of the same word. A box opens only on the word it defines: never mark a description (“a princess from Akkad”, “another king”) so that tapping it reveals a name or fact the text does not show. If the text does not use a name, the lesson has no term for it. Nothing is matched automatically. Marks are allowed in prose `body`, `knowledge` body and item `detail`, and `evidence` and `scene` bodies (scene captions sit in a disclosure, so their marks read as plain text). They are not allowed in headings, titles, labels, map text, understanding prompts, guess questions, hints or feedback. Only the first marked occurrence in each section is highlighted, so mark the first mention in each section where the term helps and leave the rest plain.
 
 `npm run validate:content` fails on markup naming no term, unbalanced `[[ ]]`, markup in a field that does not render terms, a `primarySectionId` outside the lesson, a definition without claims or sources or citing ones the lesson does not register, an over-long definition or gloss, a featured term without a gloss, two terms sharing a name, or more than 8 featured terms. It warns when a term is never marked, or a featured term is not marked in its primary section. Scripts that read lesson text (`lesson:kid-read`, `lesson:check-questions`) strip the marks; any new script that turns lesson text into plain text must call `stripTermMarkup`.
 
@@ -857,6 +875,14 @@ These are read by the same 12-year-old and follow the same plain-words rules.
 - Keep failure calm, specific and recoverable. Never use lives, timers, streak threats, score spectacle or punitive repetition.
 - Do not pretend a minimum character count grades historical sophistication.
 - Exclude learner free text from general analytics.
+
+### Guess questions
+
+A guess before reading (Stage 9) follows the same wording rules as a check, and `npm run lesson:check-questions` checks it with them: one question, asked positively, in the lesson's own words, with no exam stems or category labels.
+
+- **One real question with no single right answer.** Kids should be able to answer from everyday sense before reading: “After the army went home, what would a king need so that the people there kept doing what he said?”, not “What did Sargon do at Leilan?”.
+- **About the lesson's main question.** It is the kid's question (Stage 6A) asked out loud, and the ending answers it. Do not guess at a side detail.
+- **Never graded.** No hint, options, feedback or explanation, and no word in the question that sounds like a test (“correct”, “best”). It is not one of the lesson's checks; the checks still ask the opening question or a step toward it.
 
 ### Check each prompt before the kid read
 

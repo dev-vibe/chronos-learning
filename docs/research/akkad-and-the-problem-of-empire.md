@@ -696,3 +696,13 @@ Support map: “A battle could be won in a day” and “Staying in charge after
 **What learners will see.** Finished lessons, and lessons waiting for or passed by a parent, stay as they are; for them the new questions are just more checks to try. A learner still working through the lesson, or one whose lesson was sent back, must answer both new required prompts before sending. Parents see written questions only; on Review, an old written answer shows the question as the learner saw it and is marked as changed.
 
 Owner approval: approved 2026-11-01 (PR #94). Final prompts: `prompt.akkad.urkesh-difference` and `prompt.akkad.official-or-princess` (see `## Voice revision`, second owner review).
+
+## Guess before reading
+
+### 2026-11-01 — pilot of the `guess` module
+
+Branch `feature/lesson-guess`. The opening's question becomes the lesson's guess before reading, `guess.akkad.keep-a-city`: “After the army went home, what would a king need so that the people there kept doing what he said?”, with the sentence starter “A king would need”. “Make a guess before you read on.” is gone from the prose, and the question is no longer asked in the prose above the box. The payoff is `module.akkad.regional-change`, whose closing paragraph begins “So what did it take to keep a city?”; the learner's guess appears just after it. Claims: `winning-and-governing` (already cited by the opening). No check, card, section or claim changed, so this is a revision, not a material change (see the revision runbook).
+
+`npm run content:fingerprints` recorded the guess. `npm run validate:content`, `npm run lesson:check-questions -- --lesson lesson.mesopotamia.akkadian-empire` (no flags) and `npm run lesson:kid-read` show the guess in place, with the note that the lesson continues only after it.
+
+**What learners will see.** A learner who has not finished the lesson answers the guess before reading on. A learner who finished it before the guess existed sees the whole lesson and no guess box. Parents see a saved guess on Review under “Guess before reading · not graded”, above the written answers.

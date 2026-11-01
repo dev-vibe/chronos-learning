@@ -1,11 +1,12 @@
-// Flags understanding-prompt wording that learners cannot follow, under
-// Stage 12 of docs/content/lesson-creation-runbook.md. It catches the common
+// Flags understanding-prompt and guess wording that learners cannot follow,
+// under Stage 12 of docs/content/lesson-creation-runbook.md. It catches the common
 // offenders mechanically; it does not replace the Stage 14C kid read.
 //
 //   npm run lesson:check-questions -- --lesson <lesson-id>   (exit 1 on any flag)
 //   npm run lesson:check-questions -- --all                  (report only)
 import { chronosContent } from '../../content/chronos';
-import type { UnderstandingPrompt } from '../../src/domains/contracts';
+import type { GuessModule, UnderstandingPrompt } from '../../src/domains/contracts';
+import { lessonGuesses } from '../../src/domains/guesses';
 import { stripTermMarkup } from '../../src/domains/lessonTerms';
 import { argumentValue, hasFlag } from './arguments';
 
@@ -29,23 +30,38 @@ const questionRules: Rule[] = [
 const sentences = (text: string) => text.split(/(?<=[.?!])\s+/).filter(Boolean);
 const words = (text: string) => text.split(/\s+/).filter(Boolean).length;
 
-function checkPrompt(prompt: UnderstandingPrompt): string[] {
-  const flags: string[] = [];
-  // Term markup is not allowed in prompts (validate:content rejects it), but never let it skew a check.
-  const scan = (where: string, raw: string, rules: Rule[]) => {
-    const text = stripTermMarkup(raw);
-    for (const rule of rules) {
-      const match = text.match(rule.pattern);
-      if (match) flags.push(`${where}: “${match[0]}” — ${rule.why}`);
-    }
-  };
-  const question = stripTermMarkup(prompt.question);
-  scan('question', question, [...wordRules, ...questionRules]);
+// Term markup is not allowed in prompts or guesses (validate:content rejects it), but never let it skew a check.
+const scanner = (flags: string[]) => (where: string, raw: string, rules: Rule[]) => {
+  const text = stripTermMarkup(raw);
+  for (const rule of rules) {
+    const match = text.match(rule.pattern);
+    if (match) flags.push(`${where}: “${match[0]}” — ${rule.why}`);
+  }
+};
+
+/** The rules every learner-facing question shares: one positive question in the lesson's own words. */
+function checkQuestion(raw: string, flags: string[]) {
+  const question = stripTermMarkup(raw);
+  scanner(flags)('question', question, [...wordRules, ...questionRules]);
   const questionMarks = (question.match(/\?/g) ?? []).length;
   if (questionMarks !== 1) flags.push(`question: ${questionMarks} question marks — ask exactly one question`);
   const asked = sentences(question).filter((sentence) => sentence.includes('?')).at(-1);
   if (asked && words(asked) > 20) flags.push(`question: the question sentence has ${words(asked)} words — keep it to about 20`);
   if (words(question) > 45) flags.push(`question: ${words(question)} words including background — keep it to about 40`);
+}
+
+/** A guess has no hint, options or feedback; its question and sentence starter follow the prompt wording rules. */
+function checkGuess(guess: GuessModule): string[] {
+  const flags: string[] = [];
+  checkQuestion(guess.question, flags);
+  if (guess.sentenceStarter) scanner(flags)('sentence starter', guess.sentenceStarter, wordRules);
+  return flags;
+}
+
+function checkPrompt(prompt: UnderstandingPrompt): string[] {
+  const flags: string[] = [];
+  const scan = scanner(flags);
+  checkQuestion(prompt.question, flags);
   if (prompt.hint) scan('hint', prompt.hint, wordRules);
   else flags.push('hint: missing');
   if (prompt.kind === 'supported-selection') {
@@ -78,6 +94,13 @@ if (!lessons.length) {
 const promptsById = new Map(chronosContent.prompts.map((prompt) => [prompt.id, prompt]));
 let flagged = 0;
 for (const lesson of lessons) {
+  for (const guess of lessonGuesses(lesson)) {
+    const flags = checkGuess(guess);
+    if (!flags.length) continue;
+    flagged += 1;
+    console.log(`\n${lesson.id} · ${guess.id} (guess before reading)\n  ${guess.question}`);
+    flags.forEach((flag) => console.log(`  - ${flag}`));
+  }
   for (const promptId of lesson.promptIds) {
     const prompt = promptsById.get(promptId);
     if (!prompt) continue;
@@ -88,5 +111,5 @@ for (const lesson of lessons) {
     flags.forEach((flag) => console.log(`  - ${flag}`));
   }
 }
-console.log(flagged ? `\n${flagged} prompt(s) flagged. Fix each flag, or record why it stays in the research note.` : 'No wording flags.');
+console.log(flagged ? `\n${flagged} question(s) flagged. Fix each flag, or record why it stays in the research note.` : 'No wording flags.');
 if (flagged && !all) process.exit(1);

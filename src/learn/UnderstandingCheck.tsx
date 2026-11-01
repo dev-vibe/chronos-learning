@@ -1,6 +1,7 @@
 import { useEffect, useRef, useState, type ReactNode } from 'react';
 import { Check, CheckCircle2, RotateCcw } from 'lucide-react';
 import type { UnderstandingPrompt } from '../domains/contracts';
+import { isSincereAttempt } from '../domains/guesses';
 
 type Props = {
   prompt: UnderstandingPrompt;
@@ -34,7 +35,7 @@ export function UnderstandingCheck({ prompt, answer, learnerId, evidence, reopen
     try { sessionStorage.setItem(key, value); setDraftSaved(true); } catch { setDraftSaved(false); }
   };
   const compare = async (value = draft) => {
-    if (prompt.kind === 'concise-explanation' && value.trim().length < prompt.minimumResponseLength) {
+    if (prompt.kind === 'concise-explanation' && !isSincereAttempt(value, prompt.minimumResponseLength)) {
       setError('Add a little more about your thinking. Try including a detail from the lesson.'); input.current?.focus(); return;
     }
     if (prompt.kind === 'supported-selection' && !prompt.options.some((option) => option.id === value)) {
