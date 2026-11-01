@@ -562,6 +562,151 @@ Avoid: line or procession formation, crowd, close figure, detailed caveman appea
 
 ## Voice revision
 
+Standard: 2026-11-01
+
+Runbook: `docs/content/lesson-voice-revision-runbook.md` (point-first sections, lesson terms, name budget, hook-and-question opening, targeted passes). Branch: `revise/homo-sapiens-origins`. Started 2026-11-01. Status: **awaiting owner review** (PR: pending). The 2026-09-24 revision below was done under an older standard; it stays as the record of that pass.
+
+Why this lesson: the first lesson in World History journey order whose research note has no `Standard: 2026-11-01` line. Only the Akkad note has one; this note has a `## Voice revision` section from 2026-09-24 without it.
+
+### Kid's question and answer
+
+Question: “Where did people like us begin?”
+
+Answer: “The oldest bones of people like us that anyone has found are in Morocco, about 315,000 years ago. But other old bones turned up thousands of kilometres away, in Ethiopia and South Africa. People like us probably didn't start in one spot. We seem to have taken shape among groups all over Africa that were sometimes apart and sometimes in touch, so there is no single birthplace to point to.”
+
+### Section points
+
+| Section | Point (one sentence a kid could repeat) |
+| --- | --- |
+| `section.humans.skull-in-the-wrong-place` | Miners in Morocco found a skull that dating showed to be about 315,000 years old, the oldest known fossil of our species, far from where almost everyone expected the oldest fossils to be. |
+| `section.humans.what-counts-as-us` | Homo sapiens means people like us, and researchers must decide which old bones belong to our species, because other kinds of humans lived at the same time. |
+| `section.humans.read-the-skull` | The Jebel Irhoud skull has a face like ours on a long, low braincase like earlier humans', so our features did not all appear at once and one skull cannot show where our species began. |
+| `section.humans.across-a-continent` | Very old fossils of our species were found in Morocco, South Africa and Ethiopia, thousands of kilometres and tens of thousands of years apart, so there is no single place to point to; the oldest fossil found so far is only the oldest one dug up. |
+| `section.humans.connected-not-sealed-off` | The same new ways of making stone tools appear in many parts of Africa around 300,000 years ago, and stone moved long distances, which fits groups that were sometimes apart and sometimes in contact. |
+| `section.humans.what-dna-adds` | The DNA of people alive today fits the same picture, groups only slightly different from one another that mixed for a very long time; four questions are still open; and the closing paragraph answers the opening question. |
+| `section.humans.check-and-complete` | (the two checks) |
+
+### Audit of the published version
+
+Before the audit, `lesson:check-questions` flagged the published prompts; the four Stage 14D passes and a cold kid read (reader `a9940afb`) ran on the `lesson:kid-read` text.
+
+| Pass | Result on the published text |
+| --- | --- |
+| Names | About 23 names to track against a budget of about 6 (Jebel Irhoud, Morocco, Germany, Neanderthals, Homo naledi, Kabwe, Zambia, Broken Hill, Florisbad, Omo I, Richard Leakey, Shala, Olorgesailie, Smithsonian, National Museums of Kenya, Nama and more); the opening had more than 3 new names before the question. |
+| Points and details | No plain main idea: “no single birthplace” appeared only in a hedged bullet and in option A; the Omo I age history (130,000 → 195,000 → 233,000), Kabwe's quarried cave, the funding clause and the Nama were details the points did not need. |
+| Plain words | 70 flags: invented phrases (“the old story falls apart”, “spread out is not the same as cut off”), motive and tone words, corrections (“is not the same as”, “not a ladder”), “braincase” never explained, “signal”, “minimum age… a floor”. |
+| Questions | Q1 was an exam stem with a tell (option A longest and hedged) and copyable from the text; Q2 had numbered parts, a refocus candidate, and could be copied from the closing sentence. |
+| Cold kid read | Q1 “sort of” (“conclusion about what?”); Q2 part 1 “sort of”, part 2 “no”. Stumbled on braincase, the Omo I paragraph, “signal”, the name wall, “fit nowhere comfortably”, and the Jebel Irhoud / limits contradiction. |
+
+Whole lesson: story spine and the miners' find from the last revision still worked; the opening was a long run of names and numbers before any question; the ending was a list of limits (and a callback to the miners), not the answer.
+
+**Prompts.** `prompt.humans.best-supported-conclusion`: `replace` (exam stem “Which conclusion… best support?”, option A longest and hedged, option D a throwaway). `prompt.humans.face-and-braincase`: `replace` and **split/refocus** (numbered parts; part 1, the mosaic, is dropped from the checks because the lesson now states it plainly; part 2, where researchers would look, is refocused onto the kid's question as “where would you dig”). Both new IDs below.
+
+**Card.** `card.idea.origins-across-africa`: `refresh`. Art unchanged (the hero landscape still fits). Reveal text, facts and significance rewritten in plain words and aligned to the kid's answer.
+
+### Story
+
+Spine kept: the Jebel Irhoud skull, found by miners and first misdated. Memorable moments kept: the 40,000-year guess that became 315,000 years (“almost eight times older”); the modern face on a long, low braincase; the stone that travelled 25 to 95 km at Olorgesailie. The lesson now returns to the question it opens with: a guess box at the end of the opening section, and a closing paragraph that answers it.
+
+### Changes
+
+- Prose, knowledge text, evidence and map captions, artifact labels, prompt text, terms, card text and the journey bridge (`content/learning-connections.ts`) rewritten. Every section ID, module ID, claim ID, source ID and media ID is unchanged. Two modules added: `guess.homo-sapiens-origins.where-we-began` (the `guess` module, last in the opening section, paying off at the closing paragraph) and `module.humans.where-we-began` (the closing prose). The knowledge box `module.humans.open-questions` now closes the “What DNA adds” section before the closing paragraph.
+- Headings: “A skull in the wrong place” → “Miners find a skull in Morocco”; “Evidence across a continent” → “Old fossils across Africa”; “Connected, not sealed off” → “Tools across Africa”; “What DNA adds — and what it cannot” → “What DNA adds”. “What counts as Homo sapiens?”, “Read the skull” and “World Check” unchanged.
+- Opening: a hook (miners, a skull, “almost eight times older than the experts first thought”) and one question, asked with the guess module: “Where in Africa do you think our species began?” The “main idea stated plainly” now sits in the closing paragraph and in the last paragraph of “Old fossils across Africa”.
+- Name budget: about 23 names → Jebel Irhoud, Morocco, Homo sapiens (introduced in section 2, not the opening), South Africa, Ethiopia, Olorgesailie, plus Africa. Neanderthals became “a different kind of human”.
+- Terms: `term.humans.fossil` added (“fossils”, first used in section 1); `term.humans.omo-i` removed (Omo I is no longer named; it is “a skull in Ethiopia”); Olorgesailie gloss and definition say “site”, not “basin”. Jebel Irhoud, Homo sapiens, braincase, mosaic and obsidian kept. Term boxes sit only on words that appear in the text and need defining.
+- Plain wording, not invented phrases: motive and tone words, “the old story falls apart”, “a floor rather than a full measurement”, corrections written as “not X” turned into what the evidence shows (“The oldest fossil found so far is only the oldest one anyone has dug up”), no “missing voices” line.
+- Sources are described by what they say or show; the research team “decided” the bones belong to our species, and “some researchers say” they belong to a different kind of human.
+- Lesson fields `significance`, `learningOutcome` and `heroCaption` rewritten in plain words (not on the runbook's list of fields a voice revision may change; flagged to the owner).
+- Journey bridge: `lesson.humans.homo-sapiens-origins.extend` and `reasoningSkill`, and two other lessons' retrieve prompts that quoted this lesson's old wording (“What did the fossils from several parts of Africa show…”).
+- Both prompts replaced (see `## Prompt revision`); `content/published-prompt-fingerprints.json` regenerated (33 published, 21 retired); `tests/content/validation.test.ts` named the old prompt IDs and now names the new ones (no behaviour changed).
+- Reading length (learner-facing sections from `lesson:kid-read`, words including headings and labels): 1,652 → 1,665 in the sections; World Check 253 → 206. About the same as before, with the same story and a plainer telling. No claim or source added.
+
+### Left out
+
+- Kabwe (Broken Hill) and its quarried-away cave, a memorable detail from the last revision: a second place name the point does not need under the name budget.
+- Homo naledi, Neanderthals, Germany and the Morocco–Germany team, barite: names or details with no job in the point.
+- Omo I's name, Richard Leakey, the Shala volcano, and the 130,000 → 195,000 → 233,000 age history: the lesson keeps only “a skull in Ethiopia, at least 233,000 years old, because dated ash lies on top”.
+- The Nama genomes, the Smithsonian and National Museums of Kenya, and the clause that digging has been funded more in some countries: not needed for the point.
+- “More than sixty times further back than written history”: replaced by “almost eight times older than the experts first thought”, which serves the opening's surprise.
+- Florisbad by name: South Africa carries the point.
+- The Omo Kibish, Herto and Florisbad markers still appear on the map; the prose names only Morocco, South Africa, Ethiopia and Olorgesailie.
+
+### Prompt rationale
+
+| Prompt ID | Question | Sentence of the kid's answer it checks | Plant list: what the lesson must show first | Misconception a wrong choice exposes | Kid reader's restatement and yes/sort of/no (14C) |
+| --- | --- | --- | --- | --- | --- |
+| `prompt.humans.fossils-far-apart` | “A friend says our species began in Morocco, because the oldest fossil was found there. Does the oldest fossil found so far show where our species began?” | “The oldest bones… are in Morocco… But other old bones turned up thousands of kilometres away… so there is no single birthplace.” | The oldest fossil is in Morocco; others are far away and younger; the oldest fossil found so far is only the oldest one dug up (“Old fossils across Africa”); one skull shows one time and place (“Read the skull”). | B: “the oldest is where a species begins”. C: the old expectation of the east. D: “the others are younger, so Morocco was first”. | Round 3 (on the earlier stem “Is your friend right?”): “Does the oldest bone mean that's where we started? Yes or no.” Sort of. The stem was then changed to the yes/no above and not re-read. |
+| `prompt.humans.where-to-dig` | “Suppose you could lead one dig to look for more fossils of our species. Would you dig at Jebel Irhoud again, or in a part of Africa nobody has dug? Write one or two sentences that say why, using something you read.” | “We seem to have taken shape among groups all over Africa” and “no single birthplace”: applies the open-record idea to a new case. | Large parts of Africa have hardly been dug; the oldest fossil found so far may not be the first (“Places nobody has dug”, “Old fossils across Africa”). | Digging again at the same site only; ignoring that the record is thin. | Round 3 (earlier stem, “close to Jebel Irhoud”): “Pick near the old site or somewhere new, and explain.” Yes for the pick, sort of for the why. |
+
+Guess before reading (not a check, never graded):
+
+| Guess ID | Question | Sentence starter | Payoff module | Kid reader's restatement (14C) |
+| --- | --- | --- | --- | --- |
+| `guess.homo-sapiens-origins.where-we-began` | “Where in Africa do you think our species began?” | “I think our species began in” | `module.humans.where-we-began` (“So where in Africa did our species begin? The evidence fits many places across the continent better than one…”) | Round 3: “I'd type ‘idk east africa’ and move on… it made me care a bit.” It named the closing paragraph as the answer. One reader said the opening paragraph already hints that the answer is “not the east”; kept, because the question asks for a place inside Africa and the paragraph does not answer which. |
+
+### Targeted passes (Stage 14D)
+
+Four separate fresh subagents, given only the `lesson:kid-read` text saved to a file, their own brief and the matching voice examples; run in parallel on the published text (audit) and again on the revised text.
+
+| Pass | Reader | Flags | Fixes made or reason kept |
+| --- | --- | --- | --- |
+| Names (audit) | fresh agent | 23 names to track (budget about 6); Kabwe/Broken Hill, Homo naledi, Neanderthals, Nama, Leakey, Shala, Smithsonian look-alike or unneeded; opening had more than 3 names. | Cut to the six above. |
+| Points and details (audit) | fresh agent | No plain main idea; Omo I age history and Kabwe cave not serving a point; limits box restated the prose. | Main idea stated in the closing and in section 4; details cut. |
+| Plain words (audit) | fresh agent | 70 flags (invented phrases, motive words, corrections, “braincase”, “signal”). | Each rewritten; “braincase” and “fossils” defined. |
+| Questions (audit) | fresh agent | Q1 exam stem with a tell; Q2 numbered parts, copyable. | Both replaced. |
+| Names (revised) | fresh agent | 8 proper names (target about 6): Omo I and Olorgesailie candidates to cut; “Homo sapiens” and “eastern Africa” in the opening; direction words (“north, south, east”) replacing country names in the summary sentence; noun-adjunct “Jebel Irhoud fossil”. | Omo I cut. “Homo sapiens” moved to section 2, the opening says “our own species” and “the east”. The summary sentence names Morocco, South Africa and Ethiopia. “None of the fossils from the site”. Kept: Olorgesailie (it is the tools evidence and has a marker on the map), the word “eastern Africa” (used for the site). |
+| Points and details (revised) | fresh agent | 22 flags; the 160,000 in the masthead; “different kind of human” never named; sixty-times scale next to “five thousand kilometres”; why the east was expected; contradiction between “oldest known fossils of our species” and the limits bullet; 99.9% and the “rare bones” bullet not tied to the point; section 3 opened on how the picture was made; map caption announced a tools site; ash method details; “could be older”; tools section never stated how tools show groups in contact; “similar story” opening; “by accident” first appeared in the last line; “Whether there ever was one is still open” against “not one”. | Fixed: section 1 now says why the east was expected and attributes “oldest” to the research team; section 2 says why sorting matters; section 3 opens on the point and ends “one skull… shows only how our species looked at one time and place”; map caption cut to what the markers show; ash story trimmed; tools section states “That fits groups of people living in different parts of Africa, sometimes apart and sometimes in contact”; “by accident” cut; the closing says “fits many places better than one”. Kept: the 99.9% detail (it defines “people like us” and supports “Researchers agree that our species came from Africa”); the Colour bullet (a sourced fact; role unknown); the masthead date printed twice and 160,000 (lesson field, not prose; reported to the owner); “Tools like these are found in other parts of Africa too” names no other site (naming one would break the name budget). |
+| Plain words (revised) | fresh agent | 30 flags (down from 70), no motive or “missing voices” issues: “tell a similar story”, “The rock cannot say”, corrections at the end of section 4, the Omo ash sentence, “Features come in different mixes”, “exchanged people and genes”, “settled”, “still open”, “took shape”, “was a surprise”, “turn up” four times, “tucked under the brow”, “cast”, “basin”, “Middle Stone Age”, “flint”, “grows slowly”, “different kind of human” vs “different species”. | Each rewritten or removed; “turn up” varied; “basin” → “site”; “took shape” → “developed”; “settled” → “Researchers agree”; “different kind of human” used throughout. Kept: “model, a set of assumptions” (the caveat is required by `claim.humans.dna-weak-structure`), “nobody has dug” (plain, and the lesson's idea). |
+| Questions (revised) | fresh agent | Guess pre-answered by the opening's “Africa”; Q1 stem near-copy of the closing, option A longest, option D a throwaway; Q2 yes/no plus “use the lesson” exam language, copyable from the closing and the “Places nobody has dug” item, hint gives the answer's shape. | Guess became “Where in Africa…”. Q1 recast as a friend's claim with four short parallel options; Q2 recast as a choice with a reason; the closing no longer previews the dig; hints reworked. |
+
+### Kid read (Stage 14C)
+
+Reader: fresh general-purpose subagents, each given only the `lesson:kid-read` output (no research note, runbook, source or conversation): `a9940afb` on the published lesson, then three new readers on the revised text, with a separate fresh reader for each feedback test. `lesson:check-questions`: flags on the published prompts; none now.
+
+| Round | Restatements match intent, with “yes”? | Answers on target? | Section points match? | Retelling matches kid's answer? | Flags | Fixes made |
+| --- | --- | --- | --- | --- | --- | --- |
+| Audit (published) | Q1 sort of (“conclusion about what?”); Q2 part 1 sort of, part 2 no | Q1 right by elimination (“A is the longest, most careful-sounding one”); Q2 on target only because the hint named the sections | most; “A skull in the wrong place” unclear | mostly | barite, limestone, Neanderthals, braincase, name wall, genomes, tool words, “minimum age… a floor”, the “signal” sentence, Omo I paragraph, “fit nowhere comfortably”, “Spread out… not the same as cut off”, double negative, “c.” and the doubled date line, Jebel Irhoud / limits contradiction | the audit changes above |
+| 1 (revised) | Q1 sort of; Q2 sort of, leaning no | both on target | 6 of 7 (guess box unclear) | yes | “fossil” and “species” undefined; “other kinds of humans” unnamed; the burned-stone mark; “groups” used before introduced; “counted” vs “different species”; “unknown” vs “not one”; “World Check”; date line; map's fifth marker | fossils and species defined; burned-stone dating retold; groups introduced; “research team decided”; box and closing aligned; Q1 and Q2 and hints reworked |
+| 2 | Q1 sort of (“which side?”); Q2 sort of | both on target; Q1 picked A for its hedged wording | 8 of 9 | yes | Q2 hint named a box (“Four open questions”) the reader could not find; the mark; “counted”; “which place?”; “one reason from the lesson”; model paragraph; “Groups that died out”; “sources”; “show scale” | hint now names the item “Places nobody has dug”; Q1 options all start Yes/No and share “probably”; Q2 names Jebel Irhoud; “sources” → “places”; “show scale” → “show how large the landscape is”; descendants explained |
+| 3 | Q1 sort of (“right about what?”); Q2 yes for the pick, sort of for the why | both on target | all said back (title judged to contradict the ending) | yes | Q1 “Is your friend right?” ambiguous; hints do not say what to look for; “the mark” still abstract; 99.9% has no job; “Some early bones look more like ours” vs “are they Homo sapiens?” | after round 3, not re-read: Q1 stem now “Does the oldest fossil found so far show where our species began?”; both hints say what to look for; Q2 “dig at Jebel Irhoud again… using something you read”; 99.9% item reworded; early-bones item reworded |
+
+Three rounds is the limit, so the round-3 fixes were not read again. Still open for the owner: the fire-dating “mark” is still abstract; Q1 and Q2 after the last stem changes; the map's fifth marker.
+
+Feedback test (separate fresh readers on `lesson:kid-read --feedback`): round 1 found C weak and B and D sending to the same spot; round 2 found D sent the reader to a different section from the hint and did not explain why D was wrong; round 3 found B and D clear and C weak because “eastern Africa” is not labelled on the map. Final feedback: A confirms; B sends to the last paragraph of “Old fossils across Africa” to see what the oldest fossil found so far is; C sends to Ethiopia (“in the east”) on the map to compare its age with Morocco's; D sends to the same paragraph to see what it says about fossils nobody has found yet. None gives away the answer; B and D point to one place (accepted: the paragraph is short).
+
+First round's question restatements (word for word, from the published lesson):
+
+- Q1: “It gives me three places where old bones were found, with how old each is, says they're far apart and don't all look the same, and asks which conclusion the set of finds best supports.”
+- Q2: “Part 1: The Jebel Irhoud skulls have a face like ours but a long, low back of the head. What does that mix tell us about how our species' features showed up? Part 2: What would scientists want to find next, and where would they look?”
+
+### Stage 14B check on the changed sections
+
+| Question | Finding | Evidence and disposition |
+| --- | --- | --- |
+| Section points | pass | Each section now orients in its first sentence or two and states its point; round 3 said back every section's point and the retelling matched the kid's answer. The tools section ends on a hedged climate item before the DNA section, accepted: its plain point is stated in the second paragraph. |
+| Prompt fit | revise | Both prompts replaced; `lesson:check-questions` clean; round 3 gave “sort of” on Q1 because “Is your friend right?” read as ambiguous. The stem now asks one yes/no question and was not re-read (three-round limit). Options B and D share “probably”, A is the only one that says “may not”; kept because every option has a plain reason and the lesson itself is hedged on this point. |
+| Story | pass | Spine (the miners' skull) and the moments above kept; the lesson opens on a hook and a guess and ends on the answer. The Kabwe cave and the Omo I age story are gone, and the readers' favourites were the miners, the “eight times” and the face. |
+| Evidence reasoning | pass | “Research team decided… belong to our species” and “some researchers say… a different kind of human” keep the dispute honest; the Omo skull stays “at least” its age; the DNA result stays “what a model matches best”; the options and feedback are each supported by a named section. |
+| Proportionality | pass | Africa stated as the origin without false balance; the contested boundary and the open record kept as separate items; no graphic detail; no “missing voices” line. |
+| Cognitive load | revise | Names: about 23 → 6; reading length about the same as before (1,652 → 1,665 words). The DNA model paragraph and the fire-dating sentence stayed hard for the readers in every round. |
+| Headings | pass | Four renamed; “World Check” kept (shared label across lessons). |
+| Visual value | n/a | No image added. The skull and tools captions say what to look at; the tools caption no longer says “Middle Stone Age”. |
+
+`npm run validate:content`, `npm run lesson:check-questions` (no flags) and `npm run test:domain` (21 files, 124 tests) passed. `npm run typecheck` reports 97 errors, identical with and without this branch's changes (all in tests; not touched here).
+
+### Owner review
+
+Pending. Judgment calls for the owner:
+
+- The title “Our Species Begins in Africa” is unchanged; one reader said it seems to contradict an ending that says nobody can name one place. Say if you want “Our Species Began Across Africa”.
+- The masthead prints the date twice (“c. 315,000–160,000 years ago · Across Africa · approximately 315,000–160,000 years ago”), “c.” is unexplained and 160,000 appears nowhere in the prose; this is the same lesson-field issue left open on Akkad.
+- Prompt 2 is a split/refocus (the old mosaic part is dropped).
+- `significance`, `learningOutcome`, `heroCaption` and the journey bridge were reworded.
+- Olorgesailie stays named because it is the tools evidence and has a map marker; the map's other markers (Omo Kibish, Herto, Florisbad) are unnamed in the prose.
+
+## Voice revision
+
 Runbook: `docs/content/lesson-voice-revision-runbook.md` (branch `docs/lesson-voice-revision-runbook`; not yet on `main`). Branch: `revise/homo-sapiens-origins-voice`. Started 2026-09-24. Status: **approved by the owner 2026-09-24; merge completes the revision**. PR: [#56](https://github.com/dev-vibe/chronos-learning/pull/56).
 
 ### Audit of the published version
@@ -624,6 +769,33 @@ Whole lesson: story spine `partial` (Jebel Irhoud opens sections 1, 3 and 5 but 
 - Owner decision: Carlin Aylsworth reviewed the branch preview and approved the revision without changes (“approved!”), 2026-09-24.
 
 ## Prompt revision
+
+### 2026-11-01 — both prompts replaced inside the voice revision
+
+Branch `revise/homo-sapiens-origins`. `prompt.humans.best-supported-conclusion` is replaced by `prompt.humans.fossils-far-apart`, and `prompt.humans.face-and-braincase` by `prompt.humans.where-to-dig`; both old IDs are retired in `content/published-prompt-fingerprints.json`. `tests/content/validation.test.ts` named the old IDs and now names the new ones. Module IDs `module.humans.prompt-best-supported-conclusion` and `module.humans.prompt-evidence-and-limit` are unchanged.
+
+**Why they changed.** The first was an exam stem (“Which conclusion does this set of finds best support?”) with a wording tell: the best option was the longest and the only hedged one, and the reader picked it by elimination. The second had numbered parts, and its two halves checked different things (the mosaic, and where researchers would look); part 2 could also be answered by copying the closing sentence. The new second prompt is a **split/refocus**: the mosaic part is dropped from the checks (the lesson now states it plainly), and the “where would researchers look” part becomes the single question.
+
+| | Old | New |
+| --- | --- | --- |
+| Q1 question | “Fossils of early Homo sapiens have been found in Morocco from about 315,000 years ago, in South Africa from about 259,000 years ago, and in Ethiopia from at least 233,000 years ago. They are thousands of kilometres apart, and they do not all share the same mix of features. Which conclusion does this set of finds best support?” | “A friend says our species began in Morocco, because the oldest fossil was found there. Does the oldest fossil found so far show where our species began?” |
+| Q1 options | A (best) “Our species took shape among populations living in many parts of Africa that were sometimes separated and sometimes in contact.” B “…began in one valley in eastern Africa and spread out from there.” C “Each region of Africa evolved its own separate human species.” D “The Morocco fossils are the first members of our species, so our species began in Morocco.” | A (best, `option.humans.may-not-be-first`) “No. The oldest fossil found so far may not be the first one.” B (`oldest-is-first`) “Yes. The oldest fossil found is probably where a species began.” C (`began-in-eastern-africa`) “No. Our species probably began in eastern Africa, not Morocco.” D (`others-are-younger`) “Yes. The fossils in South Africa and Ethiopia are younger, so Morocco was probably first.” |
+| Q1 hint | “Compare where the finds were made and how far apart they are. Which statement could explain all three?” | “Read the last paragraph in “Old fossils across Africa” and look for what it says about the oldest fossil.” |
+| Q1 feedback (new) | | A: “That is right. The oldest fossil found so far is only the oldest one anyone has dug up, and older ones may be buried where nobody has looked.” B: “Look at the last paragraph of “Old fossils across Africa.” What does it say the oldest fossil found so far is?” C: “Look at Ethiopia, in the east, on the map in “Old fossils across Africa.” Is its fossil older or younger than the one in Morocco?” D: “Read the last paragraph of “Old fossils across Africa” again. What does it say about fossils nobody has found yet?” |
+| Q2 question | “The Jebel Irhoud fossils have a face much like ours but a long, low braincase. (1) What does that mix suggest about how our species' features appeared? (2) What would researchers want to find next to learn more, and where would they look?” | “Suppose you could lead one dig to look for more fossils of our species. Would you dig at Jebel Irhoud again, or in a part of Africa nobody has dug? Write one or two sentences that say why, using something you read.” |
+| Q2 hint | “Compare the face with the back of the skull. For part 2, look back at the end of “Read the skull” and at “Connected, not sealed off.”” | “Look for what the last paragraph of “Old fossils across Africa” and “Places nobody has dug” say about where fossils are buried.” |
+| Required / minimum length | yes / 20 (written) | yes / 20 (written) |
+| Evidence module | `module.humans.irhoud-cranium` (Q2); `module.humans.africa-evidence-map` (Q1) | `module.humans.africa-evidence-map` (both) |
+
+**Which section supports what.** Best answer A and feedback A/B/D: the last paragraph of “Old fossils across Africa” (“The oldest fossil found so far is only the oldest one anyone has dug up. Older ones may be buried where nobody has looked.”) and the map. Option C: the map (the eastern fossil, in Ethiopia, is younger than Morocco's). Option D: the same paragraph (a younger fossil elsewhere does not show where a species began). Prompt 2: “Places nobody has dug” (large parts of Africa have hardly been dug) and the same paragraph; either choice can be a good answer if the reason comes from the lesson.
+
+**Owner-check items.** Is the best answer to Q1 clearly stated by the lesson, and is every wrong option a real mistake (B an over-reading of “oldest”, C the old expectation of the east, D true premises with a wrong conclusion)? Is Q2 an open choice with no single right place, and does a one- or two-sentence 12-year-old answer exist using only the lesson? Does each hint tell the learner what to look for without giving the answer?
+
+**Kid read.** Three readers on the revised text restated Q1 as “sort of” and Q2 as “yes for the pick, sort of for the why” (see the Kid read table). Q1's stem and both hints were changed after round 3 and not re-read.
+
+**What learners will see.** Finished, waiting and passed lessons stay as they are; for them the new questions are just checks to try. A learner still working through the lesson, or one whose lesson was sent back, must answer both new required prompts before sending. Parents see written questions only; on Review, a submission shows the written question as the learner saw it, and an old one is marked as changed.
+
+Owner approval: pending.
 
 ### 2026-10-03 — hints and option feedback (text only, same prompt IDs)
 

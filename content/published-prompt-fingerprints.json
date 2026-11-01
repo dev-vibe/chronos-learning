@@ -5,6 +5,10 @@
       "lessonId": "lesson.mesopotamia.akkadian-empire",
       "fingerprint": "f2b8cb36917f0e6286027171d07370c283f82ca308a9a31e43a4102b04fed62e"
     },
+    "guess.homo-sapiens-origins.where-we-began": {
+      "lessonId": "lesson.humans.homo-sapiens-origins",
+      "fingerprint": "a399f6161dff2f4fe0d2c436652548640f58d980071c33c5e9fc1ffd707fac51"
+    },
     "prompt.akkad.evidence-of-rule": {
       "lessonId": "lesson.mesopotamia.akkadian-empire",
       "fingerprint": "b21ae067d56c1f3efb6019d5a5b3311af7edc96c88d36ec965f5f09a628e5145",
@@ -126,7 +130,8 @@
     },
     "prompt.humans.best-supported-conclusion": {
       "lessonId": "lesson.humans.homo-sapiens-origins",
-      "fingerprint": "27b1a75c7e373ad8c321451fe8520f0d7ccb2a3c2c43c20e501c33939e1990b2"
+      "fingerprint": "27b1a75c7e373ad8c321451fe8520f0d7ccb2a3c2c43c20e501c33939e1990b2",
+      "retired": true
     },
     "prompt.humans.evidence-and-limit": {
       "lessonId": "lesson.humans.homo-sapiens-origins",
@@ -135,7 +140,12 @@
     },
     "prompt.humans.face-and-braincase": {
       "lessonId": "lesson.humans.homo-sapiens-origins",
-      "fingerprint": "c709f0f4240bcb9e17b6703dedf8494049912663624255cf43d9d75b49b06957"
+      "fingerprint": "c709f0f4240bcb9e17b6703dedf8494049912663624255cf43d9d75b49b06957",
+      "retired": true
+    },
+    "prompt.humans.fossils-far-apart": {
+      "lessonId": "lesson.humans.homo-sapiens-origins",
+      "fingerprint": "9413d0173b395d336cc88ca3eefa48e810ca45920f11b2781a100ea533da0afa"
     },
     "prompt.humans.long-segments-inference": {
       "lessonId": "lesson.humans.migrations-and-interbreeding",
@@ -153,6 +163,10 @@
     "prompt.humans.sahul.sand-date-supports": {
       "lessonId": "lesson.humans.sahul-crossing",
       "fingerprint": "d5cf03289bcb1ba33005d0784a33d12923949a6b0caf1776a580c928458e1734"
+    },
+    "prompt.humans.where-to-dig": {
+      "lessonId": "lesson.humans.homo-sapiens-origins",
+      "fingerprint": "bad577a2c8ec69873a278fc68b88a136afa2d106b0492c40218ff5189118663e"
     },
     "prompt.indus.shared-standards": {
       "lessonId": "lesson.indus.cities-and-signs",
