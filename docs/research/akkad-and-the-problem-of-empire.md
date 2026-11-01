@@ -105,6 +105,7 @@ The source IDs below are research handles; registered lesson sources use `source
 | `source.akkad.smarthistory-stele` — [Harris and Zucker, Smarthistory, Victory Stele of Naram-Sin](https://smarthistory.org/victory-stele-of-naram-sin/) | Voice revision, 2026-09-23; transcript passages on the horned helmet, the Lullubi figures and Shutruk-Nahhunte | Art-historical explanation that the horned helmet signals divinity; describes enemies falling, fleeing and lying beneath the king; dates the Elamite removal to the twelfth century BCE, about a thousand years after the stele was made. Interpretive support alongside the Louvre record. | Open page; no image or video reuse. |
 | `source.akkad.curse-etcsl` — [ETCSL t.2.1.5, The cursing of Agade](https://etcsl.orinst.ox.ac.uk/section2/tr215.htm) | Voice revision, 2026-09-23; lines 100–175 and 272–281 | Later Sumerian poem: Naram-Sin attacks Enlil’s temple, Enlil brings the Gutians, the city is cursed, grass grows long on its canal towpaths, and the poem closes by praising Inana for Agade’s destruction. Later tradition, not an account of events. | Open scholarly translation; brief paraphrase only. |
 | `source.akkad.curse-cdli` — [CDLI Literary 000375 composite P469679](https://cdli.earth/artifacts/469679) | Voice revision, 2026-09-23; record metadata | Dates the poem’s surviving witnesses to the Old Babylonian period (c. 1900–1600 BCE), from Nippur and other sites; primary publication Cooper 1983. Establishes that the poem is centuries later than Naram-Sin. | Open record. |
+| `source.akkad.urkesh-door-sealing` — [Urkesh door sealing record, K01 I0046](https://urkesh.org/mz/a/K01/d/I/0046.htm) | Voice revision, 2026-11-01; object record (object sealed: door; reverse: flat face, two rope strands, peg impression) | How a palace door was sealed at Urkesh: clay over a rope wound around a peg. Does not identify this sealing as Tar’am-Agade’s. | Excavators' public record; citation only |
 
 ## Recent-challenge audit — Stages 3A–3B
 
@@ -192,6 +193,7 @@ Packet shared: [Akkad owner decision card and supporting packet](https://github.
 | `claim.akkad.horned-helmet` — in Akkadian art a horned helmet was a sign of divinity. | interpretation | high | `source.akkad.smarthistory-stele` | Art-historical reading; the Louvre record names the horned tiara but does not interpret it. | — | One clause. | Voice revision, close-reviewed 2026-09-23. |
 | `claim.akkad.stele-booty` — in the twelfth century BCE Shutruk-Nahhunte of Elam took the stele from Sippar to Susa as war booty and had an inscription carved on its mountain saying so; excavators found it at Susa in 1898. | observation | high | `source.akkad.louvre-stele`, `source.akkad.smarthistory-stele` | — | — | The stele’s second life. | Voice revision, close-reviewed 2026-09-23. |
 | `claim.akkad.curse-of-agade` — the Curse of Agade, known from Old Babylonian copies centuries after Naram-Sin, blames Agade’s ruin on his attack on Enlil’s temple and describes grass growing on the city’s towpaths. | later-tradition | high | `source.akkad.curse-etcsl`, `source.akkad.curse-cdli` | Literary explanation, not evidence of cause. | — | Labeled later tradition in the ending. | Voice revision, close-reviewed 2026-09-23. |
+| `claim.akkad.door-sealing` — door sealings from the Urkesh palace were lumps of clay pressed against the door over a rope wound around a peg, with a seal rolled across the clay. | observation | high | `source.akkad.urkesh-door-sealing` |
 
 ## Central claim support
 
@@ -497,7 +499,7 @@ Whole lesson: story spine (Agade, the capital nobody has found) and memorable mo
 - The stele section rebuilt point-first: orient on the image, describe, state the message plainly, then the stone's later life as the same boast reused. Sippar, Susa, 1898, the Louvre and the height moved to the image caption.
 - Both prompts replaced (see `## Prompt revision`).
 - Terms: Urkesh gloss and definition no longer use “Hurrian”. No term added or removed; all IDs kept.
-- No claims or sources added: every new sentence restates an existing claim (`empire-term`, `northern-sites`, `stele-term`, `lullubi` and `susa-location` are now cited by the modules that use them).
+- One claim and one source added after owner review: `claim.akkad.door-sealing` (`source.akkad.urkesh-door-sealing`, the excavators' record of an Urkesh door sealing with rope and peg impressions), to explain how a door was sealed. Every other new sentence restates an existing claim (`empire-term`, `northern-sites`, `stele-term`, `lullubi` and `susa-location` are now cited by the modules that use them). Invented phrases (“What they say is loud”, “The stone kept boasting”) replaced with plain wording at the owner's request.
 - Reading length (learner-facing sections, `lesson:kid-read`): 1,481 → 1,421 words.
 
 ### Left out
