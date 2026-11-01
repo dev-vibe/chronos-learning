@@ -52,7 +52,7 @@ What changed: the hook stays; names the point does not need (Meluhha, Magan, Dil
 
 > Sargon was king of Akkad, a kingdom in what is now Iraq… the docks of his capital city… a princess from Akkad, the daughter of a later king of Akkad… another king, from a land to the east…
 
-What changed: Akkad, Agade, Akkadian and Tar’am-Agade share a root, and readers lost track of which was which. The kingdom is “Akkad” everywhere and is said to be a kingdom; “Akkad’s” replaces “Akkadian”; the capital, the princess, the defeated people and the second king are described, with their names in the term boxes (`[[his capital city|term.akkad.agade]]`, `[[a princess from Akkad|term.akkad.taram-agade]]`). Uruk and “Tell” Leilan went too. The names pass counted 13 names before and about 5 after.
+What changed: Akkad, Agade, Akkadian and Tar’am-Agade share a root, and readers lost track of which was which. The kingdom is “Akkad” everywhere and is said to be a kingdom; “Akkad’s” replaces “Akkadian”; the capital, the princess, the defeated people and the second king are described instead of named. (An early draft put their names in term boxes on the descriptions; readers found it odd to tap “a princess from Akkad” and get a name they had never seen, so those boxes went too.) Uruk and “Tell” Leilan went too. The names pass counted 13 names before and about 5 after.
 
 ## Every detail serves the point (no seductive details)
 
