@@ -21,7 +21,11 @@ describe('published prompt fingerprints', () => {
   it('match the committed file for every published prompt', () => {
     const file = committed();
     expect(errorsFor(content(), file)).toEqual([]);
-    const published = chronosContent.lessons.filter((lesson) => lesson.status === 'published').flatMap((lesson) => lesson.promptIds);
+    // Guess-before-reading modules are recorded too: learners' guesses are stored under their IDs.
+    const published = chronosContent.lessons.filter((lesson) => lesson.status === 'published').flatMap((lesson) => [
+      ...lesson.promptIds,
+      ...lesson.sections.flatMap((section) => section.modules).filter((module) => module.type === 'guess').map((module) => module.id),
+    ]);
     expect(Object.keys(file.prompts).filter((id) => !file.prompts[id].retired).sort()).toEqual([...new Set(published)].sort());
   });
 

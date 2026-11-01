@@ -2,16 +2,19 @@ import type { LessonProgress } from '../domains/contracts';
 import { isSupabaseConfigured, supabase } from '../../lib/supabase';
 import { chronosContent } from '../../content/chronos';
 import { resolveActiveLearner, type ActiveLearner, type LearnerView } from '../infrastructure/family/activeLearner';
-import { snapshotQuestions, writtenPrompts, type SubmittedQuestion } from '../domains/submissions';
+import { snapshotGuesses, snapshotQuestions, writtenPrompts, type SubmittedGuess, type SubmittedQuestion } from '../domains/submissions';
+import { isGuessId, lessonGuesses } from '../domains/guesses';
 import { isPromptAnswered } from './prompt-requirements';
 
 export type PromptResponses = Record<string, string>;
+/** Saved "guess before reading" answers, by guess ID. Kept apart from prompt responses so they never count as checks. */
+export type GuessResponses = Record<string, string>;
 export type ReviewStatus = 'submitted' | 'returned' | 'passed';
 /** A parent's review of the learner's submitted answers for one lesson. */
 export type LessonReview = { status: ReviewStatus; round: number; submittedAt: string; reviewedAt?: string; feedback?: string; cardIds: string[]; passSeenAt?: string };
 /** Present only for signed-in learners; guests have no parent to review their work. */
 export type LearnAccount = { parentLinked: boolean; view?: LearnerView };
-export type LearnState = LessonProgress & { exploredSectionIds: string[]; responses: PromptResponses; cardIds?: string[]; cardId?: string; review?: LessonReview; account?: LearnAccount; version: 1 };
+export type LearnState = LessonProgress & { exploredSectionIds: string[]; responses: PromptResponses; guesses?: GuessResponses; cardIds?: string[]; cardId?: string; review?: LessonReview; account?: LearnAccount; version: 1 };
 export type JourneyProgressSummary = Pick<LessonProgress, 'lessonId' | 'status' | 'completedAt'>;
 export type PassNotice = { lessonId: string; cardIds: string[]; feedback?: string };
 export type ReturnedNotice = { lessonId: string; feedback: string };
@@ -21,6 +24,8 @@ export interface LearnProgressGateway {
   loadJourneySummaries(lessonIds: readonly string[]): Promise<Record<string, JourneyProgressSummary>>;
   markSection(lessonId: string, sectionId: string): Promise<LearnState>;
   saveAttempt(lessonId: string, promptId: string, response: string): Promise<LearnState>;
+  /** Save the learner's guess before reading. Not an attempt at a check: it is never graded or required. */
+  saveGuess(lessonId: string, guessId: string, guess: string): Promise<LearnState>;
   /** Finish the lesson and send the learner's latest answers for review. */
   submit(lessonId: string): Promise<LearnState>;
   loadInbox(): Promise<ReviewInbox>;
@@ -28,17 +33,24 @@ export interface LearnProgressGateway {
 }
 
 const key = (lessonId: string) => `chronos.learn.preview.v1:${lessonId}`;
-const empty = (lessonId: string): LearnState => ({ learnerId: 'anonymous-preview', lessonId, status: 'in-progress', attemptedPromptIds: [], exploredSectionIds: [], responses: {}, version: 1 });
+const empty = (lessonId: string): LearnState => ({ learnerId: 'anonymous-preview', lessonId, status: 'in-progress', attemptedPromptIds: [], exploredSectionIds: [], responses: {}, guesses: {}, version: 1 });
 export const lessonPromptIds = (lessonId: string): string[] => chronosContent.lessons.find((item) => item.id === lessonId)?.promptIds ?? [];
 const currentSectionIds = (lessonId: string) => new Set(chronosContent.lessons.find((item) => item.id === lessonId)?.sections.map((section) => section.id) ?? []);
 /** The cards a parent's pass grants, taken from the repository content bundle. */
 export const cardsForLesson = (lessonId: string) => chronosContent.cards.filter((card) => card.unlockLessonId === lessonId).map((card) => card.id);
+const lessonGuessModules = (lessonId: string) => lessonGuesses(chronosContent.lessons.find((item) => item.id === lessonId));
 const lessonPrompts = (lessonId: string) => lessonPromptIds(lessonId).map((id) => chronosContent.prompts.find((prompt) => prompt.id === id)).filter((prompt): prompt is NonNullable<typeof prompt> => Boolean(prompt));
-/** What goes to the parent: the lesson's written answers. Multiple-choice checks are finished once answered correctly. */
-export const submissionAnswers = (lessonId: string, responses: PromptResponses): PromptResponses =>
-  Object.fromEntries(writtenPrompts(lessonPrompts(lessonId)).filter((prompt) => typeof responses[prompt.id] === 'string').map((prompt) => [prompt.id, responses[prompt.id]]));
-/** The written questions as the learner sees them, stored with the answers so Review can show them after they change. */
-export const submissionQuestions = (lessonId: string): SubmittedQuestion[] => snapshotQuestions(lessonPrompts(lessonId));
+/**
+ * What goes to the parent: the lesson's written answers, plus the learner's guess before reading (shown apart and never graded).
+ * Multiple-choice checks are finished once answered correctly.
+ */
+export const submissionAnswers = (lessonId: string, responses: PromptResponses, guesses: GuessResponses = {}): PromptResponses => ({
+  ...Object.fromEntries(snapshotGuesses(lessonGuessModules(lessonId), guesses).map((guess) => [guess.promptId, guesses[guess.promptId]])),
+  ...Object.fromEntries(writtenPrompts(lessonPrompts(lessonId)).filter((prompt) => typeof responses[prompt.id] === 'string').map((prompt) => [prompt.id, responses[prompt.id]])),
+});
+/** The questions as the learner sees them (the saved guess first, then the written questions), stored with the answers so Review can show them after they change. */
+export const submissionQuestions = (lessonId: string, guesses: GuessResponses = {}): Array<SubmittedGuess | SubmittedQuestion> =>
+  [...snapshotGuesses(lessonGuessModules(lessonId), guesses), ...snapshotQuestions(lessonPrompts(lessonId))];
 /** Whether every required check is done: the best answer picked, or a written answer saved. */
 export const requiredChecksDone = (lessonId: string, responses: PromptResponses) =>
   lessonPrompts(lessonId).filter((prompt) => prompt.required).every((prompt) => isPromptAnswered(prompt, responses[prompt.id]));
@@ -49,11 +61,13 @@ export function normalizeLearnState(state: LearnState): LearnState {
   const currentPrompts = new Set(lessonPromptIds(state.lessonId));
   const attemptedPromptIds = state.attemptedPromptIds.filter((id) => currentPrompts.has(id));
   const responses = Object.fromEntries(Object.entries(state.responses).filter(([id]) => currentPrompts.has(id)));
+  const currentGuesses = new Set(lessonGuessModules(state.lessonId).map((guess) => guess.id));
+  const guesses = Object.fromEntries(Object.entries(state.guesses ?? {}).filter(([id]) => currentGuesses.has(id)));
   const validSections = currentSectionIds(state.lessonId);
   const resumeSectionId = state.resumeSectionId && validSections.has(state.resumeSectionId) ? state.resumeSectionId : undefined;
   const exploredSectionIds = [...new Set(state.exploredSectionIds.filter((sectionId) => validSections.has(sectionId)))];
   const cardIds = [...new Set([...(state.cardIds ?? []), ...(state.cardId ? [state.cardId] : [])])];
-  return { ...state, attemptedPromptIds, responses, resumeSectionId, exploredSectionIds, cardIds, cardId: cardIds[0] };
+  return { ...state, attemptedPromptIds, responses, guesses, resumeSectionId, exploredSectionIds, cardIds, cardId: cardIds[0] };
 }
 
 export class LocalPreviewGateway implements LearnProgressGateway {
@@ -85,6 +99,11 @@ export class LocalPreviewGateway implements LearnProgressGateway {
     const state = this.read(lessonId);
     state.responses[promptId] = response;
     if (!state.attemptedPromptIds.includes(promptId)) state.attemptedPromptIds.push(promptId);
+    return this.write(state);
+  }
+  async saveGuess(lessonId: string, guessId: string, guess: string) {
+    const state = this.read(lessonId);
+    state.guesses = { ...(state.guesses ?? {}), [guessId]: guess };
     return this.write(state);
   }
   /** Guests finish lessons in this browser only. Cards need a parent's pass, which needs an account. */
@@ -156,10 +175,14 @@ export class SupabaseLearnGateway implements LearnProgressGateway {
     const { data: attempts } = attemptsResult;
     const { data: ownership } = ownershipResult;
     // Attempts arrive oldest first, so the latest response to each prompt wins.
-    const responses = Object.fromEntries((attempts ?? []).map((item: any) => [item.prompt_id, String(item.response?.answer ?? item.response?.value ?? '')]));
+    // Guesses share the table but are tagged `kind: 'guess'` and kept apart, so they never count as checks.
+    const isGuessRow = (item: any) => item.response?.kind === 'guess' || isGuessId(String(item.prompt_id));
+    const text = (item: any) => String(item.response?.answer ?? item.response?.value ?? '');
+    const responses = Object.fromEntries((attempts ?? []).filter((item: any) => !isGuessRow(item)).map((item: any) => [item.prompt_id, text(item)]));
+    const guesses = Object.fromEntries((attempts ?? []).filter(isGuessRow).map((item: any) => [item.prompt_id, text(item)]));
     const cardIds = (ownership ?? []).map((item: any) => String(item.card_id));
     const review = mapReview(submissionResult.data);
-    return normalizeLearnState({ learnerId: this.learnerId, lessonId, status: progress.status === 'completed' ? 'completed' : 'in-progress', completedAt: progress.completed_at ?? undefined, resumeSectionId: resume?.section_id, attemptedPromptIds: Object.keys(responses), exploredSectionIds: (explored ?? []).map((item: any) => item.section_id), responses, cardIds, cardId: cardIds[0], ...(review ? { review } : {}), account: { parentLinked: (parentsResult.data ?? []).length > 0 || this.active.view === 'kid', view: this.active.view }, version: 1 });
+    return normalizeLearnState({ learnerId: this.learnerId, lessonId, status: progress.status === 'completed' ? 'completed' : 'in-progress', completedAt: progress.completed_at ?? undefined, resumeSectionId: resume?.section_id, attemptedPromptIds: Object.keys(responses), exploredSectionIds: (explored ?? []).map((item: any) => item.section_id), responses, guesses, cardIds, cardId: cardIds[0], ...(review ? { review } : {}), account: { parentLinked: (parentsResult.data ?? []).length > 0 || this.active.view === 'kid', view: this.active.view }, version: 1 });
   }
   async loadJourneySummaries(lessonIds: readonly string[]): Promise<Record<string, JourneyProgressSummary>> {
     const uniqueIds = [...new Set(lessonIds)];
@@ -193,10 +216,15 @@ export class SupabaseLearnGateway implements LearnProgressGateway {
     const { error } = await this.client.from('understanding_prompt_attempts').insert({ learner_id: this.learnerId, lesson_id: lessonId, prompt_id: promptId, response: { answer: response } });
     if (error) throw error; return this.load(lessonId);
   }
+  async saveGuess(lessonId: string, guessId: string, guess: string) {
+    await this.ensure(lessonId);
+    const { error } = await this.client.from('understanding_prompt_attempts').insert({ learner_id: this.learnerId, lesson_id: lessonId, prompt_id: guessId, response: { answer: guess, kind: 'guess' } });
+    if (error) throw error; return this.load(lessonId);
+  }
   async submit(lessonId: string) {
     const current = await this.load(lessonId);
-    const answers = submissionAnswers(lessonId, current.responses);
-    const { error } = await this.client.rpc('submit_lesson', { p_lesson_id: lessonId, p_answers: answers, p_learner_id: this.learnerId, p_questions: submissionQuestions(lessonId) });
+    const answers = submissionAnswers(lessonId, current.responses, current.guesses);
+    const { error } = await this.client.rpc('submit_lesson', { p_lesson_id: lessonId, p_answers: answers, p_learner_id: this.learnerId, p_questions: submissionQuestions(lessonId, current.guesses) });
     if (error) throw error;
     return this.load(lessonId);
   }

@@ -8,6 +8,12 @@ Builds on [ADR 005: Parent review](decisions/005-parent-review.md). Learners' an
 2. **What a learner has earned stays.** A prompt change never un-finishes a lesson, reopens a passed review or removes a card.
 3. **Nothing is migrated or deleted.** Old answers stay in the database under their old IDs, and a retired ID is never reused.
 
+## Guesses before reading
+
+A lesson's `guess` module (the ungraded question in its opening) is covered by the same policy, because learners' guesses are stored under its ID. Its identity is its lesson and its question; the sentence starter and `payoffModuleId` may change under the same ID. `content/published-prompt-fingerprints.json` records it next to the prompts, and a changed question needs a new `guess.<lesson-slug>.<name>` ID and `npm run content:fingerprints`.
+
+The guess is saved in `understanding_prompt_attempts` like an answer, with `response.kind = 'guess'`, and kept apart from prompt responses, so it never counts as a check. When the learner sends the lesson, the guess travels in the submission's `answers` under its ID and in `questions` with kind `guess`; Review shows it under its own heading and never among the written answers.
+
 ## How to change a prompt
 
 For a published lesson, the [prompt revision runbook](../content/prompt-revision-runbook.md) wraps these steps with drafting, a support check and the owner's review.

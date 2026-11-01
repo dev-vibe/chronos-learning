@@ -50,6 +50,19 @@ export const HistoricalMapModuleSchema = BaseModule.extend({
   introLayout: z.enum(['standard', 'dense']).optional(),
   lookHere: z.array(EvidenceAnnotationSchema).min(1).max(4).optional(),
 });
+// A guess the learner writes before reading on. It is not an understanding prompt: it is
+// never graded, never required for passing and never counts as one of the lesson's checks.
+// Its `id` is also the key the learner's guess is stored under, so it starts with `guess.`
+// and follows the prompt-change policy (docs/architecture/prompt-changes.md).
+export const GuessId = z.string().regex(/^guess\.[a-z0-9-]+(?:\.[a-z0-9-]+)+$/, 'guess ids look like guess.<lesson-slug>.<name>');
+export const GuessModuleSchema = BaseModule.extend({
+  type: z.literal('guess'),
+  id: GuessId,
+  question: z.string().min(1),
+  sentenceStarter: z.string().min(1).optional(),
+  /** The module or section where the lesson answers the guess; the learner's guess is shown again there. */
+  payoffModuleId: StableId,
+});
 export const LessonModuleSchema = z.discriminatedUnion('type', [
   BaseModule.extend({ type: z.literal('prose'), body: z.string().min(1) }),
   BaseModule.extend({ type: z.literal('knowledge'), eyebrow: z.string().min(1), title: z.string().min(1), body: z.string().min(1), items: z.array(z.object({ label: z.string().min(1), detail: z.string().min(1) })).min(2).max(5) }),
@@ -57,8 +70,10 @@ export const LessonModuleSchema = z.discriminatedUnion('type', [
   BaseModule.extend({ type: z.literal('evidence'), title: z.string().min(1), artifactLabel: z.string().min(1), body: z.string().min(1), mediaId: StableId, layout: z.enum(['side-by-side', 'stacked']).optional(), scaleNote: z.string().min(1).optional(), lookHere: z.array(EvidenceAnnotationSchema).min(1).max(4).optional(), comparison: z.object({ mediaId: StableId, label: z.string().min(1), detail: z.string().min(1), sourceIds: z.array(StableId).min(1) }).optional() }),
   HistoricalMapModuleSchema,
   BaseModule.extend({ type: z.literal('prompt'), promptId: StableId }),
+  GuessModuleSchema,
 ]);
 export type LessonModule = z.infer<typeof LessonModuleSchema>;
+export type GuessModule = z.infer<typeof GuessModuleSchema>;
 export type HistoricalMapModule = z.infer<typeof HistoricalMapModuleSchema>;
 export const LessonSectionSchema = z.object({ id: StableId, heading: z.string(), purpose: z.string(), modules: z.array(LessonModuleSchema).min(1) });
 export const UnderstandingPromptSchema = z.discriminatedUnion('kind', [

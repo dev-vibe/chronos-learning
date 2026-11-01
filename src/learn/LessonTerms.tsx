@@ -2,6 +2,7 @@ import React, { createContext, useCallback, useContext, useEffect, useId, useLay
 import { createPortal } from 'react-dom';
 import { ChevronDown, X } from 'lucide-react';
 import type { Lesson, LessonTerm } from '../domains/contracts';
+import { focusGuessGate } from './GuessBeforeReading';
 import { featuredTermGroups, planLessonTerms, stripTermMarkup, termKindLabels, type LessonTermPlan } from '../domains/lessonTerms';
 import './lesson-terms.css';
 
@@ -224,7 +225,8 @@ export function KeyTermsPanel({ lesson }: { lesson: Lesson }) {
   const jump = (term: LessonTerm) => {
     const section = document.getElementById(term.primarySectionId);
     const heading = section?.querySelector<HTMLElement>('h2');
-    if (!section || !heading) return;
+    // The section may be waiting behind the lesson's guess before reading.
+    if (!section || !heading) { focusGuessGate(); return; }
     const reduce = typeof window.matchMedia === 'function' && window.matchMedia('(prefers-reduced-motion: reduce)')?.matches;
     section.scrollIntoView({ behavior: reduce ? 'auto' : 'smooth', block: 'start' });
     if (!heading.hasAttribute('tabindex')) heading.setAttribute('tabindex', '-1');

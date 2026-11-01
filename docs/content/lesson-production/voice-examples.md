@@ -40,7 +40,24 @@ What changed: the opening needed the reader to remember an earlier section and d
 >
 > Winning a city took one battle. Keeping it was the hard part. After the army went home, what would a king need so that the people there kept doing what he said? Make a guess before you read on.
 
-What changed: the hook stays; names the point does not need (Meluhha, Magan, Dilmun, the rivers, Naram-Sin) go to the section that needs them or nowhere; the question comes in one plain sentence, with a guess the ending pays off.
+What changed: the hook stays; names the point does not need (Meluhha, Magan, Dilmun, the rivers, Naram-Sin) go to the section that needs them or nowhere; the question comes in one plain sentence, with a guess the ending pays off. (The guess is now asked with the guess module, not in the prose: see the next pair.)
+
+## Ask for the guess with the guess module, not in the prose
+
+**Before** (the guess is a request in the text, easy to read past)
+
+> Winning a city could take a single battle. Keeping it was the hard part. After the army went home, what would a king need so that the people there kept doing what he said? Make a guess before you read on.
+
+**After** (the prose ends on the hook; the question is a `guess` module, the last thing in the opening section)
+
+> Winning a city could take a single battle. Keeping it was the hard part.
+>
+> **[Guess before reading]** After the army went home, what would a king need so that the people there kept doing what he said?
+> `[ A king would need… ]` **Save my guess**
+>
+> *(The rest of the lesson appears once the guess is saved. At the closing paragraph, “So what did it take to keep a city? …”, the learner sees “You guessed: …” in their own words.)*
+
+What changed: a guess helps a learner remember the answer only if they actually make one, and “Make a guess before you read on” asks for one without waiting for it. The guess module waits, keeps the question to one plain sentence, gives a sentence starter, and pays the guess off where the ending answers it. The question is not repeated in the prose above the box.
 
 ## Name budget and look-alike names
 

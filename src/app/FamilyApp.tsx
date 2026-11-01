@@ -3,6 +3,7 @@ import { Check, ChevronDown, ClipboardCheck, KeyRound, Lock, LogOut, MessageSqua
 import { chronosContent } from '../../content/chronos';
 import { worldSpineRoadmap } from '../../content/world-spine/roadmap';
 import { buildLearnerOverview, triesDescription, triesLabel, type CompletedLesson, type OverviewRow } from '../domains/learnerOverview';
+import { lessonGuess } from '../domains/guesses';
 import { cardsForLesson } from '../learn/progress';
 import { useChronosTheme } from '../theme/useChronosTheme';
 import { GlobalNavigation } from './GlobalNavigation';
@@ -464,6 +465,14 @@ function ReviewCard({ item, learner, gateway, onReviewed }: { item: ReviewItem; 
       <h3 id={`${noteId}-title`}><a href={`/learn/${lesson.id}`}>{lesson.title}</a></h3>
     </header>
     {item.round > 1 && item.feedback && <figure className="parent-note"><figcaption><MessageSquareQuote aria-hidden="true" /> Your last note</figcaption><blockquote>{item.feedback}</blockquote></figure>}
+    {(item.guesses ?? []).map((guess) => <section key={guess.promptId} className="review-guess" aria-labelledby={`${noteId}-${guess.promptId}`}>
+      {/* Shown apart from the written answers so a parent can compare before and after. Never graded. */}
+      <h4 id={`${noteId}-${guess.promptId}`}>Guess before reading · not graded</h4>
+      <p className="review-question">{guess.question}</p>
+      {lessonGuess(lesson)?.id !== guess.promptId && <p className="review-retired-note">This question has since changed in the lesson. It is shown as {name} saw it.</p>}
+      <p className="review-answer">{item.answers[guess.promptId] || <em className="no-answer">No guess</em>}</p>
+    </section>)}
+    {(item.guesses ?? []).length > 0 && item.questions.length > 0 && <h4 className="review-answers-heading">Written answers</h4>}
     {item.questions.length === 0
       ? <p className="family-hint">This lesson has no written answers to read. {name} finished its checks by choosing the best-supported answers.</p>
       : <ol className="review-answers">{item.questions.map((question) => <li key={question.promptId}>

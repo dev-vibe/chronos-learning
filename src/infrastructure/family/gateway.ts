@@ -1,6 +1,6 @@
 import { isSupabaseConfigured, supabase } from '../../../lib/supabase';
 import { enterParentView, forgetFamilyView } from './activeLearner';
-import { parseSubmittedQuestions, type SubmittedQuestion } from '../../domains/submissions';
+import { parseSubmittedGuesses, parseSubmittedQuestions, type SubmittedGuess, type SubmittedQuestion } from '../../domains/submissions';
 import type { CompletedLesson } from '../../domains/learnerOverview';
 
 export type FamilyMember = { id: string; displayName?: string };
@@ -33,6 +33,8 @@ export type ReviewItem = {
   answers: Record<string, string>;
   /** The questions as the learner saw them when submitting, in lesson order. */
   questions: SubmittedQuestion[];
+  /** The learner's guess before reading, if the lesson has one and they saved it. Never graded. */
+  guesses?: SubmittedGuess[];
 };
 export type ReviewDecision = 'pass' | 'return';
 export type SignUpResult = 'signed-in' | 'confirm-email';
@@ -253,6 +255,7 @@ export class SupabaseFamilyGateway implements FamilyGateway {
       ...(row.feedback ? { feedback: String(row.feedback) } : {}),
       answers: Object.fromEntries(Object.entries(row.answers ?? {}).map(([key, value]) => [key, String(value)])),
       questions: parseSubmittedQuestions(row.questions),
+      guesses: parseSubmittedGuesses(row.questions),
     }));
   }
   async review(learnerId: string, lessonId: string, decision: ReviewDecision, feedback: string, cardIds: string[]) {

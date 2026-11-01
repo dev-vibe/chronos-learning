@@ -1,4 +1,4 @@
-import type { UnderstandingPrompt } from './contracts';
+import type { GuessModule, UnderstandingPrompt } from './contracts';
 
 /**
  * A written question as the learner saw it when they sent the lesson for
@@ -37,5 +37,29 @@ export function parseSubmittedQuestions(value: unknown): SubmittedQuestion[] {
       required: entry.required === true,
       ...(typeof entry.explanation === 'string' ? { explanation: entry.explanation } : {}),
     }];
+  });
+}
+
+/**
+ * The learner's "guess before reading", as they saw the question when they sent
+ * the lesson. It travels with the written answers so a parent can compare the
+ * guess with what the learner wrote after reading, but it is never graded and
+ * never mixed into the written answers. Its text sits in the submission's
+ * `answers` under the guess ID, like a written answer under its prompt ID.
+ */
+export type SubmittedGuess = { promptId: string; kind: 'guess'; question: string; required: false };
+
+/** The lesson's guess, only when the learner saved one. */
+export const snapshotGuesses = (guesses: readonly GuessModule[], saved: Readonly<Record<string, string>>): SubmittedGuess[] =>
+  guesses.filter((guess) => saved[guess.id]?.trim()).map((guess) => ({ promptId: guess.id, kind: 'guess', question: guess.question, required: false }));
+
+/** Reads stored guesses defensively, from the same `questions` snapshot. Anything malformed is dropped. */
+export function parseSubmittedGuesses(value: unknown): SubmittedGuess[] {
+  if (!Array.isArray(value)) return [];
+  return value.flatMap((item): SubmittedGuess[] => {
+    if (!item || typeof item !== 'object') return [];
+    const entry = item as Record<string, unknown>;
+    if (typeof entry.promptId !== 'string' || typeof entry.question !== 'string' || entry.kind !== 'guess') return [];
+    return [{ promptId: entry.promptId, kind: 'guess', question: entry.question, required: false }];
   });
 }

@@ -12,6 +12,7 @@ import {
 } from '../../domains/contracts';
 import { LessonPrototypeReviewSchema } from './prototypeReview';
 import { validateLessonTerms } from '../../domains/lessonTerms';
+import { validateLessonGuesses } from '../../domains/guesses';
 
 export type ContentBundle = {
   sources: unknown[];
@@ -52,7 +53,9 @@ export function validateContent(input: ContentBundle) {
   const cards = parse<any>(input.cards, KnowledgeCardSchema, 'card');
   const prototypeReviews = parse<any>(input.prototypeReviews ?? [], LessonPrototypeReviewSchema, 'prototypeReview');
   const terms = lessons.flatMap((lesson) => lesson.terms ?? []);
-  const all = [...sources, ...claims, ...media, ...prompts, ...lessons, ...journeys, ...invitations, ...cards, ...terms];
+  // Guesses are stored under their IDs like prompts, so they share the global ID space.
+  const guesses = lessons.flatMap((lesson) => lesson.sections.flatMap((section: any) => section.modules).filter((module: any) => module.type === 'guess'));
+  const all = [...sources, ...claims, ...media, ...prompts, ...lessons, ...journeys, ...invitations, ...cards, ...terms, ...guesses];
   const ids = new Set<string>();
   for (const item of all) {
     if (ids.has(item.id)) errors.push(`duplicate ID: ${item.id}`);
@@ -114,6 +117,7 @@ export function validateContent(input: ContentBundle) {
       if (prompt?.evidenceModuleIds) refs(prompt.id, prompt.evidenceModuleIds, inspectableIds, 'inspectable evidence module');
       if (prompt?.required && !renderedPromptIds.has(promptId)) errors.push(`${lesson.id}: required prompt ${promptId} is not rendered by a lesson module`);
     }
+    errors.push(...validateLessonGuesses(lesson));
     const termResult = validateLessonTerms(lesson, prompts.filter((prompt) => prompt.lessonId === lesson.id));
     errors.push(...termResult.errors);
     warnings.push(...termResult.warnings);

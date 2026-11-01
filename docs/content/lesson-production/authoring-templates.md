@@ -239,6 +239,11 @@ Sources and visual brief:
 | Prompt ID | Question (draft at 6A, final at 12) | Sentence of the kid's answer it checks | Plant list: what the lesson must show first | Misconception a wrong choice exposes | Kid reader's restatement and yes/sort of/no (14C) |
 | --- | --- | --- | --- | --- | --- |
 
+Guess before reading (optional, runbook Stage 9; not a check, never graded):
+
+| Guess ID | Question (one real question, no single right answer) | Sentence starter | Payoff module: the paragraph that answers it | Kid reader's restatement (14C) |
+| --- | --- | --- | --- | --- |
+
 ## Ages 11–15 transformations
 
 Initial drafting reference: roughly 12–13; age fit remains a hypothesis until observed with learners.

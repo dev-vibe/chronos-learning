@@ -77,6 +77,17 @@ Do not create a progress-bearing “Connections” or “Follow the idea forward
 
 Use multiple choice, ordering, matching, image hotspots, comparison, concise explanation, or source interpretation. Explanations use write → “Compare your thinking” → clearly labeled authored example/explanation → optional revision. Do not reveal feedback automatically at a character threshold or present an example as personalized evaluation. Preserve drafts and progress. Optional authored hints point to evidence; choices may have specific explanatory feedback. Sincere attempts are sufficient; completion does not certify mastery. No lives, countdowns, grades, loud failure states, or perfect-score completion gate.
 
+### Guess before reading
+
+A lesson may open with one ungraded question the learner answers before the rest of the lesson appears ([Stage 9](../content/lesson-creation-runbook.md#guess-before-reading)). It uses the same fixed prompt surface as the checks, with no extra label or slogan around it:
+
+- **Box.** The question in the prompt's serif, a short text box (two lines, resizable) whose placeholder is the optional sentence starter, and a plain secondary **Save my guess** button. A guess needs a few words, under the same sincere-attempt rule as written answers; a too-short guess gets a calm “Write a few words, then save your guess.” No right or wrong, no score, no feedback beyond **Saved**.
+- **Locked.** Until a guess is saved, nothing after it is on the page: no later sections, checks or completion panel. Below the box sits a quiet dashed panel, **Answer to keep reading**, in muted text. Jumping to a hidden section (journey drawer, People, places and words) brings the learner to the guess instead.
+- **Saved.** The box becomes the saved-answer surface (check, **Saved**, the guess, **Edit my guess**) and the rest of the lesson appears below with no animation. Focus moves to the saved guess, where the button was, so the page does not jump, and a polite status tells screen readers the rest of the lesson is open.
+- **Reopening.** A saved guess shows read-only (editable like a written answer) and the whole lesson is open. The lesson still opens at the top; nothing scrolls or takes focus on its own. A lesson finished before it had a guess shows no guess box.
+- **Payoff.** Just after the paragraph that answers the question, a warm note surface with a gold rule shows **You guessed:** and the learner's words in the reading serif.
+- **Review.** Parents see it first, in a dashed box headed **Guess before reading · not graded**, above **Written answers** and never mixed into them.
+
 ## Reading and inspectable evidence
 
 Evidence cards use the registered image dimensions: landscape images span the top with text below; square and portrait images sit to the left of text. Mobile and the largest reading size stack both. Keep the full image at its natural proportions, without fixed-height filler or cropping. Enlargement is a discreet, labeled 44px overlay control. An authored layout can override the default when evidence details need a different presentation; unrelated images must not be paired just to demonstrate comparison support.

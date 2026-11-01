@@ -13,6 +13,7 @@ class TestGateway implements LearnProgressGateway {
   state = initial(); load = vi.fn(async () => this.state);
   loadJourneySummaries = vi.fn(async (lessonIds: readonly string[]) => Object.fromEntries(lessonIds.map((lessonId) => [lessonId, { lessonId, status: lessonId === this.state.lessonId ? this.state.status : 'in-progress' }])) as Record<string, JourneyProgressSummary>);
   markSection = vi.fn(async () => this.state);
+  saveGuess = vi.fn(async (_lesson: string, guessId: string, guess: string) => { this.state = { ...this.state, guesses: { ...(this.state.guesses ?? {}), [guessId]: guess } }; return this.state; });
   saveAttempt = vi.fn(async (_lesson: string, prompt: string, response: string) => { this.state = { ...this.state, attemptedPromptIds: [...new Set([...this.state.attemptedPromptIds, prompt])], responses: { ...this.state.responses, [prompt]: response } }; return this.state; });
   submit = vi.fn(async () => { this.state = { ...this.state, status: 'completed', completedAt: new Date().toISOString(), review: { status: 'submitted', round: (this.state.review?.round ?? 0) + (this.state.review?.status === 'submitted' ? 0 : 1), submittedAt: '2026-09-25T12:00:00.000Z', cardIds: [], ...(this.state.review?.feedback ? { feedback: this.state.review.feedback } : {}) } }; return this.state; });
   inbox: ReviewInbox = { passes: [], returned: [], waitingForMyReview: 0 };

@@ -364,6 +364,36 @@ describe('Progress overview', () => {
 });
 
 describe('Review after a lesson’s prompts change', () => {
+  it('shows the guess before reading under its own heading, above the written answers and apart from them', async () => {
+    const gateway = new FakeFamilyGateway();
+    gateway.user = { userId: parentId };
+    gateway.account = { userId: parentId, displayName: 'Mom', setup: 'separate', linkCode: 'HJKLMNPQ', parents: [], learners: [{ id: kidId, displayName: 'Sam' }], profiles: [], parentPin: false };
+    const guessQuestion = 'After the army went home, what would a king need so that the people there kept doing what he said?';
+    gateway.queue = [{
+      learnerId: kidId,
+      lessonId: 'lesson.mesopotamia.akkadian-empire',
+      status: 'submitted',
+      round: 1,
+      submittedAt: '2026-11-01T00:00:00.000Z',
+      answers: { 'guess.akkad.keep-a-city': 'Lots of soldiers.', 'prompt.akkad.official-or-princess': 'An official, because the workers need food every day.' },
+      questions: [{ promptId: 'prompt.akkad.official-or-princess', kind: 'concise-explanation', question: 'Which would you choose?', required: true }],
+      guesses: [{ promptId: 'guess.akkad.keep-a-city', kind: 'guess', question: guessQuestion, required: false }],
+    }];
+    render(<FamilyApp page="review" gateway={gateway} />);
+    const card = await screen.findByRole('article', { name: 'Akkad and the Problem of Empire' });
+    const guess = within(card).getByRole('region', { name: 'Guess before reading · not graded' });
+    expect(within(guess).getByText(guessQuestion)).toBeTruthy();
+    expect(within(guess).getByText('Lots of soldiers.')).toBeTruthy();
+    expect(within(guess).queryByText(/since changed/)).toBeNull();
+    expect(within(guess).queryByText(/What a strong answer covers/)).toBeNull();
+    // Never mixed into the written answers the parent passes or sends back.
+    const written = card.querySelectorAll('.review-answers > li');
+    expect(written).toHaveLength(1);
+    expect(within(written[0] as HTMLElement).queryByText('Lots of soldiers.')).toBeNull();
+    expect(within(card).getByRole('heading', { name: 'Written answers' })).toBeTruthy();
+    expect(guess.compareDocumentPosition(card.querySelector('.review-answers')!) & Node.DOCUMENT_POSITION_FOLLOWING).toBeTruthy();
+  });
+
   it('shows each written question as the kid saw it, including one the lesson has since replaced', async () => {
     const gateway = new FakeFamilyGateway();
     gateway.user = { userId: parentId };

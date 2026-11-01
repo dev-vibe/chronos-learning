@@ -5,6 +5,7 @@
 import { chronosContent } from '../../content/chronos';
 import type { LessonModule, UnderstandingPrompt } from '../../src/domains/contracts';
 import { featuredTermGroups, stripTermMarkup, termKindLabels } from '../../src/domains/lessonTerms';
+import { lessonGuesses } from '../../src/domains/guesses';
 import { argumentValue, hasFlag } from './arguments';
 
 const args = process.argv.slice(2);
@@ -57,6 +58,10 @@ const writeChoicesAndHints = () => {
   });
 };
 
+// The guess is shown again, in the learner's own words, where the lesson answers it.
+const guessPayoffs = new Map(lessonGuesses(lesson).map((guess) => [guess.payoffModuleId, guess]));
+const writePayoff = (id: string) => { if (guessPayoffs.has(id)) line('[You guessed: <the learner’s guess>]'); };
+
 const notes = (items: { label?: string; detail?: string }[] | undefined) => items?.forEach((item) => line(`- ${item.label}: ${item.detail}`));
 
 const writeModule = (module: LessonModule) => {
@@ -91,7 +96,13 @@ const writeModule = (module: LessonModule) => {
       if (prompt) writePrompt(prompt);
       break;
     }
+    case 'guess':
+      line(`Guess before reading: ${module.question}`);
+      line(module.sentenceStarter ? `  [Short answer box, starting “${module.sentenceStarter}”] [Save my guess]` : '  [Short answer box] [Save my guess]');
+      line('  (not graded; the rest of the lesson appears only after the learner saves a guess)');
+      break;
   }
+  writePayoff(module.id);
   line();
 };
 
@@ -108,6 +119,7 @@ for (const section of lesson.sections) {
   line();
   line(`## ${section.heading}`);
   section.modules.forEach(writeModule);
+  writePayoff(section.id);
 }
 writeChoicesAndHints();
 if (lesson.terms?.length) {

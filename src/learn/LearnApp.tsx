@@ -25,6 +25,8 @@ import { LessonOrientation } from './LessonOrientation';
 import { orientationMapForLesson } from '../domains/lessonOrientation';
 import { splitProseParagraphs, stripTermMarkup, termFieldKey } from '../domains/lessonTerms';
 import { KeyTermsPanel, LessonTermsProvider, TermText } from './LessonTerms';
+import { focusGuessGate, GuessBeforeReading, GuessLock, GuessPayoff, GuessProvider, useGuess } from './GuessBeforeReading';
+import { guessGate, isSincereAttempt } from '../domains/guesses';
 import './learn.css';
 
 const lessonById = new Map(chronosContent.lessons.map((item) => [item.id, item]));
@@ -65,6 +67,7 @@ function Module({ module, state, onAttempt }: ModuleProps) {
     const media = mediaById.get(module.mediaId)!;
     return <HistoricalMapModule module={module} media={media} sources={module.sourceIds.map((id) => sourceById.get(id)!).filter(Boolean)} />;
   }
+  if (module.type === 'guess') return <GuessBeforeReading module={module} />;
   const prompt = promptById.get(module.promptId)!;
   const answer = state.responses[prompt.id] ?? '';
   const lesson = lessonById.get(prompt.lessonId);
@@ -79,9 +82,13 @@ function Module({ module, state, onAttempt }: ModuleProps) {
 }
 
 function Section({ section, state, onAttempt, openingMapId }: { section: LessonSection; state: LearnState; onAttempt(id: string, response: string): Promise<void>; openingMapId?: string }) {
-  return <section id={section.id} className={`lesson-section section-${section.modules[0].type}`} data-section-id={section.id} tabIndex={-1}><header className="section-heading"><h2>{section.heading}</h2></header><div className="section-modules">{section.modules.map((module, index) => {
-    const nextModule = section.modules[index + 1];
-    const previousModule = section.modules[index - 1];
+  // Until a guess is saved, the modules after it stay hidden.
+  const guess = useGuess();
+  const lockIndex = guess?.locked && guess.guess ? section.modules.findIndex((module) => module.id === guess.guess!.id) : -1;
+  const modules = lockIndex >= 0 ? section.modules.slice(0, lockIndex + 1) : section.modules;
+  return <section id={section.id} className={`lesson-section section-${section.modules[0].type}`} data-section-id={section.id} tabIndex={-1}><header className="section-heading"><h2>{section.heading}</h2></header><div className="section-modules">{modules.map((module, index) => {
+    const nextModule = modules[index + 1];
+    const previousModule = modules[index - 1];
 
     if (module.type === 'knowledge' && nextModule?.type === 'historical-map' && nextModule.id !== openingMapId) return null;
 
@@ -102,8 +109,8 @@ function Section({ section, state, onAttempt, openingMapId }: { section: LessonS
       </div>;
     }
 
-    return <React.Fragment key={module.id}><Module module={module} state={state} onAttempt={onAttempt} /></React.Fragment>;
-  })}</div></section>;
+    return <React.Fragment key={module.id}><Module module={module} state={state} onAttempt={onAttempt} /><GuessPayoff targetId={module.id} /></React.Fragment>;
+  })}{lockIndex >= 0 && <GuessLock />}<GuessPayoff targetId={section.id} /></div></section>;
 }
 
 type LearnStatusShellProps = {
@@ -208,6 +215,7 @@ export function LearnApp({ lessonId, gatewayFactory = createProgressGateway }: {
   const [celebrationGateway, setCelebrationGateway] = useState<LearnProgressGateway>();
   const [prototypeReview, setPrototypeReview] = useState<LessonPrototypeReview>();
   const observed = useRef(new Set<string>());
+  const guessLocked = Boolean(lesson && state && guessGate(lesson, state.guesses, state.status === 'completed').locked);
   const gatewayRef = useRef<LearnProgressGateway>(new LocalPreviewGateway());
   const menuRef = useRef<HTMLElement>(null);
   const retryLoad = useCallback(() => { setCurrentProgress(null); setJourneySummaries({}); setError(''); setLoadAttempt((value) => value + 1); }, []);
@@ -271,9 +279,9 @@ export function LearnApp({ lessonId, gatewayFactory = createProgressGateway }: {
     }), { rootMargin: '-15% 0px -65% 0px', threshold: [0, .01] });
     document.querySelectorAll('[data-section-id]').forEach((node) => observer.observe(node));
     return () => { active = false; observer.disconnect(); timers.forEach(window.clearTimeout); };
-  }, [lessonId, Boolean(state)]);
+  }, [lessonId, Boolean(state), guessLocked]);
 
-  const navigate = (id: string) => { const target = document.getElementById(id); if (!target) return; target.scrollIntoView({ behavior: matchMedia('(prefers-reduced-motion: reduce)').matches ? 'auto' : 'smooth', block: 'start' }); target.focus({ preventScroll: true }); };
+  const navigate = (id: string) => { const target = document.getElementById(id); if (!target) { focusGuessGate(); return; } target.scrollIntoView({ behavior: matchMedia('(prefers-reduced-motion: reduce)').matches ? 'auto' : 'smooth', block: 'start' }); target.focus({ preventScroll: true }); };
   const requirement = useMemo(() => derivePromptRequirementState(lesson?.promptIds ?? [], promptById, state?.responses ?? {}), [lesson, state?.responses]);
   const worldSpineAccess = useMemo(() => journey?.kind === 'world-history'
     ? resolveWorldSpineAccess(worldSpineRoadmap, chronosContent.lessons, journeySummaries, lessonId)
@@ -316,12 +324,15 @@ export function LearnApp({ lessonId, gatewayFactory = createProgressGateway }: {
         try { draft = sessionStorage.getItem(promptDraftKey(state.learnerId, lessonId, prompt.id)); } catch { /* no drafts in this browser */ }
         const text = draft?.trim() ?? '';
         if (!text || text === (state.responses[prompt.id] ?? '')) continue;
-        if (text.length < prompt.minimumResponseLength) { setError(`Add a little more to “${prompt.question}” before sending.`); return; }
+        if (!isSincereAttempt(text, prompt.minimumResponseLength)) { setError(`Add a little more to “${prompt.question}” before sending.`); return; }
         setCurrentProgress(await gatewayRef.current.saveAttempt(lessonId, prompt.id, text));
       }
       setCurrentProgress(await gatewayRef.current.submit(lessonId));
     } catch { setError('Your answers could not be sent. They are still saved here; please retry.'); }
     finally { setBusy(false); }
+  };
+  const saveGuess = async (guessId: string, text: string) => {
+    setCurrentProgress(await gatewayRef.current.saveGuess(lessonId, guessId, text));
   };
   const reloadAfterPass = (passedLessonId: string) => {
     if (passedLessonId !== lessonId) return;
@@ -337,6 +348,10 @@ export function LearnApp({ lessonId, gatewayFactory = createProgressGateway }: {
   const configuredCards = cardsByLessonId.get(lesson.id) ?? [];
   const ownedCards = [...new Set(state.cardIds ?? [])].map((id) => cardById.get(id)).filter((card): card is KnowledgeCard => Boolean(card));
   const lessonPrompts = lesson.promptIds.map((id) => promptById.get(id)).filter((prompt): prompt is NonNullable<typeof prompt> => Boolean(prompt));
+  // A guess before reading holds back the rest of the lesson until the learner saves one.
+  const gate = guessGate(lesson, state.guesses, state.status === 'completed');
+  const guessSectionIndex = gate.guess ? lesson.sections.findIndex((section) => section.modules.some((module) => module.id === gate.guess!.id)) : -1;
+  const visibleSections = gate.locked && guessSectionIndex >= 0 ? lesson.sections.slice(0, guessSectionIndex + 1) : lesson.sections;
   return <div className="learn-app" data-theme={theme}>
     <GlobalNavigation
       theme={theme}
@@ -348,12 +363,12 @@ export function LearnApp({ lessonId, gatewayFactory = createProgressGateway }: {
     <JourneyDrawer open={drawer} onClose={() => setDrawer(false)} onNavigate={navigate} lesson={lesson} journey={journey} summaries={journeySummaries} currentState={state} currentSectionId={state.resumeSectionId ?? lesson.sections[0].id} returnFocus={menuRef} />
     <header className="mobile-progress"><span className="mobile-progress-spacer" aria-hidden="true" /><div><strong>{lesson.title}</strong><span>{state.exploredSectionIds.length} of {lesson.sections.length} sections explored</span></div><button className="icon-button" onClick={toggleTheme} aria-label={'Use ' + (theme === 'light' ? 'dark' : 'light') + ' theme'}>{theme === 'light' ? <Moon /> : <Sun />}</button></header>
     <main className="lesson"><div className="lesson-toolbar"><JourneySwitcher currentJourneyId={journey.id} currentLessonId={lesson.id} /><span className="lesson-breadcrumb">{breadcrumbChapter} <ChevronRight /> {lesson.title}</span>{state.review?.status === 'returned' && <a className="review-chip" href="#completion-title"><MessageSquareQuote aria-hidden="true" /> Sent back · see the note</a>}</div>
-      <LessonTermsProvider lesson={lesson}><article><header className="masthead"><div className="masthead-copy"><p className="eyebrow">{lesson.masthead} <span>·</span> {lesson.place}</p><h1>{lesson.title}</h1><p className="dek">{lesson.significance}</p></div>{hero && <figure className="hero"><div className={'hero-image hero-image-' + hero.depictionMode}><ResponsiveMedia className={`hero-media hero-${hero.depictionMode}`} media={hero} alt={hero.alt} sizes="(max-width: 800px) 100vw, 60vw" loading="eager" decoding="async" /><span className="depiction-label">{lesson.heroLabel}</span></div><figcaption><span>{hero.depictionLabel}</span><span>{lesson.heroCaption}</span></figcaption></figure>}</header>
+      <GuessProvider value={{ ...gate, learnerId: state.learnerId, lessonId, onSave: saveGuess }}><LessonTermsProvider lesson={lesson}><article><header className="masthead"><div className="masthead-copy"><p className="eyebrow">{lesson.masthead} <span>·</span> {lesson.place}</p><h1>{lesson.title}</h1><p className="dek">{lesson.significance}</p></div>{hero && <figure className="hero"><div className={'hero-image hero-image-' + hero.depictionMode}><ResponsiveMedia className={`hero-media hero-${hero.depictionMode}`} media={hero} alt={hero.alt} sizes="(max-width: 800px) 100vw, 60vw" loading="eager" decoding="async" /><span className="depiction-label">{lesson.heroLabel}</span></div><figcaption><span>{hero.depictionLabel}</span><span>{lesson.heroCaption}</span></figcaption></figure>}</header>
         <LessonOrientation lesson={lesson} journey={journey} />
         <KeyTermsPanel lesson={lesson} />
-        {lesson.sections.map((section) => <React.Fragment key={section.id}><Section section={section} state={state} onAttempt={attempt} openingMapId={openingMapId} /><PrototypeMediaIntentions lesson={lesson} review={prototypeReview} sectionId={section.id} /></React.Fragment>)}
-        <LessonReviewPanel lesson={lesson} state={state} prompts={lessonPrompts} configuredCards={configuredCards} ownedCards={ownedCards} next={next?.lesson} ready={requirement.ready} answeredIds={requirement.answeredIds} busy={busy} error={error} onSubmit={submit} />
-      </article></LessonTermsProvider>
+        {visibleSections.map((section) => <React.Fragment key={section.id}><Section section={section} state={state} onAttempt={attempt} openingMapId={openingMapId} /><PrototypeMediaIntentions lesson={lesson} review={prototypeReview} sectionId={section.id} /></React.Fragment>)}
+        {!gate.locked && <LessonReviewPanel lesson={lesson} state={state} prompts={lessonPrompts} configuredCards={configuredCards} ownedCards={ownedCards} next={next?.lesson} ready={requirement.ready} answeredIds={requirement.answeredIds} busy={busy} error={error} onSubmit={submit} />}
+      </article></LessonTermsProvider></GuessProvider>
     </main>
     <PassCelebration gateway={celebrationGateway} onAcknowledged={reloadAfterPass} />
   </div>;

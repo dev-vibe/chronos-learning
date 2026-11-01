@@ -15,6 +15,8 @@ Two prompt fixes are not material, so a revision makes them through the [prompt 
 
 Name each one in the owner packet.
 
+**Adding a guess before reading** (creation runbook Stage 9, `guess`) to an existing lesson's opening is a revision, not a material change, because it is not a check: it is never graded and never counts toward the required prompts, finishing or passing. Turn the opening's question into the guess, take any “make a guess” request out of the prose, and point `payoffModuleId` at the paragraph that answers it; then run `npm run content:fingerprints`. If no paragraph answers the opening question, that is the revision to make first. Name it in the owner packet.
+
 ## Invocation
 
 A request such as “Revise the Akkad lesson” or “Revise the next old lesson” is a complete instruction.
