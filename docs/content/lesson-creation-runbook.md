@@ -486,6 +486,7 @@ Voice rules:
 - Vary sentence length. A run of short declarative sentences reads like a list; let a longer sentence carry the story forward.
 - State uncertainty once, clearly, where it matters, then keep going. Do not hedge every sentence.
 - Let the history make the moral point. Do not add asides telling the learner how to feel about it.
+- Describe what a source says and shows, not what its maker wanted or felt. We usually cannot know a king's motives: write “His scribes wrote that…”, “The carving shows…”, and say once that a ruler's own record is his side of the story. Avoid words that judge character or intent (“boast”, “to impress”, “wanted everyone to know”).
 - Use humor only when it comes from the history itself, such as a real complaint letter or a boast that backfired. No invented jokes, slang, pop-culture references, exclamation marks, or “Imagine you are…” openings used as filler. Speaking to the reader to direct their attention (“Look at the king’s helmet”) is welcome; it is not an invented scene.
 - Never talk down. Write for a curious, intelligent reader who lacks background, not ability.
 - Never invent dialogue, thoughts, feelings or scenes and present them as fact. A reconstructed scene must be labeled and built from evidence.
@@ -500,7 +501,7 @@ Voice rules:
 
 ### Point-first sections
 
-A vivid section can still leave the learner unsure what it was for. Before drafting a section, write its **point**: one sentence a kid could repeat, recorded in the storyboard's Point column (Stage 8). For the Akkad victory stele: “Naram-Sin had himself carved like a god so everyone would see his victory, and a thousand years later another king used the same stone to boast about himself; a stone like this shows the winning, while the ovens at Leilan show the work of keeping a city.” Then check the section against this shape:
+A vivid section can still leave the learner unsure what it was for. Before drafting a section, write its **point**: one sentence a kid could repeat, recorded in the storyboard's Point column (Stage 8). For the Akkad victory stele: “Naram-Sin's stone shows him as a god-like winner, and a thousand years later another king used the same stone to celebrate his own victory; a stone like this shows the winning, while the ovens at Leilan show the work of keeping a city.” Then check the section against this shape:
 
 1. **Orient first.** Within the first sentence or two, the reader knows what this section is about. Point to the image if there is one (“Look closely at the carving below”), or name the person, place or thing and why it matters here. Do not make the reader remember someone from an earlier section, or decode a metaphor, to find their footing (“Tar’am-Agade’s father told his own story in stone”).
 2. **Describe** what can be seen or what happened, concretely.

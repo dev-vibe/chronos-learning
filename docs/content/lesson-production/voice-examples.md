@@ -16,13 +16,13 @@ Most pairs come from the Akkad revision of November 2026, after a homeschooling 
 
 **After**
 
-> Kings also wanted their wins to be seen. Look closely at the carving below. It is a stele, a tall carved stone. It was made for Naram-Sin, the princess’s father and a later king of Akkad, to celebrate his win over people who lived in the mountains. …
+> Kings also had their wins carved in stone. Look closely at the carving below. It is a stele, a tall carved stone. It was made for Naram-Sin, the princess’s father and a later king of Akkad, to celebrate his win over people who lived in the mountains. …
 >
-> The king’s message was clear: this win made him more than a man. …
+> The carving shows Naram-Sin as more than a man: anyone who stood before the stone saw a king who looked like a god. …
 >
 > About a thousand years later, another king, from a land to the east, used the same stone to boast about himself. …
 >
-> This is how a king wanted his win to look: one great moment, with the king on top. The ovens at Leilan show the other half: the everyday work of keeping a city.
+> This is winning as the stone shows it: one great moment, with the king on top. The ovens at Leilan show the other half: the everyday work of keeping a city.
 
 What changed: the opening needed the reader to remember an earlier section and decode a metaphor; the point was stated as a correction; “makes the point sharper” never said how; dates and find spots that served nothing moved to the caption; the first line says why the section is here and the last line ties it back to the lesson's question.
 
@@ -85,7 +85,7 @@ What changed: the dig story is vivid, and kid readers remembered it, but a paren
 | Akkad’s kings reached into different cities in different ways. | Akkad’s kings dealt with different cities in different ways. |
 | found what staying in charge looked like on the ground | found what keeping a city really took |
 | Holding Leilan was daily work, done by many hands. | Keeping Leilan took work every day from many people. |
-| One of his boasts, written down by his scribes, says… (and “boast” seven more times) | His scribes wrote that… / Sargon’s records… (a loaded word repeated until it reads as a judgment of the man; the lesson says once that the records are his side of the story) |
+| One of his boasts, written down by his scribes, says… (and “boast” seven more times) | His scribes wrote that… / Sargon’s records… (a loaded word repeated until it reads as a judgment of the man; we cannot know his motives, so the lesson describes what the records say and notes once that they are his side of the story) |
 | Keeping it took people on the spot… | Keeping it took people from Akkad living in the city… |
 | The ovens at Leilan tell the other half of the story. | The ovens at Leilan show the other half: the everyday work of keeping a city. |
 
