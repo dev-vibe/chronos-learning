@@ -36,7 +36,7 @@ What changed: the opening needed the reader to remember an earlier section and d
 
 **After**
 
-> Sargon was king of Akkad, a kingdom in what is now Iraq, and he wanted everyone to know how far his power reached. One of his boasts says that boats from faraway lands tied up at the docks of his capital city. Archaeologists would love to stand on those docks, but nobody has ever found the city. What we know about how Akkad’s kings ruled comes from other cities. …
+> Sargon was king of Akkad, a kingdom in what is now Iraq. His scribes wrote that boats from lands far across the sea tied up at the docks of his capital city. Archaeologists would love to stand on those docks, but nobody has ever found the city. What we know about how Akkad’s kings ruled comes from other cities. …
 >
 > Winning a city took one battle. Keeping it was the hard part. After the army went home, what would a king need so that the people there kept doing what he said? Make a guess before you read on.
 
@@ -85,6 +85,7 @@ What changed: the dig story is vivid, and kid readers remembered it, but a paren
 | Akkad’s kings reached into different cities in different ways. | Akkad’s kings dealt with different cities in different ways. |
 | found what staying in charge looked like on the ground | found what keeping a city really took |
 | Holding Leilan was daily work, done by many hands. | Keeping Leilan took work every day from many people. |
+| One of his boasts, written down by his scribes, says… (and “boast” seven more times) | His scribes wrote that… / Sargon’s records… (a loaded word repeated until it reads as a judgment of the man; the lesson says once that the records are his side of the story) |
 | Keeping it took people on the spot… | Keeping it took people from Akkad living in the city… |
 | The ovens at Leilan tell the other half of the story. | The ovens at Leilan show the other half: the everyday work of keeping a city. |
 
