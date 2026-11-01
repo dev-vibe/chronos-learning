@@ -192,7 +192,8 @@ Turn the essential question into a research plan. Include:
 - material evidence and primary sources;
 - institutions, technology, economy, belief, or daily life as relevant;
 - causes, enabling conditions, constraints, and consequences;
-- who benefited, who bore costs, and whose experience is poorly preserved;
+- who benefited and who bore the costs;
+- uncommon, overlooked or little-known events, places, finds and moments that belong in the story, so the lesson is not just the most familiar version;
 - scholarly agreements, live disagreements, obsolete popular stories, and genuine unknowns;
 - consequential discoveries, revisions, anomalies, and proposed upsets from approximately the previous 50 years, plus older proposals made newly testable by recent evidence or methods;
 - relevant comparative-analysis traditions and independent or claim-owner research that may not appear in ordinary academic review articles;
@@ -268,7 +269,7 @@ Do not treat all citations as equal and do not turn source quality into a fake n
 - **Proximity and context:** how close is it to the event, and what purposes or constraints shaped its creation?
 - **Independence:** do several sources truly corroborate one another, or repeat one publication/tradition?
 - **Scholarly currency:** has newer evidence materially changed an older interpretation?
-- **Perspective and preservation:** whose viewpoint survives, who selected it, and whose experience is absent?
+- **Coverage:** which records survive and who made them, and which important, uncommon or overlooked parts of the story the usual accounts leave out?
 - **Claim fit:** does the source support the exact learner-facing wording and strength of certainty?
 
 When strong sources conflict, identify whether they disagree about evidence, translation, dating, definition, causal interpretation, or values. Narrow the claim if possible; otherwise represent the major interpretations proportionately and make the uncertainty part of the teaching. Never resolve disagreement by choosing the source with the cleanest prose.
@@ -357,7 +358,7 @@ For each claim record:
 | Corroboration | Is the support independent, or are sources repeating one origin? |
 | Counterevidence/alternative | What credible evidence or interpretation complicates it? |
 | Survival bias | Is absence of evidence being mistaken for evidence of absence? |
-| Perspective | Whose voice produced or preserved the record? Who is missing? |
+| Source | Who made the record, when, and what does it cover? |
 | Learner treatment | State directly, qualify, compare interpretations, or omit? |
 | Review status | Reviewed or editorial review required? |
 
@@ -460,7 +461,8 @@ Age adaptation changes explanation, pacing, assumptions, and support. It does no
 - Prefer specific actors and actions over vague passive voice.
 - Use analogies only when their limits are stated and they do not modernize the past. Never put the analogy in a section heading.
 - Explain uncertainty in direct language: “The marks survive. Who traded what with whom is still a mystery.”
-- Preserve tradeoffs, power differences, missing voices, and unintended consequences.
+- Keep tradeoffs and unintended consequences.
+- Tell what happened and to whom, plainly. Do not frame history as “missing voices”, silenced people, or oppressor and oppressed, and do not add reminders of whose story did not survive. Checking coverage (Stage 3) is about finding uncommon or overlooked parts of the history, not about voices.
 - Never make a culture exotic, childish, faceless, or a mere stepping stone toward the present.
 - Do not rely on gore, humiliation, sexualization, or manufactured mystery to create interest. A real open question is fair game; a fake one is not.
 - When difficult material is essential, describe it truthfully, proportionately, and without graphic decoration.
@@ -907,7 +909,7 @@ Before production implementation, make the note readable by someone who did not 
 - the Stage 3A recent-challenge audit, coverage statement, analytical packet, product-owner response, and any repeated research cycle;
 - disagreements and uncertainty handling;
 - outdated or popular claims deliberately excluded;
-- missing voices/survival bias;
+- coverage gaps and survival bias (absence of evidence is not evidence of absence);
 - essential question, durable understanding, misconceptions, and vocabulary;
 - section/component storyboard;
 - media and card rationale, rights, provenance, and visual briefs;
