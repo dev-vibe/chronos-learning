@@ -68,7 +68,7 @@ export const akkadLocatorVisual: LessonModule = {
   type: 'historical-map',
   eyebrow: 'Place & landscape',
   title: 'Leilan and Urkesh',
-  body: 'The cities of Leilan and Urkesh lay far to the north, close to each other. Akkad’s kings had to run cities this far apart without being there.',
+  body: 'The cities of Leilan and Urkesh lay close to each other, far to the north of Akkad’s homeland. Akkad’s kings had to run cities this far apart without being there.',
   mediaId: 'media.akkad.locator',
   periodLabel: 'c. 2350–2150 BCE',
   focusPlace: 'Mesopotamia and neighboring regions',

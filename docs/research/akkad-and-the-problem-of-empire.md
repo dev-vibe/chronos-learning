@@ -542,6 +542,27 @@ First round's question restatements (word for word):
 
 `npm run validate:content`, `npm run lesson:check-questions` (no flags) and `npm run test:domain` (20 files, 107 tests) passed.
 
+### Second owner review — 2026-11-01
+
+A homeschooling parent read the preview. Her points: the opening packed in too many ideas; the main idea was not clear to a kid; the princess seemed unrelated; Akkad, Agade, Akkadian and Tar’am-Agade blurred together. The owner also asked for no invented phrases (“What they say is loud”) and a plain account of the door sealing. These led to runbook PR #95 (name budget, hook-and-question opening, main idea stated plainly, written question that cannot be copied, every detail one a kid could explain, Stage 14D targeted passes, `lesson-production/voice-examples.md`), which this lesson applies.
+
+**Targeted passes (Stage 14D), on the text after the first round of changes**
+
+| Pass | Flags | Fixes made |
+| --- | --- | --- |
+| Names | 13 names to track (budget about 6); Akkad/Agade and Uruk/Urkesh look-alikes; Tell Leilan vs Leilan; Akkad, Mesopotamia, Naram-Sin, Elam used before explained; Agade, Uruk, Curse of Agade, Elam not needed | Akkad said to be a kingdom; capital, princess, defeated people and second king described with names in term boxes; Uruk and Mesopotamia out of the text; “Leilan” only; headings without unexplained names |
+| Points and details | stele section opened without saying why it is there and ended on a side story; drought never tied to food; Urkesh never said what the princess did for Akkad; governors not framed as one way of keeping a city; wall thickness, “multiply” with no number, and the lost capital unconnected | stele opens “Kings also wanted their wins to be seen” and ends on the winning/keeping contrast; drought tied to grain and food; Urkesh and governor lines say how each kept a city; lost capital now explains why we look at other cities; ending states the main idea |
+| Plain words | 38 flags: “on the spot”, “a mountain people”, “sign of the gods”, “impression”, “excavators”, “scribes” and “seal” unexplained, the hedge in every sentence of the drought paragraph, the ending on an unknown, word boxes with “inscriptions” and “Akkadian” | each rewritten in everyday words; seal explained once at its first use; drought paragraph said once; lesson ends on the main idea |
+| Questions | Q1 copyable and hint too leading, C feedback gave the answer; Q2 asked which way “worked better” though the lesson has no evidence for that | Q1 option B is now the Leilan misreading, hint and feedback reworked; Q2 now asks which the learner would choose for a new city, with the reasons the lesson gives for each |
+
+**Kid reads after the passes (two rounds).** Both readers restated Q1 correctly (“yes”) and Q2 as “sort of”: they could choose, but asked where the reasons were. The lesson now states each way's reason (“Akkad’s own official in charge, and food for the workers every single day”; “Urkesh kept its own king, and Akkad’s royal family had one of its own inside his palace”) and the hint points at those sentences. Both said back every section's point except the princess's door-sealing (“why does closing doors matter?”), now followed by what it shows. Both retold the main idea: winning was easy, keeping a city took an official and food at Leilan and a princess at Urkesh. Remembered: the horned-helmet king, the giant ovens and the water bottle of barley.
+
+**Prompts.** Still two required prompts, neither ever published. `prompt.akkad.urkesh-difference` keeps its ID; its question now says “At Leilan”, the best option is “Its own king stayed, and a princess from Akkad joined the palace”, and option B (`option.akkad.official-from-akkad`) is “Akkad sent its own official to run the city”. The written prompt is now `prompt.akkad.official-or-princess`: “At Leilan, Akkad put its own official in charge. At Urkesh, a princess from Akkad joined the palace of the city’s own king. If you were Akkad’s king, which would you choose for a new city? Give one reason from the lesson.” The intermediate drafts `prompt.akkad.staying-in-charge` and `prompt.akkad.which-way-worked` were never published and are not in the fingerprints.
+
+**Still open for the owner:** the masthead prints the date twice and leaves “c.”, “BCE” and “Mesopotamia” unexplained (lesson fields, not prose); the “About scale” caption label is used for captions that are not about size (a shared component label); readers find it odd when tapping “a princess from Akkad” or “another king” opens a box with a name they never saw in the text.
+
+Learner-facing words: 1,481 (published) → 1,389.
+
 ### Owner review
 
 Pending.
