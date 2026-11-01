@@ -16,13 +16,15 @@ Most pairs come from the Akkad revision of November 2026, after a homeschooling 
 
 **After**
 
-> Look closely at the carving below. It is a stele, a tall carved stone, made for Naram-Sin, a later king of Akkad, to celebrate his victory over a mountain people. …
+> Kings also wanted their wins to be seen. Look closely at the carving below. It is a stele, a tall carved stone. It was made for Naram-Sin, the princess’s father and a later king of Akkad, to celebrate his win over people who lived in the mountains. …
 >
-> The king’s message was clear: this victory made him more than a man. … This is winning the way a king wanted it seen: one great moment, with the king on top. The ovens at Leilan tell the other half of the story.
+> The king’s message was clear: this win made him more than a man. …
 >
-> About a thousand years later, another king used the same stone to boast about himself.
+> About a thousand years later, another king, from a land to the east, used the same stone to boast about himself. …
+>
+> This is how a king wanted his win to look: one great moment, with the king on top. The ovens at Leilan show the other half: the everyday work of keeping a city.
 
-What changed: the opening needed the reader to remember an earlier section and decode a metaphor; the point was stated as a correction; “makes the point sharper” never said how; dates and find spots that served nothing moved to the caption; one line ties the section back to the lesson's question.
+What changed: the opening needed the reader to remember an earlier section and decode a metaphor; the point was stated as a correction; “makes the point sharper” never said how; dates and find spots that served nothing moved to the caption; the first line says why the section is here and the last line ties it back to the lesson's question.
 
 ## The opening is a hook and one question
 
@@ -34,9 +36,9 @@ What changed: the opening needed the reader to remember an earlier section and d
 
 **After**
 
-> Sargon, king of Akkad, wanted everyone to know how far his power reached. One of his boasts says that boats from faraway lands tied up at the docks of his capital city, Agade. Archaeologists would love to stand on those docks. Nobody knows where they are. …
+> Sargon was king of Akkad, a kingdom in what is now Iraq, and he wanted everyone to know how far his power reached. One of his boasts says that boats from faraway lands tied up at the docks of his capital city. Archaeologists would love to stand on those docks, but nobody has ever found the city. What we know about how Akkad’s kings ruled comes from other cities. …
 >
-> Winning a city took one battle. Keeping it was the hard part. After the army went home, what would a king need to keep the city obeying him? Make a guess before you read on.
+> Winning a city took one battle. Keeping it was the hard part. After the army went home, what would a king need so that the people there kept doing what he said? Make a guess before you read on.
 
 What changed: the hook stays; names the point does not need (Meluhha, Magan, Dilmun, the rivers, Naram-Sin) go to the section that needs them or nowhere; the question comes in one plain sentence, with a guess the ending pays off.
 
@@ -48,9 +50,9 @@ What changed: the hook stays; names the point does not need (Meluhha, Magan, Dil
 
 **After**
 
-> Sargon, king of Akkad… a princess from Akkad… the daughter of a later king of Akkad.
+> Sargon was king of Akkad, a kingdom in what is now Iraq… the docks of his capital city… a princess from Akkad, the daughter of a later king of Akkad… another king, from a land to the east…
 
-What changed: Akkad, Agade, Akkadian and Tar’am-Agade share a root, and readers lost track of which was which. The kingdom is “Akkad” everywhere, “Akkad’s” replaces “Akkadian”, the capital is named once and then called “the lost capital”, and the princess's name lives in her term box (`[[a princess from Akkad|term.akkad.taram-agade]]`).
+What changed: Akkad, Agade, Akkadian and Tar’am-Agade share a root, and readers lost track of which was which. The kingdom is “Akkad” everywhere and is said to be a kingdom; “Akkad’s” replaces “Akkadian”; the capital, the princess, the defeated people and the second king are described, with their names in the term boxes (`[[his capital city|term.akkad.agade]]`, `[[a princess from Akkad|term.akkad.taram-agade]]`). Uruk and “Tell” Leilan went too. The names pass counted 13 names before and about 5 after.
 
 ## Every detail serves the point (no seductive details)
 
@@ -60,7 +62,7 @@ What changed: Akkad, Agade, Akkadian and Tar’am-Agade share a root, and reader
 
 **After**
 
-> Not far from Leilan, the city of Urkesh shows a different way. Urkesh kept its own kings, and a princess from Akkad turns up inside their palace.
+> Not far from Leilan, Akkad’s kings dealt with the city of Urkesh in a different way. Urkesh kept its own kings, and a princess from Akkad, the daughter of a later king of Akkad, turns up inside their palace.
 
 What changed: the dig story is vivid, and kid readers remembered it, but a parent could not see why the princess was in the lesson at all. Urkesh is there as the second way of keeping a city, so the section now opens by setting it against Leilan, and the dig date and seal size are gone.
 
@@ -72,7 +74,7 @@ What changed: the dig story is vivid, and kid readers remembered it, but a paren
 
 **After**
 
-> So Akkad’s kings dealt with different cities in different ways. Leilan got an official from Akkad. Urkesh got a princess.
+> So Akkad’s kings dealt with different cities in different ways. Leilan got an official from Akkad, who ran big ovens to feed its workers. Urkesh got a princess.
 
 ## Plain words, not invented phrases
 
@@ -81,13 +83,16 @@ What changed: the dig story is vivid, and kid readers remembered it, but a paren
 | What they say is loud. | They make big claims. |
 | The stone kept boasting long after Naram-Sin was gone. | About a thousand years later, another king used the same stone to boast about himself. |
 | Akkad’s kings reached into different cities in different ways. | Akkad’s kings dealt with different cities in different ways. |
-| found what staying in charge looked like on the ground | found what keeping the city really took |
+| found what staying in charge looked like on the ground | found what keeping a city really took |
+| Holding Leilan was daily work, done by many hands. | Keeping Leilan took work every day from many people. |
+| Keeping it took people on the spot… | Keeping it took people from Akkad living in the city… |
+| The ovens at Leilan tell the other half of the story. | The ovens at Leilan show the other half: the everyday work of keeping a city. |
 
 ## Say the plain thing
 
 **Before:** “Her seal was rolled across clay that closed a door in the palace.” (The owner, an adult, could not tell what this meant.)
 
-**After:** “Her seal had been pressed into the clay that sealed a palace door shut.”
+**After:** “Palace doors there were tied shut with a rope, and a lump of clay was pressed over the rope. Archaeologists found lumps of that clay rolled with the princess’s cylinder seal.”
 
 ## State the main idea; ask a question the lesson does not answer for them
 
@@ -95,17 +100,21 @@ What changed: the dig story is vivid, and kid readers remembered it, but a paren
 
 > Sargon’s army could win a city in a single battle. Why was staying in charge of a city like Tell Leilan so much more work?
 
+**Also before** (no sentence to copy, but no evidence to answer from: the lesson never says how either city fared)
+
+> Leilan got an official from Akkad and big ovens to feed its workers. Urkesh got a princess from Akkad. Which way do you think worked better for keeping a city?
+
 **After**
 
-> Leilan got an official from Akkad and big ovens to feed its workers. Urkesh got a princess from Akkad. Which way do you think worked better for keeping a city? There is no single right answer. Give one reason from the story.
+> At Leilan, Akkad put its own official in charge. At Urkesh, a princess from Akkad joined the palace of the city’s own king. If you were Akkad’s king, which would you choose for a new city? Give one reason from the lesson.
 
-What changed: the old question could be answered by copying a sentence. The lesson still states the main idea plainly; the question asks the learner to use it.
+What changed: the first question could be answered by copying a sentence; the second asked for a judgment the lesson gives no evidence for. The lesson still states the main idea plainly; the question asks the learner to use what it teaches about each city to make a choice.
 
 ## A real question, not an exam stem
 
 | Before | After |
 | --- | --- |
-| At Leilan, archaeologists found a fortified administrative building… At Urkesh, they found seal impressions… What is the strongest conclusion? (best answer: “Both places had Akkadian connections, but the evidence points to different or uncertain arrangements.”) | At Tell Leilan, an official sent by Akkad ran the farm work. What was different at Urkesh? (best answer: “A princess from Akkad used her seal in the palace.”) |
+| At Leilan, archaeologists found a fortified administrative building… At Urkesh, they found seal impressions… What is the strongest conclusion? (best answer: “Both places had Akkadian connections, but the evidence points to different or uncertain arrangements.”) | At Leilan, an official sent by Akkad ran the farm work. What was different at Urkesh? (best answer: “A princess from Akkad used her seal in the palace.”) |
 
 More question pairs are in Stage 12's table in the creation runbook.
 
@@ -115,4 +124,6 @@ More question pairs are in Stage 12's table in the creation runbook.
 | --- | --- |
 | Changes in different regions | How Akkad’s power ended |
 | A royal connection at Urkesh | A princess at Urkesh |
-| Governing at Tell Leilan | An official at Tell Leilan |
+| Governing at Tell Leilan | An official at Leilan |
+| Naram-Sin’s victory stele | A king’s victory stone |
+| Explain Akkadian rule | What it took to keep a city |
