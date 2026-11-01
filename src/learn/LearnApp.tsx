@@ -23,6 +23,8 @@ import { PrototypeMediaIntentions } from './PrototypeMediaIntentions';
 import { resolveMediaAsset } from '../media/resolve';
 import { LessonOrientation } from './LessonOrientation';
 import { orientationMapForLesson } from '../domains/lessonOrientation';
+import { splitProseParagraphs, stripTermMarkup, termFieldKey } from '../domains/lessonTerms';
+import { KeyTermsPanel, LessonTermsProvider, TermText } from './LessonTerms';
 import './learn.css';
 
 const lessonById = new Map(chronosContent.lessons.map((item) => [item.id, item]));
@@ -46,13 +48,13 @@ type ModuleProps = { module: LessonModule; state: LearnState; onAttempt(id: stri
 
 function Module({ module, state, onAttempt }: ModuleProps) {
   if (module.type === 'prose') {
-    const paragraphs = module.body.split(/\n\n+/).map((part) => part.trim()).filter(Boolean);
-    return <div className="prose-module">{paragraphs.map((paragraph) => <p key={paragraph.slice(0, 48)}>{paragraph}</p>)}</div>;
+    const paragraphs = splitProseParagraphs(module.body);
+    return <div className="prose-module">{paragraphs.map((paragraph, index) => <p key={paragraph.slice(0, 48)}><TermText field={termFieldKey.proseParagraph(module.id, index)} text={paragraph} /></p>)}</div>;
   }
-  if (module.type === 'knowledge') return <aside className="knowledge-block"><div className="module-heading"><span>{module.eyebrow}</span><p className="module-lead">{module.body}</p></div><dl data-count={module.items.length}>{module.items.map((item) => <div key={item.label}><dt>{item.label}</dt><dd>{item.detail}</dd></div>)}</dl></aside>;
+  if (module.type === 'knowledge') return <aside className="knowledge-block"><div className="module-heading"><span>{module.eyebrow}</span><p className="module-lead"><TermText field={termFieldKey.body(module.id)} text={module.body} /></p></div><dl data-count={module.items.length}>{module.items.map((item, index) => <div key={item.label}><dt>{item.label}</dt><dd><TermText field={termFieldKey.knowledgeItem(module.id, index)} text={item.detail} /></dd></div>)}</dl></aside>;
   if (module.type === 'scene') {
     const media = mediaById.get(module.mediaId)!;
-    return <details className="scene-module"><summary><span className="scene-thumb"><ResponsiveMedia media={media} alt="" sizes="96px" loading="lazy" /></span><span><small>Visual field guide</small><strong>{module.title}</strong><em>{module.body}</em></span><ChevronRight /></summary><div className="scene-details"><ResponsiveMedia media={media} alt={media.alt} sizes="(max-width: 800px) 100vw, 50vw" loading="lazy" /><ol>{module.hotspots.map((spot, index) => <li key={spot.label}><span>{index + 1}</span><div><strong>{spot.label}</strong><p>{spot.detail}</p></div></li>)}</ol></div></details>;
+    return <details className="scene-module"><summary><span className="scene-thumb"><ResponsiveMedia media={media} alt="" sizes="96px" loading="lazy" /></span><span><small>Visual field guide</small><strong>{module.title}</strong><em>{stripTermMarkup(module.body)}</em></span><ChevronRight /></summary><div className="scene-details"><ResponsiveMedia media={media} alt={media.alt} sizes="(max-width: 800px) 100vw, 50vw" loading="lazy" /><ol>{module.hotspots.map((spot, index) => <li key={spot.label}><span>{index + 1}</span><div><strong>{spot.label}</strong><p>{spot.detail}</p></div></li>)}</ol></div></details>;
   }
   if (module.type === 'evidence') {
     const media = mediaById.get(module.mediaId)!;
@@ -72,7 +74,7 @@ function Module({ module, state, onAttempt }: ModuleProps) {
   return <UnderstandingCheck key={`${state.learnerId}:${prompt.id}:${reopen ? 'reopened' : 'open'}`} prompt={prompt} answer={answer} learnerId={state.learnerId} reopen={reopen} onAttempt={onAttempt} evidence={evidence.length ? evidence.map((item) => {
     if (item.type !== 'evidence' && item.type !== 'historical-map') return null;
     const media = mediaById.get(item.mediaId)!;
-    return <figure key={item.id} className="prompt-evidence-image"><div><ResponsiveMedia media={media} alt={media.alt} sizes="(max-width: 800px) 100vw, 700px" loading="lazy" /><EvidenceViewer media={media} title={item.title} summary={item.type === 'historical-map' ? item.accessibleSummary : item.body} /></div><figcaption><strong>{item.title}</strong><p>{item.type === 'historical-map' ? item.accessibleSummary : item.body}</p><small>{media.depictionLabel}</small></figcaption></figure>;
+    return <figure key={item.id} className="prompt-evidence-image"><div><ResponsiveMedia media={media} alt={media.alt} sizes="(max-width: 800px) 100vw, 700px" loading="lazy" /><EvidenceViewer media={media} title={item.title} summary={item.type === 'historical-map' ? item.accessibleSummary : stripTermMarkup(item.body)} /></div><figcaption><strong>{item.title}</strong><p>{item.type === 'historical-map' ? item.accessibleSummary : stripTermMarkup(item.body)}</p><small>{media.depictionLabel}</small></figcaption></figure>;
   }) : undefined} />;
 }
 
@@ -346,11 +348,12 @@ export function LearnApp({ lessonId, gatewayFactory = createProgressGateway }: {
     <JourneyDrawer open={drawer} onClose={() => setDrawer(false)} onNavigate={navigate} lesson={lesson} journey={journey} summaries={journeySummaries} currentState={state} currentSectionId={state.resumeSectionId ?? lesson.sections[0].id} returnFocus={menuRef} />
     <header className="mobile-progress"><span className="mobile-progress-spacer" aria-hidden="true" /><div><strong>{lesson.title}</strong><span>{state.exploredSectionIds.length} of {lesson.sections.length} sections explored</span></div><button className="icon-button" onClick={toggleTheme} aria-label={'Use ' + (theme === 'light' ? 'dark' : 'light') + ' theme'}>{theme === 'light' ? <Moon /> : <Sun />}</button></header>
     <main className="lesson"><div className="lesson-toolbar"><JourneySwitcher currentJourneyId={journey.id} currentLessonId={lesson.id} /><span className="lesson-breadcrumb">{breadcrumbChapter} <ChevronRight /> {lesson.title}</span>{state.review?.status === 'returned' && <a className="review-chip" href="#completion-title"><MessageSquareQuote aria-hidden="true" /> Sent back · see the note</a>}</div>
-      <article><header className="masthead"><div className="masthead-copy"><p className="eyebrow">{lesson.masthead} <span>·</span> {lesson.place}</p><h1>{lesson.title}</h1><p className="dek">{lesson.significance}</p></div>{hero && <figure className="hero"><div className={'hero-image hero-image-' + hero.depictionMode}><ResponsiveMedia className={`hero-media hero-${hero.depictionMode}`} media={hero} alt={hero.alt} sizes="(max-width: 800px) 100vw, 60vw" loading="eager" decoding="async" /><span className="depiction-label">{lesson.heroLabel}</span></div><figcaption><span>{hero.depictionLabel}</span><span>{lesson.heroCaption}</span></figcaption></figure>}</header>
+      <LessonTermsProvider lesson={lesson}><article><header className="masthead"><div className="masthead-copy"><p className="eyebrow">{lesson.masthead} <span>·</span> {lesson.place}</p><h1>{lesson.title}</h1><p className="dek">{lesson.significance}</p></div>{hero && <figure className="hero"><div className={'hero-image hero-image-' + hero.depictionMode}><ResponsiveMedia className={`hero-media hero-${hero.depictionMode}`} media={hero} alt={hero.alt} sizes="(max-width: 800px) 100vw, 60vw" loading="eager" decoding="async" /><span className="depiction-label">{lesson.heroLabel}</span></div><figcaption><span>{hero.depictionLabel}</span><span>{lesson.heroCaption}</span></figcaption></figure>}</header>
         <LessonOrientation lesson={lesson} journey={journey} />
+        <KeyTermsPanel lesson={lesson} />
         {lesson.sections.map((section) => <React.Fragment key={section.id}><Section section={section} state={state} onAttempt={attempt} openingMapId={openingMapId} /><PrototypeMediaIntentions lesson={lesson} review={prototypeReview} sectionId={section.id} /></React.Fragment>)}
         <LessonReviewPanel lesson={lesson} state={state} prompts={lessonPrompts} configuredCards={configuredCards} ownedCards={ownedCards} next={next?.lesson} ready={requirement.ready} answeredIds={requirement.answeredIds} busy={busy} error={error} onSubmit={submit} />
-      </article>
+      </article></LessonTermsProvider>
     </main>
     <PassCelebration gateway={celebrationGateway} onAcknowledged={reloadAfterPass} />
   </div>;

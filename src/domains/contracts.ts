@@ -65,7 +65,24 @@ export const UnderstandingPromptSchema = z.discriminatedUnion('kind', [
   z.object({ id: StableId, lessonId: StableId, kind: z.literal('supported-selection'), question: z.string(), explanation: z.string().min(1), required: z.boolean(), bestOptionId: StableId, hint: z.string().min(1).optional(), evidenceModuleIds: z.array(StableId).min(1).max(3).optional(), options: z.array(z.object({ id: StableId, label: z.string().min(1), feedback: z.string().min(1).optional() })).min(2).max(5) }),
   z.object({ id: StableId, lessonId: StableId, kind: z.literal('concise-explanation'), question: z.string(), explanation: z.string().min(1), required: z.boolean(), hint: z.string().min(1).optional(), evidenceModuleIds: z.array(StableId).min(1).max(3).optional(), minimumResponseLength: z.number().int().positive() }),
 ]);
-export const LessonSchema = z.object({ id: StableId, legacyAliases: z.array(z.string()), status: z.enum(['published','draft']), title: z.string(), masthead: z.string(), place: z.string().min(1), chronology: HistoricalDateRangeSchema, significance: z.string(), learningOutcome: z.string().min(1).optional(), orientationMapModuleId: StableId.optional(), heroMediaId: StableId.optional(), heroLabel: z.string().min(1).optional(), heroCaption: z.string().min(1).optional(), sectionIdsRequired: z.array(StableId), sections: z.array(LessonSectionSchema).min(1), claimIds: z.array(StableId).min(1), sourceIds: z.array(StableId).min(1), mediaIds: z.array(StableId), promptIds: z.array(StableId) });
+// A lesson-scoped word, person or place that learners can tap for a short definition.
+// Text marks it explicitly with [[label]] or [[display text|term.id]]; see src/domains/lessonTerms.ts.
+export const LessonTermKindSchema = z.enum(['word', 'person', 'place', 'people', 'thing']);
+export const LessonTermSchema = z.object({
+  id: StableId,
+  label: z.string().min(1),
+  kind: LessonTermKindSchema,
+  definition: z.string().min(1),
+  gloss: z.string().min(1).optional(),
+  primarySectionId: StableId,
+  featured: z.boolean().optional(),
+  aliases: z.array(z.string().min(1)).optional(),
+  claimIds: z.array(StableId),
+  sourceIds: z.array(StableId),
+});
+export type LessonTerm = z.infer<typeof LessonTermSchema>;
+export type LessonTermKind = z.infer<typeof LessonTermKindSchema>;
+export const LessonSchema = z.object({ id: StableId, legacyAliases: z.array(z.string()), status: z.enum(['published','draft']), title: z.string(), masthead: z.string(), place: z.string().min(1), chronology: HistoricalDateRangeSchema, significance: z.string(), learningOutcome: z.string().min(1).optional(), orientationMapModuleId: StableId.optional(), heroMediaId: StableId.optional(), heroLabel: z.string().min(1).optional(), heroCaption: z.string().min(1).optional(), sectionIdsRequired: z.array(StableId), sections: z.array(LessonSectionSchema).min(1), claimIds: z.array(StableId).min(1), sourceIds: z.array(StableId).min(1), mediaIds: z.array(StableId), promptIds: z.array(StableId), terms: z.array(LessonTermSchema).optional() });
 export const JourneyEntrySchema = z.object({ id: StableId, lessonId: StableId, position: z.number().int().nonnegative(), required: z.boolean(), framing: z.string() });
 export const JourneyChapterSchema = z.object({ id: StableId, title: z.string(), position: z.number().int().nonnegative(), entries: z.array(JourneyEntrySchema).min(1) });
 export const JourneySchema = z.object({

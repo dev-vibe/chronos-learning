@@ -3,6 +3,8 @@ import type { LessonModule, MediaAsset, Source } from '../domains/contracts';
 import { ResponsiveMedia } from './ResponsiveMedia';
 import { EvidenceViewer } from './EvidenceViewer';
 import { evidenceLayout } from './evidence-layout';
+import { stripTermMarkup, termFieldKey } from '../domains/lessonTerms';
+import { TermText } from './LessonTerms';
 
 type Props = {
   module: Extract<LessonModule, { type: 'evidence' }>;
@@ -25,12 +27,12 @@ export function EvidenceModule({ module, media, source, sources = [], comparison
   return <figure className={`evidence-module${stacked ? ' evidence-module--stacked' : ''}`}>
     <div className={`evidence-visuals${comparisonMedia ? ' evidence-visuals--comparison' : ''}`}><div className="evidence-image">
       <ResponsiveMedia media={media} alt={media.alt} sizes={stacked ? '100vw' : '(max-width: 800px) 100vw, 50vw'} loading="eager" />
-      <EvidenceViewer media={media} title={module.title} summary={module.body}>{notes}<p>{media.rightsLabel}</p></EvidenceViewer>
+      <EvidenceViewer media={media} title={module.title} summary={stripTermMarkup(module.body)}>{notes}<p>{media.rightsLabel}</p></EvidenceViewer>
     </div>{comparisonMedia && module.comparison && <div className="evidence-comparison"><div className="evidence-image"><ResponsiveMedia media={comparisonMedia} alt={comparisonMedia.alt} sizes="50vw" loading="lazy" /><EvidenceViewer media={comparisonMedia} title={module.comparison.label} summary={module.comparison.detail}><p>{comparisonMedia.rightsLabel}</p></EvidenceViewer></div><p><strong>{module.comparison.label}</strong> {module.comparison.detail}</p><p>{comparisonMedia.depictionLabel}</p></div>}</div>
     <figcaption>
       <div className="evidence-type"><Archive /><span>{depictionHeadings[media.depictionMode]}</span></div>
       <h3>{module.title}</h3>
-      <p>{module.body}</p>
+      <p><TermText field={termFieldKey.body(module.id)} text={module.body} /></p>
       {notes}
       {module.scaleNote && <aside className="evidence-scale-note"><Ruler aria-hidden="true" /><p><strong>About scale</strong> {module.scaleNote}</p></aside>}
       <details className="evidence-provenance"><summary>Source and image details</summary><dl>

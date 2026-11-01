@@ -11,6 +11,7 @@ import {
   UnderstandingPromptSchema,
 } from '../../domains/contracts';
 import { LessonPrototypeReviewSchema } from './prototypeReview';
+import { validateLessonTerms } from '../../domains/lessonTerms';
 
 export type ContentBundle = {
   sources: unknown[];
@@ -28,6 +29,7 @@ const MAX_PUBLISHED_VARIANT_BYTES = 768 * 1024;
 
 export function validateContent(input: ContentBundle) {
   const errors: string[] = [];
+  const warnings: string[] = [];
   const parse = <T>(items: unknown[], schema: any, label: string): T[] => items.flatMap((item, index) => {
     const result = schema.safeParse(item);
     if (!result.success) {
@@ -49,7 +51,8 @@ export function validateContent(input: ContentBundle) {
   const invitations = parse<any>(input.invitations ?? [], JourneyInvitationSchema, 'invitation');
   const cards = parse<any>(input.cards, KnowledgeCardSchema, 'card');
   const prototypeReviews = parse<any>(input.prototypeReviews ?? [], LessonPrototypeReviewSchema, 'prototypeReview');
-  const all = [...sources, ...claims, ...media, ...prompts, ...lessons, ...journeys, ...invitations, ...cards];
+  const terms = lessons.flatMap((lesson) => lesson.terms ?? []);
+  const all = [...sources, ...claims, ...media, ...prompts, ...lessons, ...journeys, ...invitations, ...cards, ...terms];
   const ids = new Set<string>();
   for (const item of all) {
     if (ids.has(item.id)) errors.push(`duplicate ID: ${item.id}`);
@@ -111,6 +114,9 @@ export function validateContent(input: ContentBundle) {
       if (prompt?.evidenceModuleIds) refs(prompt.id, prompt.evidenceModuleIds, inspectableIds, 'inspectable evidence module');
       if (prompt?.required && !renderedPromptIds.has(promptId)) errors.push(`${lesson.id}: required prompt ${promptId} is not rendered by a lesson module`);
     }
+    const termResult = validateLessonTerms(lesson, prompts.filter((prompt) => prompt.lessonId === lesson.id));
+    errors.push(...termResult.errors);
+    warnings.push(...termResult.warnings);
     const requiredPromptCount = lesson.promptIds.filter((id: string) => promptById.get(id)?.required).length;
     if (lesson.status === 'published' && (requiredPromptCount < 1 || requiredPromptCount > 3)) errors.push(`${lesson.id}: published lessons require one to three required prompts`);
   }
@@ -201,5 +207,5 @@ export function validateContent(input: ContentBundle) {
     if (!mediaIds.has(card.mediaId)) errors.push(`${card.id}: broken media reference ${card.mediaId}`);
   }
 
-  return { success: errors.length === 0, errors };
+  return { success: errors.length === 0, errors, warnings };
 }

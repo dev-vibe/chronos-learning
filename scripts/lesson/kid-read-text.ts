@@ -4,6 +4,7 @@
 // sources, alt text, explanations and (unless --feedback) option feedback.
 import { chronosContent } from '../../content/chronos';
 import type { LessonModule, UnderstandingPrompt } from '../../src/domains/contracts';
+import { featuredTermGroups, stripTermMarkup, termKindLabels } from '../../src/domains/lessonTerms';
 import { argumentValue, hasFlag } from './arguments';
 
 const args = process.argv.slice(2);
@@ -22,7 +23,8 @@ if (!lesson) {
 
 const promptsById = new Map(chronosContent.prompts.map((prompt) => [prompt.id, prompt]));
 const out: string[] = [];
-const line = (text = '') => out.push(text);
+// Term markup ([[stele]]) reads as plain text; the definitions are printed at the end.
+const line = (text = '') => out.push(stripTermMarkup(text));
 // The question appears in place; its choices and hint are printed at the end,
 // so a reader says what each question asks before seeing them (in the app the
 // hint stays hidden until the learner opens it).
@@ -96,11 +98,22 @@ const writeModule = (module: LessonModule) => {
 line(`# ${lesson.title}`);
 line(`${lesson.masthead} · ${lesson.place} · ${lesson.chronology.display}`);
 if (lesson.heroCaption) line(lesson.heroCaption);
+const featured = featuredTermGroups(lesson.terms);
+if (featured.length) {
+  line();
+  line('## People, places and words (panel at the top)');
+  for (const group of featured) line(`${group.label}: ${group.terms.map((term) => `${term.label} (${term.gloss})`).join('; ')}`);
+}
 for (const section of lesson.sections) {
   line();
   line(`## ${section.heading}`);
   section.modules.forEach(writeModule);
 }
 writeChoicesAndHints();
+if (lesson.terms?.length) {
+  line();
+  line('## Word boxes (shown when a learner taps a marked word)');
+  for (const term of lesson.terms) line(`- ${term.label} (${termKindLabels[term.kind]}): ${term.definition}`);
+}
 
 console.log(out.join('\n').replace(/\n{3,}/g, '\n\n'));

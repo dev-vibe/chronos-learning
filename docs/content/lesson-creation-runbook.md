@@ -610,6 +610,26 @@ Keep these recurring learner-facing type labels in ordinary words:
 
 Do not invent a new methods slogan for the same job.
 
+### Lesson terms
+
+A lesson may list `terms`: words, people and places a learner can tap for a short definition. Featured terms also appear in the **People, places and words** panel under Time and place, and each one jumps to the section where it matters most. Use terms for names and words a reader may need to look up again; they are not a glossary of every proper noun.
+
+| Field | Rule |
+| --- | --- |
+| `id` | Stable, lesson-prefixed, `term.<lesson-slug>.<name>` (for example `term.akkad.stele`). Never reuse or rename a published ID; a later shared glossary will promote these. |
+| `label` | How the term is written in the box and panel. |
+| `kind` | `person`, `people` (a group), `place`, `word` or `thing` (an object). The box shows Person, People, Place, Word or Object. |
+| `definition` | One or two plain sentences, at most 30 words, readable by a 12-year-old with no scholarly words. Say what it is and why it matters here. |
+| `gloss` | Featured terms only: one line, at most 10 words, for the panel. |
+| `primarySectionId` | The section where the term matters most; the panel jumps here. |
+| `featured` | At most 8 per lesson. Pick the people, places and words a learner returns to. |
+| `aliases` | Other forms the text marks, such as `Naram-Sin’s`. Curly and straight apostrophes match. |
+| `claimIds`, `sourceIds` | Required. A definition is learner-facing fact, so it cites claims and sources the lesson registers, like prose. Add a claim (and source) when a definition says something no existing claim covers. |
+
+Mark terms explicitly in the text: `[[stele]]` matches a label or alias; `[[his stone|term.akkad.stele]]` shows different words for a term. Nothing is matched automatically. Marks are allowed in prose `body`, `knowledge` body and item `detail`, and `evidence` and `scene` bodies (scene captions sit in a disclosure, so their marks read as plain text). They are not allowed in headings, titles, labels, map text, understanding prompts, hints or feedback. Only the first marked occurrence in each section is highlighted, so mark the first mention in each section where the term helps and leave the rest plain.
+
+`npm run validate:content` fails on markup naming no term, unbalanced `[[ ]]`, markup in a field that does not render terms, a `primarySectionId` outside the lesson, a definition without claims or sources or citing ones the lesson does not register, an over-long definition or gloss, a featured term without a gloss, two terms sharing a name, or more than 8 featured terms. It warns when a term is never marked, or a featured term is not marked in its primary section. Scripts that read lesson text (`lesson:kid-read`, `lesson:check-questions`) strip the marks; any new script that turns lesson text into plain text must call `stripTermMarkup`.
+
 If the lesson genuinely needs a timeline, comparison table, audio source, diagram, or another unsupported teaching primitive, stop and decide whether to add a bounded reusable module. Do not fake it with arbitrary HTML, an image containing educational text, overloaded `knowledge` cards, an inaccessible visual without a reviewed data model or text equivalent. A new module is an architecture/design change and requires its own validation and accessibility coverage.
 
 Native application text carries titles, explanations, labels, and captions. Do not bake educational prose into artwork.
