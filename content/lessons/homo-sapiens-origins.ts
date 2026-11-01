@@ -573,44 +573,80 @@ export const homoSapiensOriginsMedia: MediaAsset[] = [
 
 export const homoSapiensOriginsPrompts: UnderstandingPrompt[] = [
   {
-    id: 'prompt.humans.best-supported-conclusion', bestOptionId: 'option.humans.connected-populations',
+    id: 'prompt.humans.fossils-far-apart', bestOptionId: 'option.humans.may-not-be-first',
     lessonId: 'lesson.humans.homo-sapiens-origins',
     kind: 'supported-selection',
-    hint: 'Compare where the finds were made and how far apart they are. Which statement could explain all three?',
+    hint: 'Read the last paragraph in “Old fossils across Africa” and look for what it says about the oldest fossil.',
     evidenceModuleIds: ['module.humans.africa-evidence-map'],
-    question: 'Fossils of early Homo sapiens have been found in Morocco from about 315,000 years ago, in South Africa from about 259,000 years ago, and in Ethiopia from at least 233,000 years ago. They are thousands of kilometres apart, and they do not all share the same mix of features. Which conclusion does this set of finds best support?',
-    explanation: 'The finds are spread across Africa, cover more than 150,000 years and mix features in different ways, which fits groups that were sometimes apart and sometimes in contact. One valley cannot explain finds that far apart. Different mixes of features do not make separate species either, because these groups kept exchanging genes. And “oldest known” is not the same as “first”: Jebel Irhoud is only the oldest evidence found so far, and it turned up by accident in a mine. The next dig could be older and somewhere else. This evidence rules out a simple one-place story without swapping in a different single place.',
+    question: 'A friend says our species began in Morocco, because the oldest fossil was found there. Does the oldest fossil found so far show where our species began?',
+    explanation: 'The oldest fossil found so far is only the oldest one anyone has dug up. The fossils are thousands of kilometres apart, and older ones may be buried where nobody has looked. The tools and the DNA fit many groups across Africa rather than one starting place.',
     required: true,
     options: [
       {
-        id: 'option.humans.connected-populations',
-        label: 'Our species took shape among populations living in many parts of Africa that were sometimes separated and sometimes in contact.', feedback: 'Yes. Finds this far apart, with different mixes of features, fit connected populations across Africa, though they do not point to one exact birthplace.',
+        id: 'option.humans.may-not-be-first',
+        label: 'No. The oldest fossil found so far may not be the first one.', feedback: 'That is right. The oldest fossil found so far is only the oldest one anyone has dug up, and older ones may be buried where nobody has looked.',
       },
       {
-        id: 'option.humans.one-valley',
-        label: 'Our species began in one valley in eastern Africa and spread out from there.', feedback: 'Look at the three places in the question. Could one valley in eastern Africa explain a fossil in Morocco and one in South Africa as well as one in Ethiopia?',
+        id: 'option.humans.oldest-is-first',
+        label: 'Yes. The oldest fossil found is probably where a species began.', feedback: 'Look at the last paragraph of “Old fossils across Africa.” What does it say the oldest fossil found so far is?',
       },
       {
-        id: 'option.humans.separate-species',
-        label: 'Each region of Africa evolved its own separate human species.', feedback: 'Reread “Connected, not sealed off.” What does the lesson say about contact between populations in Africa?',
+        id: 'option.humans.began-in-eastern-africa',
+        label: 'No. Our species probably began in eastern Africa, not Morocco.', feedback: 'Look at Ethiopia, in the east, on the map in “Old fossils across Africa.” Is its fossil older or younger than the one in Morocco?',
       },
       {
-        id: 'option.humans.morocco-first',
-        label: 'The Morocco fossils are the first members of our species, so our species began in Morocco.', feedback: 'Reread “Evidence across a continent.” Does the oldest fossil found so far have to be the first member of our species?',
+        id: 'option.humans.others-are-younger',
+        label: 'Yes. The fossils in South Africa and Ethiopia are younger, so Morocco was probably first.', feedback: 'Read the last paragraph of “Old fossils across Africa” again. What does it say about fossils nobody has found yet?',
       },
     ],
   },
   {
-    id: 'prompt.humans.face-and-braincase',
+    id: 'prompt.humans.where-to-dig',
     lessonId: 'lesson.humans.homo-sapiens-origins',
     kind: 'concise-explanation',
-    hint: 'Compare the face with the back of the skull. For part 2, look back at the end of “Read the skull” and at “Connected, not sealed off.”',
-    evidenceModuleIds: ['module.humans.irhoud-cranium'],
-    question: 'The Jebel Irhoud fossils have a face much like ours but a long, low braincase. (1) What does that mix suggest about how our species’ features appeared? (2) What would researchers want to find next to learn more, and where would they look?',
-    explanation: 'The face looks much like ours while the braincase is long and low, which suggests these features appeared at different times rather than all at once. For part 2, a strong answer asks for more fossils, from other times or other parts of Africa (for example West and Central Africa, which have barely been studied), to learn where and when the other changes happened. One site cannot settle that on its own.',
+    hint: 'Look for what the last paragraph of “Old fossils across Africa” and “Places nobody has dug” say about where fossils are buried.',
+    evidenceModuleIds: ['module.humans.africa-evidence-map'],
+    question: 'Suppose you could lead one dig to look for more fossils of our species. Would you dig at Jebel Irhoud again, or in a part of Africa nobody has dug? Write one or two sentences that say why, using something you read.',
+    explanation: 'Either choice can be a strong answer if the reason comes from the lesson. Digging where nobody has dug fits the lesson: large parts of Africa have hardly been dug, and the oldest fossil found so far may not be the first. Digging near known fossils could add ages and features to compare. There is no single right place.',
     required: true,
     minimumResponseLength: 20,
   },
+];
+
+const termSections = {
+  opening: 'section.humans.skull-in-the-wrong-place',
+  species: 'section.humans.what-counts-as-us',
+  skull: 'section.humans.read-the-skull',
+  tools: 'section.humans.connected-not-sealed-off',
+};
+
+export const homoSapiensOriginsTerms: NonNullable<Lesson['terms']> = [
+  { id: 'term.humans.fossil', label: 'fossils', kind: 'word', featured: true, primarySectionId: termSections.opening,
+    gloss: 'Very old remains of living things',
+    definition: 'The very old remains of a living thing, such as a bone or a tooth, that have been kept in the ground for a very long time.',
+    claimIds: ['claim.humans.irhoud-first-reading'], sourceIds: ['source.humans.wong-2017-sciam'] },
+  { id: 'term.humans.jebel-irhoud', label: 'Jebel Irhoud', kind: 'place', featured: true, primarySectionId: termSections.opening,
+    gloss: 'Hill in Morocco where miners found a very old skull',
+    definition: 'A hill in Morocco where miners found a skull in 1961. Later digging showed that its fossils and burned stone tools are about 315,000 years old.',
+    claimIds: ['claim.humans.irhoud-first-reading', 'claim.humans.irhoud-age'], sourceIds: ['source.humans.wong-2017-sciam', 'source.humans.richter-2017-irhoud-age'] },
+  { id: 'term.humans.homo-sapiens', label: 'Homo sapiens', kind: 'word', featured: true, primarySectionId: termSections.species,
+    gloss: 'The scientific name for our species',
+    definition: 'The scientific name for our species: everyone alive today, and the fossils researchers place in the same species. Which fossils belong is still argued.',
+    claimIds: ['claim.humans.african-origin', 'claim.humans.species-boundary-contested'], sourceIds: ['source.humans.smithsonian-homo-sapiens', 'source.humans.scerri-2018-subdivided'] },
+  { id: 'term.humans.braincase', label: 'braincase', kind: 'word', featured: true, primarySectionId: termSections.skull,
+    gloss: 'The part of the skull that holds the brain',
+    definition: 'The part of the skull that holds the brain. It is high and round in people alive today, and long and low in the Jebel Irhoud fossils.',
+    claimIds: ['claim.humans.irhoud-mosaic', 'claim.humans.braincase-later'], sourceIds: ['source.humans.hublin-2017-irhoud', 'source.humans.neubauer-2018-brain-shape'] },
+  { id: 'term.humans.mosaic', label: 'mosaic', kind: 'word', primarySectionId: termSections.skull,
+    definition: 'A mix of old and new features in the same person. The Jebel Irhoud skull has a face like ours and a braincase like earlier humans.',
+    claimIds: ['claim.humans.irhoud-mosaic'], sourceIds: ['source.humans.hublin-2017-irhoud', 'source.humans.mpi-irhoud-presskit'] },
+  { id: 'term.humans.olorgesailie', label: 'Olorgesailie', kind: 'place', featured: true, primarySectionId: termSections.tools,
+    gloss: 'Site in Kenya with stone brought from far away',
+    definition: 'A site in southern Kenya. People there made handaxes for hundreds of thousands of years, then smaller tools, some from stone brought from far away.',
+    claimIds: ['claim.humans.olorgesailie-change', 'claim.humans.olorgesailie-networks'], sourceIds: ['source.humans.si-olorgesailie-2018', 'source.humans.brooks-2018-olorgesailie'] },
+  { id: 'term.humans.obsidian', label: 'obsidian', kind: 'word', primarySectionId: termSections.tools,
+    definition: 'A natural glass made by volcanoes. At Olorgesailie, people brought it to the site from places 25 to 95 kilometres away.',
+    claimIds: ['claim.humans.olorgesailie-networks'], sourceIds: ['source.humans.brooks-2018-olorgesailie'] },
 ];
 
 export const homoSapiensOriginsLesson: Lesson = {
@@ -626,12 +662,12 @@ export const homoSapiensOriginsLesson: Lesson = {
     display: 'approximately 315,000–160,000 years ago',
     approximate: true,
   },
-  significance: 'The oldest fossils of our species were found in Morocco, not East Africa. Bones, stone tools, and DNA together point to beginnings spread across the continent.',
-  learningOutcome: 'You explored how fossils, tools, and DNA inform accounts of our origins, and why surviving evidence leaves important questions open.',
+  significance: 'The oldest known fossils of our species were found in Morocco, in northwest Africa. Bones, stone tools and DNA together point to beginnings spread across the continent.',
+  learningOutcome: 'You looked at fossils, stone tools and DNA from across Africa and saw why our species has no single birthplace.',
   orientationMapModuleId: 'module.humans.africa-evidence-map',
   heroMediaId: 'media.humans.jebel-irhoud-landscape-reconstruction',
   heroLabel: 'Evidence-based reconstruction',
-  heroCaption: 'Jebel Irhoud, Morocco, around 315,000 years ago. The open landscape and the site’s lost cave form are reconstructed from environmental and archaeological evidence; the distant people show presence and scale, not known appearance or exact activity.',
+  heroCaption: 'Jebel Irhoud, Morocco, around 315,000 years ago. This landscape is reconstructed from what researchers know about the site and its surroundings. The small figures in the distance show how large the landscape is; nobody knows what these people looked like or exactly what they were doing.',
   sectionIdsRequired: [
     'section.humans.skull-in-the-wrong-place',
     'section.humans.what-counts-as-us',
@@ -644,18 +680,17 @@ export const homoSapiensOriginsLesson: Lesson = {
   sections: [
     {
       id: 'section.humans.skull-in-the-wrong-place',
-      heading: 'A skull in the wrong place',
+      heading: 'Miners find a skull in Morocco',
       purpose: 'Open the puzzle with a concrete find that breaks the expected story',
       modules: [
         {
           id: 'module.humans.skull-in-the-wrong-place',
           type: 'prose',
-          body: 'In 1961, miners digging for barite in a limestone hill called Jebel Irhoud, in western Morocco, cut into what had once been a cave and uncovered a human skull. More bones followed. The experts who studied them decided these people were African Neanderthals, about 40,000 years old. Later work pushed the date back to roughly 160,000 years, and still the fossils fit nowhere comfortably.\n\nDecades later, a team from Morocco and Germany returned to dig a part of the site the miners had left undisturbed. Alongside new fossils they found flint tools that had been burned in a fire. Heat wipes a faint signal in flint back to zero, and the signal then builds up again, slowly, for as long as the stone lies buried. Measuring it gave an age of about 315,000 years.\n\nThat number is hard to hold in your head. All of written history — every date you will meet later in this journey — fits inside about the last five thousand years. Jebel Irhoud is more than sixty times further back than that.\n\nThe bones once filed as fairly recent Neanderthals had become the oldest known fossils of Homo sapiens, our own species. And they lay in the far northwest of Africa, more than five thousand kilometres from the eastern valleys where almost everyone had expected the oldest finds to turn up. Before deciding what that means, it helps to be clear about what we are looking for.',
+          body: 'In 1961, miners digging in a hill called [[Jebel Irhoud]], in Morocco, found a human skull. The experts who studied it and the other bones thought they belonged to a different kind of human, who lived only about 40,000 years ago.\n\nDecades later, researchers dug in a part of the hill the miners had left alone. They found new [[fossils]] and stone tools that had been burned in a fire. Buried stone slowly picks up a faint mark. A fire wipes that mark away, and then it starts to build up again, very slowly, year after year. A stronger mark means an older fire. Scientists measured the mark in the burned tools and worked out when they were burned: about 315,000 years ago, almost eight times older than the experts first thought.\n\nThe research team decided that the bones from Jebel Irhoud belong to our own species, which made them the oldest known fossils of it. And they lay in the far northwest of Africa, more than five thousand kilometres from the east, where almost everyone had expected to find the oldest fossils. The oldest fossils known before were from the east.',
           claimIds: [
             'claim.humans.irhoud-first-reading',
             'claim.humans.irhoud-age',
             'claim.humans.african-origin',
-            'claim.humans.irhoud-was-a-cave',
           ],
           sourceIds: [
             'source.humans.wong-2017-sciam',
@@ -663,6 +698,16 @@ export const homoSapiensOriginsLesson: Lesson = {
             'source.humans.hublin-2017-irhoud',
             'source.humans.smithsonian-homo-sapiens',
           ],
+        },
+        // Answered at the end of the lesson: “So where did our species begin?”
+        {
+          id: 'guess.homo-sapiens-origins.where-we-began',
+          type: 'guess',
+          question: 'Where in Africa do you think our species began?',
+          sentenceStarter: 'I think our species began in',
+          payoffModuleId: 'module.humans.where-we-began',
+          claimIds: ['claim.humans.no-single-birthplace'],
+          sourceIds: ['source.humans.bergstrom-2021-ancestry', 'source.humans.scerri-2018-subdivided'],
         },
       ],
     },
@@ -675,38 +720,36 @@ export const homoSapiensOriginsLesson: Lesson = {
           id: 'module.humans.what-counts-as-us',
           type: 'knowledge',
           eyebrow: 'Key ideas',
-          title: 'Species name, sparse fossils, and other humans',
-          body: 'Homo sapiens is the name researchers give our species. Deciding which fossils belong under that name is part of the work, not something settled before the digging starts.',
+          title: 'Homo sapiens and other humans',
+          body: '[[Homo sapiens]] is the scientific name for our species. A species is one kind of living thing, and ours is people like us: everyone alive today. Old bones are hard to sort into kinds. Researchers have to decide which ones belong to our species and which belong to other kinds of humans, kinds that no longer exist. Several kinds of humans lived in Africa at the same time. That matters here, because a fossil can only show where our species began if it really belongs to our species.',
           items: [
             {
               label: 'Everyone alive is one species',
-              detail: 'The DNA of people alive today is about 99.9% alike, and every living group traces its ancestry back to Africa.',
+              detail: 'People alive today are all one species: our DNA is about 99.9% alike. Every living group traces its ancestry back to Africa.',
             },
             {
-              label: 'Fossils are rare survivors',
-              detail: 'Bone lasts only in the right conditions, and then someone has to find it. Researchers work from a scatter of survivors, not a record of everyone who lived.',
+              label: 'Other kinds of humans lived then',
+              detail: 'Other kinds of humans lived in Africa at the same time as the oldest Homo sapiens, so a very old skull is not automatically one of ours.',
             },
             {
-              label: 'We were not the only humans',
-              detail: 'Other kinds of humans lived in Africa at the same time, including Homo naledi in South Africa. At Kabwe in Zambia, once called Broken Hill, miners dug up another kind of human skull in 1921, about 299,000 years old. Its cave has since been quarried away completely.',
+              label: 'Old bones are rare',
+              detail: 'Bone lasts only in the right conditions, and then someone has to find it. Researchers work with the few bones that happened to last and happened to be found.',
             },
             {
-              label: 'This is not a ladder',
-              detail: 'Early Homo sapiens fossils do not line up neatly from “old” to “modern.” Features turn up in different mixes at different times and places.',
+              label: 'Early bones differ from one another',
+              detail: 'The bones of early Homo sapiens do not all look alike. Some look more like ours than others do, and they come from different times and places.',
             },
           ],
           claimIds: [
             'claim.humans.humans-99-9-alike',
             'claim.humans.african-origin',
             'claim.humans.other-hominins',
-            'claim.humans.kabwe-site-lost',
             'claim.humans.not-a-ladder',
           ],
           sourceIds: [
             'source.humans.smithsonian-homo-sapiens',
             'source.humans.nhm-modern-humans',
             'source.humans.scerri-2018-subdivided',
-            'source.humans.grun-2020-kabwe',
           ],
         },
       ],
@@ -720,13 +763,13 @@ export const homoSapiensOriginsLesson: Lesson = {
           id: 'module.humans.irhoud-cranium',
           type: 'evidence',
           title: 'Look at the face, then look at the back of the head',
-          artifactLabel: 'Composite reconstruction · Jebel Irhoud',
-          body: 'No single Jebel Irhoud fossil preserves a whole skull, so researchers scanned several pieces and combined them into one reconstruction. In the right-hand view, the blue shape fills the space where the brain once sat. Look at the face first: small, flat and tucked under the brow, a face that would not stand out among people today. Then look behind it. The braincase is long and low, stretched toward the back like those of earlier humans, and nothing like the high, rounded skull of anyone alive now.',
+          artifactLabel: 'Skull rebuilt from scans · Jebel Irhoud',
+          body: 'The Jebel Irhoud skull has a face like ours on a braincase that is not like ours. None of the fossils from the site is a whole skull, so researchers scanned several pieces and combined them into one rebuilt skull. In the right-hand view of the picture, the blue shape fills the space where the brain once sat. Look at the face first: it is small and flat and sits below the forehead, a face that would not stand out among people today. Then look at the back of the head. The [[braincase]], the part of the skull that holds the brain, is long and low, like those of earlier humans, and unlike the high, round skull of anyone alive now.',
           mediaId: 'media.humans.jebel-irhoud-cranium',
           layout: 'stacked',
           lookHere: [
-            { label: 'The face', detail: 'Notice the small, flat face tucked under the brow.', sourceIds: ['source.humans.hublin-2017-irhoud'] },
-            { label: 'Behind the face', detail: 'The long, low braincase contrasts with the face. The blue shape shows the space inside it, not a surviving brain.', sourceIds: ['source.humans.mpi-irhoud-presskit'] },
+            { label: 'The face', detail: 'Notice the small, flat face below the forehead.', sourceIds: ['source.humans.hublin-2017-irhoud'] },
+            { label: 'Behind the face', detail: 'The long, low braincase sits behind the face. The blue shape shows the empty space inside it, where the brain once sat.', sourceIds: ['source.humans.mpi-irhoud-presskit'] },
           ],
           claimIds: ['claim.humans.irhoud-mosaic'],
           sourceIds: [
@@ -738,7 +781,7 @@ export const homoSapiensOriginsLesson: Lesson = {
         {
           id: 'module.humans.mosaic-not-ladder',
           type: 'prose',
-          body: 'A face like ours on a braincase unlike ours is what researchers call a mosaic: old and new features in the same person, rather than a whole body changing at once.\n\nWhen researchers compared the inside shape of skulls across hundreds of thousands of years, they concluded that our rounded braincase arrived later, within our species, rather than at its start. That is a reading of a limited set of fossils, not something you can see on one bone, but it fits what Jebel Irhoud shows: our species did not appear finished.\n\nOne site, however old, cannot settle where a species began. For that, you have to look across the rest of the continent.',
+          body: 'Put the two together and you have what researchers call a [[mosaic]]: old and new features in the same person. A face like ours sits on a braincase unlike ours.\n\nResearchers who compared the inside shape of skulls from across hundreds of thousands of years concluded that our round braincase came later, after our species had begun. So the features of our species did not all appear at once, and one skull shows only how our species looked at one time and place. To see where our species began, we need fossils from across Africa.',
           claimIds: ['claim.humans.braincase-later', 'claim.humans.not-a-ladder'],
           sourceIds: [
             'source.humans.neubauer-2018-brain-shape',
@@ -750,15 +793,15 @@ export const homoSapiensOriginsLesson: Lesson = {
     },
     {
       id: 'section.humans.across-a-continent',
-      heading: 'Evidence across a continent',
+      heading: 'Old fossils across Africa',
       purpose: 'Establish the spatial and chronological spread of the evidence',
       modules: [
         {
           id: 'module.humans.africa-evidence-map',
           type: 'historical-map',
           eyebrow: 'Sites',
-          title: 'Five finds across Africa',
-          body: 'Four of these markers are fossil sites. One, Olorgesailie, is a toolmaking site. Compare the distances between them with the dates on each marker.',
+          title: 'Five places in Africa',
+          body: 'Each marker is a place where evidence of early people was found, with its age. Compare how far apart the markers are and how their ages differ.',
           mediaId: 'media.humans.africa-evidence-map',
           periodLabel: 'c. 320,000–160,000 years ago',
           focusPlace: 'Africa',
@@ -781,10 +824,9 @@ export const homoSapiensOriginsLesson: Lesson = {
         {
           id: 'module.humans.no-centre',
           type: 'prose',
-          body: 'Line up the dates with the distances on the map, and the old story falls apart. The oldest fossils are in Morocco. The next oldest, at Florisbad in South Africa, lie more than seven thousand kilometres away. And the oldest fossil from the eastern valleys everyone used to point to has only a minimum age, and a story behind it.\n\nThat fossil is Omo I, found in southern Ethiopia in 1967 by a team led by Richard Leakey. It was first thought to be about 130,000 years old; in 2008 its layers were redated to about 195,000. Then researchers turned to the ash lying on top of it, more than two metres of fine volcanic dust. The grains were too fine to date directly, so the team matched the chemistry of its tiny glass shards to a major eruption of Shala volcano, 350 kilometres away, and dated the rock left near the volcano instead: about 233,000 years ago, give or take 22,000. Ash that settled on top must be younger than whatever lies beneath, so the fossil is at least that old. How much older, this evidence cannot say. A minimum age is still real information, a floor rather than a full measurement.\n\nTaken together, the finds do not point to one special place. Spread out, though, is not the same as cut off.',
+          body: 'Other very old fossils of our species have been found far from Jebel Irhoud. Look at the map. The oldest fossils are in Morocco, in the far northwest. The next oldest, in South Africa, are about 259,000 years old and lie more than seven thousand kilometres away. In Ethiopia, in the east, a skull is at least 233,000 years old. Volcanic ash lies on top of it, and the ash has been dated, so the skull must be older than the ash.\n\nThe fossils come from Morocco, South Africa and Ethiopia. They are thousands of kilometres apart, and their ages differ by tens of thousands of years. So our species was already living across a wide part of Africa, and the fossils give us no single place to point to as its start. The oldest fossil found so far is only the oldest one anyone has dug up. Older ones may be buried where nobody has looked.',
           claimIds: [
             'claim.humans.sites-spread',
-            'claim.humans.omo-age-history',
             'claim.humans.omo-ash-match',
             'claim.humans.omo-minimum-age',
             'claim.humans.no-single-birthplace',
@@ -801,17 +843,17 @@ export const homoSapiensOriginsLesson: Lesson = {
     },
     {
       id: 'section.humans.connected-not-sealed-off',
-      heading: 'Connected, not sealed off',
+      heading: 'Tools across Africa',
       purpose: 'Explain the connections and conditions that make a continent-wide origin possible',
       modules: [
         {
           id: 'module.humans.irhoud-tools',
           type: 'evidence',
-          title: 'Middle Stone Age tools from Jebel Irhoud',
-          artifactLabel: 'Middle Stone Age tools · Jebel Irhoud',
-          body: 'These tools came from the same layers as the Moroccan fossils, and burned pieces like these are what dated the site. Most are pointed and worked along both edges. Others were struck from stone cores that had been shaped first, so the maker could plan the flake before knocking it off, thinking several steps ahead in a material that punishes mistakes.\n\nToolkits built on the same ideas show up in far-apart parts of Africa around 300,000 years ago. “Around” covers tens of thousands of years, and whole regions, especially West and Central Africa, have barely been studied. Even so, the change was not confined to one valley.',
+          title: 'Stone tools from Jebel Irhoud',
+          artifactLabel: 'Stone tools · Jebel Irhoud',
+          body: 'Stone tools add more evidence. These tools came from the same layers of ground at Jebel Irhoud as the fossils, and burned pieces like these were used to date the site. Most are pointed and shaped on both edges. Some were made by first shaping a lump of stone, then knocking a flat piece off it.\n\nTools like these are found in other parts of Africa too, from around 300,000 years ago. So new ways of making tools appeared in many places at about the same time. That fits groups of people living in different parts of Africa, sometimes apart and sometimes in contact.',
           mediaId: 'media.humans.jebel-irhoud-tools',
-          claimIds: ['claim.humans.msa-broadly-contemporary', 'claim.humans.record-sparse'],
+          claimIds: ['claim.humans.msa-broadly-contemporary'],
           sourceIds: [
             'source.humans.richter-2017-irhoud-age',
             'source.humans.mpi-irhoud-presskit',
@@ -821,25 +863,25 @@ export const homoSapiensOriginsLesson: Lesson = {
         {
           id: 'module.humans.connections',
           type: 'knowledge',
-          eyebrow: 'Olorgesailie, southern Kenya',
-          title: 'Long-distance stone and pigment',
-          body: 'For hundreds of thousands of years, people in one Kenyan basin made big, all-purpose stone handaxes. Then, in layers dated to about 320,000–305,000 years ago, the handaxes are gone. In their place are smaller, more carefully shaped tools, and signs of how far one community’s world now reached. The dig is a joint project of the Smithsonian and the National Museums of Kenya.',
+          eyebrow: 'Olorgesailie, eastern Africa',
+          title: 'Long-distance stone and colour',
+          body: 'At [[Olorgesailie]], a site in eastern Africa, people made big, all-purpose stone handaxes for hundreds of thousands of years. Then, in layers of ground about 320,000 to 305,000 years old, the handaxes are gone. In their place are smaller, more carefully shaped tools, and stone that came from far away.',
           items: [
             {
               label: 'Obsidian from far off',
-              detail: 'Volcanic glass at the site came from sources in several directions, 25 to 95 kilometres away. Earlier toolmakers in the same basin mostly used stone from within about five kilometres.',
+              detail: '[[Obsidian]], a volcanic glass, came to the site from places in several directions, 25 to 95 kilometres away. Earlier toolmakers at the same site mostly used stone from within about five kilometres.',
             },
             {
-              label: 'Colour, deliberately made',
-              detail: 'Black and red rocks, manganese and iron-rich ochre, were carried in and processed into colouring material.',
+              label: 'Colour',
+              detail: 'Black and red rock was also carried to the site and made into colouring material.',
             },
             {
-              label: 'What the distance implies',
-              detail: 'Stone moving that far suggests trade between groups, or one group ranging much farther than before. The rock cannot tell which. Either way, their world had grown.',
+              label: 'What the distance suggests',
+              detail: 'Stone that moved this far suggests that groups swapped it with each other, or that one group travelled much farther than before. The stone itself does not show which. Either way, people were not staying in one small place.',
             },
             {
-              label: 'Climate kept redrawing the map',
-              detail: 'African deserts, grasslands and forests grew and shrank again and again, which could split groups apart for long stretches and later bring them back into contact. Researchers propose this as one cause of the pattern; the dates are still too rough to prove it.',
+              label: 'Climate changes',
+              detail: 'African deserts, grasslands and forests grew and shrank again and again. That could split groups apart for long stretches and later bring them back together. Researchers think this may be one reason groups were sometimes apart and sometimes in contact; the dates are still too rough to be sure.',
             },
           ],
           claimIds: [
@@ -859,13 +901,13 @@ export const homoSapiensOriginsLesson: Lesson = {
     },
     {
       id: 'section.humans.what-dna-adds',
-      heading: 'What DNA adds — and what it cannot',
-      purpose: 'Add the genetic evidence and state the honest limits alongside it',
+      heading: 'What DNA adds',
+      purpose: 'Show what the DNA of living people adds to the fossils and the tools',
       modules: [
         {
           id: 'module.humans.what-dna-adds',
           type: 'prose',
-          body: 'In 2023, a team of geneticists sequenced the genomes of 44 Nama people from southern Africa and set them beside genomes from groups across the continent. Then they tested which ancient family history best explains the patterns people carry today. They had to work from the living, because no DNA has ever been recovered from an African human fossil this old: heat and damp break it down long before 300,000 years pass.\n\nThe best fit was not one ancestral group splitting cleanly into branches. It was two or more groups, only slightly different from one another, exchanging people and genes back and forth for hundreds of thousands of years.\n\nThat is what a model fits, not something anyone watched happen, and the same researchers show how much the choice of model shapes the answer. Still, a third kind of evidence, after bone and stone, points the same way: many groups, spread out, staying in touch.',
+          body: 'DNA is a third kind of evidence, after fossils and tools. No DNA has ever been recovered from an African fossil this old, because heat and damp break it down long before 300,000 years pass. So scientists who study DNA work with the DNA of people alive today. DNA is passed from parents to children, so it carries traces of the groups our ancestors came from. In 2023, a team compared the DNA of living people from many parts of Africa. They tested different ideas about how groups lived long ago, to see which idea matched the DNA best.\n\nThe best match was two or more groups of people, only slightly different from one another. They mixed with each other for hundreds of thousands of years, as people moved between the groups. This comes from a model, a set of assumptions about how groups lived and mixed. The researchers also show that other models give somewhat different answers.\n\nThat matches the fossils and the tools: many groups across Africa, sometimes apart and sometimes in contact.',
           claimIds: [
             'claim.humans.adna-limits',
             'claim.humans.dna-weak-structure',
@@ -880,25 +922,25 @@ export const homoSapiensOriginsLesson: Lesson = {
         {
           id: 'module.humans.open-questions',
           type: 'knowledge',
-          eyebrow: 'Limits',
-          title: 'Boundaries, blank spaces, and open models',
-          body: 'That our species came from Africa is not in doubt. Nearly every detail inside that answer is still argued over, and the arguments are of different kinds.',
+          eyebrow: 'What we can know',
+          title: 'Four open questions',
+          body: 'Researchers agree that our species came from Africa. Four questions have no answer yet.',
           items: [
             {
-              label: 'Where the line goes',
-              detail: 'Researchers disagree about which fossils count as Homo sapiens; some put Jebel Irhoud and Florisbad in a different species. The argument is over where to draw a line across a slowly changing family, and there may be no sharp line to find.',
+              label: 'Which fossils count',
+              detail: 'Some researchers say the oldest fossils, including Jebel Irhoud’s, belong to a different kind of human. Our features changed slowly, so there may be no sharp line to find.',
             },
             {
-              label: 'Whether a birthplace existed',
-              detail: 'No one can currently name one time and place where our ancestry was limited to a small region. That is not the same as proving no such place ever existed.',
+              label: 'Was there one first place',
+              detail: 'So far, nobody can name one small region where all our ancestors lived. Researchers cannot yet say whether there ever was one.',
             },
             {
-              label: 'Who left no descendants',
-              detail: 'DNA from living people reaches only ancestral groups that still have descendants. Groups whose lines ended leave no trace in this kind of evidence.',
+              label: 'Groups that died out',
+              detail: 'DNA from people alive today can only show groups that have descendants alive today. If a group died out without descendants, its DNA is gone, and this method cannot see it.',
             },
             {
-              label: 'Where nobody has looked',
-              detail: 'Bone survives in some places and not others, and digging has been funded and permitted far more in some countries than in others, so a blank spot on the map is not proof that a place was empty. Jebel Irhoud and Kabwe were both found by miners, not by scientists searching for them. The next surprise could come from a part of Africa nobody has looked at yet.',
+              label: 'Places nobody has dug',
+              detail: 'Bone lasts in some places and not others, and large parts of Africa have hardly been dug at all. An empty spot on the map may only mean nobody has dug there yet.',
             },
           ],
           claimIds: [
@@ -906,16 +948,30 @@ export const homoSapiensOriginsLesson: Lesson = {
             'claim.humans.no-single-birthplace',
             'claim.humans.adna-limits',
             'claim.humans.record-sparse',
-            'claim.humans.irhoud-first-reading',
-            'claim.humans.kabwe-site-lost',
           ],
           sourceIds: [
             'source.humans.scerri-2018-subdivided',
             'source.humans.stringer-2016-origin',
             'source.humans.bergstrom-2021-ancestry',
             'source.humans.ragsdale-2023-stem',
+          ],
+        },
+        {
+          id: 'module.humans.where-we-began',
+          type: 'prose',
+          body: 'So where in Africa did our species begin? The evidence fits many places across the continent better than one. People like us developed among many groups living in different parts of Africa, groups that were sometimes apart and sometimes in contact. That is the picture the fossils, the tools and the DNA fit best. So far, nobody can point to one place and one time where it all began.',
+          claimIds: [
+            'claim.humans.structured-populations',
+            'claim.humans.no-single-birthplace',
+            'claim.humans.african-origin',
+            'claim.humans.irhoud-first-reading',
+            'claim.humans.record-sparse',
+          ],
+          sourceIds: [
+            'source.humans.scerri-2018-subdivided',
+            'source.humans.bergstrom-2021-ancestry',
+            'source.humans.ragsdale-2023-stem',
             'source.humans.wong-2017-sciam',
-            'source.humans.grun-2020-kabwe',
           ],
         },
       ],
@@ -923,19 +979,19 @@ export const homoSapiensOriginsLesson: Lesson = {
     {
       id: 'section.humans.check-and-complete',
       heading: 'World Check',
-      purpose: 'Use the distribution of evidence and explain a limit of it',
+      purpose: 'Use the spread of fossils and the lesson’s main idea to say where our species began',
       modules: [
         {
           id: 'module.humans.prompt-best-supported-conclusion',
           type: 'prompt',
-          promptId: 'prompt.humans.best-supported-conclusion',
+          promptId: 'prompt.humans.fossils-far-apart',
           claimIds: [],
           sourceIds: [],
         },
         {
           id: 'module.humans.prompt-evidence-and-limit',
           type: 'prompt',
-          promptId: 'prompt.humans.face-and-braincase',
+          promptId: 'prompt.humans.where-to-dig',
           claimIds: [],
           sourceIds: [],
         },
@@ -951,7 +1007,8 @@ export const homoSapiensOriginsLesson: Lesson = {
     'media.humans.africa-evidence-map',
     'media.humans.africa-origins-card',
   ],
-  promptIds: ['prompt.humans.best-supported-conclusion', 'prompt.humans.face-and-braincase'],
+  promptIds: ['prompt.humans.fossils-far-apart', 'prompt.humans.where-to-dig'],
+  terms: homoSapiensOriginsTerms,
 };
 
 export const homoSapiensOriginsCards: KnowledgeCard[] = [
@@ -967,16 +1024,16 @@ export const homoSapiensOriginsCards: KnowledgeCard[] = [
       approximate: true,
     },
     place: 'Across Africa',
-    significance: 'Fossils, stone tools, and DNA all point the same way: our species began among many connected groups spread across Africa — with no single birthplace to name.',
+    significance: 'Fossils, stone tools and DNA all point the same way: our species began among many groups spread across Africa, with no single birthplace to name.',
     revealTitle: 'No single birthplace',
-    revealBody: 'You put fossil, tool, and DNA evidence together, worked out what the spread of finds supports, and named what it still cannot settle.',
+    revealBody: 'You looked at fossils, tools and DNA from across Africa and saw that our species developed among many groups, with no single birthplace to point to.',
     depictionLabel: 'Evidence-based reconstruction · Jebel Irhoud, about 315,000 years ago',
     facts: [
       'Oldest known fossils of our species: Jebel Irhoud, Morocco, about 315,000 years ago',
-      'Comparable finds in South Africa and Ethiopia span more than 150,000 years',
-      'A modern-looking face appeared before the rounded braincase did',
-      'DNA of living people fits several weakly separated groups linked by long contact',
-      'No single birthplace has been identified',
+      'More very old fossils were found in South Africa and Ethiopia, thousands of kilometres away',
+      'A modern-looking face came before the rounded braincase did',
+      'DNA of living people fits several groups, only slightly different, that mixed with each other for a very long time',
+      'So far, nobody has found a single place where our species began',
     ],
     lessonIds: ['lesson.humans.homo-sapiens-origins'],
     sourceIds: [
@@ -987,7 +1044,7 @@ export const homoSapiensOriginsCards: KnowledgeCard[] = [
     ],
     mediaId: 'media.humans.jebel-irhoud-landscape-reconstruction',
     unlockLessonId: 'lesson.humans.homo-sapiens-origins',
-    recallPrompt: 'What does a modern-looking face with a long, low braincase suggest? What can one find not settle?',
+    recallPrompt: 'Where did our species begin?',
     connections: [{ lessonId: 'lesson.humans.migrations-and-interbreeding', label: 'Fossils and ancient DNA', reason: 'Compare how a different kind of evidence adds to our account of ancient people.' }],
   },
 ];

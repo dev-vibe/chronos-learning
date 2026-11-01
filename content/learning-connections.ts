@@ -14,12 +14,12 @@ export const learningConnectionsByLessonId: Record<string, LearningConnection> =
     reasoningSkill: 'Combine archaeological patterns with context while separating organized work from a particular form of rule.',
   },
   'lesson.humans.homo-sapiens-origins': {
-    extend: 'Start with a question we will return to: what can surviving evidence tell us, and what does it leave uncertain?',
+    extend: 'Next, follow groups of people out of Africa and ask what fossils and DNA tell us about where they went and who they met.',
     revisit: { lessonId: 'lesson.humans.migrations-and-interbreeding', prompt: 'How does ancient DNA add to the story told by fossils?' },
-    reasoningSkill: 'Distinguish an observation from an inference and name a limit of evidence.',
+    reasoningSkill: 'Tell what researchers see in a fossil apart from what they conclude from it.',
   },
   'lesson.humans.migrations-and-interbreeding': {
-    retrieve: { lessonId: 'lesson.humans.homo-sapiens-origins', prompt: 'Why could one fossil site not settle where our species began?' },
+    retrieve: { lessonId: 'lesson.humans.homo-sapiens-origins', prompt: 'Where did our species begin?' },
     extend: 'Bring that caution to fossils and ancient DNA as you follow migrations and encounters.',
     revisit: { lessonId: 'lesson.humans.sahul-crossing', prompt: 'What can evidence show about a journey when the travellers left no written account?' },
     reasoningSkill: 'Compare what different kinds of evidence can establish.',
@@ -31,7 +31,7 @@ export const learningConnectionsByLessonId: Record<string, LearningConnection> =
     reasoningSkill: 'Separate evidence of arrival from hypotheses about routes and methods.',
   },
   'lesson.farming.multiple-origins': {
-    retrieve: { lessonId: 'lesson.humans.homo-sapiens-origins', prompt: 'Why does evidence from several places matter?' },
+    retrieve: { lessonId: 'lesson.humans.homo-sapiens-origins', prompt: 'What did fossils from several parts of Africa show about where our species began?' },
     extend: 'Compare several beginnings of farming instead of treating one place as a model for everyone.',
     revisit: { lessonId: 'lesson.farming.settlements', prompt: 'How did growing food change everyday life in one settlement?' },
     reasoningSkill: 'Compare change across regions without assuming a single path.',
