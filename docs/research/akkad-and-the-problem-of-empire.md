@@ -457,7 +457,7 @@ Checked against the claim ledger: `winning-and-governing`, `leilan-official`, `b
 
 Standard: 2026-11-01
 
-Runbook: `docs/content/lesson-voice-revision-runbook.md` (point-first sections, lesson terms). Branch: `revise/akkad-and-empire`. Started 2026-11-01. Status: **awaiting owner review**. The 2026-09-23 revision below was done under an older standard; it stays as the record of that pass.
+Runbook: `docs/content/lesson-voice-revision-runbook.md` (point-first sections, lesson terms). Branch: `revise/akkad-and-empire`. Started 2026-11-01. Status: **approved and merged 2026-11-01** ([PR #94](https://github.com/dev-vibe/chronos-learning/pull/94)). The 2026-09-23 revision below was done under an older standard; it stays as the record of that pass.
 
 ### Section points
 
@@ -558,6 +558,8 @@ A homeschooling parent read the preview. Her points: the opening packed in too m
 **Kid reads after the passes (two rounds).** Both readers restated Q1 correctly (“yes”) and Q2 as “sort of”: they could choose, but asked where the reasons were. The lesson now states each way's reason (“Akkad’s own official in charge, and food for the workers every single day”; “Urkesh kept its own king, and Akkad’s royal family had one of its own inside his palace”) and the hint points at those sentences. Both said back every section's point except the princess's door-sealing (“why does closing doors matter?”), now followed by what it shows. Both retold the main idea: winning was easy, keeping a city took an official and food at Leilan and a princess at Urkesh. Remembered: the horned-helmet king, the giant ovens and the water bottle of barley.
 
 **Prompts.** Still two required prompts, neither ever published. `prompt.akkad.urkesh-difference` keeps its ID; its question now says “At Leilan”, the best option is “Its own king stayed, and a princess from Akkad joined the palace”, and option B (`option.akkad.official-from-akkad`) is “Akkad sent its own official to run the city”. The written prompt is now `prompt.akkad.official-or-princess`: “At Leilan, Akkad put its own official in charge. At Urkesh, a princess from Akkad joined the palace of the city’s own king. If you were Akkad’s king, which would you choose for a new city? Give one reason from the lesson.” The intermediate drafts `prompt.akkad.staying-in-charge` and `prompt.akkad.which-way-worked` were never published and are not in the fingerprints.
+
+**Owner approval:** approved by Carlin on 2026-11-01, after two rounds of review with the homeschooling parent; merged in PR #94.
 
 **Still open for the owner:** the masthead prints the date twice and leaves “c.”, “BCE” and “Mesopotamia” unexplained (lesson fields, not prose); the “About scale” caption label is used for captions that are not about size (a shared component label); readers found it odd when tapping “a princess from Akkad” or “another king” opened a box with a name they never saw in the text. Also at the owner's request, Sargon's inscriptions are called his records, not his boasts (the word judged his tone and repeated eight times); the lesson says once that they are his side of the story. At the owner's request, those boxes are gone: the Agade, Tar’am-Agade, Shutruk-Nahhunte, Lullubi and šabra terms were removed, and term boxes now open only on the word they define (seven terms, six featured).
 
@@ -693,4 +695,4 @@ Support map: “A battle could be won in a day” and “Staying in charge after
 
 **What learners will see.** Finished lessons, and lessons waiting for or passed by a parent, stay as they are; for them the new questions are just more checks to try. A learner still working through the lesson, or one whose lesson was sent back, must answer both new required prompts before sending. Parents see written questions only; on Review, an old written answer shows the question as the learner saw it and is marked as changed.
 
-Owner approval: pending.
+Owner approval: approved 2026-11-01 (PR #94). Final prompts: `prompt.akkad.urkesh-difference` and `prompt.akkad.official-or-princess` (see `## Voice revision`, second owner review).
