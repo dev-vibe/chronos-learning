@@ -5,6 +5,7 @@ import { EvidenceViewer } from './EvidenceViewer';
 import { evidenceLayout } from './evidence-layout';
 import { stripTermMarkup, termFieldKey } from '../domains/lessonTerms';
 import { TermText } from './LessonTerms';
+import { SealRoll } from './SealRoll';
 
 type Props = {
   module: Extract<LessonModule, { type: 'evidence' }>;
@@ -12,6 +13,7 @@ type Props = {
   source?: Source;
   sources?: Source[];
   comparisonMedia?: MediaAsset;
+  interactionMedia?: MediaAsset;
 };
 
 const depictionHeadings = {
@@ -21,14 +23,17 @@ const depictionHeadings = {
   map: 'Historical map',
 };
 
-export function EvidenceModule({ module, media, source, sources = [], comparisonMedia }: Props) {
-  const stacked = Boolean(comparisonMedia) || evidenceLayout(media, module.layout) === 'stacked';
+export function EvidenceModule({ module, media, source, sources = [], comparisonMedia, interactionMedia }: Props) {
+  const stacked = Boolean(comparisonMedia || module.interaction) || evidenceLayout(media, module.layout) === 'stacked';
   const notes = module.lookHere && <aside className="look-here"><h4>Look here</h4><ul>{module.lookHere.map((item) => <li key={item.label}><strong>{item.label}</strong><p>{item.detail}</p></li>)}</ul></aside>;
+  const photo = <div className="evidence-image">
+    <ResponsiveMedia media={media} alt={media.alt} sizes={stacked ? '100vw' : '(max-width: 800px) 100vw, 50vw'} loading="eager" />
+    <EvidenceViewer media={media} title={module.title} summary={stripTermMarkup(module.body)}>{notes}<p>{media.rightsLabel}</p></EvidenceViewer>
+  </div>;
   return <figure className={`evidence-module${stacked ? ' evidence-module--stacked' : ''}`}>
-    <div className={`evidence-visuals${comparisonMedia ? ' evidence-visuals--comparison' : ''}`}><div className="evidence-image">
-      <ResponsiveMedia media={media} alt={media.alt} sizes={stacked ? '100vw' : '(max-width: 800px) 100vw, 50vw'} loading="eager" />
-      <EvidenceViewer media={media} title={module.title} summary={stripTermMarkup(module.body)}>{notes}<p>{media.rightsLabel}</p></EvidenceViewer>
-    </div>{comparisonMedia && module.comparison && <div className="evidence-comparison"><div className="evidence-image"><ResponsiveMedia media={comparisonMedia} alt={comparisonMedia.alt} sizes="50vw" loading="lazy" /><EvidenceViewer media={comparisonMedia} title={module.comparison.label} summary={module.comparison.detail}><p>{comparisonMedia.rightsLabel}</p></EvidenceViewer></div><p><strong>{module.comparison.label}</strong> {module.comparison.detail}</p><p>{comparisonMedia.depictionLabel}</p></div>}</div>
+    <div className={`evidence-visuals${comparisonMedia ? ' evidence-visuals--comparison' : ''}`}>
+      {module.interaction && interactionMedia ? <SealRoll interaction={module.interaction} texture={interactionMedia}>{photo}</SealRoll> : photo}
+      {comparisonMedia && module.comparison && <div className="evidence-comparison"><div className="evidence-image"><ResponsiveMedia media={comparisonMedia} alt={comparisonMedia.alt} sizes="50vw" loading="lazy" /><EvidenceViewer media={comparisonMedia} title={module.comparison.label} summary={module.comparison.detail}><p>{comparisonMedia.rightsLabel}</p></EvidenceViewer></div><p><strong>{module.comparison.label}</strong> {module.comparison.detail}</p><p>{comparisonMedia.depictionLabel}</p></div>}</div>
     <figcaption>
       <div className="evidence-type"><Archive /><span>{depictionHeadings[media.depictionMode]}</span></div>
       <h3>{module.title}</h3>

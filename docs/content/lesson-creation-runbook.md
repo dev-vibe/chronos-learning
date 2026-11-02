@@ -636,6 +636,16 @@ Keep these recurring learner-facing type labels in ordinary words:
 
 Do not invent a new methods slogan for the same job.
 
+### Seal-roll evidence presentation
+
+An existing `evidence` module may opt into `interaction: { kind: 'seal-roll', textureMediaId, repeatPx, bandTop, bandBottom, sealWidthPx }` when its teaching job is how a cylinder seal leaves a mark. It needs a real seal and **that same seal’s own modern impression from the same source**, with rights permitting the crop and illustration. Keep the module ID, section and teaching job. Never borrow another seal’s design or imply a modern impression is ancient evidence.
+
+Measure the design band and repeat by horizontal autocorrelation, inspect two adjacent crops visually, and compare repeat length with π × the seal’s apparent width in the same photo. Do not substitute an assumed circumference for the measured repeat. Register the derived texture independently through `media:add`, `media:build` and `media:verify`. `repeatPx`, `bandTop` and `bandBottom` are **texture image coordinates** (a full cropped band starts at zero); `sealWidthPx` records the apparent width measured in the original and is a sanity check, not the display radius. The rendered radius is repeat / 2π, so one turn and one print repeat stay in register.
+
+The Stage 10 lifecycle must contain the authoritative object/image/license URLs; fresh original dimensions and hash; original band and crop bounds; autocorrelation method, search range, peaks and uncertainty; apparent seal width and circumference comparison; two-tile seam inspection; exact transformation/code and output hashes; visible source-versus-strip comparison; and reviewer/owner decisions. Keep any photographic mismatch explicit in the research record. No invented carving or inscriptions. Mirroring, tinting and relief-light inversion apply only to the illustrated cylinder; the printed strip retains the source pixels apart from delivery compression.
+
+Use the [design-system interaction](../design/design-system.md#rolling-a-cylinder-seal), its text equivalent, honest illustration label, static photo fallback, two-turn limit and accessible inputs. Content validation must reject missing texture references, invalid measurements and a band/repeat outside the texture. Cover the contact-line mapping and drag, keyboard, playback, reduced motion and fallback behavior in tests. This presentation is optional and never a completion requirement.
+
 ### Guess before reading
 
 A `guess` module asks the lesson's main question in the opening and holds back the rest of the lesson until the learner saves a short guess. It is not an understanding prompt: it is never graded, never counts toward the one to three required prompts or toward finishing or passing, and the learner gets no feedback beyond “Saved”. The parent sees it on Review under its own heading, above the written answers, to compare before and after.

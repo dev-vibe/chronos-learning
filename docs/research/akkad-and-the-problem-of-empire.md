@@ -424,6 +424,70 @@ Build responsive derivatives through the ql-v1 media pipeline.
 
 Fidelity verdict: source and runtime copy are byte-identical; the real object and modern impression remain separate and visible. Reviewer/date/status: main Codex agent / 2026-09-22 / approved for unpublished implementation. The in-lesson label makes its comparative—not Urkesh-specific—role explicit; Carlin's subsequent visual response is recorded above.
 
+### media.akkad.seal-repeat — rolling the same seal’s design
+
+#### 1. Reasoning and source basis
+
+The optional seal-roll presentation keeps `module.akkad.seal-example` and its teaching job, “how a cylinder seal leaves a mark.” It illustrates `claim.akkad.seal-example` using only `source.akkad.met-seal-example`: Met accession **1999.325.9**, a lapis-lazuli Akkadian seal (ca. 2350–2150 BCE) with its **own modern impression**. It makes no claim about Tar’am-Agade’s seal or an Urkesh find. No section, prompt, completion rule or lesson argument changes.
+
+Rights: **approved**, under the Met’s [Open Access policy](https://www.metmuseum.org/policies/image-resources) and the object’s public-domain designation. The [fresh museum API record](https://collectionapi.metmuseum.org/public/collection/v1/objects/327605), archived as `assets/akkad/seal-roll/met-object.json`, reports `isPublicDomain: true`. Cropping and derived illustration are permitted. Attribution: The Metropolitan Museum of Art · Open Access Public Domain. Access date: 2026-11-01.
+
+#### 2. Reference image actually used
+
+![Fresh highest-resolution museum original](assets/akkad/seal-roll/DP-36495-001.jpg)
+
+The museum API identifies [DP-36495-001.jpg](https://images.metmuseum.org/CRDImages/an/original/DP-36495-001.jpg) as the original. All four API images were checked; this is the largest at **3801 × 2715**, **989,831 bytes**, SHA-256 `0d2d18a2740dcb15edd38a7a4dcd8dc4937fa5422ed426f52a8f2122540d2392`. The prior 1200px lesson photograph stays unchanged. Subject mapping: the upright object at left is 1999.325.9; the gray strip at right is its modern rolled impression; neither is an Urkesh sealing. Preserve the bird, inscription and their order. The illustration must not invent carving, inscriptions or measured depth.
+
+#### 3. Generation or transformation
+
+**No generation.** Node and pinned Sharp 0.35.3 perform deterministic measurement and cropping. Reproduction scripts and data are in [the seal-roll asset record](assets/akkad/seal-roll/README.md); `delivery.json` records hashes and `seam-search.json` records all local correlation values and seam candidates.
+
+Measurements use half-open original-pixel coordinates:
+
+| Measurement | Result |
+| --- | --- |
+| Design band for correlation | x [1205,3450), y [1015,1725) |
+| Coarse horizontal derivative autocorrelation | 1200px preview: lag 436, r 0.1401; next local peaks 367/0.0707 and 508/0.0440 |
+| Original-pixel refinement | Gaussian sigma 3, horizontal central differences, normalized Pearson correlation over overlapping band; maximum lag **1382**, r **0.20586** |
+| Independent full-band grayscale check | Unblurred zero-mean maximum **1376**, r **0.61934**; sigma-3 grayscale maximum at 1376, r **0.69646** |
+| Accepted repeat | **1382 px**, within a 1376–1382px photographic estimate |
+| Apparent stone bounds | approximately x [333,823), width **490 px** |
+| Circumference sanity check | π × 490 = **1539.38 px**; repeat is **10.22% shorter**, an approximate check affected by perspective, taper and modern clay deformation |
+| Accepted untouched crop | **x [1859,3241), y [1005,1745)**, **1382 × 740 px** |
+| Runtime coordinates | repeatPx 1382, bandTop 0, bandBottom 740, sealWidthPx 490 (original-photo measurement) |
+
+![Autocorrelation check of the repeat](assets/akkad/seal-roll/autocorrelation-review.png)
+
+The entire viable x0 range [1205,2068] was checked at the 1382px repeat. x1668 minimized the grayscale edge jump but cut the inscription; x1859 places the join beside the panel and preserves a bird and complete inscription. Two adjacent copies were inspected. The real photograph is not exactly periodic: x1859 has a mean boundary jump of 11.943/255 and a visible lighting/registration join. No blending, warping, retouching or feature synthesis was applied. **Owner decision, 2026-11-01:** keep the original pixels; approximate visual continuity is sufficient for this optional interaction, with no learner-facing seam caveat. This explicitly accepts the photographic limit; it is not a claim of a mathematically seamless source.
+
+The crop is saved losslessly as `seal-repeat-master.png`. A JPEG quality-98, 4:4:4 runtime copy enters `media:add` with preset `photo`, widths 480/960/1382, followed by `media:build` and `media:verify`. The display prints this unmirrored museum strip twice, revealing only distance traveled. The cylinder alone samples the mirrored pattern, reverses relief lighting, tints it to lapis and adds round shading. This approximates incised stone; there is no recovered height map. Native visible label: **Illustration made from the museum photo**.
+
+Mapping: for source repeat L, radius r = L/(2π), displacement s and visible cylinder-column offset d, sample the impression at `(s − r × asin(d/r)) mod L`. Equivalently sample the mirrored strip M(u)=I(−u) at `−s + r × asin(d/r)`. At contact d=0, both the stone and newly revealed print sample I(s mod L); advancing L rotates exactly once. The apparent photo width is a sanity check only, not a conflicting radius. Responsive scaling multiplies all distances equally. The projection unit test covers contact registration, mirrored ordering, periodicity and the arcsine silhouette.
+
+#### 4. Accepted final image
+
+![Source impression and two repeats at the same original pixel scale; rectangle marks the crop for review only](assets/akkad/seal-roll/source-and-repeat-review.png)
+
+![Accepted one-repeat texture](assets/akkad/seal-roll/seal-repeat-master.png)
+
+| File | SHA-256 |
+| --- | --- |
+| `assets/akkad/seal-roll/seal-repeat-master.png` | `64fd20198a3e863f2243302d05a36ceaa816a0863b3c9520cf04cb1dd263d577` |
+| `public/images/akkad/met-seal-repeat.jpg` | `46c8d079e168c38eb21a68033eb17f6018a37be3b5adfb29907f60fe8749261f` |
+| `assets/akkad/seal-roll/source-and-repeat-review.png` | `5b93d641f32f711668ce56a08420614e3f08beb59ae08b5c96edfb304dae3b56` |
+
+Fidelity verdict: the source crop preserves the photographed bird and inscription without retouching; compression is confined to delivery. Mirroring/recoloring/relief-light inversion affect only the clearly labelled illustrated stone. The museum photo remains inspectable and is the canvas, print and no-JavaScript fallback. Rejected candidates: x1900 cut across the wing; x1668 cut the inscription; neither is the runtime crop. Main-agent visual review accepted x1859 under the owner’s explicit original-pixel decision. Full interactive preview approval and merge remain pending Carlin’s response.
+
+Routine measurement and test work requested `gpt-6.1-sol`; the matching local child session metadata confirmed that execution model for `/root/seal_measurement` and `/root/component_checks`. No pricing claim or private transcript is included. Platform/access note: this was a local Codex session without Cowork’s `$HOME/mnt` mount; per `cowork-git.md`’s local-checkout exception, an isolated clone in the chat workspace was fetched and branched from `origin/main`. No git writes were made in `C:\dev\chronos-learning`.
+
+#### Implementation verification
+
+- `media:build`: passed, 59 assets. `media:verify`: passed, 59 assets / 129 derivatives. Only the new asset’s catalog and manifest records changed. The 1382px fallback is the exact 487,349-byte runtime JPEG; the 960px derivative is pixel-exact WebP; the 480px WebP passes ql-v1 (PSNR 45.5 dB, mean channel error 0.862).
+- `validate:content`: passed. `test:domain`: 23 files / 131 tests passed, including invalid interaction data and the contact-line projection. Dedicated projection/component run: 2 files / 12 tests passed. `typecheck:chronos` and production build passed.
+- Real Chrome at 1280×900 and 390×844: real canvas pixels, mouse/native touch drag and reverse, keyboard, button completion, reset and no horizontal overflow passed. A vertical phone swipe cancels the drag and scrolls normally. Reduced motion revealed 0.5/1/1.5/2 turns with no seal animation frames. Canvas-unavailable, closed-photo-disclosure print and direct-route no-JavaScript photo fallbacks passed; no browser errors. Main-agent review accepted desktop, phone and static fallback visuals. The no-JavaScript entry is necessary because the existing app is client rendered; it does not pretend to render the full lesson without JavaScript.
+- Broader baseline limitations are **not** marked passed: root `npm run typecheck` reports 100 diagnostics, versus 97 on exported `origin/main` (the three additional property accesses encounter the existing non-strict Zod/`Extract` inferred-`never` issue). Full `npm test` reports 340 passed / 14 failed: nine ProfileSwitcher storage-environment failures, three old lesson-term expectations, one old heading-count expectation and one multi-lesson timeout. The first thirteen reproduce on the unchanged baseline; the timeout passes in an isolated baseline run and remains a full-suite timing failure. No unrelated tests/configuration were changed to hide these results.
+- Hosted preview/deployment review is the remaining handoff step. There is no GitHub Actions workflow on this repository’s `main`; local validation and the Vercel deployment check are reported separately. **Do not merge before Carlin approves the actual preview.**
+
 ## Stage 16 implementation consistency — 2026-09-23
 
 A bounded routine verification was requested from `gpt-5.6-sol`; the child's local session `turn_context.payload.model` confirmed that model. The worker ran the implementation gate, `validate:content`, and `test:domain`: all passed (14 test files, 63 tests). At 390×844 on the local lesson route, it observed the locator at 328×246 with legible site, river, sea and inset labels; all three images loaded at valid intrinsic dimensions; lesson prose, checks and completion stayed within the viewport; document and scroll width were both 390 pixels; and no browser console or uncaught page errors appeared. The closed journey drawer accounted for offscreen elements. The repository's installed Playwright 1.61.1 was used because `agent-browser` was unavailable. This is a technical/mobile check, not an adult learner-proxy review or a claim about age fit.

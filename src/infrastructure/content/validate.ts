@@ -92,6 +92,16 @@ export function validateContent(input: ContentBundle) {
           refs(module.id, module.comparison.sourceIds, new Set<string>(lesson.sourceIds), 'comparison source');
         }
         if ((module.type === 'evidence' || module.type === 'historical-map') && !mediaIds.has(module.mediaId)) errors.push(`${module.id}: broken media reference ${module.mediaId}`);
+        if (module.type === 'evidence' && module.interaction?.kind === 'seal-roll') {
+          const interaction = module.interaction;
+          refs(module.id, [interaction.textureMediaId], mediaIds, 'seal-roll texture');
+          refs(module.id, [interaction.textureMediaId], new Set<string>(lesson.mediaIds), 'lesson seal-roll texture');
+          const texture = mediaById.get(interaction.textureMediaId);
+          if (texture) {
+            const dimensions = texture.locator.provider === 'repository' ? texture.locator : texture.locator.fallback;
+            if (interaction.repeatPx > dimensions.width || interaction.bandBottom > dimensions.height) errors.push(`${module.id}: seal-roll repeat and band must fit inside the texture image`);
+          }
+        }
         if (module.type === 'historical-map') {
           const asset = mediaById.get(module.mediaId);
           if (asset && asset.depictionMode !== 'map') errors.push(`${module.id}: historical map media must use map depiction mode`);

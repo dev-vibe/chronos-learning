@@ -1,0 +1,477 @@
+{
+  "scan": [
+    {
+      "lag": 1352,
+      "rawGrayscale": 0.5908900623496856,
+      "unblurredGrayscale": 0.5213815197505645,
+      "derivative": -0.028662500707007387
+    },
+    {
+      "lag": 1353,
+      "rawGrayscale": 0.5970683568585058,
+      "unblurredGrayscale": 0.5272670015819425,
+      "derivative": -0.017276768863168517
+    },
+    {
+      "lag": 1354,
+      "rawGrayscale": 0.6037362842294818,
+      "unblurredGrayscale": 0.5336148755377585,
+      "derivative": -0.004545452900418225
+    },
+    {
+      "lag": 1355,
+      "rawGrayscale": 0.6099987499726226,
+      "unblurredGrayscale": 0.5396956323234072,
+      "derivative": 0.00876289101365562
+    },
+    {
+      "lag": 1356,
+      "rawGrayscale": 0.6167066644953936,
+      "unblurredGrayscale": 0.5457690319984404,
+      "derivative": 0.022080576340006992
+    },
+    {
+      "lag": 1357,
+      "rawGrayscale": 0.6228913455869949,
+      "unblurredGrayscale": 0.5513716350919308,
+      "derivative": 0.03478613924056406
+    },
+    {
+      "lag": 1358,
+      "rawGrayscale": 0.6294797118895906,
+      "unblurredGrayscale": 0.5575157581933087,
+      "derivative": 0.04681193754579142
+    },
+    {
+      "lag": 1359,
+      "rawGrayscale": 0.6354227992825262,
+      "unblurredGrayscale": 0.5634793314652738,
+      "derivative": 0.05808491791906037
+    },
+    {
+      "lag": 1360,
+      "rawGrayscale": 0.6417460485890832,
+      "unblurredGrayscale": 0.5693529808115988,
+      "derivative": 0.0674767087436517
+    },
+    {
+      "lag": 1361,
+      "rawGrayscale": 0.6473015713914109,
+      "unblurredGrayscale": 0.5746482429027,
+      "derivative": 0.07605510175300419
+    },
+    {
+      "lag": 1362,
+      "rawGrayscale": 0.6532188970734448,
+      "unblurredGrayscale": 0.5797094181665376,
+      "derivative": 0.08301422452560392
+    },
+    {
+      "lag": 1363,
+      "rawGrayscale": 0.6582843910662464,
+      "unblurredGrayscale": 0.584539280017613,
+      "derivative": 0.08908652823919623
+    },
+    {
+      "lag": 1364,
+      "rawGrayscale": 0.6636853701011731,
+      "unblurredGrayscale": 0.5894513053106316,
+      "derivative": 0.0948367487251921
+    },
+    {
+      "lag": 1365,
+      "rawGrayscale": 0.668172929143095,
+      "unblurredGrayscale": 0.5934327796749168,
+      "derivative": 0.10040960848148976
+    },
+    {
+      "lag": 1366,
+      "rawGrayscale": 0.6729872618290218,
+      "unblurredGrayscale": 0.5975491515716179,
+      "derivative": 0.1060266077448759
+    },
+    {
+      "lag": 1367,
+      "rawGrayscale": 0.6768325746041527,
+      "unblurredGrayscale": 0.6010749224708226,
+      "derivative": 0.11191035880745102
+    },
+    {
+      "lag": 1368,
+      "rawGrayscale": 0.6809895012295879,
+      "unblurredGrayscale": 0.6048460149131213,
+      "derivative": 0.11849278188597591
+    },
+    {
+      "lag": 1369,
+      "rawGrayscale": 0.6841126351825023,
+      "unblurredGrayscale": 0.6084180522406384,
+      "derivative": 0.12551619590254043
+    },
+    {
+      "lag": 1370,
+      "rawGrayscale": 0.6875303487873455,
+      "unblurredGrayscale": 0.6119944511289411,
+      "derivative": 0.13271545834335585
+    },
+    {
+      "lag": 1371,
+      "rawGrayscale": 0.6898375474789455,
+      "unblurredGrayscale": 0.6143013246082593,
+      "derivative": 0.14005363692500675
+    },
+    {
+      "lag": 1372,
+      "rawGrayscale": 0.6924310999275051,
+      "unblurredGrayscale": 0.6166678852585512,
+      "derivative": 0.14726095485562274
+    },
+    {
+      "lag": 1373,
+      "rawGrayscale": 0.6938198490797658,
+      "unblurredGrayscale": 0.6172999607620859,
+      "derivative": 0.1547369658694412
+    },
+    {
+      "lag": 1374,
+      "rawGrayscale": 0.6954767855078342,
+      "unblurredGrayscale": 0.618422875782067,
+      "derivative": 0.1624724752394935
+    },
+    {
+      "lag": 1375,
+      "rawGrayscale": 0.6958540113041201,
+      "unblurredGrayscale": 0.6188592743546371,
+      "derivative": 0.16951746078252747
+    },
+    {
+      "lag": 1376,
+      "rawGrayscale": 0.6964605102123639,
+      "unblurredGrayscale": 0.6193401743355846,
+      "derivative": 0.17737692702251395
+    },
+    {
+      "lag": 1377,
+      "rawGrayscale": 0.695716776879712,
+      "unblurredGrayscale": 0.6191261893880763,
+      "derivative": 0.1844964988558667
+    },
+    {
+      "lag": 1378,
+      "rawGrayscale": 0.6951728101376343,
+      "unblurredGrayscale": 0.6184778941773798,
+      "derivative": 0.19197835139817085
+    },
+    {
+      "lag": 1379,
+      "rawGrayscale": 0.6932015542363918,
+      "unblurredGrayscale": 0.6160472035149132,
+      "derivative": 0.19790343992473622
+    },
+    {
+      "lag": 1380,
+      "rawGrayscale": 0.6914062690857758,
+      "unblurredGrayscale": 0.6141926554735866,
+      "derivative": 0.20267155235810166
+    },
+    {
+      "lag": 1381,
+      "rawGrayscale": 0.6881215552516109,
+      "unblurredGrayscale": 0.6111468498029262,
+      "derivative": 0.2051781869479147
+    },
+    {
+      "lag": 1382,
+      "rawGrayscale": 0.6850110573692259,
+      "unblurredGrayscale": 0.6088089064906703,
+      "derivative": 0.20585817895045083
+    },
+    {
+      "lag": 1383,
+      "rawGrayscale": 0.6803667767534229,
+      "unblurredGrayscale": 0.6043068217353501,
+      "derivative": 0.20331915105733853
+    },
+    {
+      "lag": 1384,
+      "rawGrayscale": 0.6759102490409541,
+      "unblurredGrayscale": 0.6002075473261446,
+      "derivative": 0.19872334533870728
+    },
+    {
+      "lag": 1385,
+      "rawGrayscale": 0.6699260138371466,
+      "unblurredGrayscale": 0.5942614178177492,
+      "derivative": 0.190511214460462
+    },
+    {
+      "lag": 1386,
+      "rawGrayscale": 0.6641428768456619,
+      "unblurredGrayscale": 0.5894018858179731,
+      "derivative": 0.1792760780817991
+    },
+    {
+      "lag": 1387,
+      "rawGrayscale": 0.6569129481573543,
+      "unblurredGrayscale": 0.5825516945382384,
+      "derivative": 0.16471939803617017
+    },
+    {
+      "lag": 1388,
+      "rawGrayscale": 0.6499113487051321,
+      "unblurredGrayscale": 0.5764222042096157,
+      "derivative": 0.147028093987754
+    },
+    {
+      "lag": 1389,
+      "rawGrayscale": 0.6416185084336383,
+      "unblurredGrayscale": 0.5679171797930986,
+      "derivative": 0.1263445303658514
+    },
+    {
+      "lag": 1390,
+      "rawGrayscale": 0.6336153773746511,
+      "unblurredGrayscale": 0.5604471852929831,
+      "derivative": 0.10277809969099329
+    },
+    {
+      "lag": 1391,
+      "rawGrayscale": 0.624534328156147,
+      "unblurredGrayscale": 0.5514756419587284,
+      "derivative": 0.07760027906063226
+    },
+    {
+      "lag": 1392,
+      "rawGrayscale": 0.6158182409468881,
+      "unblurredGrayscale": 0.5432814550803984,
+      "derivative": 0.05071634701496717
+    },
+    {
+      "lag": 1393,
+      "rawGrayscale": 0.6062889307809213,
+      "unblurredGrayscale": 0.5331482521451869,
+      "derivative": 0.023847930313774423
+    },
+    {
+      "lag": 1394,
+      "rawGrayscale": 0.5972205490912267,
+      "unblurredGrayscale": 0.5249505879716518,
+      "derivative": -0.001908938279458639
+    },
+    {
+      "lag": 1395,
+      "rawGrayscale": 0.5876004449494766,
+      "unblurredGrayscale": 0.5154705402718338,
+      "derivative": -0.025986536454303103
+    },
+    {
+      "lag": 1396,
+      "rawGrayscale": 0.5785379057307103,
+      "unblurredGrayscale": 0.5073688503000797,
+      "derivative": -0.047020158568573
+    },
+    {
+      "lag": 1397,
+      "rawGrayscale": 0.5691458134235783,
+      "unblurredGrayscale": 0.49800408335882707,
+      "derivative": -0.06532094622592834
+    },
+    {
+      "lag": 1398,
+      "rawGrayscale": 0.5603863771306978,
+      "unblurredGrayscale": 0.4908537140742699,
+      "derivative": -0.079215096666326
+    },
+    {
+      "lag": 1399,
+      "rawGrayscale": 0.5514533739303215,
+      "unblurredGrayscale": 0.48227613867127805,
+      "derivative": -0.09086599289604227
+    },
+    {
+      "lag": 1400,
+      "rawGrayscale": 0.5431906483126254,
+      "unblurredGrayscale": 0.47517739180589935,
+      "derivative": -0.09964113213090828
+    },
+    {
+      "lag": 1401,
+      "rawGrayscale": 0.5348781430840129,
+      "unblurredGrayscale": 0.46747410265970224,
+      "derivative": -0.10638162699547353
+    },
+    {
+      "lag": 1402,
+      "rawGrayscale": 0.5272485177206305,
+      "unblurredGrayscale": 0.4614452343024815,
+      "derivative": -0.11161898637012985
+    },
+    {
+      "lag": 1403,
+      "rawGrayscale": 0.5196363937393104,
+      "unblurredGrayscale": 0.4544488465146356,
+      "derivative": -0.11580832608229216
+    },
+    {
+      "lag": 1404,
+      "rawGrayscale": 0.5127237044107358,
+      "unblurredGrayscale": 0.44904511992102797,
+      "derivative": -0.11950954234420076
+    },
+    {
+      "lag": 1405,
+      "rawGrayscale": 0.5058647147809086,
+      "unblurredGrayscale": 0.4427220605995917,
+      "derivative": -0.12228122007005067
+    },
+    {
+      "lag": 1406,
+      "rawGrayscale": 0.4997115512165956,
+      "unblurredGrayscale": 0.4378442777603571,
+      "derivative": -0.12443609317543623
+    },
+    {
+      "lag": 1407,
+      "rawGrayscale": 0.4936467794886329,
+      "unblurredGrayscale": 0.43184501828675226,
+      "derivative": -0.12535660451008887
+    },
+    {
+      "lag": 1408,
+      "rawGrayscale": 0.4882831955341072,
+      "unblurredGrayscale": 0.4272485685761497,
+      "derivative": -0.12537810039184769
+    },
+    {
+      "lag": 1409,
+      "rawGrayscale": 0.4830176195498564,
+      "unblurredGrayscale": 0.4220805005859874,
+      "derivative": -0.123463935162961
+    },
+    {
+      "lag": 1410,
+      "rawGrayscale": 0.4784402643998195,
+      "unblurredGrayscale": 0.41817257758726983,
+      "derivative": -0.12012330370207143
+    },
+    {
+      "lag": 1411,
+      "rawGrayscale": 0.47394839885829826,
+      "unblurredGrayscale": 0.4133210740698634,
+      "derivative": -0.1154662376033477
+    },
+    {
+      "lag": 1412,
+      "rawGrayscale": 0.4701173086026542,
+      "unblurredGrayscale": 0.4107706978334733,
+      "derivative": -0.10962735921613634
+    }
+  ],
+  "rawBest": [
+    {
+      "lag": 1376,
+      "rawGrayscale": 0.6964605102123639,
+      "unblurredGrayscale": 0.6193401743355846,
+      "derivative": 0.17737692702251395
+    },
+    {
+      "lag": 1375,
+      "rawGrayscale": 0.6958540113041201,
+      "unblurredGrayscale": 0.6188592743546371,
+      "derivative": 0.16951746078252747
+    },
+    {
+      "lag": 1377,
+      "rawGrayscale": 0.695716776879712,
+      "unblurredGrayscale": 0.6191261893880763,
+      "derivative": 0.1844964988558667
+    },
+    {
+      "lag": 1374,
+      "rawGrayscale": 0.6954767855078342,
+      "unblurredGrayscale": 0.618422875782067,
+      "derivative": 0.1624724752394935
+    },
+    {
+      "lag": 1378,
+      "rawGrayscale": 0.6951728101376343,
+      "unblurredGrayscale": 0.6184778941773798,
+      "derivative": 0.19197835139817085
+    }
+  ],
+  "derivativeBest": [
+    {
+      "lag": 1382,
+      "rawGrayscale": 0.6850110573692259,
+      "unblurredGrayscale": 0.6088089064906703,
+      "derivative": 0.20585817895045083
+    },
+    {
+      "lag": 1381,
+      "rawGrayscale": 0.6881215552516109,
+      "unblurredGrayscale": 0.6111468498029262,
+      "derivative": 0.2051781869479147
+    },
+    {
+      "lag": 1383,
+      "rawGrayscale": 0.6803667767534229,
+      "unblurredGrayscale": 0.6043068217353501,
+      "derivative": 0.20331915105733853
+    },
+    {
+      "lag": 1380,
+      "rawGrayscale": 0.6914062690857758,
+      "unblurredGrayscale": 0.6141926554735866,
+      "derivative": 0.20267155235810166
+    },
+    {
+      "lag": 1384,
+      "rawGrayscale": 0.6759102490409541,
+      "unblurredGrayscale": 0.6002075473261446,
+      "derivative": 0.19872334533870728
+    }
+  ],
+  "selected": [
+    {
+      "x0": 1668,
+      "edgeMean": 10.144594594594595,
+      "smoothEdgeMean": 6.72027027027027
+    },
+    {
+      "x0": 1926,
+      "edgeMean": 11.814864864864864,
+      "smoothEdgeMean": 10.097297297297297
+    },
+    {
+      "x0": 1558,
+      "edgeMean": 11.882432432432433,
+      "smoothEdgeMean": 8.55945945945946
+    },
+    {
+      "x0": 1859,
+      "edgeMean": 11.943243243243243,
+      "smoothEdgeMean": 8.816216216216215
+    },
+    {
+      "x0": 1394,
+      "edgeMean": 13.39864864864865,
+      "smoothEdgeMean": 11.602702702702702
+    },
+    {
+      "x0": 1739,
+      "edgeMean": 16.63243243243243,
+      "smoothEdgeMean": 13.409459459459459
+    },
+    {
+      "x0": 2010,
+      "edgeMean": 17.32837837837838,
+      "smoothEdgeMean": 15.122972972972972
+    },
+    {
+      "x0": 1238,
+      "edgeMean": 17.37837837837838,
+      "smoothEdgeMean": 16.113513513513514
+    }
+  ],
+  "method": "x0 exhaustive1205..2068 inclusive, fixed1382width, y1005..1745; mean absolute grayscale difference first vs last column, raw and sigma3 blurred. Raw grayscale correlation is global overlap zero-mean Pearson on sigma3 blurred grayscale, no derivative; same band and strides as derivative. No blending."
+}

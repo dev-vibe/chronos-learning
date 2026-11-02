@@ -42,6 +42,15 @@ export const MediaAssetSchema = z.object({ id: StableId, locator: MediaLocatorSc
 
 const BaseModule = z.object({ id: StableId, claimIds: z.array(StableId).default([]), sourceIds: z.array(StableId).default([]) });
 export const EvidenceAnnotationSchema = z.object({ label: z.string().min(1), detail: z.string().min(1), sourceIds: z.array(StableId).min(1) });
+export const SealRollInteractionSchema = z.object({
+  kind: z.literal('seal-roll'),
+  textureMediaId: StableId,
+  repeatPx: z.number().int().positive(),
+  bandTop: z.number().int().nonnegative(),
+  bandBottom: z.number().int().positive(),
+  sealWidthPx: z.number().finite().positive(),
+}).refine((value) => value.bandBottom > value.bandTop, 'seal-roll bandBottom must exceed bandTop');
+export type SealRollInteraction = z.infer<typeof SealRollInteractionSchema>;
 export const HistoricalMapModuleSchema = BaseModule.extend({
   type: z.literal('historical-map'), eyebrow: z.string().min(1), title: z.string().min(1), body: z.string().min(1), mediaId: StableId,
   periodLabel: z.string().min(1), focusPlace: z.string().min(1), modernContext: z.string().min(1), accessibleSummary: z.string().min(1),
@@ -67,7 +76,7 @@ export const LessonModuleSchema = z.discriminatedUnion('type', [
   BaseModule.extend({ type: z.literal('prose'), body: z.string().min(1) }),
   BaseModule.extend({ type: z.literal('knowledge'), eyebrow: z.string().min(1), title: z.string().min(1), body: z.string().min(1), items: z.array(z.object({ label: z.string().min(1), detail: z.string().min(1) })).min(2).max(5) }),
   BaseModule.extend({ type: z.literal('scene'), title: z.string().min(1), body: z.string().min(1), mediaId: StableId, hotspots: z.array(z.object({ label: z.string().min(1), detail: z.string().min(1) })).min(2).max(4) }),
-  BaseModule.extend({ type: z.literal('evidence'), title: z.string().min(1), artifactLabel: z.string().min(1), body: z.string().min(1), mediaId: StableId, layout: z.enum(['side-by-side', 'stacked']).optional(), scaleNote: z.string().min(1).optional(), lookHere: z.array(EvidenceAnnotationSchema).min(1).max(4).optional(), comparison: z.object({ mediaId: StableId, label: z.string().min(1), detail: z.string().min(1), sourceIds: z.array(StableId).min(1) }).optional() }),
+  BaseModule.extend({ type: z.literal('evidence'), title: z.string().min(1), artifactLabel: z.string().min(1), body: z.string().min(1), mediaId: StableId, layout: z.enum(['side-by-side', 'stacked']).optional(), scaleNote: z.string().min(1).optional(), lookHere: z.array(EvidenceAnnotationSchema).min(1).max(4).optional(), comparison: z.object({ mediaId: StableId, label: z.string().min(1), detail: z.string().min(1), sourceIds: z.array(StableId).min(1) }).optional(), interaction: SealRollInteractionSchema.optional() }),
   HistoricalMapModuleSchema,
   BaseModule.extend({ type: z.literal('prompt'), promptId: StableId }),
   GuessModuleSchema,
