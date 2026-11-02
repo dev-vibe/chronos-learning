@@ -37,6 +37,18 @@
       ]
     },
     {
+      "id": "media.akkad.seal-repeat",
+      "collection": "akkad",
+      "sourcePath": "public/images/akkad/met-seal-repeat.jpg",
+      "fallbackPath": "/images/optimized/akkad/seal-repeat.optimized.jpg",
+      "preset": "photo",
+      "widths": [
+        480,
+        960,
+        1382
+      ]
+    },
+    {
       "id": "media.animals.ganj-dareh-hoofprints",
       "collection": "animals",
       "sourcePath": "public/images/animals/ganj-dareh-hoofprints.jpg",

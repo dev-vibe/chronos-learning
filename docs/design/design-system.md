@@ -98,6 +98,16 @@ Artifacts and maps can enlarge in an accessible viewer with keyboard/touch contr
 
 Learner copy gives a warm next action. Keep internal terms such as “deterministic,” “reviewed path” and character thresholds out of ordinary instructions. Provenance remains inspectable in secondary surfaces.
 
+### Rolling a cylinder seal
+
+An evidence module may opt into `interaction.kind: 'seal-roll'` without adding a lesson section or changing progress. Show a horizontal gray clay strip, an upright dark stone, and the actual photographed impression appearing behind the contact line. The strip spans two turns and stops. Use the measured repeat for the cylinder circumference and one shared distance for movement, surface rotation and print reveal; reverse movement hides the print.
+
+The cylinder is a canvas illustration with an arcsine projection, a mirrored impression texture, inverted relief lighting, lapis tint and quiet shading. Label it **Illustration made from the museum photo**. Never imply the turning stone is photographed or that its surface is a measured 3D reconstruction. Keep the original museum photo in a **Museum photo** disclosure with the existing enlargement control and source details.
+
+The seal has a minimum 44px focusable drag handle, pointer capture, horizontal dragging with vertical touch scrolling preserved, and Left/Right keys (Home/End also work). Plain **Roll it** and **Start over** buttons start a six-second roll and reset it. Reduced motion reveals four discrete steps instead of smooth motion. A text equivalent explains the process, and a polite status announces completion. Nothing autoplays, scores, makes sound or changes learner progress. Use existing semantic surface, ink, line and teal tokens for controls and focus.
+
+The original photo appears when canvas or its texture fails and in print; the Akkad route has an HTML photo fallback when JavaScript is disabled. Check desktop, 390px, keyboard, touch, reduced motion and print. The mathematically registered display is an illustration; photo-derived repeat measurements and perspective limits belong in the asset lifecycle.
+
 ### Lesson terms
 
 Terms move “what is this?” explanations out of the reading line while keeping them one tap away. Authoring rules live in [Stage 9 of the creation runbook](../content/lesson-creation-runbook.md#lesson-terms).

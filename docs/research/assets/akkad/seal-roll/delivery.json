@@ -1,0 +1,35 @@
+{
+  "crop": {
+    "left": 1859,
+    "top": 1005,
+    "width": 1382,
+    "height": 740
+  },
+  "jpeg": {
+    "quality": 98,
+    "chromaSubsampling": "4:4:4",
+    "mozjpeg": true
+  },
+  "hashes": {
+    "DP-36495-001.jpg": {
+      "bytes": 989831,
+      "sha256": "0d2d18a2740dcb15edd38a7a4dcd8dc4937fa5422ed426f52a8f2122540d2392"
+    },
+    "seal-repeat-master.png": {
+      "bytes": 1510455,
+      "sha256": "64fd20198a3e863f2243302d05a36ceaa816a0863b3c9520cf04cb1dd263d577"
+    },
+    "source-and-repeat-review.png": {
+      "bytes": 4188410,
+      "sha256": "5b93d641f32f711668ce56a08420614e3f08beb59ae08b5c96edfb304dae3b56"
+    },
+    "autocorrelation-review.png": {
+      "bytes": 50427,
+      "sha256": "2313214063bea2571e5e61185aa785b4a4635cf195ac026dc8361e3c8a50dd9a"
+    },
+    "public/images/akkad/met-seal-repeat.jpg": {
+      "bytes": 487349,
+      "sha256": "46c8d079e168c38eb21a68033eb17f6018a37be3b5adfb29907f60fe8749261f"
+    }
+  }
+}

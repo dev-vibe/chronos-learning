@@ -21,13 +21,24 @@ export const akkadMediaSources: Source[] = [
     title: 'Cylinder seal and modern impression, 1999.325.9',
     url: 'https://www.metmuseum.org/art/collection/search/327605',
     publisher: 'The Metropolitan Museum of Art',
-    accessedOn: '2026-09-22',
-    licenseOrUse: 'Open Access Public Domain museum image used unchanged. This Akkadian-period seal and its modern impression explain the technique; neither is a Tar’am-Agade sealing or evidence from Urkesh.',
+    accessedOn: '2026-11-01',
+    licenseOrUse: 'Open Access Public Domain museum image. The static photo is unchanged; a measured impression crop supplies the roll illustration, with transformations and hashes in the image lifecycle. This Akkadian-period seal and its modern impression explain the technique; neither is a Tar’am-Agade sealing or evidence from Urkesh.',
     reviewStatus: 'reviewed',
   },
 ];
 
 export const akkadMedia: MediaAsset[] = [
+  {
+    id: 'media.akkad.seal-repeat',
+    locator: mediaLocator('media.akkad.seal-repeat'),
+    alt: 'One repeat of the bird and inscription in the Met seal’s modern clay impression.',
+    depictionMode: 'evidence',
+    depictionLabel: 'Modern impression · cropped from the museum photo',
+    rightsLabel: 'The Metropolitan Museum of Art · Open Access Public Domain · cropped',
+    sourceIds: ['source.akkad.met-seal-example'],
+    visualBriefRef: 'docs/research/akkad-and-the-problem-of-empire.md#image-lifecycle',
+    reviewStatus: 'approved',
+  },
   {
     id: 'media.akkad.locator',
     locator: mediaLocator('media.akkad.locator'),
@@ -100,10 +111,11 @@ export const akkadSealExampleVisual: LessonModule = {
   type: 'evidence',
   title: 'How a cylinder seal leaves a mark',
   artifactLabel: 'A different seal from Akkad’s time · Metropolitan Museum of Art',
-  body: 'The princess’s seal worked like this one: roll the small carved stone across damp clay, and its picture appears as a band that repeats. This is a different seal from the same time, shown beside a modern print made by rolling it in clay.',
+  body: 'Drag the seal to roll it across the clay. Each full turn prints the design once.',
   mediaId: 'media.akkad.seal-example',
+  interaction: { kind: 'seal-roll', textureMediaId: 'media.akkad.seal-repeat', repeatPx: 1382, bandTop: 0, bandBottom: 740, sealWidthPx: 490 },
   layout: 'stacked',
-  scaleNote: 'The gray strip is a modern print of this seal, which is kept in a museum in New York. The clay with the princess’s seal was dug up at Urkesh.',
+  scaleNote: 'This is a different seal from Akkad’s time, kept in the Metropolitan Museum of Art in New York. The gray strip is its modern impression. The clay with the princess’s seal was dug up at Urkesh.',
   claimIds: ['claim.akkad.seal-example'],
   sourceIds: ['source.akkad.met-seal-example'],
 };

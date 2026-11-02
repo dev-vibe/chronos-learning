@@ -1,0 +1,132 @@
+{
+  "source": "https://collectionapi.metmuseum.org/public/collection/v1/objects/327605",
+  "primaryImage": "https://images.metmuseum.org/CRDImages/an/original/DP-36495-001.jpg",
+  "hashes": {
+    "DP-36495-001.jpg": {
+      "width": 3801,
+      "height": 2715,
+      "bytes": 989831,
+      "sha256": "0d2d18a2740dcb15edd38a7a4dcd8dc4937fa5422ed426f52a8f2122540d2392"
+    }
+  },
+  "band": {
+    "left": 1205,
+    "top": 1015,
+    "width": 2245,
+    "height": 710
+  },
+  "coarseDerivativeCorrelationPeaks": [
+    {
+      "lag": 436,
+      "r": 0.1400754582454414
+    },
+    {
+      "lag": 367,
+      "r": 0.07068379490515846
+    },
+    {
+      "lag": 508,
+      "r": 0.04397301420926399
+    },
+    {
+      "lag": 298,
+      "r": 0.037717695322306566
+    },
+    {
+      "lag": 390,
+      "r": 0.035331078973941984
+    },
+    {
+      "lag": 527,
+      "r": 0.028328228680636978
+    },
+    {
+      "lag": 519,
+      "r": 0.028068323789234163
+    },
+    {
+      "lag": 274,
+      "r": 0.027371880735141785
+    },
+    {
+      "lag": 452,
+      "r": 0.026546276130161944
+    },
+    {
+      "lag": 349,
+      "r": 0.022661281497211878
+    }
+  ],
+  "refinedDerivativeCorrelation": [
+    {
+      "lag": 1382,
+      "r": 0.20585817895045083
+    },
+    {
+      "lag": 1381,
+      "r": 0.2051781869479147
+    },
+    {
+      "lag": 1383,
+      "r": 0.20331915105733853
+    },
+    {
+      "lag": 1380,
+      "r": 0.20267155235810166
+    },
+    {
+      "lag": 1384,
+      "r": 0.19872334533870728
+    },
+    {
+      "lag": 1379,
+      "r": 0.19790343992473622
+    },
+    {
+      "lag": 1378,
+      "r": 0.19197835139817085
+    },
+    {
+      "lag": 1385,
+      "r": 0.190511214460462
+    },
+    {
+      "lag": 1377,
+      "r": 0.1844964988558667
+    },
+    {
+      "lag": 1386,
+      "r": 0.1792760780817991
+    }
+  ],
+  "repeatPixels": 1382,
+  "crop": {
+    "left": 1859,
+    "top": 1005,
+    "width": 1382,
+    "height": 740
+  },
+  "stoneBoundsApprox": {
+    "left": 333,
+    "right": 823,
+    "top": 1025,
+    "bottom": 1785
+  },
+  "stoneWidthPixels": 490,
+  "piStoneWidth": 1539.3804002589986,
+  "ratioRepeatToPiStoneWidth": 0.8977638014408137,
+  "method": "Sharp grayscale; normalized Pearson correlation of horizontal central differences over overlapping band pixels; preview lags 200..560 every pixel, y stride 2; original refinement uses Gaussian sigma 3 px before derivatives, +/-15 pixels, y stride 3, x stride 2. Crop is untouched source RGB pixels, no resize or retouch. Comparison only resizes.",
+  "caveats": [
+    "Bounds are manually read photographic design extents, not metrology.",
+    "Modern clay roll scale, cylindrical stone perspective and tapered circumference need not match apparent widths exactly.",
+    "A photograph repeat is estimated to integer pixels; the impression is not mathematically periodic and differs from an ideal texture.",
+    "Do not claim one ancient impression or Urkesh provenance.",
+    "Comparison has a white spacer between source photo and tiled crop; crop itself has no spacer."
+  ],
+  "seam": {
+    "meanAbsoluteEdgeJump": 11.943243243243243,
+    "meanInternalAdjacentJump": 3.8649380427358766,
+    "scale": "0..255 grayscale",
+    "judgement": "No features blended or repaired. Tile join can show a vertical lighting/edge discontinuity; final visual judgement remains with owner."
+  }
+}

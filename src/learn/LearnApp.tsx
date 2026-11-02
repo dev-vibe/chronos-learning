@@ -61,7 +61,7 @@ function Module({ module, state, onAttempt }: ModuleProps) {
   if (module.type === 'evidence') {
     const media = mediaById.get(module.mediaId)!;
     const source = media.sourceIds.map((id) => sourceById.get(id)).find(Boolean);
-    return <EvidenceModule module={module} media={media} source={source} sources={chronosContent.sources} comparisonMedia={module.comparison ? mediaById.get(module.comparison.mediaId) : undefined} />;
+    return <EvidenceModule module={module} media={media} source={source} sources={chronosContent.sources} comparisonMedia={module.comparison ? mediaById.get(module.comparison.mediaId) : undefined} interactionMedia={module.interaction ? mediaById.get(module.interaction.textureMediaId) : undefined} />;
   }
   if (module.type === 'historical-map') {
     const media = mediaById.get(module.mediaId)!;

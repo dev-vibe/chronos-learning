@@ -2,6 +2,7 @@ import { createRequire } from 'node:module';
 import path from 'path';
 import { defineConfig, loadEnv } from 'vite';
 import react from '@vitejs/plugin-react';
+import { sealRollFallback } from './scripts/lesson/seal-roll-fallback';
 
 const require = createRequire(import.meta.url);
 const dependencyRoot = path.resolve(path.dirname(require.resolve('vite')), '../../..');
@@ -16,7 +17,10 @@ export default defineConfig(({ mode }) => {
           allow: [path.resolve(__dirname), dependencyRoot],
         },
       },
-      plugins: [react()],
+      plugins: [react(), sealRollFallback()],
+      build: {
+        rollupOptions: { input: { main: path.resolve(__dirname, 'index.html'), akkad: path.resolve(__dirname, 'akkad.html') } },
+      },
       define: {
         'process.env.API_KEY': JSON.stringify(env.GEMINI_API_KEY),
         'process.env.GEMINI_API_KEY': JSON.stringify(env.GEMINI_API_KEY)

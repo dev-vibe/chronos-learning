@@ -1,6 +1,10 @@
 {
   "rewrites": [
     {
+      "source": "/learn/lesson.mesopotamia.akkadian-empire",
+      "destination": "/akkad.html"
+    },
+    {
       "source": "/(.*)",
       "destination": "/index.html"
     }

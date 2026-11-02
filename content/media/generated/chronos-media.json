@@ -170,6 +170,78 @@
       }
     },
     {
+      "id": "media.akkad.seal-repeat",
+      "locator": {
+        "provider": "object-storage",
+        "bucket": "media-public",
+        "fallback": {
+          "path": "/images/optimized/akkad/seal-repeat.optimized.jpg",
+          "width": 1382,
+          "height": 740
+        },
+        "variants": [
+          {
+            "objectKey": "akkad/media.akkad.seal-repeat/46c8d079e168c38e/optimized/ql-v1/480w-webp-q96-4737aaf8b19bf8db.webp",
+            "mimeType": "image/webp",
+            "bytes": 47306,
+            "sha256": "4737aaf8b19bf8dba0a5bbd067bb9efefb2cf2ac4eaa1d9be9c7491587398a65",
+            "width": 480,
+            "height": 257,
+            "compression": {
+              "profile": "ql-v1",
+              "codec": "webp",
+              "encoder": "webp-lossy",
+              "quality": 96
+            },
+            "fidelity": {
+              "mode": "measured-quasi-lossless",
+              "psnrDb": 45.5,
+              "meanAbsoluteError": 0.862,
+              "maximumChannelDelta": 16
+            }
+          },
+          {
+            "objectKey": "akkad/media.akkad.seal-repeat/46c8d079e168c38e/optimized/ql-v1/960w-webp-lossless-71b786fc7c9a4357.webp",
+            "mimeType": "image/webp",
+            "bytes": 486432,
+            "sha256": "71b786fc7c9a4357a21e414450c420266bd0850a432588936c7e0fb63a055ead",
+            "width": 960,
+            "height": 514,
+            "compression": {
+              "profile": "ql-v1",
+              "codec": "webp",
+              "encoder": "webp-lossless"
+            },
+            "fidelity": {
+              "mode": "pixel-exact",
+              "psnrDb": null,
+              "meanAbsoluteError": 0,
+              "maximumChannelDelta": 0
+            }
+          },
+          {
+            "objectKey": "akkad/media.akkad.seal-repeat/46c8d079e168c38e/optimized/ql-v1/1382w-source-jpeg-46c8d079e168c38e.jpg",
+            "mimeType": "image/jpeg",
+            "bytes": 487349,
+            "sha256": "46c8d079e168c38eb21a68033eb17f6018a37be3b5adfb29907f60fe8749261f",
+            "width": 1382,
+            "height": 740,
+            "compression": {
+              "profile": "ql-v1",
+              "codec": "jpeg",
+              "encoder": "source-passthrough"
+            },
+            "fidelity": {
+              "mode": "pixel-exact",
+              "psnrDb": null,
+              "meanAbsoluteError": 0,
+              "maximumChannelDelta": 0
+            }
+          }
+        ]
+      }
+    },
+    {
       "id": "media.animals.ganj-dareh-hoofprints",
       "locator": {
         "provider": "object-storage",
