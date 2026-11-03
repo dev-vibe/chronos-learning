@@ -66,7 +66,7 @@ export const akkadMedia: MediaAsset[] = [
 export const akkadLocatorVisual: LessonModule = {
   id: 'module.akkad.locator',
   type: 'historical-map',
-  eyebrow: 'Place & landscape',
+  eyebrow: 'Where the cities were',
   title: 'Leilan and Urkesh',
   body: 'The cities of Leilan and Urkesh lay close to each other, far to the north of Akkad’s homeland. Akkad’s kings had to run cities this far apart without being there.',
   mediaId: 'media.akkad.locator',

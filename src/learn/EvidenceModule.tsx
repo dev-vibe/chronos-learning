@@ -15,10 +15,10 @@ type Props = {
 };
 
 const depictionHeadings = {
-  evidence: 'Surviving evidence',
-  diagram: 'Illustrated interpretation',
-  'evidence-based-reconstruction': 'Reconstruction',
-  map: 'Historical map',
+  evidence: 'Photo of the real thing',
+  diagram: 'Illustration',
+  'evidence-based-reconstruction': 'Artist’s reconstruction',
+  map: 'Map',
 };
 
 export function EvidenceModule({ module, media, source, sources = [], comparisonMedia }: Props) {
@@ -34,7 +34,7 @@ export function EvidenceModule({ module, media, source, sources = [], comparison
       <h3>{module.title}</h3>
       <p><TermText field={termFieldKey.body(module.id)} text={module.body} /></p>
       {notes}
-      {module.scaleNote && <aside className="evidence-scale-note"><Ruler aria-hidden="true" /><p><strong>About scale</strong> {module.scaleNote}</p></aside>}
+      {module.scaleNote && <aside className="evidence-scale-note"><Ruler aria-hidden="true" /><p><strong>About this picture</strong> {module.scaleNote}</p></aside>}
       <details className="evidence-provenance"><summary>Source and image details</summary><dl>
         <div><dt>Depiction</dt><dd>{media.depictionLabel}</dd></div>
         <div><dt>Source</dt><dd>{source ? <a href={source.url} target="_blank" rel="noreferrer">{source.publisher}</a> : 'See lesson sources'}</dd></div>

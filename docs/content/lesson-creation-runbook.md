@@ -596,8 +596,8 @@ Each section must perform a distinct job. A common pattern is:
 3. **Necessary context** — what the learner must know to reason further.
 4. **Mechanism or development** — how something worked or changed.
 5. **Evidence encounter** — examine an object, source, map, or record.
-6. **Consequences and power** — possibilities, costs, unequal effects, or limits.
-7. **How we know and what is still a mystery** — told once, as the detective story and a real open question, usually in prose. Use a `knowledge` module only when four parallel items really are clearer than a few sentences; then use the stable eyebrow **What we can know**, and write each item as a plain positive statement (“The seal shows a princess of Akkad lived in the palace”; “Nobody yet knows whether she was queen”), not a run of “cannot prove” lines. Do not use “evidence boundary” or other methods jargon as the learner-facing label.
+6. **Consequences** — what changed because of it, for better and worse.
+7. **How we know** — told once, inside the story where it happens: who found what, and how they worked it out. This is usually part of another section, not a section of its own. Say what is still unknown once, in prose, where it matters. Never build a section, heading or box that lists what the evidence can and cannot show (“What we can know”, “Limits”, “It can show / It cannot prove alone”, “What ancient DNA can and cannot tell us”).
 8. **World Check and explicit completion** — use evidence, receive feedback, complete deliberately.
 
 This is a pattern, not a template to fill blindly. A biography, battle, migration, intellectual debate, environmental change, and archaeological investigation may need different sequences. Keep the stable shell while authoring the historical argument.
@@ -625,16 +625,7 @@ Use the smallest current module that expresses the teaching job:
 | `prompt` | a canonical understanding prompt placed where requirements are satisfied | navigation, surveys, trivia, or fake participation |
 | `guess` | the lesson's main question, asked in the opening so the learner commits to a guess before reading on; the guess is shown again where the lesson answers it | a check, a quiz with a right answer, a second question, or anything after the opening section |
 
-Titles: section `heading` owns orientation. For `knowledge` modules, the learner sees eyebrow + `body` as the lead into the item grid — do not invent a second grabber title for display. Module `title` on `evidence`, `scene`, and `historical-map` is a local cue only when needed (observe X; compare Y). Module `eyebrow` is a type/place label, not a slogan.
-
-Keep these recurring learner-facing type labels in ordinary words:
-
-- `evidence` module chrome: **Surviving evidence** (not “from the evidence room”).
-- Close-read `knowledge` module after a source: **What you can see** (not “observation before interpretation” or “look before you explain”).
-- Labor/institution `knowledge` module: **Who did the work** (not “a city/state in practice”).
-- Source-limit `knowledge` module: **What we can know** (not “evidence boundary”).
-
-Do not invent a new methods slogan for the same job.
+Titles: section `heading` owns orientation. For `knowledge` modules, the learner sees eyebrow + `body` as the lead into the item grid — do not invent a second grabber title for display. Module `title` on `evidence`, `scene`, and `historical-map` is a local cue only when needed (observe X; compare Y). **Eyebrows and module titles are optional, and there are no stock labels.** Use one only when it says what this particular box holds, in plain words (“Three steps in the grain work”, “Leilan and Urkesh”). Do not reuse a label from another lesson because it is the same kind of box, and never label a box by its method or by what the evidence cannot show (“Evidence boundary”, “What we can know”, “Limits”, “What you can see”, “It can show / It cannot prove alone”). The app adds the few labels that every image needs (whether a picture is a photograph of the real thing, an illustration, a reconstruction or a map); lessons do not add their own.
 
 ### Guess before reading
 
@@ -1010,7 +1001,7 @@ Before involving the owner, check the rendered prototype yourself against the qu
 - **Cognitive load:** only indispensable vocabulary, defined where needed; one teaching job per section; no overloaded sentences, date piles, unexplained names or rapid place changes at real layout sizes.
 - **Headings:** plain words a skimming 12-year-old understands. A metaphor, riddle or punchline heading is `revise` or `blocking`.
 - **Prompt fit:** did the Stage 14C reader say what each prompt asks, correctly, after one read? Each prompt is one real question (not “which conclusion/statement is best supported”), asked positively in the lesson's own everyday words, naming the actual thing rather than a label such as “a clue” or “the evidence”, and saying what the learner is trying to figure out. Written prompts show the answer's size and a sentence starter. Every option has feedback, the prompt has a plain hint, and the options show no wording tells (Stage 12). Is each check the kid's question (Stage 6A) or a step toward it?
-- **Evidence reasoning:** a concrete source, object, map or comparison to reason from; observation, inference, reconstruction and uncertainty distinguished at the point of use; prompts answerable from the lesson; feedback points back to a named place in the lesson. Recurring labels stay plain: “Surviving evidence”, “What you can see”, “Who did the work”, “What we can know”.
+- **Evidence reasoning:** a concrete source, object, map or comparison to reason from; observation, inference, reconstruction and uncertainty distinguished at the point of use; prompts answerable from the lesson; feedback points back to a named place in the lesson. No stock eyebrows, and no box or heading about what the evidence can and cannot show.
 - **Proportionality:** emphasis and certainty match the evidence; no monocausal, deterministic or civilization-ranking story; people have specificity and agency; sensitive material is truthful and proportionate.
 - **Visual value:** every visual answers a named learner question at its exact position and has an accessible equivalent. Maps anchor the subject to recognizable wider geography at embedded size.
 - **Story:** name the two or three moments a 13-year-old would retell. Is there a story spine? Does any section read as a flat list of facts? Is the voice vivid and direct without being goofy or preachy?
@@ -1095,7 +1086,7 @@ A request to publish an already-approved lesson (for example after a pause) star
    ```
 
    This checks the release gate, sets `status` to `published`, records the lesson's prompt fingerprints, unregisters the lesson from `content/prototype-reviews.ts` (removing the draft-only notes) and prints the media to upload. Keep the archived review file under `content/prototype-reviews/`.
-2. Validate with `npm run validate:content` and `npm run test:domain`.
+2. Validate with `npm run validate:content` and `npm test` (the full suite; `test:domain` skips `tests/learn`).
 3. Upload this lesson's media only, using the printed command: `npm run media:publish -- --asset <id> --asset <id>`. Credentials come from the existing project env; storage objects are immutable.
 4. Push and put the preview link in the PR.
 5. **Owner touchpoint 3.** Send the owner the direct preview link to `/learn/<lesson-id>` and ask them to report whether:

@@ -146,7 +146,7 @@ How we know, in one line: <the one piece of detective work the lesson tells>
 
 Point: each section's point is written before its prose and checked by the kid read; see [Point-first sections](../lesson-creation-runbook.md#point-first-sections). Purpose is written positively, never “then name its limits”.
 Heading voice: each learner-facing heading names the subject or job in ordinary words. Fail metaphors, riddles, and punchlines. If the heading needs explaining, rewrite it.
-Recurring type labels: evidence chrome **Surviving evidence**; close-read knowledge **What you can see**; labor/institution knowledge **Who did the work**; source-limit knowledge **What we can know**.
+Eyebrows and module titles: optional; say what this box holds in plain words; no stock labels reused from other lessons, and never a box of what the evidence can and cannot show.
 
 ## Terms
 
