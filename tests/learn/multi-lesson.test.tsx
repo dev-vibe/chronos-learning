@@ -90,6 +90,7 @@ describe('multi-lesson Learn runtime', () => {
       '/learn/lesson.humans.sahul-crossing',
       '/learn/lesson.farming.multiple-origins',
       '/learn/lesson.farming.settlements',
+      '/learn/lesson.animals.domestication-and-pastoralism',
       '/learn/lesson.uruk.first-city',
       '/learn/lesson.writing.early-systems',
       '/learn/lesson.egypt.nile-state',
@@ -104,6 +105,7 @@ describe('multi-lesson Learn runtime', () => {
       'lesson.humans.sahul-crossing',
       'lesson.farming.multiple-origins',
       'lesson.farming.settlements',
+      'lesson.animals.domestication-and-pastoralism',
       'lesson.uruk.first-city',
       'lesson.writing.early-systems',
       'lesson.egypt.nile-state',
@@ -112,6 +114,7 @@ describe('multi-lesson Learn runtime', () => {
       'lesson.indus.cities-and-signs',
       'lesson.nubia.kerma-and-nile-world',
       'lesson.mesopotamia.akkadian-empire',
+      'lesson.mesopotamia.law-and-kingship',
     ]);
   });
 

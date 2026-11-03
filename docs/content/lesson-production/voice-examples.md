@@ -93,6 +93,18 @@ What changed: the dig story is vivid, and kid readers remembered it, but a paren
 
 > So Akkad’s kings dealt with different cities in different ways. Leilan got an official from Akkad, who ran big ovens to feed its workers. Urkesh got a princess.
 
+## No boxes of limits, no stock labels
+
+**Before** (Egypt; Caral and the herding lesson had the same box)
+
+> **What we can know**
+> - **It can show:** How Narmer’s court connected kingship with crowns, hierarchy, violence, ceremony, and order.
+> - **It cannot prove alone:** That one battle created the state exactly as pictured, or that every community accepted one ruler.
+
+**After:** no box. The lesson says what the Palette shows as part of the story, and says the one real open question once, in a sentence, where it matters.
+
+What changed: a box whose job is to list what the evidence cannot prove turns a story into a lecture on method, and a reused label (“What we can know”, “What you can see”, “Limits”) says what kind of box it is, not what is in it. An earlier runbook required these labels; it no longer does.
+
 ## Plain words, not invented phrases
 
 | Before | After |

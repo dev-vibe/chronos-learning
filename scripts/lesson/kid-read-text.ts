@@ -83,7 +83,7 @@ const writeModule = (module: LessonModule) => {
       line(`[Picture: ${module.artifactLabel}] ${module.title}`);
       line(module.body);
       notes(module.lookHere);
-      if (module.scaleNote) line(`About scale: ${module.scaleNote}`);
+      if (module.scaleNote) line(`About this picture: ${module.scaleNote}`);
       if (module.comparison) line(`- ${module.comparison.label}: ${module.comparison.detail}`);
       break;
     case 'historical-map':

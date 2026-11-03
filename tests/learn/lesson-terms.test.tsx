@@ -34,8 +34,8 @@ describe('in-text terms', () => {
   it('marks only the first occurrence of a term in each section', () => {
     render(<LessonText lesson={akkad} />);
     const opening = document.getElementById('section.akkad.place-and-question')!;
-    expect(within(opening).getAllByRole('button', { name: 'Agade' })).toHaveLength(1);
-    expect(opening.textContent).toContain('king of Agade, wanted');
+    expect(within(opening).getAllByRole('button', { name: 'Sargon' })).toHaveLength(1);
+    expect(opening.textContent).toContain('was king of Akkad, a kingdom');
     expect(opening.textContent).not.toContain('[[');
   });
 
@@ -76,14 +76,14 @@ describe('in-text terms', () => {
     render(<LessonText lesson={akkad} />);
     await user.click(screen.getAllByRole('button', { name: 'Sargon' })[0]);
     expect(screen.getByRole('dialog')).toBeTruthy();
-    await user.click(screen.getByText(/wanted everyone to know/));
+    await user.click(screen.getByText(/was king of Akkad, a kingdom/));
     expect(screen.queryByRole('dialog')).toBeNull();
   });
 
   it('previews on hover only where the device can hover, after a short delay', () => {
     vi.useFakeTimers();
     render(<LessonText lesson={akkad} />);
-    const term = screen.getAllByRole('button', { name: 'Tell Leilan' })[0];
+    const term = screen.getAllByRole('button', { name: 'Leilan' })[0];
     fireEvent.pointerEnter(term, { pointerType: 'mouse' });
     act(() => { vi.advanceTimersByTime(500); });
     expect(screen.queryByRole('dialog')).toBeNull();
@@ -92,7 +92,7 @@ describe('in-text terms', () => {
     act(() => { vi.advanceTimersByTime(100); });
     expect(screen.queryByRole('dialog')).toBeNull();
     act(() => { vi.advanceTimersByTime(400); });
-    expect(screen.getByRole('dialog', { name: 'Tell Leilan' })).toBeTruthy();
+    expect(screen.getByRole('dialog', { name: 'Leilan' })).toBeTruthy();
     expect(document.activeElement).not.toBe(screen.getByRole('dialog'));
     fireEvent.pointerLeave(term, { pointerType: 'mouse' });
     act(() => { vi.advanceTimersByTime(400); });

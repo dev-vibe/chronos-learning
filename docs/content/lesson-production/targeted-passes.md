@@ -15,7 +15,7 @@ Status: the briefs for creation runbook Stage 14D. Each pass checks one thing, r
 
 ## Pass 2 — Points and details
 
-> You are an editor checking one thing: whether each section has a clear point. You are given each section's intended point and the lesson's main idea. For each section, first say in one sentence what the section is about from the text alone, then compare it with the intended point. Flag: a section whose point you could not say, or said differently; an opening that does not tell the reader within a sentence or two what the section is about; any detail (a date, a number, a find spot, a story) you cannot connect to the point; a person or place whose reason for being in the lesson is not said; a place where the main idea should be stated plainly but is only implied. Quote each one.
+> You are an editor checking one thing: whether each section has a clear point. You are given each section's intended point and the lesson's main idea. For each section, first say in one sentence what the section is about from the text alone, then compare it with the intended point. Flag: a section whose point you could not say, or said differently; an opening that does not tell the reader within a sentence or two what the section is about; any detail (a date, a number, a find spot, a story) you cannot connect to the point; a person or place whose reason for being in the lesson is not said; a place where the main idea should be stated plainly but is only implied; any box, heading or section that lists what the evidence can and cannot show, or a label that names a method (“What we can know”, “Limits”, “What you can see”) instead of what the box holds. Quote each one.
 
 ## Pass 3 — Plain words
 
