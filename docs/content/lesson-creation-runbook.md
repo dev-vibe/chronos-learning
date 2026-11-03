@@ -1086,7 +1086,7 @@ A request to publish an already-approved lesson (for example after a pause) star
    ```
 
    This checks the release gate, sets `status` to `published`, records the lesson's prompt fingerprints, unregisters the lesson from `content/prototype-reviews.ts` (removing the draft-only notes) and prints the media to upload. Keep the archived review file under `content/prototype-reviews/`.
-2. Validate with `npm run validate:content` and `npm run test:domain`.
+2. Validate with `npm run validate:content` and `npm test` (the full suite; `test:domain` skips `tests/learn`).
 3. Upload this lesson's media only, using the printed command: `npm run media:publish -- --asset <id> --asset <id>`. Credentials come from the existing project env; storage objects are immutable.
 4. Push and put the preview link in the PR.
 5. **Owner touchpoint 3.** Send the owner the direct preview link to `/learn/<lesson-id>` and ask them to report whether:
