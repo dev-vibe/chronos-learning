@@ -531,7 +531,7 @@ First reader's restatements, word for word: Q1 “There was a rule that said to 
 
 - All prose, the three-law box, map and evidence captions, hero caption, journey framing and bridge (`content/learning-connections.ts`) rewritten. Every existing section, module, claim, source, media and card ID is unchanged; section order and teaching jobs are unchanged. New modules: `module.hammurabi.opening-change`, `module.hammurabi.case-point`.
 - Guess before reading added: `guess.hammurabi.far-off-field`, “If two farmers in a far-off city argued over a field, how could the king settle it?”, payoff `module.hammurabi.significance`.
-- Headings: “Governing cities and farmland” → “The king’s letters”; “The king and the law stele” → “Hammurabi’s stone of laws”; “Explain how the laws addressed a problem” → “How the laws settled an argument”. Purposes rewritten to match.
+- Headings: “Governing cities and farmland” → “The king’s letters”; “The king and the law stele” → “Hammurabi’s stone of laws”; “Explain how the laws addressed a problem” → “What the laws said to do”. Purposes rewritten to match.
 - Both prompts replaced (`## Prompt revision`).
 - Terms added: Hammurabi, Babylon, Larsa, stele.
 - Card refreshed: significance, reveal title and body, five facts, recall prompt. Art, subject, class and unlock unchanged.
@@ -559,7 +559,15 @@ Kept with a reason: the shepherd's name (the only new name in its section; a nam
 
 ### Kid read of the revision
 
-A fresh cold kid read and a feedback test were started on the final text on 2026-11-10; their reports had not been folded in when this PR was opened. Record them here, and fix what they find, before merge.
+One round only (fresh subagents, `lesson:kid-read` text; a second round was not run). 
+
+- **Restatements:** guess “how a king could fix a fight over a field between two farmers who live far from him” (sort of; guessed “send someone to decide”); Q1 “why having people watch and having a written paper is good for me if the guy holding my silver lies” (yes); Q2 “guess what the law made a careless boatman do… and back it up with a law I read” (sort of: “first I thought I had missed a boat law”).
+- **Answers:** Q1 B; Q2 “the boatman must pay the man for the grain because the careless farmer who flooded his neighbor's field had to pay for the lost grain.” On target.
+- **Section points:** 4 of 6 said back. “How Hammurabi expanded his kingdom” read as a repeat of the opening with no story of how he won; “Why Hammurabi’s laws mattered” read as a round-up.
+- **Retelling:** matches the kid's answer (beat the other kings, too many cities to be in, orders on clay tablets, 282 laws on a black stone, the flooded field).
+- **Remembered:** an eye for an eye and the silver for lower rank; the palm-sized clay letter; the sun god with flames on his shoulders.
+- **Fixed after this read:** Q2 reworded so it no longer sounds like a missed fact (“What do you think Hammurabi’s law for this says he must do?”); “rank” glossed; questions heading changed to “What the laws said to do”.
+- **Still open for the owner:** the first two sections overlap and the second has no event (needs one sourced story of the win over Larsa); the last section's point; “Look at the stone in the picture below” comes before the picture; Q1's honest-person option is close to right and its feedback nearly gives the answer (feedback test); “BCE” and “c.” unexplained and the date printed two ways in the masthead (shell); the title's “Kingship”.
 
 ### Checks
 
@@ -576,7 +584,7 @@ Pending.
 | | Old | New |
 | --- | --- | --- |
 | Multiple choice | `prompt.hammurabi.safekeeping`: “One provision calls for witnesses and a contract before someone hands over valuables for safekeeping. Why would those steps help settle a later dispute?” | `prompt.hammurabi.witnesses-and-contract`: “One of Hammurabi’s laws says to show your silver to witnesses and write a contract before you leave it with someone. Later, that person says he never got any silver. How do the witnesses and the contract help you?” Best: “They prove that you handed over the silver.” Wrong: “They prove that you are an honest person.” / “They keep the silver safe while you are away.” |
-| Written | `prompt.hammurabi.problem-and-response`: “Choose the failed harvest, flooded field or safekeeping case. (1) What problem does it address? (2) How could its rule help people live or work together?” | `prompt.hammurabi.careless-boatman`: “A man hires a boat and a boatman to carry his grain. The boatman is careless, and the boat and grain are lost. What does Hammurabi’s law say the boatman must do? Make your best guess, with one reason from a law in this lesson.” Required, minimum 20. |
+| Written | `prompt.hammurabi.problem-and-response`: “Choose the failed harvest, flooded field or safekeeping case. (1) What problem does it address? (2) How could its rule help people live or work together?” | `prompt.hammurabi.careless-boatman`: “A man hires a boat and a boatman to carry his grain. The boatman is careless, and the boat sinks. What do you think Hammurabi’s law for this says he must do? Give one reason from a law in this lesson.” Required, minimum 20. |
 
 Same teaching jobs: why witnesses and a contract settle a later argument; connecting a problem to what its law requires. The written prompt is one question instead of a split, and asks the learner to apply the idea to a case the lesson does not contain (§237, `claim.hammurabi.boat-case`), so no lesson sentence answers it. Support map: the stem and all three options from “If silver is left with someone” (§§122–123); the honest-person option is the character-witness mix-up, the kept-safe option gives the witnesses the keeper's job. A two-sentence answer from the lesson's words: “I think the boatman must pay the man for his grain. The farmer who flooded his neighbor's field by being careless had to pay for the lost grain too.”
 
