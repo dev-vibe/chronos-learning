@@ -506,11 +506,11 @@ Runbook: `docs/content/lesson-voice-revision-runbook.md`. Branch: `revise/law-ki
 | Section | Point (one sentence a kid could repeat) |
 | --- | --- |
 | `babylon-rivals` | Hammurabi started as one king among rivals as strong as he was, and ended up ruling more cities than he could be in. |
-| `kingdom-growth` | Hammurabi used alliances and armies; after almost thirty years as king he conquered Larsa, and Babylon became the capital of Mesopotamia. |
+| `kingdom-growth` | For years Hammurabi dug canals, built walls and made alliances; then, after almost thirty years as king, his army surrounded Larsa for months until it fell, and Babylon became the capital of Mesopotamia. |
 | `governing-land` | Hammurabi ran his new lands by letter; when a shepherd complained that an official had given away his field, the king wrote and ordered it given back. |
 | `law-stele` | Hammurabi had 282 laws carved on a tall black stone, under a picture of himself before the sun god; every law says if this happens, then this must be done. |
 | `practical-cases` | The laws take everyday problems between neighbors and say who must do what. |
-| `legal-significance` | The laws were copied for more than a thousand years; one is still famous; and Hammurabi settled far-off problems in writing, with letters and laws. |
+| `legal-significance` | The laws mattered because they were written down: written words could go where the king could not, and they lasted for more than a thousand years. |
 
 ### Audit of the published version
 
@@ -567,7 +567,8 @@ One round only (fresh subagents, `lesson:kid-read` text; a second round was not 
 - **Retelling:** matches the kid's answer (beat the other kings, too many cities to be in, orders on clay tablets, 282 laws on a black stone, the flooded field).
 - **Remembered:** an eye for an eye and the silver for lower rank; the palm-sized clay letter; the sun god with flames on his shoulders.
 - **Fixed after this read:** Q2 reworded so it no longer sounds like a missed fact (“What do you think Hammurabi’s law for this says he must do?”); “rank” glossed; questions heading changed to “What the laws said to do”.
-- **Still open for the owner:** the first two sections overlap and the second has no event (needs one sourced story of the win over Larsa); the last section's point; “Look at the stone in the picture below” comes before the picture; Q1's honest-person option is close to right and its feedback nearly gives the answer (feedback test); “BCE” and “c.” unexplained and the date printed two ways in the masthead (shell); the title's “Kingship”.
+- **Fixed at the owner's request, 2026-11-10, not read again by a fresh reader:** “How Hammurabi expanded his kingdom” now tells the quiet years (canals, walls, shifting alliances) and the months-long siege of Larsa (`claim.hammurabi.larsa-siege`, `source.hammurabi.britannica-hammurabi`, paragraphs 3, 5 and 6); “Why Hammurabi’s laws mattered” now states one point first (written words could go where the king could not, and they lasted) and hangs the answer, the copying and the eye law on it.
+- **Still open for the owner:** “Look at the stone in the picture below” comes before the picture; Q1's honest-person option is close to right and its feedback nearly gives the answer (feedback test); “BCE” and “c.” unexplained and the date printed two ways in the masthead (shell); the title's “Kingship”.
 
 ### Checks
 
