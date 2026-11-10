@@ -87,8 +87,8 @@ export const learningConnectionsByLessonId: Record<string, LearningConnection> =
     reasoningSkill: 'Test a royal claim against place-specific evidence and qualify what kind of political connection it supports.',
   },
   'lesson.mesopotamia.law-and-kingship': {
-    retrieve: { lessonId: 'lesson.mesopotamia.akkadian-empire', prompt: 'What did a ruler need to do to bring several cities under one authority?' },
-    extend: 'Move from winning power to governing it: follow how fields, water, debts and property were handled across a growing kingdom.',
+    retrieve: { lessonId: 'lesson.mesopotamia.akkadian-empire', prompt: 'The kings of Akkad won many cities. What did they need so that those cities kept doing what they said?' },
+    extend: 'Follow Hammurabi from a small kingdom to a large one, then see how he ran it in writing: letters to his officials and laws carved in stone.',
     reasoningSkill: 'Explain a political change, then connect a legal case to the practical problem and responsibility it addresses.',
   },
 };
