@@ -24,8 +24,8 @@ describe('evidence card', () => {
     const authored = LessonModuleSchema.parse({ ...module, layout: 'stacked', scaleNote: 'No verified scale bar is supplied.' });
     if (authored.type !== 'evidence') throw new Error('Expected evidence module');
     const { container } = render(<EvidenceModule module={authored} media={media} />);
-    expect(screen.getByText('Illustrated interpretation')).toBeTruthy();
-    expect(screen.queryByText('Surviving evidence')).toBeNull();
+    expect(screen.getByText('Illustration')).toBeTruthy();
+    expect(screen.queryByText('Photo of the real thing')).toBeNull();
     expect(screen.getByRole('complementary').textContent).toContain('No verified scale bar is supplied.');
     expect(screen.getByRole('img').getAttribute('alt')).toBe(media.alt);
     expect(container.querySelector('figure')?.classList.contains('evidence-module--stacked')).toBe(true);
@@ -33,7 +33,7 @@ describe('evidence card', () => {
 
   it('uses the landscape layout by default while preserving the evidence label', () => {
     const { container } = render(<EvidenceModule module={module} media={{ ...media, depictionMode: 'evidence' }} />);
-    expect(screen.getByText('Surviving evidence')).toBeTruthy();
+    expect(screen.getByText('Photo of the real thing')).toBeTruthy();
     expect(screen.queryByRole('complementary')).toBeNull();
     expect(container.querySelector('figure')?.classList.contains('evidence-module--stacked')).toBe(true);
   });

@@ -52,7 +52,7 @@ it('validates the typed Caral historical map and generated raster asset', () => 
   });
 });
 
-it('keeps recurring evidence-type labels in ordinary language', () => {
+it('keeps old methods slogans out of knowledge-box labels', () => {
   const knowledgeModules = chronosContent.lessons.flatMap((lesson) =>
     lesson.sections.flatMap((section) => section.modules.filter((module) => module.type === 'knowledge')),
   );
@@ -65,28 +65,6 @@ it('keeps recurring evidence-type labels in ordinary language', () => {
       'A state in practice',
     ]),
   );
-  const canCannot = knowledgeModules.filter((module) => {
-    const labels = module.items.map((item) => item.label);
-    return labels.includes('It can show') && labels.includes('It cannot prove alone');
-  });
-  expect(canCannot.length).toBeGreaterThan(0);
-  for (const module of canCannot) {
-    expect(module.eyebrow).toBe('What we can know');
-  }
-  const lookFirst = knowledgeModules.filter((module) =>
-    ['module.caral.plaza-observe', 'module.egypt.palette-observe'].includes(module.id),
-  );
-  expect(lookFirst).toHaveLength(2);
-  for (const module of lookFirst) {
-    expect(module.eyebrow).toBe('What you can see');
-  }
-  const whoWorked = knowledgeModules.filter((module) =>
-    ['module.caral.work-not-magic', 'module.egypt.state-in-practice'].includes(module.id),
-  );
-  expect(whoWorked).toHaveLength(2);
-  for (const module of whoWorked) {
-    expect(module.eyebrow).toBe('Who did the work');
-  }
 });
 
 it('detects a missing local map fallback',()=>{const fixture=structuredClone(chronosContent);const map=fixture.media.find((item)=>item.id==='media.uruk.southern-mesopotamia-map')!;if(map.locator.provider!=='object-storage')throw new Error('object storage locator missing');map.locator.fallback.path='/images/maps/missing-map.webp';expect(validateContent(fixture).errors.join(' ')).toMatch(/missing local media asset \/images\/maps\/missing-map\.webp/)});
