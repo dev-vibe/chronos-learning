@@ -483,3 +483,112 @@ Media: rights/fidelity approved for the map and stele; owner selected the hero r
 Release consistency gates: implementation and release passed 2026-10-04; cutover applied; validation and domain tests pass.
 Owner hosted check (owner touchpoint 3): pass — Carlin Aylsworth, 2026-10-13, “passed” in the current lesson-production chat following the five-item hosted checklist.
 Queue: Complete in the final commit of [PR #51](https://github.com/dev-vibe/chronos-learning/pull/51). Publication: merging this PR completes the lesson; all ten media objects are checksum-verified. No post-merge verification or closeout PR.
+
+## Kid's question
+
+- **The kid's question:** Hammurabi won a big kingdom. How did he run it when he could not be in every city?
+- **The kid's answer:** Hammurabi started as one king among strong rivals, and after almost thirty years he had beaten them and ruled the most powerful kingdom in Mesopotamia. Then he had to sort out everyday problems for people he would never meet. He did a lot of it in writing: he sent letters telling his officials what to do, like giving a shepherd his field back, and he had 282 laws carved on a tall stone, like “if you flood your neighbor’s field, you pay for his grain.”
+- **How we know, in one line:** the letters and the stone survive: a clay letter about one shepherd’s field, and the stele itself.
+- **Draft checks:** `prompt.hammurabi.witnesses-and-contract` (multiple choice) and `prompt.hammurabi.careless-boatman` (written); see `## Prompt revision`.
+
+Checked against the claim ledger: `kingdom-growth`, `minor-city-to-capital`, `reign-lengths`, `governing-work`, `larsa-letters`, `shepherd-letter`, `law-count`, `irrigation-duty`.
+
+**Departure from the runbook, for the owner to accept or reject.** The essential question has two parts (“How did Hammurabi make Babylon a powerful kingdom, and what did governing it involve?”). The kid's question keeps the second part as the lesson's one question and tells the first part as the setup. The durable understanding, claims, section order and teaching jobs are unchanged. The revision runbook treats any change to the essential question as material; this revision argues that narrowing a two-part essential question to one kid's question is the same kind of fix as splitting a two-part prompt.
+
+## Voice revision
+
+Standard: 2026-11-01
+
+Runbook: `docs/content/lesson-voice-revision-runbook.md`. Branch: `revise/law-kingship-hammurabi-babylon`. Started 2026-11-10. Status: **awaiting owner review**.
+
+### Section points
+
+| Section | Point (one sentence a kid could repeat) |
+| --- | --- |
+| `babylon-rivals` | Hammurabi started as one king among rivals as strong as he was, and ended up ruling more cities than he could be in. |
+| `kingdom-growth` | For years Hammurabi dug canals, built walls and made alliances; then, after almost thirty years as king, his army surrounded Larsa for months until it fell, and Babylon became the capital of Mesopotamia. |
+| `governing-land` | Hammurabi ran his new lands by letter; when a shepherd complained that an official had given away his field, the king wrote and ordered it given back. |
+| `law-stele` | Hammurabi had 282 laws carved on a tall black stone, under a picture of himself before the sun god; every law says if this happens, then this must be done. |
+| `practical-cases` | The laws take everyday problems between neighbors and say who must do what. |
+| `legal-significance` | The laws mattered because they were written down: written words could go where the king could not, and they lasted for more than a thousand years. |
+
+### Audit of the published version
+
+`lesson:check-questions`: both prompts flagged (“establish”, “arrangement”; numbered parts, two question marks). One cold kid read of the published lesson (fresh subagent, `lesson:kid-read` text only). The four targeted passes were not run on the published text, because the audit already called for a full rewrite; they were run on the revision instead (a second departure from the runbook's Step 1).
+
+- **Telling:** no opening moment (an announced two-part question); no event in “How Hammurabi expanded his kingdom” (reader: “a summary of a summary”); “the legal collection” used before the laws are introduced, and one thing called collection, cases, provisions, rules and laws; “an earlier story you have encountered at Akkad” assumes an earlier lesson; abstract nouns throughout (“position”, “balance”, “centers of power”, “legal standings”, “arrangements”); “eye for an eye” called familiar and never told; last section had no sayable point (reader: “mostly fog”); stock eyebrows (“Place & landscape”, “What you can see”); caption refuting an idea nobody had (“the background is not ancient Babylon”). Nine names, Rim-Sin used in the map caption before he is introduced. Story spine: none. Memorable moments: the tall stone, the flooded field, the shepherd (barely).
+- **Prompts:** `prompt.hammurabi.safekeeping`: `replace` (exam words; the best option was the longest and most careful; the reader threw out A and C without the lesson). `prompt.hammurabi.problem-and-response`: `replace` (two numbered questions; the hint asked for something different from part 2).
+- **Card:** `refresh` (reveal text and facts in research words; recall prompt abstract).
+
+First reader's restatements, word for word: Q1 “There was a rule that said to get witnesses and a written deal before you give someone your stuff to look after. It asks why that helps if you argue about it later.” (yes) Q2 “Pick one of the three laws. Say what problem it is about, then say how the rule helps people get along.” (sort of: “together with who, and helps how?”)
+
+### Story material
+
+- **Spine:** writing on clay and stone, from a letter that counts Hammurabi as one king among several, to his own letter about a shepherd's field, to the stone of laws.
+- **Memorable moments:** the letter saying no king is strong on his own; the palm-sized tablet ordering a shepherd's field returned; the black stone taller than a grown man, later carried off as loot; an eye for an eye, but silver if the injured man ranked lower.
+
+### Changes
+
+- All prose, the three-law box, map and evidence captions, hero caption, journey framing and bridge (`content/learning-connections.ts`) rewritten. Every existing section, module, claim, source, media and card ID is unchanged; section order and teaching jobs are unchanged. New modules: `module.hammurabi.opening-change`, `module.hammurabi.case-point`.
+- Guess before reading added: `guess.hammurabi.far-off-field`, “If two farmers in a far-off city argued over a field, how could the king settle it?”, payoff `module.hammurabi.significance`.
+- Headings: “Governing cities and farmland” → “The king’s letters”; “The king and the law stele” → “Hammurabi’s stone of laws”; “Explain how the laws addressed a problem” → “What the laws said to do”. Purposes rewritten to match.
+- Both prompts replaced (`## Prompt revision`).
+- Terms added: Hammurabi, Babylon, Larsa, stele.
+- Card refreshed: significance, reveal title and body, five facts, recall prompt. Art, subject, class and unlock unchanged.
+- Sources added: `source.hammurabi.mari-letter` (CDLI wiki, letter A.482; read through a search-engine copy because the site's bot protection blocked a direct fetch: the owner or a later pass should open it once) and `source.hammurabi.britannica-code`. The Louvre and Met pages do not mention earlier law collections, so the published sentence “Written law collections existed before Hammurabi” had no registered support; Britannica now carries it.
+- Claims added: `rival-kings-letter`, `minor-city-to-capital`, `reign-lengths`, `larsa-letters`, `shepherd-letter`, `relief-details`, `law-count`, `older-laws`, `no-witness-no-claim`, `boat-case`, `eye-saying`, `epilogue-invitation`, `commentary-date`, `stele-journey`. Sources `letter`, `avalon-cases`, `commentary`, `louvre-essay`, `louvre-object` and `met-kingdom` were close-read again on 2026-11-10 for these.
+- Outside the runbook's “what may change” list, changed because learners read them: `masthead` and the map and card date labels (“Eighteenth century BCE” → “1700s BCE”; the audit reader took “eighteenth century” for the 1800s), `significance`, `learningOutcome`.
+- Reading length (`lesson:kid-read`, sections only): 1,037 → 1,496 words. No image added: the letter photograph is not rights-cleared, and the 2026-10-04 media decision already judged it unnecessary.
+
+### Left out
+
+- Names: Rim-Sin, Shamash-hazir (the official; also a look-alike for Shamash), Mari, Susa's king, the Euphrates in running text.
+- The siege of Larsa and the fall of Mari: vivid, but no registered source; worth one targeted source in a later pass, since “How Hammurabi expanded his kingdom” is still the thinnest section.
+- “Three pieces” for the stele's discovery, the 18-hectare field size, the goring-ox and collapsed-house laws.
+
+### Targeted passes (revised text, four fresh subagents)
+
+| Pass | Main flags | Fix |
+| --- | --- | --- |
+| Names | 5 names to track (within budget); two unnamed “officials”; Larsa used before it is called a city; Mesopotamia in the masthead never explained; south vs southeast | Letter-writer is now “a man who served another king”; “Larsa, a city to the southeast”; Mesopotamia explained once and used instead of “the land” |
+| Points | Opening oriented late; “small kingdom” clashed with “ten or fifteen kings”; three similar numbers; last section had no single point; limits sentence unconnected | Opening orients on Hammurabi first; “small” moved to his accession; one number cut; last section rebuilt (remembered → famous law → answer → callback); the open question sits where the lesson says the laws settled problems |
+| Plain words | “followed”, “lesser”, “broke the power”, “a trouble”, “same shape… must follow”, “held”, “put out an eye”, “prize of war”, pronoun pile in the letter | All reworded as suggested, except “commoner” (the claim ledger avoids class labels; “of lower rank” kept) |
+| Questions | Option C not a real mistake; hint and feedback repeated each other; boatman question did not say whose boat; hint named the law | Option C replaced; hint, feedback and explanation rewritten; “A man hires a boat and a boatman”; hint now asks which law is about someone careless |
+
+Kept with a reason: the shepherd's name (the only new name in its section; a named ordinary person); “Nobody knows whether Issinabu got his field back” (the question a reader asks at that point).
+
+### Kid read of the revision
+
+One round only (fresh subagents, `lesson:kid-read` text; a second round was not run). 
+
+- **Restatements:** guess “how a king could fix a fight over a field between two farmers who live far from him” (sort of; guessed “send someone to decide”); Q1 “why having people watch and having a written paper is good for me if the guy holding my silver lies” (yes); Q2 “guess what the law made a careless boatman do… and back it up with a law I read” (sort of: “first I thought I had missed a boat law”).
+- **Answers:** Q1 B; Q2 “the boatman must pay the man for the grain because the careless farmer who flooded his neighbor's field had to pay for the lost grain.” On target.
+- **Section points:** 4 of 6 said back. “How Hammurabi expanded his kingdom” read as a repeat of the opening with no story of how he won; “Why Hammurabi’s laws mattered” read as a round-up.
+- **Retelling:** matches the kid's answer (beat the other kings, too many cities to be in, orders on clay tablets, 282 laws on a black stone, the flooded field).
+- **Remembered:** an eye for an eye and the silver for lower rank; the palm-sized clay letter; the sun god with flames on his shoulders.
+- **Fixed after this read:** Q2 reworded so it no longer sounds like a missed fact (“What do you think Hammurabi’s law for this says he must do?”); “rank” glossed; questions heading changed to “What the laws said to do”.
+- **Fixed at the owner's request, 2026-11-10, not read again by a fresh reader:** “How Hammurabi expanded his kingdom” now tells the quiet years (canals, walls, shifting alliances) and the months-long siege of Larsa (`claim.hammurabi.larsa-siege`, `source.hammurabi.britannica-hammurabi`, paragraphs 3, 5 and 6); “Why Hammurabi’s laws mattered” now states one point first (written words could go where the king could not, and they lasted) and hangs the answer, the copying and the eye law on it.
+- **Still open for the owner:** “Look at the stone in the picture below” comes before the picture; Q1's honest-person option is close to right and its feedback nearly gives the answer (feedback test); “BCE” and “c.” unexplained and the date printed two ways in the masthead (shell); the title's “Kingship”.
+
+### Checks
+
+`npm run validate:content`, `npm run lesson:check-questions` (no flags) and `npm test` passed.
+
+### Owner review
+
+Pending.
+
+## Prompt revision
+
+### 2026-11-10 — both prompts replaced in the lesson revision
+
+| | Old | New |
+| --- | --- | --- |
+| Multiple choice | `prompt.hammurabi.safekeeping`: “One provision calls for witnesses and a contract before someone hands over valuables for safekeeping. Why would those steps help settle a later dispute?” | `prompt.hammurabi.witnesses-and-contract`: “One of Hammurabi’s laws says to show your silver to witnesses and write a contract before you leave it with someone. Later, that person says he never got any silver. How do the witnesses and the contract help you?” Best: “They prove that you handed over the silver.” Wrong: “They prove that you are an honest person.” / “They keep the silver safe while you are away.” |
+| Written | `prompt.hammurabi.problem-and-response`: “Choose the failed harvest, flooded field or safekeeping case. (1) What problem does it address? (2) How could its rule help people live or work together?” | `prompt.hammurabi.careless-boatman`: “A man hires a boat and a boatman to carry his grain. The boatman is careless, and the boat sinks. What do you think Hammurabi’s law for this says he must do? Give one reason from a law in this lesson.” Required, minimum 20. |
+
+Same teaching jobs: why witnesses and a contract settle a later argument; connecting a problem to what its law requires. The written prompt is one question instead of a split, and asks the learner to apply the idea to a case the lesson does not contain (§237, `claim.hammurabi.boat-case`), so no lesson sentence answers it. Support map: the stem and all three options from “If silver is left with someone” (§§122–123); the honest-person option is the character-witness mix-up, the kept-safe option gives the witnesses the keeper's job. A two-sentence answer from the lesson's words: “I think the boatman must pay the man for his grain. The farmer who flooded his neighbor's field by being careless had to pay for the lost grain too.”
+
+**What learners will see.** Finished, waiting and passed lessons stay as they are. A learner still working through the lesson, or one whose lesson was sent back, answers both new required prompts before sending. Parents see written questions only; an old written answer shows the question as the learner saw it and is marked as changed.
+
+Owner approval: pending.

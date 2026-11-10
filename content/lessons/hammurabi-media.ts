@@ -20,26 +20,26 @@ export const hammurabiMedia: MediaAsset[] = [
   { id: 'media.hammurabi.law-stele', locator: mediaLocator('media.hammurabi.law-stele'), alt: 'The tall dark law stele stands in a modern Louvre gallery. At its rounded top a standing Hammurabi faces seated Shamash; many rows of cuneiform continue down the stone below the relief.', depictionMode: 'evidence', depictionLabel: 'Surviving law stele · modern museum photograph', rightsLabel: 'Gary Todd · 2016 · CC0 1.0 · full frame resized and compressed', sourceIds: ['source.hammurabi.stele-photo', 'source.hammurabi.louvre-object'], visualBriefRef: brief, reviewStatus: 'approved' },
 ];
 export const hammurabiLocatorVisual: LessonModule = {
-  id: 'module.hammurabi.locator', type: 'historical-map', eyebrow: 'Place & landscape', title: 'Babylon and Larsa', body: 'Babylon lay northwest of Larsa in the lower Mesopotamian plain. Their positions help us follow the rivalry between Babylon’s smaller kingdom and Rim-Sin’s power farther south.',
-  mediaId: 'media.hammurabi.locator', periodLabel: 'Eighteenth century BCE', focusPlace: 'Babylon and Larsa', modernContext: 'These cities were in West Asia, in present-day Iraq, east of the Mediterranean Sea. The inset places this region beside northern Africa.',
+  id: 'module.hammurabi.locator', type: 'historical-map', eyebrow: 'Where the two cities were', title: 'Babylon and Larsa', body: 'Find Babylon on the map, then Larsa to the southeast. When Hammurabi became king, Larsa’s king ruled most of the land to the south.',
+  mediaId: 'media.hammurabi.locator', periodLabel: '1700s BCE', focusPlace: 'Babylon and Larsa', modernContext: 'These cities were in West Asia, in present-day Iraq, east of the Mediterranean Sea. The inset places this region beside northern Africa.',
   accessibleSummary: 'Babylon is northwest of Larsa in present-day Iraq. The Mediterranean is west of the cities and the Persian Gulf lies southeast. The Tigris and Euphrates run through the region. An inset shows the location within West Asia next to Africa; its rectangle marks the main map’s view.',
   compactLabel: 'Modern geography · representative site points · no empire boundary',
   coordinateNote: 'Natural Earth relief, rivers and land; Oracc/Pleiades site points, cross-checked with UNESCO for Babylon and the French Larsa excavation account. Dots locate sites, not their territories.',
   uncertaintyNote: 'The rivers and coast shown are modern orientation. Channels and shorelines changed in antiquity; this map does not reconstruct them or the kingdom’s borders.',
-  depictionStatus: 'illustrative-reconstruction', claimIds: ['claim.hammurabi.babylon-location', 'claim.hammurabi.site-orientation'], sourceIds: mapSources,
+  depictionStatus: 'illustrative-reconstruction', claimIds: ['claim.hammurabi.babylon-location', 'claim.hammurabi.site-orientation', 'claim.hammurabi.minor-city-to-capital'], sourceIds: [...mapSources, 'source.hammurabi.met-kingdom'],
 };
 export const hammurabiSteleVisual: LessonModule = {
-  id: 'module.hammurabi.stele-evidence', type: 'evidence', title: 'The relief and the long inscription', artifactLabel: 'Law stele of Hammurabi · Louvre SB 8', body: 'Look at the two figures near the top, then follow the rows of writing below them. The carved royal scene occupies only part of a monument filled with legal cases.',
-  mediaId: 'media.hammurabi.law-stele', layout: 'side-by-side', scaleNote: 'The basalt stele is about 2.25 meters tall. This photograph shows the surviving object in a modern museum gallery; the background is not ancient Babylon.',
-  claimIds: ['claim.hammurabi.stele-object', 'claim.hammurabi.royal-justice'], sourceIds: ['source.hammurabi.louvre-object', 'source.hammurabi.stele-photo', 'source.hammurabi.cdli-stele'],
+  id: 'module.hammurabi.stele-evidence', type: 'evidence', title: 'The picture at the top, the writing below', artifactLabel: 'Hammurabi’s stone of laws · Louvre museum', body: 'Find the two figures at the top: the sun god sitting, Hammurabi standing. Then follow the rows of writing down the stone. Most of those rows are laws.',
+  mediaId: 'media.hammurabi.law-stele', layout: 'side-by-side', scaleNote: 'This photograph shows the stone in the Louvre museum in Paris. About 600 years after Hammurabi, a king from a land to the east carried it off to his own city, Susa, as loot from a war. Archaeologists dug it up there in 1901–1902. Susa is in what is now Iran.',
+  claimIds: ['claim.hammurabi.stele-object', 'claim.hammurabi.royal-justice', 'claim.hammurabi.relief-details', 'claim.hammurabi.stele-journey'], sourceIds: ['source.hammurabi.louvre-object', 'source.hammurabi.louvre-essay', 'source.hammurabi.stele-photo', 'source.hammurabi.cdli-stele'],
 };
 export const hammurabiSteleCard: KnowledgeCard = {
   id: 'card.hammurabi.law-stele', title: 'Hammurabi’s Law Stele', category: 'artifact', cardClass: 'witness',
-  date: { startYear: -1800, endYear: -1700, display: 'Eighteenth century BCE', approximate: true }, place: 'Babylonia · now in the Louvre',
-  significance: 'A stone taller than an adult, filled with cases about work, property and people’s obligations.',
-  revealTitle: 'A kingdom’s problems, carved in stone', revealBody: 'Below Hammurabi and Shamash, long rows of cuneiform describe legal cases: a failed harvest, a flooded field, property handed over for safekeeping. This great surviving monument brings the practical work of Babylonian law into view.',
+  date: { startYear: -1800, endYear: -1700, display: '1700s BCE', approximate: true }, place: 'Babylonia · now in the Louvre',
+  significance: 'A black stone taller than a grown man, carved with 282 laws about everyday troubles: fields, water, loans and injuries.',
+  revealTitle: '282 laws carved in stone', revealBody: 'Under a picture of Hammurabi standing before the sun god, row after row of writing sets out his laws. Each one starts with “if”: if a harvest fails, if a field is flooded, if silver is left with someone. Then it says what must be done.',
   depictionLabel: 'Surviving law stele · modern museum photograph',
-  facts: ['The basalt stone is about 2.25 meters tall.', 'The relief shows Hammurabi standing before Shamash.', 'Many provisions describe a situation and then state a response.', 'The cases address subjects including farming, property, trade and households.'],
-  lessonIds: ['lesson.mesopotamia.law-and-kingship'], sourceIds: ['source.hammurabi.louvre-object', 'source.hammurabi.louvre-essay', 'source.hammurabi.avalon-cases', 'source.hammurabi.stele-photo'], mediaId: 'media.hammurabi.law-stele', unlockLessonId: 'lesson.mesopotamia.law-and-kingship', recallPrompt: 'How did one legal case connect a practical problem to a responsibility or remedy?',
+  facts: ['The black stone is about 2.25 meters tall.', 'At the top, Hammurabi stands before Shamash, the sun god.', 'It holds 282 laws, each one saying: if this happens, then this must be done.', 'About 600 years later, a king from the east carried it off as loot from a war.', 'Archaeologists dug it up in 1901–1902 at Susa, in what is now Iran.'],
+  lessonIds: ['lesson.mesopotamia.law-and-kingship'], sourceIds: ['source.hammurabi.louvre-object', 'source.hammurabi.louvre-essay', 'source.hammurabi.avalon-cases', 'source.hammurabi.stele-photo'], mediaId: 'media.hammurabi.law-stele', unlockLessonId: 'lesson.mesopotamia.law-and-kingship', recallPrompt: 'What did the law say a careless farmer owed the neighbor whose field he flooded?',
 };
 
