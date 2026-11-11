@@ -137,6 +137,7 @@ Plain words first, then checked against the claim ledger (runbook Stage 6A). The
 
 Kid's question: <the question a curious 12-year-old would ask, in their words>
 Kid's answer: <two or three sentences they could tell a friend: what happened and why, with one or two real details>
+Big question: <the one question this history raises that people still argue about, from a specific moment in the lesson, with no single right answer; or `none` and why>
 How we know, in one line: <the one piece of detective work the lesson tells>
 
 ## Section/component storyboard
