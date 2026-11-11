@@ -6,12 +6,20 @@ Status: the one process for revising an already-published lesson. It audits the 
 
 Use this runbook for any request to revise a published lesson: “Revise the Akkad lesson”, “Redo the Akkad lesson”, “Revise the next old lesson”, “Improve the Akkad prompt”, “Refresh the Akkad card”. The owner does not need to say which parts to change; the audit in Step 1 decides. A request that names one part (“improve the X prompt”) does only that part.
 
-Stop and tell the owner instead if the lesson needs a change to the essential question, durable understanding, central claims or their certainty, section order or teaching jobs, a prompt's teaching job, adding or removing a prompt (except the two prompt fixes below), completion rules, the card's subject or adding or removing a card, the teaching job of an existing image, or journey position. Those are material revisions and follow the creation runbook. Do not fold one into a revision.
+Stop and tell the owner instead if the lesson needs a change to the durable understanding, central claims or their certainty, a prompt's teaching job, adding or removing a prompt (except the prompt fixes below), completion rules, the card's subject or adding or removing a card, the teaching job of an existing image, or journey position. Those are material revisions and follow the creation runbook. Do not fold one into a revision.
 
-Two prompt fixes are not material, so a revision makes them through the [prompt revision runbook](prompt-revision-runbook.md):
+**Restructure (one owner check before rewriting).** The worst problems in an old lesson are often in its shape: an essential question with two parts, two sections that tell the same thing, a section with no point of its own. Rewriting the prose inside that shape does not fix it. A revision may therefore, with the owner's yes to an outline:
+
+- narrow a two-part essential question to the one kid's question (Stage 6A), telling the other part as setup;
+- merge, split or reorder sections, and move a teaching job from one section to another.
+
+It may not drop a teaching job, and everything in the stop list above still holds. Before rewriting, send the owner a before-and-after outline: the old and new question, and the old and new section list with each section's point. Wait for a yes. A kept section keeps its ID; a merged section keeps the ID of the section whose job it mainly carries; a new section gets a new ID. Stored progress drops section IDs a lesson no longer has (`normalizeLearnState` in `src/learn/progress.ts`), so a learner part-way through simply sees the new sections as unread; search `tests/` for any retired section ID. Record the approved outline under `## Voice revision`. (The Babylon revision of 2026-11-10 could not merge its first two sections under the old rule, and a cold reader said they “tell the same thing twice”.)
+
+Three prompt fixes are not material, so a revision makes them through the [prompt revision runbook](prompt-revision-runbook.md):
 
 - **Split** a two-part prompt into separate prompts of one question each. If that would pass three required prompts, keep the more important part as one prompt and drop the other.
 - **Refocus** a prompt that quizzes an evidence limit (“what is one question researchers are still trying to answer?”, “what can this not prove?”) onto the lesson's kid's question (creation runbook Stage 6A).
+- **Ask the big question.** Replace the written prompt with the lesson's big question (creation runbook Stage 6A), answered with a reason from the lesson, when the lesson has one and the written prompt does not already ask it.
 
 Name each one in the owner packet.
 
@@ -25,7 +33,7 @@ A request such as “Revise the Akkad lesson” or “Revise the next old lesson
 2. Revise the lesson the owner names. For “the next one”, take the first lesson in `content/journeys/world-history.ts` order whose research note has no `## Voice revision` section recording the current revision standard (below).
 3. One lesson per branch and PR, and one owner check covering everything the PR changes. There is no Linear issue and no queue change; the research note and the PR are the record.
 
-**Current revision standard: 2026-11-01 (point-first sections, lesson terms, name budget, targeted passes).** Every revision writes `Standard: <date>` as the first line of its `## Voice revision` section. When the voice, prompt or card rules change enough that earlier revisions fall short, the PR that changes them bumps this date, and lessons revised under an older standard (or with no `Standard:` line) become eligible for “the next one” again, in journey order. A lesson revised under an older standard keeps its old `## Voice revision` section; the new revision adds another above it.
+**Current revision standard: 2026-11-11 (the big question, stakes without motives, restructure; on top of 2026-11-01: point-first sections, lesson terms, name budget, targeted passes).** Every revision writes `Standard: <date>` as the first line of its `## Voice revision` section. When the voice, prompt or card rules change enough that earlier revisions fall short, the PR that changes them bumps this date, and lessons revised under an older standard (or with no `Standard:` line) become eligible for “the next one” again, in journey order. A lesson revised under an older standard keeps its old `## Voice revision` section; the new revision adds another above it.
 
 ## Read
 
@@ -38,6 +46,8 @@ A request such as “Revise the Akkad lesson” or “Revise the next old lesson
 Add a `## Voice revision` section to the research note (the heading stays for every revision so “the next one” keeps working).
 
 **First, write the kid's question and kid's answer** under creation runbook Stage 6A (plain words first, then check them against the claim ledger), if the note does not already have a `## Kid's question` section. This restates the existing essential question and durable understanding in a kid's words; it does not change what the lesson teaches. If you cannot write a kid's answer that is about what happened (not about what the evidence cannot show), say so to the owner: the lesson may need a material revision.
+
+**Then write the big question** (creation runbook Stage 6A): the one question this history raises that people still argue about, from a specific moment in the lesson, or `none` and why. If the lesson tells that moment only in abstract words, or not at all, bringing it out is part of the revision.
 
 **Next, write each section's point** (creation runbook, [Point-first sections](lesson-creation-runbook.md#point-first-sections)): one sentence a kid could repeat, restating what the section already teaches. This does not change the section's teaching job.
 
@@ -75,12 +85,12 @@ Every new fact the learner will read needs a claim with kind, certainty and a re
 
 ## Step 3 — Rewrite
 
-**What may change:** prose `body` text; `knowledge` body and item text; evidence and scene captions and hotspot text; prompt explanation, option feedback and hint text, and option order; journey transition and bridge text; a section's `purpose` wording, when it steers the prose toward limits (“then name its limits”), rewritten positively with the same teaching job; the lesson's `terms` (add, remove or reword terms and their `[[ ]]` marks; keep existing term IDs, follow the term rules in Stage 9 of the [creation runbook](lesson-creation-runbook.md#lesson-terms), and cite every definition); the card's reveal text, facts (accurate and sourced) and art; and new images, each with the module that carries it (see **Add images** below).
+**What may change:** prose `body` text; `knowledge` body and item text; evidence and scene captions and hotspot text; prompt explanation, option feedback and hint text, and option order; journey transition and bridge text; the lesson's `masthead`, `significance`, `learningOutcome` and hero caption, when they use research words or no longer match the lesson (the title stays unless the owner asks); a section's `purpose` wording, when it steers the prose toward limits (“then name its limits”), rewritten positively with the same teaching job; the lesson's `terms` (add, remove or reword terms and their `[[ ]]` marks; keep existing term IDs, follow the term rules in Stage 9 of the [creation runbook](lesson-creation-runbook.md#lesson-terms), and cite every definition); the card's reveal text, facts (accurate and sourced) and art; and new images, each with the module that carries it (see **Add images** below).
 
 **What stays:**
 
 - every existing ID: lesson, section, module, claim, source, prompt, option, card and media (new claims, sources, modules and media get new IDs; a prompt marked `replace` gets its new ID from the prompt revision runbook);
-- section order and each section's teaching job;
+- section order and each section's teaching job, unless the owner approved a restructure outline (see **Restructure**);
 - every prompt's question, options, best answer, required flag and minimum length, which is what its ID stands for ([policy](../architecture/prompt-changes.md)), unless the audit marked it `replace`;
 - the card's subject, category, class and `unlockLessonId`;
 - existing media assets and their teaching jobs, and completion behavior.
@@ -125,7 +135,8 @@ Push, open the PR, and let CI run. Once the branch preview deploys, send the own
 - any claims or sources you added, one line each;
 - any images you added, with their source, license and where they appear;
 - anything you left out because the evidence was too thin;
-- the kid's question and kid's answer;
+- the kid's question, the kid's answer and the big question, and how the final reader answered the big question;
+- if the lesson was restructured, the outline the owner approved;
 - the kid read: what the first reader stumbled on, and how the final reader restated and answered each question;
 - the audit verdict for each prompt and the card, one line each, naming any split or refocused prompt;
 - for each replaced prompt, the prompt revision runbook's owner-check items;

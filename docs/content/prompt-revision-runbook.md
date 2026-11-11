@@ -6,11 +6,11 @@ Status: the steps for replacing an understanding prompt in a published lesson wi
 
 Use this runbook for any published prompt, required or optional, whose identity would change. A prompt's identity is its lesson, kind, question text, options (ids and labels), `bestOptionId`, `required` flag and `minimumResponseLength`. It is usually reached from a lesson revision (“revise the X lesson”) or a request such as “improve the X prompt” or “this question is too generic”.
 
-It applies when the new prompt keeps the old one's teaching job: it still checks the same part of the durable understanding, and the lesson still has one to three required prompts. Two fixes also count as keeping the teaching job: splitting a two-part prompt into one-question prompts, and refocusing a prompt that quizzes an evidence limit onto the lesson's kid's question (see the [lesson revision runbook](lesson-voice-revision-runbook.md#when-to-use-it)). The new prompt may change its question, options, best answer, kind (multiple choice or written), required flag or minimum length.
+It applies when the new prompt keeps the old one's teaching job: it still checks the same part of the durable understanding, and the lesson still has one to three required prompts. Three fixes also count as keeping the teaching job: splitting a two-part prompt into one-question prompts, refocusing a prompt that quizzes an evidence limit onto the lesson's kid's question, and replacing the written prompt with the lesson's big question (creation runbook Stage 6A) (see the [lesson revision runbook](lesson-voice-revision-runbook.md#when-to-use-it)). The new prompt may change its question, options, best answer, kind (multiple choice or written), required flag or minimum length.
 
 Do not use it for:
 
-- **a change to the essential question, durable understanding or a prompt's teaching job, or adding or removing a prompt** (other than the two fixes above). Those are material revisions and follow the creation runbook. Stop and tell the owner.
+- **a change to the durable understanding or a prompt's teaching job, or adding or removing a prompt** (other than the three fixes above). Those are material revisions and follow the creation runbook. Stop and tell the owner.
 - **text-only changes to explanation, option feedback, hint or option order**, including adding a missing hint or missing option feedback. Those keep the ID. Make them in a [lesson revision](lesson-voice-revision-runbook.md) or a [correction](lesson-creation-runbook.md#corrections-after-release).
 
 ## Invocation
