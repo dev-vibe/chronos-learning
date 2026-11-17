@@ -8,8 +8,8 @@ import { setUnlockPreviewLessonsForTests } from '../../src/config/runtimeFlags';
 import type { JourneyProgressSummary, LearnProgressGateway, LearnState, ReviewInbox } from '../../src/learn/progress';
 
 const lessonId = 'lesson.mesopotamia.akkadian-empire';
-const guessId = 'guess.akkad.keep-a-city';
-const question = 'After the army went home, what would a king need so that the people there kept doing what he said?';
+const guessId = 'guess.akkad.keep-a-won-city';
+const question = 'A king’s army has won a city and gone home. What would the king need so the people there kept doing what he said?';
 
 const initial = (): LearnState => ({ learnerId: 'test-learner', lessonId, status: 'in-progress', attemptedPromptIds: [], exploredSectionIds: [], responses: {}, guesses: {}, account: { parentLinked: true }, version: 1 });
 class TestGateway implements LearnProgressGateway {
@@ -139,7 +139,7 @@ describe('guess before reading', () => {
     cleanup();
 
     const answered = new TestGateway();
-    answered.state = { ...initial(), guesses: { [guessId]: 'Soldiers who stay behind.' }, attemptedPromptIds: ['prompt.akkad.urkesh-difference', 'prompt.akkad.official-or-princess'], responses: { 'prompt.akkad.urkesh-difference': 'option.akkad.princess-seal', 'prompt.akkad.official-or-princess': 'I would choose an official because the workers need food every day.' } };
+    answered.state = { ...initial(), guesses: { [guessId]: 'Soldiers who stay behind.' }, attemptedPromptIds: ['prompt.akkad.who-ruled-urkesh', 'prompt.akkad.new-city-choice'], responses: { 'prompt.akkad.who-ruled-urkesh': 'option.akkad.urkesh-own-king', 'prompt.akkad.new-city-choice': 'I would choose an official because the workers need food every day.' } };
     await open(answered);
     expect((screen.getByRole('button', { name: 'Finish and send for review' }) as HTMLButtonElement).disabled).toBe(false);
   });
