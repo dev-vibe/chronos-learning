@@ -456,9 +456,9 @@ Checked against the claim ledger: `winning-and-governing`, `leilan-official`, `b
 
 ## Voice revision
 
-Standard: 2026-11-11 (the big question, stakes without motives, restructure; set in [PR #101](https://github.com/dev-vibe/chronos-learning/pull/101), still open when this revision was made)
+Standard: 2026-11-11 (the big question, stakes without motives, restructure; set in [PR #101](https://github.com/dev-vibe/chronos-learning/pull/101))
 
-Branch: `revise/akkad-big-question`. Started 2026-11-11, finished 2026-11-17. Status: **awaiting owner review**. The 2026-11-01 revision below stays as the record of that pass.
+Branch: `revise/akkad-big-question`. Started 2026-11-11, finished 2026-11-17. Status: **approved by the owner 2026-11-17 and merged** ([PR #102](https://github.com/dev-vibe/chronos-learning/pull/102)). The 2026-11-01 revision below stays as the record of that pass.
 
 ### Restructure (owner approved 2026-11-11)
 
@@ -680,7 +680,7 @@ Same teaching jobs. The written prompt is the lesson’s big question; the lesso
 
 **What learners will see.** Finished, waiting and passed lessons stay as they are. A learner still working through the lesson, or one whose lesson was sent back, answers both new required prompts before sending. On Review, an old written answer shows the question as the learner saw it and is marked as changed.
 
-Owner approval: pending.
+Owner approval: approved 2026-11-17 ([PR #102](https://github.com/dev-vibe/chronos-learning/pull/102)).
 
 ### 2026-10-03 — one prompt replaced, one reworded, after an age-fit audit of every lesson's prompts
 
