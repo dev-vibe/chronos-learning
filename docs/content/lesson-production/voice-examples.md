@@ -20,7 +20,7 @@ Most pairs come from the Akkad revision of November 2026, after a homeschooling 
 >
 > The carving shows Naram-Sin as more than a man: anyone who stood before the stone saw a king who looked like a god. …
 >
-> About a thousand years later, another king, from a land to the east, used the same stone to boast about himself. …
+> About a thousand years later, another king, from a land to the east, used the same stone to celebrate his own victory. …
 >
 > The stone shows a king winning a battle. The ovens at Leilan show the work of keeping a city, every single day.
 
@@ -83,6 +83,44 @@ What changed: Akkad, Agade, Akkadian and Tar’am-Agade share a root, and reader
 
 What changed: the dig story is vivid, and kid readers remembered it, but a parent could not see why the princess was in the lesson at all. Urkesh is there as the second way of keeping a city, so the section now opens by setting it against Leilan, and the dig date and seal size are gone.
 
+## Stakes, not motives
+
+**Before** (Babylon, published version: nobody has anything at stake)
+
+> Hammurabi used alliances and military campaigns to change that balance. Over roughly thirty years, he took control of Rim-Sin’s territory and defeated other centers of power.
+>
+> He complained that a field he held had been assigned to someone else. Hammurabi instructed an official to decide the case and return the field.
+
+**Also wrong** (a guessed motive and a judgment of character)
+
+> Hammurabi wanted to be the greatest king in Mesopotamia. He was a fair ruler who cared about ordinary people, so he made sure the shepherd got his field back.
+
+**After**
+
+> A letter from his time … counts them up. No king is strong on his own, it says. … So Hammurabi had rivals as strong as he was.
+>
+> The shepherd had a field and paid tax on it. Then the official gave that field to the governor of a city, and Issinabu complained to the king. … In it he asks the official whether it was right to take the field.
+
+What changed: the first version has no stakes, and a cold reader called it “a summary of a summary”. The second invents what the king wanted and what kind of man he was. The third says what each person faced (rivals as strong as he was; a field given away) and what the sources say they did and asked. The letter itself carries the feeling; the lesson does not have to guess it. A question to the learner (“Why do you think…?”) is also fine, because the thinking is theirs.
+
+## The big question: tell the moment plainly, then ask
+
+**Before** (Babylon, published version: the most alive moment in the lesson, buried)
+
+> This was an ancient society with different legal standings and harsh punishments. Some injury cases prescribe a matching bodily injury; others prescribe silver, depending on the injured person’s status. That difference belongs in understanding the legal system alongside its rules for compensation, agreements and relief after a failed harvest.
+
+**Also wrong** (the lesson answers for the learner)
+
+> The laws were deeply unfair to ordinary people.
+
+**After** (the lesson tells it plainly; the written question asks it)
+
+> One law is still a saying today: an eye for an eye. On the stone it reads: if a man destroys another man’s eye, his own eye is destroyed. The laws treated people of different rank differently, though. If the man who was hurt was of lower rank, a less important person, the man who hurt him kept his own eye and paid silver instead.
+>
+> **Written question:** Hammurabi’s law took an eye for an eye. But if the man who was hurt was of lower rank, the price was silver. Should a punishment depend on who got hurt? Give one reason.
+
+What changed: a cold reader of the revised lesson said, unprompted, “which seems unfair and the lesson doesn't say so.” That reaction is the lesson working, and the published version had no place for it. The lesson still does not say whether the law was fair. It gives the learner the facts and asks, and the parent reads the answer. (The Babylon lesson as merged on 2026-11-10 tells the moment but still asks the boatman question; its written question is due this change.)
+
 ## Say what happened, not what didn't
 
 **Before**
@@ -110,7 +148,7 @@ What changed: a box whose job is to list what the evidence cannot prove turns a 
 | Before | After |
 | --- | --- |
 | What they say is loud. | They make big claims. |
-| The stone kept boasting long after Naram-Sin was gone. | About a thousand years later, another king used the same stone to boast about himself. |
+| The stone kept boasting long after Naram-Sin was gone. | About a thousand years later, another king used the same stone to celebrate his own victory. |
 | Akkad’s kings reached into different cities in different ways. | Akkad’s kings dealt with different cities in different ways. |
 | found what staying in charge looked like on the ground | found what keeping a city really took |
 | Holding Leilan was daily work, done by many hands. | Keeping Leilan took work every day from many people. |
