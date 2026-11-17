@@ -368,16 +368,16 @@ describe('Review after a lesson’s prompts change', () => {
     const gateway = new FakeFamilyGateway();
     gateway.user = { userId: parentId };
     gateway.account = { userId: parentId, displayName: 'Mom', setup: 'separate', linkCode: 'HJKLMNPQ', parents: [], learners: [{ id: kidId, displayName: 'Sam' }], profiles: [], parentPin: false };
-    const guessQuestion = 'After the army went home, what would a king need so that the people there kept doing what he said?';
+    const guessQuestion = 'A king’s army has won a city and gone home. What would the king need so the people there kept doing what he said?';
     gateway.queue = [{
       learnerId: kidId,
       lessonId: 'lesson.mesopotamia.akkadian-empire',
       status: 'submitted',
       round: 1,
       submittedAt: '2026-11-01T00:00:00.000Z',
-      answers: { 'guess.akkad.keep-a-city': 'Lots of soldiers.', 'prompt.akkad.official-or-princess': 'An official, because the workers need food every day.' },
-      questions: [{ promptId: 'prompt.akkad.official-or-princess', kind: 'concise-explanation', question: 'Which would you choose?', required: true }],
-      guesses: [{ promptId: 'guess.akkad.keep-a-city', kind: 'guess', question: guessQuestion, required: false }],
+      answers: { 'guess.akkad.keep-a-won-city': 'Lots of soldiers.', 'prompt.akkad.new-city-choice': 'An official, because the workers need food every day.' },
+      questions: [{ promptId: 'prompt.akkad.new-city-choice', kind: 'concise-explanation', question: 'Which would you choose?', required: true }],
+      guesses: [{ promptId: 'guess.akkad.keep-a-won-city', kind: 'guess', question: guessQuestion, required: false }],
     }];
     render(<FamilyApp page="review" gateway={gateway} />);
     const card = await screen.findByRole('article', { name: 'Akkad and the Problem of Empire' });

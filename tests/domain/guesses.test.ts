@@ -10,7 +10,7 @@ import { LocalPreviewGateway, normalizeLearnState, requiredChecksDone, SupabaseL
 
 const akkadId = 'lesson.mesopotamia.akkadian-empire';
 const akkad = chronosContent.lessons.find((lesson) => lesson.id === akkadId)!;
-const guessId = 'guess.akkad.keep-a-city';
+const guessId = 'guess.akkad.keep-a-won-city';
 const promptById = new Map(chronosContent.prompts.map((prompt) => [prompt.id, prompt]));
 
 const withSections = (sections: Lesson['sections']): Lesson => ({ ...akkad, sections });
@@ -30,7 +30,7 @@ describe('guess module contract and validation', () => {
     const guess = lessonGuess(akkad)!;
     expect(guess.id).toBe(guessId);
     expect(akkad.sections[0].modules.map((module) => module.id)).toContain(guessId);
-    expect(guess.question).toBe('After the army went home, what would a king need so that the people there kept doing what he said?');
+    expect(guess.question).toBe('A king’s army has won a city and gone home. What would the king need so the people there kept doing what he said?');
     const payoff = akkad.sections.flatMap((item) => item.modules).find((module) => module.id === guess.payoffModuleId);
     expect(payoff?.type === 'prose' && payoff.body).toMatch(/So what did it take to keep a city\?[^\n]*$/);
     // The prose no longer asks for a guess the reader can skip.
@@ -72,7 +72,7 @@ describe('guess identity follows the prompt-change policy', () => {
       sections: lesson.sections.map((item) => ({ ...item, modules: item.modules.map((module) => module.id === guessId ? { ...module, ...change } : module) })),
     });
     expect(checkPromptFingerprints(chronosContent.prompts, edit({ sentenceStarter: 'I think a king would need' }), file)).toEqual([]);
-    expect(checkPromptFingerprints(chronosContent.prompts, edit({ question: 'What did kings need?' }), file).join('\n')).toMatch(/guess guess\.akkad\.keep-a-city changed its question/);
+    expect(checkPromptFingerprints(chronosContent.prompts, edit({ question: 'What did kings need?' }), file).join('\n')).toMatch(/guess guess\.akkad\.keep-a-won-city changed its question/);
   });
 });
 
@@ -128,15 +128,15 @@ describe('what the learner sees', () => {
 });
 
 describe('what goes to the parent', () => {
-  const responses = { 'prompt.akkad.urkesh-difference': 'option.akkad.princess-seal', 'prompt.akkad.official-or-princess': 'I would choose an official because the workers need feeding.' };
+  const responses = { 'prompt.akkad.who-ruled-urkesh': 'option.akkad.urkesh-own-king', 'prompt.akkad.new-city-choice': 'I would choose an official because the workers need feeding.' };
   const guesses = { [guessId]: 'A king would need soldiers to stay.' };
 
   it('sends the guess with the written answers, apart from the graded questions', () => {
-    expect(submissionAnswers(akkadId, responses, guesses)).toEqual({ [guessId]: guesses[guessId], 'prompt.akkad.official-or-princess': responses['prompt.akkad.official-or-princess'] });
+    expect(submissionAnswers(akkadId, responses, guesses)).toEqual({ [guessId]: guesses[guessId], 'prompt.akkad.new-city-choice': responses['prompt.akkad.new-city-choice'] });
     const questions = submissionQuestions(akkadId, guesses);
     expect(questions[0]).toEqual({ promptId: guessId, kind: 'guess', question: lessonGuess(akkad)!.question, required: false });
     // Review reads written questions and guesses separately, so a guess is never mixed into what is graded.
-    expect(parseSubmittedQuestions(questions).map((item) => item.promptId)).toEqual(['prompt.akkad.official-or-princess']);
+    expect(parseSubmittedQuestions(questions).map((item) => item.promptId)).toEqual(['prompt.akkad.new-city-choice']);
     expect(parseSubmittedGuesses(questions).map((item) => item.promptId)).toEqual([guessId]);
   });
 
@@ -148,7 +148,7 @@ describe('what goes to the parent', () => {
   it('stores a guess as a tagged attempt and reads it back apart from prompt responses', async () => {
     const inserts: any[] = [];
     const attempts = [
-      { prompt_id: 'prompt.akkad.official-or-princess', response: { answer: 'I would choose an official.' } },
+      { prompt_id: 'prompt.akkad.new-city-choice', response: { answer: 'I would choose an official.' } },
       { prompt_id: guessId, response: { answer: 'Soldiers who stay.', kind: 'guess' } },
     ];
     const chain = (data: unknown) => { const query: any = { select: () => query, eq: () => query, in: () => query, order: () => query, single: async () => ({ data, error: null }), maybeSingle: async () => ({ data: null, error: null }), then: (resolve: (value: unknown) => unknown) => Promise.resolve({ data, error: null }).then(resolve) }; return query; };
@@ -161,7 +161,7 @@ describe('what goes to the parent', () => {
     const state = await gateway.saveGuess(akkadId, guessId, 'Soldiers who stay.');
     expect(inserts).toEqual([{ learner_id: '11111111-1111-4111-a111-111111111111', lesson_id: akkadId, prompt_id: guessId, response: { answer: 'Soldiers who stay.', kind: 'guess' } }]);
     expect(state.guesses).toEqual({ [guessId]: 'Soldiers who stay.' });
-    expect(state.responses).toEqual({ 'prompt.akkad.official-or-princess': 'I would choose an official.' });
-    expect(state.attemptedPromptIds).toEqual(['prompt.akkad.official-or-princess']);
+    expect(state.responses).toEqual({ 'prompt.akkad.new-city-choice': 'I would choose an official.' });
+    expect(state.attemptedPromptIds).toEqual(['prompt.akkad.new-city-choice']);
   });
 });

@@ -3,7 +3,12 @@
   "prompts": {
     "guess.akkad.keep-a-city": {
       "lessonId": "lesson.mesopotamia.akkadian-empire",
-      "fingerprint": "f2b8cb36917f0e6286027171d07370c283f82ca308a9a31e43a4102b04fed62e"
+      "fingerprint": "f2b8cb36917f0e6286027171d07370c283f82ca308a9a31e43a4102b04fed62e",
+      "retired": true
+    },
+    "guess.akkad.keep-a-won-city": {
+      "lessonId": "lesson.mesopotamia.akkadian-empire",
+      "fingerprint": "a7eb9e7b419fa8d2b946ba3f0c7d5affd98df9d75b96b9dbdbaa80d5924f4d07"
     },
     "guess.hammurabi.far-off-field": {
       "lessonId": "lesson.mesopotamia.law-and-kingship",
@@ -24,13 +29,23 @@
       "fingerprint": "8613e6e0940c938a9b9eb62b5bc8362c810b7d3de43b29a0a8a37e39a22ae39e",
       "retired": true
     },
+    "prompt.akkad.new-city-choice": {
+      "lessonId": "lesson.mesopotamia.akkadian-empire",
+      "fingerprint": "af860a22bd00d5c4d866f679116541f9a143b257e23a1ce5eba89acf789de0ba"
+    },
     "prompt.akkad.official-or-princess": {
       "lessonId": "lesson.mesopotamia.akkadian-empire",
-      "fingerprint": "ca774b7a93b7f9b49ae801e5fd52ef56504d0090471311fb4301ce2b588e5673"
+      "fingerprint": "ca774b7a93b7f9b49ae801e5fd52ef56504d0090471311fb4301ce2b588e5673",
+      "retired": true
     },
     "prompt.akkad.urkesh-difference": {
       "lessonId": "lesson.mesopotamia.akkadian-empire",
-      "fingerprint": "8dcabeca424a499d6a7967730a46f6b5f41222fbe87d913a71ed7a7d0d8042de"
+      "fingerprint": "8dcabeca424a499d6a7967730a46f6b5f41222fbe87d913a71ed7a7d0d8042de",
+      "retired": true
+    },
+    "prompt.akkad.who-ruled-urkesh": {
+      "lessonId": "lesson.mesopotamia.akkadian-empire",
+      "fingerprint": "4eee8858a0b915a7c86d94ce52031dd843fd57fbef32d6efb272443d4eacf626"
     },
     "prompt.animals.ganj-dareh-bones": {
       "lessonId": "lesson.animals.domestication-and-pastoralism",

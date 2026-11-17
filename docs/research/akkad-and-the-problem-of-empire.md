@@ -448,10 +448,52 @@ Reviewer identifier: **Adult proxy 1**, a neutral alias for the independent adul
 
 - **The kid's question:** Once Akkad's kings won a city, how did they stay in charge of it?
 - **The kid's answer:** Akkad's kings won lots of battles, but staying in charge of a city was much harder. At Leilan they put their own official in charge and fed the workers from big ovens every day. At Urkesh it worked differently: the city kept its own rulers, and a princess from Akkad used her seal in their palace, maybe as the king's wife.
+- **The big question** (added 2026-11-17): If you had just won a city, would you put your own official in charge, or leave its own king and send a princess to his palace? The lesson tells what each way cost (end of “A princess at Urkesh”) and does not say which was better. The written prompt asks it.
 - **How we know, in one line:** clay sealings and ovens dug up at Leilan and Urkesh show what the kings' boasts leave out.
 - **Draft checks:** `prompt.akkad.urkesh-difference` (multiple choice: what was different at Urkesh, checking the third sentence) and `prompt.akkad.staying-in-charge` (written: why staying in charge of Leilan was more work, checking the first two). Both are in the 2026-11-01 entry under `## Prompt revision`.
 
 Checked against the claim ledger: `winning-and-governing`, `leilan-official`, `barley-ration`, `leilan-administration`, `urkesh-find`, `taram-sealings`, `urkesh-relationship` (“maybe as the king's wife” keeps the excavators' reading a reading).
+
+## Voice revision
+
+Standard: 2026-11-11 (the big question, stakes without motives, restructure; set in [PR #101](https://github.com/dev-vibe/chronos-learning/pull/101))
+
+Branch: `revise/akkad-big-question`. Started 2026-11-11, finished 2026-11-17. Status: **approved by the owner 2026-11-17 and merged** ([PR #102](https://github.com/dev-vibe/chronos-learning/pull/102)). The 2026-11-01 revision below stays as the record of that pass.
+
+### Restructure (owner approved 2026-11-11)
+
+“A king’s victory stone” moved from fifth to third, after “What Sargon’s records say”: the kings’ side of the story first (in words, then in stone), then the two cities, then the ending. Two cold readers in a row could not say why the stone was in a lesson about keeping cities. The later king who carried the stone off moved to the picture caption. All section, module, claim and source IDs kept; no teaching job dropped.
+
+### Audit of the 2026-11-01 version
+
+One cold kid read (fresh subagent, `lesson:kid-read` text only). Questions: Q1 yes, Q2 sort of (“the lesson never says which worked better, so I'd be making up the reason”). Q1 answerable from the options alone (“A is the longest”; “B is just the Leilan sentence from the question again”). Section points 5 of 6: the stone “can't tell why it's in a lesson about keeping cities”. Flags: “Lumps of clay marked with a seal show that an official sent by Akkad was now in charge” (“how does a lump of clay show that?”), “a fine layer of leftover plant bits”, “A different seal from Akkad’s time”, “the people there” in the guess, “had a place in their palace”, “wanted an explanation too”.
+
+- **Big question:** the written prompt already asked it, but the lesson gave no reason for either side.
+- **Prompts:** `prompt.akkad.urkesh-difference` `replace` (cover test fails); `prompt.akkad.official-or-princess` `replace` (“which would you choose”, “joined the palace” unclear; asks for a reason the lesson did not give). Guess `guess.akkad.keep-a-city` replaced (“there” has no place to point at).
+- **Card:** none; adding one is material.
+
+### Changes
+
+- Section reorder above.
+- “A princess at Urkesh” now ends by saying what each way cost: at Leilan, Akkad’s own man gave the orders, but Akkad fed the workers every day and the city’s old rulers lost their place; at Urkesh, the people kept their own king and Akkad did not have to send a man to run the city, but that king, not Akkad, gave the orders. Claims: `leilan-official`, `barley-ration`, `leilan-work`, `urkesh-relationship`, `taram-sealings`.
+- How a seal closes a jar or door is now told once, at Leilan, where the official’s seal first matters (`cylinder-seal-use`, `door-sealing`), with the seal’s tube shape; Urkesh refers back to it.
+- Plain-wording fixes: scribes explained at first use; “fine layer of leftover plant bits”; the seal picture label now says it is not the princess’s own; “told their own story about why Akkad fell”; the princess introduced as “the daughter of Naram-Sin, the king on the victory stone”.
+- Both prompts and the guess replaced (`## Prompt revision`, `## Guess before reading`). Tests that named the old IDs and pinned the old guess text now name the new ones.
+- Reading length (`lesson:kid-read`, sections only): 1,444 → 1,505 words.
+
+### Kid read of the revision
+
+Departure from the runbook: no targeted passes and one final kid read, not three rounds (the lighter loop proposed alongside PR #101). Two fresh readers: one on the first draft, one on the final text with the feedback test.
+
+- **Final reader's restatements:** guess “How does he get those people to keep obeying him?” (sort of: a hunch, as a guess should be); Q1 “Who was the boss of Urkesh?” (yes); Q2 “If I'm king, do I send my own guy or a princess? Give one reason.” (sort of: “I'd have to remember the ‘each way had a cost’ part”).
+- **Answers:** Q1 right. Q2 “I'd send the princess, because then I don't have to run the city”; the reader said the lesson gives reasons for both ways but the princess side was weak, so that sentence was made concrete (above).
+- **Section points:** 6 of 6, including the stone (“that's bragging, not the real story”).
+- **Retelling:** matches the kid's answer.
+- **Remembered:** the horned-helmet king, the princess.
+- **Feedback test:** both wrong choices send the reader to “A princess at Urkesh” with one thing to look for; the reader judged them close to giving the answer, which is acceptable after a wrong pick.
+- **Still open:** “By about 2140 BCE” against the 2150 frame and “BCE” unexplained (masthead and shell); the drought paragraph’s logic took a second read; Leilan and Urkesh look alike (the names are the lesson’s two cases, so they stay).
+
+`npm run validate:content`, `npm run lesson:check-questions` (no flags) and `npm test` (49 files, 339 tests) passed.
 
 ## Voice revision
 
@@ -627,6 +669,19 @@ Pending.
 
 ## Prompt revision
 
+### 2026-11-17 — both prompts replaced (big-question revision)
+
+| | Old | New |
+| --- | --- | --- |
+| Multiple choice | `prompt.akkad.urkesh-difference`: “At Leilan, an official sent by Akkad ran the farm work. What was different at Urkesh?” Best: “Its own king stayed, and a princess from Akkad joined the palace.” | `prompt.akkad.who-ruled-urkesh`: “Akkad’s kings dealt with Urkesh differently from Leilan. Who still ruled Urkesh?” Best: “The city’s own king.” Wrong: “An official sent by Akkad.” (the Leilan answer) / “The princess from Akkad.” (a careless reading of the Urkesh section) |
+| Written | `prompt.akkad.official-or-princess`: “At Leilan, Akkad put its own official in charge. At Urkesh, a princess from Akkad joined the palace of the city’s own king. If you were Akkad’s king, which would you choose for a new city? Give one reason from the lesson.” | `prompt.akkad.new-city-choice`: “You are Akkad’s king, and you have won a new city. Would you put your own official in charge, or leave its own king and send a princess to his palace? Give one reason from the lesson, in a sentence or two.” Required, minimum 20. |
+
+Same teaching jobs. The written prompt is the lesson’s big question; the lesson now gives a reason for each side. Support map: Q1 all three options from “A princess at Urkesh” (first sentences) and “An official at Leilan”; Q2 from the cost paragraph at the end of “A princess at Urkesh”. A two-sentence answer from the lesson’s words: “I would send a princess, because then I don’t have to send a man to run the city. The people keep their own king.”
+
+**What learners will see.** Finished, waiting and passed lessons stay as they are. A learner still working through the lesson, or one whose lesson was sent back, answers both new required prompts before sending. On Review, an old written answer shows the question as the learner saw it and is marked as changed.
+
+Owner approval: approved 2026-11-17 ([PR #102](https://github.com/dev-vibe/chronos-learning/pull/102)).
+
 ### 2026-10-03 — one prompt replaced, one reworded, after an age-fit audit of every lesson's prompts
 
 Branch `revise/akkad-prompts`. Part of the assessment audit that followed the Indus review (prompt readability check in `docs/content/prompt-revision-runbook.md`, PR #68). `prompt.akkad.holding-power` is replaced by `prompt.akkad.evidence-of-rule` and retired in `content/published-prompt-fingerprints.json`. `prompt.akkad.local-arrangements` keeps its ID: only the hint and two wrong-option feedbacks changed, which the prompt-change policy allows. Its fingerprint is unchanged.
@@ -698,6 +753,10 @@ Support map: “A battle could be won in a day” and “Staying in charge after
 Owner approval: approved 2026-11-01 (PR #94). Final prompts: `prompt.akkad.urkesh-difference` and `prompt.akkad.official-or-princess` (see `## Voice revision`, second owner review).
 
 ## Guess before reading
+
+### 2026-11-17 — guess reworded
+
+`guess.akkad.keep-a-city` → `guess.akkad.keep-a-won-city`: “A king’s army has won a city and gone home. What would the king need so the people there kept doing what he said?” Two cold readers asked where “there” was. Same payoff (`module.akkad.regional-change`) and sentence starter. A learner who already saved a guess under the old ID sees the whole lesson; their old guess stays on Review.
 
 ### 2026-11-01 — pilot of the `guess` module
 
